@@ -1,0 +1,36 @@
+name: data
+on:
+  schedule:
+    - cron: 0 * * * *
+  workflow_dispatch: {}
+  push:
+    paths:
+      - .github/workflows/flat.yml
+      - ./process-tripletex.ts
+jobs:
+  scheduled:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup deno
+        uses: denoland/setup-deno@main
+        with:
+          deno-version: v1.10.x
+      - name: Check out repo
+        uses: actions/checkout@v2
+      - name: Fetch data
+        uses: githubocto/flat@v3
+        with:
+          http_url: https://api.fiken.no/api/v2/docs/swagger.yaml
+          downloaded_filename: fiken.yaml
+      - name: Fetch data
+        uses: githubocto/flat@v3
+        with:
+          http_url: https://tripletex.no/v2/swagger.json
+          downloaded_filename: tripletex-prod.json
+          postprocess: ./process-tripletex.ts
+      - name: Fetch data
+        uses: githubocto/flat@v3
+        with:
+          http_url: https://api.tripletex.io/v2/swagger.json
+          downloaded_filename: tripletex-test.json
+          postprocess: ./process-tripletex.ts
