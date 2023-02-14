@@ -6,6 +6,7 @@ on:
   push:
     paths:
       - .github/workflows/flat.yml
+      - ./process-tripletex.ts
 jobs:
   scheduled:
     runs-on: ubuntu-latest
@@ -31,3 +32,4 @@ jobs:
         with:
           http_url: https://api.tripletex.io/v2/swagger.json
           downloaded_filename: tripletex-test.json
+          postprocess: ./process-tripletex.ts
