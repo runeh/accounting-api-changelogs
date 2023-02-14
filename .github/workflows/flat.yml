@@ -27,6 +27,7 @@ jobs:
         with:
           http_url: https://tripletex.no/v2/swagger.json
           downloaded_filename: tripletex-prod.json
+          postprocess: ./process-tripletex.ts
       - name: Fetch data
         uses: githubocto/flat@v3
         with:
