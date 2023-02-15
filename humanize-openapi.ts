@@ -7,6 +7,8 @@ const roughOpenApiSchema = z.object({
     z.record(
       z.string(),
       z.object({
+        description: z.string(),
+        summary: z.string().optional(),
         parameters: z.array(
           z.object({
             name: z.string(),
@@ -31,32 +33,50 @@ const roughOpenApiSchema = z.object({
 const methodOrder = ["get", "post", "put", "patch", "delete"];
 
 function prettyPrint(data: z.infer<typeof roughOpenApiSchema>) {
-  const items = Object.entries(data.paths).flatMap(([path, methods]) => {
-    return Object.entries(methods).map(([method, definition]) => {
-      return { path, method, definition };
+  const items = Object.entries(data.paths).flatMap(([path, methodDefs]) => {
+    const methods = Object.entries(methodDefs).map(([method, definition]) => {
+      const params = orderBy(definition.parameters, [
+        (e) => {
+          switch (e.in) {
+            case "path":
+              return 1;
+            case "query":
+              return 2;
+            case "body":
+              return 3;
+            default:
+              return 4;
+          }
+        },
+      ]);
+      return {
+        method,
+        definition,
+        params,
+        description: definition.description || definition.summary,
+      };
     });
+    return { path, methods: orderBy(methods, [(e) => e.method]) };
   });
 
-  const sorted = orderBy(items, [(e) => e.path, (e) => e.method]);
+  const sorted = orderBy(items, [(e) => e.path]);
 
   const lines: string[] = [];
 
   for (const item of sorted) {
-    lines.push(`${item.method.toUpperCase().padEnd(6, " ")} ${item.path}`);
+    lines.push(item.path);
+    for (const method of item.methods) {
+      lines.push(`    ${method.method.toUpperCase()} - ${method.description}`);
+      for (const param of method.params) {
+        lines.push(`        ${param.in.padEnd(8, " ")} ${param.name}`);
+      }
+      lines.push("");
+    }
+    lines.push("");
   }
 
-  console.log(lines);
-  // console.log(
-  //   JSON.stringify(
-  //     sorted.map((e) => `${e.method.toUpperCase().padEnd(6, " ")} ${e.path}`),
-  //     null,
-  //     2
-  //   )
-  // );
-
+  console.log(lines.join("\n"));
   // console.log(JSON.stringify(sorted, null, 2));
-
-  // const
 }
 
 const raw = await Deno.readTextFile("./tripletex-prod.json");
