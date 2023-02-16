@@ -1,6 +1,7 @@
 import { z } from "https://deno.land/x/zod@v3.20.5/mod.ts";
 import { orderBy } from "https://esm.sh/natural-orderby@3.0.2";
 import wordWrap from "https://esm.sh/word-wrap";
+import swaggerParser from "https://esm.sh/@apidevtools/swagger-parser@10.1.0";
 
 const optionalString = z
   .string()
@@ -61,7 +62,6 @@ const roughMethods = z
         responses: roughResponses,
       })
       .transform((e) => {
-        console.log("asdf", e);
         const { description, summary, ...rest } = e;
         return { ...rest, description: description ?? summary };
       })
@@ -97,6 +97,8 @@ function toLines(line: string | undefined) {
 function prettyPrint(data: z.infer<typeof roughOpenApiSchema>) {
   const lines: string[] = [];
 
+  // to do: Get the common params from path. Append to the entry for each method
+
   for (const item of data.paths) {
     lines.push(item.path);
     for (const method of item.methods) {
@@ -121,6 +123,8 @@ function prettyPrint(data: z.infer<typeof roughOpenApiSchema>) {
 // const raw = await Deno.readTextFile("./tripletex-prod.json");
 const raw = await Deno.readTextFile("./fiken.json");
 const json = JSON.parse(raw);
-const parsed = roughOpenApiSchema.parse(json);
-// console.log(JSON.stringify(parsed, null, 2));
-prettyPrint(parsed);
+// const parsed = roughOpenApiSchema.parse(json);
+// // console.log(JSON.stringify(parsed, null, 2));
+// prettyPrint(parsed);
+
+console.log(await swaggerParser.parse(json));
