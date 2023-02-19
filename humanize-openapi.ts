@@ -1,130 +1,122 @@
 import { z } from "https://deno.land/x/zod@v3.20.5/mod.ts";
 import { orderBy } from "https://esm.sh/natural-orderby@3.0.2";
-import wordWrap from "https://esm.sh/word-wrap";
 import swaggerParser from "https://esm.sh/@apidevtools/swagger-parser@10.1.0";
+import converter from "https://esm.sh/swagger2openapi@7.0.8";
+import { OpenAPIV3 } from "https://esm.sh/openapi-types@12.1.0";
+import redent from "https://esm.sh/redent@4.0.0";
+import wordWrap from "https://esm.sh/word-wrap@1.2.3";
 
-const optionalString = z
-  .string()
-  .optional()
-  .transform((e) => (typeof e === "string" && e.trim() !== "" ? e : undefined));
+export function notEmpty<T>(value: T | null | undefined): value is T {
+  return value !== null && value !== undefined;
+}
 
-const roughParameters = z
-  .array(
-    z.object({
-      name: z.string(),
-      in: z.string(),
-      required: z.boolean().optional(),
-      schema: z.unknown(),
-    })
-  )
-  .transform((e) => {
-    const byPath = e.filter((v) => v.in === "path");
-    const byOther = e.filter((v) => v.in !== "path");
-    const sortedOther = orderBy(byOther, [
-      (e) => {
-        switch (e.in) {
-          case "path":
-            return 1;
-          case "query":
-            return 2;
-          case "body":
-            return 3;
-          default:
-            return 4;
-        }
-      },
-      (e) => e.name,
-    ]);
-    return [...byPath, ...sortedOther];
+type MyParam =
+  | {
+      kind: "param";
+      name: string;
+      deprecated?: boolean;
+      required?: boolean;
+      pIn: string;
+    }
+  | { kind: "ref"; target: string };
+
+function parsePath(path: string, pathObj: OpenAPIV3.PathItemObject) {
+  const commonParams = (pathObj.parameters ?? []).map<MyParam>((e) => {
+    if ("$ref" in e) {
+      return { kind: "ref", target: e["$ref"] };
+    } else {
+      const { name, deprecated, description, required } = e;
+      const pIn = e.in;
+      return { kind: "param", name, deprecated, description, required, pIn };
+    }
   });
 
-const roughResponses = z
-  .record(
-    z.string(),
-    z.object({
-      description: optionalString,
-      content: optionalString,
-      schema: z.unknown(),
+  const methods = Object.values(OpenAPIV3.HttpMethods)
+    .map((e) => {
+      const obj = pathObj[e];
+      return obj && { method: e, value: obj };
     })
-  )
-  .transform((e) =>
-    Object.entries(e).map(([k, v]) => ({ statusCode: k, ...v }))
-  );
+    .filter(notEmpty)
+    .map((e) => {
+      const { method, value } = e;
+      const { description } = value;
+      const params = (value.parameters ?? []).map<MyParam>((e) => {
+        if ("$ref" in e) {
+          return { kind: "ref", target: e["$ref"] };
+        } else {
+          const { name, deprecated, description, required } = e;
+          const pIn = e.in;
+          return {
+            kind: "param",
+            name,
+            deprecated,
+            description,
+            required,
+            pIn,
+          };
+        }
+      });
 
-const roughMethods = z
-  .record(
-    z.string(),
-    z
-      .object({
-        description: optionalString,
-        summary: optionalString,
-        parameters: roughParameters,
-        responses: roughResponses,
-      })
-      .transform((e) => {
-        const { description, summary, ...rest } = e;
-        return { ...rest, description: description ?? summary };
-      })
-  )
-  .transform((e) =>
-    Object.entries(e).map(([k, v]) => ({ method: k.toUpperCase(), ...v }))
-  );
+      return {
+        path,
+        method,
+        description,
+        params: [...params, ...commonParams],
+      };
+    });
 
-const roughPaths = z
-  .record(z.string(), roughMethods)
-  .transform((e) =>
-    Object.entries(e).map(([k, v]) => {
-      return { path: k, methods: v };
-    })
-  )
-  .transform((arr) => orderBy(arr, [(e) => e.path]));
-
-type x = z.infer<typeof roughResponses>;
-
-const roughOpenApiSchema = z.object({
-  paths: roughPaths,
-});
-
-function toLines(line: string | undefined) {
-  if (line == null || line.trim() === "") {
-    return [""];
-  }
-  return wordWrap(line.trim(), { width: 60, trim: true, indent: "" }).split(
-    "\n"
-  );
+  return methods.flat();
 }
 
-function prettyPrint(data: z.infer<typeof roughOpenApiSchema>) {
-  const lines: string[] = [];
+function mungApi(doc: OpenAPIV3.Document) {
+  const paths = Object.entries(doc.paths)
+    .map(([name, val]) => (val ? { name, val } : undefined))
+    .filter(notEmpty)
+    .flatMap((e) => parsePath(e.name, e.val));
 
-  // to do: Get the common params from path. Append to the entry for each method
+  return { paths };
+}
 
-  for (const item of data.paths) {
-    lines.push(item.path);
-    for (const method of item.methods) {
-      const descriptionParts = toLines(method.description);
+type Munged = ReturnType<typeof mungApi>;
 
-      lines.push(`    ${method.method}:    ${descriptionParts[0]}`);
-      if (descriptionParts.length > 1) {
-        lines.push(...descriptionParts.slice(1).map((e) => `            ${e}`));
+function prettyPrint(munged: Munged) {
+  console.log("Operations");
+  console.log("==========\n");
+  const orderedPaths = orderBy(munged.paths, [(e) => e.path, (e) => e.method]);
+  for (const path of orderedPaths) {
+    console.log(path.method.toUpperCase(), path.path);
+    const orderedParams = orderBy(path.params, [
+      (e) => (e.kind === "param" ? e.pIn : "z"),
+      (e) => (e.kind === "param" ? e.name : "z"),
+    ]);
+
+    const desc = wordWrap(path.description ?? "No description", { width: 76 });
+    console.log(redent(desc, 2));
+
+    console.log("  Params:");
+    for (const param of orderedParams) {
+      if (param.kind === "ref") {
+        continue;
       }
-      for (const param of method.parameters) {
-        lines.push(`        ${param.in.padEnd(8, " ")} ${param.name}`);
-      }
-      lines.push("");
+      console.log(`    ${param.pIn.padEnd(6, " ")} ${param.name}`);
     }
-    lines.push("");
+    console.log("\n");
   }
-
-  console.log(lines.join("\n"));
-  // console.log(JSON.stringify(sorted, null, 2));
 }
 
-// const raw = await Deno.readTextFile("./tripletex-prod.json");
-const raw = await Deno.readTextFile("./fiken.json");
-const json = JSON.parse(raw);
-// const parsed = roughOpenApiSchema.parse(json);
-// // console.log(JSON.stringify(parsed, null, 2));
-// prettyPrint(parsed);
+async function grabOpenapi3() {
+  const raw = await Deno.readTextFile("./tripletex-prod.json");
+  const json = JSON.parse(raw);
+  const foo = await converter.convertObj(json, {});
+  const lal = await swaggerParser.dereference(foo.openapi);
+  return lal;
+}
 
-console.log(await swaggerParser.parse(json));
+async function main() {
+  const raw = await Deno.readTextFile("./fiken.json");
+  const json = JSON.parse(raw);
+  const lal = await swaggerParser.dereference(json);
+  prettyPrint(mungApi(lal as any));
+}
+
+main();
