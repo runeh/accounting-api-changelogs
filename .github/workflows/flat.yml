@@ -34,3 +34,9 @@ jobs:
           http_url: https://api.tripletex.io/v2/swagger.json
           downloaded_filename: tripletex-test.json
           postprocess: ./process-tripletex.ts
+      - name: Fetch data
+        uses: githubocto/flat@v3
+        with:
+          http_url: https://eaccountingapi-sandbox.test.vismaonline.com/swagger/docs/v2
+          downloaded_filename: eaccounting.json
+          postprocess: ./process-tripletex.ts
