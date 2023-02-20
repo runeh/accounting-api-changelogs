@@ -2949,6 +2949,55 @@
       },
       "type": "object"
     },
+    "BringCredentials": {
+      "properties": {
+        "apiKey": {
+          "description": "API token for Bring APIs",
+          "type": "string"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "customerNumber": {
+          "description": "Bring customer number",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "moduleBring": {
+          "description": "Bring activation in Logistics module",
+          "type": "boolean"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "username": {
+          "description": "Bring username",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "customerNumber",
+        "moduleBring",
+        "username"
+      ],
+      "type": "object"
+    },
     "CalloutDTO": {
       "properties": {
         "id": {
@@ -26675,6 +26724,14 @@
       "properties": {
         "value": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperBringCredentials": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/BringCredentials"
         }
       },
       "type": "object"
@@ -73501,6 +73558,9 @@
     },
     {
       "name": "upsaleMetric"
+    },
+    {
+      "name": "bringCredentials"
     },
     {
       "name": "checkout"
