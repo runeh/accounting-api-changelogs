@@ -21,6 +21,21 @@ export function notEmpty<T>(value: T | null | undefined): value is T {
   return value !== null && value !== undefined;
 }
 
+function makePrinter() {
+  const lines: string[] = [];
+  let indentLevel = 0;
+
+  return {
+    indent: () => {
+      indentLevel++;
+    },
+    dedent: () => indentLevel--,
+    print: (line: string) => {
+      lines.push(`${indentLevel} ${line}`);
+    },
+  };
+}
+
 type MyParam =
   | {
       kind: "param";
@@ -30,6 +45,7 @@ type MyParam =
       pIn: string;
       refName?: string;
       required?: boolean;
+      type?: MyParamType;
     }
   | {
       kind: "ref";
@@ -41,9 +57,17 @@ function parsePath(path: string, pathObj: OpenAPIV3.PathItemObject) {
     if ("$ref" in e) {
       return { kind: "ref", target: e["$ref"] };
     } else {
-      const { name, deprecated, description, required } = e;
+      const { name, deprecated, description, required, schema } = e;
       const pIn = e.in;
-      return { kind: "param", name, deprecated, description, required, pIn };
+      return {
+        kind: "param",
+        name,
+        deprecated,
+        description,
+        required,
+        pIn,
+        type: parseParamType(schema),
+      };
     }
   });
 
@@ -69,6 +93,7 @@ function parsePath(path: string, pathObj: OpenAPIV3.PathItemObject) {
             description,
             required,
             pIn,
+            type: parseParamType(e.schema),
           };
         }
       });
@@ -82,6 +107,34 @@ function parsePath(path: string, pathObj: OpenAPIV3.PathItemObject) {
     });
 
   return methods.flat();
+}
+
+type MyParamType =
+  | { kind: "array"; type: MyParamType | undefined }
+  | { kind: "primitive"; type: string }
+  | { kind: "ref"; target: string };
+
+function parseParamType(
+  item: OpenAPIV3.ReferenceObject | OpenAPIV3.SchemaObject | undefined
+): MyParamType | undefined {
+  if (item == null) {
+    return undefined;
+  }
+
+  if ("$ref" in item) {
+    return { kind: "ref", target: item.$ref } as const;
+  }
+
+  if (item.type == null) {
+    return undefined;
+  }
+
+  if (item.type === "array") {
+    const arrayType = parseParamType(item.items);
+    return { kind: "array", type: arrayType };
+  } else {
+    return { kind: "primitive", type: item.type };
+  }
 }
 
 function parseParameterRef(
@@ -99,6 +152,7 @@ function parseParameterRef(
     deprecated: param.deprecated,
     required: param.required,
     refName: `#/components/parameters/${name}`,
+    type: parseParamType(param.schema),
   };
 
   return ret;
@@ -148,11 +202,27 @@ function prettyPrint(munged: Munged) {
     for (const param of orderedParams) {
       if (param.refName) {
         console.log(
-          `    ${param.pIn.padEnd(6, " ")} ${param.name} from ${param.refName}`
+          `    ${param.pIn.padEnd(6, " ")} ${param.name} (${param.refName})`
         );
       } else {
-        console.log(`    ${param.pIn.padEnd(6, " ")} ${param.name}`);
+        if (param.name === "memberNumber") {
+          console.log("asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf");
+          console.log(param);
+          console.log("asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf");
+        }
 
+        const typeName =
+          param.type == null
+            ? ""
+            : param.type.kind === "ref"
+            ? `from ${param.type.target}`
+            : param.type.kind === "array"
+            ? `${param.type.type}[]`
+            : param.type.type;
+
+        console.log(
+          `    ${param.pIn.padEnd(6, " ")} ${param.name} (${typeName})`
+        );
         const desc = wordWrap(param.description ?? "No description", {
           width: 72,
         });
@@ -167,8 +237,7 @@ async function grabOpenapi3() {
   const raw = await Deno.readTextFile("./tripletex-prod.json");
   const json = JSON.parse(raw);
   const foo = await converter.convertObj(json, {});
-  const lal = await swaggerParser.dereference(foo.openapi);
-  return lal;
+  return foo.openapi;
 }
 
 async function main() {
@@ -180,3 +249,8 @@ async function main() {
 }
 
 main();
+
+/**
+ * todo:
+ * - support enums
+ */
