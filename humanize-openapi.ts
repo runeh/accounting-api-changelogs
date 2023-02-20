@@ -1,10 +1,20 @@
-// import { z } from "https://deno.land/x/zod@v3.20.5/mod.ts";
+import { z } from "https://deno.land/x/zod@v3.20.5/mod.ts";
 import { orderBy } from "https://esm.sh/natural-orderby@3.0.2";
-import swaggerParser from "https://esm.sh/@apidevtools/swagger-parser@10.1.0";
+// import swaggerParser from "https://esm.sh/@apidevtools/swagger-parser@10.1.0";
 import converter from "https://esm.sh/swagger2openapi@7.0.8";
 import { OpenAPIV3 } from "https://esm.sh/openapi-types@12.1.0";
 import redent from "https://esm.sh/redent@4.0.0";
 import wordWrap from "https://esm.sh/word-wrap@1.2.3";
+
+const versionSchema = z
+  .object({
+    swagger: z.string().regex(/2\.0/).optional(),
+    openapi: z
+      .string()
+      .regex(/3\.0\.\d/)
+      .optional(),
+  })
+  .transform((e) => (e.openapi ? "openapi" : "swagger"));
 
 export default function invariant(
   condition: unknown,
@@ -79,7 +89,7 @@ function parsePath(path: string, pathObj: OpenAPIV3.PathItemObject) {
     .filter(notEmpty)
     .map((e) => {
       const { method, value } = e;
-      const { description } = value;
+      const { description, summary } = value;
       const params = (value.parameters ?? []).map<MyParam>((e) => {
         if ("$ref" in e) {
           return { kind: "ref", target: e["$ref"] };
@@ -101,7 +111,7 @@ function parsePath(path: string, pathObj: OpenAPIV3.PathItemObject) {
       return {
         path,
         method,
-        description,
+        description: summary || description,
         params: [...params, ...commonParams],
       };
     });
@@ -205,12 +215,6 @@ function prettyPrint(munged: Munged) {
           `    ${param.pIn.padEnd(6, " ")} ${param.name} (${param.refName})`
         );
       } else {
-        if (param.name === "memberNumber") {
-          console.log("asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf");
-          console.log(param);
-          console.log("asdfasdfasdfasdfasdfasdfasdfasdfasdfasdf");
-        }
-
         const typeName =
           param.type == null
             ? ""
@@ -233,18 +237,19 @@ function prettyPrint(munged: Munged) {
   }
 }
 
-async function grabOpenapi3() {
-  const raw = await Deno.readTextFile("./tripletex-prod.json");
-  const json = JSON.parse(raw);
+async function convertSwagger(json: any) {
   const foo = await converter.convertObj(json, {});
   return foo.openapi;
 }
 
 async function main() {
   const raw = await Deno.readTextFile("./fiken.json");
+  // const raw = await Deno.readTextFile("./tripletex-prod.json");
   const json = JSON.parse(raw);
-  // const lal = await swaggerParser.dereference(json);
-  const munged = mungApi(json);
+  const version = versionSchema.parse(json);
+  console.log("Got document version", version);
+  const doc = version === "openapi" ? json : await convertSwagger(json);
+  const munged = mungApi(doc);
   prettyPrint(munged);
 }
 
