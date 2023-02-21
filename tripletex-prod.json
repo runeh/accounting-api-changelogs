@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1247,6 +1241,32 @@
             "$ref": "#/definitions/PaymentDTO"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AprilaCashCreditApplicationResponseDTO": {
+      "properties": {
+        "annualInterestRate": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "maxCreditLimitAmount": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "maxCreditLimitCurrency": {
+          "type": "string"
+        },
+        "monthlyFeeAmount": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "monthlyFeeCurrency": {
+          "type": "string"
+        },
+        "monthlyInterestRate": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "signUpUrl": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -26522,6 +26542,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ApproveResponseDTO"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperAprilaCashCreditApplicationResponseDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/AprilaCashCreditApplicationResponseDTO"
         }
       },
       "type": "object"
