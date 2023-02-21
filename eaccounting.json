@@ -7321,6 +7321,62 @@
       },
       "type": "object"
     },
+    "ODataQueryOptions[VatCodeRateApi]": {
+      "properties": {
+        "Apply": {
+          "$ref": "#/definitions/ApplyQueryOption",
+          "readOnly": true
+        },
+        "Context": {
+          "$ref": "#/definitions/ODataQueryContext",
+          "readOnly": true
+        },
+        "Count": {
+          "$ref": "#/definitions/CountQueryOption",
+          "readOnly": true
+        },
+        "Filter": {
+          "$ref": "#/definitions/FilterQueryOption",
+          "readOnly": true
+        },
+        "IfMatch": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "IfNoneMatch": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "OrderBy": {
+          "$ref": "#/definitions/OrderByQueryOption",
+          "readOnly": true
+        },
+        "RawValues": {
+          "$ref": "#/definitions/ODataRawQueryOptions",
+          "readOnly": true
+        },
+        "Request": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "SelectExpand": {
+          "$ref": "#/definitions/SelectExpandQueryOption",
+          "readOnly": true
+        },
+        "Skip": {
+          "$ref": "#/definitions/SkipQueryOption",
+          "readOnly": true
+        },
+        "Top": {
+          "$ref": "#/definitions/TopQueryOption",
+          "readOnly": true
+        },
+        "Validator": {
+          "$ref": "#/definitions/ODataQueryValidator"
+        }
+      },
+      "type": "object"
+    },
     "ODataQueryOptions[VatReportApi]": {
       "properties": {
         "Apply": {
@@ -8901,6 +8957,24 @@
         "Data": {
           "items": {
             "$ref": "#/definitions/VatCodeApi"
+          },
+          "type": "array"
+        },
+        "Meta": {
+          "$ref": "#/definitions/PaginationMetadata"
+        }
+      },
+      "required": [
+        "Meta",
+        "Data"
+      ],
+      "type": "object"
+    },
+    "PaginatedResponse[VatCodeRateApi]": {
+      "properties": {
+        "Data": {
+          "items": {
+            "$ref": "#/definitions/VatCodeRateApi"
           },
           "type": "array"
         },
@@ -11015,6 +11089,53 @@
         "VatRate": {
           "format": "double",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "VatCodeRateApi": {
+      "properties": {
+        "Code": {
+          "type": "string"
+        },
+        "Description": {
+          "type": "string"
+        },
+        "Id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "OssCodeType": {
+          "description": "0 = None, 1 = Sales, 2 = Vat",
+          "enum": [
+            0,
+            1,
+            2
+          ],
+          "format": "int32",
+          "type": "integer"
+        },
+        "RelatedAccounts": {
+          "$ref": "#/definitions/RelatedAccounts"
+        },
+        "VatRates": {
+          "items": {
+            "$ref": "#/definitions/VatRateApi"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VatRateApi": {
+      "properties": {
+        "VatRate": {
+          "format": "double",
+          "type": "number"
+        },
+        "VatRateDate": {
+          "format": "date-time",
+          "type": "string"
         }
       },
       "type": "object"
@@ -18538,6 +18659,34 @@
           }
         },
         "summary": "Get a vat code item by it's id.",
+        "tags": [
+          "VatCodeV2"
+        ]
+      }
+    },
+    "/v2/vatcodesrates": {
+      "get": {
+        "consumes": [],
+        "deprecated": false,
+        "description": "<p>Requires any of the following scopes: <br><b>ea:accounting, ea:accounting_readonly</b></p><p>Available in any of the following variants: <br><b>Pro, Standard, Bookkeeping, Invoicing, Solo</b></p>",
+        "operationId": "VatCodeV2_Get",
+        "parameters": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PaginatedResponse[VatCodeRateApi]"
+            }
+          }
+        },
+        "summary": "Gets a list of all vat codes and their vat rate values. \r\nIf Oss rules are set in company settings Oss vat codes are included",
         "tags": [
           "VatCodeV2"
         ]
