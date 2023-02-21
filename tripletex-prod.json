@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -2148,6 +2154,55 @@
         "description",
         "recurrence"
       ],
+      "type": "object"
+    },
+    "BankDashboardAdvice": {
+      "properties": {
+        "adviceType": {
+          "description": "The advice type.",
+          "enum": [
+            "SHORTEN_DUE_DATE_ON_OUTGOING_INVOICES_TO_CUSTOMERS",
+            "INCREASE_DUE_DATE_ON_INCOMING_INVOICES_FROM_VENDORS",
+            "APPLY_FOR_CASH_CREDIT_WITH_TRIPLETEX_APRILA"
+          ],
+          "type": "string"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "dateCancelled": {
+          "description": "The date the advice has been cancelled by the user.",
+          "type": "string"
+        },
+        "dateUpdated": {
+          "description": "The date the advice was updated.",
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isActive": {
+          "description": "The advice is active.",
+          "type": "boolean"
+        },
+        "isCancelled": {
+          "description": "The advice has been cancelled.",
+          "type": "boolean"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "BankOnboardingAccessRequestDTO": {
@@ -12225,6 +12280,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/BankBalanceEstimation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseBankDashboardAdvice": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "[DEPRECATED] Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/BankDashboardAdvice"
           },
           "readOnly": true,
           "type": "array"
@@ -26642,6 +26730,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperBankDashboardAdvice": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/BankDashboardAdvice"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperBankOnboardingDTO": {
       "properties": {
         "value": {
@@ -30565,6 +30661,13 @@
     },
     "SalaryV2PaymentValidationResult": {
       "properties": {
+        "poisonPills": {
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "validations": {
           "items": {
             "type": "string"
@@ -41073,6 +41176,106 @@
         "summary": "Find bank corresponding with sent data.",
         "tags": [
           "bank"
+        ]
+      }
+    },
+    "/bank/advice": {
+      "get": {
+        "description": "",
+        "operationId": "BankAdvice_search",
+        "parameters": [
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseBankDashboardAdvice"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Find advices for the company context",
+        "tags": [
+          "bank/advice"
+        ]
+      }
+    },
+    "/bank/advice/{id}": {
+      "put": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "BankAdvice_put",
+        "parameters": [
+          {
+            "description": "Element ID",
+            "format": "int32",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Partial object describing what should be updated",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/BankDashboardAdvice"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperBankDashboardAdvice"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Update advice.",
+        "tags": [
+          "bank/advice"
         ]
       }
     },
@@ -73535,6 +73738,12 @@
     },
     {
       "name": "bank"
+    },
+    {
+      "name": "bankadvice"
+    },
+    {
+      "name": "bank/advice"
     },
     {
       "name": "bankagreements"
