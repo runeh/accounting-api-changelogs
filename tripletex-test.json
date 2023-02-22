@@ -38841,6 +38841,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "tripletexStartDate": {
+          "readOnly": true,
+          "type": "string"
+        },
         "voucherScanningEmail": {
           "readOnly": true,
           "type": "string"
