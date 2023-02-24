@@ -1367,6 +1367,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "notes": {
+          "readOnly": true,
+          "type": "string"
+        },
         "orid": {
           "readOnly": true,
           "type": "string"
