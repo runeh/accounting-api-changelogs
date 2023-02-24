@@ -12127,6 +12127,31 @@
       },
       "type": "object"
     },
+    "License": {
+      "properties": {
+        "date": {
+          "description": "Returns license creation date.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayTextKey": {
+          "description": "Returns license display text",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "description": "Returns the license id.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "name": {
+          "description": "Returns license name.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Link": {
       "properties": {
         "href": {
@@ -27913,6 +27938,17 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/LegacyProfileDTO"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperLicenseDTO[]": {
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "#/definitions/License"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -74591,6 +74627,9 @@
     },
     {
       "name": "ledger/voucherType"
+    },
+    {
+      "name": "license"
     },
     {
       "name": "lookup"
