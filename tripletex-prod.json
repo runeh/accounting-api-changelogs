@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -6406,6 +6412,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "closingBalanceAccountingValues": {
+          "readOnly": true,
+          "type": "number"
+        },
         "closingBalanceAscertainedLoss": {
           "readOnly": true,
           "type": "number"
@@ -6427,6 +6437,10 @@
             "$ref": "#/definitions/GenericDataOverview"
           },
           "type": "array"
+        },
+        "openingBalanceAccountingValues": {
+          "readOnly": true,
+          "type": "number"
         },
         "openingBalanceAscertainedLoss": {
           "readOnly": true,
@@ -31914,7 +31928,10 @@
             "BILAG_2001_3500_AUTOMATION",
             "BILAG_3501_5000_AUTOMATION",
             "BILAG_5001_10001_AUTOMATION",
-            "UBEGRENSET_BILAG_AUTOMATION"
+            "UBEGRENSET_BILAG_AUTOMATION",
+            "CMA_SHOPIFY",
+            "CMA_MYSTORE",
+            "CMA_WOOCOMMERCE"
           ],
           "readOnly": true,
           "type": "string"

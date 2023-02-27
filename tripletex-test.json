@@ -31914,7 +31914,10 @@
             "BILAG_2001_3500_AUTOMATION",
             "BILAG_3501_5000_AUTOMATION",
             "BILAG_5001_10001_AUTOMATION",
-            "UBEGRENSET_BILAG_AUTOMATION"
+            "UBEGRENSET_BILAG_AUTOMATION",
+            "CMA_SHOPIFY",
+            "CMA_MYSTORE",
+            "CMA_WOOCOMMERCE"
           ],
           "readOnly": true,
           "type": "string"
