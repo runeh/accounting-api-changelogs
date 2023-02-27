@@ -6406,6 +6406,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "closingBalanceAccountingValues": {
+          "readOnly": true,
+          "type": "number"
+        },
         "closingBalanceAscertainedLoss": {
           "readOnly": true,
           "type": "number"
@@ -6427,6 +6431,10 @@
             "$ref": "#/definitions/GenericDataOverview"
           },
           "type": "array"
+        },
+        "openingBalanceAccountingValues": {
+          "readOnly": true,
+          "type": "number"
         },
         "openingBalanceAscertainedLoss": {
           "readOnly": true,
