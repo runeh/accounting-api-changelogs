@@ -6680,6 +6680,9 @@
         "language": {
           "type": "string"
         },
+        "showAgroTourMe": {
+          "type": "boolean"
+        },
         "showTourMe": {
           "type": "boolean"
         },
