@@ -19886,6 +19886,9 @@
         "price2": {
           "$ref": "#/definitions/TlxNumber"
         },
+        "price3": {
+          "$ref": "#/definitions/TlxNumber"
+        },
         "priceDescription": {
           "type": "string"
         },
@@ -19893,6 +19896,9 @@
           "type": "string"
         },
         "priceLine2Text": {
+          "type": "string"
+        },
+        "priceLine3Text": {
           "type": "string"
         },
         "processing": {
@@ -31632,11 +31638,17 @@
         "isExpense": {
           "type": "boolean"
         },
+        "salaryDescription": {
+          "type": "string"
+        },
         "specifications": {
           "items": {
             "$ref": "#/definitions/SalaryV2Specification"
           },
           "type": "array"
+        },
+        "title": {
+          "type": "string"
         },
         "url": {
           "readOnly": true,
