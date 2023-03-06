@@ -20994,7 +20994,7 @@
       },
       "type": "object"
     },
-    "PG2CallbackDTO": {
+    "PGCallbackDTO": {
       "properties": {
         "ODPCompanyID": {
           "format": "int32",
