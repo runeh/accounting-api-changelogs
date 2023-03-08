@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -25876,129 +25882,18 @@
       },
       "type": "object"
     },
-    "ReminderWidget": {
-      "properties": {
-        "authorizationManager": {
-          "$ref": "#/definitions/AuthorizationManager"
-        },
-        "authorizationManagerForCsvPrinter": {
-          "$ref": "#/definitions/AuthorizationManager"
-        },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "type": "array"
-        },
-        "clientId": {
-          "type": "string"
-        },
-        "createLog": {
-          "$ref": "#/definitions/RequestlogModel"
-        },
-        "createLogAsString": {
-          "type": "string"
-        },
-        "createLogId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "deadline": {
-          "format": "date",
-          "type": "string"
-        },
-        "deleteLog": {
-          "$ref": "#/definitions/RequestlogModel"
-        },
-        "deleteLogAsString": {
-          "type": "string"
-        },
-        "deleteLogId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "deleted": {
-          "type": "boolean"
-        },
-        "description": {
-          "type": "string"
-        },
-        "dirty": {
-          "type": "boolean"
-        },
-        "dirtyProperties": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array",
-          "uniqueItems": true
-        },
-        "displayName": {
-          "type": "string"
-        },
-        "guiId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "guiName": {
-          "type": "string"
-        },
-        "guiRevision": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "longId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "name": {
-          "type": "string"
-        },
-        "new": {
-          "type": "boolean"
-        },
-        "revision": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "selected": {
-          "type": "boolean"
-        },
-        "updateLog": {
-          "$ref": "#/definitions/RequestlogModel"
-        },
-        "updateLogAsString": {
-          "type": "string"
-        },
-        "updateLogId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "url": {
-          "type": "string"
-        },
-        "urlDetails": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ReminderWidgetDTO": {
       "properties": {
         "deadline": {
           "format": "date",
           "type": "string"
         },
-        "guiName": {
-          "type": "string"
-        },
         "id": {
           "format": "int32",
           "type": "integer"
+        },
+        "name": {
+          "type": "string"
         },
         "url": {
           "type": "string"
@@ -26010,7 +25905,7 @@
       "properties": {
         "reminders": {
           "items": {
-            "$ref": "#/definitions/ReminderWidget"
+            "$ref": "#/definitions/ReminderWidgetDTO"
           },
           "type": "array"
         }
