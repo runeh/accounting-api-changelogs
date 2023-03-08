@@ -27231,6 +27231,19 @@
       },
       "type": "object"
     },
+    "ResponseWrapperAutoPayStatus": {
+      "properties": {
+        "value": {
+          "enum": [
+            "OK",
+            "NOT_ACTIVE",
+            "SERVICE_DOWN"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperAutomationSettingsDTO": {
       "properties": {
         "value": {
