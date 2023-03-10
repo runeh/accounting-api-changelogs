@@ -25596,6 +25596,44 @@
       },
       "type": "object"
     },
+    "RP2PermissionsDTO": {
+      "properties": {
+        "canBatchDelete": {
+          "type": "boolean"
+        },
+        "canBatchEdit": {
+          "type": "boolean"
+        },
+        "canBatchSelect": {
+          "type": "boolean"
+        },
+        "canCreate": {
+          "type": "boolean"
+        },
+        "canDelete": {
+          "type": "boolean"
+        },
+        "canEdit": {
+          "type": "boolean"
+        },
+        "canFilter": {
+          "type": "boolean"
+        },
+        "canOpenJobs": {
+          "type": "boolean"
+        },
+        "canSeeOtherEmployees": {
+          "type": "boolean"
+        },
+        "canViewEmployees": {
+          "type": "boolean"
+        },
+        "canViewProjects": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "RP2ProjectBookedTime": {
       "properties": {
         "duration": {
@@ -29116,6 +29154,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/RP2JobTemplate"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperRP2PermissionsDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/RP2PermissionsDTO"
         }
       },
       "type": "object"
@@ -75292,6 +75338,9 @@
     },
     {
       "name": "resourcePlan"
+    },
+    {
+      "name": "internalresourcePlan2permissions"
     },
     {
       "name": "internalresourcePlan2employee"
