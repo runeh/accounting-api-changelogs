@@ -3153,12 +3153,12 @@
       },
       "type": "object"
     },
-    "BankTransactionAggregates": {
+    "BankTransactionAggregatesDTO": {
       "properties": {
         "topCustomers": {
           "description": "top customers and respective earnings",
           "items": {
-            "$ref": "#/definitions/CompanyTransactionAggregates"
+            "$ref": "#/definitions/CompanyTransactionAggregatesDTO"
           },
           "readOnly": true,
           "type": "array"
@@ -3166,7 +3166,7 @@
         "topSuppliers": {
           "description": "top suppliers and respective payments",
           "items": {
-            "$ref": "#/definitions/CompanyTransactionAggregates"
+            "$ref": "#/definitions/CompanyTransactionAggregatesDTO"
           },
           "readOnly": true,
           "type": "array"
@@ -3189,38 +3189,11 @@
         "account": {
           "$ref": "#/definitions/Account"
         },
-        "amortizationAccount": {
-          "$ref": "#/definitions/Account",
-          "description": "The Amortization account. AmortizationAccountId, amortizationStartDate and amortizationEndDate should be provided. If amortizationStartDate and amortizationEndDate are provided, while amortizationAccountId is NULL, then the default amortization account will be used."
-        },
-        "amortizationEndDate": {
-          "type": "string"
-        },
-        "amortizationStartDate": {
-          "description": "Amortization start date. AmortizationAccountId, amortizationStartDate and amortizationEndDate should be provided.",
-          "type": "string"
-        },
         "amount": {
           "type": "number"
         },
         "amountCurrency": {
           "type": "number"
-        },
-        "amountGross": {
-          "type": "number"
-        },
-        "amountGrossCurrency": {
-          "type": "number"
-        },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "closeGroup": {
-          "$ref": "#/definitions/CloseGroup"
         },
         "currency": {
           "$ref": "#/definitions/Currency"
@@ -3231,32 +3204,12 @@
         "date": {
           "type": "string"
         },
-        "department": {
-          "$ref": "#/definitions/Department"
-        },
         "description": {
           "type": "string"
-        },
-        "employee": {
-          "$ref": "#/definitions/Employee"
-        },
-        "externalRef": {
-          "description": "External reference for identifying payment basis of the posting, e.g., KID, customer identification or credit note number.",
-          "maxLength": 100,
-          "readOnly": true,
-          "type": "string"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
         },
         "invoiceNumber": {
           "maxLength": 100,
           "type": "string"
-        },
-        "matched": {
-          "readOnly": true,
-          "type": "boolean"
         },
         "postingMatchType": {
           "enum": [
@@ -3268,57 +3221,8 @@
           ],
           "type": "string"
         },
-        "product": {
-          "$ref": "#/definitions/Product"
-        },
-        "project": {
-          "$ref": "#/definitions/Project"
-        },
-        "row": {
-          "format": "int32",
-          "minimum": 0,
-          "type": "integer"
-        },
         "supplier": {
           "$ref": "#/definitions/Supplier"
-        },
-        "systemGenerated": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "taxTransactionType": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "taxTransactionTypeId": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "termOfPayment": {
-          "type": "string"
-        },
-        "type": {
-          "enum": [
-            "INCOMING_PAYMENT",
-            "INCOMING_PAYMENT_OPPOSITE",
-            "INVOICE_EXPENSE",
-            "OUTGOING_INVOICE_CUSTOMER_POSTING",
-            "WAGE"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "vatType": {
-          "$ref": "#/definitions/VatType"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
         },
         "voucher": {
           "$ref": "#/definitions/Voucher",
@@ -5831,7 +5735,7 @@
       ],
       "type": "object"
     },
-    "CompanyTransactionAggregates": {
+    "CompanyTransactionAggregatesDTO": {
       "properties": {
         "id": {
           "description": "Customer id.",
@@ -27518,10 +27422,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperBankTransactionAggregates": {
+    "ResponseWrapperBankTransactionAggregatesDTO": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/BankTransactionAggregates"
+          "$ref": "#/definitions/BankTransactionAggregatesDTO"
         }
       },
       "type": "object"
