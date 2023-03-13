@@ -31140,6 +31140,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "isEmploymentInfoAmeldinger": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isTaxCardMissing": {
           "readOnly": true,
           "type": "boolean"
