@@ -2377,7 +2377,7 @@ paths:
           type: string
     post:
       description: Creates an invoice draft from an order confirmation
-      operationId: createInvoicDraftFromOrderConfirmation
+      operationId: createInvoiceDraftFromOrderConfirmation
       tags:
         - order confirmations
       responses:
@@ -4260,9 +4260,10 @@ components:
         vatType:
           type: string
           description: |
-            Vat Types for SALES: [none, high, medium, raw_fish, low, exempt_import_export, exempt, outside, exempt_reverse]
-            Vat Types for PURCHASES: [none, high, medium, raw_fish, low, high_direct, high_basis, medium_direct, medium_basis, none_import_basis, high_foreign_service_deductible, high_foreign_service_nondeductible, low_foreign_service_deductible,
-            low_foreign_service_nondeductible, high_purchase_of_emissionstrading_or_gold_deductible, high_purchase_of_emissionstrading_or_gold_nondeductible]
+            Vat Types for SALES: [NONE, HIGH, MEDIUM, RAW_FISH, LOW, EXEMPT_IMPORT_EXPORT, EXEMPT, OUTSIDE, EXEMPT_REVERSE]
+            Vat Types for PURCHASES: [NONE, HIGH, MEDIUM, RAW_FISH, LOW, HIGH_DIRECT, HIGH_BASIS, MEDIUM_DIRECT, MEDIUM_BASIS, NONE_IMPORT_BASIS,
+            HIGH_FOREIGN_SERVICE_DEDUCTIBLE, HIGH_FOREIGN_SERVICE_NONDEDUCTIBLE, LOW_FOREIGN_SERVICE_DEDUCTIBLE,
+            LOW_FOREIGN_SERVICE_NONDEDUCTIBLE, HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_DEDUCTIBLE, HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_NONDEDUCTIBLE]
         incomeAccount:
           type: string
           description: Field is similar to vatType, it defaults to the product's income account. Either the line or the product needs to have an income account set.
@@ -4291,9 +4292,10 @@ components:
         vatType:
           type: string
           description: |
-            Vat Types for SALES: [none, high, medium, raw_fish, low, exempt_import_export, exempt, outside, exempt_reverse]
-            Vat Types for PURCHASES: [none, high, medium, raw_fish, low, high_direct, high_basis, medium_direct, medium_basis, none_import_basis, high_foreign_service_deductible, high_foreign_service_nondeductible, low_foreign_service_deductible,
-            low_foreign_service_nondeductible, high_purchase_of_emissionstrading_or_gold_deductible, high_purchase_of_emissionstrading_or_gold_nondeductible]
+            Vat Types for SALES: [NONE, HIGH, MEDIUM, RAW_FISH, LOW, EXEMPT_IMPORT_EXPORT, EXEMPT, OUTSIDE, EXEMPT_REVERSE]
+            Vat Types for PURCHASES: [NONE, HIGH, MEDIUM, RAW_FISH, LOW, HIGH_DIRECT, HIGH_BASIS, MEDIUM_DIRECT, MEDIUM_BASIS, NONE_IMPORT_BASIS,
+            HIGH_FOREIGN_SERVICE_DEDUCTIBLE, HIGH_FOREIGN_SERVICE_NONDEDUCTIBLE, LOW_FOREIGN_SERVICE_DEDUCTIBLE,
+            LOW_FOREIGN_SERVICE_NONDEDUCTIBLE, HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_DEDUCTIBLE, HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_NONDEDUCTIBLE]
         incomeAccount:
           type: string
           description: Field is similar to vatType, it defaults to the product's income account. Either the line or the product needs to have an income account set.
@@ -4504,9 +4506,10 @@ components:
         vatType:
           type: string
           description: |
-            Vat Types for SALES: [none, high, medium, raw_fish, low, exempt_import_export, exempt, outside, exempt_reverse]
-            Vat Types for PURCHASES: [none, high, medium, raw_fish, low, high_direct, high_basis, medium_direct, medium_basis, none_import_basis, high_foreign_service_deductible, high_foreign_service_nondeductible, low_foreign_service_deductible,
-            low_foreign_service_nondeductible, high_purchase_of_emissionstrading_or_gold_deductible, high_purchase_of_emissionstrading_or_gold_nondeductible]
+            Vat Types for SALES: [NONE, HIGH, MEDIUM, RAW_FISH, LOW, EXEMPT_IMPORT_EXPORT, EXEMPT, OUTSIDE, EXEMPT_REVERSE]
+            Vat Types for PURCHASES: [NONE, HIGH, MEDIUM, RAW_FISH, LOW, HIGH_DIRECT, HIGH_BASIS, MEDIUM_DIRECT, MEDIUM_BASIS, NONE_IMPORT_BASIS,
+            HIGH_FOREIGN_SERVICE_DEDUCTIBLE, HIGH_FOREIGN_SERVICE_NONDEDUCTIBLE, LOW_FOREIGN_SERVICE_DEDUCTIBLE,
+            LOW_FOREIGN_SERVICE_NONDEDUCTIBLE, HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_DEDUCTIBLE, HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_NONDEDUCTIBLE]
         quantity:
           type: number
           description: Number of units to be invoiced.
@@ -5302,9 +5305,10 @@ components:
         vatType:
           type: string
           description: |
-            Vat Types for SALES: [none, high, medium, raw_fish, low, exempt_import_export, exempt, outside, exempt_reverse]
-            Vat Types for PURCHASES: [none, high, medium, raw_fish, low, high_direct, high_basis, medium_direct, medium_basis, none_import_basis, high_foreign_service_deductible, high_foreign_service_nondeductible, low_foreign_service_deductible,
-            low_foreign_service_nondeductible, high_purchase_of_emissionstrading_or_gold_deductible, high_purchase_of_emissionstrading_or_gold_nondeductible]
+            Vat Types for SALES: [NONE, HIGH, MEDIUM, RAW_FISH, LOW, EXEMPT_IMPORT_EXPORT, EXEMPT, OUTSIDE, EXEMPT_REVERSE]
+            Vat Types for PURCHASES: [NONE, HIGH, MEDIUM, RAW_FISH, LOW, HIGH_DIRECT, HIGH_BASIS, MEDIUM_DIRECT, MEDIUM_BASIS, NONE_IMPORT_BASIS,
+            HIGH_FOREIGN_SERVICE_DEDUCTIBLE, HIGH_FOREIGN_SERVICE_NONDEDUCTIBLE, LOW_FOREIGN_SERVICE_DEDUCTIBLE,
+            LOW_FOREIGN_SERVICE_NONDEDUCTIBLE, HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_DEDUCTIBLE, HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_NONDEDUCTIBLE]
         netPriceInCurrency:
           type: integer
           format: int64
@@ -5918,7 +5922,7 @@ components:
         deleted:
           type: boolean
           description: Whether the sale has been deleted or not
-    sendFakturaisjRequest:
+    sendInvoiceishRequest:
       type: object
       required:
         - method
@@ -5978,7 +5982,7 @@ components:
           description: Defaults to the customers phone number. Format should include the country code. If a Norwegian phone number, the country code is not necessary.
     sendCreditNoteRequest:
       allOf:
-        - $ref: '#/components/schemas/sendFakturaisjRequest'
+        - $ref: '#/components/schemas/sendInvoiceishRequest'
         - type: object
           required:
             - creditNoteId
@@ -5990,7 +5994,7 @@ components:
               description: Id of credit note to send.
     sendInvoiceRequest:
       allOf:
-        - $ref: '#/components/schemas/sendFakturaisjRequest'
+        - $ref: '#/components/schemas/sendInvoiceishRequest'
         - type: object
           required:
             - invoiceId
