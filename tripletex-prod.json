@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -18157,6 +18151,39 @@
       },
       "type": "object"
     },
+    "ListResponseTodoListComment": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "[DEPRECATED] Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/TodoListComment"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseTransportType": {
       "properties": {
         "count": {
@@ -29662,6 +29689,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperTodoListComment": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TodoListComment"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperTransportType": {
       "properties": {
         "value": {
@@ -35580,6 +35615,59 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "TodoListComment": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "comment": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "createdAt": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "customerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "periodStart": {
+          "type": "string"
+        },
+        "type": {
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "comment",
+        "customerId",
+        "employee",
+        "periodStart",
+        "type"
+      ],
       "type": "object"
     },
     "TodoListExpandedDetail": {
@@ -74604,6 +74692,9 @@
     },
     {
       "name": "todoList"
+    },
+    {
+      "name": "todoListComment"
     },
     {
       "name": "exceptiontest"
