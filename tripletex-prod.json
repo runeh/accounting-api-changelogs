@@ -21166,6 +21166,10 @@
         "department": {
           "$ref": "#/definitions/Department"
         },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
