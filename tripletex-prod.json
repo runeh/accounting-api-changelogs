@@ -1727,12 +1727,6 @@
           "description": "Incoming balance for the asset.",
           "type": "number"
         },
-        "lifetimeInMonths": {
-          "description": "Lifetime in months for the asset.",
-          "format": "int32",
-          "minimum": 0,
-          "type": "integer"
-        },
         "name": {
           "maxLength": 255,
           "minLength": 1,
