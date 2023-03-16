@@ -12368,6 +12368,23 @@
       },
       "type": "object"
     },
+    "InvoiceStatus": {
+      "properties": {
+        "level": {
+          "enum": [
+            "NONE",
+            "SUCCESS",
+            "WARNING",
+            "CRITICAL"
+          ],
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "InvoiceSummaryDTO": {
       "properties": {
         "lessThan30DaysOverdueSum": {
