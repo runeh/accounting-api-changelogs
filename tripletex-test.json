@@ -1943,6 +1943,37 @@
       ],
       "type": "object"
     },
+    "AutoPaySupport": {
+      "properties": {
+        "hasApproveInOnlineBanking": {
+          "type": "boolean"
+        },
+        "hasOrgNumber": {
+          "type": "boolean"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isEikaType": {
+          "type": "boolean"
+        },
+        "isPsd2Type": {
+          "type": "boolean"
+        },
+        "requiredBankFieldIds": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "uploadNeeded": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "AutomationRuleDetails": {
       "properties": {
         "accountId": {
@@ -2257,6 +2288,11 @@
     },
     "Bank": {
       "properties": {
+        "autoPaySupport": {
+          "$ref": "#/definitions/AutoPaySupport",
+          "description": "The autoPay support for this bank",
+          "readOnly": true
+        },
         "bankStatementFileFormatSupport": {
           "description": "Bank statement file formats supported.",
           "items": {
