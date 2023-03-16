@@ -4833,7 +4833,14 @@
           "description": "Returns whether the company category is paying.",
           "type": "boolean"
         },
+        "isProxyOrClient": {
+          "description": "Returns whether employee is proxy or not",
+          "type": "boolean"
+        },
         "payingCustomer": {
+          "type": "boolean"
+        },
+        "proxyOrClient": {
           "type": "boolean"
         }
       },
@@ -76013,6 +76020,9 @@
     },
     {
       "name": "supportAccessrequestread"
+    },
+    {
+      "name": "testaccountdata"
     },
     {
       "name": "timesheetallocated"
