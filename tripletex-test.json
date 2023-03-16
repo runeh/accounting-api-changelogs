@@ -34007,6 +34007,9 @@
         "notificationSettingsUrl": {
           "type": "string"
         },
+        "sseUrl": {
+          "type": "string"
+        },
         "stompUrl": {
           "type": "string"
         }
