@@ -34844,6 +34844,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "ean": {
           "maxLength": 14,
           "type": "string"
