@@ -26877,7 +26877,7 @@
       },
       "type": "object"
     },
-    "ReportFilterAccount": {
+    "ReportFilterAccountV3": {
       "properties": {
         "rangeFilters": {
           "items": {
@@ -27136,7 +27136,7 @@
     "ReportGroupFilter": {
       "properties": {
         "account": {
-          "$ref": "#/definitions/ReportFilterAccount"
+          "$ref": "#/definitions/ReportFilterAccountV3"
         },
         "activity": {
           "$ref": "#/definitions/ReportFilterActivity"
