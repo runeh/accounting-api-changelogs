@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -22077,6 +22071,9 @@
           "maxLength": 255,
           "type": "string"
         },
+        "displayName": {
+          "type": "string"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
@@ -22098,7 +22095,8 @@
         }
       },
       "required": [
-        "description"
+        "description",
+        "displayName"
       ],
       "type": "object"
     },
@@ -52647,6 +52645,13 @@
             "description": "Containing",
             "in": "query",
             "name": "description",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Containing",
+            "in": "query",
+            "name": "query",
             "required": false,
             "type": "string"
           },
