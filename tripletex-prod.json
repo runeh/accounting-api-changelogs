@@ -33930,6 +33930,9 @@
         "isAuthTravelsAndExpensesAdminSettings": {
           "type": "boolean"
         },
+        "isAuthWageSettings": {
+          "type": "boolean"
+        },
         "roleAccountAdministrator": {
           "type": "boolean"
         },
