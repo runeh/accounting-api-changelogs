@@ -182,10 +182,11 @@
     "AllocationPeriodApi": {
       "properties": {
         "AllocationPeriodSourceType": {
-          "description": "0 = SupplierInvoice, 1 = ManualVoucher",
+          "description": "0 = SupplierInvoice, 1 = ManualVoucher, 2 = CustomerInvoice",
           "enum": [
             0,
-            1
+            1,
+            2
           ],
           "format": "int32",
           "type": "integer"
@@ -217,6 +218,16 @@
         },
         "CreditAccountNumber": {
           "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "CustomerInvoiceId": {
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "CustomerInvoiceRow": {
+          "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
@@ -264,6 +275,12 @@
         "SupplierInvoiceRow": {
           "format": "int32",
           "type": "integer"
+        },
+        "VoucherFiscalYearId": {
+          "description": "Returns the fiscal year id of the voucher coresponding to the source type",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "required": [
@@ -4330,6 +4347,289 @@
       "properties": {},
       "type": "object"
     },
+    "InventoryAccountingTemplateApi": {
+      "properties": {
+        "AccumulatedImpairmentLossAccountNumber": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "AccumulatedImpairmentLossAccountUseCostCenter": {
+          "type": "boolean"
+        },
+        "Active": {
+          "type": "boolean"
+        },
+        "AppreciationAccountUseCostCenter": {
+          "type": "boolean"
+        },
+        "AppreciationsAccountNumber": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "CapitalGainAccountNumber": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "CapitalGainAccountUseCostCenter": {
+          "type": "boolean"
+        },
+        "CapitalLossAccountNumber": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "CapitalLossAccountUseCostCenter": {
+          "type": "boolean"
+        },
+        "DepreciationAssetAccountNumber": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "DepreciationAssetAccountUseCostCenter": {
+          "type": "boolean"
+        },
+        "DepreciationResultAccountNumber": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "DepreciationResultAccountUseCostCenter": {
+          "type": "boolean"
+        },
+        "Id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "ImpairmentLossAccountNumber": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "ImpairmentLossAccountUseCostCenter": {
+          "type": "boolean"
+        },
+        "InventoryAccountNumber": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "InventoryAccountUseCostCenter": {
+          "type": "boolean"
+        },
+        "IsCustom": {
+          "type": "boolean"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "NameEnglish": {
+          "type": "string"
+        },
+        "NoDepreciations": {
+          "type": "boolean"
+        },
+        "ReversalOfImpairmentAccountNumber": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "ReversalOfImpairmentAccountUseCostCenter": {
+          "type": "boolean"
+        },
+        "TaxationDepreciation": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryAccumulatedDepreciationApi": {
+      "properties": {
+        "DepreciationForTheYear": {
+          "format": "double",
+          "type": "number"
+        },
+        "FiscalYearId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "Id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "OpeningAccumulatedDepreciation": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryEventApi": {
+      "properties": {
+        "Amount": {
+          "format": "double",
+          "type": "number"
+        },
+        "BookkeepingDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "CreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "CurrentValueBeforeEvent": {
+          "format": "double",
+          "type": "number"
+        },
+        "Id": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "Type": {
+          "description": "Depreciation = 0, Sale = 1, Disposal = 4, ValueChange = 5, Appreciation = 6, ImpairmentLoss = 7, ReversalOfImpairment = 8, AdditionalDepreciation = 9, CostOfAquisitionAdjustement = 10, DepreciationBasisAdjustement = 11",
+          "enum": [
+            0,
+            1,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "format": "int32",
+          "type": "integer"
+        },
+        "UndoBookkeepingDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "UndoVoucherId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "Undone": {
+          "type": "boolean"
+        },
+        "VoucherId": {
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryItemApi": {
+      "properties": {
+        "CostCenterItemId1": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "CostCenterItemId2": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "CostCenterItemId3": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "CreatedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "CurrentValue": {
+          "format": "double",
+          "type": "number"
+        },
+        "Depreciate": {
+          "type": "boolean"
+        },
+        "DepreciationBasis": {
+          "format": "double",
+          "type": "number"
+        },
+        "DepreciationStartType": {
+          "description": "PurchaseMonth = 1, MonthAfterPurchaseMonth = 2, FirstMonthOfPurchaseYear = 3",
+          "enum": [
+            1,
+            2,
+            3
+          ],
+          "format": "int32",
+          "type": "integer"
+        },
+        "Events": {
+          "items": {
+            "$ref": "#/definitions/InventoryEventApi"
+          },
+          "type": "array"
+        },
+        "FirstDepreciationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "HasUpcomingDepreciations": {
+          "type": "boolean"
+        },
+        "Id": {
+          "description": "Purpose: Unique Id provided by eAccounting",
+          "format": "uuid",
+          "type": "string"
+        },
+        "InventoryAccountingTemplate": {
+          "$ref": "#/definitions/InventoryAccountingTemplateApi"
+        },
+        "InventoryItemStatus": {
+          "description": "Inactive = 1, Active = 2, Sold = 3, Dispose = 4",
+          "enum": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "format": "int32",
+          "type": "integer"
+        },
+        "LatestDepreciationDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "LifeSpanInMonths": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "ModifiedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "OpeningDepreciations": {
+          "items": {
+            "$ref": "#/definitions/InventoryAccumulatedDepreciationApi"
+          },
+          "type": "array"
+        },
+        "ProjectId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "PurchaseDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "PurchasePrice": {
+          "format": "double",
+          "type": "number"
+        },
+        "ResidualValue": {
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "InvoicePaymentApi": {
       "properties": {
         "BankFeeAmount": {
@@ -6314,6 +6614,62 @@
       "type": "object"
     },
     "ODataQueryOptions[ForeignPaymentCodesAPI]": {
+      "properties": {
+        "Apply": {
+          "$ref": "#/definitions/ApplyQueryOption",
+          "readOnly": true
+        },
+        "Context": {
+          "$ref": "#/definitions/ODataQueryContext",
+          "readOnly": true
+        },
+        "Count": {
+          "$ref": "#/definitions/CountQueryOption",
+          "readOnly": true
+        },
+        "Filter": {
+          "$ref": "#/definitions/FilterQueryOption",
+          "readOnly": true
+        },
+        "IfMatch": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "IfNoneMatch": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "OrderBy": {
+          "$ref": "#/definitions/OrderByQueryOption",
+          "readOnly": true
+        },
+        "RawValues": {
+          "$ref": "#/definitions/ODataRawQueryOptions",
+          "readOnly": true
+        },
+        "Request": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "SelectExpand": {
+          "$ref": "#/definitions/SelectExpandQueryOption",
+          "readOnly": true
+        },
+        "Skip": {
+          "$ref": "#/definitions/SkipQueryOption",
+          "readOnly": true
+        },
+        "Top": {
+          "$ref": "#/definitions/TopQueryOption",
+          "readOnly": true
+        },
+        "Validator": {
+          "$ref": "#/definitions/ODataQueryValidator"
+        }
+      },
+      "type": "object"
+    },
+    "ODataQueryOptions[InventoryItemApi]": {
       "properties": {
         "Apply": {
           "$ref": "#/definitions/ApplyQueryOption",
@@ -8718,6 +9074,24 @@
       ],
       "type": "object"
     },
+    "PaginatedResponse[InventoryItemApi]": {
+      "properties": {
+        "Data": {
+          "items": {
+            "$ref": "#/definitions/InventoryItemApi"
+          },
+          "type": "array"
+        },
+        "Meta": {
+          "$ref": "#/definitions/PaginationMetadata"
+        }
+      },
+      "required": [
+        "Meta",
+        "Data"
+      ],
+      "type": "object"
+    },
     "PaginatedResponse[LedgerVoucherRelationApi]": {
       "properties": {
         "Data": {
@@ -9626,12 +10000,13 @@
           "type": "array"
         },
         "Status": {
-          "description": "0 = Draft, 1 = Ongoing, 2 = Approved, 3 = Invoiced",
+          "description": "0 = Draft, 1 = Ongoing, 2 = Approved, 3 = Invoiced, 4 = OrderCreated",
           "enum": [
             0,
             1,
             2,
-            3
+            3,
+            4
           ],
           "format": "int32",
           "readOnly": true,
@@ -15658,6 +16033,71 @@
         "summary": "Gets a list of foreign payment codes.",
         "tags": [
           "ForeignPaymentCodesV2"
+        ]
+      }
+    },
+    "/v2/inventoryitems": {
+      "get": {
+        "consumes": [],
+        "deprecated": false,
+        "description": "<p>Requires any of the following scopes: <br><b>ea:accounting, ea:accounting_readonly</b></p><p>Available in any of the following variants: <br><b>Pro, Standard, Bookkeeping</b></p>",
+        "operationId": "InventoryItemsV2_Get",
+        "parameters": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PaginatedResponse[InventoryItemApi]"
+            }
+          }
+        },
+        "summary": "Get a list of inventory items.",
+        "tags": [
+          "InventoryItemsV2"
+        ]
+      }
+    },
+    "/v2/inventoryitems/{id}": {
+      "get": {
+        "consumes": [],
+        "deprecated": false,
+        "description": "<p>Requires any of the following scopes: <br><b>ea:accounting, ea:accounting_readonly</b></p><p>Available in any of the following variants: <br><b>Pro, Standard, Bookkeeping</b></p>",
+        "operationId": "InventoryItemsV2_Get",
+        "parameters": [
+          {
+            "description": "Inventory Item Id",
+            "format": "uuid",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PaginatedResponse[InventoryItemApi]"
+            }
+          }
+        },
+        "summary": "Get a specific inventory item.",
+        "tags": [
+          "InventoryItemsV2"
         ]
       }
     },
