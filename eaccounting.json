@@ -2824,6 +2824,24 @@
         "IsCreditInvoice": {
           "type": "boolean"
         },
+        "MessageThreads": {
+          "description": "Fetch messages via GET /v2/messagethreads/{messageThreadId}",
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "Notes": {
+          "description": "Fetch notes via GET /v2/notes/{noteId}",
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "OurReference": {
           "description": "Max length: 100 characters",
           "maxLength": 100,
@@ -4990,7 +5008,7 @@
             20
           ],
           "format": "int32",
-          "maximum": 18,
+          "maximum": 20,
           "minimum": 0,
           "type": "integer"
         },
