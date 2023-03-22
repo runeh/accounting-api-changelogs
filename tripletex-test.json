@@ -1907,6 +1907,9 @@
     "AuthorizationManager": {
       "type": "object"
     },
+    "AuthorizationManagerCompanyRepresentative": {
+      "type": "object"
+    },
     "AutoLogin": {
       "properties": {
         "loginUrl": {
@@ -5859,6 +5862,136 @@
       ],
       "type": "object"
     },
+    "CompanyRepresentative": {
+      "properties": {
+        "authorizationManager": {
+          "$ref": "#/definitions/AuthorizationManagerCompanyRepresentative"
+        },
+        "authorizationManagerForCsvPrinter": {
+          "$ref": "#/definitions/AuthorizationManager"
+        },
+        "birthdate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "type": "array"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "companyId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "createLog": {
+          "$ref": "#/definitions/RequestlogModel"
+        },
+        "createLogAsString": {
+          "type": "string"
+        },
+        "createLogId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "deleteLog": {
+          "$ref": "#/definitions/RequestlogModel"
+        },
+        "deleteLogAsString": {
+          "type": "string"
+        },
+        "deleteLogId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "dirty": {
+          "type": "boolean"
+        },
+        "dirtyProperties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "guiId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "guiRevision": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "longId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "new": {
+          "type": "boolean"
+        },
+        "revision": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "roleInCompany": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "selected": {
+          "type": "boolean"
+        },
+        "signatureStatus": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "socialSecurityNumber": {
+          "type": "string"
+        },
+        "tripletexUserId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "updateLog": {
+          "$ref": "#/definitions/RequestlogModel"
+        },
+        "updateLogAsString": {
+          "type": "string"
+        },
+        "updateLogId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "urlDetails": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CompanyRepresentativeDTO": {
       "properties": {
         "birthdate": {
@@ -5882,18 +6015,19 @@
           "type": "integer"
         },
         "signatureStatus": {
-          "enum": [
-            "UNKNOWN",
-            "NOT_SIGNED",
-            "PENDING_SIGNATURE",
-            "SIGNED"
-          ],
-          "type": "string"
+          "format": "int32",
+          "type": "integer"
         },
         "socialSecurityNumber": {
           "type": "string"
         }
       },
+      "required": [
+        "description",
+        "name",
+        "signatureStatus",
+        "socialSecurityNumber"
+      ],
       "type": "object"
     },
     "CompanyStandardTime": {
@@ -75487,6 +75621,9 @@
     },
     {
       "name": "documentArchive"
+    },
+    {
+      "name": "signingEmail"
     },
     {
       "name": "employee"
