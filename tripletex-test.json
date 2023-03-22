@@ -72545,6 +72545,46 @@
         ]
       }
     },
+    "/travelExpense/cost/list": {
+      "put": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "TravelExpenseCostList_putList",
+        "parameters": [
+          {
+            "description": "JSON representing updates to objects. Should have ID and version set.",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Cost"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseCost"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Update costs.",
+        "tags": [
+          "travelExpense/cost"
+        ]
+      }
+    },
     "/travelExpense/cost/{id}": {
       "delete": {
         "description": "",
