@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1234,6 +1240,13 @@
             "IS_TAXABLE",
             "REQUIRE_AUDITORS_SIGNATURE",
             "VALIDATION_ONLY_ON_SUBMIT",
+            "DATE_OF_DETERMINATION",
+            "CONFIRMING_COMPANY_REPRESENTATIVE",
+            "CONTACT_PERSON",
+            "PARENT_COMPANY",
+            "SMALL_ENTERPRICES",
+            "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
+            "SERVICE_ASSISTANCE_USED",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -1457,7 +1470,7 @@
     },
     "AnnualAccountsSubTotalLine": {
       "properties": {
-        "balanceIn": {
+        "closingBalance": {
           "readOnly": true,
           "type": "number"
         },
@@ -1477,13 +1490,17 @@
           "readOnly": true,
           "type": "string"
         },
+        "openingBalance": {
+          "readOnly": true,
+          "type": "number"
+        },
         "orid": {
           "readOnly": true,
           "type": "string"
         },
-        "sumAmount": {
+        "technicalName": {
           "readOnly": true,
-          "type": "number"
+          "type": "string"
         }
       },
       "type": "object"
@@ -1499,7 +1516,11 @@
           },
           "type": "array"
         },
-        "sumAmount": {
+        "sumClosingBalance": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumOpeningBalance": {
           "readOnly": true,
           "type": "number"
         }
@@ -2546,6 +2567,24 @@
       },
       "type": "object"
     },
+    "BankBalance": {
+      "properties": {
+        "bankBalanceDate": {
+          "description": "Bank balance date",
+          "format": "date",
+          "type": "string"
+        },
+        "currency": {
+          "description": "Currency",
+          "type": "string"
+        },
+        "moneyAmount": {
+          "description": "Bank balance amount",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "BankBalanceEstimation": {
       "properties": {
         "batchId": {
@@ -3372,6 +3411,23 @@
         "voucher": {
           "$ref": "#/definitions/Voucher",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "BankingSummaryDTO": {
+      "properties": {
+        "bankBalance": {
+          "$ref": "#/definitions/BankBalance",
+          "description": "Bank balance"
+        },
+        "moneyIn": {
+          "$ref": "#/definitions/MoneyAmount",
+          "description": "Amount of money coming in the account"
+        },
+        "moneyOut": {
+          "$ref": "#/definitions/MoneyAmount",
+          "description": "Amount of money going out of the account"
         }
       },
       "type": "object"
@@ -4700,6 +4756,13 @@
             "IS_TAXABLE",
             "REQUIRE_AUDITORS_SIGNATURE",
             "VALIDATION_ONLY_ON_SUBMIT",
+            "DATE_OF_DETERMINATION",
+            "CONFIRMING_COMPANY_REPRESENTATIVE",
+            "CONTACT_PERSON",
+            "PARENT_COMPANY",
+            "SMALL_ENTERPRICES",
+            "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
+            "SERVICE_ASSISTANCE_USED",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -7953,6 +8016,13 @@
             "IS_TAXABLE",
             "REQUIRE_AUDITORS_SIGNATURE",
             "VALIDATION_ONLY_ON_SUBMIT",
+            "DATE_OF_DETERMINATION",
+            "CONFIRMING_COMPANY_REPRESENTATIVE",
+            "CONTACT_PERSON",
+            "PARENT_COMPANY",
+            "SMALL_ENTERPRICES",
+            "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
+            "SERVICE_ASSISTANCE_USED",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -9161,6 +9231,7 @@
             "EXTRAORDINARY_INCOME_AND_COST",
             "EXTRAORDINARY_INCOME_AND_COST_DESCRIPTION",
             "EXTRAORDINARY_INCOME_AND_COST_AMOUNT",
+            "EXTRAORDINARY_INCOME_AND_COST_ADDITIONAL_INFORMATION",
             "FIXED_ASSETS_OPENING_ACQUISITION_COST_TANGIBLE_FIXED_ASSETS",
             "FIXED_ASSETS_OPENING_ACQUISITION_COST_INTANGIBLE_ASSETS",
             "FIXED_ASSETS_INFLOW_IN_THE_YEAR_TANGIBLE_FIXED_ASSETS",
@@ -9393,6 +9464,7 @@
             "EXTRAORDINARY_INCOME_AND_COST",
             "EXTRAORDINARY_INCOME_AND_COST_DESCRIPTION",
             "EXTRAORDINARY_INCOME_AND_COST_AMOUNT",
+            "EXTRAORDINARY_INCOME_AND_COST_ADDITIONAL_INFORMATION",
             "FIXED_ASSETS_OPENING_ACQUISITION_COST_TANGIBLE_FIXED_ASSETS",
             "FIXED_ASSETS_OPENING_ACQUISITION_COST_INTANGIBLE_ASSETS",
             "FIXED_ASSETS_INFLOW_IN_THE_YEAR_TANGIBLE_FIXED_ASSETS",
@@ -10033,6 +10105,13 @@
             "IS_TAXABLE",
             "REQUIRE_AUDITORS_SIGNATURE",
             "VALIDATION_ONLY_ON_SUBMIT",
+            "DATE_OF_DETERMINATION",
+            "CONFIRMING_COMPANY_REPRESENTATIVE",
+            "CONTACT_PERSON",
+            "PARENT_COMPANY",
+            "SMALL_ENTERPRICES",
+            "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
+            "SERVICE_ASSISTANCE_USED",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -10485,6 +10564,7 @@
             "EXTRAORDINARY_INCOME_AND_COST",
             "EXTRAORDINARY_INCOME_AND_COST_DESCRIPTION",
             "EXTRAORDINARY_INCOME_AND_COST_AMOUNT",
+            "EXTRAORDINARY_INCOME_AND_COST_ADDITIONAL_INFORMATION",
             "FIXED_ASSETS_OPENING_ACQUISITION_COST_TANGIBLE_FIXED_ASSETS",
             "FIXED_ASSETS_OPENING_ACQUISITION_COST_INTANGIBLE_ASSETS",
             "FIXED_ASSETS_INFLOW_IN_THE_YEAR_TANGIBLE_FIXED_ASSETS",
@@ -11514,6 +11594,13 @@
             "IS_TAXABLE",
             "REQUIRE_AUDITORS_SIGNATURE",
             "VALIDATION_ONLY_ON_SUBMIT",
+            "DATE_OF_DETERMINATION",
+            "CONFIRMING_COMPANY_REPRESENTATIVE",
+            "CONTACT_PERSON",
+            "PARENT_COMPANY",
+            "SMALL_ENTERPRICES",
+            "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
+            "SERVICE_ASSISTANCE_USED",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -11781,6 +11868,13 @@
             "IS_TAXABLE",
             "REQUIRE_AUDITORS_SIGNATURE",
             "VALIDATION_ONLY_ON_SUBMIT",
+            "DATE_OF_DETERMINATION",
+            "CONFIRMING_COMPANY_REPRESENTATIVE",
+            "CONTACT_PERSON",
+            "PARENT_COMPANY",
+            "SMALL_ENTERPRICES",
+            "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
+            "SERVICE_ASSISTANCE_USED",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -20528,6 +20622,23 @@
       },
       "type": "object"
     },
+    "MoneyAmount": {
+      "properties": {
+        "amount": {
+          "description": "Amount of money",
+          "type": "number"
+        },
+        "currency": {
+          "description": "Currency",
+          "type": "string"
+        },
+        "percentageChange": {
+          "description": "Percentage change compared to previous 30 days",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "MonthlyStatus": {
       "properties": {
         "approved": {
@@ -21036,6 +21147,7 @@
             "EXTRAORDINARY_INCOME_AND_COST",
             "EXTRAORDINARY_INCOME_AND_COST_DESCRIPTION",
             "EXTRAORDINARY_INCOME_AND_COST_AMOUNT",
+            "EXTRAORDINARY_INCOME_AND_COST_ADDITIONAL_INFORMATION",
             "FIXED_ASSETS_OPENING_ACQUISITION_COST_TANGIBLE_FIXED_ASSETS",
             "FIXED_ASSETS_OPENING_ACQUISITION_COST_INTANGIBLE_ASSETS",
             "FIXED_ASSETS_INFLOW_IN_THE_YEAR_TANGIBLE_FIXED_ASSETS",
@@ -22769,6 +22881,13 @@
             "IS_TAXABLE",
             "REQUIRE_AUDITORS_SIGNATURE",
             "VALIDATION_ONLY_ON_SUBMIT",
+            "DATE_OF_DETERMINATION",
+            "CONFIRMING_COMPANY_REPRESENTATIVE",
+            "CONTACT_PERSON",
+            "PARENT_COMPANY",
+            "SMALL_ENTERPRICES",
+            "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
+            "SERVICE_ASSISTANCE_USED",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -28249,6 +28368,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/BankTransactionAggregates"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperBankingSummaryDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/BankingSummaryDTO"
         }
       },
       "type": "object"
@@ -41315,6 +41442,7 @@
             "EXTRAORDINARY_INCOME_AND_COST",
             "EXTRAORDINARY_INCOME_AND_COST_DESCRIPTION",
             "EXTRAORDINARY_INCOME_AND_COST_AMOUNT",
+            "EXTRAORDINARY_INCOME_AND_COST_ADDITIONAL_INFORMATION",
             "FIXED_ASSETS_OPENING_ACQUISITION_COST_TANGIBLE_FIXED_ASSETS",
             "FIXED_ASSETS_OPENING_ACQUISITION_COST_INTANGIBLE_ASSETS",
             "FIXED_ASSETS_INFLOW_IN_THE_YEAR_TANGIBLE_FIXED_ASSETS",
