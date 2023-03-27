@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -41188,12 +41194,8 @@
             "STARTED",
             "UPDATED",
             "RESTARTED",
-            "SUBMITTED_UNSIGNED_ACCEPTED_VALIDATION_OK",
-            "SUBMITTED_SIGNED_ACCEPTED_VALIDATION_OK",
-            "SUBMITTED_UNSIGNED_ACCEPTED_VALIDATION_FAILED",
-            "SUBMITTED_SIGNED_ACCEPTED_VALIDATION_FAILED",
-            "SUBMITTED_UNSIGNED_REJECTED",
-            "SUBMITTED_SIGNED_REJECTED",
+            "SUBMITTED_UNSIGNED",
+            "SUBMITTED_SIGNED",
             "USER_MARKED_AS_SIGNEDBYALL",
             "SYSTEM_MARKED_AS_SIGNEDBYALL"
           ],
