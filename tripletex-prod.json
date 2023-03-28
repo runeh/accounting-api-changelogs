@@ -11183,27 +11183,6 @@
       },
       "type": "object"
     },
-    "InboxData": {
-      "properties": {
-        "stoppedRemit": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "voucherLoginAccountant": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "voucherLoginAttesting": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "voucherLoginScanning": {
-          "format": "int64",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "IncomeAndCostSummaryDTO": {
       "properties": {
         "accumulatedSurplusValues": {
@@ -11361,20 +11340,6 @@
         "voucherNumberAsString": {
           "readOnly": true,
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "IntegrationData": {
-      "properties": {
-        "hasValidAddress": {
-          "type": "boolean"
-        },
-        "hasValidAltinnConfig": {
-          "type": "boolean"
-        },
-        "hasValidOrganizationNumber": {
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -12368,35 +12333,6 @@
         "invoiceDueDate",
         "orders"
       ],
-      "type": "object"
-    },
-    "InvoiceAndOrdersData": {
-      "properties": {
-        "countDueOutstanding": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "countNotDueOutstanding": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "countOrderInvoice": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "currency": {
-          "type": "string"
-        },
-        "sumAmountDueOutstanding": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "sumAmountNotDueOutstanding": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "sumOrderInvoiceAmountExVat": {
-          "$ref": "#/definitions/TlxNumber"
-        }
-      },
       "type": "object"
     },
     "InvoiceField": {
@@ -26879,17 +26815,6 @@
       },
       "type": "object"
     },
-    "ReminderWidgetData": {
-      "properties": {
-        "reminders": {
-          "items": {
-            "$ref": "#/definitions/ReminderWidgetDTO"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "RemunerationType": {
       "properties": {
         "changes": {
@@ -28911,14 +28836,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperInboxData": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/InboxData"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperIncomeAndCostSummaryDTO": {
       "properties": {
         "value": {
@@ -28952,14 +28869,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperIntegrationData": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/IntegrationData"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperInventoriesOverview": {
       "properties": {
         "value": {
@@ -28988,14 +28897,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/Invoice"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperInvoiceAndOrdersData": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/InvoiceAndOrdersData"
         }
       },
       "type": "object"
@@ -30081,14 +29982,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperReminderWidgetData": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/ReminderWidgetData"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperReport": {
       "properties": {
         "value": {
@@ -30501,14 +30394,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/TaskDTO"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperTasksWidgetData": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/TasksWidgetData"
         }
       },
       "type": "object"
@@ -35654,38 +35539,6 @@
         },
         "url": {
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "TasksWidget": {
-      "properties": {
-        "icon": {
-          "type": "string"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "message": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "TasksWidgetData": {
-      "properties": {
-        "tasks": {
-          "items": {
-            "$ref": "#/definitions/TasksWidget"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -75865,9 +75718,6 @@
     },
     {
       "name": "company/salesmodules"
-    },
-    {
-      "name": "dashboardcompany"
     },
     {
       "name": "contact"
