@@ -55717,6 +55717,13 @@
             "name": "comment",
             "required": false,
             "type": "string"
+          },
+          {
+            "description": "Use custom number series (true), or use default number series for historical vouchers (false).",
+            "in": "query",
+            "name": "useCustomNumberSeries",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "responses": {
