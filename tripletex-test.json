@@ -8253,6 +8253,11 @@
         "comments": {
           "type": "string"
         },
+        "companyId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "creditorBankCountryId": {
           "description": "Country of creditor bank field",
           "format": "int32",
@@ -41865,13 +41870,6 @@
     },
     "ZtlSettings": {
       "properties": {
-        "consents": {
-          "items": {
-            "$ref": "#/definitions/ZtlConsent"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
         "data": {
           "items": {
             "$ref": "#/definitions/ZtlSettingsData"
