@@ -3971,7 +3971,7 @@ components:
         organizationNumber:
           type: string
           example: '913312465'
-          description: Brreg organiztion number.
+          description: Brreg organization number.
         customerNumber:
           type: integer
           format: int64
@@ -4901,6 +4901,12 @@ components:
           readOnly: true
           example: 2888156
           description: Invoice Id
+        createdDate:
+          type: string
+          format: date
+          example: '2023-04-03'
+          readOnly: true
+          description: Date that the invoice was created in Fiken, format yyyy-mm-dd.
         lastModifiedDate:
           type: string
           format: date
@@ -5975,7 +5981,7 @@ components:
         organizationNumber:
           type: string
           example: '913312465'
-          description: Brreg organiztion number. Defaults to the customers organization number if not provided.
+          description: Brreg organization number. Defaults to the customers organization number if not provided.
         mobileNumber:
           type: string
           example: '85262741'
