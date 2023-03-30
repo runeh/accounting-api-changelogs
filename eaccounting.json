@@ -4875,7 +4875,8 @@
             17,
             18,
             19,
-            20
+            20,
+            21
           ],
           "format": "int32",
           "type": "integer"
@@ -4939,7 +4940,8 @@
             17,
             18,
             19,
-            20
+            20,
+            21
           ],
           "format": "int32",
           "maximum": 16,
@@ -5005,10 +5007,11 @@
             17,
             18,
             19,
-            20
+            20,
+            21
           ],
           "format": "int32",
-          "maximum": 20,
+          "maximum": 21,
           "minimum": 0,
           "type": "integer"
         },
@@ -10881,8 +10884,7 @@
           "type": "number"
         },
         "SkipSendToBank": {
-          "description": "Invoice paid manually, won't be sent to the bank. Requires active bank integration.",
-          "readOnly": true,
+          "description": "Use when invoice is paid manually, won't be sent to the bank. Only has affect on active bank integration",
           "type": "boolean"
         },
         "Status": {
@@ -11059,8 +11061,7 @@
           "type": "boolean"
         },
         "SkipSendToBank": {
-          "description": "Invoice paid manually, won't be sent to the bank. Requires active bank integration.",
-          "readOnly": true,
+          "description": "Use when invoice is paid manually, won't be sent to the bank. Only has affect on active bank integration",
           "type": "boolean"
         },
         "SupplierId": {
