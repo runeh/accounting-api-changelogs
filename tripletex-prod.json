@@ -32654,6 +32654,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "minRate": {
+          "readOnly": true,
+          "type": "number"
+        },
         "name": {
           "maxLength": 255,
           "type": "string"
