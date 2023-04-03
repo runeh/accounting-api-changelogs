@@ -15,13 +15,13 @@ info:
       1. OAuth2
       2. Personal API tokens
 
-    Third parties that wish to integrate with Fiken on behalf of their customers should use the OAuth2 authorization method. In order to develop OAuth2 applications that integrate with this API you must log into your Fiken account and check the box saying that you are a developer (**Rediger konto â†’ Profil â†’ Andre innstillinger**). This will allow you to create an App by clicking on the "API" tab under Brukerinnstillinger. If you don't have an existing Fiken account you can create a new user and demo company (demoforetak) at no charge. Send an email to <api@fiken.no> to get free access to Fiken for longer than the included 30 day free trial period. 
+    Third parties that wish to integrate with Fiken on behalf of their customers should use the OAuth2 authorization method. In order to develop OAuth2 applications that integrate with this API you must log into your Fiken account and check the box saying that you are a developer (**Rediger konto ? Profil ? Andre innstillinger**). This will allow you to create an App by clicking on the "API" tab under Brukerinnstillinger. If you don't have an existing Fiken account you can create a new user and demo company (demoforetak) at no charge. Send an email to <api@fiken.no> to get free access to Fiken for longer than the included 30 day free trial period. 
 
     Upon creation of the new App you will be provided a Client ID and Client Secret that are needed for the OAuth2 authorization flow.
 
     This will allow you to use the API during development with up to 5 users. If you would like to use the API with more than 5 users and gain production status, you will need to send an email to <api@fiken.no> to gain full access to the API module.
 
-    Fiken customers that wish to integrate their own solutions with this API can use personal API tokens. Personal API tokens can be created in Rediger konto -> API -> Personlige API-nÃ¸kler. Note that personal API tokens do not expire.
+    Fiken customers that wish to integrate their own solutions with this API can use personal API tokens. Personal API tokens can be created in Rediger konto -> API -> Personlige API-nøkler. Note that personal API tokens do not expire.
 
     ## Base URL
     All URLs start with https://api.fiken.no/api/v2. Note that TLS is required, unencrypted HTTP is not supported. Although we currently redirect HTTP requests to HTTPS, you are not allowed to this with your application as using HTTP is a security risk. In the future we might respond with 403 Forbidden instead.
@@ -281,26 +281,26 @@ info:
     
     | Vat Code | Vat Type                                                                                                                                 | Valid for Purchases/Sales    | 
     | ---      |---                                                                                                                                       | ---                          |                                         
-    |  0/7     |NONE (Ingen - KJÃ˜P_INGEN_MVABEHANDLING/SALG_INNTEKTER_UTEN_MVABEHANDLING)	                                                              |Both	                         |
-    |  1/3	   |HIGH (HÃ¸y - KJÃ˜P/SALG_MED_HÃ˜Y_SATS)	                                                                                                      |Both                          |
-    |  11/31   |MEDIUM (Middels - KJÃ˜P/SALG_MED_MIDDELS_SATS)	                                                                                          |Both         	             |
-    |  12/32   |RAW_FISH (RÃ¥fisk - KJÃ˜P/SALG_MED_RÃ…FISK_SATS)	                                                                                          |Both   	                     |
-    |  13/33   |LOW (Lav - KJÃ˜P/SALG_MED_LAV_SATS)	                                                                                                      |Both	                         |
-    |  52	   |EXEMPT_IMPORT_EXPORT (Fritatt import/export - SALG_UTFÃ˜RSEL_AV_VARER_OG_TJENESTER)                                                        |Sales	                     |
+    |  0/7     |NONE (Ingen - KJØP_INGEN_MVABEHANDLING/SALG_INNTEKTER_UTEN_MVABEHANDLING)	                                                              |Both	                         |
+    |  1/3	   |HIGH (Høy - KJØP/SALG_MED_HØY_SATS)	                                                                                                      |Both                          |
+    |  11/31   |MEDIUM (Middels - KJØP/SALG_MED_MIDDELS_SATS)	                                                                                          |Both         	             |
+    |  12/32   |RAW_FISH (Råfisk - KJØP/SALG_MED_RÅFISK_SATS)	                                                                                          |Both   	                     |
+    |  13/33   |LOW (Lav - KJØP/SALG_MED_LAV_SATS)	                                                                                                      |Both	                         |
+    |  52	   |EXEMPT_IMPORT_EXPORT (Fritatt import/export - SALG_UTFØRSEL_AV_VARER_OG_TJENESTER)                                                        |Sales	                     |
     |  5	   |EXEMPT (Fritatt - SALG_FRITATT_FOR_MVA_AVGIFTSFRITT)	                                                                                  |Sales      	                 |
-    |  6	   |OUTSIDE (Utenfor - SALG_FRITATT_FOR_MVA_UTENFOR_AVGIFTSOMRÃ…DET)	                                                                          |Sales	                     |
+    |  6	   |OUTSIDE (Utenfor - SALG_FRITATT_FOR_MVA_UTENFOR_AVGIFTSOMRÅDET)	                                                                          |Sales	                     |
     |  51	   |EXEMPT_REVERSE (Fritatt omvendt - SALG_INNENLANDSK_OMSETNING_MED_OMVENDT_AVGIFTPLIKT)	                                                  |Sales	                     |
-    |  14	   |HIGH_DIRECT (HÃ¸y direkt - KUN_KJÃ˜PSMVA_HÃ˜Y_SATS)	                                                                                      |Purchases	                 |
-    |  21	   |HIGH_BASIS (HÃ¸y grunnlag - KUN_GRUNNLAG_KJÃ˜PSMVA_HÃ˜Y_SATS)	                                                                              |Purchases	                 |
-    |  15	   |MEDIUM_DIRECT (Middels direkte - KUN_KJÃ˜PSMVA_MIDDELS_SATS)	                                                                              |Purchases	                 |
-    |  22	   |MEDIUM_BASIS (Middels grunnlag - KUN_GRUNNLAG_KJÃ˜PSMVA_MIDDELS_SATS)	                                                                  |Purchases	                 |
-    |  23	   |NONE_IMPORT_BASIS (Ingen import grunnlag - KUN_GRUNNLAG_KJÃ˜PSMVA_INGEN_SATS)	                                                          |Purchases	                 |
-    |  86	   |HIGH_FOREIGN_SERVICE_DEDUCTIBLE (Tjeneste utlandet - TJENESTER_KJÃ˜PT_FRA_UTLANDET_MED_FRADRAG_FOR_HÃ˜Y_MVA)	                              |Purchases	                 |
-    |  87	   |HIGH_FOREIGN_SERVICE_NONDEDUCTIBLE (Tjeneste utlandet uten fradrag - TJENESTER_KJÃ˜PT_FRA_UTLANDET_UTEN_FRADRAG_FOR_HÃ˜Y_MVA)	              |Purchases	                 |
-    |  88	   |LOW_FOREIGN_SERVICE_DEDUCTIBLE (Lav tjeneste utlandet - TJENESTER_KJÃ˜PT_FRA_UTLANDET_MED_FRADRAG_FOR_LAV_MVA)	                          |Purchases	                 |
-    |  89	   |LOW_FOREIGN_SERVICE_NONDEDUCTIBLE (Lav tjeneste utlandet uten fradrag - TJENESTER_KJÃ˜PT_FRA_UTLANDET_UTEN_FRADRAG_FOR_LAV_MVA)	          |Purchases	                 |
-    |  91	   |HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_DEDUCTIBLE (Gull - KJÃ˜P_AV_KLIMAKVOTER_ELLER_GULL_MED_FRADRAG_FOR_MVA)	                      |Purchases	                 |
-    |  92	   |HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_NONDEDUCTIBLE (Gull uten fradrag - KJÃ˜P_AV_KLIMAKVOTER_ELLER_GULL_UTEN_FRADRAG_FOR_MVA)	      |Purchases	                 |
+    |  14	   |HIGH_DIRECT (Høy direkt - KUN_KJØPSMVA_HØY_SATS)	                                                                                      |Purchases	                 |
+    |  21	   |HIGH_BASIS (Høy grunnlag - KUN_GRUNNLAG_KJØPSMVA_HØY_SATS)	                                                                              |Purchases	                 |
+    |  15	   |MEDIUM_DIRECT (Middels direkte - KUN_KJØPSMVA_MIDDELS_SATS)	                                                                              |Purchases	                 |
+    |  22	   |MEDIUM_BASIS (Middels grunnlag - KUN_GRUNNLAG_KJØPSMVA_MIDDELS_SATS)	                                                                  |Purchases	                 |
+    |  23	   |NONE_IMPORT_BASIS (Ingen import grunnlag - KUN_GRUNNLAG_KJØPSMVA_INGEN_SATS)	                                                          |Purchases	                 |
+    |  86	   |HIGH_FOREIGN_SERVICE_DEDUCTIBLE (Tjeneste utlandet - TJENESTER_KJØPT_FRA_UTLANDET_MED_FRADRAG_FOR_HØY_MVA)	                              |Purchases	                 |
+    |  87	   |HIGH_FOREIGN_SERVICE_NONDEDUCTIBLE (Tjeneste utlandet uten fradrag - TJENESTER_KJØPT_FRA_UTLANDET_UTEN_FRADRAG_FOR_HØY_MVA)	              |Purchases	                 |
+    |  88	   |LOW_FOREIGN_SERVICE_DEDUCTIBLE (Lav tjeneste utlandet - TJENESTER_KJØPT_FRA_UTLANDET_MED_FRADRAG_FOR_LAV_MVA)	                          |Purchases	                 |
+    |  89	   |LOW_FOREIGN_SERVICE_NONDEDUCTIBLE (Lav tjeneste utlandet uten fradrag - TJENESTER_KJØPT_FRA_UTLANDET_UTEN_FRADRAG_FOR_LAV_MVA)	          |Purchases	                 |
+    |  91	   |HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_DEDUCTIBLE (Gull - KJØP_AV_KLIMAKVOTER_ELLER_GULL_MED_FRADRAG_FOR_MVA)	                      |Purchases	                 |
+    |  92	   |HIGH_PURCHASE_OF_EMISSIONSTRADING_OR_GOLD_NONDEDUCTIBLE (Gull uten fradrag - KJØP_AV_KLIMAKVOTER_ELLER_GULL_UTEN_FRADRAG_FOR_MVA)	      |Purchases	                 |
     
 
 servers:
@@ -5868,7 +5868,7 @@ components:
         writeOff:
           type: boolean
           example: false
-          description: If a loss has been registered for this sale (tapsfÃ¸ring av salg).
+          description: If a loss has been registered for this sale (tapsføring av salg).
         totalPaid:
           type: integer
           format: int64
@@ -5960,7 +5960,7 @@ components:
           description: Whether the document's attachment should be included when sending (True) or not (False).
         recipientName:
           type: string
-          example: 'BjÃ¸rn Bohler'
+          example: 'Bjørn Bohler'
         recipientEmail:
           type: string
           example: 'bjorn.bohler@gmail.com'
