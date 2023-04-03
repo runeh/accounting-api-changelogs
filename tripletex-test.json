@@ -12720,6 +12720,9 @@
         },
         "notOverdueSum": {
           "$ref": "#/definitions/TlxNumber"
+        },
+        "outstandingOrdersSum": {
+          "$ref": "#/definitions/TlxNumber"
         }
       },
       "type": "object"
