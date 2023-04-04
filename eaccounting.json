@@ -4853,7 +4853,7 @@
           "type": "string"
         },
         "DocumentType": {
-          "description": "The document type to which the message thread is attached \r\nNone = 0, CustomerInvoice = 1, CustomerInvoiceDraft = 2, SupplierInvoice = 3, Voucher = 4, Quotation = 5, Order = 6, SupplierInvoiceDraft = 7, WebshopOrder = 8, Customer = 9, Receipt = 10, Article = 11, VatReport = 12, Supplier = 13, Inventory = 14, Employee = 15, Payslip = 16, Image = 17, Reconciliation = 18,  QuoteDraft = 19, VoucherDraft = 20",
+          "description": "The document type to which the message thread is attached \r\nNone = 0, CustomerInvoice = 1, CustomerInvoiceDraft = 2, SupplierInvoice = 3, Voucher = 4, Quotation = 5, Order = 6, SupplierInvoiceDraft = 7, WebshopOrder = 8, Customer = 9, Receipt = 10, Article = 11, VatReport = 12, Supplier = 13, Inventory = 14, Employee = 15, Payslip = 16, Image = 17, Reconciliation = 18,  QuoteDraft = 19, VoucherDraft = 20, OrderDraft = 21",
           "enum": [
             0,
             1,
@@ -4944,7 +4944,7 @@
             21
           ],
           "format": "int32",
-          "maximum": 16,
+          "maximum": 21,
           "minimum": 0,
           "type": "integer"
         },
