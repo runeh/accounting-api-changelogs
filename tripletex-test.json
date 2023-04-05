@@ -1653,6 +1653,23 @@
         },
         "signUpUrl": {
           "type": "string"
+        },
+        "status": {
+          "enum": [
+            "PREQUALIFIED",
+            "READY_FOR_SIGNUP",
+            "SUBMITTED",
+            "SIGNED",
+            "COMPLETED",
+            "REJECTED",
+            "CANCELLED",
+            "ERROR",
+            "PENDING_NEW_SIGNATURE"
+          ],
+          "type": "string"
+        },
+        "statusReason": {
+          "type": "string"
         }
       },
       "type": "object"
