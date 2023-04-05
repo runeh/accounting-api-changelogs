@@ -12508,6 +12508,17 @@
       },
       "type": "object"
     },
+    "InvoiceOverviewMeta": {
+      "properties": {
+        "hasModuleProjectEconomy": {
+          "type": "boolean"
+        },
+        "isVatOn": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "InvoiceRemark": {
       "properties": {
         "changes": {
@@ -28895,6 +28906,14 @@
             "$ref": "#/definitions/InvoiceOrderLineDTO"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperInvoiceOverviewMeta": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/InvoiceOverviewMeta"
         }
       },
       "type": "object"
