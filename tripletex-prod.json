@@ -2587,6 +2587,39 @@
       },
       "type": "object"
     },
+    "BankAgreementUpdateDTO": {
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/Account",
+          "description": "The account for bank agreement. Only id is populated"
+        },
+        "accountInBankId": {
+          "description": "Customer number in bank",
+          "type": "string"
+        },
+        "approveInOnlineBanking": {
+          "description": "Accounting approve payments",
+          "type": "boolean"
+        },
+        "description": {
+          "description": "The description property.",
+          "type": "string"
+        },
+        "id": {
+          "description": "Id of agreement to update.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "organisationNumber": {
+          "description": "Organization number",
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
+      ],
+      "type": "object"
+    },
     "BankBalance": {
       "properties": {
         "bankBalanceDate": {
