@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -2068,6 +2074,17 @@
         }
       },
       "type": "object"
+    },
+    "AutoPayTransaction": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PaymentDTO"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
     },
     "AutomationRuleDetails": {
       "properties": {
@@ -22213,6 +22230,7 @@
       "type": "object"
     },
     "PaymentDTO": {
+      "discriminator": "paymentSource",
       "properties": {
         "account": {
           "$ref": "#/definitions/Account",
@@ -22221,7 +22239,6 @@
         },
         "amountCurrency": {
           "description": "In the specified currency.",
-          "readOnly": true,
           "type": "number"
         },
         "amountInAccountCurrency": {
@@ -22268,6 +22285,16 @@
           "format": "int32",
           "type": "integer"
         },
+        "isDisabledForAmountChange": {
+          "description": "Can this payment amount be changed.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isDisabledForUpdate": {
+          "description": "Can this payment date be changed.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isFinalStatus": {
           "readOnly": true,
           "type": "boolean"
@@ -22286,7 +22313,13 @@
           "type": "string"
         },
         "paymentDate": {
-          "readOnly": true,
+          "type": "string"
+        },
+        "paymentSource": {
+          "enum": [
+            "AutoPayTransaction",
+            "ZtlTransaction"
+          ],
           "type": "string"
         },
         "postings": {
@@ -22300,7 +22333,7 @@
         },
         "sourceVoucher": {
           "$ref": "#/definitions/Voucher",
-          "description": "Vouchere that was paid.",
+          "description": "Voucher that was paid.",
           "readOnly": true
         },
         "status": {
@@ -41929,6 +41962,17 @@
         }
       },
       "type": "object"
+    },
+    "ZtlTransaction": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/PaymentDTO"
+        },
+        {
+          "properties": {},
+          "type": "object"
+        }
+      ]
     }
   },
   "host": "api.tripletex.io",
