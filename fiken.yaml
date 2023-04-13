@@ -21,7 +21,7 @@ info:
 
     This will allow you to use the API during development with up to 5 users. If you would like to use the API with more than 5 users and gain production status, you will need to send an email to <api@fiken.no> to gain full access to the API module.
 
-    Fiken customers that wish to integrate their own solutions with this API can use personal API tokens. Personal API tokens can be created in Rediger konto -> API -> Personlige API-nøkler. Note that personal API tokens do not expire.
+    Fiken customers that wish to integrate their own solutions with this API can use personal API tokens. Personal API tokens can be created in **Rediger konto -> API -> Personlige API-nøkler**. Note that personal API tokens do not expire.
 
     ## Base URL
     All URLs start with https://api.fiken.no/api/v2. Note that TLS is required, unencrypted HTTP is not supported. Although we currently redirect HTTP requests to HTTPS, you are not allowed to this with your application as using HTTP is a security risk. In the future we might respond with 403 Forbidden instead.
@@ -33,7 +33,7 @@ info:
 
     ## Personal API tokens
 
-    Personal API tokens can be created in Rediger konto -> API. Personal API tokens never expire and can be revoked from the same place.
+    Personal API tokens can be created in **Rediger konto -> API**. Personal API tokens never expire and can be revoked from the same place.
 
     To use a personal API token simply send it as a bearer token in the `Authorization` header:
 
@@ -149,6 +149,13 @@ info:
         Authorization: Bearer <access_token_value>
 
     The response for a successful revocation is 200/OK.
+    
+    ### Managing access
+
+    The end user can manage which companies a given app has access to under **Rediger konto -> Sikkerhet -> Apper du har gitt tilgang til**. 
+    All companies created after the initial consent has been given need to be actively added so that the app will have access to their information. 
+    Additionally the end user can revoke access to any of their companies' data as well.
+
 
     ## Try It Out
 
@@ -5941,15 +5948,16 @@ components:
             enum:
               - email
               - ehf
+              - efaktura
               - vipps
               - sms
               - letter
               - auto
           description: |
-            The method of sending. Has to be auto, email, ehf, vipps, sms or letter.
+            The method of sending. Has to be auto, email, ehf, efaktura, vipps, sms or letter.
             If several methods are provided they should be in prioritized order as Fiken will only send the invoice to 
             the first successful available method. Method "auto" tries available methods for given customer based on
-            the information registered for the customer. The order of priority is EHF, Vipps E-faktura, Sms, and email.
+            the information registered for the customer. The order of priority is EHF, eFaktura, Vipps E-faktura, Sms, and email.
             Method "letter" means physical letter, printed and sent by our postal service partner (extra charge per
             letter, available for recipient addresses in Norway only). The option "includeDocumentAttachments" is
             not supported by method "letter", attachments are not included even if this option is set.

@@ -46998,6 +46998,14 @@
             "name": "id",
             "required": true,
             "type": "integer"
+          },
+          {
+            "default": true,
+            "description": "Equals",
+            "in": "query",
+            "name": "download",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "produces": [
