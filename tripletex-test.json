@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -27124,6 +27130,9 @@
     },
     "ReportFilterAccountV3": {
       "properties": {
+        "complementSingularFilters": {
+          "type": "boolean"
+        },
         "rangeFilters": {
           "items": {
             "$ref": "#/definitions/ReportFilterRange"
@@ -27145,6 +27154,9 @@
     },
     "ReportFilterActivity": {
       "properties": {
+        "complement": {
+          "type": "boolean"
+        },
         "filters": {
           "items": {
             "$ref": "#/definitions/ReportFilterSingular"
@@ -27160,6 +27172,12 @@
     },
     "ReportFilterCustomer": {
       "properties": {
+        "complement": {
+          "type": "boolean"
+        },
+        "excludeEmptyElement": {
+          "type": "boolean"
+        },
         "filters": {
           "items": {
             "$ref": "#/definitions/ReportFilterSingular"
@@ -27175,6 +27193,12 @@
     },
     "ReportFilterDepartment": {
       "properties": {
+        "complement": {
+          "type": "boolean"
+        },
+        "excludeEmptyElement": {
+          "type": "boolean"
+        },
         "filters": {
           "items": {
             "$ref": "#/definitions/ReportFilterSingular"
@@ -27190,6 +27214,12 @@
     },
     "ReportFilterEmployee": {
       "properties": {
+        "complement": {
+          "type": "boolean"
+        },
+        "excludeEmptyElement": {
+          "type": "boolean"
+        },
         "filters": {
           "items": {
             "$ref": "#/definitions/ReportFilterSingular"
@@ -27264,6 +27294,12 @@
     },
     "ReportFilterProduct": {
       "properties": {
+        "complement": {
+          "type": "boolean"
+        },
+        "excludeEmptyElement": {
+          "type": "boolean"
+        },
         "filters": {
           "items": {
             "$ref": "#/definitions/ReportFilterSingular"
@@ -27279,6 +27315,12 @@
     },
     "ReportFilterProject": {
       "properties": {
+        "complement": {
+          "type": "boolean"
+        },
+        "excludeEmptyElement": {
+          "type": "boolean"
+        },
         "filters": {
           "items": {
             "$ref": "#/definitions/ReportFilterSingular"
@@ -27324,6 +27366,12 @@
     },
     "ReportFilterSupplier": {
       "properties": {
+        "complement": {
+          "type": "boolean"
+        },
+        "excludeEmptyElement": {
+          "type": "boolean"
+        },
         "filters": {
           "items": {
             "$ref": "#/definitions/ReportFilterSingular"
