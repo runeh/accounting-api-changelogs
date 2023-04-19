@@ -268,6 +268,14 @@
           "format": "int32",
           "type": "integer"
         },
+        "SupplierInvoiceDraftId": {
+          "format": "uuid",
+          "type": "string"
+        },
+        "SupplierInvoiceDraftRow": {
+          "format": "int32",
+          "type": "integer"
+        },
         "SupplierInvoiceId": {
           "format": "uuid",
           "type": "string"
@@ -361,6 +369,16 @@
           "format": "double",
           "pattern": "[-]?\\d+(.\\d{1,2})?",
           "type": "number"
+        },
+        "SupplierInvoiceDraftId": {
+          "description": "If assigned, SupplierInvoiceDraftRow must be set",
+          "format": "uuid",
+          "type": "string"
+        },
+        "SupplierInvoiceDraftRow": {
+          "description": "Required if SupplierInvoiceDraftId is assigned",
+          "format": "int32",
+          "type": "integer"
         },
         "SupplierInvoiceId": {
           "description": "If assigned, SupplierInvoiceRow must be set",
@@ -1607,11 +1625,19 @@
           "description": "When set to true, supplier invoices can be exported as paymentfile and manually sent to bank",
           "type": "boolean"
         },
+        "UsesCostCenter": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "UsesMoss": {
           "type": "boolean"
         },
         "UsesPaymentReferenceNumber": {
           "description": "Show OCR/KID reference no. on invoice",
+          "type": "boolean"
+        },
+        "UsesProject": {
+          "readOnly": true,
           "type": "boolean"
         },
         "UsesReverseConstructionVat": {
@@ -2002,7 +2028,19 @@
           "type": "string"
         },
         "EmailAddress": {
-          "description": "Max length: 255 characters",
+          "description": "Max length: 255 characters\r\nThis is a default email address for sending customer invoices.\r\nIf EmailAddressOrder and EmailAddressQuote properties are empty we use this email as default one for sending quotes and orders.",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "EmailAddressOrder": {
+          "description": "Max length: 255 characters\r\nThis is a default email address for sending orders.\r\nIf it is empty then we use general EmailAddress property.",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "EmailAddressQuote": {
+          "description": "Max length: 255 characters\r\nThis is a default email address for sending quotes.\r\nIf it is empty then we use general EmailAddress property.",
           "maxLength": 255,
           "minLength": 0,
           "type": "string"
@@ -4985,7 +5023,7 @@
           "type": "string"
         },
         "DocumentType": {
-          "description": "The document type to which the note is attached \r\nNone = 0, CustomerInvoice = 1, CustomerInvoiceDraft = 2, SupplierInvoice = 3, Voucher = 4, Quotation = 5, Order = 6, SupplierInvoiceDraft = 7, WebshopOrder = 8, Customer = 9, Receipt = 10, Article = 11, VatReport = 12, Supplier = 13, Inventory = 14, Employee = 15, Payslip = 16, Image = 17, Reconciliation = 18, QuoteDraft = 19, VoucherDraft = 20",
+          "description": "The document type to which the note is attached \r\nNone = 0, CustomerInvoice = 1, CustomerInvoiceDraft = 2, SupplierInvoice = 3, Voucher = 4, Quotation = 5, Order = 6, SupplierInvoiceDraft = 7, WebshopOrder = 8, Customer = 9, Receipt = 10, Article = 11, VatReport = 12, Supplier = 13, Inventory = 14, Employee = 15, Payslip = 16, Image = 17, Reconciliation = 18, QuoteDraft = 19, VoucherDraft = 20, OrderDraft = 21",
           "enum": [
             0,
             1,
@@ -10626,6 +10664,15 @@
           "description": "Default: true",
           "type": "boolean"
         },
+        "MessageThreads": {
+          "description": "Fetch messages via GET /v2/messagethreads/{messageThreadId}",
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "MobilePhone": {
           "description": "Max length: 50 characters",
           "maxLength": 50,
@@ -10648,6 +10695,15 @@
           "maxLength": 4000,
           "minLength": 0,
           "type": "string"
+        },
+        "Notes": {
+          "description": "Fetch notes via GET /v2/notes/{noteId}",
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "PayFromBankAccountId": {
           "description": "Source: Get from /v2/bankaccounts. Purpose: Used for foreign payments to determine which bankaccount the payment will be from",
@@ -12646,6 +12702,52 @@
           }
         },
         "summary": "Add allocation periods for voucher or supplier invoice.",
+        "tags": [
+          "AllocationPeriodsV2"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data",
+          "application/x-www-form-urlencoded"
+        ],
+        "deprecated": false,
+        "description": "<p>Requires any of the following scopes: <br><b>ea:purchase</b></p><p>Available in any of the following variants: <br><b>Pro, Standard, Bookkeeping</b></p>",
+        "operationId": "AllocationPeriodsV2_Put",
+        "parameters": [
+          {
+            "description": "",
+            "in": "body",
+            "name": "allocationPlans",
+            "required": true,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/AllocationPlan"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/AllocationPeriodApi"
+            }
+          }
+        },
+        "summary": "Update allocation periods for voucher or supplier invoice.",
         "tags": [
           "AllocationPeriodsV2"
         ]
@@ -18467,6 +18569,43 @@
           }
         },
         "summary": "Replace content in a supplier invoice draft.",
+        "tags": [
+          "SupplierInvoiceDraftsV2"
+        ]
+      }
+    },
+    "/v2/supplierinvoicedrafts/{supplierInvoiceDraftId}/allocationperiods": {
+      "delete": {
+        "consumes": [],
+        "deprecated": false,
+        "description": "<p>Requires any of the following scopes: <br><b>ea:purchase</b></p><p>Available in any of the following variants: <br><b>Pro, Standard, Solo, Bookkeeping</b></p>",
+        "operationId": "SupplierInvoiceDraftsV2_DeleteAllocations",
+        "parameters": [
+          {
+            "description": "",
+            "format": "uuid",
+            "in": "path",
+            "name": "supplierInvoiceDraftId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "object"
+            }
+          }
+        },
+        "summary": "Deletes allocationperiods connected to supplier invoice draft",
         "tags": [
           "SupplierInvoiceDraftsV2"
         ]
