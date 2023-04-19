@@ -40159,6 +40159,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "incomePilotActive": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "locale": {
           "readOnly": true,
           "type": "string"
