@@ -6608,14 +6608,17 @@
         "description": {
           "type": "string"
         },
-        "disabled": {
-          "type": "boolean"
+        "displayName": {
+          "type": "string"
         },
         "factor": {
           "format": "int32",
           "maximum": 100,
           "minimum": 1,
           "type": "integer"
+        },
+        "isDisabled": {
+          "type": "boolean"
         },
         "rate": {
           "minimum": 0,
