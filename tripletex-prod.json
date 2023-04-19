@@ -2818,6 +2818,9 @@
         "hasFullAccess": {
           "type": "boolean"
         },
+        "isIs2FAEnabled": {
+          "type": "boolean"
+        },
         "lockedCurrenciesMap": {
           "additionalProperties": {
             "type": "boolean"
