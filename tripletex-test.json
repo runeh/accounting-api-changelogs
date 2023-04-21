@@ -6790,8 +6790,7 @@
         "language": {
           "enum": [
             "NO",
-            "EN",
-            "SV"
+            "EN"
           ],
           "type": "string"
         },
@@ -8637,8 +8636,7 @@
         "language": {
           "enum": [
             "NO",
-            "EN",
-            "SV"
+            "EN"
           ],
           "type": "string"
         },
@@ -27971,13 +27969,6 @@
           },
           "description": "Map of key value pairs for Norwegian text",
           "type": "object"
-        },
-        "se": {
-          "additionalProperties": {
-            "type": "string"
-          },
-          "description": "Map of key value pairs for Swedish text",
-          "type": "object"
         }
       },
       "type": "object"
@@ -34164,9 +34155,6 @@
         "moduleSmartScan": {
           "type": "boolean"
         },
-        "moduleSwedish": {
-          "type": "boolean"
-        },
         "moduleTimeBalance": {
           "type": "boolean"
         },
@@ -38516,10 +38504,6 @@
           "type": "boolean"
         },
         "moduleSubscriptionsPeriodisation": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleSwedish": {
           "readOnly": true,
           "type": "boolean"
         },
