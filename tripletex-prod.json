@@ -16933,6 +16933,39 @@
       },
       "type": "object"
     },
+    "ListResponseProductPotential": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ProductPotential"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseProductPrice": {
       "properties": {
         "count": {
@@ -24044,6 +24077,18 @@
       ],
       "type": "object"
     },
+    "ProductImportRowErrorMessage": {
+      "properties": {
+        "errorMessage": {
+          "type": "string"
+        },
+        "fieldId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ProductInventoryLocation": {
       "properties": {
         "changes": {
@@ -24162,6 +24207,55 @@
       ],
       "type": "object"
     },
+    "ProductPotential": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "errorMessage": {
+          "description": "errorMessage",
+          "items": {
+            "$ref": "#/definitions/ProductImportRowErrorMessage"
+          },
+          "type": "array"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productImport": {
+          "$ref": "#/definitions/ProductImport"
+        },
+        "rowContent": {
+          "$ref": "#/definitions/ProductRowJSON",
+          "description": "rowContent"
+        },
+        "rowStatus": {
+          "enum": [
+            "NEW",
+            "UPDATE",
+            "FAIL"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "productImport"
+      ],
+      "type": "object"
+    },
     "ProductPrice": {
       "properties": {
         "changes": {
@@ -24214,6 +24308,38 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ProductRowJSON": {
+      "properties": {
+        "eanGtin": {
+          "type": "string"
+        },
+        "inactive": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "productUnit": {
+          "type": "string"
+        },
+        "purchasePrice": {
+          "type": "string"
+        },
+        "sellingPriceExclVat": {
+          "type": "string"
+        },
+        "sellingPriceInclVat": {
+          "type": "string"
+        },
+        "stockItem": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -76387,6 +76513,9 @@
     },
     {
       "name": "productImportFieldsRelation"
+    },
+    {
+      "name": "productImportpotentialProduct"
     },
     {
       "name": "productunit"
