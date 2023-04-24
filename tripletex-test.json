@@ -1263,6 +1263,10 @@
             "YEAR_END_DOCUMENTATION_PROPERTIES",
             "YEAR_END_DOCUMENTATION_SECURITIES",
             "YEAR_END_DOCUMENTATION_TAX_CALCULATION",
+            "YEAR_END_DOCUMENTATION_AUDIT_REPORT",
+            "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
+            "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
+            "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -4846,6 +4850,10 @@
             "YEAR_END_DOCUMENTATION_PROPERTIES",
             "YEAR_END_DOCUMENTATION_SECURITIES",
             "YEAR_END_DOCUMENTATION_TAX_CALCULATION",
+            "YEAR_END_DOCUMENTATION_AUDIT_REPORT",
+            "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
+            "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
+            "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -7911,6 +7919,9 @@
           "readOnly": true,
           "type": "array"
         },
+        "date": {
+          "type": "string"
+        },
         "documentName": {
           "type": "string"
         },
@@ -8153,6 +8164,10 @@
             "YEAR_END_DOCUMENTATION_PROPERTIES",
             "YEAR_END_DOCUMENTATION_SECURITIES",
             "YEAR_END_DOCUMENTATION_TAX_CALCULATION",
+            "YEAR_END_DOCUMENTATION_AUDIT_REPORT",
+            "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
+            "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
+            "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -8218,6 +8233,10 @@
         },
         "postValue": {
           "type": "string"
+        },
+        "size": {
+          "format": "int32",
+          "type": "integer"
         },
         "uploaderName": {
           "type": "string"
@@ -10246,6 +10265,10 @@
             "YEAR_END_DOCUMENTATION_PROPERTIES",
             "YEAR_END_DOCUMENTATION_SECURITIES",
             "YEAR_END_DOCUMENTATION_TAX_CALCULATION",
+            "YEAR_END_DOCUMENTATION_AUDIT_REPORT",
+            "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
+            "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
+            "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -11700,6 +11723,10 @@
             "YEAR_END_DOCUMENTATION_PROPERTIES",
             "YEAR_END_DOCUMENTATION_SECURITIES",
             "YEAR_END_DOCUMENTATION_TAX_CALCULATION",
+            "YEAR_END_DOCUMENTATION_AUDIT_REPORT",
+            "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
+            "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
+            "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -11974,6 +12001,10 @@
             "YEAR_END_DOCUMENTATION_PROPERTIES",
             "YEAR_END_DOCUMENTATION_SECURITIES",
             "YEAR_END_DOCUMENTATION_TAX_CALCULATION",
+            "YEAR_END_DOCUMENTATION_AUDIT_REPORT",
+            "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
+            "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
+            "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -22338,6 +22369,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isSelectable": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
           "readOnly": true,
@@ -23042,6 +23077,10 @@
             "YEAR_END_DOCUMENTATION_PROPERTIES",
             "YEAR_END_DOCUMENTATION_SECURITIES",
             "YEAR_END_DOCUMENTATION_TAX_CALCULATION",
+            "YEAR_END_DOCUMENTATION_AUDIT_REPORT",
+            "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
+            "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
+            "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
