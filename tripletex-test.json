@@ -41981,6 +41981,12 @@
         "apiKey": {
           "type": "string"
         },
+        "departments": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "email": {
           "type": "string"
         },
@@ -41992,12 +41998,6 @@
         },
         "name": {
           "type": "string"
-        },
-        "tags": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
