@@ -19514,39 +19514,6 @@
       },
       "type": "object"
     },
-    "ListResponseVFFactoringInvoiceOffer": {
-      "properties": {
-        "count": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/VFFactoringInvoiceOffer"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListResponseVatReturnsComment": {
       "properties": {
         "count": {
@@ -30982,14 +30949,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperVFCustomerResponseDTO": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/VFCustomerResponseDTO"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperVatReturns2022": {
       "properties": {
         "value": {
@@ -34118,9 +34077,6 @@
         },
         "completeweeklyhourlists": {
           "type": "boolean"
-        },
-        "factoringVismaFinance": {
-          "type": "string"
         },
         "hourCostFactorProject": {
           "type": "boolean"
@@ -38523,7 +38479,6 @@
             "FAILED",
             "OPTED_OUT"
           ],
-          "readOnly": true,
           "type": "string"
         },
         "moduleFinanceTax": {
@@ -39258,135 +39213,6 @@
       },
       "type": "object"
     },
-    "VFCustomerResponseDTO": {
-      "properties": {
-        "companyName": {
-          "type": "string"
-        },
-        "companyOnboardingDate": {
-          "format": "date",
-          "type": "string"
-        },
-        "companyOnboardingStatus": {
-          "enum": [
-            "NOT_STARTED",
-            "STARTED",
-            "SIGNING_STARTED",
-            "IN_REVIEW",
-            "ACCEPTED",
-            "COMPLETED",
-            "REJECTED",
-            "CANCELED",
-            "FAILED"
-          ],
-          "type": "string"
-        },
-        "companyOnboardingStatusLastChangeDate": {
-          "format": "date",
-          "type": "string"
-        },
-        "customerId": {
-          "type": "string"
-        },
-        "isContractFactoringCustomer": {
-          "type": "boolean"
-        },
-        "offerPreSelectMode": {
-          "enum": [
-            "FORCE_SELECT",
-            "PRE_SELECTED"
-          ],
-          "type": "string"
-        },
-        "orgNumber": {
-          "type": "string"
-        },
-        "productOnboardingStatuses": {
-          "items": {
-            "$ref": "#/definitions/VFProductOnboardingStatusDTO"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "VFFactoringInvoiceOffer": {
-      "properties": {
-        "offers": {
-          "items": {
-            "$ref": "#/definitions/VfFactoringOffer"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "orderId": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "validationErrors": {
-          "items": {
-            "enum": [
-              "CLOSED_ORDER_NOT_ALLOWED",
-              "RECURRING_INVOICE_NOT_ALLOWED",
-              "DUE_DATE_TOO_SHORT",
-              "DUE_DATE_TOO_LONG",
-              "CUSTOMER_POSTAL_CODE_MISSING",
-              "CUSTOMER_CITY_MISSING",
-              "EMPLOYEE_EMAIL_MISSING",
-              "EMPLOYEE_NAME_MISSING",
-              "ACTUAL_EMPLOYEE_MISSING",
-              "ORDER_NOT_FOUND",
-              "COMPANY_NOT_VERIFIED",
-              "POSTING_ACCOUNT_INVALID",
-              "POSTING_ACCOUNT_MISSING",
-              "INVALID_CURRENCY",
-              "NO_PRELIMINARY_INVOICE",
-              "COMPANY_OPTED_OUT"
-            ],
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array",
-          "uniqueItems": true
-        }
-      },
-      "type": "object"
-    },
-    "VFProductOnboardingStatusDTO": {
-      "properties": {
-        "onboardingStatus": {
-          "enum": [
-            "NOT_STARTED",
-            "STARTED",
-            "SIGNING_STARTED",
-            "IN_REVIEW",
-            "ACCEPTED",
-            "COMPLETED",
-            "REJECTED",
-            "CANCELED",
-            "FAILED"
-          ],
-          "type": "string"
-        },
-        "productId": {
-          "type": "string"
-        },
-        "productOnboardingStatusLastChangeDate": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "validFrom": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "validTo": {
-          "format": "date-time",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "VacationSummary": {
       "properties": {
         "incomingVacationBalance": {
@@ -39943,55 +39769,6 @@
         "version": {
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "VfFactoringOffer": {
-      "properties": {
-        "fixedFeeVatAmount": {
-          "type": "number"
-        },
-        "fixedFeeVatExcluded": {
-          "type": "number"
-        },
-        "offerId": {
-          "type": "string"
-        },
-        "offerProductType": {
-          "enum": [
-            "RECOURSE",
-            "NO_RECOURSE",
-            "ARM"
-          ],
-          "type": "string"
-        },
-        "offerType": {
-          "enum": [
-            "SOFT_OFFER",
-            "HARD_OFFER"
-          ],
-          "type": "string"
-        },
-        "orderId": {
-          "format": "int32",
-          "minimum": 0,
-          "type": "integer"
-        },
-        "variableFeeMinimumFeeHit": {
-          "type": "boolean"
-        },
-        "variableFeePricePercentage": {
-          "type": "number"
-        },
-        "variableFeeVatAmount": {
-          "type": "number"
-        },
-        "variableFeeVatExcluded": {
-          "type": "number"
-        },
-        "youWillReceive": {
-          "type": "number"
         }
       },
       "type": "object"
@@ -77253,9 +77030,6 @@
     },
     {
       "name": "vatReturnscomment"
-    },
-    {
-      "name": "vfFactoringOffer"
     },
     {
       "name": "vismaconnectonboard"
