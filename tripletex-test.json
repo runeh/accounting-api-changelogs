@@ -26581,6 +26581,9 @@
         "duration": {
           "$ref": "#/definitions/TlxNumber"
         },
+        "durationUnit": {
+          "type": "string"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
@@ -26639,13 +26642,7 @@
         "durationAmount": {
           "$ref": "#/definitions/TlxNumber"
         },
-        "durationType": {
-          "enum": [
-            "HOUR",
-            "DAY",
-            "WEEK",
-            "MONTH"
-          ],
+        "durationUnit": {
           "type": "string"
         },
         "employeeIds": {
@@ -26680,13 +26677,7 @@
         "durationAmount": {
           "$ref": "#/definitions/TlxNumber"
         },
-        "durationType": {
-          "enum": [
-            "HOUR",
-            "DAY",
-            "WEEK",
-            "MONTH"
-          ],
+        "durationUnit": {
           "type": "string"
         },
         "employeeIds": {
@@ -26786,6 +26777,9 @@
       "properties": {
         "duration": {
           "$ref": "#/definitions/TlxNumber"
+        },
+        "durationUnit": {
+          "type": "string"
         },
         "id": {
           "format": "int32",
