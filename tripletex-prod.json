@@ -6111,6 +6111,10 @@
         "email": {
           "type": "string"
         },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
         "name": {
           "type": "string"
         },
