@@ -12553,9 +12553,18 @@
       },
       "type": "object"
     },
-    "InvoiceOverviewMeta": {
+    "InvoiceOverviewMetaDTO": {
       "properties": {
         "hasModuleProjectEconomy": {
+          "type": "boolean"
+        },
+        "isCreditActionAllowed": {
+          "type": "boolean"
+        },
+        "isPaymentActionAllowed": {
+          "type": "boolean"
+        },
+        "isReminderDebtCollectionActionAllowed": {
           "type": "boolean"
         },
         "isVatOn": {
@@ -29137,10 +29146,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperInvoiceOverviewMeta": {
+    "ResponseWrapperInvoiceOverviewMetaDTO": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/InvoiceOverviewMeta"
+          "$ref": "#/definitions/InvoiceOverviewMetaDTO"
         }
       },
       "type": "object"
