@@ -40218,6 +40218,18 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "bankAccount": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "buyersContact": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "buyersRef": {
+          "readOnly": true,
+          "type": "string"
+        },
         "canBeDeleted": {
           "readOnly": true,
           "type": "boolean"
@@ -40452,11 +40464,27 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "kid": {
+          "readOnly": true,
+          "type": "string"
+        },
         "lastComment": {
           "readOnly": true,
           "type": "string"
         },
+        "merchantName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "nonAutomationReason": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "orderNumberBuyer": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "orderNumberCustomer": {
           "readOnly": true,
           "type": "string"
         },
@@ -40488,6 +40516,10 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "projectRef": {
+          "readOnly": true,
+          "type": "string"
         },
         "projectSourceType": {
           "enum": [
@@ -40560,6 +40592,10 @@
             "FABRIC_AI",
             "LAST_VOUCHER"
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "vendorRef": {
           "readOnly": true,
           "type": "string"
         },
