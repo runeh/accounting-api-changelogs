@@ -1327,6 +1327,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -4915,6 +4916,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -8184,6 +8186,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -10286,6 +10289,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -11745,6 +11749,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -12024,6 +12029,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -23044,6 +23050,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -35795,6 +35802,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "deferredTaxAssetsInBalance": {
+          "readOnly": true,
+          "type": "number"
+        },
         "deferredTaxAssetsOpeningBalance": {
           "readOnly": true,
           "type": "number"
@@ -41744,9 +41755,6 @@
         },
         "email": {
           "type": "string"
-        },
-        "isTripletexReseller": {
-          "type": "boolean"
         },
         "locale": {
           "type": "string"

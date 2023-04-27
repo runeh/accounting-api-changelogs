@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1333,6 +1327,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -4921,6 +4916,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -8190,6 +8186,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -10292,6 +10289,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -11751,6 +11749,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -12030,6 +12029,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -23050,6 +23050,7 @@
             "AID_SCHEME_EXEMPTION_TRANSFER_FEE",
             "AID_SCHEME_REDUCED_ROAD_TRAFFIC_INSURANCE_TAX",
             "OTHER_CORRECTIONS",
+            "DEFERRED_TAX_ASSETS_IN_BALANCE",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -35801,6 +35802,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "deferredTaxAssetsInBalance": {
+          "readOnly": true,
+          "type": "number"
+        },
         "deferredTaxAssetsOpeningBalance": {
           "readOnly": true,
           "type": "number"
@@ -41750,9 +41755,6 @@
         },
         "email": {
           "type": "string"
-        },
-        "isTripletexReseller": {
-          "type": "boolean"
         },
         "locale": {
           "type": "string"
