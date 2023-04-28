@@ -68053,7 +68053,7 @@
         ],
         "summary": "Upload an attachment to a salary transaction",
         "tags": [
-          "tsk/salary/transaction"
+          "salary/transaction"
         ]
       }
     },
@@ -68098,7 +68098,7 @@
         ],
         "summary": "Upload multiple attachments to a salary transaction",
         "tags": [
-          "tsk/salary/transaction"
+          "salary/transaction"
         ]
       }
     },
@@ -68144,7 +68144,7 @@
         ],
         "summary": "Delete attachment.",
         "tags": [
-          "tsk/salary/transaction"
+          "salary/transaction"
         ]
       }
     },
@@ -76912,9 +76912,6 @@
     },
     {
       "name": "salary/transaction"
-    },
-    {
-      "name": "tsk/salary/transaction"
     },
     {
       "name": "signatureCombination"
