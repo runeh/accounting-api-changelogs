@@ -55995,7 +55995,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Upload a document to create one or more vouchers. Valid document formats are PDF, PNG, JPEG, TIFF and EHF. Send as multipart form.",
+        "summary": "Upload a document to create one or more vouchers. Valid document formats are PDF, PNG, JPEG and TIFF. Send as multipart form.",
         "tags": [
           "ledger/voucher"
         ]
