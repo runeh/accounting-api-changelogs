@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -8984,7 +8990,6 @@
           "type": "array"
         },
         "code": {
-          "maxLength": 100,
           "type": "string"
         },
         "employmentType": {
@@ -9001,7 +9006,6 @@
           "type": "integer"
         },
         "nameNO": {
-          "maxLength": 100,
           "type": "string"
         },
         "url": {
@@ -12946,7 +12950,6 @@
           "type": "array"
         },
         "code": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -12970,7 +12973,6 @@
           "type": "string"
         },
         "nameNO": {
-          "maxLength": 100,
           "type": "string"
         },
         "url": {
@@ -27025,7 +27027,6 @@
           "type": "array"
         },
         "code": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -27033,7 +27034,6 @@
           "type": "integer"
         },
         "nameNO": {
-          "maxLength": 100,
           "type": "string"
         },
         "remunerationType": {
@@ -37746,7 +37746,6 @@
           "type": "array"
         },
         "continent": {
-          "maxLength": 50,
           "readOnly": true,
           "type": "string"
         },
@@ -37757,7 +37756,6 @@
         },
         "governmentName": {
           "description": "The Government name ",
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -37778,7 +37776,6 @@
           "type": "integer"
         },
         "zoneName": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         }
@@ -41007,7 +41004,6 @@
           "type": "array"
         },
         "code": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -41015,7 +41011,6 @@
           "type": "integer"
         },
         "nameNO": {
-          "maxLength": 100,
           "type": "string"
         },
         "url": {

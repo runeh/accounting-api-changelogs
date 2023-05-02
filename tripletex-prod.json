@@ -8984,7 +8984,6 @@
           "type": "array"
         },
         "code": {
-          "maxLength": 100,
           "type": "string"
         },
         "employmentType": {
@@ -9001,7 +9000,6 @@
           "type": "integer"
         },
         "nameNO": {
-          "maxLength": 100,
           "type": "string"
         },
         "url": {
@@ -12946,7 +12944,6 @@
           "type": "array"
         },
         "code": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -12970,7 +12967,6 @@
           "type": "string"
         },
         "nameNO": {
-          "maxLength": 100,
           "type": "string"
         },
         "url": {
@@ -27025,7 +27021,6 @@
           "type": "array"
         },
         "code": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -27033,7 +27028,6 @@
           "type": "integer"
         },
         "nameNO": {
-          "maxLength": 100,
           "type": "string"
         },
         "remunerationType": {
@@ -37746,7 +37740,6 @@
           "type": "array"
         },
         "continent": {
-          "maxLength": 50,
           "readOnly": true,
           "type": "string"
         },
@@ -37757,7 +37750,6 @@
         },
         "governmentName": {
           "description": "The Government name ",
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -37778,7 +37770,6 @@
           "type": "integer"
         },
         "zoneName": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         }
@@ -41007,7 +40998,6 @@
           "type": "array"
         },
         "code": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -41015,7 +41005,6 @@
           "type": "integer"
         },
         "nameNO": {
-          "maxLength": 100,
           "type": "string"
         },
         "url": {
