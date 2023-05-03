@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -5134,6 +5128,15 @@
           "readOnly": true,
           "type": "array"
         },
+        "companyMigration": {
+          "description": "If the company was migrated from another system, this field will contain the name of the system it was migrated from.",
+          "enum": [
+            "NONE",
+            "AGRO"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "currency": {
           "$ref": "#/definitions/Currency"
         },
@@ -5663,6 +5666,15 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "companyMigration": {
+          "description": "If the company was migrated from another system, this field will contain the name of the system it was migrated from.",
+          "enum": [
+            "NONE",
+            "AGRO"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "currency": {
           "$ref": "#/definitions/Currency"
@@ -12720,6 +12732,12 @@
             "PEPPOL_EHF_INCOMING"
           ],
           "type": "string"
+        },
+        "externalInvoiceNumber": {
+          "description": "Highest external invoice number for this company",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "hasFirstInvoiceNumber": {
           "type": "boolean"
