@@ -5872,6 +5872,11 @@ components:
           type: boolean
           example: true
           description: If the sale as been marked as settled (True) or not (False).
+        settledDate:
+          type: string
+          format: date
+          example: '2023-04-03'
+          description: Date the the sale was marked as settled, format yyyy-mm-dd
         writeOff:
           type: boolean
           example: false
