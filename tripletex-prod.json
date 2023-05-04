@@ -20207,6 +20207,16 @@
             "AGRO_ON_PREMISE"
           ],
           "type": "string"
+        },
+        "packageName": {
+          "type": "string"
+        },
+        "showTrialWidget": {
+          "type": "boolean"
+        },
+        "trialExpiresDate": {
+          "format": "date",
+          "type": "string"
         }
       },
       "type": "object"
@@ -37812,6 +37822,9 @@
           "type": "string"
         },
         "packageName": {
+          "type": "string"
+        },
+        "packageNameTranslated": {
           "type": "string"
         }
       },
