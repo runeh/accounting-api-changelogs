@@ -6305,6 +6305,13 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "participants": {
+          "description": "Link to individual expense participant.",
+          "items": {
+            "$ref": "#/definitions/TravelExpenseParticipant"
+          },
+          "type": "array"
+        },
         "paymentType": {
           "$ref": "#/definitions/TravelPaymentType"
         },
@@ -19079,6 +19086,39 @@
       },
       "type": "object"
     },
+    "ListResponseTravelExpenseParticipant": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/TravelExpenseParticipant"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseTravelExpenseRate": {
       "properties": {
         "count": {
@@ -30636,6 +30676,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperTravelExpenseParticipant": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TravelExpenseParticipant"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperTravelExpenseRate": {
       "properties": {
         "value": {
@@ -37420,6 +37468,44 @@
       },
       "required": [
         "employee"
+      ],
+      "type": "object"
+    },
+    "TravelExpenseParticipant": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "cost": {
+          "$ref": "#/definitions/Cost"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "employeeId": {
+          "description": "Optional employee id in case the participant is an employee",
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cost"
       ],
       "type": "object"
     },
@@ -50562,6 +50648,98 @@
         "summary": "Update employee preferences information.",
         "tags": [
           "employee/preferences"
+        ]
+      }
+    },
+    "/employee/searchForEmployeesAndContacts": {
+      "get": {
+        "description": "",
+        "operationId": "EmployeeSearchForEmployeesAndContacts_searchForEmployeesAndContacts",
+        "parameters": [
+          {
+            "description": "List of IDs",
+            "in": "query",
+            "name": "id",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Containing",
+            "in": "query",
+            "name": "firstName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Containing",
+            "in": "query",
+            "name": "lastName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Containing",
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": true,
+            "description": "Equals",
+            "in": "query",
+            "name": "includeContacts",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": "id, employeeNumber, firstName, lastName, email, pictureId",
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseEmployee"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get employees and contacts by parameters. Include contacts by default.",
+        "tags": [
+          "employee"
         ]
       }
     },
@@ -73431,6 +73609,222 @@
         ]
       }
     },
+    "/travelExpense/costParticipant": {
+      "post": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "TravelExpenseCostParticipant_post",
+        "parameters": [
+          {
+            "description": "JSON representing the new object to be created. Should not have ID and version set.",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/TravelExpenseParticipant"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperTravelExpenseParticipant"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Create participant on cost.",
+        "tags": [
+          "travelExpense/costParticipant"
+        ]
+      }
+    },
+    "/travelExpense/costParticipant/createCostParticipantAdvanced": {
+      "post": {
+        "description": "",
+        "operationId": "TravelExpenseCostParticipantCreateCostParticipantAdvanced_createCostParticipantAdvanced",
+        "parameters": [
+          {
+            "description": "The name of the participant",
+            "in": "query",
+            "name": "displayName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "ID of cost",
+            "format": "int32",
+            "in": "query",
+            "name": "costId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "ID of the employee if it is participant. 0 is allowed if the participant is not an employee",
+            "format": "int32",
+            "in": "query",
+            "name": "employeeId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperTravelExpenseParticipant"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Create participant on cost using explicit parameters",
+        "tags": [
+          "travelExpense/costParticipant"
+        ]
+      }
+    },
+    "/travelExpense/costParticipant/{costId}/costParticipants": {
+      "get": {
+        "description": "",
+        "operationId": "TravelExpenseCostParticipantCostParticipants_getCostParticipants",
+        "parameters": [
+          {
+            "description": "ID of cost",
+            "format": "int32",
+            "in": "path",
+            "name": "costId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseTravelExpenseParticipant"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get cost's participants by costId.",
+        "tags": [
+          "travelExpense/costParticipant"
+        ]
+      }
+    },
+    "/travelExpense/costParticipant/{id}": {
+      "delete": {
+        "description": "",
+        "operationId": "TravelExpenseCostParticipant_delete",
+        "parameters": [
+          {
+            "description": "Element ID",
+            "format": "int32",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Delete cost participant.",
+        "tags": [
+          "travelExpense/costParticipant"
+        ]
+      },
+      "get": {
+        "description": "",
+        "operationId": "TravelExpenseCostParticipant_get",
+        "parameters": [
+          {
+            "description": "Element ID",
+            "format": "int32",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperTravelExpenseParticipant"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get cost participant by ID.",
+        "tags": [
+          "travelExpense/costParticipant"
+        ]
+      }
+    },
     "/travelExpense/drivingStop": {
       "post": {
         "consumes": [
@@ -76891,6 +77285,12 @@
     },
     {
       "name": "travelExpense/cost"
+    },
+    {
+      "name": "travelExpensecostParticipant"
+    },
+    {
+      "name": "travelExpense/costParticipant"
     },
     {
       "name": "travelExpensedrivingStop"
