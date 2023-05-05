@@ -6932,6 +6932,18 @@
             "VAT_APPLICANT"
           ],
           "type": "string"
+        },
+        "vatTermType": {
+          "description": "VAT period",
+          "enum": [
+            "ONE_MONTH",
+            "TWO_MONTHS",
+            "THREE_MONTHS",
+            "FOUR_MONTHS",
+            "SIX_MONTHS",
+            "YEAR"
+          ],
+          "type": "string"
         }
       },
       "required": [
@@ -22086,6 +22098,14 @@
     "PaymentDTO": {
       "discriminator": "paymentSource",
       "properties": {
+        "acceptors": {
+          "description": "Who approved this payment.",
+          "items": {
+            "$ref": "#/definitions/Employee"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "account": {
           "$ref": "#/definitions/Account",
           "description": "The payment account.",
@@ -22127,6 +22147,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "creditorName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "currency": {
           "$ref": "#/definitions/Currency",
           "readOnly": true
@@ -22162,11 +22186,27 @@
           "type": "boolean"
         },
         "isSelectable": {
+          "description": "Is this payment selectable.",
           "readOnly": true,
           "type": "boolean"
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentCategory": {
+          "description": "The payment category.",
+          "enum": [
+            "TRANSFER_BETWEEN_ACCOUNTS",
+            "REIMBURSEMENT",
+            "ORDINARY",
+            "WITHHOLDING_TAX",
+            "TAX_DEDUCTION",
+            "VAT",
+            "SALARY",
+            "ENI"
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -30478,6 +30518,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperSupportAPIMeta": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/SupportAPIMeta"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperSystemMessage": {
       "properties": {
         "value": {
@@ -35367,6 +35415,17 @@
       ],
       "type": "object"
     },
+    "SupportAPIMeta": {
+      "properties": {
+        "available": {
+          "type": "boolean"
+        },
+        "sseUrl": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SystemMessage": {
       "properties": {
         "message": {
@@ -38053,6 +38112,18 @@
             "VAT_REGISTERED",
             "VAT_NOT_REGISTERED",
             "VAT_APPLICANT"
+          ],
+          "type": "string"
+        },
+        "vatTermType": {
+          "description": "VAT period",
+          "enum": [
+            "ONE_MONTH",
+            "TWO_MONTHS",
+            "THREE_MONTHS",
+            "FOUR_MONTHS",
+            "SIX_MONTHS",
+            "YEAR"
           ],
           "type": "string"
         }
@@ -77422,6 +77493,9 @@
     },
     {
       "name": "segmentation/internal"
+    },
+    {
+      "name": "internalsupport"
     },
     {
       "name": "internalzendesk-chat"
