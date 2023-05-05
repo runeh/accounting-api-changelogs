@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -6508,6 +6502,56 @@
       "required": [
         "sourceCurrency",
         "targetCurrency"
+      ],
+      "type": "object"
+    },
+    "CurrencyWithRates": {
+      "properties": {
+        "code": {
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "factor": {
+          "format": "int32",
+          "maximum": 100,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "isDisabled": {
+          "type": "boolean"
+        },
+        "rate": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "source": {
+          "description": "Source of exchange rates, i.e Norges Bank",
+          "enum": [
+            "NORGES_BANK",
+            "HALLONEN"
+          ],
+          "type": "string"
+        },
+        "sourceCurrency": {
+          "$ref": "#/definitions/Currency"
+        },
+        "targetCurrencyId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "code",
+        "sourceCurrency",
+        "targetCurrencyId"
       ],
       "type": "object"
     },
@@ -14458,6 +14502,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Currency"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseCurrencyWithRates": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/CurrencyWithRates"
           },
           "readOnly": true,
           "type": "array"
