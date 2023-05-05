@@ -10476,15 +10476,23 @@
           "readOnly": true,
           "type": "number"
         },
+        "paidGroupContribution": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "receivedGroupContribution": {
+          "readOnly": true,
+          "type": "number"
+        },
         "sumExpenses": {
           "readOnly": true,
           "type": "number"
         },
-        "sumReceived": {
+        "sumPaid": {
           "readOnly": true,
           "type": "number"
         },
-        "sumSubmitted": {
+        "sumReceived": {
           "readOnly": true,
           "type": "number"
         },
