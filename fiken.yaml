@@ -4651,6 +4651,16 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/invoiceishDraftLine'
+        net:
+          type: integer
+          format: int64
+          description: The net amount to be invoiced in the specified currency.
+          example: 4500
+        gross:
+          type: integer
+          format: int64
+          description: The gross amount to be invoiced in the specified currency.
+          example: 5000
         bankAccountNumber:
           type: string
           example: '11112233334'
