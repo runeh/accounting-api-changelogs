@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -5779,81 +5773,6 @@
             "MANUAL_CHECK",
             "ACCEPTED"
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "CompanyAutoCompleteDTO": {
-      "properties": {
-        "address": {
-          "type": "string"
-        },
-        "alternateName": {
-          "type": "string"
-        },
-        "companyCode": {
-          "type": "string"
-        },
-        "companyType": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "countryId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "email": {
-          "type": "string"
-        },
-        "latitude": {
-          "type": "number"
-        },
-        "longitude": {
-          "type": "number"
-        },
-        "name": {
-          "type": "string"
-        },
-        "phoneNumber": {
-          "type": "string"
-        },
-        "phoneNumberMobile": {
-          "type": "string"
-        },
-        "postalArea": {
-          "type": "string"
-        },
-        "postalCode": {
-          "type": "string"
-        },
-        "score": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "sources": {
-          "items": {
-            "enum": [
-              "SEARCH1881",
-              "TRIPLETEX",
-              "NICKNAME",
-              "EMPLOYEE",
-              "CONTACT",
-              "ACTIVITY",
-              "PROJECT",
-              "ORDER",
-              "OFFER",
-              "CUSTOMER",
-              "COMPANY",
-              "CONTROLSCHEMA",
-              "HOUR",
-              "TRAVELEXPENSE"
-            ],
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "url": {
           "type": "string"
         }
       },
@@ -14256,39 +14175,6 @@
       },
       "type": "object"
     },
-    "ListResponseCompanyAutoCompleteDTO": {
-      "properties": {
-        "count": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/CompanyAutoCompleteDTO"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListResponseCompanyHoliday": {
       "properties": {
         "count": {
@@ -16488,39 +16374,6 @@
         "values": {
           "items": {
             "$ref": "#/definitions/PerDiemCompensationTransientDTO"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListResponsePerson1881EntityDTO": {
-      "properties": {
-        "count": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/Person1881EntityDTO"
           },
           "readOnly": true,
           "type": "array"
@@ -23104,38 +22957,15 @@
       },
       "type": "object"
     },
-    "Person1881EntityDTO": {
-      "properties": {
-        "address": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "id": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "phoneNumber": {
-          "type": "string"
-        },
-        "postalArea": {
-          "type": "string"
-        },
-        "postalCode": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "PersonAutoCompleteDTO": {
       "properties": {
         "address": {
           "type": "string"
         },
         "alternateName": {
+          "type": "string"
+        },
+        "category": {
           "type": "string"
         },
         "countryId": {
@@ -23146,6 +22976,9 @@
           "type": "string"
         },
         "firstname": {
+          "type": "string"
+        },
+        "id": {
           "type": "string"
         },
         "lastname": {
