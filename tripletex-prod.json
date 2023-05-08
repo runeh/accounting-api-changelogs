@@ -20157,6 +20157,10 @@
     },
     "Menu": {
       "properties": {
+        "currentServerTime": {
+          "format": "date-time",
+          "type": "string"
+        },
         "defaultContentUrl": {
           "type": "string"
         },
@@ -30556,6 +30560,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperTaxAdminSearchResponse": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TaxAdminSearchResponse"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperTaxCalculation": {
       "properties": {
         "value": {
@@ -35716,6 +35728,138 @@
           "type": "string"
         },
         "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAdminPhysicalAddress": {
+      "properties": {
+        "addressName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "highlight": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "houseNo": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "postalPlaceName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "properties": {
+          "items": {
+            "$ref": "#/definitions/TaxAdminProperty"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "sergPropertyIdentifier": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "uniquePropertyIdentifier": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "zipCode": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAdminProperty": {
+      "properties": {
+        "cadastralUnitNo": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "highlight": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "historical": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "leaseholdNo": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "municipalityName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "municipalityNo": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "propertyCreatedDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "propertyUnitNo": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "sectionNo": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "sergPropertyIdentifier": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "uniquePropertyIdentifier": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAdminSearchResponse": {
+      "properties": {
+        "physicalAddresses": {
+          "items": {
+            "$ref": "#/definitions/TaxAdminPhysicalAddress"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "properties": {
+          "items": {
+            "$ref": "#/definitions/TaxAdminProperty"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "resultSize": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "searchEnd": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "searchStart": {
+          "format": "date-time",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -77570,6 +77714,9 @@
     },
     {
       "name": "yearEndpersonalIncome"
+    },
+    {
+      "name": "yearEndpropertytaxAdmin"
     },
     {
       "name": "yearEndriskFreeInterestRate"
