@@ -2132,6 +2132,11 @@
         "paymentType": {
           "type": "string"
         },
+        "selectedPaymentType": {
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
+        },
         "vatTypeId": {
           "format": "int32",
           "type": "integer"
@@ -3659,6 +3664,12 @@
           "readOnly": true,
           "type": "array"
         },
+        "confirmationEmail": {
+          "description": "Bring preferred email",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
         "customerNumber": {
           "description": "Bring customer number",
           "maxLength": 255,
@@ -3689,6 +3700,7 @@
         }
       },
       "required": [
+        "confirmationEmail",
         "customerNumber",
         "moduleBring",
         "username"
@@ -11304,6 +11316,7 @@
         },
         "paymentType": {
           "enum": [
+            "NONE",
             "NOT_PAID",
             "NETS",
             "AUTOPAY",
@@ -16235,6 +16248,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/PaymentType"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponsePaymentTypeAutomation": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/PaymentTypeAutomation"
           },
           "readOnly": true,
           "type": "array"
@@ -22371,6 +22417,32 @@
       ],
       "type": "object"
     },
+    "PaymentTypeAutomation": {
+      "properties": {
+        "description": {
+          "description": "Value of a Dropdown Type used in the Payment Widget's dropdown elements",
+          "type": "string"
+        },
+        "id": {
+          "description": "Id corresponding to a Dropdown Type used in the Payment Widget's dropdown elements",
+          "format": "int32",
+          "type": "integer"
+        },
+        "paymentIntegration": {
+          "description": "The Payment Type (NETS, AUTOPAY, POSTING_RULE)",
+          "enum": [
+            "NONE",
+            "NOT_PAID",
+            "NETS",
+            "AUTOPAY",
+            "POSTING_RULE",
+            "ZTL"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PaymentTypeOut": {
       "properties": {
         "changes": {
@@ -22457,6 +22529,7 @@
         "paymentIntegration": {
           "description": "The Payment Type (NETS, AUTOPAY, POSTING_RULE)",
           "enum": [
+            "NONE",
             "NOT_PAID",
             "NETS",
             "AUTOPAY",
@@ -24613,6 +24686,19 @@
           "format": "int32",
           "type": "integer"
         },
+        "invoiceDueDateType": {
+          "description": "Set the time unit of invoiceDueDate. The special case RECURRING_DAY_OF_MONTH enables the due date to be fixed to a specific day of the month, in this case the fixed due date will automatically be set as standard on all invoices created from this project. Note that when RECURRING_DAY_OF_MONTH is set, the due date will be set to the last day of month if \"31\" is set in invoicesDueIn.",
+          "enum": [
+            "DAYS",
+            "MONTHS",
+            "RECURRING_DAY_OF_MONTH"
+          ],
+          "type": "string"
+        },
+        "invoiceOnAccountVatHigh": {
+          "description": "The on account(a konto) amounts including VAT",
+          "type": "boolean"
+        },
         "invoiceReceiverEmail": {
           "description": "receiver email",
           "maxLength": 254,
@@ -24725,6 +24811,11 @@
         },
         "startDate": {
           "type": "string"
+        },
+        "totalInvoicedOnAccountAmountAbsoluteCurrency": {
+          "description": "Amount paid on account(a konto)",
+          "readOnly": true,
+          "type": "number"
         },
         "url": {
           "readOnly": true,
@@ -32376,6 +32467,7 @@
         },
         "typeOfPayment": {
           "enum": [
+            "NONE",
             "NOT_PAID",
             "NETS",
             "AUTOPAY",
@@ -76979,6 +77071,9 @@
     },
     {
       "name": "stockoutgoing"
+    },
+    {
+      "name": "paymentTypeAutomation"
     },
     {
       "name": "bankpaymentWidget"
