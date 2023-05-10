@@ -1248,6 +1248,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -2456,7 +2457,6 @@
         },
         "displayName": {
           "description": "Bank name to comply with LoadableDropdown",
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -4846,6 +4846,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -8002,6 +8003,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -10103,6 +10105,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -11572,6 +11575,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -11852,6 +11856,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -20767,7 +20772,6 @@
           "type": "array"
         },
         "county": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -20780,12 +20784,10 @@
           "type": "integer"
         },
         "name": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
         "number": {
-          "maxLength": 4,
           "readOnly": true,
           "type": "string"
         },
@@ -22979,6 +22981,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -32876,6 +32879,9 @@
           "readOnly": true,
           "type": "string"
         },
+        "useLandscapeForBankList": {
+          "type": "boolean"
+        },
         "version": {
           "format": "int32",
           "type": "integer"
@@ -40411,6 +40417,10 @@
           "type": "boolean"
         },
         "canBeMerged": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "canBeReclaimed": {
           "readOnly": true,
           "type": "boolean"
         },
