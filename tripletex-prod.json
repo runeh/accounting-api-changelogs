@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -7047,6 +7041,10 @@
         "companyName": {
           "type": "string"
         },
+        "companyStartDate": {
+          "format": "date-time",
+          "type": "string"
+        },
         "language": {
           "type": "string"
         },
@@ -10357,6 +10355,60 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GetStartedSummaryDTO": {
+      "properties": {
+        "numberOfCompletedTasks": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tasks": {
+          "items": {
+            "$ref": "#/definitions/GetStartedTaskWidgetDTO"
+          },
+          "type": "array"
+        },
+        "totalNumberOfTasks": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GetStartedTaskWidgetDTO": {
+      "properties": {
+        "actionUrl": {
+          "type": "string"
+        },
+        "articleUrl": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "INITIAL",
+            "PENDING",
+            "DONE"
+          ],
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "watchVideoUrl": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -29020,6 +29072,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperGetStartedSummaryDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/GetStartedSummaryDTO"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperGoodsReceipt": {
       "properties": {
         "value": {
@@ -33245,7 +33305,8 @@
             "UBEGRENSET_BILAG_AUTOMATION",
             "CMA_SHOPIFY",
             "CMA_MYSTORE",
-            "CMA_WOOCOMMERCE"
+            "CMA_WOOCOMMERCE",
+            "RACKBEAT"
           ],
           "readOnly": true,
           "type": "string"
@@ -41200,6 +41261,7 @@
               "APP",
               "BANKING",
               "EASY_ONBOARDING",
+              "GET_STARTED_SUMMARY",
               "HELP_CENTER",
               "INCOME_AND_COST_CHART",
               "INVOICE_SUMMARY",
@@ -41219,6 +41281,7 @@
               "APP",
               "BANKING",
               "EASY_ONBOARDING",
+              "GET_STARTED_SUMMARY",
               "HELP_CENTER",
               "INCOME_AND_COST_CHART",
               "INVOICE_SUMMARY",
@@ -77660,6 +77723,9 @@
     },
     {
       "name": "tripletexDashboardbankingSummary"
+    },
+    {
+      "name": "tripletexDashboardgetStartedSummary"
     },
     {
       "name": "tripletexDashboardincomeAndCostSummary"
