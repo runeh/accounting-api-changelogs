@@ -1242,6 +1242,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -2126,6 +2127,11 @@
         "paymentType": {
           "type": "string"
         },
+        "selectedPaymentType": {
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
+        },
         "vatTypeId": {
           "format": "int32",
           "type": "integer"
@@ -2445,7 +2451,6 @@
         },
         "displayName": {
           "description": "Bank name to comply with LoadableDropdown",
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -3653,6 +3658,12 @@
           "readOnly": true,
           "type": "array"
         },
+        "confirmationEmail": {
+          "description": "Bring preferred email",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
         "customerNumber": {
           "description": "Bring customer number",
           "maxLength": 255,
@@ -3683,6 +3694,7 @@
         }
       },
       "required": [
+        "confirmationEmail",
         "customerNumber",
         "moduleBring",
         "username"
@@ -4828,6 +4840,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -5028,15 +5041,12 @@
           "type": "integer"
         },
         "info": {
-          "maxLength": 255,
           "type": "string"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "section": {
-          "maxLength": 255,
           "type": "string"
         },
         "typeId": {
@@ -7028,6 +7038,10 @@
         "companyName": {
           "type": "string"
         },
+        "companyStartDate": {
+          "format": "date-time",
+          "type": "string"
+        },
         "language": {
           "type": "string"
         },
@@ -7984,6 +7998,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -10085,6 +10100,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -10320,7 +10336,6 @@
           "$ref": "#/definitions/TlxNumber"
         },
         "rateType": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -10336,6 +10351,60 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GetStartedSummaryDTO": {
+      "properties": {
+        "numberOfCompletedTasks": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tasks": {
+          "items": {
+            "$ref": "#/definitions/GetStartedTaskWidgetDTO"
+          },
+          "type": "array"
+        },
+        "totalNumberOfTasks": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GetStartedTaskWidgetDTO": {
+      "properties": {
+        "actionUrl": {
+          "type": "string"
+        },
+        "articleUrl": {
+          "type": "string"
+        },
+        "duration": {
+          "type": "string"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "status": {
+          "enum": [
+            "INITIAL",
+            "PENDING",
+            "DONE"
+          ],
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "watchVideoUrl": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -10476,15 +10545,23 @@
           "readOnly": true,
           "type": "number"
         },
+        "paidGroupContribution": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "receivedGroupContribution": {
+          "readOnly": true,
+          "type": "number"
+        },
         "sumExpenses": {
           "readOnly": true,
           "type": "number"
         },
-        "sumReceived": {
+        "sumPaid": {
           "readOnly": true,
           "type": "number"
         },
-        "sumSubmitted": {
+        "sumReceived": {
           "readOnly": true,
           "type": "number"
         },
@@ -11290,6 +11367,7 @@
         },
         "paymentType": {
           "enum": [
+            "NONE",
             "NOT_PAID",
             "NETS",
             "AUTOPAY",
@@ -11545,6 +11623,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -11825,6 +11904,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -16233,6 +16313,39 @@
       },
       "type": "object"
     },
+    "ListResponsePaymentTypeAutomation": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/PaymentTypeAutomation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponsePaymentTypeOut": {
       "properties": {
         "count": {
@@ -19945,12 +20058,10 @@
           "type": "boolean"
         },
         "groupNumber": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
         "groupingAns": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -19958,7 +20069,6 @@
           "type": "string"
         },
         "groupingAs": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -19966,7 +20076,6 @@
           "type": "string"
         },
         "groupingEnk": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -19985,17 +20094,14 @@
           "type": "boolean"
         },
         "post": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
         "subPost": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
         "type": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -20143,6 +20249,10 @@
     },
     "Menu": {
       "properties": {
+        "currentServerTime": {
+          "format": "date-time",
+          "type": "string"
+        },
         "defaultContentUrl": {
           "type": "string"
         },
@@ -20703,7 +20813,6 @@
           "type": "array"
         },
         "county": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -20716,12 +20825,10 @@
           "type": "integer"
         },
         "name": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
         "number": {
-          "maxLength": 4,
           "readOnly": true,
           "type": "string"
         },
@@ -22353,6 +22460,32 @@
       ],
       "type": "object"
     },
+    "PaymentTypeAutomation": {
+      "properties": {
+        "description": {
+          "description": "Value of a Dropdown Type used in the Payment Widget's dropdown elements",
+          "type": "string"
+        },
+        "id": {
+          "description": "Id corresponding to a Dropdown Type used in the Payment Widget's dropdown elements",
+          "format": "int32",
+          "type": "integer"
+        },
+        "paymentIntegration": {
+          "description": "The Payment Type (NETS, AUTOPAY, POSTING_RULE)",
+          "enum": [
+            "NONE",
+            "NOT_PAID",
+            "NETS",
+            "AUTOPAY",
+            "POSTING_RULE",
+            "ZTL"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PaymentTypeOut": {
       "properties": {
         "changes": {
@@ -22439,6 +22572,7 @@
         "paymentIntegration": {
           "description": "The Payment Type (NETS, AUTOPAY, POSTING_RULE)",
           "enum": [
+            "NONE",
             "NOT_PAID",
             "NETS",
             "AUTOPAY",
@@ -22888,6 +23022,7 @@
             "PREPARED_BY_AUTHORIZED_ACCOUNTANT",
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
+            "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -24595,6 +24730,19 @@
           "format": "int32",
           "type": "integer"
         },
+        "invoiceDueDateType": {
+          "description": "Set the time unit of invoiceDueDate. The special case RECURRING_DAY_OF_MONTH enables the due date to be fixed to a specific day of the month, in this case the fixed due date will automatically be set as standard on all invoices created from this project. Note that when RECURRING_DAY_OF_MONTH is set, the due date will be set to the last day of month if \"31\" is set in invoicesDueIn.",
+          "enum": [
+            "DAYS",
+            "MONTHS",
+            "RECURRING_DAY_OF_MONTH"
+          ],
+          "type": "string"
+        },
+        "invoiceOnAccountVatHigh": {
+          "description": "The on account(a konto) amounts including VAT",
+          "type": "boolean"
+        },
         "invoiceReceiverEmail": {
           "description": "receiver email",
           "maxLength": 254,
@@ -24707,6 +24855,11 @@
         },
         "startDate": {
           "type": "string"
+        },
+        "totalInvoicedOnAccountAmountAbsoluteCurrency": {
+          "description": "Amount paid on account(a konto)",
+          "readOnly": true,
+          "type": "number"
         },
         "url": {
           "readOnly": true,
@@ -28908,6 +29061,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperGetStartedSummaryDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/GetStartedSummaryDTO"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperGoodsReceipt": {
       "properties": {
         "value": {
@@ -30538,6 +30699,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/TaskDTO"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperTaxAdminSearchResponse": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TaxAdminSearchResponse"
         }
       },
       "type": "object"
@@ -32350,6 +32519,7 @@
         },
         "typeOfPayment": {
           "enum": [
+            "NONE",
             "NOT_PAID",
             "NETS",
             "AUTOPAY",
@@ -32758,6 +32928,9 @@
           "readOnly": true,
           "type": "string"
         },
+        "useLandscapeForBankList": {
+          "type": "boolean"
+        },
         "version": {
           "format": "int32",
           "type": "integer"
@@ -33121,7 +33294,8 @@
             "UBEGRENSET_BILAG_AUTOMATION",
             "CMA_SHOPIFY",
             "CMA_MYSTORE",
-            "CMA_WOOCOMMERCE"
+            "CMA_WOOCOMMERCE",
+            "RACKBEAT"
           ],
           "readOnly": true,
           "type": "string"
@@ -35702,6 +35876,138 @@
           "type": "string"
         },
         "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAdminPhysicalAddress": {
+      "properties": {
+        "addressName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "highlight": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "houseNo": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "postalPlaceName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "properties": {
+          "items": {
+            "$ref": "#/definitions/TaxAdminProperty"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "sergPropertyIdentifier": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "uniquePropertyIdentifier": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "zipCode": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAdminProperty": {
+      "properties": {
+        "cadastralUnitNo": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "highlight": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "historical": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "leaseholdNo": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "municipalityName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "municipalityNo": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "propertyCreatedDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "propertyUnitNo": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "sectionNo": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "sergPropertyIdentifier": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "uniquePropertyIdentifier": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAdminSearchResponse": {
+      "properties": {
+        "physicalAddresses": {
+          "items": {
+            "$ref": "#/definitions/TaxAdminPhysicalAddress"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "properties": {
+          "items": {
+            "$ref": "#/definitions/TaxAdminProperty"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "resultSize": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "searchEnd": {
+          "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "searchStart": {
+          "format": "date-time",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -40164,6 +40470,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "canBeReclaimed": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "canBeRegisteredAsAdvanced": {
           "readOnly": true,
           "type": "boolean"
@@ -40940,6 +41250,7 @@
               "APP",
               "BANKING",
               "EASY_ONBOARDING",
+              "GET_STARTED_SUMMARY",
               "HELP_CENTER",
               "INCOME_AND_COST_CHART",
               "INVOICE_SUMMARY",
@@ -40959,6 +41270,7 @@
               "APP",
               "BANKING",
               "EASY_ONBOARDING",
+              "GET_STARTED_SUMMARY",
               "HELP_CENTER",
               "INCOME_AND_COST_CHART",
               "INVOICE_SUMMARY",
@@ -41307,7 +41619,6 @@
           "type": "array"
         },
         "grouping": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -41319,7 +41630,6 @@
           "type": "boolean"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "url": {
@@ -76823,6 +77133,9 @@
       "name": "stockoutgoing"
     },
     {
+      "name": "paymentTypeAutomation"
+    },
+    {
       "name": "bankpaymentWidget"
     },
     {
@@ -77399,6 +77712,9 @@
       "name": "tripletexDashboardbankingSummary"
     },
     {
+      "name": "tripletexDashboardgetStartedSummary"
+    },
+    {
       "name": "tripletexDashboardincomeAndCostSummary"
     },
     {
@@ -77556,6 +77872,9 @@
     },
     {
       "name": "yearEndpersonalIncome"
+    },
+    {
+      "name": "yearEndpropertytaxAdmin"
     },
     {
       "name": "yearEndriskFreeInterestRate"
