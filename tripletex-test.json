@@ -1282,6 +1282,7 @@
             "ACCUMULATED_LOSS_FROM_PREVIOUS_YEARS",
             "CORRECTIONS_AND_OTHER_CAPITAL",
             "CORRECTIONS_AND_OTHER_DEBT",
+            "NUMBER_OF_SHARES",
             "IS_PART_OF_GROUP_COMPANY",
             "IS_LISTED_ON_THE_STOCK_EXCHANGE",
             "IS_REORGANIZED_ACROSS_BORDERS",
@@ -1766,12 +1767,28 @@
           "readOnly": true,
           "type": "array"
         },
+        "customMonthlyWriteOff": {
+          "type": "number"
+        },
         "dateOfAcquisition": {
           "type": "string"
         },
         "depreciationAccount": {
           "$ref": "#/definitions/Account",
           "description": "Depreciation account for the asset."
+        },
+        "depreciationFrom": {
+          "type": "string"
+        },
+        "depreciationMethod": {
+          "description": "Depreciation method",
+          "enum": [
+            "MANUAL",
+            "STRAIGHT_LINE",
+            "TAX_RELATED",
+            "CUSTOMIZED_AMOUNT"
+          ],
+          "type": "string"
         },
         "description": {
           "maxLength": 255,
@@ -1796,6 +1813,20 @@
           "maxLength": 255,
           "minLength": 1,
           "type": "string"
+        },
+        "status": {
+          "description": "Status",
+          "enum": [
+            "UNKNOWN",
+            "ACTIVE",
+            "SOLD",
+            "LOST",
+            "COMPLETED"
+          ],
+          "type": "string"
+        },
+        "taxRelatedDepreciationPercentage": {
+          "type": "number"
         },
         "url": {
           "readOnly": true,
@@ -3569,6 +3600,9 @@
         "businessActivityType": {
           "enum": [
             "OTHER_COMMERCIAL_ACTIVITIES",
+            "OTHER_COMMERCIAL_ACTIVITIES_2",
+            "OTHER_COMMERCIAL_ACTIVITIES_3",
+            "OTHER_COMMERCIAL_ACTIVITIES_4",
             "AGRICULTURE_HORTICULTURE_FUR_FARMING",
             "FISHING_AND_HUNTING_AT_SEA",
             "REINDEER_HUSBANDRY",
@@ -4880,6 +4914,7 @@
             "ACCUMULATED_LOSS_FROM_PREVIOUS_YEARS",
             "CORRECTIONS_AND_OTHER_CAPITAL",
             "CORRECTIONS_AND_OTHER_DEBT",
+            "NUMBER_OF_SHARES",
             "IS_PART_OF_GROUP_COMPANY",
             "IS_LISTED_ON_THE_STOCK_EXCHANGE",
             "IS_REORGANIZED_ACROSS_BORDERS",
@@ -6099,6 +6134,10 @@
         "id": {
           "format": "int32",
           "type": "integer"
+        },
+        "isInactive": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "lastName": {
           "maxLength": 100,
@@ -8038,6 +8077,7 @@
             "ACCUMULATED_LOSS_FROM_PREVIOUS_YEARS",
             "CORRECTIONS_AND_OTHER_CAPITAL",
             "CORRECTIONS_AND_OTHER_DEBT",
+            "NUMBER_OF_SHARES",
             "IS_PART_OF_GROUP_COMPANY",
             "IS_LISTED_ON_THE_STOCK_EXCHANGE",
             "IS_REORGANIZED_ACROSS_BORDERS",
@@ -10140,6 +10180,7 @@
             "ACCUMULATED_LOSS_FROM_PREVIOUS_YEARS",
             "CORRECTIONS_AND_OTHER_CAPITAL",
             "CORRECTIONS_AND_OTHER_DEBT",
+            "NUMBER_OF_SHARES",
             "IS_PART_OF_GROUP_COMPANY",
             "IS_LISTED_ON_THE_STOCK_EXCHANGE",
             "IS_REORGANIZED_ACROSS_BORDERS",
@@ -11663,6 +11704,7 @@
             "ACCUMULATED_LOSS_FROM_PREVIOUS_YEARS",
             "CORRECTIONS_AND_OTHER_CAPITAL",
             "CORRECTIONS_AND_OTHER_DEBT",
+            "NUMBER_OF_SHARES",
             "IS_PART_OF_GROUP_COMPANY",
             "IS_LISTED_ON_THE_STOCK_EXCHANGE",
             "IS_REORGANIZED_ACROSS_BORDERS",
@@ -11944,6 +11986,7 @@
             "ACCUMULATED_LOSS_FROM_PREVIOUS_YEARS",
             "CORRECTIONS_AND_OTHER_CAPITAL",
             "CORRECTIONS_AND_OTHER_DEBT",
+            "NUMBER_OF_SHARES",
             "IS_PART_OF_GROUP_COMPANY",
             "IS_LISTED_ON_THE_STOCK_EXCHANGE",
             "IS_REORGANIZED_ACROSS_BORDERS",
@@ -23062,6 +23105,7 @@
             "ACCUMULATED_LOSS_FROM_PREVIOUS_YEARS",
             "CORRECTIONS_AND_OTHER_CAPITAL",
             "CORRECTIONS_AND_OTHER_DEBT",
+            "NUMBER_OF_SHARES",
             "IS_PART_OF_GROUP_COMPANY",
             "IS_LISTED_ON_THE_STOCK_EXCHANGE",
             "IS_REORGANIZED_ACROSS_BORDERS",
@@ -23220,6 +23264,9 @@
         "businessActivityType": {
           "enum": [
             "OTHER_COMMERCIAL_ACTIVITIES",
+            "OTHER_COMMERCIAL_ACTIVITIES_2",
+            "OTHER_COMMERCIAL_ACTIVITIES_3",
+            "OTHER_COMMERCIAL_ACTIVITIES_4",
             "AGRICULTURE_HORTICULTURE_FUR_FARMING",
             "FISHING_AND_HUNTING_AT_SEA",
             "REINDEER_HUSBANDRY",
@@ -23329,6 +23376,9 @@
         "businessActivityType": {
           "enum": [
             "OTHER_COMMERCIAL_ACTIVITIES",
+            "OTHER_COMMERCIAL_ACTIVITIES_2",
+            "OTHER_COMMERCIAL_ACTIVITIES_3",
+            "OTHER_COMMERCIAL_ACTIVITIES_4",
             "AGRICULTURE_HORTICULTURE_FUR_FARMING",
             "FISHING_AND_HUNTING_AT_SEA",
             "REINDEER_HUSBANDRY",
@@ -24662,6 +24712,10 @@
           "$ref": "#/definitions/Customer",
           "description": "The project's customer"
         },
+        "customerName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "deliveryAddress": {
           "$ref": "#/definitions/DeliveryAddress"
         },
@@ -24709,6 +24763,11 @@
         "generalProjectActivitiesPerProjectOnly": {
           "description": "Set to true if a general project activity must be linked to project to allow time tracking.",
           "type": "boolean"
+        },
+        "hierarchyLevel": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "hierarchyNameAndNumber": {
           "readOnly": true,
@@ -24848,6 +24907,10 @@
         },
         "projectManager": {
           "$ref": "#/definitions/Employee"
+        },
+        "projectManagerNameAndNumber": {
+          "readOnly": true,
+          "type": "string"
         },
         "reference": {
           "maxLength": 255,
@@ -26580,6 +26643,9 @@
         "durationUnit": {
           "type": "string"
         },
+        "endTime": {
+          "type": "string"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
@@ -26593,6 +26659,9 @@
           "type": "integer"
         },
         "startDate": {
+          "type": "string"
+        },
+        "startTime": {
           "type": "string"
         },
         "subLabel": {
@@ -26649,10 +26718,16 @@
           },
           "type": "array"
         },
+        "endTime": {
+          "type": "string"
+        },
         "projectId": {
           "format": "int32",
           "minimum": 0,
           "type": "integer"
+        },
+        "startTime": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -26684,6 +26759,9 @@
           },
           "type": "array"
         },
+        "endTime": {
+          "type": "string"
+        },
         "periodCount": {
           "format": "int32",
           "minimum": 1,
@@ -26693,6 +26771,9 @@
           "format": "int32",
           "minimum": 0,
           "type": "integer"
+        },
+        "startTime": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -26777,6 +26858,9 @@
         "durationUnit": {
           "type": "string"
         },
+        "endTime": {
+          "type": "string"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
@@ -26790,6 +26874,9 @@
           "type": "integer"
         },
         "startDate": {
+          "type": "string"
+        },
+        "startTime": {
           "type": "string"
         },
         "subLabel": {
@@ -31099,6 +31186,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/Week"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperWootricDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/WootricDTO"
         }
       },
       "type": "object"
@@ -36254,7 +36349,15 @@
           "readOnly": true,
           "type": "number"
         },
+        "totalTaxValue": {
+          "readOnly": true,
+          "type": "number"
+        },
         "useOfLossCarryForwards": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "valuePerShare": {
           "readOnly": true,
           "type": "number"
         },
@@ -41283,6 +41386,122 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "WootricDTO": {
+      "properties": {
+        "cesToken": {
+          "type": "string"
+        },
+        "created_at": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "email": {
+          "type": "string"
+        },
+        "external_id": {
+          "type": "string"
+        },
+        "language": {
+          "type": "string"
+        },
+        "npsToken": {
+          "type": "string"
+        },
+        "product_name": {
+          "type": "string"
+        },
+        "properties": {
+          "$ref": "#/definitions/WootricPropertiesDTO"
+        },
+        "thankYouMessageMain": {
+          "type": "string"
+        },
+        "thankYouMessageSetup": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "WootricPropertiesDTO": {
+      "properties": {
+        "age": {
+          "type": "string"
+        },
+        "ageMonths": {
+          "type": "string"
+        },
+        "category1": {
+          "type": "string"
+        },
+        "category2": {
+          "type": "string"
+        },
+        "category3": {
+          "type": "string"
+        },
+        "company_type": {
+          "type": "string"
+        },
+        "device": {
+          "type": "boolean"
+        },
+        "email": {
+          "type": "string"
+        },
+        "employees": {
+          "type": "string"
+        },
+        "gotAccountantRelationship": {
+          "type": "string"
+        },
+        "isAccountant": {
+          "type": "string"
+        },
+        "isadmin": {
+          "type": "boolean"
+        },
+        "language": {
+          "type": "string"
+        },
+        "mainModule": {
+          "type": "string"
+        },
+        "moduleAccountingExternal": {
+          "type": "boolean"
+        },
+        "moduleElectro": {
+          "type": "boolean"
+        },
+        "moduleFabricAI": {
+          "type": "boolean"
+        },
+        "moduleInvoice": {
+          "type": "boolean"
+        },
+        "moduleLogistics": {
+          "type": "boolean"
+        },
+        "moduleNrf": {
+          "type": "boolean"
+        },
+        "modulePayrollAccounting": {
+          "type": "boolean"
+        },
+        "moduleRemit": {
+          "type": "boolean"
+        },
+        "moduleTravelExpense": {
+          "type": "boolean"
+        },
+        "modulehourlist": {
+          "type": "boolean"
+        },
+        "moduleproject": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -77758,6 +77977,9 @@
     },
     {
       "name": "voucherInbox"
+    },
+    {
+      "name": "wootric"
     },
     {
       "name": "voucherMessage"
