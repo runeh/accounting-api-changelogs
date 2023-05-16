@@ -1157,6 +1157,8 @@
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
+            "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -4789,6 +4791,8 @@
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
+            "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -5955,19 +5959,32 @@
       ],
       "type": "object"
     },
-    "CompanyRepresentativeDTO": {
+    "CompanyRepresentative": {
       "properties": {
         "birthdate": {
-          "format": "date-time",
+          "description": "birthdate",
+          "readOnly": true,
           "type": "string"
         },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "companyName": {
+          "maxLength": 255,
+          "readOnly": true,
           "type": "string"
         },
         "description": {
+          "maxLength": 255,
+          "readOnly": true,
           "type": "string"
         },
         "email": {
+          "maxLength": 255,
           "type": "string"
         },
         "id": {
@@ -5975,26 +5992,47 @@
           "type": "integer"
         },
         "name": {
+          "maxLength": 255,
+          "readOnly": true,
           "type": "string"
         },
         "roleInCompany": {
-          "format": "int32",
-          "type": "integer"
+          "enum": [
+            "UNKNOWN",
+            "DAGL",
+            "LEDE",
+            "NEST",
+            "MEDL",
+            "DTPR",
+            "DTSO",
+            "KOMP",
+            "INNH",
+            "SIGN",
+            "SIFE",
+            "SIHV",
+            "PROK",
+            "POFE",
+            "POHV"
+          ],
+          "type": "string"
         },
         "signatureStatus": {
+          "enum": [
+            "NOT_SIGNED",
+            "PENDING_SIGNATURE",
+            "SIGNED"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
           "format": "int32",
           "type": "integer"
-        },
-        "socialSecurityNumber": {
-          "type": "string"
         }
       },
-      "required": [
-        "description",
-        "name",
-        "signatureStatus",
-        "socialSecurityNumber"
-      ],
       "type": "object"
     },
     "CompanyStandardTime": {
@@ -7952,6 +7990,8 @@
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
+            "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -10055,6 +10095,8 @@
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
+            "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -11579,6 +11621,8 @@
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
+            "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -11861,6 +11905,8 @@
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
+            "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -20316,6 +20362,9 @@
         "packageName": {
           "type": "string"
         },
+        "purchaseUrl": {
+          "type": "string"
+        },
         "showTrialWidget": {
           "type": "boolean"
         },
@@ -22980,6 +23029,8 @@
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
+            "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -34659,7 +34710,7 @@
       "properties": {
         "companyRepresentativeDTOList": {
           "items": {
-            "$ref": "#/definitions/CompanyRepresentativeDTO"
+            "$ref": "#/definitions/CompanyRepresentative"
           },
           "type": "array"
         },
@@ -35825,7 +35876,7 @@
           "readOnly": true,
           "type": "string"
         },
-        "lossTransferedToProfitAndLossAccount": {
+        "lossTransferredToProfitAndLossAccount": {
           "readOnly": true,
           "type": "number"
         },
@@ -35861,7 +35912,7 @@
           "readOnly": true,
           "type": "number"
         },
-        "profitTransferedToProfitAndLossAccount": {
+        "profitTransferredToProfitAndLossAccount": {
           "readOnly": true,
           "type": "number"
         },
@@ -36498,6 +36549,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "lossTransferedToProfitAndLossAccount": {
+          "readOnly": true,
+          "type": "number"
+        },
         "name": {
           "readOnly": true,
           "type": "string"
@@ -36519,6 +36574,10 @@
           "type": "number"
         },
         "openingBalanceTaxValue": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "profitTransferedToProfitAndLossAccount": {
           "readOnly": true,
           "type": "number"
         },
@@ -76989,6 +77048,9 @@
       "name": "company/salesmodules"
     },
     {
+      "name": "companyRepresentative"
+    },
+    {
       "name": "contact"
     },
     {
@@ -77023,9 +77085,6 @@
     },
     {
       "name": "documentArchive"
-    },
-    {
-      "name": "signingEmail"
     },
     {
       "name": "employee"
