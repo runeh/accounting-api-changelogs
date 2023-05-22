@@ -1766,6 +1766,12 @@
           "format": "int64",
           "type": "integer"
         },
+        "imageSrc": {
+          "type": "string"
+        },
+        "summary": {
+          "type": "string"
+        },
         "title": {
           "type": "string"
         }
@@ -10573,6 +10579,7 @@
         "status": {
           "enum": [
             "INITIAL",
+            "UNAVAILABLE",
             "PENDING",
             "DONE"
           ],
@@ -22522,9 +22529,8 @@
         },
         "displayStatus": {
           "description": "The payment filter status.",
-          "format": "int32",
           "readOnly": true,
-          "type": "integer"
+          "type": "string"
         },
         "id": {
           "format": "int32",
@@ -25744,7 +25750,7 @@
           "type": "number"
         },
         "customer": {
-          "$ref": "#/definitions/Company"
+          "$ref": "#/definitions/Customer"
         },
         "department": {
           "$ref": "#/definitions/Department"
