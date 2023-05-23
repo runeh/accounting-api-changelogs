@@ -41482,6 +41482,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "invoiceNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
         "invoiceType": {
           "enum": [
             "UNKNOWN",
@@ -42173,7 +42177,7 @@
           "type": "string"
         },
         "isAccountant": {
-          "type": "string"
+          "type": "boolean"
         },
         "isadmin": {
           "type": "boolean"

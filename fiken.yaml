@@ -1449,7 +1449,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/counter'
     post:
-      description: Creates the first invoice number which is then increased by one with every new invoice. By sending an empty request body the default is base numer 10000 (the first invoice number will thus be 10001), but can be specified to another starting value.
+      description: Creates the first invoice number which is then increased by one with every new invoice. By sending an empty request body the default is base number 10000 (the first invoice number will thus be 10001), but can be specified to another starting value.
       operationId: createInvoiceCounter
       tags:
         - invoices
@@ -1816,7 +1816,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/counter'
     post:
-      description: Creates the first credit note number which is then increased by one with every new credit note. By sending an empty request body the default is base numer 10000 (the first credit note number will thus be 10001), but can be specified to another starting value.
+      description: Creates the first credit note number which is then increased by one with every new credit note. By sending an empty request body the default is base number 10000 (the first credit note number will thus be 10001), but can be specified to another starting value.
       operationId: createCreditNoteCounter
       tags:
         - credit notes
@@ -2088,7 +2088,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/counter'
     post:
-      description: Creates the first offer number which is then increased by one with every new offer. By sending an empty request body the default is base numer (the first offer number will thus be 10001), but can be specified to another starting value.
+      description: Creates the first offer number which is then increased by one with every new offer. By sending an empty request body the default is base number (the first offer number will thus be 10001), but can be specified to another starting value.
       operationId: createOfferCounter
       tags:
         - offers
@@ -2357,7 +2357,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/counter'
     post:
-      description: Creates the first order confirmation number which is then increased by one with every new order confirmation. By sending an empty request body the default is base numer (the first order confirmation number will thus be 10001), but can be specified to another starting value.
+      description: Creates the first order confirmation number which is then increased by one with every new order confirmation. By sending an empty request body the default is base number (the first order confirmation number will thus be 10001), but can be specified to another starting value.
       operationId: createOrderConfirmationCounter
       tags:
         - order confirmations
@@ -4496,6 +4496,17 @@ components:
       required:
         - quantity
       properties:
+        invoiceishDraftLineId:
+          type: integer
+          format: int64
+          example: 2888156
+          description: Unique draft line ID
+        lastModifiedDate:
+          type: string
+          format: date
+          example: '2018-04-03'
+          readOnly: true
+          description: Date that the draft line was last modified in Fiken, format yyyy-mm-dd.
         productId:
           type: integer
           format: int64
@@ -4622,6 +4633,12 @@ components:
           default: 'invoice'
           example: 'invoice'
           description: Type of invoice draft.
+        lastModifiedDate:
+          type: string
+          format: date
+          example: '2023-04-03'
+          readOnly: true
+          description: Date that the draft was last modified in Fiken, format yyyy-mm-dd.
         issueDate:
           type: string
           format: date
