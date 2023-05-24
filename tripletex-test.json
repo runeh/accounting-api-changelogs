@@ -6437,7 +6437,6 @@
         },
         "isoAlpha3Code": {
           "description": "The ISO 3166-1 Alpha3 code of the country (3 letters). https://en.wikipedia.org/wiki/ISO_3166-1",
-          "maxLength": 3,
           "readOnly": true,
           "type": "string"
         },
@@ -33856,7 +33855,6 @@
           "type": "string"
         },
         "isoAlpha3Code": {
-          "maxLength": 3,
           "readOnly": true,
           "type": "string"
         },
@@ -38728,7 +38726,6 @@
           "type": "integer"
         },
         "wageCodeNumber": {
-          "maxLength": 10,
           "type": "string"
         }
       },
@@ -41482,6 +41479,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "invoiceNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
         "invoiceType": {
           "enum": [
             "UNKNOWN",
@@ -42173,7 +42174,7 @@
           "type": "string"
         },
         "isAccountant": {
-          "type": "string"
+          "type": "boolean"
         },
         "isadmin": {
           "type": "boolean"
