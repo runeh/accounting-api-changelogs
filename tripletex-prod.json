@@ -558,6 +558,33 @@
       },
       "type": "object"
     },
+    "AccountantCustomer": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "AccountingPeriod": {
       "properties": {
         "changes": {
@@ -13495,6 +13522,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Account"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseAccountantCustomer": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AccountantCustomer"
           },
           "readOnly": true,
           "type": "array"
