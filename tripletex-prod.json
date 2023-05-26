@@ -1382,6 +1382,34 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "REAL_ESTATE_TYPE",
+            "REAL_ESTATE_DESCRIPTION",
+            "COMMERCIAL_PROPERTY_TYPE",
+            "SHARE_OF_ASSET_VALUE",
+            "INTERNAL_PROPERTY_IDENTIFIER",
+            "ASSET_VALUE_FOR_ASSET_SHARE",
+            "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
+            "TOTAL_AREA",
+            "CALCULATED_RENTAL_VALUE",
+            "REAL_ESTATE_SERG_NO",
+            "REAL_ESTATE_ADDRESS",
+            "REAL_ESTATE_ZIP_CODE",
+            "REAL_ESTATE_POSTAL_PLACE_NAME",
+            "REAL_ESTATE_MUNICIPALITY_NO",
+            "REAL_ESTATE_MUNICIPALITY_NAME",
+            "REAL_ESTATE_CADASTRAL_UNIT_NO",
+            "REAL_ESTATE_PROPERTY_UNIT_NO",
+            "REAL_ESTATE_LEASEHOLD_NO",
+            "REAL_ESTATE_SECTION_NO",
+            "REAL_ESTATE_OWNERSHIP_SHARE_PERCENTAGE",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE",
+            "REAL_ESTATE_EXPENSES_YEARLY",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY",
+            "REAL_ESTATE_DATE_DOCUMENTED",
+            "REAL_ESTATE_MARKET_VALUE_MANUAL",
+            "REAL_ESTATE_MARKET_VALUE_CALCULATED",
+            "REAL_ESTATE_USE_VALUE_MARKET",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -4662,7 +4690,8 @@
             "TAX_RETURN",
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
-            "SHARES_AND_SECURITIES"
+            "SHARES_AND_SECURITIES",
+            "REAL_ESTATE"
           ],
           "readOnly": true,
           "type": "string"
@@ -5061,6 +5090,34 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "REAL_ESTATE_TYPE",
+            "REAL_ESTATE_DESCRIPTION",
+            "COMMERCIAL_PROPERTY_TYPE",
+            "SHARE_OF_ASSET_VALUE",
+            "INTERNAL_PROPERTY_IDENTIFIER",
+            "ASSET_VALUE_FOR_ASSET_SHARE",
+            "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
+            "TOTAL_AREA",
+            "CALCULATED_RENTAL_VALUE",
+            "REAL_ESTATE_SERG_NO",
+            "REAL_ESTATE_ADDRESS",
+            "REAL_ESTATE_ZIP_CODE",
+            "REAL_ESTATE_POSTAL_PLACE_NAME",
+            "REAL_ESTATE_MUNICIPALITY_NO",
+            "REAL_ESTATE_MUNICIPALITY_NAME",
+            "REAL_ESTATE_CADASTRAL_UNIT_NO",
+            "REAL_ESTATE_PROPERTY_UNIT_NO",
+            "REAL_ESTATE_LEASEHOLD_NO",
+            "REAL_ESTATE_SECTION_NO",
+            "REAL_ESTATE_OWNERSHIP_SHARE_PERCENTAGE",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE",
+            "REAL_ESTATE_EXPENSES_YEARLY",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY",
+            "REAL_ESTATE_DATE_DOCUMENTED",
+            "REAL_ESTATE_MARKET_VALUE_MANUAL",
+            "REAL_ESTATE_MARKET_VALUE_CALCULATED",
+            "REAL_ESTATE_USE_VALUE_MARKET",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -7985,7 +8042,8 @@
             "TAX_RETURN",
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
-            "SHARES_AND_SECURITIES"
+            "SHARES_AND_SECURITIES",
+            "REAL_ESTATE"
           ],
           "type": "string"
         },
@@ -8277,6 +8335,34 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "REAL_ESTATE_TYPE",
+            "REAL_ESTATE_DESCRIPTION",
+            "COMMERCIAL_PROPERTY_TYPE",
+            "SHARE_OF_ASSET_VALUE",
+            "INTERNAL_PROPERTY_IDENTIFIER",
+            "ASSET_VALUE_FOR_ASSET_SHARE",
+            "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
+            "TOTAL_AREA",
+            "CALCULATED_RENTAL_VALUE",
+            "REAL_ESTATE_SERG_NO",
+            "REAL_ESTATE_ADDRESS",
+            "REAL_ESTATE_ZIP_CODE",
+            "REAL_ESTATE_POSTAL_PLACE_NAME",
+            "REAL_ESTATE_MUNICIPALITY_NO",
+            "REAL_ESTATE_MUNICIPALITY_NAME",
+            "REAL_ESTATE_CADASTRAL_UNIT_NO",
+            "REAL_ESTATE_PROPERTY_UNIT_NO",
+            "REAL_ESTATE_LEASEHOLD_NO",
+            "REAL_ESTATE_SECTION_NO",
+            "REAL_ESTATE_OWNERSHIP_SHARE_PERCENTAGE",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE",
+            "REAL_ESTATE_EXPENSES_YEARLY",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY",
+            "REAL_ESTATE_DATE_DOCUMENTED",
+            "REAL_ESTATE_MARKET_VALUE_MANUAL",
+            "REAL_ESTATE_MARKET_VALUE_CALCULATED",
+            "REAL_ESTATE_USE_VALUE_MARKET",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -9229,7 +9315,9 @@
             "COUNTRY_CODE",
             "STEP_TYPE",
             "STOCK_TYPE",
-            "SHARE_CLASS"
+            "SHARE_CLASS",
+            "REAL_ESTATE_TYPE",
+            "COMMERCIAL_PROPERTY_TYPE"
           ],
           "readOnly": true,
           "type": "string"
@@ -10110,7 +10198,8 @@
             "TAX_RETURN",
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
-            "SHARES_AND_SECURITIES"
+            "SHARES_AND_SECURITIES",
+            "REAL_ESTATE"
           ],
           "type": "string"
         },
@@ -10402,6 +10491,34 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "REAL_ESTATE_TYPE",
+            "REAL_ESTATE_DESCRIPTION",
+            "COMMERCIAL_PROPERTY_TYPE",
+            "SHARE_OF_ASSET_VALUE",
+            "INTERNAL_PROPERTY_IDENTIFIER",
+            "ASSET_VALUE_FOR_ASSET_SHARE",
+            "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
+            "TOTAL_AREA",
+            "CALCULATED_RENTAL_VALUE",
+            "REAL_ESTATE_SERG_NO",
+            "REAL_ESTATE_ADDRESS",
+            "REAL_ESTATE_ZIP_CODE",
+            "REAL_ESTATE_POSTAL_PLACE_NAME",
+            "REAL_ESTATE_MUNICIPALITY_NO",
+            "REAL_ESTATE_MUNICIPALITY_NAME",
+            "REAL_ESTATE_CADASTRAL_UNIT_NO",
+            "REAL_ESTATE_PROPERTY_UNIT_NO",
+            "REAL_ESTATE_LEASEHOLD_NO",
+            "REAL_ESTATE_SECTION_NO",
+            "REAL_ESTATE_OWNERSHIP_SHARE_PERCENTAGE",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE",
+            "REAL_ESTATE_EXPENSES_YEARLY",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY",
+            "REAL_ESTATE_DATE_DOCUMENTED",
+            "REAL_ESTATE_MARKET_VALUE_MANUAL",
+            "REAL_ESTATE_MARKET_VALUE_CALCULATED",
+            "REAL_ESTATE_USE_VALUE_MARKET",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -10442,7 +10559,15 @@
           "readOnly": true,
           "type": "number"
         },
+        "calculatedAssetValue": {
+          "readOnly": true,
+          "type": "number"
+        },
         "calculatedDeduction": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "calculatedMarketValue": {
           "readOnly": true,
           "type": "number"
         },
@@ -10477,7 +10602,8 @@
             "TAX_RETURN",
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
-            "SHARES_AND_SECURITIES"
+            "SHARES_AND_SECURITIES",
+            "REAL_ESTATE"
           ],
           "readOnly": true,
           "type": "string"
@@ -11947,6 +12073,34 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "REAL_ESTATE_TYPE",
+            "REAL_ESTATE_DESCRIPTION",
+            "COMMERCIAL_PROPERTY_TYPE",
+            "SHARE_OF_ASSET_VALUE",
+            "INTERNAL_PROPERTY_IDENTIFIER",
+            "ASSET_VALUE_FOR_ASSET_SHARE",
+            "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
+            "TOTAL_AREA",
+            "CALCULATED_RENTAL_VALUE",
+            "REAL_ESTATE_SERG_NO",
+            "REAL_ESTATE_ADDRESS",
+            "REAL_ESTATE_ZIP_CODE",
+            "REAL_ESTATE_POSTAL_PLACE_NAME",
+            "REAL_ESTATE_MUNICIPALITY_NO",
+            "REAL_ESTATE_MUNICIPALITY_NAME",
+            "REAL_ESTATE_CADASTRAL_UNIT_NO",
+            "REAL_ESTATE_PROPERTY_UNIT_NO",
+            "REAL_ESTATE_LEASEHOLD_NO",
+            "REAL_ESTATE_SECTION_NO",
+            "REAL_ESTATE_OWNERSHIP_SHARE_PERCENTAGE",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE",
+            "REAL_ESTATE_EXPENSES_YEARLY",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY",
+            "REAL_ESTATE_DATE_DOCUMENTED",
+            "REAL_ESTATE_MARKET_VALUE_MANUAL",
+            "REAL_ESTATE_MARKET_VALUE_CALCULATED",
+            "REAL_ESTATE_USE_VALUE_MARKET",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -12248,6 +12402,34 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "REAL_ESTATE_TYPE",
+            "REAL_ESTATE_DESCRIPTION",
+            "COMMERCIAL_PROPERTY_TYPE",
+            "SHARE_OF_ASSET_VALUE",
+            "INTERNAL_PROPERTY_IDENTIFIER",
+            "ASSET_VALUE_FOR_ASSET_SHARE",
+            "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
+            "TOTAL_AREA",
+            "CALCULATED_RENTAL_VALUE",
+            "REAL_ESTATE_SERG_NO",
+            "REAL_ESTATE_ADDRESS",
+            "REAL_ESTATE_ZIP_CODE",
+            "REAL_ESTATE_POSTAL_PLACE_NAME",
+            "REAL_ESTATE_MUNICIPALITY_NO",
+            "REAL_ESTATE_MUNICIPALITY_NAME",
+            "REAL_ESTATE_CADASTRAL_UNIT_NO",
+            "REAL_ESTATE_PROPERTY_UNIT_NO",
+            "REAL_ESTATE_LEASEHOLD_NO",
+            "REAL_ESTATE_SECTION_NO",
+            "REAL_ESTATE_OWNERSHIP_SHARE_PERCENTAGE",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE",
+            "REAL_ESTATE_EXPENSES_YEARLY",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY",
+            "REAL_ESTATE_DATE_DOCUMENTED",
+            "REAL_ESTATE_MARKET_VALUE_MANUAL",
+            "REAL_ESTATE_MARKET_VALUE_CALCULATED",
+            "REAL_ESTATE_USE_VALUE_MARKET",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -23460,6 +23642,34 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "REAL_ESTATE_TYPE",
+            "REAL_ESTATE_DESCRIPTION",
+            "COMMERCIAL_PROPERTY_TYPE",
+            "SHARE_OF_ASSET_VALUE",
+            "INTERNAL_PROPERTY_IDENTIFIER",
+            "ASSET_VALUE_FOR_ASSET_SHARE",
+            "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
+            "TOTAL_AREA",
+            "CALCULATED_RENTAL_VALUE",
+            "REAL_ESTATE_SERG_NO",
+            "REAL_ESTATE_ADDRESS",
+            "REAL_ESTATE_ZIP_CODE",
+            "REAL_ESTATE_POSTAL_PLACE_NAME",
+            "REAL_ESTATE_MUNICIPALITY_NO",
+            "REAL_ESTATE_MUNICIPALITY_NAME",
+            "REAL_ESTATE_CADASTRAL_UNIT_NO",
+            "REAL_ESTATE_PROPERTY_UNIT_NO",
+            "REAL_ESTATE_LEASEHOLD_NO",
+            "REAL_ESTATE_SECTION_NO",
+            "REAL_ESTATE_OWNERSHIP_SHARE_PERCENTAGE",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE",
+            "REAL_ESTATE_EXPENSES_YEARLY",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY",
+            "REAL_ESTATE_DATE_DOCUMENTED",
+            "REAL_ESTATE_MARKET_VALUE_MANUAL",
+            "REAL_ESTATE_MARKET_VALUE_CALCULATED",
+            "REAL_ESTATE_USE_VALUE_MARKET",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -27255,6 +27465,20 @@
       },
       "type": "object"
     },
+    "RealEstate": {
+      "properties": {
+        "genericDataOverviews": {
+          "items": {
+            "$ref": "#/definitions/GenericDataOverview"
+          },
+          "type": "array"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
     "ReconciliationOfEquityOverview": {
       "properties": {
         "calculatedClosingEquity": {
@@ -30684,6 +30908,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/RP2ProjectJobMoveResponse"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperRealEstate": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/RealEstate"
         }
       },
       "type": "object"
@@ -35061,7 +35293,8 @@
             "TAX_RETURN",
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
-            "SHARES_AND_SECURITIES"
+            "SHARES_AND_SECURITIES",
+            "REAL_ESTATE"
           ],
           "type": "string"
         },
@@ -35368,6 +35601,34 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "REAL_ESTATE_TYPE",
+            "REAL_ESTATE_DESCRIPTION",
+            "COMMERCIAL_PROPERTY_TYPE",
+            "SHARE_OF_ASSET_VALUE",
+            "INTERNAL_PROPERTY_IDENTIFIER",
+            "ASSET_VALUE_FOR_ASSET_SHARE",
+            "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
+            "TOTAL_AREA",
+            "CALCULATED_RENTAL_VALUE",
+            "REAL_ESTATE_SERG_NO",
+            "REAL_ESTATE_ADDRESS",
+            "REAL_ESTATE_ZIP_CODE",
+            "REAL_ESTATE_POSTAL_PLACE_NAME",
+            "REAL_ESTATE_MUNICIPALITY_NO",
+            "REAL_ESTATE_MUNICIPALITY_NAME",
+            "REAL_ESTATE_CADASTRAL_UNIT_NO",
+            "REAL_ESTATE_PROPERTY_UNIT_NO",
+            "REAL_ESTATE_LEASEHOLD_NO",
+            "REAL_ESTATE_SECTION_NO",
+            "REAL_ESTATE_OWNERSHIP_SHARE_PERCENTAGE",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE",
+            "REAL_ESTATE_EXPENSES_YEARLY",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY",
+            "REAL_ESTATE_DATE_DOCUMENTED",
+            "REAL_ESTATE_MARKET_VALUE_MANUAL",
+            "REAL_ESTATE_MARKET_VALUE_CALCULATED",
+            "REAL_ESTATE_USE_VALUE_MARKET",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -36587,6 +36848,10 @@
           "type": "string"
         },
         "infoResidualWriteOff": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "infoTransferBalance": {
           "readOnly": true,
           "type": "string"
         },
@@ -39941,7 +40206,8 @@
             "TAX_RETURN",
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
-            "SHARES_AND_SECURITIES"
+            "SHARES_AND_SECURITIES",
+            "REAL_ESTATE"
           ],
           "readOnly": true,
           "type": "string"
@@ -42544,6 +42810,12 @@
         },
         "sentDate": {
           "type": "string"
+        },
+        "showInfoSumDepreciation": {
+          "type": "boolean"
+        },
+        "showInfoSumRevenueRecognitionNegBalance": {
+          "type": "boolean"
         },
         "status": {
           "enum": [
