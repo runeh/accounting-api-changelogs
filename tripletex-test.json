@@ -7254,6 +7254,9 @@
     },
     "DashboardContextDTO": {
       "properties": {
+        "authYearEndReport": {
+          "type": "boolean"
+        },
         "companyCurrency": {
           "type": "string"
         },
@@ -22756,6 +22759,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "creditorBban": {
+          "readOnly": true,
+          "type": "string"
+        },
         "creditorName": {
           "readOnly": true,
           "type": "string"
@@ -22814,12 +22821,13 @@
           "enum": [
             "TRANSFER_BETWEEN_ACCOUNTS",
             "REIMBURSEMENT",
-            "ORDINARY",
+            "SUPPLIER_INVOICE",
             "WITHHOLDING_TAX",
             "TAX_DEDUCTION",
             "VAT",
             "SALARY",
-            "ENI"
+            "ENI",
+            "REGISTERED"
           ],
           "readOnly": true,
           "type": "string"
