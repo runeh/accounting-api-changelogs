@@ -7260,6 +7260,10 @@
         "companyCurrency": {
           "type": "string"
         },
+        "companyId": {
+          "format": "int32",
+          "type": "integer"
+        },
         "companyName": {
           "type": "string"
         },
@@ -7267,8 +7271,15 @@
           "format": "date-time",
           "type": "string"
         },
+        "contextId": {
+          "type": "string"
+        },
         "language": {
           "type": "string"
+        },
+        "loginEmployeeId": {
+          "format": "int32",
+          "type": "integer"
         },
         "showAgroTourMe": {
           "type": "boolean"
@@ -7284,6 +7295,10 @@
         },
         "trialAccount": {
           "type": "boolean"
+        },
+        "tripletexEmployeeId": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -20782,7 +20797,7 @@
           "type": "boolean"
         },
         "trialExpiresDate": {
-          "format": "date",
+          "format": "date-time",
           "type": "string"
         }
       },
@@ -27966,6 +27981,21 @@
       },
       "type": "object"
     },
+    "ReportFeedbackSettings": {
+      "properties": {
+        "channel": {
+          "type": "string"
+        },
+        "team": {
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ReportFilterAccountV3": {
       "properties": {
         "complementSingularFilters": {
@@ -28508,6 +28538,9 @@
     },
     "ReportSettings": {
       "properties": {
+        "feedback": {
+          "$ref": "#/definitions/ReportFeedbackSettings"
+        },
         "filters": {
           "$ref": "#/definitions/ReportSettingsFilters"
         },
@@ -28632,122 +28665,61 @@
     },
     "RequestlogModel": {
       "properties": {
-        "authorizationManager": {
-          "$ref": "#/definitions/DatabaseComponentAuthorizationManagerRequestlogModel"
-        },
-        "authorizationManagerForCsvPrinter": {
-          "$ref": "#/definitions/AuthorizationManager"
-        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
           },
+          "readOnly": true,
           "type": "array"
-        },
-        "clientId": {
-          "type": "string"
         },
         "companyId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
-        },
-        "createLog": {
-          "$ref": "#/definitions/RequestlogModel"
-        },
-        "createLogAsString": {
-          "type": "string"
-        },
-        "createLogId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "deleteLog": {
-          "$ref": "#/definitions/RequestlogModel"
-        },
-        "deleteLogAsString": {
-          "type": "string"
-        },
-        "deleteLogId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "deleted": {
-          "type": "boolean"
-        },
-        "dirty": {
-          "type": "boolean"
-        },
-        "dirtyProperties": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array",
-          "uniqueItems": true
-        },
-        "displayName": {
-          "type": "string"
         },
         "employeeId": {
           "format": "int32",
-          "type": "integer"
-        },
-        "guiId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "guiRevision": {
-          "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "id": {
           "format": "int32",
-          "type": "integer"
-        },
-        "longId": {
-          "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "method": {
+          "readOnly": true,
           "type": "string"
         },
-        "new": {
-          "type": "boolean"
-        },
-        "querystring": {
+        "queryString": {
+          "readOnly": true,
           "type": "string"
         },
-        "requesturi": {
+        "requestUri": {
+          "readOnly": true,
           "type": "string"
-        },
-        "revision": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "selected": {
-          "type": "boolean"
         },
         "time": {
-          "format": "date-time",
+          "readOnly": true,
           "type": "string"
         },
         "tripletexEmployeeId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
-        "updateLog": {
-          "$ref": "#/definitions/RequestlogModel"
-        },
-        "updateLogAsString": {
+        "url": {
+          "readOnly": true,
           "type": "string"
         },
-        "updateLogId": {
-          "format": "int64",
+        "version": {
+          "format": "int32",
           "type": "integer"
-        },
-        "urlDetails": {
-          "type": "string"
         }
       },
+      "required": [
+        "id"
+      ],
       "type": "object"
     },
     "ResourceMessages": {
@@ -30982,6 +30954,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ReportResultEnvelope"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperRequestlogModel": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/RequestlogModel"
         }
       },
       "type": "object"
@@ -37382,6 +37362,10 @@
           "type": "number"
         },
         "totalTaxValue": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "totalValueRealEstate": {
           "readOnly": true,
           "type": "number"
         },

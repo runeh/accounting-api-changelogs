@@ -5981,15 +5981,14 @@ components:
               - email
               - ehf
               - efaktura
-              - vipps
               - sms
               - letter
               - auto
           description: |
-            The method of sending. Has to be auto, email, ehf, efaktura, vipps, sms or letter.
+            The method of sending. Has to be auto, email, ehf, efaktura, sms or letter.
             If several methods are provided they should be in prioritized order as Fiken will only send the invoice to 
             the first successful available method. Method "auto" tries available methods for given customer based on
-            the information registered for the customer. The order of priority is EHF, eFaktura, Vipps E-faktura, Sms, and email.
+            the information registered for the customer. The order of priority is EHF, eFaktura, Sms, and email.
             Method "letter" means physical letter, printed and sent by our postal service partner (extra charge per
             letter, available for recipient addresses in Norway only). The option "includeDocumentAttachments" is
             not supported by method "letter", attachments are not included even if this option is set.
