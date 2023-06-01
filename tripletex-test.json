@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1404,6 +1410,17 @@
             "REAL_ESTATE_MARKET_VALUE_MANUAL",
             "REAL_ESTATE_MARKET_VALUE_CALCULATED",
             "REAL_ESTATE_USE_VALUE_MARKET",
+            "REAL_ESTATE_DWELLING_TYPE",
+            "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE",
+            "REAL_ESTATE_CONSTRUCTION_YEAR",
+            "REAL_ESTATE_SELF_OWNED_DWELLING_CALCULATED_MARKET_VALUE",
+            "REAL_ESTATE_RENTAL_AREA_TOTAL",
+            "REAL_ESTATE_RENTAL_PERIOD_MONTHS",
+            "REAL_ESTATE_RENTAL_INCOME_TOTAL_CALCULATED",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PREV_YEAR",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
+            "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
+            "REAL_ESTATE_RENTAL_GROSS_INCOME",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -5112,6 +5129,17 @@
             "REAL_ESTATE_MARKET_VALUE_MANUAL",
             "REAL_ESTATE_MARKET_VALUE_CALCULATED",
             "REAL_ESTATE_USE_VALUE_MARKET",
+            "REAL_ESTATE_DWELLING_TYPE",
+            "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE",
+            "REAL_ESTATE_CONSTRUCTION_YEAR",
+            "REAL_ESTATE_SELF_OWNED_DWELLING_CALCULATED_MARKET_VALUE",
+            "REAL_ESTATE_RENTAL_AREA_TOTAL",
+            "REAL_ESTATE_RENTAL_PERIOD_MONTHS",
+            "REAL_ESTATE_RENTAL_INCOME_TOTAL_CALCULATED",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PREV_YEAR",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
+            "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
+            "REAL_ESTATE_RENTAL_GROSS_INCOME",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -5127,6 +5155,17 @@
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "ChatResponseDTO": {
+      "properties": {
+        "fullResponse": {
+          "type": "string"
+        },
+        "hasError": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -8375,6 +8414,17 @@
             "REAL_ESTATE_MARKET_VALUE_MANUAL",
             "REAL_ESTATE_MARKET_VALUE_CALCULATED",
             "REAL_ESTATE_USE_VALUE_MARKET",
+            "REAL_ESTATE_DWELLING_TYPE",
+            "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE",
+            "REAL_ESTATE_CONSTRUCTION_YEAR",
+            "REAL_ESTATE_SELF_OWNED_DWELLING_CALCULATED_MARKET_VALUE",
+            "REAL_ESTATE_RENTAL_AREA_TOTAL",
+            "REAL_ESTATE_RENTAL_PERIOD_MONTHS",
+            "REAL_ESTATE_RENTAL_INCOME_TOTAL_CALCULATED",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PREV_YEAR",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
+            "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
+            "REAL_ESTATE_RENTAL_GROSS_INCOME",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -9329,7 +9379,9 @@
             "STOCK_TYPE",
             "SHARE_CLASS",
             "REAL_ESTATE_TYPE",
-            "COMMERCIAL_PROPERTY_TYPE"
+            "COMMERCIAL_PROPERTY_TYPE",
+            "REAL_ESTATE_DWELLING_TYPE",
+            "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE"
           ],
           "readOnly": true,
           "type": "string"
@@ -10531,6 +10583,17 @@
             "REAL_ESTATE_MARKET_VALUE_MANUAL",
             "REAL_ESTATE_MARKET_VALUE_CALCULATED",
             "REAL_ESTATE_USE_VALUE_MARKET",
+            "REAL_ESTATE_DWELLING_TYPE",
+            "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE",
+            "REAL_ESTATE_CONSTRUCTION_YEAR",
+            "REAL_ESTATE_SELF_OWNED_DWELLING_CALCULATED_MARKET_VALUE",
+            "REAL_ESTATE_RENTAL_AREA_TOTAL",
+            "REAL_ESTATE_RENTAL_PERIOD_MONTHS",
+            "REAL_ESTATE_RENTAL_INCOME_TOTAL_CALCULATED",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PREV_YEAR",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
+            "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
+            "REAL_ESTATE_RENTAL_GROSS_INCOME",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -10575,7 +10638,15 @@
           "readOnly": true,
           "type": "number"
         },
+        "calculatedAssetValueRental": {
+          "readOnly": true,
+          "type": "number"
+        },
         "calculatedDeduction": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "calculatedIncomeValueRental": {
           "readOnly": true,
           "type": "number"
         },
@@ -12113,6 +12184,17 @@
             "REAL_ESTATE_MARKET_VALUE_MANUAL",
             "REAL_ESTATE_MARKET_VALUE_CALCULATED",
             "REAL_ESTATE_USE_VALUE_MARKET",
+            "REAL_ESTATE_DWELLING_TYPE",
+            "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE",
+            "REAL_ESTATE_CONSTRUCTION_YEAR",
+            "REAL_ESTATE_SELF_OWNED_DWELLING_CALCULATED_MARKET_VALUE",
+            "REAL_ESTATE_RENTAL_AREA_TOTAL",
+            "REAL_ESTATE_RENTAL_PERIOD_MONTHS",
+            "REAL_ESTATE_RENTAL_INCOME_TOTAL_CALCULATED",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PREV_YEAR",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
+            "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
+            "REAL_ESTATE_RENTAL_GROSS_INCOME",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -12442,6 +12524,17 @@
             "REAL_ESTATE_MARKET_VALUE_MANUAL",
             "REAL_ESTATE_MARKET_VALUE_CALCULATED",
             "REAL_ESTATE_USE_VALUE_MARKET",
+            "REAL_ESTATE_DWELLING_TYPE",
+            "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE",
+            "REAL_ESTATE_CONSTRUCTION_YEAR",
+            "REAL_ESTATE_SELF_OWNED_DWELLING_CALCULATED_MARKET_VALUE",
+            "REAL_ESTATE_RENTAL_AREA_TOTAL",
+            "REAL_ESTATE_RENTAL_PERIOD_MONTHS",
+            "REAL_ESTATE_RENTAL_INCOME_TOTAL_CALCULATED",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PREV_YEAR",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
+            "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
+            "REAL_ESTATE_RENTAL_GROSS_INCOME",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -23687,6 +23780,17 @@
             "REAL_ESTATE_MARKET_VALUE_MANUAL",
             "REAL_ESTATE_MARKET_VALUE_CALCULATED",
             "REAL_ESTATE_USE_VALUE_MARKET",
+            "REAL_ESTATE_DWELLING_TYPE",
+            "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE",
+            "REAL_ESTATE_CONSTRUCTION_YEAR",
+            "REAL_ESTATE_SELF_OWNED_DWELLING_CALCULATED_MARKET_VALUE",
+            "REAL_ESTATE_RENTAL_AREA_TOTAL",
+            "REAL_ESTATE_RENTAL_PERIOD_MONTHS",
+            "REAL_ESTATE_RENTAL_INCOME_TOTAL_CALCULATED",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PREV_YEAR",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
+            "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
+            "REAL_ESTATE_RENTAL_GROSS_INCOME",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -29244,6 +29348,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/BringCredentials"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperChatResponseDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ChatResponseDTO"
         }
       },
       "type": "object"
@@ -35611,6 +35723,17 @@
             "REAL_ESTATE_MARKET_VALUE_MANUAL",
             "REAL_ESTATE_MARKET_VALUE_CALCULATED",
             "REAL_ESTATE_USE_VALUE_MARKET",
+            "REAL_ESTATE_DWELLING_TYPE",
+            "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE",
+            "REAL_ESTATE_CONSTRUCTION_YEAR",
+            "REAL_ESTATE_SELF_OWNED_DWELLING_CALCULATED_MARKET_VALUE",
+            "REAL_ESTATE_RENTAL_AREA_TOTAL",
+            "REAL_ESTATE_RENTAL_PERIOD_MONTHS",
+            "REAL_ESTATE_RENTAL_INCOME_TOTAL_CALCULATED",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PREV_YEAR",
+            "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
+            "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
+            "REAL_ESTATE_RENTAL_GROSS_INCOME",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
