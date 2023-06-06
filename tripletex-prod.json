@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -2013,9 +2007,18 @@
           "readOnly": true,
           "type": "string"
         },
+        "lifetime": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "name": {
           "maxLength": 255,
           "minLength": 1,
+          "type": "string"
+        },
+        "status": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5166,6 +5169,13 @@
         },
         "hasError": {
           "type": "boolean"
+        },
+        "messageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "prompt": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -21986,7 +21996,6 @@
           "type": "array"
         },
         "code": {
-          "maxLength": 7,
           "type": "string"
         },
         "id": {
@@ -21994,7 +22003,6 @@
           "type": "integer"
         },
         "nameNO": {
-          "maxLength": 100,
           "type": "string"
         },
         "url": {
@@ -25147,7 +25155,6 @@
           "type": "array"
         },
         "commonCode": {
-          "maxLength": 50,
           "readOnly": true,
           "type": "string"
         },
@@ -25160,22 +25167,18 @@
           "type": "boolean"
         },
         "name": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
         "nameShort": {
-          "maxLength": 50,
           "readOnly": true,
           "type": "string"
         },
         "peppolName": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
         "peppolSymbol": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -25796,7 +25799,6 @@
           "type": "integer"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "url": {
@@ -31558,6 +31560,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperTlxNumber": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TlxNumber"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperTodoListComment": {
       "properties": {
         "value": {
@@ -33640,6 +33650,9 @@
         },
         "notDeletableMessage": {
           "type": "string"
+        },
+        "okAllowReverseDifferentDate": {
+          "type": "boolean"
         },
         "paySlipsAvailableDate": {
           "description": "The date payslips are made available to the employee. Defaults to voucherDate.",
@@ -44187,6 +44200,70 @@
         ]
       }
     },
+    "/asset/assetsExist": {
+      "get": {
+        "description": "",
+        "operationId": "AssetAssetsExist_getAssetsExist",
+        "parameters": [
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperBoolean"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get if AssetOverview details is empty.",
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/asset/balanceAccountsSum": {
+      "get": {
+        "description": "",
+        "operationId": "AssetBalanceAccountsSum_balanceAccountsSum",
+        "parameters": [
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperTlxNumber"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get balanceAccountsSum.",
+        "tags": [
+          "asset"
+        ]
+      }
+    },
     "/asset/canDelete/{id}": {
       "get": {
         "description": "",
@@ -44199,11 +44276,21 @@
             "name": "id",
             "required": true,
             "type": "integer"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperBoolean"
+            }
           }
         },
         "security": [
@@ -44331,7 +44418,7 @@
             "type": "boolean"
           },
           {
-            "description": "Start date for assetregistry. Should always be on the first day of the year.",
+            "description": "Start date for asset registry. Should always be on the first day of the year.",
             "in": "query",
             "name": "startDate",
             "required": true,
