@@ -294,6 +294,33 @@
       },
       "type": "object"
     },
+    "AccountantClient": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "AccountantClientAccessCategoryModel": {
       "properties": {
         "accessLevel": {
@@ -5164,6 +5191,14 @@
     },
     "ChatResponseDTO": {
       "properties": {
+        "feedback": {
+          "enum": [
+            "NO_FEEDBACK",
+            "THUMBS_UP",
+            "THUMBS_DOWN"
+          ],
+          "type": "string"
+        },
         "fullResponse": {
           "type": "string"
         },
@@ -7537,7 +7572,6 @@
     "DepreciationRate": {
       "properties": {
         "balanceGroup": {
-          "maxLength": 20,
           "readOnly": true,
           "type": "string"
         },
@@ -13831,6 +13865,39 @@
       },
       "type": "object"
     },
+    "ListResponseAccountantClient": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AccountantClient"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseAccountantCustomer": {
       "properties": {
         "count": {
@@ -14611,6 +14678,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/CalloutDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseChatResponseDTO": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ChatResponseDTO"
           },
           "readOnly": true,
           "type": "array"
@@ -78177,6 +78277,9 @@
     },
     {
       "name": "accountantClientAccess"
+    },
+    {
+      "name": "accountingOffice"
     },
     {
       "name": "accountantClientAccesstemplate"
