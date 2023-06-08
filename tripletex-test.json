@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -295,6 +289,33 @@
           "format": "int32",
           "minimum": 0,
           "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AccountantClient": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
           "type": "integer"
         }
       },
@@ -1421,6 +1442,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -1710,18 +1735,18 @@
     "ApproveResponseDTO": {
       "properties": {
         "notApproved": {
-          "description": "List of payments that won't be sent to AutoPay approval",
+          "description": "List of payments that won't be sent to AutoPay approval/ZTL",
           "items": {
             "$ref": "#/definitions/PaymentDTO"
           },
           "type": "array"
         },
         "redirectUrl": {
-          "description": "The redirect URL to AutoPay 2FA after payments are sent to be approved",
+          "description": "The redirect URL to AutoPay 2FA or ZTL SCA after payments are sent to be approved",
           "type": "string"
         },
         "toBeApproved": {
-          "description": "List of payments that will be sent to AutoPay approval",
+          "description": "List of payments that will be sent to AutoPay approval/ZTL",
           "items": {
             "$ref": "#/definitions/PaymentDTO"
           },
@@ -1986,6 +2011,20 @@
       },
       "type": "object"
     },
+    "AssetDeleteInfo": {
+      "properties": {
+        "assetCount": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "importDate": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AssetDetails": {
       "properties": {
         "acquisitionCost": {
@@ -2013,9 +2052,18 @@
           "readOnly": true,
           "type": "string"
         },
+        "lifetime": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "name": {
           "maxLength": 255,
           "minLength": 1,
+          "type": "string"
+        },
+        "status": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5140,6 +5188,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -5161,11 +5213,26 @@
     },
     "ChatResponseDTO": {
       "properties": {
+        "feedback": {
+          "enum": [
+            "NO_FEEDBACK",
+            "THUMBS_UP",
+            "THUMBS_DOWN"
+          ],
+          "type": "string"
+        },
         "fullResponse": {
           "type": "string"
         },
         "hasError": {
           "type": "boolean"
+        },
+        "messageId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "prompt": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -7527,7 +7594,6 @@
     "DepreciationRate": {
       "properties": {
         "balanceGroup": {
-          "maxLength": 20,
           "readOnly": true,
           "type": "string"
         },
@@ -8425,6 +8491,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -10594,6 +10664,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -12195,6 +12269,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -12535,6 +12613,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -13821,6 +13903,39 @@
       },
       "type": "object"
     },
+    "ListResponseAccountantClient": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AccountantClient"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseAccountantCustomer": {
       "properties": {
         "count": {
@@ -14106,6 +14221,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/AssetAccountRow"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseAutoPayTransaction": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AutoPayTransaction"
           },
           "readOnly": true,
           "type": "array"
@@ -14601,6 +14749,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/CalloutDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseChatResponseDTO": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ChatResponseDTO"
           },
           "readOnly": true,
           "type": "array"
@@ -21986,7 +22167,6 @@
           "type": "array"
         },
         "code": {
-          "maxLength": 7,
           "type": "string"
         },
         "id": {
@@ -21994,7 +22174,6 @@
           "type": "integer"
         },
         "nameNO": {
-          "maxLength": 100,
           "type": "string"
         },
         "url": {
@@ -23791,6 +23970,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -25147,7 +25330,6 @@
           "type": "array"
         },
         "commonCode": {
-          "maxLength": 50,
           "readOnly": true,
           "type": "string"
         },
@@ -25160,22 +25342,18 @@
           "type": "boolean"
         },
         "name": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
         "nameShort": {
-          "maxLength": 50,
           "readOnly": true,
           "type": "string"
         },
         "peppolName": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
         "peppolSymbol": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -25796,7 +25974,6 @@
           "type": "integer"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "url": {
@@ -29123,6 +29300,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperAssetDeleteInfo": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/AssetDeleteInfo"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperAssetOverview": {
       "properties": {
         "value": {
@@ -31558,6 +31743,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperTlxNumber": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TlxNumber"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperTodoListComment": {
       "properties": {
         "value": {
@@ -33640,6 +33833,9 @@
         },
         "notDeletableMessage": {
           "type": "string"
+        },
+        "okAllowReverseDifferentDate": {
+          "type": "boolean"
         },
         "paySlipsAvailableDate": {
           "description": "The date payslips are made available to the employee. Defaults to voucherDate.",
@@ -35738,6 +35934,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -44187,6 +44387,70 @@
         ]
       }
     },
+    "/asset/assetsExist": {
+      "get": {
+        "description": "",
+        "operationId": "AssetAssetsExist_getAssetsExist",
+        "parameters": [
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperBoolean"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get if AssetOverview details is empty.",
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/asset/balanceAccountsSum": {
+      "get": {
+        "description": "",
+        "operationId": "AssetBalanceAccountsSum_balanceAccountsSum",
+        "parameters": [
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperTlxNumber"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get balanceAccountsSum.",
+        "tags": [
+          "asset"
+        ]
+      }
+    },
     "/asset/canDelete/{id}": {
       "get": {
         "description": "",
@@ -44199,11 +44463,21 @@
             "name": "id",
             "required": true,
             "type": "integer"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperBoolean"
+            }
           }
         },
         "security": [
@@ -44331,7 +44605,7 @@
             "type": "boolean"
           },
           {
-            "description": "Start date for assetregistry. Should always be on the first day of the year.",
+            "description": "Start date for asset registry. Should always be on the first day of the year.",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -78090,6 +78364,9 @@
     },
     {
       "name": "accountantClientAccess"
+    },
+    {
+      "name": "accountingOffice"
     },
     {
       "name": "accountantClientAccesstemplate"

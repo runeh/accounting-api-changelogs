@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1442,6 +1448,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -1731,18 +1741,18 @@
     "ApproveResponseDTO": {
       "properties": {
         "notApproved": {
-          "description": "List of payments that won't be sent to AutoPay approval",
+          "description": "List of payments that won't be sent to AutoPay approval/ZTL",
           "items": {
             "$ref": "#/definitions/PaymentDTO"
           },
           "type": "array"
         },
         "redirectUrl": {
-          "description": "The redirect URL to AutoPay 2FA after payments are sent to be approved",
+          "description": "The redirect URL to AutoPay 2FA or ZTL SCA after payments are sent to be approved",
           "type": "string"
         },
         "toBeApproved": {
-          "description": "List of payments that will be sent to AutoPay approval",
+          "description": "List of payments that will be sent to AutoPay approval/ZTL",
           "items": {
             "$ref": "#/definitions/PaymentDTO"
           },
@@ -2003,6 +2013,20 @@
         "balanceDifference": {
           "description": "Balance difference. This is the sum amount on the account that is not connected to an asset after the import.",
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "AssetDeleteInfo": {
+      "properties": {
+        "assetCount": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "importDate": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -5170,6 +5194,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -8469,6 +8497,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -10638,6 +10670,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
@@ -12239,6 +12275,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -12579,6 +12619,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -14183,6 +14227,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/AssetAccountRow"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseAutoPayTransaction": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AutoPayTransaction"
           },
           "readOnly": true,
           "type": "array"
@@ -23899,6 +23976,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "readOnly": true,
@@ -29221,6 +29302,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/Asset"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperAssetDeleteInfo": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/AssetDeleteInfo"
         }
       },
       "type": "object"
@@ -35851,6 +35940,10 @@
             "REAL_ESTATE_RENTAL_GROSS_ANNUAL_PRIOR_YEAR_TWO",
             "REAL_ESTATE_RENTAL_ASSET_VALUE_BASE",
             "REAL_ESTATE_RENTAL_GROSS_INCOME",
+            "REAL_ESTATE_PREV_YEAR_ASSET_VALUE_MANUAL",
+            "REAL_ESTATE_EXPENSES_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_FARM_HOUSE_YEARLY_MANUAL",
+            "REAL_ESTATE_EXPENSES_OTHER_PROPERTY_YEARLY_MANUAL",
             "YEARLY_DIVIDEND"
           ],
           "type": "string"
