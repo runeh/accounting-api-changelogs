@@ -2277,228 +2277,15 @@
       "type": "object"
     },
     "AutoPayTransaction": {
-      "properties": {
-        "acceptors": {
-          "description": "Who approved this payment.",
-          "items": {
-            "$ref": "#/definitions/Employee"
-          },
-          "readOnly": true,
-          "type": "array"
+      "allOf": [
+        {
+          "$ref": "#/definitions/PaymentDTO"
         },
-        "account": {
-          "$ref": "#/definitions/Account",
-          "description": "The payment account.",
-          "readOnly": true
-        },
-        "amountCurrency": {
-          "description": "In the specified currency.",
-          "type": "number"
-        },
-        "amountInAccountCurrency": {
-          "description": "Amount specified in the currency of the bank agreements account.",
-          "readOnly": true,
-          "type": "number"
-        },
-        "bookingDate": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "creditorBankAddress": {
-          "maxLength": 255,
-          "readOnly": true,
-          "type": "string"
-        },
-        "creditorBankName": {
-          "maxLength": 255,
-          "readOnly": true,
-          "type": "string"
-        },
-        "creditorBankPostalCity": {
-          "maxLength": 255,
-          "readOnly": true,
-          "type": "string"
-        },
-        "creditorBankPostalCode": {
-          "maxLength": 255,
-          "readOnly": true,
-          "type": "string"
-        },
-        "creditorBban": {
-          "maxLength": 50,
-          "readOnly": true,
-          "type": "string"
-        },
-        "creditorName": {
-          "maxLength": 250,
-          "readOnly": true,
-          "type": "string"
-        },
-        "currency": {
-          "$ref": "#/definitions/Currency",
-          "readOnly": true
-        },
-        "description": {
-          "maxLength": 255,
-          "readOnly": true,
-          "type": "string"
-        },
-        "displayStatus": {
-          "description": "The payment filter status.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "isDisabledForAmountChange": {
-          "description": "Can this payment amount be changed.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isDisabledForUpdate": {
-          "description": "Can this payment date be changed.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isFinalStatus": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isForeignPayment": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isSalary": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isSelectable": {
-          "description": "Is this payment selectable.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "kid": {
-          "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
-          "readOnly": true,
-          "type": "string"
-        },
-        "paymentCategory": {
-          "description": "The payment category.",
-          "enum": [
-            "TRANSFER_BETWEEN_ACCOUNTS",
-            "REIMBURSEMENT",
-            "SUPPLIER_INVOICE",
-            "WITHHOLDING_TAX",
-            "TAX_DEDUCTION",
-            "VAT",
-            "SALARY",
-            "ENI",
-            "REGISTERED"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "paymentDate": {
-          "type": "string"
-        },
-        "paymentSource": {
-          "enum": [
-            "AutoPayTransaction",
-            "ZtlTransaction"
-          ],
-          "type": "string"
-        },
-        "postings": {
-          "$ref": "#/definitions/Posting",
-          "description": "The payment posting.",
-          "readOnly": true
-        },
-        "receiverReference": {
-          "maxLength": 250,
-          "readOnly": true,
-          "type": "string"
-        },
-        "sourceVoucher": {
-          "$ref": "#/definitions/Voucher",
-          "description": "Voucher that was paid.",
-          "readOnly": true
-        },
-        "status": {
-          "description": "The payment status.NOT_APPROVED: Payment not approved yet.<br>APPROVED: Payment approved, but not yet sent to bank.<br>SENT_TO_AUTOPAY: Payment sent to bank.<br>RECEIVED_BY_BANK: Payment received by the bank.<br>ACCEPTED_BY_BANK: Payment that was accepted by the bank.<br>FAILED: Payment that failed.<br>CANCELLED: Cancelled payment.<br>SUCCESS: Payment that ended successfully.<br>",
-          "enum": [
-            "NOT_APPROVED",
-            "CANCELLED",
-            "APPROVED",
-            "SENT_TO_AUTOPAY",
-            "RECEIVED_BY_BANK",
-            "ACCEPTED_BY_BANK",
-            "FAILED",
-            "SUCCESS",
-            "NOT_UPDATED",
-            "ON_HOLD",
-            "IMPORTED",
-            "INITIALIZED",
-            "AUTHORIZATION_REQUIRED",
-            "SETTLEMENT_IN_PROGRESS",
-            "REJECTED",
-            "BOOKED",
-            "SETTLEMENT_COMPLETED",
-            "BATCH_FAILED",
-            "BATCH_TIMEOUT",
-            "CANCEL_PENDING",
-            "PAYROLL_AWAITING_AUTHORIZATION",
-            "PAYROLL_SETTLEMENT_IN_PROGRESS",
-            "PAYROLL_SETTLEMENT_COMPLETED",
-            "PAYROLL_CANCELLED",
-            "PAYROLL_SETTLEMENT_NOT_COMPLETED_IN_TIME",
-            "PAYROLL_PAYMENT_INITIATED",
-            "PAYROLL_PAYMENT_ACCEPTED_TECHNICAL_VALIDATION",
-            "PAYROLL_ACCEPTED_FOR_EXECUTION",
-            "PAYROLL_FAILED"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "statusId": {
-          "description": "The payment status Id. Usually all the payments in one batch have the same status ID, at least to the point of being received by bank.NEW: Payment is new.<br>PENDING_SIGNING: Payment is sent to AutoPay but not signed yet, requires re-approving.<br>CANCELLED: Payment was cancelled by ERP.<br>ERROR: Payment that failed.<br>RECEIVED_BY_BANK: Payment was received by the bank.<br>ACCEPTED_BY_BANK: Payment was accepted by bank.<br>CANCELLED_IN_BANK: Payment was cancelled in bank.<br>REJECTED_BY_BANK: Payment was rejected by bank.<br>PAID: Payment is paid.<br>OTHER: In case status in unknown. Will never be a final status.<br>",
-          "enum": [
-            "NEW",
-            "PENDING_SIGNING",
-            "CANCELLED",
-            "ERROR",
-            "RECEIVED_BY_BANK",
-            "ACCEPTED_BY_BANK",
-            "CANCELLED_IN_BANK",
-            "REJECTED_BY_BANK",
-            "PAID",
-            "OTHER"
-          ],
-          "type": "string"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "valueDate": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
+        {
+          "properties": {},
+          "type": "object"
         }
-      },
-      "type": "object"
+      ]
     },
     "AutomationRuleDetails": {
       "properties": {
@@ -29860,6 +29647,24 @@
       },
       "type": "object"
     },
+    "ResponseWrapperCompanyVerificationType": {
+      "properties": {
+        "value": {
+          "enum": [
+            "UNVERIFIED",
+            "VERIFIED_ACCOUNTANT",
+            "VERIFIED_CLIENT_OF_ACCOUNTANT",
+            "VERIFIED_CUSTOMER_BANKID",
+            "VERIFIED_BY_ALTINN_MESSAGE",
+            "VERIFIED_BY_TRIPLETEX_SUPPORT",
+            "VERIFIED_BANK_AGREEMENT",
+            "VERIFIED_TRIPLETEX"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperConsumerToken": {
       "properties": {
         "value": {
@@ -42940,6 +42745,7 @@
               "SALARY_SUMMARY",
               "TASKS",
               "TRIAL",
+              "UPSALE",
               "VOUCHER_SUMMARY"
             ],
             "type": "string"
@@ -42960,6 +42766,7 @@
               "SALARY_SUMMARY",
               "TASKS",
               "TRIAL",
+              "UPSALE",
               "VOUCHER_SUMMARY"
             ],
             "type": "string"
