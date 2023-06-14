@@ -1661,7 +1661,6 @@
         },
         "emails": {
           "format": "email",
-          "maxLength": 255,
           "type": "string"
         },
         "id": {
@@ -31669,6 +31668,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperTaxAdminCalculatedRentalValue": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TaxAdminCalculatedRentalValue"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperTaxAdminSearchResponse": {
       "properties": {
         "value": {
@@ -35519,7 +35526,6 @@
           "$ref": "#/definitions/EmployeeToken"
         },
         "encryptionKey": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -37325,6 +37331,15 @@
         },
         "url": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAdminCalculatedRentalValue": {
+      "properties": {
+        "rentalValue": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
         }
       },
       "type": "object"
