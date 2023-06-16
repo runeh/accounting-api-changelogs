@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1305,6 +1299,7 @@
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
             "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
+            "SHOW_RESULT_AND_BALANCE_PREVIOUS_YEAR",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -5046,6 +5041,7 @@
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
             "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
+            "SHOW_RESULT_AND_BALANCE_PREVIOUS_YEAR",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -8349,6 +8345,7 @@
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
             "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
+            "SHOW_RESULT_AND_BALANCE_PREVIOUS_YEAR",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -10522,6 +10519,7 @@
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
             "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
+            "SHOW_RESULT_AND_BALANCE_PREVIOUS_YEAR",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -12127,6 +12125,7 @@
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
             "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
+            "SHOW_RESULT_AND_BALANCE_PREVIOUS_YEAR",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -12471,6 +12470,7 @@
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
             "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
+            "SHOW_RESULT_AND_BALANCE_PREVIOUS_YEAR",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -13236,6 +13236,9 @@
         "customerId": {
           "format": "int32",
           "type": "integer"
+        },
+        "elmaLookupAlive": {
+          "type": "boolean"
         },
         "phoneNumber": {
           "type": "string"
@@ -23828,6 +23831,7 @@
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
             "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
+            "SHOW_RESULT_AND_BALANCE_PREVIOUS_YEAR",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -35817,6 +35821,7 @@
             "SERVICE_ASSISTANCE_USED",
             "ELECTRONIC_CASE_PROCESSING",
             "SUBMIT_WITHOUT_BUSINESS_SPECIFICATION",
+            "SHOW_RESULT_AND_BALANCE_PREVIOUS_YEAR",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -43493,6 +43498,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "sumAmountPreviousYear": {
+          "readOnly": true,
+          "type": "number"
+        },
         "technicalName": {
           "readOnly": true,
           "type": "string"
@@ -43509,6 +43518,10 @@
           "type": "array"
         },
         "sumAmount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumAmountPreviousYear": {
           "readOnly": true,
           "type": "number"
         }
