@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -2277,15 +2283,237 @@
       "type": "object"
     },
     "AutoPayTransaction": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/PaymentDTO"
+      "properties": {
+        "acceptors": {
+          "description": "Who approved this payment.",
+          "items": {
+            "$ref": "#/definitions/Employee"
+          },
+          "readOnly": true,
+          "type": "array"
         },
-        {
-          "properties": {},
-          "type": "object"
+        "account": {
+          "$ref": "#/definitions/Account",
+          "description": "The payment account.",
+          "readOnly": true
+        },
+        "amountCurrency": {
+          "description": "In the specified currency.",
+          "type": "number"
+        },
+        "amountInAccountCurrency": {
+          "description": "Amount specified in the currency of the bank agreements account.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "bookingDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "creditorBankAddress": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankName": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankPostalCity": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankPostalCode": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBban": {
+          "maxLength": 50,
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorName": {
+          "maxLength": 250,
+          "readOnly": true,
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency",
+          "readOnly": true
+        },
+        "description": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayStatus": {
+          "description": "The payment filter status.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isDisabledForAmountChange": {
+          "description": "Can this payment amount be changed.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isDisabledForUpdate": {
+          "description": "Can this payment date be changed.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isFinalStatus": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isForeignPayment": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSalary": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSelectable": {
+          "description": "Is this payment selectable.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "kid": {
+          "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentCategory": {
+          "description": "The payment category.",
+          "enum": [
+            "TRANSFER_BETWEEN_ACCOUNTS",
+            "REIMBURSEMENT",
+            "SUPPLIER_INVOICE",
+            "WITHHOLDING_TAX",
+            "TAX_DEDUCTION",
+            "VAT",
+            "SALARY",
+            "ENI",
+            "REGISTERED"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentDate": {
+          "type": "string"
+        },
+        "paymentSource": {
+          "enum": [
+            "AutoPayTransaction",
+            "ZtlTransaction"
+          ],
+          "type": "string"
+        },
+        "postings": {
+          "$ref": "#/definitions/Posting",
+          "description": "The payment posting.",
+          "readOnly": true
+        },
+        "receiverReference": {
+          "maxLength": 250,
+          "readOnly": true,
+          "type": "string"
+        },
+        "sendToBank": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "smsApproval": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "sourceVoucher": {
+          "$ref": "#/definitions/Voucher",
+          "description": "Voucher that was paid.",
+          "readOnly": true
+        },
+        "status": {
+          "description": "The payment status.NOT_APPROVED: Payment not approved yet.<br>APPROVED: Payment approved, but not yet sent to bank.<br>SENT_TO_AUTOPAY: Payment sent to bank.<br>RECEIVED_BY_BANK: Payment received by the bank.<br>ACCEPTED_BY_BANK: Payment that was accepted by the bank.<br>FAILED: Payment that failed.<br>CANCELLED: Cancelled payment.<br>SUCCESS: Payment that ended successfully.<br>",
+          "enum": [
+            "NOT_APPROVED",
+            "CANCELLED",
+            "APPROVED",
+            "SENT_TO_AUTOPAY",
+            "RECEIVED_BY_BANK",
+            "ACCEPTED_BY_BANK",
+            "FAILED",
+            "SUCCESS",
+            "NOT_UPDATED",
+            "ON_HOLD",
+            "IMPORTED",
+            "INITIALIZED",
+            "AUTHORIZATION_REQUIRED",
+            "SETTLEMENT_IN_PROGRESS",
+            "REJECTED",
+            "BOOKED",
+            "SETTLEMENT_COMPLETED",
+            "BATCH_FAILED",
+            "BATCH_TIMEOUT",
+            "CANCEL_PENDING",
+            "PAYROLL_AWAITING_AUTHORIZATION",
+            "PAYROLL_SETTLEMENT_IN_PROGRESS",
+            "PAYROLL_SETTLEMENT_COMPLETED",
+            "PAYROLL_CANCELLED",
+            "PAYROLL_SETTLEMENT_NOT_COMPLETED_IN_TIME",
+            "PAYROLL_PAYMENT_INITIATED",
+            "PAYROLL_PAYMENT_ACCEPTED_TECHNICAL_VALIDATION",
+            "PAYROLL_ACCEPTED_FOR_EXECUTION",
+            "PAYROLL_FAILED",
+            "PAYROLL_EXECUTION_COMPLETED"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "statusId": {
+          "description": "The payment status Id. Usually all the payments in one batch have the same status ID, at least to the point of being received by bank.NEW: Payment is new.<br>PENDING_SIGNING: Payment is sent to AutoPay but not signed yet, requires re-approving.<br>CANCELLED: Payment was cancelled by ERP.<br>ERROR: Payment that failed.<br>RECEIVED_BY_BANK: Payment was received by the bank.<br>ACCEPTED_BY_BANK: Payment was accepted by bank.<br>CANCELLED_IN_BANK: Payment was cancelled in bank.<br>REJECTED_BY_BANK: Payment was rejected by bank.<br>PAID: Payment is paid.<br>OTHER: In case status in unknown. Will never be a final status.<br>",
+          "enum": [
+            "NEW",
+            "PENDING_SIGNING",
+            "CANCELLED",
+            "ERROR",
+            "RECEIVED_BY_BANK",
+            "ACCEPTED_BY_BANK",
+            "CANCELLED_IN_BANK",
+            "REJECTED_BY_BANK",
+            "PAID",
+            "OTHER"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "valueDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
         }
-      ]
+      },
+      "type": "object"
     },
     "AutomationRuleDetails": {
       "properties": {
@@ -20184,39 +20412,6 @@
       },
       "type": "object"
     },
-    "ListResponseTripletexCompanyModules": {
-      "properties": {
-        "count": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/TripletexCompanyModules"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListResponseUpsaleMetric": {
       "properties": {
         "count": {
@@ -20799,6 +20994,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/ZtlOnboarding"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseZtlTransaction": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ZtlTransaction"
           },
           "readOnly": true,
           "type": "array"
@@ -28197,7 +28425,6 @@
         },
         "name": {
           "description": "Shortcut for Report name",
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -32017,14 +32244,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/TripletexAccountReturn"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperTripletexCompanyModules": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/TripletexCompanyModules"
         }
       },
       "type": "object"
@@ -36615,7 +36834,6 @@
         "targetUrl": {
           "description": "The callback URL used for subscriptions (including authentication tokens). Must be absolute and use HTTPS. Basic authentication is supported.",
           "example": "https://username:password@myintegration.example/tripletexCallback",
-          "maxLength": 255,
           "minLength": 1,
           "type": "string"
         },
@@ -40105,541 +40323,6 @@
       },
       "type": "object"
     },
-    "TripletexCompanyModules": {
-      "properties": {
-        "approvehourlists": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "approveinvoices": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "approvemonthlyhourlists": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "approvetravelreports": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "autoInvoicing": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "companyId": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "completemonthlyhourlists": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "completeweeklyhourlists": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "moduleAccountantConnectClient": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleAccountingExternal": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleAccountingReports": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleActivityHourlyWageWageCode": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleAdditionProjectMarkup": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleAgro": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleAhlsellPartner": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleAmortization": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleApi20": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleApproveDepartmentVoucher": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleApproveProjectVoucher": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleApproveVoucher": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleArchive": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleAutoBankReconciliation": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleAutoCustomerNumber": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleAutoProjectNumber": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleAutoVendorNumber": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleBoligmappa": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleCRM": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleCashCreditAprila": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleChangeDebtCollector": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleContact": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleControlSchemaRequiredHourTracking": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleControlSchemaRequiredInvoicing": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleCurrency": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleCustomerCategories": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleCustomerCategory1": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleCustomerCategory2": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleCustomerCategory3": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleDepartmentAccounting": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleDivisions": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleElectro": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleElektroUnion": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleElproffen": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleEmail": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleEmployeeAccounting": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleEmployeeCategory": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleEncryptedPaySlip": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleFactoringAprila": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleFactoringVismaFinance": {
-          "enum": [
-            "OFF",
-            "STARTED",
-            "SIGNING_STARTED",
-            "ON",
-            "IN_REVIEW",
-            "DEACTIVATED_FROM_ON",
-            "DEACTIVATED_FROM_OFF",
-            "FAILED",
-            "OPTED_OUT"
-          ],
-          "type": "string"
-        },
-        "moduleFinanceTax": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleGtin": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleHolydayPlan": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleInvoice": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleInvoiceFeeComment": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleInvoiceImport": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleInvoiceOptionAutoinvoiceEhf": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleInvoiceOptionAvtaleGiro": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleInvoiceOptionEfaktura": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleInvoiceOptionPaper": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleInvoiceOptionVipps": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleInvoiceScanning": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleMamut": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleMesan": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleNetsEboks": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleNetsPrintInvoice": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleNetsPrintSalary": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleNrf": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleOcr": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleOcrAutoPay": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleOffer": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleOnninen123": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleOrderDiscount": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleOrderExt": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleOrderLineCost": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleOrderMarkup": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleOrderNumber": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleOrderOut": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "modulePayrollAccounting": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "modulePensionreport": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleProductAccounting": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleProductInvoice": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleProjectAccounting": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleProjectBudget": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleProjectBudgetReferenceFee": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleProjectParticipants": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleProvisionSalary": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleResourceGroups": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleResultBudget": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleRorkjop": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleSmartScan": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleStopWatch": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleSubscriptionAddressList": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleSubscriptionsPeriodisation": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleTimeBalance": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleTravelExpense": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleTravelExpenseRates": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleVacationBalance": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleVoucherAutomation": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleVoucherScanning": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleVoucherTypes": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleWageAmortization": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleWageExport": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleWageProjectAccounting": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleWarehouse": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleWorkingHours": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleaccountinginternal": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "modulebudget": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "modulebunches": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "modulecustomer": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduledepartment": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleemployee": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "modulehistorical": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "modulehourlist": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "modulenote": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleproduct": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleproject": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleprojectcategory": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleprojecteconomy": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleprojectlocation": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleprojectprognosis": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleprojectsubcontract": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "modulereferencefee": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleresourceallocation": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "modulesubscription": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduletask": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "monthlyHourlistMinusTimeWarning": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "TypeOfGoods": {
       "properties": {
         "closingStock": {
@@ -44062,15 +43745,239 @@
       "type": "object"
     },
     "ZtlTransaction": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/PaymentDTO"
+      "properties": {
+        "acceptors": {
+          "description": "Who approved this payment.",
+          "items": {
+            "$ref": "#/definitions/Employee"
+          },
+          "readOnly": true,
+          "type": "array"
         },
-        {
-          "properties": {},
-          "type": "object"
+        "account": {
+          "$ref": "#/definitions/Account",
+          "description": "The payment account.",
+          "readOnly": true
+        },
+        "amountCurrency": {
+          "description": "In the specified currency.",
+          "type": "number"
+        },
+        "amountInAccountCurrency": {
+          "description": "Amount specified in the currency of the bank agreements account.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "bookingDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "creditorBankAddress": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankPostalCity": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankPostalCode": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBban": {
+          "maxLength": 50,
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency",
+          "readOnly": true
+        },
+        "description": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayStatus": {
+          "description": "The payment filter status.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "endToEndId": {
+          "maxLength": 128,
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isDisabledForAmountChange": {
+          "description": "Can this payment amount be changed.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isDisabledForUpdate": {
+          "description": "Can this payment date be changed.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isFinalStatus": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isForeignPayment": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSalary": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSelectable": {
+          "description": "Is this payment selectable.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "kid": {
+          "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentCategory": {
+          "description": "The payment category.",
+          "enum": [
+            "TRANSFER_BETWEEN_ACCOUNTS",
+            "REIMBURSEMENT",
+            "SUPPLIER_INVOICE",
+            "WITHHOLDING_TAX",
+            "TAX_DEDUCTION",
+            "VAT",
+            "SALARY",
+            "ENI",
+            "REGISTERED"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentDate": {
+          "type": "string"
+        },
+        "paymentId": {
+          "maxLength": 128,
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentSource": {
+          "enum": [
+            "AutoPayTransaction",
+            "ZtlTransaction"
+          ],
+          "type": "string"
+        },
+        "postings": {
+          "$ref": "#/definitions/Posting",
+          "description": "The payment posting.",
+          "readOnly": true
+        },
+        "receiverReference": {
+          "maxLength": 250,
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceVoucher": {
+          "$ref": "#/definitions/Voucher",
+          "description": "Voucher that was paid.",
+          "readOnly": true
+        },
+        "status": {
+          "description": "The payment status.NOT_APPROVED: Payment not approved yet.<br>APPROVED: Payment approved, but not yet sent to bank.<br>SENT_TO_AUTOPAY: Payment sent to bank.<br>RECEIVED_BY_BANK: Payment received by the bank.<br>ACCEPTED_BY_BANK: Payment that was accepted by the bank.<br>FAILED: Payment that failed.<br>CANCELLED: Cancelled payment.<br>SUCCESS: Payment that ended successfully.<br>",
+          "enum": [
+            "NOT_APPROVED",
+            "CANCELLED",
+            "APPROVED",
+            "SENT_TO_AUTOPAY",
+            "RECEIVED_BY_BANK",
+            "ACCEPTED_BY_BANK",
+            "FAILED",
+            "SUCCESS",
+            "NOT_UPDATED",
+            "ON_HOLD",
+            "IMPORTED",
+            "INITIALIZED",
+            "AUTHORIZATION_REQUIRED",
+            "SETTLEMENT_IN_PROGRESS",
+            "REJECTED",
+            "BOOKED",
+            "SETTLEMENT_COMPLETED",
+            "BATCH_FAILED",
+            "BATCH_TIMEOUT",
+            "CANCEL_PENDING",
+            "PAYROLL_AWAITING_AUTHORIZATION",
+            "PAYROLL_SETTLEMENT_IN_PROGRESS",
+            "PAYROLL_SETTLEMENT_COMPLETED",
+            "PAYROLL_CANCELLED",
+            "PAYROLL_SETTLEMENT_NOT_COMPLETED_IN_TIME",
+            "PAYROLL_PAYMENT_INITIATED",
+            "PAYROLL_PAYMENT_ACCEPTED_TECHNICAL_VALIDATION",
+            "PAYROLL_ACCEPTED_FOR_EXECUTION",
+            "PAYROLL_FAILED",
+            "PAYROLL_EXECUTION_COMPLETED"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "statusId": {
+          "description": "The payment status Id. Usually all the payments in one batch have the same status ID, at least to the point of being received by bank.NEW: Payment is new.<br>PENDING_SIGNING: Payment is sent to AutoPay but not signed yet, requires re-approving.<br>CANCELLED: Payment was cancelled by ERP.<br>ERROR: Payment that failed.<br>RECEIVED_BY_BANK: Payment was received by the bank.<br>ACCEPTED_BY_BANK: Payment was accepted by bank.<br>CANCELLED_IN_BANK: Payment was cancelled in bank.<br>REJECTED_BY_BANK: Payment was rejected by bank.<br>PAID: Payment is paid.<br>OTHER: In case status in unknown. Will never be a final status.<br>",
+          "enum": [
+            "NEW",
+            "PENDING_SIGNING",
+            "CANCELLED",
+            "ERROR",
+            "RECEIVED_BY_BANK",
+            "ACCEPTED_BY_BANK",
+            "CANCELLED_IN_BANK",
+            "REJECTED_BY_BANK",
+            "PAID",
+            "OTHER"
+          ],
+          "type": "string"
+        },
+        "statusReason": {
+          "maxLength": 256,
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "valueDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
         }
-      ]
+      },
+      "type": "object"
     }
   },
   "host": "api.tripletex.io",
@@ -78780,6 +78687,9 @@
       "name": "integrationsendgridevent"
     },
     {
+      "name": "bankztlpaymentinternal"
+    },
+    {
       "name": "inventory"
     },
     {
@@ -79504,9 +79414,6 @@
     },
     {
       "name": "tripletexAccount"
-    },
-    {
-      "name": "tripletexAccountcompanyModules"
     },
     {
       "name": "tripletexAccountPrices"
