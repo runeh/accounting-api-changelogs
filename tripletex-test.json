@@ -6478,6 +6478,11 @@
           "maxLength": 255,
           "type": "string"
         },
+        "employeeId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
@@ -6511,7 +6516,8 @@
           "enum": [
             "NOT_SIGNED",
             "PENDING_SIGNATURE",
-            "SIGNED"
+            "SIGNED",
+            "NOT_A_SIGNER"
           ],
           "type": "string"
         },
@@ -16875,6 +16881,39 @@
       },
       "type": "object"
     },
+    "ListResponseMenuItemDTO": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/MenuItemDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseMileageAllowance": {
       "properties": {
         "count": {
@@ -21358,6 +21397,26 @@
           "type": "string"
         },
         "theme": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MenuItemDTO": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "child": {
+          "type": "boolean"
+        },
+        "id": {
           "type": "string"
         },
         "title": {
@@ -31862,6 +31921,20 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/SessionToken"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperSignatureStatus": {
+      "properties": {
+        "value": {
+          "enum": [
+            "NOT_SIGNED",
+            "PENDING_SIGNATURE",
+            "SIGNED",
+            "NOT_A_SIGNER"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
