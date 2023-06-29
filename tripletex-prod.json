@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -155,7 +151,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -177,7 +172,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -25644,15 +25638,49 @@
           "readOnly": true,
           "type": "array"
         },
+        "hasWarehouseLocation": {
+          "type": "boolean"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
         },
-        "productPurchase": {
+        "modulePurchaseOrderNumberSeries": {
           "type": "boolean"
         },
-        "purchaseOrder": {
+        "moduleSuggestedProductNumber": {
           "type": "boolean"
+        },
+        "moduleWarehouse": {
+          "type": "boolean"
+        },
+        "newCustomerAfterLogisticsRelease": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "productOrderLinesSortOrder": {
+          "format": "int32",
+          "maximum": 3,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "productSetCostFromOrderLine": {
+          "type": "boolean"
+        },
+        "purchaseOrderDefaultComment": {
+          "type": "string"
+        },
+        "purchaseOrderModule": {
+          "type": "boolean"
+        },
+        "purchaseOrderNumberSeries": {
+          "type": "string"
+        },
+        "showOnboardingWizard": {
+          "type": "boolean"
+        },
+        "suggestedProductNumber": {
+          "type": "string"
         },
         "url": {
           "readOnly": true,
@@ -25661,9 +25689,6 @@
         "version": {
           "format": "int32",
           "type": "integer"
-        },
-        "warehouse": {
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -31873,14 +31898,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperSalesForceCustomerStats": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/SalesForceCustomerStats"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperSalesForceEmployee": {
       "properties": {
         "value": {
@@ -34909,56 +34926,6 @@
         "version": {
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "SalesForceCustomerStats": {
-      "properties": {
-        "customerId": {
-          "description": "Customer Id",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "dateOfLastAdminLogin": {
-          "description": "Last Admin login to Tripletex date",
-          "readOnly": true,
-          "type": "string"
-        },
-        "numberOfEmployees": {
-          "description": "Number of employees",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "numberOfInvoicedEmployeesOnLastInvoice": {
-          "description": "Number of invoiced employees on last invoice",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "numberOfInvoicedTransactionsEHF": {
-          "description": "Number of invoiced transactions EHF",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "numberOfUsers": {
-          "description": "Number of users",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "totalMonthlyFees": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Total monthly service fees including discounts.",
-          "readOnly": true
-        },
-        "totalStartupFees": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Total charged startup-fees for all the customer's products",
-          "readOnly": true
         }
       },
       "type": "object"
@@ -52840,6 +52807,27 @@
             "description": "Equals",
             "in": "query",
             "name": "includeContacts",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Equals",
+            "in": "query",
+            "name": "isInactive",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Equals",
+            "in": "query",
+            "name": "hasSystemAccess",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Equals",
+            "in": "query",
+            "name": "excludeReadOnly",
             "required": false,
             "type": "boolean"
           },
@@ -79544,9 +79532,6 @@
     },
     {
       "name": "tripletexAccountsalesForceUserOverview"
-    },
-    {
-      "name": "tripletexAccountsalesForceCustomerStats"
     },
     {
       "name": "tripletexDashboard"

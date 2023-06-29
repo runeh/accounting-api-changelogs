@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -151,6 +155,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -172,6 +177,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1391,7 +1397,7 @@
             "SHARES_AND_SECURITIES_STOCK_TYPE",
             "SHARES_AND_SECURITIES_VAT_NUMBER",
             "SHARES_AND_SECURITIES_ISIN",
-            "SHARES_AND_SECURITIES_COUNTRY",
+            "SHARES_AND_SECURITIES_COUNTRY_CODE",
             "SHARES_AND_SECURITIES_SHARE_CLASS",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_START_OF_THE_YEAR",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_END_OF_THE_YEAR",
@@ -1404,6 +1410,7 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "SHARES_AND_SECURITIES_FINANCIAL_PRODUCT",
             "REAL_ESTATE_TYPE",
             "REAL_ESTATE_DESCRIPTION",
             "COMMERCIAL_PROPERTY_TYPE",
@@ -5365,7 +5372,7 @@
             "SHARES_AND_SECURITIES_STOCK_TYPE",
             "SHARES_AND_SECURITIES_VAT_NUMBER",
             "SHARES_AND_SECURITIES_ISIN",
-            "SHARES_AND_SECURITIES_COUNTRY",
+            "SHARES_AND_SECURITIES_COUNTRY_CODE",
             "SHARES_AND_SECURITIES_SHARE_CLASS",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_START_OF_THE_YEAR",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_END_OF_THE_YEAR",
@@ -5378,6 +5385,7 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "SHARES_AND_SECURITIES_FINANCIAL_PRODUCT",
             "REAL_ESTATE_TYPE",
             "REAL_ESTATE_DESCRIPTION",
             "COMMERCIAL_PROPERTY_TYPE",
@@ -8686,7 +8694,7 @@
             "SHARES_AND_SECURITIES_STOCK_TYPE",
             "SHARES_AND_SECURITIES_VAT_NUMBER",
             "SHARES_AND_SECURITIES_ISIN",
-            "SHARES_AND_SECURITIES_COUNTRY",
+            "SHARES_AND_SECURITIES_COUNTRY_CODE",
             "SHARES_AND_SECURITIES_SHARE_CLASS",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_START_OF_THE_YEAR",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_END_OF_THE_YEAR",
@@ -8699,6 +8707,7 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "SHARES_AND_SECURITIES_FINANCIAL_PRODUCT",
             "REAL_ESTATE_TYPE",
             "REAL_ESTATE_DESCRIPTION",
             "COMMERCIAL_PROPERTY_TYPE",
@@ -9466,7 +9475,8 @@
           "description": "Define the employment form.",
           "enum": [
             "PERMANENT",
-            "TEMPORARY"
+            "TEMPORARY",
+            "NOT_CHOSEN"
           ],
           "type": "string"
         },
@@ -9475,7 +9485,8 @@
           "enum": [
             "ORDINARY",
             "MARITIME",
-            "FREELANCE"
+            "FREELANCE",
+            "NOT_CHOSEN"
           ],
           "type": "string"
         },
@@ -9506,6 +9517,7 @@
             "HOURLY_WAGE",
             "COMMISION_PERCENTAGE",
             "FEE",
+            "NOT_CHOSEN",
             "PIECEWORK_WAGE"
           ],
           "type": "string"
@@ -9529,7 +9541,8 @@
             "SHIFT_365",
             "OFFSHORE_336",
             "CONTINUOUS",
-            "OTHER_SHIFT"
+            "OTHER_SHIFT",
+            "NOT_CHOSEN"
           ],
           "type": "string"
         }
@@ -9556,7 +9569,8 @@
           "enum": [
             "ORDINARY",
             "MARITIME",
-            "FREELANCE"
+            "FREELANCE",
+            "NOT_CHOSEN"
           ],
           "type": "string"
         },
@@ -9709,7 +9723,8 @@
             "COMMERCIAL_PROPERTY_TYPE",
             "REAL_ESTATE_DWELLING_TYPE",
             "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE",
-            "REAL_ESTATE_ASSOCIATION_OR_COOPERATIVE_DWELLING_OWNERSHIP_TYPE"
+            "REAL_ESTATE_ASSOCIATION_OR_COOPERATIVE_DWELLING_OWNERSHIP_TYPE",
+            "FINANCIAL_PRODUCT"
           ],
           "readOnly": true,
           "type": "string"
@@ -10872,7 +10887,7 @@
             "SHARES_AND_SECURITIES_STOCK_TYPE",
             "SHARES_AND_SECURITIES_VAT_NUMBER",
             "SHARES_AND_SECURITIES_ISIN",
-            "SHARES_AND_SECURITIES_COUNTRY",
+            "SHARES_AND_SECURITIES_COUNTRY_CODE",
             "SHARES_AND_SECURITIES_SHARE_CLASS",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_START_OF_THE_YEAR",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_END_OF_THE_YEAR",
@@ -10885,6 +10900,7 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "SHARES_AND_SECURITIES_FINANCIAL_PRODUCT",
             "REAL_ESTATE_TYPE",
             "REAL_ESTATE_DESCRIPTION",
             "COMMERCIAL_PROPERTY_TYPE",
@@ -12498,7 +12514,7 @@
             "SHARES_AND_SECURITIES_STOCK_TYPE",
             "SHARES_AND_SECURITIES_VAT_NUMBER",
             "SHARES_AND_SECURITIES_ISIN",
-            "SHARES_AND_SECURITIES_COUNTRY",
+            "SHARES_AND_SECURITIES_COUNTRY_CODE",
             "SHARES_AND_SECURITIES_SHARE_CLASS",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_START_OF_THE_YEAR",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_END_OF_THE_YEAR",
@@ -12511,6 +12527,7 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "SHARES_AND_SECURITIES_FINANCIAL_PRODUCT",
             "REAL_ESTATE_TYPE",
             "REAL_ESTATE_DESCRIPTION",
             "COMMERCIAL_PROPERTY_TYPE",
@@ -12853,7 +12870,7 @@
             "SHARES_AND_SECURITIES_STOCK_TYPE",
             "SHARES_AND_SECURITIES_VAT_NUMBER",
             "SHARES_AND_SECURITIES_ISIN",
-            "SHARES_AND_SECURITIES_COUNTRY",
+            "SHARES_AND_SECURITIES_COUNTRY_CODE",
             "SHARES_AND_SECURITIES_SHARE_CLASS",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_START_OF_THE_YEAR",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_END_OF_THE_YEAR",
@@ -12866,6 +12883,7 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "SHARES_AND_SECURITIES_FINANCIAL_PRODUCT",
             "REAL_ESTATE_TYPE",
             "REAL_ESTATE_DESCRIPTION",
             "COMMERCIAL_PROPERTY_TYPE",
@@ -24297,7 +24315,7 @@
             "SHARES_AND_SECURITIES_STOCK_TYPE",
             "SHARES_AND_SECURITIES_VAT_NUMBER",
             "SHARES_AND_SECURITIES_ISIN",
-            "SHARES_AND_SECURITIES_COUNTRY",
+            "SHARES_AND_SECURITIES_COUNTRY_CODE",
             "SHARES_AND_SECURITIES_SHARE_CLASS",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_START_OF_THE_YEAR",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_END_OF_THE_YEAR",
@@ -24310,6 +24328,7 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "SHARES_AND_SECURITIES_FINANCIAL_PRODUCT",
             "REAL_ESTATE_TYPE",
             "REAL_ESTATE_DESCRIPTION",
             "COMMERCIAL_PROPERTY_TYPE",
@@ -25625,15 +25644,49 @@
           "readOnly": true,
           "type": "array"
         },
+        "hasWarehouseLocation": {
+          "type": "boolean"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
         },
-        "productPurchase": {
+        "modulePurchaseOrderNumberSeries": {
           "type": "boolean"
         },
-        "purchaseOrder": {
+        "moduleSuggestedProductNumber": {
           "type": "boolean"
+        },
+        "moduleWarehouse": {
+          "type": "boolean"
+        },
+        "newCustomerAfterLogisticsRelease": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "productOrderLinesSortOrder": {
+          "format": "int32",
+          "maximum": 3,
+          "minimum": 1,
+          "type": "integer"
+        },
+        "productSetCostFromOrderLine": {
+          "type": "boolean"
+        },
+        "purchaseOrderDefaultComment": {
+          "type": "string"
+        },
+        "purchaseOrderModule": {
+          "type": "boolean"
+        },
+        "purchaseOrderNumberSeries": {
+          "type": "string"
+        },
+        "showOnboardingWizard": {
+          "type": "boolean"
+        },
+        "suggestedProductNumber": {
+          "type": "string"
         },
         "url": {
           "readOnly": true,
@@ -25642,9 +25695,6 @@
         "version": {
           "format": "int32",
           "type": "integer"
-        },
-        "warehouse": {
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -28430,6 +28480,7 @@
             "HOURLY_WAGE",
             "COMMISION_PERCENTAGE",
             "FEE",
+            "NOT_CHOSEN",
             "PIECEWORK_WAGE"
           ],
           "type": "string"
@@ -31853,14 +31904,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperSalesForceCustomerStats": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/SalesForceCustomerStats"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperSalesForceEmployee": {
       "properties": {
         "value": {
@@ -32071,6 +32114,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/TaskDTO"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperTaxAdminCalculatedMarketValue": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TaxAdminCalculatedMarketValue"
         }
       },
       "type": "object"
@@ -34885,56 +34936,6 @@
       },
       "type": "object"
     },
-    "SalesForceCustomerStats": {
-      "properties": {
-        "customerId": {
-          "description": "Customer Id",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "dateOfLastAdminLogin": {
-          "description": "Last Admin login to Tripletex date",
-          "readOnly": true,
-          "type": "string"
-        },
-        "numberOfEmployees": {
-          "description": "Number of employees",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "numberOfInvoicedEmployeesOnLastInvoice": {
-          "description": "Number of invoiced employees on last invoice",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "numberOfInvoicedTransactionsEHF": {
-          "description": "Number of invoiced transactions EHF",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "numberOfUsers": {
-          "description": "Number of users",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "totalMonthlyFees": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Total monthly service fees including discounts.",
-          "readOnly": true
-        },
-        "totalStartupFees": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Total charged startup-fees for all the customer's products",
-          "readOnly": true
-        }
-      },
-      "type": "object"
-    },
     "SalesForceEmployee": {
       "properties": {
         "address": {
@@ -35962,7 +35963,7 @@
           "readOnly": true,
           "type": "array"
         },
-        "country": {
+        "countryCode": {
           "type": "string"
         },
         "dividend": {
@@ -35971,6 +35972,9 @@
         "exemptionMethod": {
           "format": "int32",
           "type": "integer"
+        },
+        "financialProduct": {
+          "type": "string"
         },
         "genericDataSubType": {
           "enum": [
@@ -36303,7 +36307,7 @@
             "SHARES_AND_SECURITIES_STOCK_TYPE",
             "SHARES_AND_SECURITIES_VAT_NUMBER",
             "SHARES_AND_SECURITIES_ISIN",
-            "SHARES_AND_SECURITIES_COUNTRY",
+            "SHARES_AND_SECURITIES_COUNTRY_CODE",
             "SHARES_AND_SECURITIES_SHARE_CLASS",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_START_OF_THE_YEAR",
             "SHARES_AND_SECURITIES_SHARES_BY_THE_END_OF_THE_YEAR",
@@ -36316,6 +36320,7 @@
             "SHARES_AND_SECURITIES_PROFIT_INTEREST",
             "SHARES_AND_SECURITIES_LOSS_INTEREST",
             "SHARES_AND_SECURITIES_EXEMPTION_METHOD",
+            "SHARES_AND_SECURITIES_FINANCIAL_PRODUCT",
             "REAL_ESTATE_TYPE",
             "REAL_ESTATE_DESCRIPTION",
             "COMMERCIAL_PROPERTY_TYPE",
@@ -37741,6 +37746,15 @@
         },
         "url": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAdminCalculatedMarketValue": {
+      "properties": {
+        "marketValue": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -42805,7 +42819,8 @@
             "SHIFT_365",
             "OFFSHORE_336",
             "CONTINUOUS",
-            "OTHER_SHIFT"
+            "OTHER_SHIFT",
+            "NOT_CHOSEN"
           ],
           "type": "string"
         }
@@ -52798,6 +52813,27 @@
             "description": "Equals",
             "in": "query",
             "name": "includeContacts",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Equals",
+            "in": "query",
+            "name": "isInactive",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Equals",
+            "in": "query",
+            "name": "hasSystemAccess",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Equals",
+            "in": "query",
+            "name": "excludeReadOnly",
             "required": false,
             "type": "boolean"
           },
@@ -79502,9 +79538,6 @@
     },
     {
       "name": "tripletexAccountsalesForceUserOverview"
-    },
-    {
-      "name": "tripletexAccountsalesForceCustomerStats"
     },
     {
       "name": "tripletexDashboard"
