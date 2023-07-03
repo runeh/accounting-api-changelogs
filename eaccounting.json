@@ -240,6 +240,9 @@
           "format": "uuid",
           "type": "string"
         },
+        "IsCredit": {
+          "type": "boolean"
+        },
         "ManualVoucherId": {
           "format": "uuid",
           "type": "string"
@@ -805,7 +808,7 @@
           "type": "boolean"
         },
         "UsesMoss": {
-          "description": "This property can be set to true if the OSS setting is checked in company settings",
+          "description": "This property can be set if the OSS setting is checked in company settings. Only applicable if using Accrual accounting.",
           "type": "boolean"
         }
       },
@@ -1302,6 +1305,23 @@
       },
       "type": "object"
     },
+    "CompanyGreenTechnologySettingsApi": {
+      "properties": {
+        "GreenTechnologyDeductionMaxAmount": {
+          "description": "Maximum deduction amount for Green Technology.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "SollarCellDiscountPercentage": {
+          "description": "Sollar Cell Discount Percentage.",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "CompanyRotRutSettingsApi": {
       "properties": {
         "RotReducedInvoicingMaxAmount": {
@@ -1411,6 +1431,11 @@
           "maxLength": 40,
           "minLength": 0,
           "type": "string"
+        },
+        "CompanyGreenTechnologySettings": {
+          "$ref": "#/definitions/CompanyGreenTechnologySettingsApi",
+          "description": "Customer's GreenTechnology settings",
+          "readOnly": true
         },
         "CompanyIdentifier": {
           "description": "Company Identifier. Unique identifier for the company",
@@ -1536,6 +1561,11 @@
           "minLength": 0,
           "type": "string"
         },
+        "PeppolId": {
+          "description": "PeppolParticipantIdentifiers string separated by semicolons.\r\nIf identifier is empty in DB the we try to fetch it from InExchange.",
+          "readOnly": true,
+          "type": "string"
+        },
         "Phone": {
           "description": "Max length: 20 characters",
           "maxLength": 20,
@@ -1626,6 +1656,11 @@
           "type": "boolean"
         },
         "UsesCostCenter": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "UsesGreenTechnology": {
+          "description": "Customer has opted to use Green Technology.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2287,6 +2322,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "CustomerName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "CustomerNumber": {
           "readOnly": true,
           "type": "string"
@@ -2445,6 +2484,11 @@
           "type": "string"
         },
         "IsCreditInvoice": {
+          "type": "boolean"
+        },
+        "IsDirectDebit": {
+          "description": "Indicated whether this invoice has direct debit applied\r\nOnly applicable for NL",
+          "readOnly": true,
           "type": "boolean"
         },
         "IsNotDelivered": {
@@ -2715,6 +2759,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "CustomerName": {
+          "description": "Customer's actual name",
+          "readOnly": true,
+          "type": "string"
+        },
         "CustomerNumber": {
           "description": "Max length: 16 characters",
           "maxLength": 16,
@@ -2784,6 +2833,11 @@
           "description": "Max length: 50 characters",
           "maxLength": 50,
           "minLength": 0,
+          "type": "string"
+        },
+        "DueDate": {
+          "description": "Due date of the customer invoice draft.",
+          "format": "date-time",
           "type": "string"
         },
         "ElectronicReference": {
@@ -2860,6 +2914,11 @@
           "type": "string"
         },
         "IsCreditInvoice": {
+          "type": "boolean"
+        },
+        "IsDirectDebit": {
+          "description": "Indicated whether this invoice has direct debit applied\r\nOnly applicable for NL",
+          "readOnly": true,
           "type": "boolean"
         },
         "MessageThreads": {
@@ -3663,6 +3722,34 @@
         "SigningDate": {
           "format": "date-time",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiscountAgreementApi": {
+      "properties": {
+        "ChangedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "Id": {
+          "description": "Unique Id provided by eAccounting of the discount agreement",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "IsActive": {
+          "type": "boolean"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Notes": {
+          "type": "string"
+        },
+        "Number": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4734,7 +4821,7 @@
           "type": "string"
         },
         "PaymentType": {
-          "description": "1 = PartialPayment, 2 = CompletePayment, 3 = Rounding, 4 = Bank Charge",
+          "description": "1 = PartialPayment\r\n2 = CompletePayment\r\n3 = Rounding: The payment amount must be rounded on the customer side and the payment of the invoice will be recorded as fully paid.\r\nThe difference between entered amount and the total amount will count as rounding.\r\n4 = Bank Charge",
           "enum": [
             1,
             2,
@@ -6560,6 +6647,62 @@
       },
       "type": "object"
     },
+    "ODataQueryOptions[DiscountAgreementApi]": {
+      "properties": {
+        "Apply": {
+          "$ref": "#/definitions/ApplyQueryOption",
+          "readOnly": true
+        },
+        "Context": {
+          "$ref": "#/definitions/ODataQueryContext",
+          "readOnly": true
+        },
+        "Count": {
+          "$ref": "#/definitions/CountQueryOption",
+          "readOnly": true
+        },
+        "Filter": {
+          "$ref": "#/definitions/FilterQueryOption",
+          "readOnly": true
+        },
+        "IfMatch": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "IfNoneMatch": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "OrderBy": {
+          "$ref": "#/definitions/OrderByQueryOption",
+          "readOnly": true
+        },
+        "RawValues": {
+          "$ref": "#/definitions/ODataRawQueryOptions",
+          "readOnly": true
+        },
+        "Request": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "SelectExpand": {
+          "$ref": "#/definitions/SelectExpandQueryOption",
+          "readOnly": true
+        },
+        "Skip": {
+          "$ref": "#/definitions/SkipQueryOption",
+          "readOnly": true
+        },
+        "Top": {
+          "$ref": "#/definitions/TopQueryOption",
+          "readOnly": true
+        },
+        "Validator": {
+          "$ref": "#/definitions/ODataQueryValidator"
+        }
+      },
+      "type": "object"
+    },
     "ODataQueryOptions[DocumentApi]": {
       "properties": {
         "Apply": {
@@ -7233,6 +7376,118 @@
       "type": "object"
     },
     "ODataQueryOptions[QuoteApi]": {
+      "properties": {
+        "Apply": {
+          "$ref": "#/definitions/ApplyQueryOption",
+          "readOnly": true
+        },
+        "Context": {
+          "$ref": "#/definitions/ODataQueryContext",
+          "readOnly": true
+        },
+        "Count": {
+          "$ref": "#/definitions/CountQueryOption",
+          "readOnly": true
+        },
+        "Filter": {
+          "$ref": "#/definitions/FilterQueryOption",
+          "readOnly": true
+        },
+        "IfMatch": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "IfNoneMatch": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "OrderBy": {
+          "$ref": "#/definitions/OrderByQueryOption",
+          "readOnly": true
+        },
+        "RawValues": {
+          "$ref": "#/definitions/ODataRawQueryOptions",
+          "readOnly": true
+        },
+        "Request": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "SelectExpand": {
+          "$ref": "#/definitions/SelectExpandQueryOption",
+          "readOnly": true
+        },
+        "Skip": {
+          "$ref": "#/definitions/SkipQueryOption",
+          "readOnly": true
+        },
+        "Top": {
+          "$ref": "#/definitions/TopQueryOption",
+          "readOnly": true
+        },
+        "Validator": {
+          "$ref": "#/definitions/ODataQueryValidator"
+        }
+      },
+      "type": "object"
+    },
+    "ODataQueryOptions[SalesPriceListApi]": {
+      "properties": {
+        "Apply": {
+          "$ref": "#/definitions/ApplyQueryOption",
+          "readOnly": true
+        },
+        "Context": {
+          "$ref": "#/definitions/ODataQueryContext",
+          "readOnly": true
+        },
+        "Count": {
+          "$ref": "#/definitions/CountQueryOption",
+          "readOnly": true
+        },
+        "Filter": {
+          "$ref": "#/definitions/FilterQueryOption",
+          "readOnly": true
+        },
+        "IfMatch": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "IfNoneMatch": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "OrderBy": {
+          "$ref": "#/definitions/OrderByQueryOption",
+          "readOnly": true
+        },
+        "RawValues": {
+          "$ref": "#/definitions/ODataRawQueryOptions",
+          "readOnly": true
+        },
+        "Request": {
+          "readOnly": true,
+          "type": "object"
+        },
+        "SelectExpand": {
+          "$ref": "#/definitions/SelectExpandQueryOption",
+          "readOnly": true
+        },
+        "Skip": {
+          "$ref": "#/definitions/SkipQueryOption",
+          "readOnly": true
+        },
+        "Top": {
+          "$ref": "#/definitions/TopQueryOption",
+          "readOnly": true
+        },
+        "Validator": {
+          "$ref": "#/definitions/ODataQueryValidator"
+        }
+      },
+      "type": "object"
+    },
+    "ODataQueryOptions[SalesPriceListRowApi]": {
       "properties": {
         "Apply": {
           "$ref": "#/definitions/ApplyQueryOption",
@@ -8181,6 +8436,16 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "CustomerName": {
+          "description": "Readonly\r\nThe selected customers name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "CustomerNumber": {
+          "description": "Readonly\r\nThe selected customer's number",
+          "readOnly": true,
+          "type": "string"
+        },
         "DeliveredAmount": {
           "description": "Format: 2 decimals",
           "format": "double",
@@ -9097,6 +9362,24 @@
       ],
       "type": "object"
     },
+    "PaginatedResponse[DiscountAgreementApi]": {
+      "properties": {
+        "Data": {
+          "items": {
+            "$ref": "#/definitions/DiscountAgreementApi"
+          },
+          "type": "array"
+        },
+        "Meta": {
+          "$ref": "#/definitions/PaginationMetadata"
+        }
+      },
+      "required": [
+        "Meta",
+        "Data"
+      ],
+      "type": "object"
+    },
     "PaginatedResponse[FiscalYearApi]": {
       "properties": {
         "Data": {
@@ -9246,6 +9529,42 @@
         "Data": {
           "items": {
             "$ref": "#/definitions/QuoteApi"
+          },
+          "type": "array"
+        },
+        "Meta": {
+          "$ref": "#/definitions/PaginationMetadata"
+        }
+      },
+      "required": [
+        "Meta",
+        "Data"
+      ],
+      "type": "object"
+    },
+    "PaginatedResponse[SalesPriceListApi]": {
+      "properties": {
+        "Data": {
+          "items": {
+            "$ref": "#/definitions/SalesPriceListApi"
+          },
+          "type": "array"
+        },
+        "Meta": {
+          "$ref": "#/definitions/PaginationMetadata"
+        }
+      },
+      "required": [
+        "Meta",
+        "Data"
+      ],
+      "type": "object"
+    },
+    "PaginatedResponse[SalesPriceListRowApi]": {
+      "properties": {
+        "Data": {
+          "items": {
+            "$ref": "#/definitions/SalesPriceListRowApi"
           },
           "type": "array"
         },
@@ -9846,6 +10165,16 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "CustomerName": {
+          "description": "Readonly\r\nThe selected customer's name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "CustomerNumber": {
+          "description": "Readonly\r\nThe selected customer's number",
+          "readOnly": true,
+          "type": "string"
+        },
         "CustomerReference": {
           "description": "Equivalent for property YourReference in OrderApi and CustomerInvoiceApi models.",
           "maxLength": 100,
@@ -10371,6 +10700,79 @@
       ],
       "type": "object"
     },
+    "SalesPriceListApi": {
+      "properties": {
+        "ChangedUtc": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "CurrencyCode": {
+          "description": "Max length: 3 characters",
+          "maxLength": 3,
+          "minLength": 0,
+          "type": "string"
+        },
+        "Id": {
+          "description": "Unique Id provided by eAccounting of the sales price list",
+          "format": "uuid",
+          "readOnly": true,
+          "type": "string"
+        },
+        "IsActive": {
+          "type": "boolean"
+        },
+        "IsStandard": {
+          "description": "The standard price list is the list created by default by eAccounting when you are upgrading to Pro variant",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "Name": {
+          "type": "string"
+        },
+        "Note": {
+          "type": "string"
+        },
+        "Number": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SalesPriceListRowApi": {
+      "properties": {
+        "ArticleId": {
+          "description": "Purpose: Unique Id provided by eAccounting of article. Use /v2/articles.",
+          "format": "uuid",
+          "type": "string"
+        },
+        "ChangedUtc": {
+          "description": "Purpose: Set when the sales price is changed manually",
+          "format": "date-time",
+          "type": "string"
+        },
+        "CurrencyCode": {
+          "description": "Max length: 3 characters.",
+          "maxLength": 3,
+          "minLength": 0,
+          "type": "string"
+        },
+        "GrossPrice": {
+          "format": "double",
+          "type": "number"
+        },
+        "NetPrice": {
+          "format": "double",
+          "type": "number"
+        },
+        "SalesPriceListId": {
+          "description": "Purpose: Unique Id provided by eAccounting of the sales price list. Use /v2/salespricelists.",
+          "format": "uuid",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SelectExpandClause": {
       "properties": {
         "AllSelected": {
@@ -10650,7 +11052,7 @@
           "type": "string"
         },
         "ForeignPaymentCodeId": {
-          "description": "Source: Get from /v2/foreignpaymentcodes. Purpose: Used for categorization of foreign purchases (NO and SE only).",
+          "description": "Source: Get from /v2/foreignpaymentcodes. Purpose: Used for categorization of foreign purchases (NO and SE only). Must be set if having active bankintegration, Supplier is foreign and AutomaticPaymentService is false.",
           "format": "uuid",
           "type": "string"
         },
@@ -10721,6 +11123,10 @@
           "maxLength": 10,
           "minLength": 0,
           "type": "string"
+        },
+        "ProportionalVat": {
+          "description": "Purpose: Inform that the supplier has Proportional VAT activated Default: false",
+          "type": "boolean"
         },
         "SelfEmployedWithoutFixedAddress": {
           "type": "boolean"
@@ -10850,6 +11256,15 @@
         },
         "ModifiedUtc": {
           "format": "date-time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "Number": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "NumberSeries": {
           "readOnly": true,
           "type": "string"
         },
@@ -11124,6 +11539,11 @@
           "description": "Source: Get from /v2/suppliers",
           "format": "uuid",
           "type": "string"
+        },
+        "SupplierInvoiceOrigin": {
+          "description": "EAccounting = 0,\r\nAutoInvoice = 1,\r\nAPI = 2,\r\nVAT = 3",
+          "format": "int32",
+          "type": "integer"
         },
         "SupplierName": {
           "description": "Max length: 50 characters",
@@ -11750,7 +12170,8 @@
             27,
             28,
             29,
-            30
+            30,
+            31
           ],
           "format": "int32",
           "type": "integer"
@@ -11919,7 +12340,6 @@
         "CreditAmount": {
           "description": "Format: Max 2 decimals",
           "format": "double",
-          "maximum": 1000000000,
           "minimum": 0,
           "pattern": "[-]?\\d+(.\\d{1,2})?",
           "type": "number"
@@ -11927,7 +12347,6 @@
         "DebitAmount": {
           "description": "Format: Max 2 decimals",
           "format": "double",
-          "maximum": 1000000000,
           "minimum": 0,
           "pattern": "[-]?\\d+(.\\d{1,2})?",
           "type": "number"
@@ -14554,6 +14973,13 @@
             "schema": {
               "$ref": "#/definitions/CustomerInvoiceDraftApi"
             }
+          },
+          {
+            "description": "Set to true in order to override the CustomerIsPrivatePerson property in order to ignore the customer setting.",
+            "in": "query",
+            "name": "overrideCustomerIsPrivatePerson",
+            "required": false,
+            "type": "boolean"
           }
         ],
         "produces": [
@@ -15846,6 +16272,71 @@
         "summary": "Get single delivery term",
         "tags": [
           "DeliveryTermsV2"
+        ]
+      }
+    },
+    "/v2/discountagreements": {
+      "get": {
+        "consumes": [],
+        "deprecated": false,
+        "description": "<p>Requires any of the following scopes: <br><b>ea:sales, ea:sales_readonly</b></p><p>Available in any of the following variants: <br><b>Pro</b></p>",
+        "operationId": "DiscountAgreementsV2_Get",
+        "parameters": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PaginatedResponse[DiscountAgreementApi]"
+            }
+          }
+        },
+        "summary": "Gets discount agreements.",
+        "tags": [
+          "DiscountAgreementsV2"
+        ]
+      }
+    },
+    "/v2/discountagreements/{discountAgreementId}": {
+      "get": {
+        "consumes": [],
+        "deprecated": false,
+        "description": "<p>Requires any of the following scopes: <br><b>ea:sales, ea:sales_readonly</b></p><p>Available in any of the following variants: <br><b>Pro</b></p>",
+        "operationId": "DiscountAgreementsV2_Get",
+        "parameters": [
+          {
+            "description": "",
+            "format": "uuid",
+            "in": "path",
+            "name": "discountAgreementId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/DiscountAgreementApi"
+            }
+          }
+        },
+        "summary": "Gets a discount agreement by id.",
+        "tags": [
+          "DiscountAgreementsV2"
         ]
       }
     },
@@ -18349,6 +18840,144 @@
         "summary": "Delete a customer invoice draft attachment.",
         "tags": [
           "SalesDocumentAttachmentsV2"
+        ]
+      }
+    },
+    "/v2/salespricelists": {
+      "get": {
+        "consumes": [],
+        "deprecated": false,
+        "description": "<p>Requires any of the following scopes: <br><b>ea:sales, ea:sales_readonly</b></p><p>Available in any of the following variants: <br><b>Pro</b></p>",
+        "operationId": "SalesPriceListsV2_Get",
+        "parameters": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PaginatedResponse[SalesPriceListApi]"
+            }
+          }
+        },
+        "summary": "Gets sales price lists.",
+        "tags": [
+          "SalesPriceListsV2"
+        ]
+      }
+    },
+    "/v2/salespricelists/prices": {
+      "get": {
+        "consumes": [],
+        "deprecated": false,
+        "description": "<p>Requires any of the following scopes: <br><b>ea:sales, ea:sales_readonly</b></p><p>Available in any of the following variants: <br><b>Pro</b></p>",
+        "operationId": "SalesPriceListsV2_Get",
+        "parameters": [],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/PaginatedResponse[SalesPriceListRowApi]"
+            }
+          }
+        },
+        "summary": "Gets all sales prices from the company.",
+        "tags": [
+          "SalesPriceListsV2"
+        ]
+      }
+    },
+    "/v2/salespricelists/prices/{salesPriceListId}/{articleId}": {
+      "get": {
+        "consumes": [],
+        "deprecated": false,
+        "description": "<p>Requires any of the following scopes: <br><b>ea:sales, ea:sales_readonly</b></p><p>Available in any of the following variants: <br><b>Pro</b></p>",
+        "operationId": "SalesPriceListsV2_Get",
+        "parameters": [
+          {
+            "description": "",
+            "format": "uuid",
+            "in": "path",
+            "name": "salesPriceListId",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "",
+            "format": "uuid",
+            "in": "path",
+            "name": "articleId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SalesPriceListRowApi"
+            }
+          }
+        },
+        "summary": "Gets the sales price from a specific price list for a specific article.",
+        "tags": [
+          "SalesPriceListsV2"
+        ]
+      }
+    },
+    "/v2/salespricelists/{salesPriceListId}": {
+      "get": {
+        "consumes": [],
+        "deprecated": false,
+        "description": "<p>Requires any of the following scopes: <br><b>ea:sales, ea:sales_readonly</b></p><p>Available in any of the following variants: <br><b>Pro</b></p>",
+        "operationId": "SalesPriceListsV2_Get",
+        "parameters": [
+          {
+            "description": "",
+            "format": "uuid",
+            "in": "path",
+            "name": "salesPriceListId",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "produces": [
+          "application/json",
+          "text/json",
+          "application/xml",
+          "text/xml",
+          "multipart/form-data"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "$ref": "#/definitions/SalesPriceListApi"
+            }
+          }
+        },
+        "summary": "Gets a sales price list by id.",
+        "tags": [
+          "SalesPriceListsV2"
         ]
       }
     },

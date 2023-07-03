@@ -37450,6 +37450,9 @@
     },
     "SupportAPIMeta": {
       "properties": {
+        "alwaysShowChatButton": {
+          "type": "boolean"
+        },
         "available": {
           "type": "boolean"
         },
