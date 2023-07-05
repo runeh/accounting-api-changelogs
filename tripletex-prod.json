@@ -13745,6 +13745,9 @@
         },
         "outstandingOrdersSum": {
           "$ref": "#/definitions/TlxNumber"
+        },
+        "showInvoiceAction": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -36541,6 +36544,9 @@
           "type": "array"
         },
         "signatureCombinationDescription": {
+          "type": "string"
+        },
+        "uniqueKey": {
           "type": "string"
         }
       },
