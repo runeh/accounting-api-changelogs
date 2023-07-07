@@ -3247,6 +3247,9 @@
     },
     "BankOnboardingDTO": {
       "properties": {
+        "autoPayTwoFAEnabled": {
+          "type": "boolean"
+        },
         "companyOrgnr": {
           "type": "string"
         },
@@ -7021,6 +7024,19 @@
         "sourceCurrency",
         "targetCurrency"
       ],
+      "type": "object"
+    },
+    "CurrencyPaymentsSumDTO": {
+      "properties": {
+        "currency": {
+          "$ref": "#/definitions/Currency",
+          "description": "Currency of the sum"
+        },
+        "sum": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Sum of the payments"
+        }
+      },
       "type": "object"
     },
     "CurrencyWithRates": {
@@ -30844,6 +30860,17 @@
         "value": {
           "items": {
             "$ref": "#/definitions/CompanyDTO"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperListCurrencyPaymentsSumDTO": {
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "#/definitions/CurrencyPaymentsSumDTO"
           },
           "type": "array"
         }
