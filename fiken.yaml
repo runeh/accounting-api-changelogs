@@ -200,27 +200,27 @@ info:
     Pagination, sorting and filtering query parameters are all optional.
 
 
-    | URI                                                                     | Pagination? | Sortable? | Sortable Fields                       | Filterable? | Filtered Fields                                                                                                           |
-    | :---------                                                              |:----------- | :-------- | :-------------                        | :---        | :---                                                                                                                      |
-    | https://api.fiken.no/api/v2/companies                                  | Yes         | Yes       | createdDate, name, organizationNumber | No          |                                                                                                                           |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/accounts           | No          | No        |                                       | Yes         | fromAccount, toAccount                                                                                                    |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/accountBalances    | Yes         | No        |                                       | Yes         | fromAccount, toAccount                                                                                                    |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/bankAccounts       | Yes         | No        |                                       | Yes         | inactive                                                                                                                  |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/contacts           | Yes         | Yes       | createdDate, lastModified             | Yes         | supplierNumber, customerNumber, memberNumber, name, organizationNumber, email, group, lastModified, createdDate, inactive |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/creditNotes        | Yes         | No        |                                       | Yes         | issueDate, settled, customerId                                                                                            |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/inbox              | Yes         | Yes       | createdDate, name                     | Yes         | status, name                                                                                                              |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/invoices           | Yes         | No        |                                       | Yes         | issueDate, lastModified, settled, customerId, orderReference, invoiceDraftUuid                                            |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/invoices/drafts    | Yes         | No        |                                       | No          |                                                                                                                           |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/journalEntries     | Yes         | No        |                                       | Yes         | date                                                                                                                      |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/offers             | Yes         | No        |                                       | No          |                                                                                                                           |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/orderConfirmations | Yes         | No        |                                       | No          |                                                                                                                           |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/products           | Yes         | No        |                                       | Yes         | name, productNumber, active, createdDate, lastModified                                                                    |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/projects           | Yes         | No        |                                       | Yes         | completed                                                                                                                 |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/purchases          | Yes         | Yes       | createdDate                           | No          |                                                                                                                           |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/purchases/drafts   | Yes         | No        |                                       | No          |                                                                                                                           |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/sales              | Yes         | No        |                                       | Yes         | saleNumber, lastModified                                                                                                  |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/sales/drafts       | Yes         | No        |                                       | No          |                                                                                                                           |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/transactions       | Yes         | No        |                                       | Yes         | createdDate, lastModified                                                                                                 |
+    | URI                                                                     | Pagination? | Sortable? | Sortable Fields                       | Filterable? | Filtered Fields                                                                                                                         |
+    | :---------                                                              |:----------- | :-------- | :-------------                        | :---        | :---                                                                                                                                    |
+    | https://api.fiken.no/api/v2/companies                                  | Yes         | Yes       | createdDate, name, organizationNumber | No          |                                                                                                                                         |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/accounts           | No          | No        |                                       | Yes         | fromAccount, toAccount                                                                                                                  |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/accountBalances    | Yes         | No        |                                       | Yes         | fromAccount, toAccount                                                                                                                  |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/bankAccounts       | Yes         | No        |                                       | Yes         | inactive                                                                                                                                |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/contacts           | Yes         | Yes       | createdDate, lastModified             | Yes         | supplierNumber, customerNumber, memberNumber, name, organizationNumber, email, group, lastModified, createdDate, inactive, phoneNumber  |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/creditNotes        | Yes         | No        |                                       | Yes         | issueDate, settled, customerId                                                                                                          |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/inbox              | Yes         | Yes       | createdDate, name                     | Yes         | status, name                                                                                                                            |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/invoices           | Yes         | No        |                                       | Yes         | issueDate, lastModified, settled, customerId, orderReference, invoiceDraftUuid                                                          |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/invoices/drafts    | Yes         | No        |                                       | No          |                                                                                                                                         |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/journalEntries     | Yes         | No        |                                       | Yes         | date                                                                                                                                    |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/offers             | Yes         | No        |                                       | No          |                                                                                                                                         |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/orderConfirmations | Yes         | No        |                                       | No          |                                                                                                                                         |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/products           | Yes         | No        |                                       | Yes         | name, productNumber, active, createdDate, lastModified                                                                                  |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/projects           | Yes         | No        |                                       | Yes         | completed                                                                                                                               |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/purchases          | Yes         | Yes       | createdDate                           | No          |                                                                                                                                         |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/purchases/drafts   | Yes         | No        |                                       | No          |                                                                                                                                         |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/sales              | Yes         | No        |                                       | Yes         | saleNumber, lastModified                                                                                                                |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/sales/drafts       | Yes         | No        |                                       | No          |                                                                                                                                         |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/transactions       | Yes         | No        |                                       | Yes         | createdDate, lastModified                                                                                                               |
 
     ### Pagination
     By default the API sets `page=0` and `pageSize=25` and returns the first 25 elements in a collection resource, if nothing else is specified.
@@ -708,6 +708,11 @@ paths:
             enum: [ lastModified asc, lastModified desc, createdDate asc, createdDate desc ]
             default: createdDate asc
             description: Sorts results in either ascending (asc) or descending (desc) order based on the parameter value.
+        - name: phoneNumber
+          in: query
+          schema:
+            type: string
+          description: Find all results with the phone number equal to the specified parameter.
       responses:
         '200':
           description: OK
@@ -4573,7 +4578,7 @@ components:
           description: Days until due date of the invoice draft.
         invoiceText:
           type: string
-          description: Comment/description printed above the invoice lines
+          description: Comment/description printed above the invoice lines. If not present, and standard text is registered, standard text is printed.
         yourReference:
           type: string
         ourReference:
@@ -4913,6 +4918,7 @@ components:
           type: string
           maxLength: 500
           example: 'Invoice for services rendered during the Oslo Knitting Festival.'
+          description: If not present, and standard text is registered, standard text is printed.
         cash:
           type: boolean
           example: false
