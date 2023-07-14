@@ -26211,6 +26211,7 @@
           "type": "string"
         },
         "number": {
+          "description": "If NULL, a number is generated automatically.",
           "maxLength": 100,
           "type": "string"
         },
@@ -34860,7 +34861,8 @@
             "CMA_SHOPIFY",
             "CMA_MYSTORE",
             "CMA_WOOCOMMERCE",
-            "RACKBEAT"
+            "RACKBEAT",
+            "DIYPACKAGE"
           ],
           "readOnly": true,
           "type": "string"
@@ -36732,9 +36734,6 @@
           "type": "string"
         },
         "sseUrl": {
-          "type": "string"
-        },
-        "stompUrl": {
           "type": "string"
         }
       },
@@ -63434,7 +63433,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Add new project.",
+        "summary": "Add new project.",
         "tags": [
           "project"
         ]
