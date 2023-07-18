@@ -13629,6 +13629,10 @@
           "readOnly": true,
           "type": "array"
         },
+        "defaultOrderInvoiceComment": {
+          "readOnly": true,
+          "type": "string"
+        },
         "defaultSendTypeB2B": {
           "enum": [
             "EMAIL",
