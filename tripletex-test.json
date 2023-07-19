@@ -2586,6 +2586,9 @@
         "canAddAutoPayPayments": {
           "type": "boolean"
         },
+        "hasAutomation2022ToolbarPilot": {
+          "type": "boolean"
+        },
         "hasBookkeepingBeforeAttestationSetting": {
           "type": "boolean"
         },
@@ -76030,6 +76033,78 @@
         ]
       }
     },
+    "/travelExpense/costParticipant/list": {
+      "delete": {
+        "description": "",
+        "operationId": "TravelExpenseCostParticipantList_deleteList",
+        "parameters": [
+          {
+            "description": "JSON representing objects to delete. Should have ID and version set.",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/TravelExpenseParticipant"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Delete cost participants.",
+        "tags": [
+          "travelExpense/costParticipant"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "TravelExpenseCostParticipantList_postList",
+        "parameters": [
+          {
+            "description": "JSON representing the new object to be created. Should not have ID and version set.",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/TravelExpenseParticipant"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ListResponseTravelExpenseParticipant"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Create participants on cost.",
+        "tags": [
+          "travelExpense/costParticipant"
+        ]
+      }
+    },
     "/travelExpense/costParticipant/{costId}/costParticipants": {
       "get": {
         "description": "",
@@ -76664,6 +76739,78 @@
           }
         ],
         "summary": "Create passenger.",
+        "tags": [
+          "travelExpense/passenger"
+        ]
+      }
+    },
+    "/travelExpense/passenger/list": {
+      "delete": {
+        "description": "",
+        "operationId": "TravelExpensePassengerList_deleteList",
+        "parameters": [
+          {
+            "description": "JSON representing objects to delete. Should have ID and version set.",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Passenger"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Delete passengers.",
+        "tags": [
+          "travelExpense/passenger"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "TravelExpensePassengerList_postList",
+        "parameters": [
+          {
+            "description": "JSON representing the new object to be created. Should not have ID and version set.",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/Passenger"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ListResponsePassenger"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Create passengers.",
         "tags": [
           "travelExpense/passenger"
         ]
