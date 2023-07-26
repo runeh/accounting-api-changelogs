@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -6912,6 +6918,71 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "CreateSalaryEmployee": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "department": {
+          "$ref": "#/definitions/Department"
+        },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "employeeCategory": {
+          "$ref": "#/definitions/EmployeeCategory"
+        },
+        "employeeNumber": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "employments": {
+          "description": "Employments tied to the employee",
+          "items": {
+            "$ref": "#/definitions/Employment"
+          },
+          "type": "array"
+        },
+        "firstName": {
+          "maxLength": 100,
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "lastName": {
+          "maxLength": 100,
+          "minLength": 1,
+          "type": "string"
+        },
+        "pictureId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName"
+      ],
       "type": "object"
     },
     "Credentials": {
@@ -15585,6 +15656,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Country"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseCreateSalaryEmployee": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/CreateSalaryEmployee"
           },
           "readOnly": true,
           "type": "array"
@@ -25059,6 +25163,25 @@
       },
       "type": "object"
     },
+    "PreviousSalaryAggregates": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "salaryTransactionId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "wagePaymentIdOfEmployee": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Price": {
       "properties": {
         "price": {
@@ -30265,6 +30388,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperCreateSalaryEmployee": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CreateSalaryEmployee"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperCurrency": {
       "properties": {
         "value": {
@@ -31181,6 +31312,20 @@
         "value": {
           "additionalProperties": {
             "type": "boolean"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperMapIntegerListPreviousSalaryAggregates": {
+      "properties": {
+        "value": {
+          "additionalProperties": {
+            "items": {
+              "$ref": "#/definitions/PreviousSalaryAggregates"
+            },
+            "type": "array"
           },
           "type": "object"
         }
@@ -34907,6 +35052,12 @@
           "readOnly": true,
           "type": "array"
         },
+        "creatorCompanyId": {
+          "description": "Represents the companyId of the creator of the account",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "customerCompanyId": {
           "format": "int32",
           "readOnly": true,
@@ -34925,6 +35076,16 @@
         "id": {
           "format": "int32",
           "type": "integer"
+        },
+        "invoicePostponeDate": {
+          "description": "Tripletex account invoice postpone date",
+          "readOnly": true,
+          "type": "string"
+        },
+        "invoiceStartDate": {
+          "description": "Tripletex account invoice start date",
+          "readOnly": true,
+          "type": "string"
         },
         "isAccountant": {
           "readOnly": true,
@@ -79632,6 +79793,9 @@
       "name": "salarytskinternalmeta"
     },
     {
+      "name": "tsksalaryv2createSalaryEmployee"
+    },
+    {
       "name": "tsksalaryv2employee"
     },
     {
@@ -79645,6 +79809,9 @@
     },
     {
       "name": "tsksalaryv2specificationsupplement"
+    },
+    {
+      "name": "tsksalaryv2previousSalary"
     },
     {
       "name": "tsksalaryv2transaction"
