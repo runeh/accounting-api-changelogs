@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -42151,17 +42145,6 @@
           "readOnly": true,
           "type": "integer"
         },
-        "accountSourceType": {
-          "enum": [
-            "NONE",
-            "EDI",
-            "SMART_SCAN",
-            "FABRIC_AI",
-            "LAST_VOUCHER"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "accountingPeriod": {
           "readOnly": true,
           "type": "string"
@@ -42263,17 +42246,6 @@
           "readOnly": true,
           "type": "integer"
         },
-        "departmentSourceType": {
-          "enum": [
-            "NONE",
-            "EDI",
-            "SMART_SCAN",
-            "FABRIC_AI",
-            "LAST_VOUCHER"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "description": {
           "readOnly": true,
           "type": "string"
@@ -42294,17 +42266,6 @@
           "type": "array"
         },
         "dueDate": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "dueDateSourceType": {
-          "enum": [
-            "NONE",
-            "EDI",
-            "SMART_SCAN",
-            "FABRIC_AI",
-            "LAST_VOUCHER"
-          ],
           "readOnly": true,
           "type": "string"
         },
@@ -42339,44 +42300,11 @@
           "readOnly": true,
           "type": "number"
         },
-        "invoiceAmountSourceType": {
-          "enum": [
-            "NONE",
-            "EDI",
-            "SMART_SCAN",
-            "FABRIC_AI",
-            "LAST_VOUCHER"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "invoiceCurrency": {
           "readOnly": true,
           "type": "string"
         },
-        "invoiceCurrencySourceType": {
-          "enum": [
-            "NONE",
-            "EDI",
-            "SMART_SCAN",
-            "FABRIC_AI",
-            "LAST_VOUCHER"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "invoiceDate": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "invoiceDateSourceType": {
-          "enum": [
-            "NONE",
-            "EDI",
-            "SMART_SCAN",
-            "FABRIC_AI",
-            "LAST_VOUCHER"
-          ],
           "readOnly": true,
           "type": "string"
         },
@@ -42457,16 +42385,9 @@
           "readOnly": true,
           "type": "integer"
         },
-        "paymentTypeSourceType": {
-          "enum": [
-            "NONE",
-            "EDI",
-            "SMART_SCAN",
-            "FABRIC_AI",
-            "LAST_VOUCHER"
-          ],
+        "preferDetailedInvoice": {
           "readOnly": true,
-          "type": "string"
+          "type": "boolean"
         },
         "project": {
           "readOnly": true,
@@ -42478,17 +42399,6 @@
           "type": "integer"
         },
         "projectRef": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "projectSourceType": {
-          "enum": [
-            "NONE",
-            "EDI",
-            "SMART_SCAN",
-            "FABRIC_AI",
-            "LAST_VOUCHER"
-          ],
           "readOnly": true,
           "type": "string"
         },
@@ -42505,17 +42415,6 @@
           "type": "string"
         },
         "supplierName": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "supplierSourceType": {
-          "enum": [
-            "NONE",
-            "EDI",
-            "SMART_SCAN",
-            "FABRIC_AI",
-            "LAST_VOUCHER"
-          ],
           "readOnly": true,
           "type": "string"
         },
@@ -42543,17 +42442,6 @@
         "vatPercentage": {
           "readOnly": true,
           "type": "number"
-        },
-        "vatSourceType": {
-          "enum": [
-            "NONE",
-            "EDI",
-            "SMART_SCAN",
-            "FABRIC_AI",
-            "LAST_VOUCHER"
-          ],
-          "readOnly": true,
-          "type": "string"
         },
         "vendorRef": {
           "readOnly": true,
