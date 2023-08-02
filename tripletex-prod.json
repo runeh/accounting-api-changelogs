@@ -42078,7 +42078,15 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "hasBankAgreement": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "hasDepartment": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasEfoNelfoInvoices": {
           "readOnly": true,
           "type": "boolean"
         },

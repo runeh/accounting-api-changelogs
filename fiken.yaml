@@ -216,9 +216,9 @@ info:
     | https://api.fiken.no/api/v2/companies/{companySlug}/orderConfirmations | Yes         | No        |                                       | No          |                                                                                                                                         |
     | https://api.fiken.no/api/v2/companies/{companySlug}/products           | Yes         | No        |                                       | Yes         | name, productNumber, active, createdDate, lastModified                                                                                  |
     | https://api.fiken.no/api/v2/companies/{companySlug}/projects           | Yes         | No        |                                       | Yes         | completed                                                                                                                               |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/purchases          | Yes         | Yes       | createdDate                           | No          |                                                                                                                                         |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/purchases          | Yes         | Yes       | createdDate                           | No          | date                                                                                                                                    |
     | https://api.fiken.no/api/v2/companies/{companySlug}/purchases/drafts   | Yes         | No        |                                       | No          |                                                                                                                                         |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/sales              | Yes         | No        |                                       | Yes         | saleNumber, lastModified                                                                                                                |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/sales              | Yes         | No        |                                       | Yes         | saleNumber, lastModified, date                                                                                                          |
     | https://api.fiken.no/api/v2/companies/{companySlug}/sales/drafts       | Yes         | No        |                                       | No          |                                                                                                                                         |
     | https://api.fiken.no/api/v2/companies/{companySlug}/transactions       | Yes         | No        |                                       | Yes         | createdDate, lastModified                                                                                                               |
 
@@ -2729,6 +2729,11 @@ paths:
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/date'
+        - $ref: '#/components/parameters/dateLe'
+        - $ref: '#/components/parameters/dateLt'
+        - $ref: '#/components/parameters/dateGe'
+        - $ref: '#/components/parameters/dateGt'
         - $ref: '#/components/parameters/lastModified'
         - $ref: '#/components/parameters/lastModifiedLe'
         - $ref: '#/components/parameters/lastModifiedLt'
@@ -3156,6 +3161,11 @@ paths:
       parameters:
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/pageSize'
+        - $ref: '#/components/parameters/date'
+        - $ref: '#/components/parameters/dateLe'
+        - $ref: '#/components/parameters/dateLt'
+        - $ref: '#/components/parameters/dateGe'
+        - $ref: '#/components/parameters/dateGt'
         - name: sortBy
           in: query
           schema:
