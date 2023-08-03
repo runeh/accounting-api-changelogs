@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -21890,6 +21896,11 @@
           ],
           "type": "string"
         },
+        "moduleHolydayPlan": {
+          "description": "read only",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "moduleProductAccounting": {
           "description": "read only",
           "readOnly": true,
@@ -21901,6 +21912,11 @@
           "type": "boolean"
         },
         "moduleProjectBudget": {
+          "type": "boolean"
+        },
+        "moduleVacationBalance": {
+          "description": "read only",
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleWageProjectAccounting": {
@@ -32835,6 +32851,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperWorkingHoursCollection": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/WorkingHoursCollection"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperYearEndAnnualAccounts": {
       "properties": {
         "value": {
@@ -43021,6 +43045,38 @@
         },
         "moduleproject": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "WorkingHours": {
+      "properties": {
+        "date": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "hours": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "WorkingHoursCollection": {
+      "properties": {
+        "companyWorkingHours": {
+          "items": {
+            "$ref": "#/definitions/WorkingHours"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "employeeWorkingHours": {
+          "items": {
+            "$ref": "#/definitions/WorkingHours"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
