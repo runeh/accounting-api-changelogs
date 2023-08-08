@@ -2595,9 +2595,6 @@
         "hasBookkeepingBeforeAttestationSetting": {
           "type": "boolean"
         },
-        "hasFabricAiMaxAmountPilotFlag": {
-          "type": "boolean"
-        },
         "hasVoucherApprovalModule": {
           "type": "boolean"
         },
@@ -13747,6 +13744,11 @@
           "type": "integer"
         },
         "hasFirstInvoiceNumber": {
+          "type": "boolean"
+        },
+        "hasSentFirstInvoice": {
+          "description": "Has company sent first invoice",
+          "readOnly": true,
           "type": "boolean"
         },
         "id": {
