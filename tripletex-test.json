@@ -41977,6 +41977,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "canChangeDescription": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "commentCount": {
           "format": "int32",
           "readOnly": true,
@@ -46176,6 +46180,40 @@
         "summary": "Update bank reconciliation settings.",
         "tags": [
           "bank/reconciliation/settings"
+        ]
+      }
+    },
+    "/bank/reconciliation/transactions/unmatched:csv": {
+      "put": {
+        "description": "",
+        "operationId": "BankReconciliationTransactionsUnmatchedcsv_csvTransactions",
+        "parameters": [
+          {
+            "description": "ID for reconciliation",
+            "format": "int32",
+            "in": "query",
+            "name": "reconciliationId",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "produces": [
+          "text/csv; charset=utf-8",
+          "text/csv; charset=iso-8859-1"
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get all unmatched transactions in csv format",
+        "tags": [
+          "bank/reconciliation"
         ]
       }
     },
