@@ -2841,24 +2841,6 @@
       ],
       "type": "object"
     },
-    "BankBalance": {
-      "properties": {
-        "bankBalanceDate": {
-          "description": "Bank balance date",
-          "format": "date",
-          "type": "string"
-        },
-        "currency": {
-          "description": "Currency",
-          "type": "string"
-        },
-        "moneyAmount": {
-          "description": "Bank balance amount",
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
     "BankBalanceEstimation": {
       "properties": {
         "batchId": {
@@ -3688,23 +3670,6 @@
         "voucher": {
           "$ref": "#/definitions/Voucher",
           "readOnly": true
-        }
-      },
-      "type": "object"
-    },
-    "BankingSummaryDTO": {
-      "properties": {
-        "bankBalance": {
-          "$ref": "#/definitions/BankBalance",
-          "description": "Bank balance"
-        },
-        "moneyIn": {
-          "$ref": "#/definitions/MoneyAmount",
-          "description": "Amount of money coming in the account"
-        },
-        "moneyOut": {
-          "$ref": "#/definitions/MoneyAmount",
-          "description": "Amount of money going out of the account"
         }
       },
       "type": "object"
@@ -7518,6 +7483,9 @@
         "loginEmployeeId": {
           "format": "int32",
           "type": "integer"
+        },
+        "segmentationData": {
+          "$ref": "#/definitions/SegmentationData"
         },
         "showAgroTourMe": {
           "type": "boolean"
@@ -13643,6 +13611,73 @@
       },
       "type": "object"
     },
+    "LastPosted": {
+      "properties": {
+        "actualEmployeeId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "amount": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "attestationStatus": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "automaticallyPosted": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "commentCount": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "companyId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "lastComment": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentStatus": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "postedByEmployee": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "supplier": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "timestamp": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "voucherDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "voucherId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherNumber": {
+          "format": "int32",
+          "minimum": 0,
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "LeaveOfAbsence": {
       "properties": {
         "changes": {
@@ -16610,6 +16645,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/InvoiceSummaryDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseLastPosted": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/LastPosted"
           },
           "readOnly": true,
           "type": "array"
@@ -21693,23 +21761,6 @@
         "vvs": {
           "description": "Not readable. Only for input.",
           "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "MoneyAmount": {
-      "properties": {
-        "amount": {
-          "description": "Amount of money",
-          "type": "number"
-        },
-        "currency": {
-          "description": "Currency",
-          "type": "string"
-        },
-        "percentageChange": {
-          "description": "Percentage change compared to previous 30 days",
-          "type": "number"
         }
       },
       "type": "object"
@@ -29923,14 +29974,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperBankingSummaryDTO": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/BankingSummaryDTO"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperBanner": {
       "properties": {
         "value": {
@@ -31010,6 +31053,17 @@
         "value": {
           "items": {
             "$ref": "#/definitions/TodoListWageTransaction"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperListYearEndReportComment": {
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "#/definitions/YearEndReportComment"
           },
           "type": "array"
         }
@@ -32595,6 +32649,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperYearEndReportComment": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/YearEndReportComment"
         }
       },
       "type": "object"
@@ -35925,6 +35987,12 @@
           "type": "boolean"
         },
         "isAuthAccountingSettings": {
+          "type": "boolean"
+        },
+        "isAuthAllVouchers": {
+          "type": "boolean"
+        },
+        "isAuthBankReconciliation": {
           "type": "boolean"
         },
         "isAuthCompanyAdmin": {
@@ -43138,6 +43206,53 @@
         },
         "yearEndReportPosting": {
           "$ref": "#/definitions/YearEndReportType"
+        }
+      },
+      "type": "object"
+    },
+    "YearEndReportComment": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "comment": {
+          "maxLength": 1024,
+          "type": "string"
+        },
+        "date": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "stepType": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "uploaderName": {
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
         }
       },
       "type": "object"
@@ -79041,6 +79156,9 @@
       "name": "killSwitch"
     },
     {
+      "name": "lastPosted"
+    },
+    {
       "name": "ledger"
     },
     {
@@ -79740,9 +79858,6 @@
       "name": "tripletexDashboard"
     },
     {
-      "name": "tripletexDashboardbankingSummary"
-    },
-    {
       "name": "tripletexDashboardgetStartedSummary"
     },
     {
@@ -79861,6 +79976,9 @@
     },
     {
       "name": "yearEnd"
+    },
+    {
+      "name": "yearEndcomments"
     },
     {
       "name": "yearEndaccountSpecification"
