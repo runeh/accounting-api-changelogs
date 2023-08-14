@@ -22049,6 +22049,9 @@
         "monthlyPrice": {
           "$ref": "#/definitions/TlxNumber"
         },
+        "ordered": {
+          "type": "boolean"
+        },
         "perUsePrice": {
           "$ref": "#/definitions/TlxNumber"
         },
@@ -22057,6 +22060,10 @@
         },
         "perUserPrice": {
           "$ref": "#/definitions/TlxNumber"
+        },
+        "possibleStartDate": {
+          "format": "date",
+          "type": "string"
         },
         "price1": {
           "$ref": "#/definitions/TlxNumber"
