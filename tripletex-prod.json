@@ -65505,14 +65505,14 @@
             "description": "From and including",
             "in": "query",
             "name": "periodStart",
-            "required": false,
+            "required": true,
             "type": "string"
           },
           {
             "description": "To and excluding",
             "in": "query",
             "name": "periodEnd",
-            "required": false,
+            "required": true,
             "type": "string"
           },
           {
