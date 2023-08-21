@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -13474,6 +13480,14 @@
           "description": "Has automatic soft reminders enabled for this company. This setting need to be enabled both here and on each customer card to take effect.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "newOrderOfferOurContactDefaultValue": {
+          "enum": [
+            "ACCOUNT_MANAGER",
+            "LOGIN_USER",
+            "NONE"
+          ],
+          "type": "string"
         },
         "nextInvoiceNumber": {
           "format": "int32",
@@ -40562,6 +40576,18 @@
       "properties": {
         "companyName": {
           "type": "string"
+        },
+        "showDepartment": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "showDivision": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "showEmployeeCategory": {
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
