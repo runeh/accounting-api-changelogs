@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -5731,6 +5725,32 @@
       },
       "type": "object"
     },
+    "ClientForTravelsAndExpenses": {
+      "properties": {
+        "authorized": {
+          "type": "boolean"
+        },
+        "clientId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "clientName": {
+          "type": "string"
+        },
+        "customerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "forTravelsAndExpensesCount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "url": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ClientInbox": {
       "properties": {
         "authorized": {
@@ -6226,6 +6246,9 @@
           "description": "birthdate",
           "readOnly": true,
           "type": "string"
+        },
+        "canReceiveReminder": {
+          "type": "boolean"
         },
         "changes": {
           "items": {
@@ -30798,6 +30821,17 @@
         "value": {
           "items": {
             "$ref": "#/definitions/ClientForReview"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperListClientForTravelsAndExpenses": {
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "#/definitions/ClientForTravelsAndExpenses"
           },
           "type": "array"
         }
@@ -74757,80 +74791,6 @@
         "summary": "Delete session token.",
         "tags": [
           "token/session"
-        ]
-      }
-    },
-    "/transportType": {
-      "get": {
-        "description": "",
-        "operationId": "TransportType_search",
-        "parameters": [
-          {
-            "collectionFormat": "multi",
-            "description": "List of valid suppliers ids.",
-            "in": "query",
-            "items": {
-              "format": "int32",
-              "type": "integer"
-            },
-            "name": "supplierId",
-            "required": false,
-            "type": "array"
-          },
-          {
-            "description": "Containing",
-            "in": "query",
-            "name": "name",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "default": 0,
-            "description": "From index",
-            "in": "query",
-            "name": "from",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "default": 1000,
-            "description": "Number of elements to return",
-            "in": "query",
-            "name": "count",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "description": "Sorting pattern",
-            "in": "query",
-            "name": "sorting",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ListResponseTransportType"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": " [BETA] Search transport type.",
-        "tags": [
-          "transportType"
         ]
       }
     },
