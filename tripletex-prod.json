@@ -29365,6 +29365,9 @@
         "filters": {
           "$ref": "#/definitions/ReportSettingsFilters"
         },
+        "headers": {
+          "$ref": "#/definitions/ReportSettingsHeaders"
+        },
         "version": {
           "format": "int32",
           "type": "integer"
@@ -29448,6 +29451,21 @@
             "Year"
           ],
           "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSettingsHeaders": {
+      "properties": {
+        "showColumnHeaders": {
+          "type": "boolean"
+        },
+        "showRowHeaders": {
+          "type": "boolean"
         },
         "version": {
           "format": "int32",
