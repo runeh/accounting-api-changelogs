@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -6712,13 +6718,6 @@
           "minLength": 0,
           "type": "string"
         },
-        "employments": {
-          "description": "Employments tied to the employee",
-          "items": {
-            "$ref": "#/definitions/Employment"
-          },
-          "type": "array"
-        },
         "firstName": {
           "maxLength": 100,
           "minLength": 1,
@@ -6751,6 +6750,24 @@
         "firstName",
         "lastName"
       ],
+      "type": "object"
+    },
+    "CreateSalaryEmployeeToEmploymentRelationship": {
+      "properties": {
+        "employee": {
+          "$ref": "#/definitions/CreateSalaryEmployee",
+          "description": "Employee",
+          "readOnly": true
+        },
+        "employments": {
+          "description": "Employments",
+          "items": {
+            "$ref": "#/definitions/Employment"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "Credentials": {
@@ -13302,6 +13319,12 @@
     },
     "InvoiceOverviewMetaDTO": {
       "properties": {
+        "hasModuleDepartment": {
+          "type": "boolean"
+        },
+        "hasModuleDepartmentAccounting": {
+          "type": "boolean"
+        },
         "hasModuleProjectEconomy": {
           "type": "boolean"
         },
@@ -15473,7 +15496,7 @@
       },
       "type": "object"
     },
-    "ListResponseCreateSalaryEmployee": {
+    "ListResponseCreateSalaryEmployeeToEmploymentRelationship": {
       "properties": {
         "count": {
           "format": "int32",
@@ -15493,7 +15516,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/CreateSalaryEmployee"
+            "$ref": "#/definitions/CreateSalaryEmployeeToEmploymentRelationship"
           },
           "readOnly": true,
           "type": "array"
@@ -22796,6 +22819,10 @@
         "department": {
           "$ref": "#/definitions/Department"
         },
+        "discountPercentage": {
+          "description": "Default discount percentage for order lines.",
+          "type": "number"
+        },
         "displayName": {
           "readOnly": true,
           "type": "string"
@@ -22857,6 +22884,10 @@
         "isSubscriptionAutoInvoicing": {
           "description": "Automatic invoicing. Starts when the subscription is approved",
           "type": "boolean"
+        },
+        "markUpOrderLines": {
+          "description": "Set mark-up (%) for order lines.",
+          "type": "number"
         },
         "number": {
           "maxLength": 100,
@@ -24574,6 +24605,8 @@
             "NEGATIVE_PERSONAL_INCOME_CARRIED_FORWARD_NEXT_YEAR",
             "BUSINESS_TYPE_DESCRIPTION",
             "INDUSTRY_TYPE",
+            "INCOME_AMOUNT_FROM_PROFIT_AND_LOSS_ACCOUNT",
+            "DEDUCTED_AMOUNT_FROM_PROFIT_AND_LOSS_ACCOUNT",
             "DISTRIBUTE_INCOME",
             "NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
             "COORDINATION_ENK_SPOUSE",
@@ -36156,6 +36189,24 @@
       "required": [
         "expirationDate",
         "token"
+      ],
+      "type": "object"
+    },
+    "ShardInfo": {
+      "properties": {
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "id"
       ],
       "type": "object"
     },
@@ -79683,6 +79734,9 @@
     },
     {
       "name": "salary/transaction"
+    },
+    {
+      "name": "shardinfo"
     },
     {
       "name": "signatureCombination"
