@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -6766,6 +6760,14 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "validationResults": {
+          "description": "ValidationResults",
+          "items": {
+            "$ref": "#/definitions/SalaryV2PaymentValidationResult"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -7310,7 +7312,7 @@
           "type": "string"
         },
         "autoValidateUserLogin": {
-          "description": "Should the user be automatically validated?",
+          "description": "Should the user be automatically validated? SendEmails must be false for this to have any effect.",
           "type": "boolean"
         },
         "chartOfAccountsType": {
@@ -40479,7 +40481,7 @@
           "type": "boolean"
         },
         "autoValidateUserLogin": {
-          "description": "If true, the users created will be allowed to log in without validating their email address. ONLY USE THIS IF YOU ALREADY HAVE VALIDATED THE USER EMAILS.",
+          "description": "If true, the users created will be allowed to log in without validating their email address. ONLY USE THIS IF YOU ALREADY HAVE VALIDATED THE USER EMAILS. SendEmails must be false for this to have any effect.",
           "type": "boolean"
         },
         "bankAccount": {

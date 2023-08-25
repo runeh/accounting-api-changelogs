@@ -6766,6 +6766,14 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "validationResults": {
+          "description": "ValidationResults",
+          "items": {
+            "$ref": "#/definitions/SalaryV2PaymentValidationResult"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -7310,7 +7318,7 @@
           "type": "string"
         },
         "autoValidateUserLogin": {
-          "description": "Should the user be automatically validated?",
+          "description": "Should the user be automatically validated? SendEmails must be false for this to have any effect.",
           "type": "boolean"
         },
         "chartOfAccountsType": {
@@ -40479,7 +40487,7 @@
           "type": "boolean"
         },
         "autoValidateUserLogin": {
-          "description": "If true, the users created will be allowed to log in without validating their email address. ONLY USE THIS IF YOU ALREADY HAVE VALIDATED THE USER EMAILS.",
+          "description": "If true, the users created will be allowed to log in without validating their email address. ONLY USE THIS IF YOU ALREADY HAVE VALIDATED THE USER EMAILS. SendEmails must be false for this to have any effect.",
           "type": "boolean"
         },
         "bankAccount": {
