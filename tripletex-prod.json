@@ -504,6 +504,90 @@
         "hasRequiredModule": {
           "type": "boolean"
         },
+        "reversedDependencies": {
+          "items": {
+            "enum": [
+              "ROLE_ADMINISTRATOR",
+              "AUTH_READ_ONLY",
+              "AUTH_LOGIN",
+              "AUTH_ALL_VOUCHERS",
+              "AUTH_COMPANY_ACCOUNTING_REPORTS",
+              "AUTH_ACCOUNTING_SETTINGS",
+              "AUTH_COMPANY_RESULT_BUDGET",
+              "AUTH_COMPANY_CUSTOMER_ACCOUNTING_REPORTS",
+              "AUTH_COMPANY_VENDOR_ACCOUNTING_REPORTS",
+              "AUTH_COMPANY_EMPLOYEE_ACCOUNTING_REPORTS",
+              "AUTH_COMPANY_ASSET_ACCOUNTING_REPORTS",
+              "AUTH_COMPANY_ATTESTOR",
+              "AUTH_DIRECT_REMIT_ADMIN",
+              "AUTH_DIRECT_REMIT_LIGHT",
+              "AUTH_MANAGE_BANK_ACCOUNT_NUMBERS",
+              "AUTH_DIRECT_REMIT_CREATE_NEW",
+              "AUTH_DIRECT_REMIT_ADMIN_ZTL",
+              "AUTH_COMPANY_ADMIN",
+              "AUTH_EMPLOYEE_INFO",
+              "AUTH_COMPANY_EMPLOYEE_ADMIN",
+              "AUTH_CUSTOMER_ADMIN",
+              "AUTH_CUSTOMER_INFO",
+              "AUTH_CREATE_CUSTOMER",
+              "AUTH_INBOX_ARCHIVE_ALL_EMPLOYEES",
+              "AUTH_ARCHIVE_READ",
+              "AUTH_ARCHIVE_WRITE",
+              "AUTH_ARCHIVE_ADMIN",
+              "AUTH_CREATE_NOTE",
+              "AUTH_CREATE_NOTE_TEMPLATE",
+              "AUTH_INVOICING",
+              "AUTH_OFFER_ADMIN",
+              "AUTH_ORDER_ADMIN",
+              "AUTH_CREATE_OFFER",
+              "AUTH_CREATE_ORDER",
+              "AUTH_FACTORING_EXPORT",
+              "AUTH_INVOICE_ADMIN_SETTINGS",
+              "AUTH_PROJECT_MANAGER",
+              "AUTH_PROJECT_MANAGER_COMPANY",
+              "AUTH_DEPARTMENT_REPORT",
+              "AUTH_CREATE_PROJECT",
+              "AUTH_PROJECT_EXTRA_COSTS",
+              "AUTH_PROJECT_INFO",
+              "AUTH_PROJECT_ADMIN_SETTINGS",
+              "AUTH_PROJECT_OWN_PROJECT_RESULT_REPORT",
+              "AUTH_PROJECT_CONTROL_FORMS",
+              "AUTH_PRODUCT_ADMIN",
+              "REPORT_ADMINISTRATOR",
+              "REPORT_AUTHOR",
+              "AUTH_COMPANY_WAGE_ADMIN",
+              "AUTH_WAGE_ADMIN_SETTINGS",
+              "AUTH_WAGE_INFORMATION",
+              "AUTH_TASK_ADMIN",
+              "AUTH_HOURS_COMPANY",
+              "AUTH_HOUR_STATISTICS_COMPANY",
+              "AUTH_HOURLIST",
+              "AUTH_HOURLIST_SETTINGS",
+              "AUTH_HOLYDAY_PLAN",
+              "AUTH_TRAVEL_REPORTS_COMPANY",
+              "AUTH_TRAVEL_REPORT",
+              "AUTH_TRAVEL_EXPENSE_ADMIN_SETTINGS",
+              "AUTH_VOUCHER_EXPORT",
+              "AUTH_INBOX_VOUCHER",
+              "AUTH_INCOMPLETE_VOUCHERS",
+              "AUTH_INCOMING_INVOICE",
+              "AUTH_VOUCHER_SETTINGS",
+              "AUTH_BANK_RECONCILIATION",
+              "AUTH_VAT_REPORT",
+              "AUTH_SICKNESS_REIMBURSEMENT",
+              "AUTH_REGISTER_INCOME",
+              "AUTH_ADVANCED_VOUCHER",
+              "AUTH_VOUCHER_IMPORT",
+              "AUTH_PRODUCT_INVOICE",
+              "AUTH_CUSTOMS_DECLARATION",
+              "AUTH_VOUCHER_AUTOMATION",
+              "AUTH_REMIT_FILES_VOUCHER_OVERVIEW",
+              "YEAR_END_REPORT_ADMINISTRATOR"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
         "role": {
           "enum": [
             "ROLE_ADMINISTRATOR",
@@ -6763,6 +6847,14 @@
           "description": "Employments",
           "items": {
             "$ref": "#/definitions/Employment"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "previousSalaries": {
+          "description": "Previous Salaries",
+          "items": {
+            "$ref": "#/definitions/PreviousSalaryAggregates"
           },
           "readOnly": true,
           "type": "array"
@@ -13707,6 +13799,10 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "hasAttachment": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "lastComment": {
           "readOnly": true,
@@ -31220,20 +31316,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperMapIntegerListPreviousSalaryAggregates": {
-      "properties": {
-        "value": {
-          "additionalProperties": {
-            "items": {
-              "$ref": "#/definitions/PreviousSalaryAggregates"
-            },
-            "type": "array"
-          },
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperMapIntegerTlxNumber": {
       "properties": {
         "value": {
@@ -44366,52 +44448,6 @@
     "version": "2.70.44"
   },
   "paths": {
-    "/accountantClientAccess/requiresLevel4Authorization": {
-      "get": {
-        "description": "",
-        "operationId": "AccountantClientAccessRequiresLevel4Authorization_getRequiresLevel4Authorization",
-        "parameters": [
-          {
-            "description": "List of IDs",
-            "in": "query",
-            "name": "customerIds",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "List of IDs",
-            "in": "query",
-            "name": "employeeIds",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperBoolean"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Check if any of the employee ids requires level 4 authorizations to make changes",
-        "tags": [
-          "accountantClientAccess"
-        ]
-      }
-    },
     "/activity": {
       "get": {
         "description": "",
@@ -79670,9 +79706,6 @@
     },
     {
       "name": "tsksalaryv2specificationsupplement"
-    },
-    {
-      "name": "tsksalaryv2previousSalary"
     },
     {
       "name": "tsksalaryv2transaction"
