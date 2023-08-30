@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -6866,6 +6860,52 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CreateSalaryWithSearch": {
+      "properties": {
+        "allSelected": {
+          "type": "boolean"
+        },
+        "date": {
+          "type": "string"
+        },
+        "departmentIds": {
+          "type": "string"
+        },
+        "divisionIds": {
+          "type": "string"
+        },
+        "employeeCategoryIds": {
+          "type": "string"
+        },
+        "employmentIds": {
+          "type": "string"
+        },
+        "explicitlyDeselectedEmploymentIds": {
+          "type": "string"
+        },
+        "includeResignedEmployees": {
+          "type": "boolean"
+        },
+        "month": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "query": {
+          "type": "string"
+        },
+        "specTypesToAdd": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        },
+        "year": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -34284,14 +34324,14 @@
         },
         "validations": {
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/ValidationLinkDTO"
           },
           "readOnly": true,
           "type": "array"
         },
         "warnings": {
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/ValidationLinkDTO"
           },
           "readOnly": true,
           "type": "array"
@@ -41241,6 +41281,19 @@
           "format": "int64",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ValidationLinkDTO": {
+      "properties": {
+        "href": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "message": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
