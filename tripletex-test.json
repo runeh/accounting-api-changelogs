@@ -1528,7 +1528,10 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
-            "YEARLY_DIVIDEND"
+            "YEARLY_DIVIDEND",
+            "DIVIDEND_CREDIT",
+            "DIVIDEND_SECURITY_OFFERED",
+            "DIVIDEND_DISPOSITIONS"
           ],
           "readOnly": true,
           "type": "string"
@@ -5279,7 +5282,10 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
-            "YEARLY_DIVIDEND"
+            "YEARLY_DIVIDEND",
+            "DIVIDEND_CREDIT",
+            "DIVIDEND_SECURITY_OFFERED",
+            "DIVIDEND_DISPOSITIONS"
           ],
           "readOnly": true,
           "type": "string"
@@ -8215,11 +8221,19 @@
           "$ref": "#/definitions/TlxNumber",
           "readOnly": true
         },
+        "equity": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
         "equityInAccount": {
           "items": {
             "$ref": "#/definitions/DividendDetails"
           },
           "type": "array"
+        },
+        "maxCalculatedDividend": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
         },
         "name": {
           "readOnly": true,
@@ -8795,7 +8809,10 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
-            "YEARLY_DIVIDEND"
+            "YEARLY_DIVIDEND",
+            "DIVIDEND_CREDIT",
+            "DIVIDEND_SECURITY_OFFERED",
+            "DIVIDEND_DISPOSITIONS"
           ],
           "type": "string"
         },
@@ -10995,7 +11012,10 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
-            "YEARLY_DIVIDEND"
+            "YEARLY_DIVIDEND",
+            "DIVIDEND_CREDIT",
+            "DIVIDEND_SECURITY_OFFERED",
+            "DIVIDEND_DISPOSITIONS"
           ],
           "type": "string"
         },
@@ -12626,7 +12646,10 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
-            "YEARLY_DIVIDEND"
+            "YEARLY_DIVIDEND",
+            "DIVIDEND_CREDIT",
+            "DIVIDEND_SECURITY_OFFERED",
+            "DIVIDEND_DISPOSITIONS"
           ],
           "readOnly": true,
           "type": "string"
@@ -12986,7 +13009,10 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
-            "YEARLY_DIVIDEND"
+            "YEARLY_DIVIDEND",
+            "DIVIDEND_CREDIT",
+            "DIVIDEND_SECURITY_OFFERED",
+            "DIVIDEND_DISPOSITIONS"
           ],
           "readOnly": true,
           "type": "string"
@@ -13459,6 +13485,10 @@
     },
     "InvoiceOverviewMetaDTO": {
       "properties": {
+        "companyCurrencyId": {
+          "format": "int32",
+          "type": "integer"
+        },
         "hasModuleDepartment": {
           "type": "boolean"
         },
@@ -17113,6 +17143,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/MileageAllowance"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseMobileEmployee": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/MobileEmployee"
           },
           "readOnly": true,
           "type": "array"
@@ -21843,6 +21906,77 @@
       },
       "type": "object"
     },
+    "MobileEmployee": {
+      "properties": {
+        "allowInformationRegistration": {
+          "description": "Determines if salary information can be registered on the user including hours, travel expenses and employee expenses. The user may also be selected as a project member on projects.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "department": {
+          "$ref": "#/definitions/Department"
+        },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "email": {
+          "maxLength": 100,
+          "type": "string"
+        },
+        "employeeNumber": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "firstName": {
+          "maxLength": 100,
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isContact": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "lastName": {
+          "maxLength": 100,
+          "minLength": 1,
+          "type": "string"
+        },
+        "pictureId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName"
+      ],
+      "type": "object"
+    },
     "Modules": {
       "properties": {
         "accounting": {
@@ -23824,6 +23958,11 @@
         "creditAccount": {
           "$ref": "#/definitions/Account"
         },
+        "currencyId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "customer": {
           "$ref": "#/definitions/Customer",
           "readOnly": true
@@ -24592,7 +24731,10 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
-            "YEARLY_DIVIDEND"
+            "YEARLY_DIVIDEND",
+            "DIVIDEND_CREDIT",
+            "DIVIDEND_SECURITY_OFFERED",
+            "DIVIDEND_DISPOSITIONS"
           ],
           "readOnly": true,
           "type": "string"
@@ -36764,7 +36906,10 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
-            "YEARLY_DIVIDEND"
+            "YEARLY_DIVIDEND",
+            "DIVIDEND_CREDIT",
+            "DIVIDEND_SECURITY_OFFERED",
+            "DIVIDEND_DISPOSITIONS"
           ],
           "type": "string"
         },
@@ -79120,6 +79265,9 @@
     },
     {
       "name": "employee"
+    },
+    {
+      "name": "mobileEmployee"
     },
     {
       "name": "employeecategory"
