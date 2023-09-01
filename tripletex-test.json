@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -7643,9 +7649,6 @@
     },
     "DashboardContextDTO": {
       "properties": {
-        "authYearEndReport": {
-          "type": "boolean"
-        },
         "companyCurrency": {
           "type": "string"
         },
@@ -14030,6 +14033,10 @@
         "account": {
           "$ref": "#/definitions/Account",
           "readOnly": true
+        },
+        "balanceOutInAccountCurrency": {
+          "readOnly": true,
+          "type": "number"
         },
         "closingBalance": {
           "readOnly": true,
@@ -21136,6 +21143,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/WorkingHoursScheme"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseYearEndReportNote": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/YearEndReportNote"
           },
           "readOnly": true,
           "type": "array"
@@ -33965,6 +34005,10 @@
     },
     "SalaryV2Employee": {
       "properties": {
+        "bankAccountOrIban": {
+          "readOnly": true,
+          "type": "string"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -43694,11 +43738,17 @@
           "readOnly": true,
           "type": "string"
         },
+        "groupingPreviousYear": {
+          "type": "string"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
         },
         "isMandatory": {
+          "type": "boolean"
+        },
+        "isMandatoryPreviousYear": {
           "type": "boolean"
         },
         "name": {
@@ -78988,46 +79038,6 @@
           "voucherStatus"
         ]
       }
-    },
-    "/yearEnd/note/{id}": {
-      "get": {
-        "description": "",
-        "operationId": "YearEndNote_get",
-        "parameters": [
-          {
-            "description": "Element ID",
-            "format": "int32",
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperYearEndReportNote"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": " ",
-        "tags": [
-          "yearEnd/note"
-        ]
-      }
     }
   },
   "schemes": [
@@ -80339,9 +80349,6 @@
     },
     {
       "name": "yearEndnote"
-    },
-    {
-      "name": "yearEnd/note"
     },
     {
       "name": "yearEndnoteData"
