@@ -6884,6 +6884,14 @@
         "divisionIds": {
           "type": "string"
         },
+        "employeeAvailability": {
+          "enum": [
+            "START_NOT_AFTER",
+            "ACTIVE",
+            "RESIGNED"
+          ],
+          "type": "string"
+        },
         "employeeCategoryIds": {
           "type": "string"
         },
@@ -6892,9 +6900,6 @@
         },
         "explicitlyDeselectedEmploymentIds": {
           "type": "string"
-        },
-        "includeResignedEmployees": {
-          "type": "boolean"
         },
         "month": {
           "format": "int32",
@@ -10482,133 +10487,6 @@
         },
         "providers": {
           "$ref": "#/definitions/Providers"
-        }
-      },
-      "type": "object"
-    },
-    "FundingPartnerApplication": {
-      "properties": {
-        "amount": {
-          "description": "The amount property",
-          "format": "int32",
-          "maximum": 30000000,
-          "minimum": 1000000,
-          "type": "integer"
-        },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "comments": {
-          "description": "The comment property",
-          "maxLength": 500,
-          "minLength": 0,
-          "type": "string"
-        },
-        "email": {
-          "description": "The email property",
-          "maxLength": 100,
-          "minLength": 0,
-          "type": "string"
-        },
-        "firstName": {
-          "description": "The firstname property",
-          "maxLength": 100,
-          "minLength": 0,
-          "type": "string"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "lastName": {
-          "description": "The lastName property",
-          "maxLength": 100,
-          "minLength": 0,
-          "type": "string"
-        },
-        "loanType": {
-          "description": "The loanType property",
-          "enum": [
-            "OTHER",
-            "REAL_ESTATE"
-          ],
-          "type": "string"
-        },
-        "phoneNumber": {
-          "description": "The phoneNumber property",
-          "maxLength": 25,
-          "minLength": 8,
-          "type": "string"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "amount",
-        "firstName",
-        "lastName",
-        "loanType",
-        "phoneNumber"
-      ],
-      "type": "object"
-    },
-    "FundingPartnerQualify": {
-      "properties": {
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "employee": {
-          "$ref": "#/definitions/Employee"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "loanType": {
-          "description": "Which loan type to check",
-          "enum": [
-            "OTHER",
-            "REAL_ESTATE"
-          ],
-          "type": "string"
-        },
-        "otherPositiveResult": {
-          "type": "boolean"
-        },
-        "otherResultBelowLimit": {
-          "type": "boolean"
-        },
-        "otherRevenue": {
-          "type": "boolean"
-        },
-        "qualify": {
-          "description": "Overall if the company qualifies the automatic check",
-          "type": "boolean"
-        },
-        "realEstateBalance": {
-          "type": "boolean"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -30876,22 +30754,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/FavoriteMenu"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperFundingPartnerApplication": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/FundingPartnerApplication"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperFundingPartnerQualify": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/FundingPartnerQualify"
         }
       },
       "type": "object"
@@ -79386,12 +79248,6 @@
     },
     {
       "name": "feedback"
-    },
-    {
-      "name": "fundingpartner"
-    },
-    {
-      "name": "fundingpartnerqualify"
     },
     {
       "name": "idporten"
