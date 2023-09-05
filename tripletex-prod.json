@@ -7678,6 +7678,9 @@
         "showAgroTourMe": {
           "type": "boolean"
         },
+        "showEaccountingMessage": {
+          "type": "boolean"
+        },
         "showMamutTourMe": {
           "type": "boolean"
         },
@@ -35698,7 +35701,6 @@
             "NO1TS_ACCOUNTING",
             "BASIS",
             "SMART",
-            "PLUSS",
             "KOMPLETT",
             "VVS",
             "ELECTRO",
@@ -42013,6 +42015,11 @@
           "$ref": "#/definitions/VoucherType",
           "description": "Voucher type. Must not be of type 'Utgående faktura' ('Outgoing Invoice') on new vouchers, instead use voucherType=null or use the Invoice endpoint."
         },
+        "wasAutoMatched": {
+          "description": "Voucher was auto matched",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "year": {
           "description": "System generated number that cannot be changed.",
           "format": "int32",
@@ -42695,6 +42702,11 @@
         "voucherType": {
           "$ref": "#/definitions/VoucherType",
           "description": "Voucher type. Must not be of type 'Utgående faktura' ('Outgoing Invoice') on new vouchers, instead use voucherType=null or use the Invoice endpoint."
+        },
+        "wasAutoMatched": {
+          "description": "Voucher was auto matched",
+          "readOnly": true,
+          "type": "boolean"
         },
         "year": {
           "description": "System generated number that cannot be changed.",

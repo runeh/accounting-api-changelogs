@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -7676,6 +7682,9 @@
           "$ref": "#/definitions/SegmentationData"
         },
         "showAgroTourMe": {
+          "type": "boolean"
+        },
+        "showEaccountingMessage": {
           "type": "boolean"
         },
         "showMamutTourMe": {
@@ -35698,7 +35707,6 @@
             "NO1TS_ACCOUNTING",
             "BASIS",
             "SMART",
-            "PLUSS",
             "KOMPLETT",
             "VVS",
             "ELECTRO",
@@ -42013,6 +42021,11 @@
           "$ref": "#/definitions/VoucherType",
           "description": "Voucher type. Must not be of type 'Utgående faktura' ('Outgoing Invoice') on new vouchers, instead use voucherType=null or use the Invoice endpoint."
         },
+        "wasAutoMatched": {
+          "description": "Voucher was auto matched",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "year": {
           "description": "System generated number that cannot be changed.",
           "format": "int32",
@@ -42695,6 +42708,11 @@
         "voucherType": {
           "$ref": "#/definitions/VoucherType",
           "description": "Voucher type. Must not be of type 'Utgående faktura' ('Outgoing Invoice') on new vouchers, instead use voucherType=null or use the Invoice endpoint."
+        },
+        "wasAutoMatched": {
+          "description": "Voucher was auto matched",
+          "readOnly": true,
+          "type": "boolean"
         },
         "year": {
           "description": "System generated number that cannot be changed.",
