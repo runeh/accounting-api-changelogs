@@ -1152,6 +1152,10 @@
           },
           "type": "array"
         },
+        "prepaidAmount": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Prepaid Amount value in invoice currency"
+        },
         "regulatoryReportingCode": {
           "description": "AutoPay's regulatory reporting code",
           "type": "string"
@@ -43039,6 +43043,7 @@
               "TASKS",
               "TRIAL",
               "UPSALE",
+              "UPSALE_AUTOMATION",
               "VOUCHER_SUMMARY"
             ],
             "type": "string"
@@ -43060,6 +43065,7 @@
               "TASKS",
               "TRIAL",
               "UPSALE",
+              "UPSALE_AUTOMATION",
               "VOUCHER_SUMMARY"
             ],
             "type": "string"
