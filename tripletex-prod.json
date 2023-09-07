@@ -25946,9 +25946,6 @@
         "eanGtin": {
           "type": "string"
         },
-        "inactive": {
-          "type": "boolean"
-        },
         "name": {
           "type": "string"
         },
@@ -25967,8 +25964,8 @@
         "sellingPriceInclVat": {
           "type": "string"
         },
-        "stockItem": {
-          "type": "boolean"
+        "vatTypeId": {
+          "type": "string"
         }
       },
       "type": "object"
