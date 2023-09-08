@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1907,6 +1913,14 @@
           "type": "boolean"
         },
         "employee": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "offer": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "order": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -23431,6 +23445,10 @@
         "department": {
           "$ref": "#/definitions/Department"
         },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
@@ -23720,8 +23738,18 @@
           "format": "int32",
           "type": "integer"
         },
+        "isApproveDisabled": {
+          "description": "Can this payment be approved.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isCancelDisabled": {
           "description": "Can this payment be cancelled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isDeleteDisabled": {
+          "description": "Can this payment be deleted",
           "readOnly": true,
           "type": "boolean"
         },
@@ -40858,6 +40886,13 @@
         "companyName": {
           "type": "string"
         },
+        "companyPayInAdvance": {
+          "type": "boolean"
+        },
+        "isCompanyPayInAdvance": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "showDepartment": {
           "readOnly": true,
           "type": "boolean"
@@ -42149,8 +42184,9 @@
             "CUSTOMER",
             "SUPPLIER",
             "PROJECT",
+            "ORDER",
+            "OFFER",
             "PRODUCT",
-            "INVOICE",
             "EMPLOYEE",
             "ACCOUNT",
             "ASSET"
@@ -44398,8 +44434,18 @@
           "format": "int32",
           "type": "integer"
         },
+        "isApproveDisabled": {
+          "description": "Can this payment be approved.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isCancelDisabled": {
           "description": "Can this payment be cancelled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isDeleteDisabled": {
+          "description": "Can this payment be deleted",
           "readOnly": true,
           "type": "boolean"
         },
