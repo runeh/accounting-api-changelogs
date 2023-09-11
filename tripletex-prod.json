@@ -34721,6 +34721,11 @@
         "notDeletableMessage": {
           "type": "string"
         },
+        "numberEmployees": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "okAllowReverseDifferentDate": {
           "type": "boolean"
         },
@@ -38614,6 +38619,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "taxableProfitToTaxReturn": {
+          "readOnly": true,
+          "type": "number"
+        },
         "totalDebtInAccounts": {
           "readOnly": true,
           "type": "number"
@@ -40893,6 +40902,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "maxEmployeesPerSalaryTransaction": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "showDepartment": {
           "readOnly": true,
           "type": "boolean"
@@ -42208,6 +42222,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "canUserAccessAutomationPage": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "canUserDelete": {
           "readOnly": true,
           "type": "boolean"
@@ -42296,6 +42314,10 @@
           "type": "integer"
         },
         "showAttestation": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "showClientInbox": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -52961,46 +52983,6 @@
         "summary": "Create several employees.",
         "tags": [
           "employee"
-        ]
-      }
-    },
-    "/employee/logininfo/{id}": {
-      "get": {
-        "description": "",
-        "operationId": "EmployeeLogininfo_get",
-        "parameters": [
-          {
-            "description": "Element ID",
-            "format": "int32",
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperEmployeeLoginInfo"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "[BETA] Get employee login info.",
-        "tags": [
-          "employee/logininfo"
         ]
       }
     },
@@ -71336,7 +71318,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create multiple suppliers. Related supplier addresses may also be created.",
+        "summary": "Create multiple suppliers. Related supplier addresses may also be created.",
         "tags": [
           "supplier"
         ]
@@ -71374,7 +71356,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update multiple suppliers. Addresses can also be updated.",
+        "summary": "Update multiple suppliers. Addresses can also be updated.",
         "tags": [
           "supplier"
         ]
@@ -71404,7 +71386,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete supplier by ID",
+        "summary": "Delete supplier by ID",
         "tags": [
           "supplier"
         ]
@@ -79258,9 +79240,6 @@
     },
     {
       "name": "employeelogininfo"
-    },
-    {
-      "name": "employee/logininfo"
     },
     {
       "name": "employeenextOfKin"
