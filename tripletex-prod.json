@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -299,6 +293,27 @@
           "minimum": 0,
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AccountSuggestionDTO": {
+      "properties": {
+        "accountName": {
+          "type": "string"
+        },
+        "accountNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1993,25 +2008,15 @@
           "readOnly": true,
           "type": "array"
         },
-        "customMonthlyWriteOff": {
-          "type": "number"
-        },
         "dateOfAcquisition": {
-          "type": "string"
-        },
-        "depreciationAccount": {
-          "$ref": "#/definitions/Account",
-          "description": "Depreciation account for the asset."
-        },
-        "depreciationFrom": {
           "type": "string"
         },
         "depreciationMethod": {
           "description": "Depreciation method",
           "enum": [
             "MANUAL",
-            "STRAIGHT_LINE",
             "TAX_RELATED",
+            "STRAIGHT_LINE",
             "CUSTOMIZED_AMOUNT"
           ],
           "type": "string"
@@ -2066,9 +2071,6 @@
           ],
           "type": "string"
         },
-        "taxRelatedDepreciationPercentage": {
-          "type": "number"
-        },
         "url": {
           "readOnly": true,
           "type": "string"
@@ -2121,6 +2123,59 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "AssetDepreciationSpecification": {
+      "properties": {
+        "amount": {
+          "description": "For STRAIGHT_LINE: the total amount to write off.  FOR TAX_RELATED: the base amount to calculate the write off amounts from.  Not used for CUSTOM",
+          "type": "number"
+        },
+        "balanceAccount": {
+          "$ref": "#/definitions/Account",
+          "description": "The balance account for the asset.  This should be the account where the value of the asset is stored."
+        },
+        "customMonthlyWriteOffAmount": {
+          "description": "The monthly amount to write off.  Only used for CUSTOM",
+          "type": "number"
+        },
+        "depreciationAccount": {
+          "$ref": "#/definitions/Account",
+          "description": "Depreciation account for the asset."
+        },
+        "depreciationMethod": {
+          "description": "The depreciation method.",
+          "enum": [
+            "MANUAL",
+            "TAX_RELATED",
+            "STRAIGHT_LINE",
+            "CUSTOMIZED_AMOUNT"
+          ],
+          "type": "string"
+        },
+        "noOfMonths": {
+          "description": "The depreciation period in months.",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "startDate": {
+          "description": "The start date for the depreciation. This will also be the voucher date",
+          "type": "string"
+        },
+        "taxRelatedDepreciationPercentage": {
+          "description": "How many percent to depreciate for each year.  Only used for TAX_RELATED",
+          "type": "number"
+        }
+      },
+      "required": [
+        "amount",
+        "balanceAccount",
+        "depreciationAccount",
+        "depreciationMethod",
+        "noOfMonths",
+        "startDate"
+      ],
       "type": "object"
     },
     "AssetDetails": {
@@ -2424,6 +2479,10 @@
         "distributionKeyId": {
           "format": "int32",
           "type": "integer"
+        },
+        "distributionKeyName": {
+          "readOnly": true,
+          "type": "string"
         },
         "enabled": {
           "type": "boolean"
@@ -14250,6 +14309,39 @@
       },
       "type": "object"
     },
+    "ListResponseAccountSuggestionDTO": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AccountSuggestionDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseAccountantClient": {
       "properties": {
         "count": {
@@ -23738,6 +23830,12 @@
           "format": "int32",
           "type": "integer"
         },
+        "idForVoucherUrl": {
+          "description": "The id of the connected invoice/wage period transaction/vat returns/wage transaction.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "isApproveDisabled": {
           "description": "Can this payment be approved.",
           "readOnly": true,
@@ -23824,6 +23922,22 @@
           "$ref": "#/definitions/Voucher",
           "description": "Voucher that was paid.",
           "readOnly": true
+        },
+        "sourceVoucherType": {
+          "description": "The type of the source voucher connected to this payment.",
+          "enum": [
+            "REGULAR",
+            "AUTOPAY_PAYMENT",
+            "ZTL_PAYMENT",
+            "WAGE_PERIOD_TRANSACTION",
+            "CUSTOMS_DECLARATIONS",
+            "VAT_RETURNS",
+            "WAGE_TRANSACTION",
+            "INCOMING_INVOICE_DETAILED",
+            "INVOICE_IN"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "status": {
           "description": "The payment status.NOT_APPROVED: Payment not approved yet.<br>APPROVED: Payment approved, but not yet sent to bank.<br>SENT_TO_AUTOPAY: Payment sent to bank.<br>RECEIVED_BY_BANK: Payment received by the bank.<br>ACCEPTED_BY_BANK: Payment that was accepted by the bank.<br>FAILED: Payment that failed.<br>CANCELLED: Cancelled payment.<br>SUCCESS: Payment that ended successfully.<br>",
@@ -44456,6 +44570,12 @@
           "format": "int32",
           "type": "integer"
         },
+        "idForVoucherUrl": {
+          "description": "The id of the connected invoice/wage period transaction/vat returns/wage transaction.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "isApproveDisabled": {
           "description": "Can this payment be approved.",
           "readOnly": true,
@@ -44549,6 +44669,22 @@
           "$ref": "#/definitions/Voucher",
           "description": "Voucher that was paid.",
           "readOnly": true
+        },
+        "sourceVoucherType": {
+          "description": "The type of the source voucher connected to this payment.",
+          "enum": [
+            "REGULAR",
+            "AUTOPAY_PAYMENT",
+            "ZTL_PAYMENT",
+            "WAGE_PERIOD_TRANSACTION",
+            "CUSTOMS_DECLARATIONS",
+            "VAT_RETURNS",
+            "WAGE_TRANSACTION",
+            "INCOMING_INVOICE_DETAILED",
+            "INVOICE_IN"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "status": {
           "description": "The payment status.NOT_APPROVED: Payment not approved yet.<br>APPROVED: Payment approved, but not yet sent to bank.<br>SENT_TO_AUTOPAY: Payment sent to bank.<br>RECEIVED_BY_BANK: Payment received by the bank.<br>ACCEPTED_BY_BANK: Payment that was accepted by the bank.<br>FAILED: Payment that failed.<br>CANCELLED: Cancelled payment.<br>SUCCESS: Payment that ended successfully.<br>",
@@ -78950,6 +79086,9 @@
   },
   "swagger": "2.0",
   "tags": [
+    {
+      "name": "internalaccountHelp"
+    },
     {
       "name": "activity"
     },
