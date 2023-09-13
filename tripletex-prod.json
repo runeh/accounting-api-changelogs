@@ -6978,6 +6978,12 @@
         "explicitlyDeselectedEmploymentIds": {
           "type": "string"
         },
+        "historical": {
+          "type": "boolean"
+        },
+        "isHistorical": {
+          "type": "boolean"
+        },
         "month": {
           "format": "int32",
           "type": "integer"
@@ -25704,6 +25710,21 @@
         "importFile": {
           "$ref": "#/definitions/Document",
           "readOnly": true
+        },
+        "numberCreated": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "numberIgnored": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "numberUpdated": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         },
         "productImportHeaders": {
           "items": {
