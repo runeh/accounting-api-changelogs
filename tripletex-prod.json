@@ -6988,6 +6988,23 @@
           "format": "int32",
           "type": "integer"
         },
+        "orderBy": {
+          "enum": [
+            "FIRSTNAME",
+            "STARTDATE",
+            "DEPARTMENT",
+            "DIVISION",
+            "STATUS"
+          ],
+          "type": "string"
+        },
+        "orderDirection": {
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
         "query": {
           "type": "string"
         },
