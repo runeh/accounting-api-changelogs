@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1579,6 +1585,103 @@
       },
       "type": "object"
     },
+    "Altinn2ReceptionReceipt": {
+      "properties": {
+        "messages": {
+          "items": {
+            "$ref": "#/definitions/Altinn2ReceptionReceiptMessage"
+          },
+          "type": "array"
+        },
+        "status": {
+          "enum": [
+            "NotSet",
+            "Ok",
+            "UnExpectedError",
+            "ValidationFailed",
+            "Rejected",
+            "Unknown"
+          ],
+          "type": "string"
+        },
+        "subReceipts": {
+          "items": {
+            "$ref": "#/definitions/Altinn2ReceptionReceipt"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Altinn2ReceptionReceiptMessage": {
+      "properties": {
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "deviationInfo": {
+          "$ref": "#/definitions/Altinn2ReceptionReceiptMessageDeviationInfo",
+          "readOnly": true
+        },
+        "fieldName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "positionInfo": {
+          "$ref": "#/definitions/Altinn2ReceptionReceiptMessagePositionInfo",
+          "readOnly": true
+        },
+        "raw": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "severity": {
+          "enum": [
+            "Warning",
+            "Error"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "subject": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "xpath": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Altinn2ReceptionReceiptMessageDeviationInfo": {
+      "properties": {
+        "expectedValue": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "submittedValue": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Altinn2ReceptionReceiptMessagePositionInfo": {
+      "properties": {
+        "line": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "position": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "AltinnCompanyModule": {
       "properties": {
         "altInnId": {
@@ -1753,6 +1856,42 @@
           "type": "number"
         }
       },
+      "type": "object"
+    },
+    "AnnualAccountsSubmissionResult": {
+      "properties": {
+        "failureCategory": {
+          "enum": [
+            "UNKNOWN",
+            "INTERNAL_VALIDATION_FAILED",
+            "EXTERNAL_SERVICE_OTHER_ERROR",
+            "EXTERNAL_SERVICE_APPLICATION_ERROR",
+            "UNEXPECTED_RESPONSE_CONTENT"
+          ],
+          "type": "string"
+        },
+        "failureMainMessage": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "failureStep": {
+          "enum": [
+            "INITIATING_PERSONAL_AUTHENTICATION",
+            "FETCHING_SIGNING_TEXT",
+            "SUBMITTING",
+            "FETCHING_ASYNC_RECEIPT",
+            "NONE"
+          ],
+          "type": "string"
+        },
+        "receptionReceipt": {
+          "$ref": "#/definitions/Altinn2ReceptionReceipt",
+          "readOnly": true
+        }
+      },
+      "required": [
+        "failureStep"
+      ],
       "type": "object"
     },
     "ApiConsumer": {
@@ -6994,7 +7133,8 @@
             "STARTDATE",
             "DEPARTMENT",
             "DIVISION",
-            "STATUS"
+            "STATUS",
+            "PREVIOUS_SALARIES"
           ],
           "type": "string"
         },
@@ -9571,6 +9711,10 @@
         },
         "isMainEmployer": {
           "description": "Determines if company is main employer for the employee. Default value is true.<br />Some values will be default set if not sent upon creation of employment: <br/> If isMainEmployer is NOT sent and tax deduction code loennFraHovedarbeidsgiver is sent, isMainEmployer will be set to true. <br /> If isMainEmployer is NOT sent and tax deduction code loennFraBiarbeidsgiver is sent, isMainEmployer will be set to false. <br /> If true and deduction code is NOT sent, value of tax deduction code will be set to loennFraHovedarbeidsgiver. <br /> If false and deduction code is NOT sent, value of tax deduction code will be set to loennFraBiarbeidsgiver. <br /> For other types of Tax Deduction Codes, isMainEmployer does not influence anything.",
+          "type": "boolean"
+        },
+        "isRemoveAccessAtEmploymentEnded": {
+          "description": "If true, access to the employee will be removed when the employment ends. <br />This field is part of the Employee object, therefore changing it for one Employment affects all Employments.",
           "type": "boolean"
         },
         "lastSalaryChangeDate": {
@@ -23893,6 +24037,11 @@
           "type": "boolean"
         },
         "isSalary": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSalaryDateInvalid": {
+          "description": "Is the due date invalid, if this is a salary payment.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -38805,6 +38954,152 @@
       },
       "type": "object"
     },
+    "TaxReturnSubmissionResult": {
+      "properties": {
+        "failureCategory": {
+          "enum": [
+            "UNKNOWN",
+            "INTERNAL_VALIDATION_FAILED",
+            "EXTERNAL_SERVICE_UNREACHABLE",
+            "EXTERNAL_SERVICE_API_ERROR",
+            "UNEXPECTED_RESPONSE_CONTENT"
+          ],
+          "type": "string"
+        },
+        "failureMessage": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "failureStep": {
+          "enum": [
+            "DOWNLOADING_COMPLEMENTARY_DATA",
+            "PREVALIDATING",
+            "EXCHANGING_ACCESS_TOKEN",
+            "CREATING_ALTINN_INSTANCE",
+            "UPLOADING_MAIN_CONTENT_TO_ALTINN_INSTANCE",
+            "CLOSING_ALTINN_INSTANCE",
+            "APPROVING_ALTINN_INSTANCE_FOR_TRANSFER",
+            "NONE"
+          ],
+          "type": "string"
+        },
+        "validationResult": {
+          "$ref": "#/definitions/TaxReturnValidationResult",
+          "readOnly": true
+        }
+      },
+      "required": [
+        "failureStep"
+      ],
+      "type": "object"
+    },
+    "TaxReturnValidationDeviation": {
+      "properties": {
+        "calculatedText": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "calculatedValue": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "deviationInValue": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "deviationType": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "occurrenceIdentifier": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "otherInformation": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "path": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "receivedText": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "receivedValue": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "TaxReturnValidationGuidance": {
+      "properties": {
+        "guidanceType": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "helpText": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "occurrenceIdentifier": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "path": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "strategyOfService": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaxReturnValidationResult": {
+      "properties": {
+        "causesOfValidatedWithError": {
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "deviationsAfterCalculation": {
+          "items": {
+            "$ref": "#/definitions/TaxReturnValidationDeviation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "deviationsAtValidation": {
+          "items": {
+            "$ref": "#/definitions/TaxReturnValidationDeviation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "guidancesAfterControl": {
+          "items": {
+            "$ref": "#/definitions/TaxReturnValidationGuidance"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "resultFromValidation": {
+          "enum": [
+            "validatedOK",
+            "validatedWithErrors"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "TaxcardContactInternal": {
       "properties": {
         "changes": {
@@ -43591,16 +43886,14 @@
           ],
           "type": "string"
         },
-        "submissionReceptionStatus": {
-          "enum": [
-            "NotSet",
-            "Ok",
-            "UnExpectedError",
-            "ValidationFailed",
-            "Rejected",
-            "Unknown"
-          ],
+        "submissionAttemptDate": {
           "type": "string"
+        },
+        "submissionInProgress": {
+          "type": "boolean"
+        },
+        "submissionResult": {
+          "$ref": "#/definitions/AnnualAccountsSubmissionResult"
         },
         "sumClosingBalance": {
           "type": "number"
@@ -43723,7 +44016,7 @@
           "type": "boolean"
         },
         "submissionResult": {
-          "$ref": "#/definitions/YearEndSubmissionResult"
+          "$ref": "#/definitions/TaxReturnSubmissionResult"
         },
         "tangibleFixedAssets": {
           "items": {
@@ -44100,152 +44393,6 @@
         "sumAmountPreviousYear": {
           "readOnly": true,
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "YearEndSubmissionResult": {
-      "properties": {
-        "failureCategory": {
-          "enum": [
-            "UNKNOWN",
-            "INTERNAL_VALIDATION_FAILED",
-            "EXTERNAL_SERVICE_UNREACHABLE",
-            "EXTERNAL_SERVICE_API_ERROR",
-            "UNEXPECTED_RESPONSE_CONTENT"
-          ],
-          "type": "string"
-        },
-        "failureMessage": {
-          "maxLength": 255,
-          "type": "string"
-        },
-        "failureStep": {
-          "enum": [
-            "DOWNLOADING_COMPLEMENTARY_DATA",
-            "PREVALIDATING",
-            "EXCHANGING_ACCESS_TOKEN",
-            "CREATING_ALTINN_INSTANCE",
-            "UPLOADING_MAIN_CONTENT_TO_ALTINN_INSTANCE",
-            "CLOSING_ALTINN_INSTANCE",
-            "APPROVING_ALTINN_INSTANCE_FOR_TRANSFER",
-            "NONE"
-          ],
-          "type": "string"
-        },
-        "validationResult": {
-          "$ref": "#/definitions/YearEndValidationResult",
-          "readOnly": true
-        }
-      },
-      "required": [
-        "failureStep"
-      ],
-      "type": "object"
-    },
-    "YearEndValidationDeviation": {
-      "properties": {
-        "calculatedText": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "calculatedValue": {
-          "readOnly": true,
-          "type": "number"
-        },
-        "deviationInValue": {
-          "readOnly": true,
-          "type": "number"
-        },
-        "deviationType": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "occurrenceIdentifier": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "otherInformation": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "path": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "receivedText": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "receivedValue": {
-          "readOnly": true,
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "YearEndValidationGuidance": {
-      "properties": {
-        "guidanceType": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "helpText": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "occurrenceIdentifier": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "path": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "strategyOfService": {
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "YearEndValidationResult": {
-      "properties": {
-        "causesOfValidatedWithError": {
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "deviationsAfterCalculation": {
-          "items": {
-            "$ref": "#/definitions/YearEndValidationDeviation"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "deviationsAtValidation": {
-          "items": {
-            "$ref": "#/definitions/YearEndValidationDeviation"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "guidancesAfterControl": {
-          "items": {
-            "$ref": "#/definitions/YearEndValidationGuidance"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "resultFromValidation": {
-          "enum": [
-            "validatedOK",
-            "validatedWithErrors"
-          ],
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
@@ -44651,6 +44798,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isSalaryDateInvalid": {
+          "description": "Is the due date invalid, if this is a salary payment.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isSelectable": {
           "description": "Is this payment selectable.",
           "readOnly": true,
@@ -44806,7 +44958,7 @@
     },
     "description": "## Usage\n\n- **Download the spec** [swagger.json](/v2/swagger.json) file, it is a [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).\n\n- **Generating a client** can easily be done using tools like [swagger-codegen](https://github.com/swagger-api/swagger-codegen) or other that accepts [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) specs.\n    - For swagger codegen it is recommended to use the flag: **--removeOperationIdPrefix**. \n      Unique operation ids are about to be introduced to the spec, and this ensures forward compatibility - and results in less verbose generated code.\n\n\n## Overview\n\n- Partial resource updating is done using the `PUT` method with optional fields instead of the `PATCH` method.\n\n- **Actions** or **commands** are represented in our RESTful path with a prefixed `:`. Example: `/v2/hours/123/:approve`.\n\n- **Summaries** or **aggregated** results are represented in our RESTful path with a prefixed `>`. Example: `/v2/hours/>thisWeeksBillables`.\n\n- **Request ID** is a key found in all responses in the header with the name `x-tlx-request-id`. For validation and error responses it is also in the response body. If additional log information is absolutely necessary, our support division can locate the key value.\n\n- **version** This is a revision number found on all persisted resources. If included, it will prevent your PUT/POST from overriding any updates to the resource since your GET.\n\n- **Date** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DD`.\n\n- **DateTime** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DDThh:mm:ss`.\n\n- **Searching** is done by entering values in the optional fields for each API call. The values fall into the following categories: range, in, exact and like.\n\n- **Missing fields** or even **no response data** can occur because result objects and fields are filtered on authorization.\n\n- **See [GitHub](https://github.com/Tripletex/tripletex-api2) for more documentation, examples, changelog and more.**\n\n- **See [FAQ](https://tripletex.no/execute/docViewer?articleId=906&language=0) for additional information.**\n\n\n## Authentication\n\n- **Tokens:** The Tripletex API uses 3 different tokens\n\n  - **consumerToken** is a token provided to the consumer by Tripletex after the API 2.0 registration is completed.\n\n  - **employeeToken** is a token created by an administrator in your Tripletex account via the user settings and the tab \"API access\". Each employee token must be given a set of entitlements. [Read more here.](https://tripletex.no/execute/docViewer?articleId=1505&languageId=0)\n\n  - **sessionToken** is the token from `/token/session/:create` which requires a consumerToken and an employeeToken created with the same consumer token, but not an authentication header.\n\n- **Authentication** is done via [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)\n\n  - **username** is used to specify what company to access.\n\n    - `0` or blank means the company of the employee.\n\n    - Any other value means accountant clients. Use `/company/>withLoginAccess` to get a list of those.\n\n  - **password** is the **sessionToken**.\n\n  - If you need to create the header yourself use `Authorization: Basic <encoded token>` where `encoded token` is the string `<target company id or 0>:<your session token>` Base64 encoded.\n\n\n## Tags\n\n- `[BETA]` This is a beta endpoint and can be subject to change.\n- `[DEPRECATED]` Deprecated means that we intend to remove/change this feature or capability in a future \"major\" API release. We therefore discourage all use of this feature/capability.\n\n\n## Fields\n\nUse the `fields` parameter to specify which fields should be returned. This also supports fields from sub elements, done via `<field>(<subResourceFields>)`. `*` means all fields for that resource. Example values:\n- `project,activity,hours`  returns `{project:..., activity:...., hours:...}`.\n- just `project` returns `\"project\" : { \"id\": 12345, \"url\": \"tripletex.no/v2/projects/12345\"  }`.\n- `project(*)` returns `\"project\" : { \"id\": 12345 \"name\":\"ProjectName\" \"number.....startDate\": \"2013-01-07\" }`.\n- `project(name)` returns `\"project\" : { \"name\":\"ProjectName\" }`.\n- All resources and some subResources :  `*,activity(name),employee(*)`.\n\n\n## Sorting\n\nUse the `sorting` parameter to specify sorting. It takes a comma separated list, where a `-` prefix denotes descending. You can sort by sub object with the following format: `<field>.<subObjectField>`. Example values:\n- `date`\n- `project.name`\n- `project.name, -date`\n\n\n## Changes\n\nTo get the changes for a resource, `changes` have to be explicitly specified as part of the `fields` parameter, e.g. `*,changes`.\nThere are currently two types of change available: \n- `CREATE` for when the resource was created\n- `UPDATE` for when the resource was updated\n\n**NOTE**\n> For objects created prior to October 24th 2018 the list may be incomplete, but will always contain the CREATE and the last change (if the object has been changed after creation).\n\n\n## Rate limiting\n\nRate limiting is performed on the API calls for an employee for each API consumer. Status regarding the rate limit is returned as headers:\n- `X-Rate-Limit-Limit` - The number of allowed requests in the current period.\n- `X-Rate-Limit-Remaining` - The number of remaining requests.\n- `X-Rate-Limit-Reset` - The number of seconds left in the current period.\n\nOnce the rate limit is hit, all requests will return HTTP status code `429` for the remainder of the current period.\n\n\n## Response envelope\n\n#### Multiple values\n\n```json\n{\n  \"fullResultSize\": ###, // {number} [DEPRECATED]\n  \"from\": ###, // {number} Paging starting from\n  \"count\": ###, // {number} Paging count\n  \"versionDigest\": \"###\", // {string} Hash of full result, null if no result\n  \"values\": [...{...object...},{...object...},{...object...}...]\n}\n```\n\n#### Single value\n\n```json\n{\n  \"value\": {...single object...}\n}\n```\n\n\n## WebHook envelope\n\n```json\n{\n  \"subscriptionId\": ###, // Subscription id\n  \"event\": \"object.verb\", // As listed from /v2/event/\n  \"id\": ###, // Id of object this event is for\n  \"value\": {... single object, null if object.deleted ...}\n}\n```\n\n\n## Error/warning envelope\n\n```json\n{\n  \"status\": ###, // {number} HTTP status code\n  \"code\": #####, // {number} internal status code of event\n  \"message\": \"###\", // {string} Basic feedback message in your language\n  \"link\": \"###\", // {string} Link to doc\n  \"developerMessage\": \"###\", // {string} More technical message\n  \"validationMessages\": [ // {array} List of validation messages, can be null\n    {\n      \"field\": \"###\", // {string} Name of field\n      \"message\": \"###\" // {string} Validation message for field\n    }\n  ],\n  \"requestId\": \"###\" // {string} Same as x-tlx-request-id \n}\n```\n\n\n## Status codes / Error codes\n\n- **200 OK**\n- **201 Created** - From POSTs that create something new.\n- **204 No Content** - When there is no answer, ex: \"/:anAction\" or DELETE.\n- **400 Bad request** -\n  -  **4000** Bad Request Exception\n  - **11000** Illegal Filter Exception\n  - **12000** Path Param Exception\n  - **24000** Cryptography Exception\n- **401 Unauthorized** - When authentication is required and has failed or has not yet been provided\n  -  **3000** Authentication Exception\n- **403 Forbidden** - When AuthorisationManager says no.\n  -  **9000** Security Exception\n- **404 Not Found** - For resources that does not exist.\n  -  **6000** Not Found Exception\n- **409 Conflict** - Such as an edit conflict between multiple simultaneous updates\n  -  **7000** Object Exists Exception\n  -  **8000** Revision Exception\n  - **10000** Locked Exception\n  - **14000** Duplicate entry\n- **422 Bad Request** - For Required fields or things like malformed payload.\n  - **15000** Value Validation Exception\n  - **16000** Mapping Exception\n  - **17000** Sorting Exception\n  - **18000** Validation Exception\n  - **21000** Param Exception\n  - **22000** Invalid JSON Exception\n  - **23000** Result Set Too Large Exception\n- **429 Too Many Requests** - Request rate limit hit\n- **500 Internal Error** - Unexpected condition was encountered and no more specific message is suitable\n  - **1000** Exception\n",
     "title": "Tripletex API",
-    "version": "2.70.44"
+    "version": "2.70.46"
   },
   "paths": {
     "/activity": {
