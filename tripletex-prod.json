@@ -22056,6 +22056,9 @@
         "userIsAuthCreateOrder": {
           "type": "boolean"
         },
+        "userIsAuthCustomerInfo": {
+          "type": "boolean"
+        },
         "userIsAuthEmployeeInfo": {
           "type": "boolean"
         },
@@ -22063,6 +22066,9 @@
           "type": "boolean"
         },
         "userIsAuthMySalary": {
+          "type": "boolean"
+        },
+        "userIsAuthProductAdmin": {
           "type": "boolean"
         },
         "userIsAuthProjectInfo": {
