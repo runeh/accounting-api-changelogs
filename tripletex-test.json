@@ -7007,11 +7007,6 @@
         "employeeCategory": {
           "$ref": "#/definitions/EmployeeCategory"
         },
-        "employeeNumber": {
-          "maxLength": 100,
-          "minLength": 0,
-          "type": "string"
-        },
         "firstName": {
           "maxLength": 100,
           "minLength": 1,
@@ -7024,6 +7019,11 @@
         "lastName": {
           "maxLength": 100,
           "minLength": 1,
+          "type": "string"
+        },
+        "number": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "pictureId": {
@@ -7091,6 +7091,9 @@
         "departmentIds": {
           "type": "string"
         },
+        "description": {
+          "type": "string"
+        },
         "divisionIds": {
           "type": "string"
         },
@@ -7128,7 +7131,8 @@
             "DEPARTMENT",
             "DIVISION",
             "STATUS",
-            "PREVIOUS_SALARIES"
+            "PREVIOUS_SALARIES",
+            "NUMBER"
           ],
           "type": "string"
         },
@@ -7143,9 +7147,6 @@
           "type": "string"
         },
         "specTypesToAdd": {
-          "type": "string"
-        },
-        "title": {
           "type": "string"
         },
         "year": {
@@ -23854,7 +23855,9 @@
             "PurchaseOrderOverviewOptions",
             "BankBalanceEstimationViewOptions",
             "OrderFormViewOptions",
-            "BankAccountsOverviewViewOptions"
+            "BankAccountsOverviewViewOptions",
+            "PaymentsOverviewViewOptions",
+            "InvoiceOverviewOptions"
           ],
           "type": "string"
         },
@@ -42946,6 +42949,24 @@
           "readOnly": true,
           "type": "string"
         },
+        "filterType": {
+          "enum": [
+            "UNKNOWN",
+            "EHF",
+            "EHF_WITH_PREDICTIONS",
+            "EFO_NELFO",
+            "EFO_NELFO_WITH_PREDICTIONS",
+            "INVOICE",
+            "PDF_INVOICE",
+            "PDF_RECEIPT",
+            "PDF_CREDIT_NOTE",
+            "ERROR_EHF_IMPORT",
+            "REPLAYABLE_VOUCHER",
+            "REMINDER_SPECIFICATION"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "hasPredictions": {
           "description": "Has one or more predictions from FabricAi",
           "readOnly": true,
@@ -44577,6 +44598,11 @@
     },
     "ZtlEmployee": {
       "properties": {
+        "companyId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "consent": {
           "$ref": "#/definitions/ZtlConsent",
           "readOnly": true
