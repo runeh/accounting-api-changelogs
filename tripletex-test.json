@@ -7016,6 +7016,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "isContact": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "lastName": {
           "maxLength": 100,
           "minLength": 1,
@@ -7084,6 +7088,14 @@
       "properties": {
         "allSelected": {
           "type": "boolean"
+        },
+        "contactsFilter": {
+          "enum": [
+            "INCLUDE_CONTACTS",
+            "ONLY_CONTACTS",
+            "NONE"
+          ],
+          "type": "string"
         },
         "date": {
           "type": "string"
@@ -23996,6 +24008,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "expired": {
+          "description": "Is this transaction expired.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
@@ -25872,6 +25889,21 @@
           "readOnly": true,
           "type": "array"
         },
+        "countCreated": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "countIgnored": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "countUpdated": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
@@ -25879,21 +25911,6 @@
         "importFile": {
           "$ref": "#/definitions/Document",
           "readOnly": true
-        },
-        "numberCreated": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "numberIgnored": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "numberUpdated": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
         },
         "productImportHeaders": {
           "items": {
@@ -44776,6 +44793,11 @@
           "maxLength": 128,
           "readOnly": true,
           "type": "string"
+        },
+        "expired": {
+          "description": "Is this transaction expired.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "id": {
           "format": "int32",
