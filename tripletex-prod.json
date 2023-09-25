@@ -11790,6 +11790,9 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        },
+        "visibilityExpression": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -30043,6 +30046,12 @@
     },
     "ReportSettingsHeaders": {
       "properties": {
+        "columnHeaderVisibilityExpression": {
+          "type": "string"
+        },
+        "rowHeaderVisibilityExpression": {
+          "type": "string"
+        },
         "showColumnHeaders": {
           "type": "boolean"
         },
@@ -41367,6 +41376,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isLoginEmployeeWageDepartmentOnly": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "maxEmployeesPerSalaryTransaction": {
           "format": "int32",
           "readOnly": true,
@@ -42823,10 +42836,6 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
-        },
-        "accountingPeriod": {
-          "readOnly": true,
-          "type": "string"
         },
         "allowPostingBeforeVoucherApproved": {
           "readOnly": true,
