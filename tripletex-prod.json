@@ -2563,6 +2563,10 @@
         },
         {
           "properties": {
+            "rejectionMessage": {
+              "readOnly": true,
+              "type": "string"
+            },
             "sendToBank": {
               "readOnly": true,
               "type": "boolean"
@@ -23292,6 +23296,10 @@
         "customer": {
           "$ref": "#/definitions/Customer"
         },
+        "customerName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "deliveryAddress": {
           "$ref": "#/definitions/DeliveryAddress",
           "description": "Delivery address of this order. This can be a new or existing address\n(useful to know, especially if the delivery is to a private person: if 'deliveryAddress.name' is set, we ignore the state of 'customer.id')"
@@ -23424,6 +23432,10 @@
         },
         "project": {
           "$ref": "#/definitions/Project"
+        },
+        "projectManagerNameAndNumber": {
+          "readOnly": true,
+          "type": "string"
         },
         "receiverEmail": {
           "maxLength": 254,
@@ -23717,6 +23729,10 @@
           "$ref": "#/definitions/Customer",
           "description": "The offer's customer"
         },
+        "customerName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "department": {
           "$ref": "#/definitions/Department"
         },
@@ -23733,6 +23749,10 @@
           "type": "string"
         },
         "offerDate": {
+          "type": "string"
+        },
+        "projectManagerNameAndNumber": {
+          "readOnly": true,
           "type": "string"
         },
         "url": {
@@ -24108,6 +24128,11 @@
           "$ref": "#/definitions/Posting",
           "description": "The payment posting.",
           "readOnly": true
+        },
+        "receiverLink": {
+          "description": "The payment receiver link or name",
+          "readOnly": true,
+          "type": "string"
         },
         "receiverReference": {
           "readOnly": true,
@@ -29188,7 +29213,7 @@
     "Report": {
       "properties": {
         "blueprint": {
-          "$ref": "#/definitions/ReportBlueprintV1",
+          "$ref": "#/definitions/ReportBlueprintV2",
           "description": "blueprint"
         },
         "changes": {
@@ -29327,7 +29352,7 @@
       ],
       "type": "object"
     },
-    "ReportBlueprintV1": {
+    "ReportBlueprintV2": {
       "properties": {
         "cells": {
           "items": {
@@ -33155,6 +33180,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/VatSpecificationLine"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperVatStatus": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/VatStatus"
         }
       },
       "type": "object"
@@ -41904,6 +41937,73 @@
       },
       "type": "object"
     },
+    "VatDeliveryStatus": {
+      "properties": {
+        "employee": {
+          "$ref": "#/definitions/Employee",
+          "description": "Employee that last updated the payment status",
+          "readOnly": true
+        },
+        "status": {
+          "description": "The delivery status of the VAT",
+          "enum": [
+            "NOT_STARTED",
+            "NOT_SENT",
+            "SENDING",
+            "WAITING_FOR_REPLY",
+            "RECEIPT_RECEIVED",
+            "MANUAL_DELIVERY",
+            "DELIVERY_FORBIDDEN",
+            "FAILED"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "time": {
+          "description": "Date and time the delivery status was updated",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VatPaymentStatus": {
+      "properties": {
+        "employee": {
+          "$ref": "#/definitions/Employee",
+          "description": "Employee that last updated the payment status",
+          "readOnly": true
+        },
+        "remainingAmount": {
+          "description": "Remaining amount in NOK",
+          "readOnly": true,
+          "type": "number"
+        },
+        "status": {
+          "description": "The payment status of the VAT",
+          "enum": [
+            "NOT_STARTED",
+            "NOT_PAID",
+            "NO_TAX_TO_PAY",
+            "AMOUNT_CREDITED",
+            "PAYMENT_REGISTERED"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "time": {
+          "description": "Date and time the delivery status was updated",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalAmount": {
+          "description": "Total amount in NOK",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "VatReturns2022": {
       "properties": {
         "altinnMetadata": {
@@ -41938,8 +42038,8 @@
           "type": "integer"
         },
         "remainingAmountVatToPay": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "start": {
           "type": "string"
@@ -41966,8 +42066,8 @@
           "type": "string"
         },
         "totalAmountVatToPay": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "url": {
           "readOnly": true,
@@ -42296,6 +42396,41 @@
         "vatType": {
           "$ref": "#/definitions/VatType",
           "description": "The vat type used for this line"
+        }
+      },
+      "type": "object"
+    },
+    "VatStatus": {
+      "properties": {
+        "company": {
+          "$ref": "#/definitions/Company",
+          "description": "Information about the company",
+          "readOnly": true
+        },
+        "deliveryStatus": {
+          "$ref": "#/definitions/VatDeliveryStatus",
+          "description": "The delivery status",
+          "readOnly": true
+        },
+        "paymentStatus": {
+          "$ref": "#/definitions/VatPaymentStatus",
+          "description": "The payment status",
+          "readOnly": true
+        },
+        "term": {
+          "description": "VAT term",
+          "format": "int32",
+          "maximum": 12,
+          "minimum": 1,
+          "readOnly": true,
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year of VAT",
+          "format": "int32",
+          "minimum": 2022,
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -44904,6 +45039,11 @@
           "$ref": "#/definitions/Posting",
           "description": "The payment posting.",
           "readOnly": true
+        },
+        "receiverLink": {
+          "description": "The payment receiver link or name",
+          "readOnly": true,
+          "type": "string"
         },
         "receiverReference": {
           "maxLength": 250,
