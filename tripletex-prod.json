@@ -25612,6 +25612,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "isAccessibleToLoggedInUser": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "salaryTransactionId": {
           "format": "int32",
           "readOnly": true,
@@ -42789,6 +42793,15 @@
     },
     "VoucherInboxArchive": {
       "properties": {
+        "addToInvoice": {
+          "description": "Add to document to invoice",
+          "enum": [
+            "ADD_TO_INVOICE_NONE",
+            "ADD_TO_INVOICE_NEXT",
+            "ADD_TO_INVOICE_ALL"
+          ],
+          "type": "string"
+        },
         "archiveDate": {
           "type": "string"
         },
