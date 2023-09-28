@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -5098,14 +5092,6 @@
         "columnReference": {
           "type": "string"
         },
-        "defaultAxis": {
-          "enum": [
-            "NONE",
-            "ROW",
-            "COL"
-          ],
-          "type": "string"
-        },
         "expression": {
           "type": "string"
         },
@@ -7408,6 +7394,9 @@
         },
         "deliveryAddress": {
           "$ref": "#/definitions/DeliveryAddress"
+        },
+        "department": {
+          "$ref": "#/definitions/Department"
         },
         "description": {
           "type": "string"
@@ -18258,6 +18247,39 @@
       },
       "type": "object"
     },
+    "ListResponseProductImportFieldDTO": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ProductImportFieldDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseProductImportHeader": {
       "properties": {
         "count": {
@@ -25990,6 +26012,9 @@
     },
     "ProductImportFieldDTO": {
       "properties": {
+        "displayName": {
+          "type": "string"
+        },
         "format": {
           "type": "string"
         },
@@ -25997,15 +26022,12 @@
           "format": "int32",
           "type": "integer"
         },
-        "mandatory": {
+        "isMandatory": {
           "type": "boolean"
         },
         "sequence": {
           "format": "int32",
           "type": "integer"
-        },
-        "textKey": {
-          "type": "string"
         }
       },
       "type": "object"
@@ -31571,17 +31593,6 @@
         "value": {
           "items": {
             "$ref": "#/definitions/PersonalIncomeOverview"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperListProductImportFieldDTO": {
-      "properties": {
-        "value": {
-          "items": {
-            "$ref": "#/definitions/ProductImportFieldDTO"
           },
           "type": "array"
         }
@@ -42992,6 +43003,10 @@
           "type": "integer"
         },
         "allowPostingBeforeVoucherApproved": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "approvalHasBeenRejected": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -60790,6 +60805,54 @@
         ]
       }
     },
+    "/order/orderline/orderLineTemplate": {
+      "get": {
+        "description": "",
+        "operationId": "OrderOrderlineOrderLineTemplate_orderLineTemplate",
+        "parameters": [
+          {
+            "description": "Equals",
+            "format": "int32",
+            "in": "query",
+            "name": "orderId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Equals",
+            "format": "int32",
+            "in": "query",
+            "name": "productId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperOrderLine"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "[BETA] Get order line template from order and product",
+        "tags": [
+          "order/orderline"
+        ]
+      }
+    },
     "/order/orderline/{id}": {
       "delete": {
         "description": "",
@@ -65905,6 +65968,54 @@
           }
         ],
         "summary": "[BETA] Create multiple order lines.",
+        "tags": [
+          "project/orderline"
+        ]
+      }
+    },
+    "/project/orderline/orderLineTemplate": {
+      "get": {
+        "description": "",
+        "operationId": "ProjectOrderlineOrderLineTemplate_orderLineTemplate",
+        "parameters": [
+          {
+            "description": "Equals",
+            "format": "int32",
+            "in": "query",
+            "name": "projectId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Equals",
+            "format": "int32",
+            "in": "query",
+            "name": "productId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperProjectOrderLine"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "[BETA] Get order line template from project and product",
         "tags": [
           "project/orderline"
         ]
