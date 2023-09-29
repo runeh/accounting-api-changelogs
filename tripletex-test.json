@@ -21019,6 +21019,39 @@
       },
       "type": "object"
     },
+    "ListResponseVatStatus": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/VatStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseVatTermPeriod": {
       "properties": {
         "count": {
@@ -26352,6 +26385,9 @@
     },
     "ProductRowJSON": {
       "properties": {
+        "currencyCode": {
+          "type": "string"
+        },
         "eanGtin": {
           "type": "string"
         },
@@ -37936,6 +37972,10 @@
           "description": "Is automation activated?",
           "type": "boolean"
         },
+        "allowSendEhfRequest": {
+          "description": "Whether to allow sending EHF requests",
+          "type": "boolean"
+        },
         "amountMaxFabricAiVendorInvoice": {
           "description": "If set, gives the amount limit for automating invoices for this vendor, it the total invoice amount is above the limit, the invoice is not automated.",
           "format": "int32",
@@ -38048,6 +38088,7 @@
         }
       },
       "required": [
+        "allowSendEhfRequest",
         "canSendEhf",
         "email",
         "name",
@@ -42869,35 +42910,7 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "canUserDelete": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "canUserEdit": {
-          "readOnly": true,
-          "type": "boolean"
-        },
         "canUserRegisterAdvancedVoucher": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "canUserRegisterBankReconciliation": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "canUserRegisterCustomsDeclaration": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "canUserRegisterIncome": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "canUserRegisterIncomingInvoice": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "canUserRegisterPaymentIn": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -42927,15 +42940,7 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "hasDepartment": {
-          "readOnly": true,
-          "type": "boolean"
-        },
         "hasEfoNelfoInvoices": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "hasProject": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -42946,10 +42951,6 @@
         "incomePilotActive": {
           "readOnly": true,
           "type": "boolean"
-        },
-        "locale": {
-          "readOnly": true,
-          "type": "string"
         },
         "mainBankAccountId": {
           "format": "int32",
