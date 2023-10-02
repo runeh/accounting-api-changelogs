@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -3714,6 +3720,7 @@
         "remitNumberOfAcceptors": {
           "description": "The remit number of acceptors.",
           "format": "int32",
+          "maximum": 3,
           "minimum": 1,
           "type": "integer"
         },
@@ -11803,6 +11810,9 @@
             "$ref": "#/definitions/Article"
           },
           "type": "array"
+        },
+        "helpCenterSearchUrl": {
+          "type": "string"
         },
         "helpCenterUrl": {
           "type": "string"
@@ -26156,6 +26166,9 @@
         "fieldId": {
           "format": "int32",
           "type": "integer"
+        },
+        "fieldName": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -32833,22 +32846,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperStorebrandPensionOnboarding": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/StorebrandPensionOnboarding"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperStorebrandPensionOnboardingQualify": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/StorebrandPensionOnboardingQualify"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperString": {
       "properties": {
         "value": {
@@ -37644,105 +37641,6 @@
       ],
       "type": "object"
     },
-    "StorebrandPensionOnboarding": {
-      "properties": {
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "currentPensionProvider": {
-          "maxLength": 100,
-          "minLength": 0,
-          "type": "string"
-        },
-        "email": {
-          "maxLength": 100,
-          "minLength": 0,
-          "type": "string"
-        },
-        "firstName": {
-          "maxLength": 100,
-          "minLength": 0,
-          "type": "string"
-        },
-        "hasActivePensionContracts": {
-          "type": "boolean"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "lastName": {
-          "maxLength": 100,
-          "minLength": 0,
-          "type": "string"
-        },
-        "phoneNumber": {
-          "maxLength": 25,
-          "minLength": 0,
-          "type": "string"
-        },
-        "role": {
-          "enum": [
-            "CEO",
-            "CHAIRMAN",
-            "INSURANCE",
-            "ACCOUNTANT_EXTERNAL",
-            "HR",
-            "FINANCE",
-            "ACCOUNTANT_INTERNAL",
-            "OTHER"
-          ],
-          "type": "string"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "currentPensionProvider",
-        "hasActivePensionContracts",
-        "role"
-      ],
-      "type": "object"
-    },
-    "StorebrandPensionOnboardingQualify": {
-      "properties": {
-        "employee": {
-          "$ref": "#/definitions/Employee",
-          "readOnly": true
-        },
-        "partTimePercentageWarning": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "requiredModules": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "socialSecurityNumberWarning": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "validEmployees": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "yearlyWagesWarning": {
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "Subscription": {
       "properties": {
         "authHeaderName": {
@@ -38074,14 +37972,14 @@
           "readOnly": true,
           "type": "integer"
         },
-        "voucherCountLast90DaysEhf": {
-          "description": "Number of EHF vouchers last 90 days.",
+        "voucherCountLast190DaysEhf": {
+          "description": "Number of EHF vouchers last 190 days.",
           "format": "int32",
           "minimum": 0,
           "type": "integer"
         },
-        "voucherCountLast90DaysNonEhf": {
-          "description": "Number of non-EHF vouchers last 90 days.",
+        "voucherCountLast190DaysNonEhf": {
+          "description": "Number of non-EHF vouchers last 190 days.",
           "format": "int32",
           "minimum": 0,
           "type": "integer"
@@ -80543,12 +80441,6 @@
     },
     {
       "name": "sse"
-    },
-    {
-      "name": "storebrandonboarding"
-    },
-    {
-      "name": "storebrandonboardingqualify"
     },
     {
       "name": "supplier"
