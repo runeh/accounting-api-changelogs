@@ -13993,6 +13993,13 @@
           "$ref": "#/definitions/TlxNumber",
           "readOnly": true
         },
+        "approvalElements": {
+          "items": {
+            "$ref": "#/definitions/VoucherApprovalListElement"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "attestationStatus": {
           "readOnly": true,
           "type": "string"
@@ -14010,6 +14017,10 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "description": {
+          "readOnly": true,
+          "type": "string"
         },
         "hasAttachment": {
           "readOnly": true,
@@ -42689,6 +42700,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "isVendorAttestant": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "organisationLevel": {
           "format": "int32",
           "minimum": 0,
@@ -44529,6 +44544,12 @@
         },
         "name": {
           "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

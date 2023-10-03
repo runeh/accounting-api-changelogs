@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -13993,6 +13987,13 @@
           "$ref": "#/definitions/TlxNumber",
           "readOnly": true
         },
+        "approvalElements": {
+          "items": {
+            "$ref": "#/definitions/VoucherApprovalListElement"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "attestationStatus": {
           "readOnly": true,
           "type": "string"
@@ -14010,6 +14011,10 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "description": {
+          "readOnly": true,
+          "type": "string"
         },
         "hasAttachment": {
           "readOnly": true,
@@ -42689,6 +42694,10 @@
           "format": "int32",
           "type": "integer"
         },
+        "isVendorAttestant": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "organisationLevel": {
           "format": "int32",
           "minimum": 0,
@@ -44529,6 +44538,12 @@
         },
         "name": {
           "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
