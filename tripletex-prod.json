@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -299,27 +293,6 @@
           "minimum": 0,
           "readOnly": true,
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "AccountSuggestionDTO": {
-      "properties": {
-        "accountName": {
-          "type": "string"
-        },
-        "accountNumber": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "description": {
-          "type": "string"
-        },
-        "tags": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -10751,6 +10724,32 @@
       },
       "type": "object"
     },
+    "GeneralBannerDTO": {
+      "properties": {
+        "bannerType": {
+          "enum": [
+            "info",
+            "warning",
+            "error",
+            "success"
+          ],
+          "type": "string"
+        },
+        "link": {
+          "type": "string"
+        },
+        "message": {
+          "type": "string"
+        },
+        "tag": {
+          "type": "string"
+        },
+        "title": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GenericData": {
       "properties": {
         "changes": {
@@ -14506,39 +14505,6 @@
       },
       "type": "object"
     },
-    "ListResponseAccountSuggestionDTO": {
-      "properties": {
-        "count": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/AccountSuggestionDTO"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListResponseAccountantClient": {
       "properties": {
         "count": {
@@ -16705,6 +16671,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/ExternalProduct"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseGeneralBannerDTO": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/GeneralBannerDTO"
           },
           "readOnly": true,
           "type": "array"
@@ -23187,9 +23186,6 @@
           },
           "type": "array"
         },
-        "logisticsModule": {
-          "type": "boolean"
-        },
         "municipality": {
           "type": "string"
         },
@@ -26067,6 +26063,9 @@
     "ProductImportFieldDTO": {
       "properties": {
         "displayName": {
+          "type": "string"
+        },
+        "fieldName": {
           "type": "string"
         },
         "format": {
@@ -79521,9 +79520,6 @@
   },
   "swagger": "2.0",
   "tags": [
-    {
-      "name": "internalaccountHelp"
-    },
     {
       "name": "activity"
     },
