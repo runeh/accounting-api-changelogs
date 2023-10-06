@@ -47001,38 +47001,6 @@
         ]
       }
     },
-    "/bank/reconciliation/previousBankingDay": {
-      "get": {
-        "description": "",
-        "operationId": "BankReconciliationPreviousBankingDay_getPreviousBankingDay",
-        "parameters": [
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperDate"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Get the last banking day",
-        "tags": [
-          "bank/reconciliation"
-        ]
-      }
-    },
     "/bank/reconciliation/settings": {
       "get": {
         "description": "",
