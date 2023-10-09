@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -292,6 +298,45 @@
           "format": "int32",
           "minimum": 0,
           "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AccountSuggestionDTO": {
+      "properties": {
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "tags": {
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AccountWithHelpInfoDTO": {
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/Account",
+          "readOnly": true
+        },
+        "accountHelp": {
+          "$ref": "#/definitions/AccountSuggestionDTO",
+          "readOnly": true
+        },
+        "description": {
+          "type": "string"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
           "type": "integer"
         }
       },
@@ -13641,9 +13686,6 @@
         "isCreditActionAllowed": {
           "type": "boolean"
         },
-        "isPaymentActionAllowed": {
-          "type": "boolean"
-        },
         "isReminderDebtCollectionActionAllowed": {
           "type": "boolean"
         },
@@ -14493,6 +14535,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Account"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseAccountWithHelpInfoDTO": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AccountWithHelpInfoDTO"
           },
           "readOnly": true,
           "type": "array"
@@ -33208,6 +33283,22 @@
       },
       "type": "object"
     },
+    "ResponseWrapperVatDeliveryStatusUpdate": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/VatDeliveryStatusUpdate"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperVatPaymentStatusUpdate": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/VatPaymentStatusUpdate"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperVatReturns2022": {
       "properties": {
         "value": {
@@ -41937,6 +42028,49 @@
       },
       "type": "object"
     },
+    "VatDeliveryStatusUpdate": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "company": {
+          "$ref": "#/definitions/Company",
+          "description": "The company that updated the status",
+          "readOnly": true
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "term": {
+          "description": "The VAT term",
+          "format": "int32",
+          "maximum": 12,
+          "minimum": 1,
+          "readOnly": true,
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "The year of the VAT term",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "VatPaymentStatus": {
       "properties": {
         "employee": {
@@ -41970,6 +42104,49 @@
           "description": "Total amount in NOK",
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "VatPaymentStatusUpdate": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "company": {
+          "$ref": "#/definitions/Company",
+          "description": "The company that updated the status",
+          "readOnly": true
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "term": {
+          "description": "The VAT term",
+          "format": "int32",
+          "maximum": 12,
+          "minimum": 1,
+          "readOnly": true,
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "The year of the VAT term",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -42737,6 +42914,11 @@
     },
     "VoucherChangeDescription": {
       "properties": {
+        "companyId": {
+          "description": "Company id",
+          "format": "int32",
+          "type": "integer"
+        },
         "description": {
           "description": "New description",
           "type": "string"
