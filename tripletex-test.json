@@ -1774,6 +1774,34 @@
       },
       "type": "object"
     },
+    "AmeldingStatusInternal": {
+      "properties": {
+        "actorEmployee": {
+          "$ref": "#/definitions/Employee",
+          "description": "Employee that performed last A-melding action",
+          "readOnly": true
+        },
+        "company": {
+          "$ref": "#/definitions/Company",
+          "description": "Information about the company",
+          "readOnly": true
+        },
+        "lastActionTime": {
+          "description": "Time for last A-melding action",
+          "readOnly": true,
+          "type": "string"
+        },
+        "summaryStatus": {
+          "enum": [
+            "completed",
+            "notCompleted",
+            "awaitingResponse"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AnnualAccount": {
       "properties": {
         "changes": {
@@ -28390,9 +28418,8 @@
           "type": "string"
         },
         "number": {
-          "description": "Purchase order number",
+          "description": "Purchase order number - read only",
           "maxLength": 100,
-          "readOnly": true,
           "type": "string"
         },
         "orderLines": {
@@ -30571,6 +30598,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/AltinnInstance"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperAmeldingStatusInternal": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/AmeldingStatusInternal"
         }
       },
       "type": "object"
@@ -80500,6 +80535,9 @@
     },
     {
       "name": "salary/type"
+    },
+    {
+      "name": "salarytskinternalamelding"
     },
     {
       "name": "salarytskinternalmeta"

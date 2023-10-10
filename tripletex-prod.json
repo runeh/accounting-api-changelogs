@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1776,6 +1770,34 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AmeldingStatusInternal": {
+      "properties": {
+        "actorEmployee": {
+          "$ref": "#/definitions/Employee",
+          "description": "Employee that performed last A-melding action",
+          "readOnly": true
+        },
+        "company": {
+          "$ref": "#/definitions/Company",
+          "description": "Information about the company",
+          "readOnly": true
+        },
+        "lastActionTime": {
+          "description": "Time for last A-melding action",
+          "readOnly": true,
+          "type": "string"
+        },
+        "summaryStatus": {
+          "enum": [
+            "completed",
+            "notCompleted",
+            "awaitingResponse"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -28396,9 +28418,8 @@
           "type": "string"
         },
         "number": {
-          "description": "Purchase order number",
+          "description": "Purchase order number - read only",
           "maxLength": 100,
-          "readOnly": true,
           "type": "string"
         },
         "orderLines": {
@@ -30577,6 +30598,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/AltinnInstance"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperAmeldingStatusInternal": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/AmeldingStatusInternal"
         }
       },
       "type": "object"
@@ -80506,6 +80535,9 @@
     },
     {
       "name": "salary/type"
+    },
+    {
+      "name": "salarytskinternalamelding"
     },
     {
       "name": "salarytskinternalmeta"
