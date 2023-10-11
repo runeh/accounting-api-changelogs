@@ -11276,6 +11276,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "calculatedTotalAssetValue": {
+          "readOnly": true,
+          "type": "number"
+        },
         "cashRegisterSystemPosts": {
           "items": {
             "$ref": "#/definitions/CashRegisterSystem"
