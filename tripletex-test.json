@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -21107,6 +21113,39 @@
       },
       "type": "object"
     },
+    "ListResponseVatReturnsOverviewItem": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/VatReturnsOverviewItem"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseVatReturnsVatCodeComment": {
       "properties": {
         "count": {
@@ -35726,6 +35765,12 @@
           "readOnly": true,
           "type": "integer"
         },
+        "creatorCompanySalesRepresentativeId": {
+          "description": "The employeeId of the sales representative assigned to the creator company",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "customerCompanyId": {
           "format": "int32",
           "readOnly": true,
@@ -36215,7 +36260,8 @@
             "AUTOPLUS",
             "MIKRO",
             "INTEGRATION_PARTNER",
-            "PLUSS"
+            "PLUSS",
+            "DIYPACKAGE"
           ],
           "readOnly": true,
           "type": "string"
@@ -36282,6 +36328,7 @@
             "NO1TS",
             "NO1TS_TRAVELREPORT",
             "NO1TS_ACCOUNTING",
+            "DIYPACKAGE",
             "BASIS",
             "SMART",
             "KOMPLETT",
@@ -42386,6 +42433,63 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VatReturnsOverviewItem": {
+      "properties": {
+        "amount": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "dueDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "isPaid": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "status": {
+          "enum": [
+            "NOT_STARTED",
+            "INSTANCE_CREATED",
+            "VAT_ENVELOPE_DELIVERED",
+            "VAT_RETURNS_DELIVERED",
+            "ATTACHMENTS_DELIVERED",
+            "FILLING_COMPLETE",
+            "SENDING_COMPLETE",
+            "FEEDBACK_RECEIVED",
+            "MANUAL_DELIVERY",
+            "USER_FORBIDDEN",
+            "SENDING_FAILED"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "term": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "termDisplayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "voucherId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "year": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -80851,6 +80955,9 @@
     },
     {
       "name": "tripletexDashboardvoucherSummary"
+    },
+    {
+      "name": "vatReturnsOverview"
     },
     {
       "name": "vatReturns"
