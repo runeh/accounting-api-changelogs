@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -7866,7 +7860,8 @@
             "THREE_MONTHS",
             "FOUR_MONTHS",
             "SIX_MONTHS",
-            "YEAR"
+            "YEAR",
+            "NOT_REGISTERED"
           ],
           "type": "string"
         }
@@ -22506,6 +22501,9 @@
         "moduleinvoice": {
           "type": "boolean"
         },
+        "moduleproject": {
+          "type": "boolean"
+        },
         "moduleprojectcategory": {
           "type": "boolean"
         },
@@ -26554,6 +26552,10 @@
         "eanGtin": {
           "type": "string"
         },
+        "isInactive": {
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
@@ -30110,6 +30112,9 @@
         "link": {
           "type": "string"
         },
+        "sourceRef": {
+          "type": "string"
+        },
         "style": {
           "items": {
             "type": "string"
@@ -30145,10 +30150,10 @@
     "ReportResultParameters": {
       "properties": {
         "expandState": {
-          "items": {
+          "additionalProperties": {
             "type": "boolean"
           },
-          "type": "array"
+          "type": "object"
         },
         "filter": {
           "$ref": "#/definitions/ReportGroupFilter"
@@ -30183,6 +30188,9 @@
           "type": "integer"
         },
         "link": {
+          "type": "string"
+        },
+        "sourceRef": {
           "type": "string"
         },
         "style": {
@@ -41471,7 +41479,8 @@
             "THREE_MONTHS",
             "FOUR_MONTHS",
             "SIX_MONTHS",
-            "YEAR"
+            "YEAR",
+            "NOT_REGISTERED"
           ],
           "type": "string"
         }
@@ -42450,6 +42459,14 @@
         "isPaid": {
           "readOnly": true,
           "type": "boolean"
+        },
+        "reportType": {
+          "enum": [
+            "PRIMARY_INDUSTRY",
+            "GENERAL_INDUSTRY"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "status": {
           "enum": [
