@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -18369,6 +18375,39 @@
       },
       "type": "object"
     },
+    "ListResponseProductImport": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ProductImport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseProductImportFieldDTO": {
       "properties": {
         "count": {
@@ -26152,6 +26191,9 @@
           "readOnly": true,
           "type": "integer"
         },
+        "employee": {
+          "$ref": "#/definitions/Employee"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
@@ -26173,6 +26215,9 @@
             "COMMA",
             "SEMICOLON"
           ],
+          "type": "string"
+        },
+        "startDate": {
           "type": "string"
         },
         "status": {
@@ -26547,6 +26592,9 @@
     "ProductRowJSON": {
       "properties": {
         "currencyCode": {
+          "type": "string"
+        },
+        "departmentNumber": {
           "type": "string"
         },
         "eanGtin": {
