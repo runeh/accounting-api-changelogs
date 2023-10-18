@@ -6183,6 +6183,13 @@
     },
     "Comment": {
       "properties": {
+        "actualEmployee": {
+          "$ref": "#/definitions/Employee"
+        },
+        "actualEmployeeName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -6226,6 +6233,7 @@
         }
       },
       "required": [
+        "actualEmployee",
         "employee"
       ],
       "type": "object"
@@ -20091,6 +20099,39 @@
       },
       "type": "object"
     },
+    "ListResponseShareholder": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/Shareholder"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseSignatureCombinationDTO": {
       "properties": {
         "count": {
@@ -31938,6 +31979,17 @@
       },
       "type": "object"
     },
+    "ResponseWrapperListStatusLogDTO": {
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "#/definitions/StatusLogDTO"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperListString": {
       "properties": {
         "value": {
@@ -32985,6 +33037,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/SessionToken"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperShareholder": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/Shareholder"
         }
       },
       "type": "object"
@@ -35803,7 +35863,14 @@
             "CMA_MYSTORE",
             "CMA_WOOCOMMERCE",
             "RACKBEAT",
-            "DIYPACKAGE"
+            "DIYPACKAGE",
+            "YEAR_END_REPORTING_ANS",
+            "YEAR_END_REPORTING_DA",
+            "YEAR_END_REPORTING_STI",
+            "YEAR_END_REPORTING_ORG",
+            "YEAR_END_REPORTING_SA",
+            "YEAR_END_REPORTING_FLI",
+            "YEAR_END_REPORTING_NUF"
           ],
           "readOnly": true,
           "type": "string"
@@ -36421,7 +36488,14 @@
             "INTEGRATION_PARTNER",
             "PROJECT",
             "YEAR_END_REPORTING_ENK",
-            "YEAR_END_REPORTING_AS"
+            "YEAR_END_REPORTING_AS",
+            "YEAR_END_REPORTING_ANS",
+            "YEAR_END_REPORTING_DA",
+            "YEAR_END_REPORTING_STI",
+            "YEAR_END_REPORTING_ORG",
+            "YEAR_END_REPORTING_SA",
+            "YEAR_END_REPORTING_FLI",
+            "YEAR_END_REPORTING_NUF"
           ],
           "type": "string"
         }
@@ -37068,6 +37142,93 @@
       "required": [
         "id"
       ],
+      "type": "object"
+    },
+    "Shareholder": {
+      "properties": {
+        "address1": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "address2": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "bankAccountNumber": {
+          "maxLength": 100,
+          "type": "string"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "city": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "country": {
+          "$ref": "#/definitions/Country"
+        },
+        "email": {
+          "format": "email",
+          "maxLength": 255,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isActive": {
+          "description": "The shareholder is active.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "municipality": {
+          "$ref": "#/definitions/Municipality"
+        },
+        "note": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "maxLength": 32,
+          "type": "string"
+        },
+        "pictureId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "postalCode": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "shareholderName": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "shareholderNumber": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "startingYear": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "SharesAndSecurities": {
@@ -37794,6 +37955,36 @@
         "fromDate",
         "hoursPerDay"
       ],
+      "type": "object"
+    },
+    "StatusLogDTO": {
+      "properties": {
+        "actionCreator": {
+          "$ref": "#/definitions/Employee",
+          "description": "Who completed this action.",
+          "readOnly": true
+        },
+        "actionDate": {
+          "type": "string"
+        },
+        "actionType": {
+          "enum": [
+            "PAYMENT_CREATED",
+            "PAYMENT_APPROVED",
+            "PAYMENT_CANCELLED",
+            "PAYMENT_AMOUNT_CHANGED",
+            "PAYMENT_DUE_DATE_CHANGED",
+            "PAYMENT_SALARY_DATE_INVALID",
+            "PAYMENT_REJECTED"
+          ],
+          "type": "string"
+        },
+        "rejectionMessage": {
+          "description": "Rejection message if payment was rejected by the bank.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Stock": {
@@ -41603,11 +41794,19 @@
         "companyPayInAdvance": {
           "type": "boolean"
         },
+        "isAuth": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isCompanyPayInAdvance": {
           "readOnly": true,
           "type": "boolean"
         },
         "isLoginEmployeeWageDepartmentOnly": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isPilot": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -81173,6 +81372,9 @@
     },
     {
       "name": "yearEndriskFreeInterestRate"
+    },
+    {
+      "name": "yearEndshareholderregistershareholder"
     },
     {
       "name": "ztlaccount"
