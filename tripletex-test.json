@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -36646,13 +36640,13 @@
     },
     "SegmentationModules": {
       "properties": {
+        "approveHourLists": {
+          "type": "boolean"
+        },
+        "approveInvoices": {
+          "type": "boolean"
+        },
         "approveWeeklyHourlists": {
-          "type": "boolean"
-        },
-        "approvehourlists": {
-          "type": "boolean"
-        },
-        "approveinvoices": {
           "type": "boolean"
         },
         "approvemonthlyhourlists": {
@@ -36661,7 +36655,13 @@
         "approvetravelreports": {
           "type": "boolean"
         },
+        "autoGenerateProjectNumber": {
+          "type": "boolean"
+        },
         "autoInvoicing": {
+          "type": "boolean"
+        },
+        "budgetOnSubcontracts": {
           "type": "boolean"
         },
         "completemonthlyhourlists": {
@@ -36670,22 +36670,22 @@
         "completeweeklyhourlists": {
           "type": "boolean"
         },
+        "historicalInformation": {
+          "type": "boolean"
+        },
         "hourCostFactorProject": {
           "type": "boolean"
         },
         "hourlyRateProjectsWriteUpDown": {
           "type": "boolean"
         },
-        "invoiceapprovedhoursmandatory": {
+        "markReadyForInvoicing": {
           "type": "boolean"
         },
         "moduleAPI20": {
           "type": "boolean"
         },
         "moduleAccountantConnectClient": {
-          "type": "boolean"
-        },
-        "moduleAdditionProjectMarkup": {
           "type": "boolean"
         },
         "moduleAgro": {
@@ -36710,9 +36710,6 @@
           "type": "boolean"
         },
         "moduleAutoCustomerNumber": {
-          "type": "boolean"
-        },
-        "moduleAutoProjectNumber": {
           "type": "boolean"
         },
         "moduleAutoVendorNumber": {
@@ -36776,9 +36773,6 @@
           "type": "boolean"
         },
         "moduleFactoringAprila": {
-          "type": "boolean"
-        },
-        "moduleHistorical": {
           "type": "boolean"
         },
         "moduleHolydayPlan": {
@@ -36976,19 +36970,7 @@
         "moduleproject": {
           "type": "boolean"
         },
-        "moduleprojectcategory": {
-          "type": "boolean"
-        },
         "moduleprojecteconomy": {
-          "type": "boolean"
-        },
-        "moduleprojectprognosis": {
-          "type": "boolean"
-        },
-        "moduleprojectsubcontract": {
-          "type": "boolean"
-        },
-        "modulereferencefee": {
           "type": "boolean"
         },
         "moduleresourceallocation": {
@@ -37001,6 +36983,18 @@
           "type": "boolean"
         },
         "multipleCustomerCategories": {
+          "type": "boolean"
+        },
+        "mustApproveRegisteredHours": {
+          "type": "boolean"
+        },
+        "projectCategories": {
+          "type": "boolean"
+        },
+        "projectForecast": {
+          "type": "boolean"
+        },
+        "referenceFee": {
           "type": "boolean"
         },
         "sendPayslipsByEmail": {
@@ -72180,6 +72174,36 @@
         ]
       }
     },
+    "/subscription/cancel": {
+      "put": {
+        "description": "",
+        "operationId": "SubscriptionCancel_cancel",
+        "parameters": [
+          {
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/AccountClosureInfoDTO"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Close account with/without read access",
+        "tags": [
+          "subscription"
+        ]
+      }
+    },
     "/subscription/packages": {
       "get": {
         "description": "",
@@ -72207,6 +72231,27 @@
           }
         ],
         "summary": "Returns the packages that can exist for an account.",
+        "tags": [
+          "subscription"
+        ]
+      }
+    },
+    "/subscription/reactivate": {
+      "put": {
+        "description": "",
+        "operationId": "SubscriptionReactivate_reactivate",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Reopen account with previous modules",
         "tags": [
           "subscription"
         ]
