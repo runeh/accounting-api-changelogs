@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -9422,6 +9428,47 @@
       ],
       "type": "object"
     },
+    "EmployeeFilters": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "filterUrl": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "params": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "params"
+      ],
+      "type": "object"
+    },
     "EmployeeLoginInfo": {
       "properties": {
         "changes": {
@@ -16394,6 +16441,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/EmployeeCompanyDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseEmployeeFilters": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/EmployeeFilters"
           },
           "readOnly": true,
           "type": "array"
@@ -26440,16 +26520,26 @@
         "currencyCode": {
           "type": "string"
         },
+        "departmentDisplayName": {
+          "type": "string"
+        },
         "departmentNumber": {
           "type": "string"
         },
         "eanGtin": {
           "type": "string"
         },
+        "incomeAccountDisplayName": {
+          "type": "string"
+        },
         "incomeAccountNumber": {
           "type": "string"
         },
         "isInactive": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "isInactiveDisplayName": {
           "readOnly": true,
           "type": "string"
         },
@@ -26460,6 +26550,9 @@
           "type": "string"
         },
         "productUnit": {
+          "type": "string"
+        },
+        "productUnitDisplayName": {
           "type": "string"
         },
         "purchasePrice": {
@@ -26473,6 +26566,9 @@
           "type": "string"
         },
         "sellingPriceInclVat": {
+          "type": "string"
+        },
+        "vatTypeDisplayName": {
           "type": "string"
         },
         "vatTypeId": {
@@ -31202,6 +31298,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/EmployeeCategory"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperEmployeeFilters": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/EmployeeFilters"
         }
       },
       "type": "object"
@@ -80051,6 +80155,9 @@
     },
     {
       "name": "bankztlpaymentinternal"
+    },
+    {
+      "name": "internalfilters"
     },
     {
       "name": "inventory"
