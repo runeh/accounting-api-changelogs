@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -24408,6 +24402,31 @@
       },
       "type": "object"
     },
+    "PaymentStatusInfoDTO": {
+      "properties": {
+        "color": {
+          "type": "string"
+        },
+        "text": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PaymentStatusInfoWrapperDTO": {
+      "properties": {
+        "statuses": {
+          "additionalProperties": {
+            "$ref": "#/definitions/PaymentStatusInfoDTO"
+          },
+          "type": "object"
+        },
+        "version": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PaymentType": {
       "properties": {
         "changes": {
@@ -32225,6 +32244,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperPaymentStatusInfoWrapperDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/PaymentStatusInfoWrapperDTO"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperPaymentType": {
       "properties": {
         "value": {
@@ -33555,6 +33582,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/YearEndReportNote"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperYearEndShareholderRegister": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/YearEndShareholderRegister"
         }
       },
       "type": "object"
@@ -37109,6 +37144,42 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "ShareholderRegisterSubmissionResult": {
+      "properties": {
+        "failureCategory": {
+          "enum": [
+            "UNKNOWN",
+            "INTERNAL_VALIDATION_FAILED",
+            "EXTERNAL_SERVICE_OTHER_ERROR",
+            "EXTERNAL_SERVICE_APPLICATION_ERROR",
+            "UNEXPECTED_RESPONSE_CONTENT"
+          ],
+          "type": "string"
+        },
+        "failureMainMessage": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "failureStep": {
+          "enum": [
+            "INITIATING_PERSONAL_AUTHENTICATION",
+            "FETCHING_SIGNING_TEXT",
+            "SUBMITTING",
+            "FETCHING_ASYNC_RECEIPT",
+            "NONE"
+          ],
+          "type": "string"
+        },
+        "receptionReceipt": {
+          "$ref": "#/definitions/Altinn2ReceptionReceipt",
+          "readOnly": true
+        }
+      },
+      "required": [
+        "failureStep"
+      ],
       "type": "object"
     },
     "SharesAndSecurities": {
@@ -44733,6 +44804,59 @@
         "sumAmountPreviousYear": {
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "YearEndShareholderRegister": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sentDate": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "STARTED",
+            "UPDATED",
+            "RESTARTED",
+            "SUBMITTED_UNSIGNED",
+            "SUBMITTED_SIGNED",
+            "USER_MARKED_AS_SIGNEDBYALL",
+            "SYSTEM_MARKED_AS_SIGNEDBYALL"
+          ],
+          "type": "string"
+        },
+        "submissionAttemptDate": {
+          "type": "string"
+        },
+        "submissionInProgress": {
+          "type": "boolean"
+        },
+        "submissionResult": {
+          "$ref": "#/definitions/ShareholderRegisterSubmissionResult"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -81094,6 +81218,9 @@
     },
     {
       "name": "yearEndriskFreeInterestRate"
+    },
+    {
+      "name": "yearEndshareholderRegister"
     },
     {
       "name": "yearEndshareholderregistershareholder"
