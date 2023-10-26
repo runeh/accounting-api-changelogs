@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -7689,6 +7695,12 @@
             "AUDITOR"
           ],
           "type": "string"
+        },
+        "accountEndDatePeriod": {
+          "description": "Available for school resellers only. Number of months the account should be valid for. If not set, the account will be valid for 6 months.",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
         },
         "accountType": {
           "enum": [
@@ -30219,6 +30231,9 @@
     },
     "ReportSettings": {
       "properties": {
+        "access": {
+          "$ref": "#/definitions/ReportSettingsAccess"
+        },
         "feedback": {
           "$ref": "#/definitions/ReportFeedbackSettings"
         },
@@ -30227,6 +30242,18 @@
         },
         "headers": {
           "$ref": "#/definitions/ReportSettingsHeaders"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSettingsAccess": {
+      "properties": {
+        "expression": {
+          "type": "string"
         },
         "version": {
           "format": "int32",
@@ -37926,7 +37953,6 @@
             "PAYMENT_CANCELLED_IN_BANK",
             "PAYMENT_AMOUNT_CHANGED",
             "PAYMENT_DUE_DATE_CHANGED",
-            "PAYMENT_SALARY_DATE_INVALID",
             "PAYMENT_REJECTED"
           ],
           "type": "string"
@@ -41467,6 +41493,11 @@
     },
     "TripletexAccount": {
       "properties": {
+        "accountEndDatePeriod": {
+          "description": "Available for school resellers only. Number of months the account should be valid for. If not set, the account will be valid for 6 months.",
+          "format": "int32",
+          "type": "integer"
+        },
         "accountType": {
           "description": "Is this a test account or a paying account?",
           "enum": [
@@ -43397,16 +43428,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "invoiceType": {
-          "enum": [
-            "UNKNOWN",
-            "PDF",
-            "EHF",
-            "EFO_NELFO"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "isDue": {
           "readOnly": true,
           "type": "boolean"
@@ -43495,19 +43516,6 @@
           "type": "string"
         },
         "supplierName": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "type": {
-          "enum": [
-            "UNKNOWN",
-            "INVOICE",
-            "ERROR_EHF_IMPORT",
-            "REPLAYABLE_VOUCHER",
-            "REMINDER_SPECIFICATION",
-            "CREDITNOTE",
-            "RECEIPT"
-          ],
           "readOnly": true,
           "type": "string"
         },
