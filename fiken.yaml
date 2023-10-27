@@ -3931,7 +3931,7 @@ components:
         slug:
           type: string
           example: 'fiken-as'
-          description: Formatted name of company.
+          description: Formatted name of company. This is the companySlug that should be used in all URLs related to this company.
         organizationNumber:
           type: string
           example: '913312465'
@@ -5079,7 +5079,10 @@ components:
           type: integer
           format: int64
           example: 310000
-          description: Net amount
+          description: |
+            This will be the net amount (excluding VAT) for debitAccount lines and gross amount 
+            (including VAT) for creditAccount lines. The reason for this difference is due to the 
+            way Fiken calculates VAT based on the debitVatCode and creditVatCode.
         account:
           type: string
           readOnly: true
@@ -5466,7 +5469,7 @@ components:
           format: int64
           example: 500000
           readOnly: true
-          description: Attribute of a foreign payment only. Calculated by Fiken if amount is provided in currency other than NOK. Formatted in cents (500000 = 5000.00)
+          description: Attribute of a foreign payment only. Is required if amount is provided in currency other than NOK and should be the actual amount that was received in the bank account. Formatted in cents (500000 = 5000.00)
         currency:
           type: string
           pattern: '^[A-Z]{3}$'
@@ -5475,7 +5478,7 @@ components:
         fee:
           type: integer
           format: int64
-          description: Any fees additional to the amount paid in the specified currency ("NOK" default value).
+          description: Any fees additional to the amount paid in the specified currency. This is always a "NOK" amount even if the sale currency is a different currency.
     product:
       type: object
       required:
