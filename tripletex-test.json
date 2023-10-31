@@ -7248,8 +7248,8 @@
         "contactsFilter": {
           "enum": [
             "INCLUDE_CONTACTS",
-            "ONLY_CONTACTS",
-            "NONE"
+            "NONE",
+            "ONLY_CONTACTS"
           ],
           "type": "string"
         },
@@ -22941,6 +22941,9 @@
         },
         "readOnlyPackagePrice": {
           "$ref": "#/definitions/TlxNumber"
+        },
+        "readOnlyUser": {
+          "type": "boolean"
         },
         "reopenLimitDate": {
           "format": "date",
@@ -43410,6 +43413,21 @@
         },
         "id": {
           "description": "voucherInboxId to rename",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "VoucherDelete": {
+      "properties": {
+        "companyId": {
+          "description": "CompanyId",
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "description": "voucherInboxId to delete",
           "format": "int32",
           "type": "integer"
         }
