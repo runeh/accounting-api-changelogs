@@ -77,19 +77,15 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -158,7 +154,6 @@
           "type": "array"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -180,7 +175,6 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
-          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1787,8 +1781,25 @@
           "description": "Employee that performed last A-melding action",
           "readOnly": true
         },
+        "ameldingDetailedStatus": {
+          "description": "Detailed status of current A-melding situation in period",
+          "enum": [
+            "noAmeldingExists",
+            "ameldingRejected",
+            "ameldingExistsNotSent",
+            "nonReportedWageinfo",
+            "ameldingCancelledAwaitingReturnMessage",
+            "ameldingSentAwaitingReturnMessage",
+            "nonBlockingReturnMessage",
+            "blockingReturnMessage",
+            "okReturnMessage",
+            "unknown"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "ameldingSummaryStatus": {
-          "description": "Summary of current A-melding status in period: completed, notCompleted, awaitingResponse",
+          "description": "Summary of current A-melding status in period",
           "enum": [
             "completed",
             "notCompleted",
@@ -9463,7 +9474,7 @@
           "type": "boolean"
         },
         "isContact": {
-          "readOnly": true,
+          "description": "Determines if the employee is a contact (external) in the company.",
           "type": "boolean"
         },
         "lastName": {
@@ -21723,6 +21734,39 @@
       },
       "type": "object"
     },
+    "ListResponseYearDTO": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/YearDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseYearEndReportNote": {
       "properties": {
         "count": {
@@ -32022,17 +32066,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperListEmployment": {
-      "properties": {
-        "value": {
-          "items": {
-            "$ref": "#/definitions/Employment"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperListFileIdForIncomingPaymentsDTO": {
       "properties": {
         "value": {
@@ -39025,6 +39058,9 @@
         "available": {
           "type": "boolean"
         },
+        "myHelpRequestsUrl": {
+          "type": "string"
+        },
         "sseUrl": {
           "type": "string"
         }
@@ -42788,23 +42824,51 @@
     },
     "VatReturnsOverviewItem": {
       "properties": {
+        "altinnId": {
+          "description": "The altinn archive reference",
+          "type": "string"
+        },
         "amount": {
           "$ref": "#/definitions/TlxNumber",
           "readOnly": true
         },
+        "createdInfo": {
+          "description": "The initials and date of when the instance was created",
+          "type": "string"
+        },
         "dueDate": {
           "readOnly": true,
+          "type": "string"
+        },
+        "endDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "instanceGuid": {
+          "description": "The id of the instance in Altinn",
           "type": "string"
         },
         "isPaid": {
           "readOnly": true,
           "type": "boolean"
         },
+        "partyId": {
+          "description": "The partyId in altinn - refering to the organization",
+          "type": "string"
+        },
         "reportType": {
           "enum": [
             "PRIMARY_INDUSTRY",
             "GENERAL_INDUSTRY"
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "reportTypeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "startDate": {
           "readOnly": true,
           "type": "string"
         },
@@ -44566,6 +44630,20 @@
       ],
       "type": "object"
     },
+    "YearDTO": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "YearEndAnnualAccounts": {
       "properties": {
         "assets": {
@@ -45557,6 +45635,10 @@
         },
         "bookingDate": {
           "readOnly": true,
+          "type": "string"
+        },
+        "cancellationMessage": {
+          "maxLength": 250,
           "type": "string"
         },
         "changes": {
