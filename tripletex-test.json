@@ -42844,6 +42844,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "id": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "instanceGuid": {
           "description": "The id of the instance in Altinn",
           "type": "string"
@@ -81699,9 +81704,6 @@
     },
     {
       "name": "ztlconsent"
-    },
-    {
-      "name": "ztlonboardingpage"
     },
     {
       "name": "ztlonboarding"
