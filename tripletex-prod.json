@@ -24897,6 +24897,37 @@
       },
       "type": "object"
     },
+    "PaymentsSumDTO": {
+      "properties": {
+        "cancelledPaymentsCount": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Number of cancelled payments."
+        },
+        "forApprovalPaymentsCount": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Number of payments for approval."
+        },
+        "ongoingTransactionsSum": {
+          "description": "Sum of the all ongoing payments by currencies.",
+          "items": {
+            "$ref": "#/definitions/CurrencyPaymentsSumDTO"
+          },
+          "type": "array"
+        },
+        "rejectedPaymentsCount": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Number of rejected payments."
+        },
+        "unpaidTransactionsSum": {
+          "description": "Sum of all payments excluding paid and under process in bank, by currencies.",
+          "items": {
+            "$ref": "#/definitions/CurrencyPaymentsSumDTO"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Payslip": {
       "properties": {
         "amount": {
@@ -32556,6 +32587,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/PaymentTypeOut"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperPaymentsSumDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/PaymentsSumDTO"
         }
       },
       "type": "object"
@@ -43634,6 +43673,10 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "paymentOverviewPilotActive": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "showAttestation": {
           "readOnly": true,
