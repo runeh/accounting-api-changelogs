@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1473,6 +1479,7 @@
             "HAD_FINANCIAL_DIFFICULTIES_LAST_YEAR",
             "IS_GROUP_COMPANY",
             "HAS_RECEIVED_OTHER_PUBLIC_SUPPORT",
+            "TAXABLE_VALUE_ON_OTHER_ASSETS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -1808,6 +1815,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "company": {
           "$ref": "#/definitions/Company",
           "description": "Information about the company",
@@ -1822,6 +1836,10 @@
           "$ref": "#/definitions/TlxNumber",
           "description": "Finance tax amount not paid",
           "readOnly": true
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
         },
         "lastAmeldingActionTime": {
           "description": "Time for last A-melding action",
@@ -1872,6 +1890,14 @@
           "description": "Name of the period the tax is accrued",
           "readOnly": true,
           "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5511,6 +5537,7 @@
             "HAD_FINANCIAL_DIFFICULTIES_LAST_YEAR",
             "IS_GROUP_COMPANY",
             "HAS_RECEIVED_OTHER_PUBLIC_SUPPORT",
+            "TAXABLE_VALUE_ON_OTHER_ASSETS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -9146,6 +9173,7 @@
             "HAD_FINANCIAL_DIFFICULTIES_LAST_YEAR",
             "IS_GROUP_COMPANY",
             "HAS_RECEIVED_OTHER_PUBLIC_SUPPORT",
+            "TAXABLE_VALUE_ON_OTHER_ASSETS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -11293,6 +11321,7 @@
             "HAD_FINANCIAL_DIFFICULTIES_LAST_YEAR",
             "IS_GROUP_COMPANY",
             "HAS_RECEIVED_OTHER_PUBLIC_SUPPORT",
+            "TAXABLE_VALUE_ON_OTHER_ASSETS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -12900,6 +12929,7 @@
             "HAD_FINANCIAL_DIFFICULTIES_LAST_YEAR",
             "IS_GROUP_COMPANY",
             "HAS_RECEIVED_OTHER_PUBLIC_SUPPORT",
+            "TAXABLE_VALUE_ON_OTHER_ASSETS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -13263,6 +13293,7 @@
             "HAD_FINANCIAL_DIFFICULTIES_LAST_YEAR",
             "IS_GROUP_COMPANY",
             "HAS_RECEIVED_OTHER_PUBLIC_SUPPORT",
+            "TAXABLE_VALUE_ON_OTHER_ASSETS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -21767,6 +21798,39 @@
       },
       "type": "object"
     },
+    "ListResponseYearEndReportMunicipality": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/YearEndReportMunicipality"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseYearEndReportNote": {
       "properties": {
         "count": {
@@ -24407,6 +24471,46 @@
       ],
       "type": "object"
     },
+    "PaymentCardInfoDTO": {
+      "properties": {
+        "cancelled": {
+          "description": "Amount of cancelled payments",
+          "items": {
+            "$ref": "#/definitions/PaymentCardInfoDetailsDTO"
+          },
+          "type": "array"
+        },
+        "forApproval": {
+          "description": "Amount of payments for approval",
+          "items": {
+            "$ref": "#/definitions/PaymentCardInfoDetailsDTO"
+          },
+          "type": "array"
+        },
+        "underProcessing": {
+          "description": "Amount of payments under processing",
+          "items": {
+            "$ref": "#/definitions/PaymentCardInfoDetailsDTO"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PaymentCardInfoDetailsDTO": {
+      "properties": {
+        "amount": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency"
+        },
+        "numberOfPayments": {
+          "$ref": "#/definitions/TlxNumber"
+        }
+      },
+      "type": "object"
+    },
     "PaymentDTO": {
       "discriminator": "paymentSource",
       "properties": {
@@ -25419,6 +25523,7 @@
             "HAD_FINANCIAL_DIFFICULTIES_LAST_YEAR",
             "IS_GROUP_COMPANY",
             "HAS_RECEIVED_OTHER_PUBLIC_SUPPORT",
+            "TAXABLE_VALUE_ON_OTHER_ASSETS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -32553,6 +32658,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperPaymentCardInfoDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/PaymentCardInfoDTO"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperPaymentDTO": {
       "properties": {
         "value": {
@@ -37968,6 +38081,7 @@
             "HAD_FINANCIAL_DIFFICULTIES_LAST_YEAR",
             "IS_GROUP_COMPANY",
             "HAS_RECEIVED_OTHER_PUBLIC_SUPPORT",
+            "TAXABLE_VALUE_ON_OTHER_ASSETS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -45013,6 +45127,26 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "YearEndReportMunicipality": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "number": {
+          "readOnly": true,
+          "type": "string"
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
@@ -81717,6 +81851,9 @@
     },
     {
       "name": "yearEndmapping"
+    },
+    {
+      "name": "yearEndmunicipality"
     },
     {
       "name": "yearEndnote"
