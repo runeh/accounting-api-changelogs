@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -175,6 +180,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1206,6 +1212,10 @@
         "selectedPaymentType": {
           "$ref": "#/definitions/PaymentWidgetPaymentType",
           "description": "Default payment type for this Advanced Payment Widget"
+        },
+        "smartScan": {
+          "description": "Autofilled using smart scan",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -36225,6 +36235,21 @@
           "readOnly": true,
           "type": "string"
         },
+        "category1": {
+          "$ref": "#/definitions/CustomerCategory",
+          "description": "Category 1 of this customer",
+          "readOnly": true
+        },
+        "category2": {
+          "$ref": "#/definitions/CustomerCategory",
+          "description": "Category 2 of this customer",
+          "readOnly": true
+        },
+        "category3": {
+          "$ref": "#/definitions/CustomerCategory",
+          "description": "Category 3 of this customer",
+          "readOnly": true
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -36244,12 +36269,33 @@
           "readOnly": true,
           "type": "integer"
         },
+        "customer": {
+          "type": "boolean"
+        },
         "customerCompanyId": {
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
         "customerId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "customerNumber": {
+          "format": "int32",
+          "minimum": 0,
+          "readOnly": true,
+          "type": "integer"
+        },
+        "email": {
+          "format": "email",
+          "maxLength": 254,
+          "minLength": 0,
+          "readOnly": true,
+          "type": "string"
+        },
+        "employeeId": {
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -36263,6 +36309,15 @@
           "format": "int32",
           "type": "integer"
         },
+        "inactive": {
+          "type": "boolean"
+        },
+        "invoiceEmail": {
+          "maxLength": 254,
+          "minLength": 0,
+          "readOnly": true,
+          "type": "string"
+        },
         "invoicePostponeDate": {
           "description": "Tripletex account invoice postpone date",
           "readOnly": true,
@@ -36272,6 +36327,14 @@
           "description": "Tripletex account invoice start date",
           "readOnly": true,
           "type": "string"
+        },
+        "invoicesDueIn": {
+          "description": "Number of days/months in which invoices created from this customer is due",
+          "format": "int32",
+          "maximum": 10000,
+          "minimum": 0,
+          "readOnly": true,
+          "type": "integer"
         },
         "isAccountant": {
           "readOnly": true,
@@ -36293,6 +36356,37 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "name": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "organizationNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "overdueNoticeEmail": {
+          "description": "The email address of the customer where the noticing emails are sent in case of an overdue",
+          "format": "email",
+          "maxLength": 254,
+          "minLength": 0,
+          "readOnly": true,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "physicalAddress": {
+          "$ref": "#/definitions/Address",
+          "readOnly": true
+        },
+        "postalAddress": {
+          "$ref": "#/definitions/Address",
+          "readOnly": true
+        },
+        "privateIndividual": {
+          "type": "boolean"
+        },
         "registerDate": {
           "description": "Tripletex account register Date",
           "readOnly": true,
@@ -36303,10 +36397,18 @@
           "description": "Company opportunity",
           "readOnly": true
         },
+        "singleCustomerInvoice": {
+          "description": "Enables various orders on one customer invoice.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "startDate": {
           "description": "Tripletex account start Date",
           "readOnly": true,
           "type": "string"
+        },
+        "supplier": {
+          "type": "boolean"
         },
         "url": {
           "readOnly": true,
@@ -42263,14 +42365,7 @@
         "companyName": {
           "type": "string"
         },
-        "companyPayInAdvance": {
-          "type": "boolean"
-        },
         "isAuth": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isCompanyPayInAdvance": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -42279,6 +42374,10 @@
           "type": "boolean"
         },
         "isPilot": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isPilotSalaryRun": {
           "readOnly": true,
           "type": "boolean"
         },
