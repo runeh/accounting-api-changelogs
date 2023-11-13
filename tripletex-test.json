@@ -6552,6 +6552,9 @@
           "format": "int32",
           "type": "integer"
         },
+        "isSuspended": {
+          "type": "boolean"
+        },
         "parent": {
           "$ref": "#/definitions/CompanyDTO"
         },
@@ -9612,6 +9615,9 @@
           "$ref": "#/definitions/Employee"
         },
         "isDefault": {
+          "type": "boolean"
+        },
+        "isSuspended": {
           "type": "boolean"
         }
       },
@@ -24556,7 +24562,7 @@
           "readOnly": true,
           "type": "string"
         },
-        "creditorBban": {
+        "creditorIbanOrBban": {
           "readOnly": true,
           "type": "string"
         },
@@ -45928,8 +45934,7 @@
           "readOnly": true,
           "type": "string"
         },
-        "creditorBban": {
-          "maxLength": 50,
+        "creditorIbanOrBban": {
           "readOnly": true,
           "type": "string"
         },
