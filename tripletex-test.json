@@ -6564,20 +6564,69 @@
       },
       "type": "object"
     },
-    "CompanyDividend": {
+    "CompanyEvent": {
       "properties": {
-        "dividendPaid": {
+        "date": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "distributeManually": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "distributedPerShare": {
           "readOnly": true,
           "type": "number"
         },
-        "numerOfShares": {
+        "distributedTotal": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "eventGroupId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "numberOfShares": {
           "readOnly": true,
           "type": "number"
         },
-        "timestamp": {
-          "format": "date-time",
+        "shareClassGroupId": {
+          "format": "int32",
           "readOnly": true,
-          "type": "string"
+          "type": "integer"
+        },
+        "shareholderInfo": {
+          "items": {
+            "$ref": "#/definitions/CompanyEventShareholderInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "CompanyEventShareholderInfo": {
+      "properties": {
+        "distributed": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "eventShareholderGroupId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "numberOfShares": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "shareholder": {
+          "$ref": "#/definitions/Shareholder",
+          "readOnly": true
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
@@ -6661,20 +6710,19 @@
     },
     "CompanyInfo": {
       "properties": {
-        "companyDividend": {
-          "items": {
-            "$ref": "#/definitions/CompanyDividend"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
         "dividendType": {
           "enum": [
             "DIVIDEND",
             "SHAREHOLDER_LOAN"
           ],
-          "readOnly": true,
           "type": "string"
+        },
+        "events": {
+          "items": {
+            "$ref": "#/definitions/CompanyEvent"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "groupId": {
           "format": "int32",
@@ -6687,6 +6735,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "numberOfShares": {
+          "readOnly": true,
+          "type": "number"
         },
         "shareClass": {
           "enum": [
@@ -6716,10 +6768,6 @@
           "format": "date-time",
           "readOnly": true,
           "type": "string"
-        },
-        "utbyttePrAksje": {
-          "readOnly": true,
-          "type": "number"
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
@@ -8160,10 +8208,20 @@
     },
     "DashboardDTO": {
       "properties": {
-        "widgets": {
-          "$ref": "#/definitions/Widgets"
+        "content": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
         }
       },
+      "required": [
+        "content",
+        "version"
+      ],
       "type": "object"
     },
     "DatabaseComponentAuthorizationManager": {
@@ -14220,17 +14278,18 @@
             "OPENING_BALANCE_NUMBER_OF_SHARES",
             "OPENING_BALANCE_PAID_SHARE_CAPITAL",
             "CLOSING_BALANCE_PREMIUM_PAID",
-            "DIVIDEND_TYPE",
-            "UTBYTTE_PR_AKSJE",
-            "SHAREHOLDER",
-            "NO_OF_SHARES",
-            "DIVIDEND_PAID",
+            "EVENT_TYPE",
+            "EVENT_DATETIME",
+            "EVENT_DISTRIBUTED_TOTAL",
+            "EVENT_SHAREHOLDER_ID",
+            "SHAREHOLDER_NO_OF_SHARES",
+            "DISTRIBUTE_MANUALLY",
             "CONTACT_NAME",
             "CONTACT_ROLE",
             "CONTACT_EMAIL",
             "CONTACT_PHONE",
             "SHAREHOLDER_ID",
-            "NO_OF_SHARES_THIS_YEAR",
+            "NO_OF_SHARES_LAST_YEAR",
             "UPDATED_BY",
             "UPDATED_DATE",
             "TRANSACTION_TYPE"
@@ -31462,6 +31521,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperCompanyEvent": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CompanyEvent"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperCompanyHoliday": {
       "properties": {
         "value": {
@@ -33417,6 +33484,22 @@
       },
       "type": "object"
     },
+    "ResponseWrapperShareholderInfo": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ShareholderInfo"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperShareholderRegisterData": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ShareholderRegisterData"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperShareholderRegisterDataOverview": {
       "properties": {
         "value": {
@@ -33795,6 +33878,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/TripletexAccountReturn"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperTripletexDashboardDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TripletexDashboardDTO"
         }
       },
       "type": "object"
@@ -37641,11 +37732,32 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isDeletable": {
+          "description": "The shareholder is active.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "municipality": {
           "$ref": "#/definitions/Municipality"
         },
         "note": {
           "type": "string"
+        },
+        "numberOfSharesLastYear": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "numberOfSharesThisYear": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "ownershipLastYear": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "ownershipThisYear": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
         },
         "phoneNumber": {
           "maxLength": 32,
@@ -37683,6 +37795,44 @@
       },
       "type": "object"
     },
+    "ShareholderInfo": {
+      "properties": {
+        "groupId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "id": {
+          "description": "Id of shareholder register data to update",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "numberOfSharesLastYear": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "numberOfSharesThisYear": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "ownershipLastYear": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "ownershipThisYear": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "shareholder": {
+          "$ref": "#/definitions/Shareholder"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
     "ShareholderRegisterData": {
       "properties": {
         "altinnValue": {
@@ -37712,17 +37862,18 @@
             "OPENING_BALANCE_NUMBER_OF_SHARES",
             "OPENING_BALANCE_PAID_SHARE_CAPITAL",
             "CLOSING_BALANCE_PREMIUM_PAID",
-            "DIVIDEND_TYPE",
-            "UTBYTTE_PR_AKSJE",
-            "SHAREHOLDER",
-            "NO_OF_SHARES",
-            "DIVIDEND_PAID",
+            "EVENT_TYPE",
+            "EVENT_DATETIME",
+            "EVENT_DISTRIBUTED_TOTAL",
+            "EVENT_SHAREHOLDER_ID",
+            "SHAREHOLDER_NO_OF_SHARES",
+            "DISTRIBUTE_MANUALLY",
             "CONTACT_NAME",
             "CONTACT_ROLE",
             "CONTACT_EMAIL",
             "CONTACT_PHONE",
             "SHAREHOLDER_ID",
-            "NO_OF_SHARES_THIS_YEAR",
+            "NO_OF_SHARES_LAST_YEAR",
             "UPDATED_BY",
             "UPDATED_DATE",
             "TRANSACTION_TYPE"
@@ -37733,10 +37884,18 @@
           "maxLength": 255,
           "type": "string"
         },
+        "shareholderRegisterDataSubSubType": {
+          "enum": [
+            "NONE",
+            "EVENT_SHAREHOLDER"
+          ],
+          "type": "string"
+        },
         "shareholderRegisterDataSubType": {
           "enum": [
             "COMPANY_KEY_INFO",
-            "COMPANY_DIVIDEND"
+            "COMPANY_EVENT",
+            "SHAREHOLDER_INFO"
           ],
           "type": "string"
         },
@@ -37748,6 +37907,10 @@
             "EVENT_AND_TRANSACTION"
           ],
           "type": "string"
+        },
+        "subSubTypeGroupId": {
+          "format": "int32",
+          "type": "integer"
         },
         "subTypeGroupId": {
           "format": "int32",
@@ -37773,6 +37936,12 @@
     },
     "ShareholderRegisterDataOverview": {
       "properties": {
+        "events": {
+          "items": {
+            "$ref": "#/definitions/CompanyEvent"
+          },
+          "type": "array"
+        },
         "groupId": {
           "format": "int32",
           "readOnly": true,
@@ -41975,11 +42144,11 @@
     },
     "TrialInfoAutomationDTO": {
       "properties": {
-        "correctSuggestions365days": {
+        "correctSuggestions190days": {
           "format": "int32",
           "type": "integer"
         },
-        "correctSuggestions90days": {
+        "correctSuggestions365days": {
           "format": "int32",
           "type": "integer"
         },
@@ -42014,11 +42183,11 @@
         "showProjectHint": {
           "type": "boolean"
         },
-        "totalAutomated365days": {
+        "totalAutomated190days": {
           "format": "int32",
           "type": "integer"
         },
-        "totalAutomated90days": {
+        "totalAutomated365days": {
           "format": "int32",
           "type": "integer"
         },
@@ -42026,11 +42195,11 @@
           "format": "int32",
           "type": "integer"
         },
-        "totalCouldBeAutomated365days": {
+        "totalCouldBeAutomated190days": {
           "format": "int32",
           "type": "integer"
         },
-        "totalCouldBeAutomated90days": {
+        "totalCouldBeAutomated365days": {
           "format": "int32",
           "type": "integer"
         },
@@ -42356,6 +42525,14 @@
         "companyOwnedApiTokenRobotId": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TripletexDashboardDTO": {
+      "properties": {
+        "widgets": {
+          "$ref": "#/definitions/Widgets"
         }
       },
       "type": "object"
@@ -44637,49 +44814,44 @@
       },
       "type": "object"
     },
+    "Widget": {
+      "properties": {
+        "hidden": {
+          "type": "boolean"
+        },
+        "id": {
+          "enum": [
+            "APP",
+            "BANKING",
+            "EASY_ONBOARDING",
+            "GET_STARTED_SUMMARY",
+            "HELP_CENTER",
+            "INCOME_AND_COST_CHART",
+            "INVOICE_SUMMARY",
+            "REMINDER",
+            "SALARY_SUMMARY",
+            "TASKS",
+            "TRIAL",
+            "UPSALE_AUTOMATION",
+            "UPSALE_SALARY",
+            "VOUCHER_SUMMARY"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Widgets": {
       "properties": {
         "content": {
           "items": {
-            "enum": [
-              "APP",
-              "BANKING",
-              "EASY_ONBOARDING",
-              "GET_STARTED_SUMMARY",
-              "HELP_CENTER",
-              "INCOME_AND_COST_CHART",
-              "INVOICE_SUMMARY",
-              "REMINDER",
-              "SALARY_SUMMARY",
-              "TASKS",
-              "TRIAL",
-              "UPSALE",
-              "UPSALE_AUTOMATION",
-              "VOUCHER_SUMMARY"
-            ],
-            "type": "string"
+            "$ref": "#/definitions/Widget"
           },
           "type": "array"
         },
         "sidebar": {
           "items": {
-            "enum": [
-              "APP",
-              "BANKING",
-              "EASY_ONBOARDING",
-              "GET_STARTED_SUMMARY",
-              "HELP_CENTER",
-              "INCOME_AND_COST_CHART",
-              "INVOICE_SUMMARY",
-              "REMINDER",
-              "SALARY_SUMMARY",
-              "TASKS",
-              "TRIAL",
-              "UPSALE",
-              "UPSALE_AUTOMATION",
-              "VOUCHER_SUMMARY"
-            ],
-            "type": "string"
+            "$ref": "#/definitions/Widget"
           },
           "type": "array"
         }
