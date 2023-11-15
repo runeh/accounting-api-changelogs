@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,12 +158,21 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
           "format": "int32",
           "minimum": 0,
           "type": "integer"
+        },
+        "quantityType1": {
+          "$ref": "#/definitions/ProductUnit",
+          "description": "The quantity type that has been associated to this account"
+        },
+        "quantityType2": {
+          "$ref": "#/definitions/ProductUnit",
+          "description": "The quantity type that has been associated to this account"
         },
         "requireReconciliation": {
           "description": "True if this account must be reconciled before the accounting period closure.",
@@ -175,6 +188,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -1417,6 +1431,7 @@
             "DATE_END",
             "INCLUDE_PREVIOUS_YEAR_IN_RESULT",
             "DISTRIBUTE_INCOME_MODULE_INDUSTRY",
+            "HIDE_TRANSFERRED_FROM_LAST_YEAR_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -5475,6 +5490,7 @@
             "DATE_END",
             "INCLUDE_PREVIOUS_YEAR_IN_RESULT",
             "DISTRIBUTE_INCOME_MODULE_INDUSTRY",
+            "HIDE_TRANSFERRED_FROM_LAST_YEAR_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -9172,6 +9188,7 @@
             "DATE_END",
             "INCLUDE_PREVIOUS_YEAR_IN_RESULT",
             "DISTRIBUTE_INCOME_MODULE_INDUSTRY",
+            "HIDE_TRANSFERRED_FROM_LAST_YEAR_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -11318,6 +11335,7 @@
             "DATE_END",
             "INCLUDE_PREVIOUS_YEAR_IN_RESULT",
             "DISTRIBUTE_INCOME_MODULE_INDUSTRY",
+            "HIDE_TRANSFERRED_FROM_LAST_YEAR_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -12926,6 +12944,7 @@
             "DATE_END",
             "INCLUDE_PREVIOUS_YEAR_IN_RESULT",
             "DISTRIBUTE_INCOME_MODULE_INDUSTRY",
+            "HIDE_TRANSFERRED_FROM_LAST_YEAR_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -13290,6 +13309,7 @@
             "DATE_END",
             "INCLUDE_PREVIOUS_YEAR_IN_RESULT",
             "DISTRIBUTE_INCOME_MODULE_INDUSTRY",
+            "HIDE_TRANSFERRED_FROM_LAST_YEAR_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -25521,6 +25541,7 @@
             "DATE_END",
             "INCLUDE_PREVIOUS_YEAR_IN_RESULT",
             "DISTRIBUTE_INCOME_MODULE_INDUSTRY",
+            "HIDE_TRANSFERRED_FROM_LAST_YEAR_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -38281,6 +38302,7 @@
             "DATE_END",
             "INCLUDE_PREVIOUS_YEAR_IN_RESULT",
             "DISTRIBUTE_INCOME_MODULE_INDUSTRY",
+            "HIDE_TRANSFERRED_FROM_LAST_YEAR_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -43038,7 +43060,8 @@
       "properties": {
         "altinnMetadata": {
           "$ref": "#/definitions/AltinnInstance",
-          "description": "Metadata about the sending in altinn"
+          "description": "Metadata about the sending in altinn",
+          "readOnly": true
         },
         "changes": {
           "items": {
@@ -43048,9 +43071,15 @@
           "type": "array"
         },
         "closedDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "readOnly": true,
           "type": "string"
         },
         "end": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
@@ -43071,7 +43100,16 @@
           "readOnly": true,
           "type": "number"
         },
+        "reportType": {
+          "enum": [
+            "PRIMARY_INDUSTRY",
+            "GENERAL_INDUSTRY"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "start": {
+          "readOnly": true,
           "type": "string"
         },
         "status": {
@@ -43089,10 +43127,12 @@
             "USER_FORBIDDEN",
             "SENDING_FAILED"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "structuredComment": {
           "maxLength": 255,
+          "readOnly": true,
           "type": "string"
         },
         "totalAmountVatToPay": {
@@ -43104,6 +43144,7 @@
           "type": "string"
         },
         "userComment": {
+          "readOnly": true,
           "type": "string"
         },
         "vatGroups": {
@@ -43113,6 +43154,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "vatTermNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "version": {
           "format": "int32",
           "type": "integer"
@@ -43120,12 +43166,25 @@
         "voucher": {
           "$ref": "#/definitions/Voucher",
           "readOnly": true
+        },
+        "year": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
     },
     "VatReturns2022Creation": {
       "properties": {
+        "reportType": {
+          "description": "Vat report type",
+          "enum": [
+            "PRIMARY_INDUSTRY",
+            "GENERAL_INDUSTRY"
+          ],
+          "type": "string"
+        },
         "term": {
           "description": "The term of the vatReturns. Must be according to the terms the company have.",
           "format": "int32",
