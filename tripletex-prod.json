@@ -9448,6 +9448,119 @@
       ],
       "type": "object"
     },
+    "DynamicControlForm": {
+      "properties": {
+        "attachmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "comment": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "fieldValues": {
+          "additionalProperties": {
+            "$ref": "#/definitions/ObjectNode"
+          },
+          "type": "object"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isCompleted": {
+          "type": "boolean"
+        },
+        "originalTemplate": {
+          "$ref": "#/definitions/DynamicControlFormTemplate"
+        },
+        "projectId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "title": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DynamicControlFormTemplate": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "description": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "fields": {
+          "items": {
+            "$ref": "#/definitions/DynamicFormField"
+          },
+          "type": "array"
+        },
+        "formVersion": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isArchived": {
+          "type": "boolean"
+        },
+        "previousTemplateId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DynamicFormField": {
+      "properties": {
+        "index": {
+          "type": "string"
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ElectronicSupportDTO": {
       "properties": {
         "bankId": {
@@ -16689,6 +16802,39 @@
       },
       "type": "object"
     },
+    "ListResponseDynamicControlFormTemplate": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/DynamicControlFormTemplate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseEmployee": {
       "properties": {
         "count": {
@@ -23646,6 +23792,9 @@
       ],
       "type": "object"
     },
+    "ObjectNode": {
+      "type": "object"
+    },
     "OccupationCode": {
       "properties": {
         "changes": {
@@ -26196,6 +26345,26 @@
         "project": {
           "$ref": "#/definitions/Project"
         },
+        "quantityAmount1": {
+          "description": "The quantity amount associated with the posting",
+          "readOnly": true,
+          "type": "number"
+        },
+        "quantityAmount2": {
+          "description": "The quantity amount associated with the posting",
+          "readOnly": true,
+          "type": "number"
+        },
+        "quantityType1": {
+          "$ref": "#/definitions/ProductUnit",
+          "description": "The quantity type associated with the posting",
+          "readOnly": true
+        },
+        "quantityType2": {
+          "$ref": "#/definitions/ProductUnit",
+          "description": "The quantity type associated with the posting",
+          "readOnly": true
+        },
         "row": {
           "format": "int32",
           "minimum": 0,
@@ -27043,6 +27212,9 @@
         },
         "isInactiveDisplayName": {
           "readOnly": true,
+          "type": "string"
+        },
+        "isStockItem": {
           "type": "string"
         },
         "name": {
@@ -31811,6 +31983,22 @@
       },
       "type": "object"
     },
+    "ResponseWrapperDynamicControlForm": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/DynamicControlForm"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperDynamicControlFormTemplate": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/DynamicControlFormTemplate"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperElectronicSupportDTO": {
       "properties": {
         "value": {
@@ -36447,6 +36635,10 @@
           "type": "boolean"
         },
         "isAuditor": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isDeleted": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -42555,8 +42747,18 @@
     },
     "TskInternalContextDTO": {
       "properties": {
+        "actualEmployeeId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "companyName": {
           "type": "string"
+        },
+        "contextCompanyId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "isAuth": {
           "readOnly": true,
@@ -42573,6 +42775,15 @@
         "isPilotSalaryRun": {
           "readOnly": true,
           "type": "boolean"
+        },
+        "isProxyLogin": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "loginEmployeeId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "maxEmployeesPerSalaryTransaction": {
           "format": "int32",
@@ -51795,6 +52006,124 @@
           }
         ],
         "summary": "[BETA] Upload file to Customer Document Archive.",
+        "tags": [
+          "documentArchive"
+        ]
+      }
+    },
+    "/documentArchive/dynamicControlForm/{id}": {
+      "get": {
+        "description": "",
+        "operationId": "DocumentArchiveDynamicControlForm_getDynamicControlForm",
+        "parameters": [
+          {
+            "description": "Element ID",
+            "format": "int32",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "From and including",
+            "in": "query",
+            "name": "periodDateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "To and excluding",
+            "in": "query",
+            "name": "periodDateTo",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseDocumentArchive"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "[BETA] Find documents archived associated with control form object type.",
+        "tags": [
+          "documentArchive"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "description": "",
+        "operationId": "DocumentArchiveDynamicControlForm_dynamicControlFormPost",
+        "parameters": [
+          {
+            "description": "The file",
+            "in": "formData",
+            "name": "file",
+            "required": true,
+            "type": "file"
+          },
+          {
+            "description": "Element ID",
+            "format": "int32",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperDocumentArchive"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "[BETA] Upload file to Control Form Document Archive.",
         "tags": [
           "documentArchive"
         ]
@@ -81527,6 +81856,12 @@
     },
     {
       "name": "project/category"
+    },
+    {
+      "name": "projectdynamicControlForm"
+    },
+    {
+      "name": "projectdynamicControlFormtemplate"
     },
     {
       "name": "projectonboarding"
