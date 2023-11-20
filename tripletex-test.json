@@ -891,7 +891,7 @@
               "PAYMENT_SERVICES",
               "CHECKOUT",
               "FAG_SYSTEMER",
-              "FINANCIAL_SERVICES",
+              "APRILA_CASH_CREDIT",
               "PROJECT",
               "MILAGE",
               "WAREHOUSE_LOGISTICS",
@@ -36635,6 +36635,10 @@
           "type": "boolean"
         },
         "isAuditor": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isDeleted": {
           "readOnly": true,
           "type": "boolean"
         },
