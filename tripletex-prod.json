@@ -23337,6 +23337,9 @@
         "descriptionPart2": {
           "type": "string"
         },
+        "futurePurchase": {
+          "type": "boolean"
+        },
         "id": {
           "format": "int32",
           "type": "integer"
@@ -23392,6 +23395,14 @@
         },
         "processing": {
           "type": "boolean"
+        },
+        "purchaseEndDate": {
+          "format": "date",
+          "type": "string"
+        },
+        "purchaseStartDate": {
+          "format": "date",
+          "type": "string"
         },
         "redirectUrl": {
           "type": "string"
@@ -34107,6 +34118,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperTripletexSalesModulePurchase": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TripletexSalesModulePurchase"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperTskInternalContextDTO": {
       "properties": {
         "value": {
@@ -38979,10 +38998,14 @@
             "PAYMENT_CREATED",
             "PAYMENT_APPROVED",
             "PAYMENT_APPROVAL_ABORTED",
+            "PAYMENT_SENT_TO_BANK",
+            "PAYMENT_RECEIVED_BY_BANK",
+            "PAYMENT_ACCEPTED_BY_BANK",
             "PAYMENT_CANCELLED_IN_BANK",
             "PAYMENT_AMOUNT_CHANGED",
             "PAYMENT_DUE_DATE_CHANGED",
-            "PAYMENT_REJECTED"
+            "PAYMENT_REJECTED",
+            "PAYMENT_NOT_UPDATED"
           ],
           "type": "string"
         },
@@ -42759,6 +42782,78 @@
       },
       "type": "object"
     },
+    "TripletexSalesModulePurchase": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "customerId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "employeeId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "endDate": {
+          "description": "Purchase end date",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "purchaseDate": {
+          "description": "Purchase date",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tripletexCompanyId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "tripletexPriceList": {
+          "enum": [
+            "TRIPLETEX_OLD_MODEL",
+            "TRIPLETEX_STANDARD",
+            "AGRO",
+            "MAMUT",
+            "BASIS",
+            "SMART",
+            "KOMPLETT",
+            "VVS_ELEKTRO",
+            "AUTOPLUS",
+            "MIKRO",
+            "INTEGRATION_PARTNER",
+            "PLUSS",
+            "DIYPACKAGE"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "tripletexSalesModuleName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "TskInternalContextDTO": {
       "properties": {
         "actualEmployeeId": {
@@ -46176,7 +46271,8 @@
             "REVOKED_BY_REMOVING_ACCESS",
             "REVOKED_BY_CREATING_NEW_CONSENT",
             "SCHEDULED_FOR_REVOKING",
-            "EXPIRED"
+            "EXPIRED",
+            "NO_ACCOUNT_MATCH"
           ],
           "readOnly": true,
           "type": "string"
@@ -81311,6 +81407,9 @@
     },
     {
       "name": "bringCredentials"
+    },
+    {
+      "name": "chartOfAccounts"
     },
     {
       "name": "checkout"
