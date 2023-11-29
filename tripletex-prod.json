@@ -1598,7 +1598,10 @@
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
-            "DIVIDEND_DISPOSITIONS"
+            "DIVIDEND_DISPOSITIONS",
+            "PARTICIPANT_NAME",
+            "PARTICIPANT_NUMBER",
+            "PARTICIPANT_OWNERSHIP"
           ],
           "readOnly": true,
           "type": "string"
@@ -5200,7 +5203,8 @@
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
-            "REAL_ESTATE"
+            "REAL_ESTATE",
+            "PARTICIPANT"
           ],
           "readOnly": true,
           "type": "string"
@@ -5655,7 +5659,10 @@
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
-            "DIVIDEND_DISPOSITIONS"
+            "DIVIDEND_DISPOSITIONS",
+            "PARTICIPANT_NAME",
+            "PARTICIPANT_NUMBER",
+            "PARTICIPANT_OWNERSHIP"
           ],
           "readOnly": true,
           "type": "string"
@@ -8997,7 +9004,8 @@
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
-            "REAL_ESTATE"
+            "REAL_ESTATE",
+            "PARTICIPANT"
           ],
           "type": "string"
         },
@@ -9353,7 +9361,10 @@
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
-            "DIVIDEND_DISPOSITIONS"
+            "DIVIDEND_DISPOSITIONS",
+            "PARTICIPANT_NAME",
+            "PARTICIPANT_NUMBER",
+            "PARTICIPANT_OWNERSHIP"
           ],
           "type": "string"
         },
@@ -11257,7 +11268,8 @@
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
-            "REAL_ESTATE"
+            "REAL_ESTATE",
+            "PARTICIPANT"
           ],
           "type": "string"
         },
@@ -11613,7 +11625,10 @@
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
-            "DIVIDEND_DISPOSITIONS"
+            "DIVIDEND_DISPOSITIONS",
+            "PARTICIPANT_NAME",
+            "PARTICIPANT_NUMBER",
+            "PARTICIPANT_OWNERSHIP"
           ],
           "type": "string"
         },
@@ -11709,7 +11724,8 @@
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
-            "REAL_ESTATE"
+            "REAL_ESTATE",
+            "PARTICIPANT"
           ],
           "readOnly": true,
           "type": "string"
@@ -11805,6 +11821,25 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GetStartedBannerData": {
+      "properties": {
+        "banner": {
+          "enum": [
+            "TestBannerPleaseIgnore"
+          ],
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "VISIBLE",
+            "MINIMIZED",
+            "DISMISSED"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -13238,7 +13273,10 @@
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
-            "DIVIDEND_DISPOSITIONS"
+            "DIVIDEND_DISPOSITIONS",
+            "PARTICIPANT_NAME",
+            "PARTICIPANT_NUMBER",
+            "PARTICIPANT_OWNERSHIP"
           ],
           "readOnly": true,
           "type": "string"
@@ -13603,7 +13641,10 @@
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
-            "DIVIDEND_DISPOSITIONS"
+            "DIVIDEND_DISPOSITIONS",
+            "PARTICIPANT_NAME",
+            "PARTICIPANT_NUMBER",
+            "PARTICIPANT_OWNERSHIP"
           ],
           "readOnly": true,
           "type": "string"
@@ -17309,6 +17350,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/GenericDataRate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseGetStartedBannerData": {
+      "properties": {
+        "count": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/GetStartedBannerData"
           },
           "readOnly": true,
           "type": "array"
@@ -23226,7 +23300,8 @@
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
-            "REAL_ESTATE"
+            "REAL_ESTATE",
+            "PARTICIPANT"
           ],
           "readOnly": true,
           "type": "string"
@@ -24693,6 +24768,51 @@
       },
       "type": "object"
     },
+    "Participant": {
+      "properties": {
+        "groupId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "number": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "ownership": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "posts": {
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "ParticipantOverview": {
+      "properties": {
+        "participants": {
+          "items": {
+            "$ref": "#/definitions/Participant"
+          },
+          "type": "array"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
     "Passenger": {
       "properties": {
         "changes": {
@@ -25882,7 +26002,10 @@
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
-            "DIVIDEND_DISPOSITIONS"
+            "DIVIDEND_DISPOSITIONS",
+            "PARTICIPANT_NAME",
+            "PARTICIPANT_NUMBER",
+            "PARTICIPANT_OWNERSHIP"
           ],
           "readOnly": true,
           "type": "string"
@@ -32167,6 +32290,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperGetStartedBannerData": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/GetStartedBannerData"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperGetStartedSummaryDTO": {
       "properties": {
         "value": {
@@ -32955,6 +33086,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/PageOptions"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperParticipantOverview": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ParticipantOverview"
         }
       },
       "type": "object"
@@ -34177,6 +34316,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/VatPaymentStatusUpdate"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperVatReportTypesDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/VatReportTypesDTO"
         }
       },
       "type": "object"
@@ -38329,7 +38476,8 @@
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
-            "REAL_ESTATE"
+            "REAL_ESTATE",
+            "PARTICIPANT"
           ],
           "type": "string"
         },
@@ -38700,7 +38848,10 @@
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
-            "DIVIDEND_DISPOSITIONS"
+            "DIVIDEND_DISPOSITIONS",
+            "PARTICIPANT_NAME",
+            "PARTICIPANT_NUMBER",
+            "PARTICIPANT_OWNERSHIP"
           ],
           "type": "string"
         },
@@ -42962,7 +43113,8 @@
             "TAX_CALCULATIONS",
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
-            "REAL_ESTATE"
+            "REAL_ESTATE",
+            "PARTICIPANT"
           ],
           "readOnly": true,
           "type": "string"
@@ -43382,6 +43534,19 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "VatReportTypesDTO": {
+      "properties": {
+        "hasGeneralIndustry": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasPrimaryIndustry": {
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -82518,6 +82683,9 @@
     },
     {
       "name": "webclient"
+    },
+    {
+      "name": "webenlightenmentgetStarted"
     },
     {
       "name": "internalfavorites"
