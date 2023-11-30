@@ -12851,7 +12851,7 @@
           "type": "string"
         },
         "postingId": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -45272,7 +45272,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "subscriptionId": {
@@ -48959,7 +48959,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -49000,7 +49000,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -49843,7 +49843,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -50082,7 +50082,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -51063,7 +51063,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -51091,7 +51091,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -51271,7 +51271,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -51635,7 +51635,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -53822,7 +53822,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -54409,7 +54409,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -54773,7 +54773,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -55245,7 +55245,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -55466,7 +55466,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -55971,7 +55971,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -56054,7 +56054,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -57587,7 +57587,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -57781,7 +57781,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -62791,7 +62791,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -62819,7 +62819,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -63268,7 +63268,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -65227,7 +65227,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -65715,7 +65715,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -65854,7 +65854,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73919,7 +73919,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -74371,7 +74371,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -74491,7 +74491,7 @@
         "parameters": [
           {
             "description": "Invoice ID.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "invoiceId",
             "required": true,
@@ -74539,7 +74539,7 @@
         "parameters": [
           {
             "description": "ID of the elements",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "invoiceId",
             "required": true,
@@ -74640,7 +74640,7 @@
         "parameters": [
           {
             "description": "Invoice ID.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "invoiceId",
             "required": true,
@@ -75082,7 +75082,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -75123,7 +75123,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -75165,7 +75165,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -75205,7 +75205,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -75901,7 +75901,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -75942,7 +75942,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -76248,7 +76248,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -78503,7 +78503,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80779,7 +80779,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80953,7 +80953,7 @@
         "parameters": [
           {
             "description": "Travel Expense ID to upload attachment to.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "travelExpenseId",
             "required": true,
@@ -81001,7 +81001,7 @@
         "parameters": [
           {
             "description": "Travel Expense ID to upload attachment to.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "travelExpenseId",
             "required": true,
@@ -81158,7 +81158,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
