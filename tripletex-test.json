@@ -2476,7 +2476,7 @@
           "type": "number"
         },
         "assetId": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -2519,7 +2519,7 @@
     "AssetGroup": {
       "properties": {
         "accountId": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -2528,7 +2528,7 @@
           "type": "string"
         },
         "accountNumber": {
-          "format": "int32",
+          "format": "int64",
           "minimum": 0,
           "type": "integer"
         },
@@ -6622,6 +6622,10 @@
           "readOnly": true,
           "type": "array"
         },
+        "time": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
         }
@@ -6630,6 +6634,10 @@
     },
     "CompanyEventShareholderInfo": {
       "properties": {
+        "calculatedNumberOfShares": {
+          "readOnly": true,
+          "type": "number"
+        },
         "distributed": {
           "readOnly": true,
           "type": "number"
@@ -10843,7 +10851,7 @@
         "postingIds": {
           "description": "List of postingIds correlated to this fileId",
           "items": {
-            "format": "int32",
+            "format": "int64",
             "type": "integer"
           },
           "readOnly": true,
@@ -14465,11 +14473,12 @@
             "OPENING_BALANCE_PAID_SHARE_CAPITAL",
             "CLOSING_BALANCE_PREMIUM_PAID",
             "EVENT_TYPE",
-            "EVENT_DATETIME",
+            "EVENT_DATE",
             "EVENT_DISTRIBUTED_TOTAL",
             "EVENT_SHAREHOLDER_ID",
             "SHAREHOLDER_NO_OF_SHARES",
             "DISTRIBUTE_MANUALLY",
+            "EVENT_TIME",
             "CONTACT_NAME",
             "CONTACT_ROLE",
             "CONTACT_EMAIL",
@@ -14478,7 +14487,13 @@
             "NO_OF_SHARES_LAST_YEAR",
             "UPDATED_BY",
             "UPDATED_DATE",
-            "TRANSACTION_TYPE"
+            "TRANSACTION_TYPE",
+            "TRANSACTION_DATE",
+            "TRANSACTION_TIME",
+            "SELLER_ID",
+            "BUYER_ID",
+            "TRANSACTION_NUMBER_OF_SHARES",
+            "REMUNERATION"
           ],
           "readOnly": true,
           "type": "string"
@@ -14917,18 +14932,18 @@
     "ListResponse": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -14950,18 +14965,18 @@
     "ListResponseAccommodationAllowance": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -14983,18 +14998,18 @@
     "ListResponseAccount": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15016,18 +15031,18 @@
     "ListResponseAccountWithHelpInfoDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15049,18 +15064,18 @@
     "ListResponseAccountantClient": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15082,18 +15097,18 @@
     "ListResponseAccountantCustomer": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15115,18 +15130,18 @@
     "ListResponseAccountingPeriod": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15148,18 +15163,18 @@
     "ListResponseActivity": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15181,18 +15196,18 @@
     "ListResponseAddon": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15214,18 +15229,18 @@
     "ListResponseAnnualAccount": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15247,18 +15262,18 @@
     "ListResponseApiConsumer": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15280,18 +15295,18 @@
     "ListResponseArchiveTargetPath": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15313,18 +15328,18 @@
     "ListResponseAsset": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15346,18 +15361,18 @@
     "ListResponseAssetAccountRow": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15379,18 +15394,18 @@
     "ListResponseAutoPayTransaction": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15412,18 +15427,18 @@
     "ListResponseAutopayBankAgreement": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15445,18 +15460,18 @@
     "ListResponseBalanceSheetAccount": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15478,18 +15493,18 @@
     "ListResponseBank": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15511,18 +15526,18 @@
     "ListResponseBankAgreementDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15544,18 +15559,18 @@
     "ListResponseBankBalanceEstimation": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15577,18 +15592,18 @@
     "ListResponseBankDashboardAdvice": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15610,18 +15625,18 @@
     "ListResponseBankReconciliation": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15643,18 +15658,18 @@
     "ListResponseBankReconciliationAdjustment": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15676,18 +15691,18 @@
     "ListResponseBankReconciliationMatch": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15709,18 +15724,18 @@
     "ListResponseBankReconciliationPaymentType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15742,18 +15757,18 @@
     "ListResponseBankStatement": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15775,18 +15790,18 @@
     "ListResponseBankTransaction": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15808,18 +15823,18 @@
     "ListResponseBanner": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15841,18 +15856,18 @@
     "ListResponseBrregCompanyLookupDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15874,18 +15889,18 @@
     "ListResponseCalloutDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15907,18 +15922,18 @@
     "ListResponseChatResponseDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15940,18 +15955,18 @@
     "ListResponseChecklist": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -15973,18 +15988,18 @@
     "ListResponseChecklistProperty": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16006,18 +16021,18 @@
     "ListResponseClient": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16039,18 +16054,18 @@
     "ListResponseClientAccessTemplate": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16072,18 +16087,18 @@
     "ListResponseCloseGroup": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16105,18 +16120,18 @@
     "ListResponseComment": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16138,18 +16153,18 @@
     "ListResponseCompany": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16171,18 +16186,18 @@
     "ListResponseCompanyHoliday": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16204,18 +16219,18 @@
     "ListResponseCompanyHolidays": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16237,18 +16252,18 @@
     "ListResponseCompanyStandardTime": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16270,18 +16285,18 @@
     "ListResponseContact": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16303,18 +16318,18 @@
     "ListResponseCost": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16336,18 +16351,18 @@
     "ListResponseCountry": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16369,18 +16384,18 @@
     "ListResponseCreateSalaryEmployeeToEmploymentRelationship": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16402,18 +16417,18 @@
     "ListResponseCurrency": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16435,18 +16450,18 @@
     "ListResponseCurrencyWithRates": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16468,18 +16483,18 @@
     "ListResponseCustomer": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16501,18 +16516,18 @@
     "ListResponseCustomerCategory": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16534,18 +16549,18 @@
     "ListResponseCustomizedChecklistProperty": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16567,18 +16582,18 @@
     "ListResponseDeliveryAddress": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16600,18 +16615,18 @@
     "ListResponseDepartment": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16633,18 +16648,18 @@
     "ListResponseDepreciationRate": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16666,18 +16681,18 @@
     "ListResponseDeviation": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16699,18 +16714,18 @@
     "ListResponseDiscountGroup": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16732,18 +16747,18 @@
     "ListResponseDistributionKey": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16765,18 +16780,18 @@
     "ListResponseDivision": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16798,18 +16813,18 @@
     "ListResponseDocument": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16831,18 +16846,18 @@
     "ListResponseDocumentArchive": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16864,18 +16879,18 @@
     "ListResponseDynamicControlFormTemplate": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16897,18 +16912,18 @@
     "ListResponseEmployee": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16930,18 +16945,18 @@
     "ListResponseEmployeeCategory": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16963,18 +16978,18 @@
     "ListResponseEmployeeCompanyDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -16996,18 +17011,18 @@
     "ListResponseEmployeeFilters": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17029,18 +17044,18 @@
     "ListResponseEmployeePreferences": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17062,18 +17077,18 @@
     "ListResponseEmployment": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17095,18 +17110,18 @@
     "ListResponseEmploymentDetails": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17128,18 +17143,18 @@
     "ListResponseEmploymentType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17161,18 +17176,18 @@
     "ListResponseEnhetsregisteretDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17194,18 +17209,18 @@
     "ListResponseEntitlement": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17227,18 +17242,18 @@
     "ListResponseEnumType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17260,18 +17275,18 @@
     "ListResponseExternalProduct": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17293,18 +17308,18 @@
     "ListResponseGeneralBannerDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17326,18 +17341,18 @@
     "ListResponseGenericDataRate": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17359,18 +17374,18 @@
     "ListResponseGetStartedBannerData": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17392,18 +17407,18 @@
     "ListResponseGoodsReceipt": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17425,18 +17440,18 @@
     "ListResponseGoodsReceiptLine": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17458,18 +17473,18 @@
     "ListResponseHistoricalVoucher": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17491,18 +17506,18 @@
     "ListResponseHourlyCostAndRate": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17524,18 +17539,18 @@
     "ListResponseInventories": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17557,18 +17572,18 @@
     "ListResponseInventory": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17590,18 +17605,18 @@
     "ListResponseInventoryLocation": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17623,18 +17638,18 @@
     "ListResponseInvoice": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17656,18 +17671,18 @@
     "ListResponseInvoiceSendTypeDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17689,18 +17704,18 @@
     "ListResponseInvoiceSummaryDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17722,18 +17737,18 @@
     "ListResponseLastPosted": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17755,18 +17770,18 @@
     "ListResponseLeaveOfAbsence": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17788,18 +17803,18 @@
     "ListResponseLeaveOfAbsenceType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17821,18 +17836,18 @@
     "ListResponseLedgerAccount": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17854,18 +17869,18 @@
     "ListResponseLegacyAddress": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17887,18 +17902,18 @@
     "ListResponseMapping": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17920,18 +17935,18 @@
     "ListResponseMenuItemDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17953,18 +17968,18 @@
     "ListResponseMileageAllowance": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -17986,18 +18001,18 @@
     "ListResponseMobileEmployee": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18019,18 +18034,18 @@
     "ListResponseMonthlyStatus": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18052,18 +18067,18 @@
     "ListResponseMunicipality": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18085,18 +18100,18 @@
     "ListResponseNews": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18118,18 +18133,18 @@
     "ListResponseNextOfKin": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18151,18 +18166,18 @@
     "ListResponseNotification": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18184,18 +18199,18 @@
     "ListResponseOccupationCode": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18217,18 +18232,18 @@
     "ListResponseOrder": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18250,18 +18265,18 @@
     "ListResponseOrderGroup": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18283,18 +18298,18 @@
     "ListResponseOrderLine": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18316,18 +18331,18 @@
     "ListResponseOrderOffer": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18349,18 +18364,18 @@
     "ListResponseOutgoingStock": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18382,18 +18397,18 @@
     "ListResponsePassenger": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18415,18 +18430,18 @@
     "ListResponsePaymentDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18448,18 +18463,18 @@
     "ListResponsePaymentType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18481,18 +18496,18 @@
     "ListResponsePaymentTypeAutomation": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18514,18 +18529,18 @@
     "ListResponsePaymentTypeOut": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18547,18 +18562,18 @@
     "ListResponsePayslip": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18580,18 +18595,18 @@
     "ListResponsePensionScheme": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18613,18 +18628,18 @@
     "ListResponsePerDiemCompensation": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18646,18 +18661,18 @@
     "ListResponsePerDiemCompensationTransientDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18679,18 +18694,18 @@
     "ListResponsePersonAutoCompleteDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18712,18 +18727,18 @@
     "ListResponsePhonePrefixCountryInternal": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18745,18 +18760,18 @@
     "ListResponsePickupPoint": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18778,18 +18793,18 @@
     "ListResponsePosting": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18811,18 +18826,18 @@
     "ListResponseProduct": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18844,18 +18859,18 @@
     "ListResponseProductGroup": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18877,18 +18892,18 @@
     "ListResponseProductGroupRelation": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18910,18 +18925,18 @@
     "ListResponseProductImport": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18943,18 +18958,18 @@
     "ListResponseProductImportFieldDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -18976,18 +18991,18 @@
     "ListResponseProductImportHeader": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19009,18 +19024,18 @@
     "ListResponseProductImportHeaderFieldsRelation": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19042,18 +19057,18 @@
     "ListResponseProductInventoryLocation": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19075,18 +19090,18 @@
     "ListResponseProductLine": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19108,18 +19123,18 @@
     "ListResponseProductPotential": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19141,18 +19156,18 @@
     "ListResponseProductPrice": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19174,18 +19189,18 @@
     "ListResponseProductUnit": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19207,18 +19222,18 @@
     "ListResponseProductUnitMaster": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19240,18 +19255,18 @@
     "ListResponseProject": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19273,18 +19288,18 @@
     "ListResponseProjectCategory": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19306,18 +19321,18 @@
     "ListResponseProjectControlForm": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19339,18 +19354,18 @@
     "ListResponseProjectControlFormType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19372,18 +19387,18 @@
     "ListResponseProjectHourlyRate": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19405,18 +19420,18 @@
     "ListResponseProjectInvoiceDetails": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19438,18 +19453,18 @@
     "ListResponseProjectOrderLine": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19471,18 +19486,18 @@
     "ListResponseProjectOverviewAggregate": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19504,18 +19519,18 @@
     "ListResponseProjectParticipant": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19537,18 +19552,18 @@
     "ListResponseProjectPeriodMonthlyStatus": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19570,18 +19585,18 @@
     "ListResponseProjectSpecificRate": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19603,18 +19618,18 @@
     "ListResponseProspect": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19636,18 +19651,18 @@
     "ListResponsePurchaseOrder": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19669,18 +19684,18 @@
     "ListResponsePurchaseOrderAddress": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19702,18 +19717,18 @@
     "ListResponsePurchaseOrderIncomingInvoiceRelation": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19735,18 +19750,18 @@
     "ListResponsePurchaseOrderInternal": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19768,18 +19783,18 @@
     "ListResponsePurchaseOrderline": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19801,18 +19816,18 @@
     "ListResponseRP2EmployeeAvailableTime": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19834,18 +19849,18 @@
     "ListResponseRP2EmployeeBookedTime": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19867,18 +19882,18 @@
     "ListResponseRP2EmployeeJob": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19900,18 +19915,18 @@
     "ListResponseRP2ProjectBookedTime": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19933,18 +19948,18 @@
     "ListResponseRP2ProjectJob": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19966,18 +19981,18 @@
     "ListResponseRP2TotalTime": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -19999,18 +20014,18 @@
     "ListResponseReelDomainDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20032,18 +20047,18 @@
     "ListResponseReelFunctionDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20065,18 +20080,18 @@
     "ListResponseReminder": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20098,18 +20113,18 @@
     "ListResponseRemunerationType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20131,18 +20146,18 @@
     "ListResponseReport": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20164,18 +20179,18 @@
     "ListResponseReportAccess": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20197,18 +20212,18 @@
     "ListResponseReportAuthorization": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20230,18 +20245,18 @@
     "ListResponseReportClientAccess": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20263,18 +20278,18 @@
     "ListResponseReportingCompanyInternal": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20296,18 +20311,18 @@
     "ListResponseResultBudget": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20329,18 +20344,18 @@
     "ListResponseRiskFreeInterestRate": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20362,18 +20377,18 @@
     "ListResponseSalarySpecification": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20395,18 +20410,18 @@
     "ListResponseSalaryTransaction": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20428,18 +20443,18 @@
     "ListResponseSalaryType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20461,18 +20476,18 @@
     "ListResponseSalaryV2Type": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20494,18 +20509,18 @@
     "ListResponseSalesForceAccountInfo": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20527,18 +20542,18 @@
     "ListResponseSalesForceAccountantConnection": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20560,18 +20575,18 @@
     "ListResponseSalesModuleDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20593,18 +20608,18 @@
     "ListResponseSearchCompletionDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20626,18 +20641,18 @@
     "ListResponseShareholder": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20656,21 +20671,54 @@
       },
       "type": "object"
     },
-    "ListResponseSignatureCombinationDTO": {
+    "ListResponseShareholderTransaction": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ShareholderTransaction"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseSignatureCombinationDTO": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20692,18 +20740,18 @@
     "ListResponseStandardTime": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20725,18 +20773,18 @@
     "ListResponseStocktaking": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20758,18 +20806,18 @@
     "ListResponseSubscription": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20791,18 +20839,18 @@
     "ListResponseSupplier": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20824,18 +20872,18 @@
     "ListResponseSupplierAutomation": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20857,18 +20905,18 @@
     "ListResponseSupplierBalance": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20890,18 +20938,18 @@
     "ListResponseSupplierInvoice": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20923,18 +20971,18 @@
     "ListResponseSupplierProduct": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20956,18 +21004,18 @@
     "ListResponseSystemReportCategoryDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20989,18 +21037,18 @@
     "ListResponseTask": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21022,18 +21070,18 @@
     "ListResponseTaxcardContactInternal": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21055,18 +21103,18 @@
     "ListResponseTaxcardEmployeeInternal": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21088,18 +21136,18 @@
     "ListResponseTimeClock": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21121,18 +21169,18 @@
     "ListResponseTimesheetAllocated": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21154,18 +21202,18 @@
     "ListResponseTimesheetEntry": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21187,18 +21235,18 @@
     "ListResponseTimesheetProjectSalaryTypeSpecification": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21220,18 +21268,18 @@
     "ListResponseTimesheetSalaryTypeSpecification": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21253,18 +21301,18 @@
     "ListResponseTodoListComment": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21286,18 +21334,18 @@
     "ListResponseTransportType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21319,18 +21367,18 @@
     "ListResponseTravelCostCategory": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21352,18 +21400,18 @@
     "ListResponseTravelExpense": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21385,18 +21433,18 @@
     "ListResponseTravelExpenseParticipant": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21418,18 +21466,18 @@
     "ListResponseTravelExpenseRate": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21451,18 +21499,18 @@
     "ListResponseTravelExpenseRateCategory": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21484,18 +21532,18 @@
     "ListResponseTravelExpenseRateCategoryGroup": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21517,18 +21565,18 @@
     "ListResponseTravelExpenseZone": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21550,18 +21598,18 @@
     "ListResponseTravelPaymentType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21583,18 +21631,18 @@
     "ListResponseUpsaleMetric": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21616,18 +21664,18 @@
     "ListResponseVatReturnsComment": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21649,18 +21697,18 @@
     "ListResponseVatReturnsOverviewItem": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21682,18 +21730,18 @@
     "ListResponseVatReturnsVatCodeComment": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21715,18 +21763,18 @@
     "ListResponseVatStatus": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21748,18 +21796,18 @@
     "ListResponseVatTermPeriod": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21781,18 +21829,18 @@
     "ListResponseVatType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21814,18 +21862,18 @@
     "ListResponseVoucher": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21847,18 +21895,18 @@
     "ListResponseVoucherInboxItem": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21880,18 +21928,18 @@
     "ListResponseVoucherInternal": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21913,18 +21961,18 @@
     "ListResponseVoucherMessage": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21946,18 +21994,18 @@
     "ListResponseVoucherStatus": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -21979,18 +22027,18 @@
     "ListResponseVoucherType": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -22012,18 +22060,18 @@
     "ListResponseWeek": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -22045,18 +22093,18 @@
     "ListResponseWorkingHoursScheme": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -22078,18 +22126,18 @@
     "ListResponseYearDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -22111,18 +22159,18 @@
     "ListResponseYearEndReportMunicipality": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -22144,18 +22192,18 @@
     "ListResponseYearEndReportNote": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -22177,18 +22225,18 @@
     "ListResponseZendeskSearchResultDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -22210,18 +22258,18 @@
     "ListResponseZtlAccount": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -22243,18 +22291,18 @@
     "ListResponseZtlConsent": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -22276,18 +22324,18 @@
     "ListResponseZtlOnboarding": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -22309,18 +22357,18 @@
     "ListResponseZtlTransaction": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -22799,7 +22847,7 @@
         },
         "employeeId": {
           "description": "Optional employee ID. Default employee is used when null",
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "expirationDate": {
@@ -31216,7 +31264,6 @@
         },
         "id": {
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "method": {
@@ -31249,9 +31296,6 @@
           "type": "integer"
         }
       },
-      "required": [
-        "id"
-      ],
       "type": "object"
     },
     "ResourceMessages": {
@@ -34126,6 +34170,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/TodoListComment"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperTransaction": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/Transaction"
         }
       },
       "type": "object"
@@ -38260,11 +38312,12 @@
             "OPENING_BALANCE_PAID_SHARE_CAPITAL",
             "CLOSING_BALANCE_PREMIUM_PAID",
             "EVENT_TYPE",
-            "EVENT_DATETIME",
+            "EVENT_DATE",
             "EVENT_DISTRIBUTED_TOTAL",
             "EVENT_SHAREHOLDER_ID",
             "SHAREHOLDER_NO_OF_SHARES",
             "DISTRIBUTE_MANUALLY",
+            "EVENT_TIME",
             "CONTACT_NAME",
             "CONTACT_ROLE",
             "CONTACT_EMAIL",
@@ -38273,7 +38326,13 @@
             "NO_OF_SHARES_LAST_YEAR",
             "UPDATED_BY",
             "UPDATED_DATE",
-            "TRANSACTION_TYPE"
+            "TRANSACTION_TYPE",
+            "TRANSACTION_DATE",
+            "TRANSACTION_TIME",
+            "SELLER_ID",
+            "BUYER_ID",
+            "TRANSACTION_NUMBER_OF_SHARES",
+            "REMUNERATION"
           ],
           "type": "string"
         },
@@ -38290,6 +38349,7 @@
         },
         "shareholderRegisterDataSubType": {
           "enum": [
+            "NONE",
             "COMPANY_KEY_INFO",
             "COMPANY_EVENT",
             "SHAREHOLDER_INFO"
@@ -38369,6 +38429,12 @@
           "readOnly": true,
           "type": "integer"
         },
+        "transactions": {
+          "items": {
+            "$ref": "#/definitions/Transaction"
+          },
+          "type": "array"
+        },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport",
           "readOnly": true
@@ -38410,6 +38476,51 @@
       "required": [
         "failureStep"
       ],
+      "type": "object"
+    },
+    "ShareholderTransaction": {
+      "properties": {
+        "counterpart": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "date": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "numberOfShares": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "remuneration": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "role": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "time": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "transactionGroupId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
+        }
+      },
       "type": "object"
     },
     "SharesAndSecurities": {
@@ -41079,18 +41190,18 @@
     "TimesheetEntrySearchResponse": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -41838,6 +41949,47 @@
             "TruckGeneral"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Transaction": {
+      "properties": {
+        "buyer": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "date": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "numberOfShares": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "remuneration": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "seller": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "time": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "transactionGroupId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "type": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
         }
       },
       "type": "object"
@@ -44220,7 +44372,7 @@
         },
         "employeeId": {
           "description": "Optional employee ID. Default employee is used when null",
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "expirationDate": {
@@ -45102,18 +45254,18 @@
     "VoucherSearchResponse": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "from": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "fullResultSize": {
           "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -47046,7 +47198,7 @@
         "parameters": [
           {
             "description": "Project ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": true,
@@ -47054,7 +47206,7 @@
           },
           {
             "description": "Employee ID. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -47161,7 +47313,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -47376,7 +47528,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -47437,7 +47589,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -47556,7 +47708,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -47584,7 +47736,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -47625,7 +47777,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -47955,7 +48107,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -48566,7 +48718,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -48855,7 +49007,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -49499,7 +49651,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -50123,7 +50275,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -51132,7 +51284,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -51312,7 +51464,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -51704,7 +51856,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -51924,7 +52076,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -53627,7 +53779,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -53863,7 +54015,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -54450,7 +54602,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -54814,7 +54966,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -54856,7 +55008,7 @@
         "parameters": [
           {
             "description": "Employee ID. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -55036,7 +55188,7 @@
         "parameters": [
           {
             "description": "Employee ID. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -55044,7 +55196,7 @@
           },
           {
             "description": "Client ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "customerId",
             "required": false,
@@ -55147,7 +55299,7 @@
         "parameters": [
           {
             "description": "Employee ID. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -55286,7 +55438,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -55368,7 +55520,7 @@
         "parameters": [
           {
             "description": "Employee ID. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -55507,7 +55659,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -55826,7 +55978,7 @@
         "parameters": [
           {
             "description": "Employee ID. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -55924,7 +56076,7 @@
         "parameters": [
           {
             "description": "Employee ID. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -56095,7 +56247,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -57559,7 +57711,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -57628,7 +57780,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -57670,7 +57822,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -57739,7 +57891,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -57850,7 +58002,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -61539,7 +61691,7 @@
         "parameters": [
           {
             "description": "ID of voucher that should be sent to inbox.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -61588,7 +61740,7 @@
         "parameters": [
           {
             "description": "ID of voucher that should be sent to ledger.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -61680,7 +61832,7 @@
         "parameters": [
           {
             "description": "ID of voucher containing the attachment to delete.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "voucherId",
             "required": true,
@@ -62749,7 +62901,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -64723,7 +64875,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -65199,7 +65351,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -65268,7 +65420,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -65826,7 +65978,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -65895,7 +66047,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -66254,7 +66406,7 @@
           },
           {
             "description": "Employee ID. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -68595,7 +68747,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -69307,7 +69459,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -69376,7 +69528,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70494,7 +70646,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70563,7 +70715,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70920,7 +71072,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73191,7 +73343,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73891,7 +74043,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73960,7 +74112,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -75046,7 +75198,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -75599,7 +75751,7 @@
         "parameters": [
           {
             "description": "ID of employee to find activities for. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -75670,7 +75822,7 @@
         "parameters": [
           {
             "description": "ID of employee with recent project hours Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -75733,7 +75885,7 @@
         "parameters": [
           {
             "description": "ID of employee to find hours for. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -75865,7 +76017,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -75984,7 +76136,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "id",
             "required": false,
@@ -76038,7 +76190,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "id",
             "required": false,
@@ -76085,7 +76237,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "id",
             "required": false,
@@ -76132,7 +76284,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "id",
             "required": false,
@@ -76405,7 +76557,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -76622,7 +76774,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -76688,7 +76840,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -76873,7 +77025,7 @@
         "parameters": [
           {
             "description": "Employee ID. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -76938,7 +77090,7 @@
         "parameters": [
           {
             "description": "Employee ID. Defaults to ID of token owner.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -77019,7 +77171,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -77434,7 +77586,7 @@
           },
           {
             "description": "The id of the employee",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": true,
@@ -77806,7 +77958,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "id",
             "required": true,
@@ -78475,7 +78627,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -78544,7 +78696,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -79290,7 +79442,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -79359,7 +79511,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80014,7 +80166,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80083,7 +80235,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80820,7 +80972,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80862,7 +81014,7 @@
         "parameters": [
           {
             "description": "ID of attachment containing the attachment to delete.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "travelExpenseId",
             "required": true,
