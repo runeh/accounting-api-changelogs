@@ -2128,7 +2128,7 @@
           "type": "string"
         },
         "rootId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         }
       },
@@ -6306,7 +6306,6 @@
         },
         "id": {
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         },
         "url": {
@@ -9965,9 +9964,6 @@
           "type": "integer"
         }
       },
-      "required": [
-        "id"
-      ],
       "type": "object"
     },
     "EmployeeRoleModelDTO": {
@@ -47849,7 +47845,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "customerId",
             "required": false,
@@ -47857,7 +47853,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -47865,7 +47861,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "departmentId",
             "required": false,
@@ -47873,7 +47869,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": false,
@@ -48260,7 +48256,7 @@
         "parameters": [
           {
             "description": "Account ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "accountId",
             "required": true,
@@ -48300,7 +48296,7 @@
         "parameters": [
           {
             "description": "Account ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "accountId",
             "required": true,
@@ -48347,7 +48343,7 @@
         "parameters": [
           {
             "description": "Account ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "accountId",
             "required": true,
@@ -48506,7 +48502,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "bankReconciliationId",
             "required": true,
@@ -48539,7 +48535,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "bankReconciliationId",
             "required": true,
@@ -48579,7 +48575,7 @@
         "parameters": [
           {
             "description": "The bank reconciliation id",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "bankReconciliationId",
             "required": false,
@@ -48649,7 +48645,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -48677,7 +48673,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -48760,7 +48756,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "bankReconciliationId",
             "required": true,
@@ -48798,7 +48794,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "bankReconciliationId",
             "required": true,
@@ -48897,7 +48893,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -49049,7 +49045,7 @@
         "parameters": [
           {
             "description": "ID for reconciliation",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "reconciliationId",
             "required": false,
@@ -49083,7 +49079,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -49197,7 +49193,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -49341,7 +49337,7 @@
         "parameters": [
           {
             "description": "Bank ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "bankId",
             "required": true,
@@ -49349,7 +49345,7 @@
           },
           {
             "description": "Account ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "accountId",
             "required": true,
@@ -49437,7 +49433,7 @@
         "parameters": [
           {
             "description": "Bank statement ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "bankStatementId",
             "required": true,
@@ -49500,7 +49496,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -49540,7 +49536,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -49583,7 +49579,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -49611,7 +49607,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -51054,7 +51050,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -51095,7 +51091,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
