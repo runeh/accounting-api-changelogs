@@ -77,15 +77,19 @@
           "$ref": "#/definitions/Country"
         },
         "bankAccountIBAN": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 100,
           "type": "string"
         },
         "bankName": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -154,6 +158,7 @@
           "type": "array"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "number": {
@@ -183,6 +188,7 @@
         },
         "saftCode": {
           "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "maxLength": 4,
           "type": "string"
         },
         "type": {
@@ -2715,28 +2721,293 @@
       "type": "object"
     },
     "AutoPayTransaction": {
-      "allOf": [
-        {
-          "$ref": "#/definitions/PaymentDTO"
-        },
-        {
-          "properties": {
-            "rejectionMessage": {
-              "readOnly": true,
-              "type": "string"
-            },
-            "sendToBank": {
-              "readOnly": true,
-              "type": "boolean"
-            },
-            "smsApproval": {
-              "readOnly": true,
-              "type": "boolean"
-            }
+      "properties": {
+        "acceptors": {
+          "description": "Who approved this payment.",
+          "items": {
+            "$ref": "#/definitions/Employee"
           },
-          "type": "object"
+          "readOnly": true,
+          "type": "array"
+        },
+        "account": {
+          "$ref": "#/definitions/Account",
+          "description": "The payment account.",
+          "readOnly": true
+        },
+        "amountCurrency": {
+          "description": "In the specified currency.",
+          "type": "number"
+        },
+        "amountInAccountCurrency": {
+          "description": "Amount specified in the currency of the bank agreements account.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "bookingDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "creditorBankAddress": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankName": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankPostalCity": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankPostalCode": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorIbanOrBban": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorName": {
+          "maxLength": 250,
+          "readOnly": true,
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency",
+          "readOnly": true
+        },
+        "description": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayStatus": {
+          "description": "The payment filter status.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expired": {
+          "description": "Is this transaction expired.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "idForVoucherUrl": {
+          "description": "The id of the connected invoice/wage period transaction/vat returns/wage transaction.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "isApproveDisabled": {
+          "description": "Can this payment be approved.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isCancelDisabled": {
+          "description": "Can this payment be cancelled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isDeleteDisabled": {
+          "description": "Can this payment be deleted",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isDisabledForAmountChange": {
+          "description": "Can this payment amount be changed.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isDisabledForUpdate": {
+          "description": "Can this payment date be changed.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isFinalStatus": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isForeignPayment": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSalary": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSalaryDateInvalid": {
+          "description": "Is the due date invalid, if this is a salary payment.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSelectable": {
+          "description": "Is this payment selectable.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "kid": {
+          "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentCategory": {
+          "description": "The payment category.",
+          "enum": [
+            "TRANSFER_BETWEEN_ACCOUNTS",
+            "REIMBURSEMENT",
+            "SUPPLIER_INVOICE",
+            "WITHHOLDING_TAX",
+            "TAX_DEDUCTION",
+            "VAT",
+            "SALARY",
+            "ENI",
+            "REGISTERED"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentDate": {
+          "type": "string"
+        },
+        "paymentSource": {
+          "enum": [
+            "AutoPayTransaction",
+            "ZtlTransaction"
+          ],
+          "type": "string"
+        },
+        "postings": {
+          "$ref": "#/definitions/Posting",
+          "description": "The payment posting.",
+          "readOnly": true
+        },
+        "receiverLink": {
+          "description": "The payment receiver link or name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "receiverReference": {
+          "maxLength": 250,
+          "readOnly": true,
+          "type": "string"
+        },
+        "rejectionMessage": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "sendToBank": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "smsApproval": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "sourceVoucher": {
+          "$ref": "#/definitions/Voucher",
+          "description": "Voucher that was paid.",
+          "readOnly": true
+        },
+        "sourceVoucherType": {
+          "description": "The type of the source voucher connected to this payment.",
+          "enum": [
+            "REGULAR",
+            "AUTOPAY_PAYMENT",
+            "ZTL_PAYMENT",
+            "WAGE_PERIOD_TRANSACTION",
+            "CUSTOMS_DECLARATIONS",
+            "VAT_RETURNS",
+            "WAGE_TRANSACTION",
+            "INCOMING_INVOICE_DETAILED",
+            "INVOICE_IN"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "The payment status.NOT_APPROVED: Payment not approved yet.<br>APPROVED: Payment approved, but not yet sent to bank.<br>SENT_TO_AUTOPAY: Payment sent to bank.<br>RECEIVED_BY_BANK: Payment received by the bank.<br>ACCEPTED_BY_BANK: Payment that was accepted by the bank.<br>FAILED: Payment that failed.<br>CANCELLED: Cancelled payment.<br>SUCCESS: Payment that ended successfully.<br>",
+          "enum": [
+            "NOT_APPROVED",
+            "CANCELLED",
+            "APPROVED",
+            "SENT_TO_AUTOPAY",
+            "RECEIVED_BY_BANK",
+            "ACCEPTED_BY_BANK",
+            "FAILED",
+            "SUCCESS",
+            "NOT_UPDATED",
+            "ON_HOLD",
+            "IMPORTED",
+            "INITIALIZED",
+            "AUTHORIZATION_REQUIRED",
+            "SETTLEMENT_IN_PROGRESS",
+            "REJECTED",
+            "BOOKED",
+            "SETTLEMENT_COMPLETED",
+            "BATCH_FAILED",
+            "BATCH_TIMEOUT",
+            "CANCEL_PENDING",
+            "PAYROLL_AWAITING_AUTHORIZATION",
+            "PAYROLL_SETTLEMENT_IN_PROGRESS",
+            "PAYROLL_SETTLEMENT_COMPLETED",
+            "PAYROLL_CANCELLED",
+            "PAYROLL_SETTLEMENT_NOT_COMPLETED_IN_TIME",
+            "PAYROLL_PAYMENT_INITIATED",
+            "PAYROLL_PAYMENT_ACCEPTED_TECHNICAL_VALIDATION",
+            "PAYROLL_ACCEPTED_FOR_EXECUTION",
+            "PAYROLL_FAILED",
+            "PAYROLL_EXECUTION_COMPLETED"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "statusId": {
+          "description": "The payment status Id. Usually all the payments in one batch have the same status ID, at least to the point of being received by bank.NEW: Payment is new.<br>PENDING_SIGNING: Payment is sent to AutoPay but not signed yet, requires re-approving.<br>CANCELLED: Payment was cancelled by ERP.<br>ERROR: Payment that failed.<br>RECEIVED_BY_BANK: Payment was received by the bank.<br>ACCEPTED_BY_BANK: Payment was accepted by bank.<br>CANCELLED_IN_BANK: Payment was cancelled in bank.<br>REJECTED_BY_BANK: Payment was rejected by bank.<br>PAID: Payment is paid.<br>OTHER: In case status in unknown. Will never be a final status.<br>",
+          "enum": [
+            "NEW",
+            "PENDING_SIGNING",
+            "CANCELLED",
+            "ERROR",
+            "RECEIVED_BY_BANK",
+            "ACCEPTED_BY_BANK",
+            "CANCELLED_IN_BANK",
+            "REJECTED_BY_BANK",
+            "PAID",
+            "OTHER"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "valueDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
         }
-      ]
+      },
+      "type": "object"
     },
     "AutomationRuleDetails": {
       "properties": {
@@ -9891,7 +10162,7 @@
         },
         "employeeId": {
           "description": "Employee id",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -47844,7 +48115,7 @@
             "type": "integer"
           },
           {
-            "description": "Element ID",
+            "description": "Element ID for filtering",
             "format": "int64",
             "in": "query",
             "name": "customerId",
@@ -47852,7 +48123,7 @@
             "type": "integer"
           },
           {
-            "description": "Element ID",
+            "description": "Element ID for filtering",
             "format": "int64",
             "in": "query",
             "name": "employeeId",
@@ -47860,7 +48131,7 @@
             "type": "integer"
           },
           {
-            "description": "Element ID",
+            "description": "Element ID for filtering",
             "format": "int64",
             "in": "query",
             "name": "departmentId",
@@ -47868,7 +48139,7 @@
             "type": "integer"
           },
           {
-            "description": "Element ID",
+            "description": "Element ID for filtering",
             "format": "int64",
             "in": "query",
             "name": "projectId",
@@ -50389,7 +50660,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -50582,7 +50853,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -50691,7 +50962,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -50731,7 +51002,7 @@
         "parameters": [
           {
             "description": "Currency id",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -51811,7 +52082,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52114,7 +52385,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52154,7 +52425,7 @@
         "parameters": [
           {
             "description": "ID of document to download content from.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52199,7 +52470,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52284,7 +52555,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52317,7 +52588,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52402,7 +52673,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52435,7 +52706,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52520,7 +52791,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52553,7 +52824,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52638,7 +52909,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52671,7 +52942,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52756,7 +53027,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52789,7 +53060,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52874,7 +53145,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52907,7 +53178,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -52992,7 +53263,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -53060,7 +53331,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -53145,7 +53416,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -53178,7 +53449,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -53209,7 +53480,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -53664,7 +53935,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -53692,7 +53963,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -53733,7 +54004,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -54771,7 +55042,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -55067,7 +55338,7 @@
         "parameters": [
           {
             "description": "Employee ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": true,
@@ -55075,7 +55346,7 @@
           },
           {
             "description": "Client ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "customerId",
             "required": true,
@@ -55136,7 +55407,7 @@
         "parameters": [
           {
             "description": "Employee ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": true,
@@ -55255,7 +55526,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -55696,7 +55967,7 @@
         "operationId": "EmployeePreferences_search",
         "parameters": [
           {
-            "description": "Equals",
+            "description": "List of IDs",
             "in": "query",
             "name": "id",
             "required": false,
@@ -55704,7 +55975,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -55819,7 +56090,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -56160,7 +56431,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -56507,7 +56778,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -56535,7 +56806,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -56573,7 +56844,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -56758,7 +57029,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -56789,7 +57060,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -56834,7 +57105,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "jobId",
             "required": true,
@@ -57044,16 +57315,16 @@
             "type": "string"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "productId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "inventoryId",
             "required": false,
@@ -57339,7 +57610,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -57367,7 +57638,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -57408,7 +57679,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -57464,7 +57735,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "inventoryId",
             "required": false,
@@ -57574,7 +57845,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "stocktakingId",
             "required": true,
@@ -57846,7 +58117,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -57957,7 +58228,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -58278,7 +58549,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -58450,7 +58721,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -58490,7 +58761,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -58530,7 +58801,7 @@
         "parameters": [
           {
             "description": "Invoice id",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -58592,7 +58863,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -58677,7 +58948,7 @@
         "parameters": [
           {
             "description": "Invoice id",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -58692,7 +58963,7 @@
           },
           {
             "description": "PaymentType id",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "paymentTypeId",
             "required": true,
@@ -58739,7 +59010,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -58792,7 +59063,7 @@
         "parameters": [
           {
             "description": "Invoice ID from which PDF is downloaded.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "invoiceId",
             "required": true,
@@ -58837,7 +59108,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -58897,56 +59168,56 @@
             "type": "string"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "accountId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "supplierId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "customerId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "departmentId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "productId",
             "required": false,
@@ -59267,7 +59538,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -59295,7 +59566,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -59336,7 +59607,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -59485,7 +59756,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -59603,7 +59874,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -59719,7 +59990,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -59765,56 +60036,56 @@
             "type": "string"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "accountId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "supplierId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "customerId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "departmentId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "productId",
             "required": false,
@@ -60066,7 +60337,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -60094,7 +60365,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -60135,7 +60406,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -60197,63 +60468,63 @@
             "type": "string"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "accountId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "supplierId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "customerId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "departmentId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "productId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
+            "description": "Element ID for filtering",
             "format": "int32",
             "in": "query",
             "name": "accountNumberFrom",
@@ -60261,7 +60532,7 @@
             "type": "integer"
           },
           {
-            "description": "Element ID",
+            "description": "Element ID for filtering",
             "format": "int32",
             "in": "query",
             "name": "accountNumberTo",
@@ -60269,7 +60540,7 @@
             "type": "integer"
           },
           {
-            "description": "Element ID",
+            "description": "Element ID for filtering",
             "enum": [
               "INCOMING_PAYMENT",
               "INCOMING_PAYMENT_OPPOSITE",
@@ -60345,63 +60616,63 @@
             "type": "string"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "accountId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "supplierId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "customerId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "departmentId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "query",
             "name": "productId",
             "required": false,
             "type": "integer"
           },
           {
-            "description": "Element ID",
+            "description": "Element ID for filtering",
             "format": "int32",
             "in": "query",
             "name": "accountNumberFrom",
@@ -60409,7 +60680,7 @@
             "type": "integer"
           },
           {
-            "description": "Element ID",
+            "description": "Element ID for filtering",
             "format": "int32",
             "in": "query",
             "name": "accountNumberTo",
@@ -60473,7 +60744,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -60616,7 +60887,7 @@
           },
           {
             "description": "VAT type ID. The relative VAT type will behave like this VAT type, except for the basis for calculating the VAT deduction, which is decided by the basis percentage.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "vatTypeId",
             "required": true,
@@ -60656,7 +60927,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -61220,7 +61491,7 @@
         "parameters": [
           {
             "description": "Voucher ID to upload attachment to.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "voucherId",
             "required": true,
@@ -61528,7 +61799,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -61556,7 +61827,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -61605,7 +61876,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -61647,7 +61918,7 @@
         "parameters": [
           {
             "description": "ID of voucher that should be reversed.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -61788,7 +62059,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -61884,7 +62155,7 @@
         "parameters": [
           {
             "description": "Voucher ID to upload attachment to.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "voucherId",
             "required": true,
@@ -61921,7 +62192,7 @@
         "parameters": [
           {
             "description": "Voucher ID from which PDF is downloaded.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "voucherId",
             "required": true,
@@ -61961,7 +62232,7 @@
         "parameters": [
           {
             "description": "Voucher ID to upload PDF to.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "voucherId",
             "required": true,
@@ -62067,7 +62338,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -62635,7 +62906,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -62663,7 +62934,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -62780,7 +63051,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "orderId",
             "required": true,
@@ -62788,7 +63059,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "productId",
             "required": true,
@@ -62828,7 +63099,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -62856,7 +63127,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -63008,7 +63279,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -63058,7 +63329,7 @@
         "parameters": [
           {
             "description": "ID of order to approve for subscription invoicing.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -63108,7 +63379,7 @@
           },
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -63141,7 +63412,7 @@
         "parameters": [
           {
             "description": "ID of order to invoice.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -63180,7 +63451,7 @@
           },
           {
             "description": "Payment type to register prepayment of the invoice. paymentTypeId and paidAmount are optional, but both must be provided if the invoice has already been paid. The payment type must be related to an account with the same currency as the invoice.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "paymentTypeId",
             "required": false,
@@ -63202,7 +63473,7 @@
           },
           {
             "description": "Payment type of rest amount. It is possible to have two prepaid payments when invoicing. If paymentTypeIdRestAmount > 0, this second payment will be calculated as invoice amount - paidAmount",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "paymentTypeIdRestAmount",
             "required": false,
@@ -63253,7 +63524,7 @@
           {
             "default": 0,
             "description": "Id of the invoice a credit note refers to",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "invoiceIdIfIsCreditNote",
             "required": false,
@@ -63293,7 +63564,7 @@
         "parameters": [
           {
             "description": "ID of order to unapprove for subscription invoicing.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -63766,7 +64037,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -63930,7 +64201,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -64256,7 +64527,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -64284,7 +64555,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -64325,7 +64596,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -64545,7 +64816,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -64573,7 +64844,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -64802,7 +65073,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -64830,7 +65101,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -65141,7 +65412,7 @@
         "parameters": [
           {
             "description": "Id of product to find supplier products for.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "productId",
             "required": false,
@@ -65149,7 +65420,7 @@
           },
           {
             "description": "Id of vendor to find supplier products for.",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "vendorId",
             "required": false,
@@ -65759,7 +66030,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -65891,7 +66162,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -65932,7 +66203,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -66085,7 +66356,7 @@
         "parameters": [
           {
             "description": "ID of Product containing the image to delete.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -66116,7 +66387,7 @@
         "parameters": [
           {
             "description": "Product ID to upload image to.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -66590,7 +66861,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -66631,7 +66902,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -66673,7 +66944,7 @@
         "parameters": [
           {
             "description": "Project ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": true,
@@ -66736,7 +67007,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -66831,7 +67102,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -67375,7 +67646,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -67403,7 +67674,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -67444,7 +67715,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -67527,7 +67798,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -67555,7 +67826,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -67596,7 +67867,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -67810,7 +68081,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": true,
@@ -67948,7 +68219,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": true,
@@ -67956,7 +68227,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "productId",
             "required": true,
@@ -67996,7 +68267,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68024,7 +68295,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68065,7 +68336,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68211,7 +68482,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68252,7 +68523,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68360,7 +68631,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68388,7 +68659,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68428,7 +68699,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": false,
@@ -68570,7 +68841,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": true,
@@ -68633,7 +68904,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68674,7 +68945,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68702,7 +68973,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68784,8 +69055,8 @@
         "operationId": "ProjectPeriodBudgetStatus_getBudgetStatus",
         "parameters": [
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68838,8 +69109,8 @@
             "type": "string"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68892,8 +69163,8 @@
             "type": "string"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -68946,8 +69217,8 @@
             "type": "string"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -69000,8 +69271,8 @@
             "type": "string"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -69077,8 +69348,8 @@
             "type": "string"
           },
           {
-            "description": "Element ID",
-            "format": "int32",
+            "description": "Element ID for filtering",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -69279,7 +69550,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "purchaseOrderId",
             "required": true,
@@ -69483,7 +69754,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -69569,7 +69840,7 @@
         "parameters": [
           {
             "description": "Purchase Order ID.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -69605,7 +69876,7 @@
         "parameters": [
           {
             "description": "Purchase Order ID.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -69641,7 +69912,7 @@
         "parameters": [
           {
             "description": "Purchase Order ID.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -69880,7 +70151,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -69908,7 +70179,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -69949,7 +70220,7 @@
         "parameters": [
           {
             "description": "Goods Receipt ID.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70002,7 +70273,7 @@
         "parameters": [
           {
             "description": "Purchase Order ID.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70054,7 +70325,7 @@
         "parameters": [
           {
             "description": "Purchase Order ID.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70069,7 +70340,7 @@
           },
           {
             "description": "ID of inventory. Main inventory is set as default",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "inventoryId",
             "required": false,
@@ -70113,7 +70384,7 @@
         "parameters": [
           {
             "description": "Purchase Order ID.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70128,7 +70399,7 @@
           },
           {
             "description": "ID of inventory. Main inventory is set as default",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "inventoryId",
             "required": false,
@@ -70176,7 +70447,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "purchaseOrderId",
             "required": true,
@@ -70384,7 +70655,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70412,7 +70683,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70453,7 +70724,7 @@
         "parameters": [
           {
             "description": "Goods receipt Line ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70670,7 +70941,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70931,7 +71202,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70959,7 +71230,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -70999,7 +71270,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -71027,7 +71298,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -71110,7 +71381,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -71159,7 +71430,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -71201,7 +71472,7 @@
         "parameters": [
           {
             "description": "ID of purchase order containing the attachment to delete.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -71232,7 +71503,7 @@
         "parameters": [
           {
             "description": "Purchase Order ID to upload attachment to.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -71283,7 +71554,7 @@
         "parameters": [
           {
             "description": "Purchase Order ID to upload attachment to.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -71360,7 +71631,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "invoiceId",
             "required": false,
@@ -71368,7 +71639,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "customerId",
             "required": false,
@@ -71431,7 +71702,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -71471,7 +71742,7 @@
         "parameters": [
           {
             "description": "Reminder ID from which PDF is downloaded.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "reminderId",
             "required": true,
@@ -71690,7 +71961,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -71761,7 +72032,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -71832,7 +72103,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -71903,7 +72174,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -72162,7 +72433,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": true,
@@ -72210,7 +72481,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": true,
@@ -72391,7 +72662,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -72431,7 +72702,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -72733,7 +73004,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -72974,7 +73245,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73002,7 +73273,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73040,7 +73311,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73211,7 +73482,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73252,7 +73523,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73367,7 +73638,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73410,7 +73681,7 @@
         "parameters": [
           {
             "description": "Salary Transaction Id to upload attachment to.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73428,7 +73699,7 @@
           "200": {
             "description": "successfully created",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapperInteger"
+              "$ref": "#/definitions/ResponseWrapperLong"
             }
           }
         },
@@ -73453,7 +73724,7 @@
         "parameters": [
           {
             "description": "Salary Transaction Id to upload attachments to.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73473,7 +73744,7 @@
           "200": {
             "description": "successfully created",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapperInteger"
+              "$ref": "#/definitions/ResponseWrapperLong"
             }
           }
         },
@@ -73495,7 +73766,7 @@
         "parameters": [
           {
             "description": "ID of transaction containing the attachment to delete.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -73645,7 +73916,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -74254,7 +74525,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": true,
@@ -74393,7 +74664,7 @@
           },
           {
             "description": "Default is logged in employee",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -74459,7 +74730,7 @@
         "parameters": [
           {
             "description": "Voucher id",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -74559,7 +74830,7 @@
         "parameters": [
           {
             "description": "Invoice ID.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "invoiceId",
             "required": true,
@@ -74647,7 +74918,7 @@
           },
           {
             "description": "ID of the elements",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": true,
@@ -74727,7 +74998,7 @@
         "parameters": [
           {
             "description": "Invoice ID.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "invoiceId",
             "required": true,
@@ -74755,7 +75026,7 @@
           },
           {
             "description": "DimensionID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "dimensionId",
             "required": true,
@@ -74827,7 +75098,7 @@
         "parameters": [
           {
             "description": "Invoice ID from which document is downloaded.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "invoiceId",
             "required": true,
@@ -75497,7 +75768,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -75525,7 +75796,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -75566,7 +75837,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -75755,7 +76026,7 @@
           },
           {
             "description": "ID of project to find activities for",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": true,
@@ -76450,7 +76721,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -76458,7 +76729,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": false,
@@ -76581,7 +76852,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -76619,7 +76890,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -76675,7 +76946,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -76798,7 +77069,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -77030,7 +77301,7 @@
           {
             "default": 0,
             "description": "Project ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "projectId",
             "required": false,
@@ -77038,7 +77309,7 @@
           },
           {
             "description": "Activity ID",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "activityId",
             "required": true,
@@ -77126,7 +77397,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -77209,7 +77480,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -77270,7 +77541,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "approvedBy",
             "required": false,
@@ -77333,7 +77604,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "id",
             "required": false,
@@ -77341,7 +77612,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -77382,7 +77653,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "id",
             "required": false,
@@ -77390,7 +77661,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -77431,7 +77702,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "id",
             "required": false,
@@ -77439,7 +77710,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -77480,7 +77751,7 @@
         "parameters": [
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "id",
             "required": false,
@@ -77488,7 +77759,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": false,
@@ -77731,7 +78002,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -78303,7 +78574,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -78331,7 +78602,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -78372,7 +78643,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -78817,7 +79088,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -78901,7 +79172,7 @@
           },
           {
             "description": "ID of cost",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "costId",
             "required": true,
@@ -78909,7 +79180,7 @@
           },
           {
             "description": "ID of the employee if it is participant. 0 is allowed if the participant is not an employee",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "employeeId",
             "required": true,
@@ -79014,7 +79285,7 @@
         "parameters": [
           {
             "description": "ID of cost",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "costId",
             "required": true,
@@ -79077,7 +79348,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -79105,7 +79376,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -79182,7 +79453,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -79210,7 +79481,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -79466,7 +79737,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -79725,7 +79996,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -79753,7 +80024,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -79794,7 +80065,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -79919,7 +80190,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80190,7 +80461,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80403,7 +80674,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80462,7 +80733,7 @@
           },
           {
             "description": "Equals",
-            "format": "int32",
+            "format": "int64",
             "in": "query",
             "name": "travelReportRateCategoryGroupId",
             "required": false,
@@ -80588,7 +80859,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80711,7 +80982,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80859,7 +81130,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -80899,7 +81170,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
@@ -81063,7 +81334,7 @@
         "parameters": [
           {
             "description": "Travel Expense ID from which PDF is downloaded.",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "travelExpenseId",
             "required": true,
@@ -81575,7 +81846,7 @@
         "parameters": [
           {
             "description": "Element ID",
-            "format": "int32",
+            "format": "int64",
             "in": "path",
             "name": "id",
             "required": true,
