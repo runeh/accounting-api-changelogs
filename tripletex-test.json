@@ -21,7 +21,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "location": {
@@ -106,7 +106,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "invoicingDepartment": {
@@ -245,7 +245,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "reason": {
@@ -361,7 +361,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -730,7 +730,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -758,7 +758,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isClosed": {
@@ -821,7 +821,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isChargeable": {
@@ -918,7 +918,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isPublic": {
@@ -1049,7 +1049,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "knr": {
@@ -1734,7 +1734,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -1771,7 +1771,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "instanceGuid": {
@@ -1852,7 +1852,7 @@
           "readOnly": true
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "lastAmeldingActionTime": {
@@ -1930,7 +1930,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "start": {
@@ -2067,7 +2067,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -2334,7 +2334,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "incomingBalance": {
@@ -2900,7 +2900,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isActive": {
@@ -3113,7 +3113,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -3239,7 +3239,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isActive": {
@@ -3331,7 +3331,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "invoiceAmount": {
@@ -3413,7 +3413,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isActive": {
@@ -3543,7 +3543,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isClosed": {
@@ -3647,7 +3647,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "postings": {
@@ -3712,7 +3712,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "suggestedMatches": {
@@ -3758,7 +3758,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isInactive": {
@@ -3786,7 +3786,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "numberOfMatchesPerPage": {
@@ -3853,7 +3853,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "parseEntriesAsSumPosts": {
@@ -3927,7 +3927,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "openingBalanceCurrency": {
@@ -4018,7 +4018,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "matchType": {
@@ -4155,7 +4155,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "link": {
@@ -4216,7 +4216,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "nationalIdentityNumber": {
@@ -4301,7 +4301,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "moduleBring": {
@@ -5285,7 +5285,7 @@
           "type": "string"
         },
         "employeeId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "timestamp": {
@@ -5730,7 +5730,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -5792,7 +5792,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "info": {
@@ -5924,7 +5924,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -6006,7 +6006,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -6251,7 +6251,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "postings": {
@@ -6305,7 +6305,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -6436,7 +6436,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -6673,7 +6673,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isMaxPercentage2Amount6G": {
@@ -6713,7 +6713,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "percentage": {
@@ -6852,7 +6852,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -6919,7 +6919,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -6988,7 +6988,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "token": {
@@ -7035,7 +7035,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isInactive": {
@@ -7166,7 +7166,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isChargeable": {
@@ -7230,7 +7230,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isoAlpha2Code": {
@@ -7288,7 +7288,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isContact": {
@@ -7495,7 +7495,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isDisabled": {
@@ -7525,7 +7525,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "rate": {
@@ -7702,7 +7702,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "invoiceEmail": {
@@ -7857,7 +7857,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -8020,7 +8020,7 @@
         },
         "customerId": {
           "description": "The customer id to an already created customer to create a Tripletex account for.",
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "customerInvoiceEmail": {
@@ -8156,7 +8156,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -8339,7 +8339,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "knr": {
@@ -8399,7 +8399,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isInactive": {
@@ -8438,7 +8438,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "maxPercentage": {
@@ -8511,7 +8511,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "purchaseOrderLine": {
@@ -8592,7 +8592,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -8700,7 +8700,7 @@
           "$ref": "#/definitions/DistributionKeyBlade"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -8825,7 +8825,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "municipality": {
@@ -8875,7 +8875,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "mimeType": {
@@ -8924,7 +8924,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "mimeType": {
@@ -9015,7 +9015,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "postType": {
@@ -9427,7 +9427,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "latitude": {
@@ -9492,7 +9492,7 @@
           "type": "object"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isCompleted": {
@@ -9544,7 +9544,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isArchived": {
@@ -9694,7 +9694,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "internationalId": {
@@ -9782,7 +9782,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -9853,7 +9853,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -9896,7 +9896,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "lastLoginDate": {
@@ -9945,7 +9945,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "language": {
@@ -9969,15 +9969,15 @@
     "EmployeeRoleModelDTO": {
       "properties": {
         "companyId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "customerId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "employeeId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "hasAccess": {
@@ -10086,7 +10086,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "token": {
@@ -10163,7 +10163,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isMainEmployer": {
@@ -10254,7 +10254,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "maritimeEmployment": {
@@ -10335,7 +10335,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "nameNO": {
@@ -10440,7 +10440,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -10577,7 +10577,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isInactive": {
@@ -11276,7 +11276,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "postType": {
@@ -11793,7 +11793,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "rate": {
@@ -11921,7 +11921,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "purchaseOrder": {
@@ -11971,7 +11971,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "inventory": {
@@ -12400,7 +12400,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "invoiceNumber": {
@@ -12487,7 +12487,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "number": {
@@ -12609,7 +12609,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "rate": {
@@ -12649,7 +12649,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "projectSpecificRates": {
@@ -13731,7 +13731,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "inactive": {
@@ -13795,7 +13795,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "inventory": {
@@ -13926,7 +13926,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "invoiceComment": {
@@ -14130,7 +14130,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "postponeRemindersTo": {
@@ -14283,7 +14283,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isAutomaticNoticeOfDebtCollectionEnabled": {
@@ -14598,7 +14598,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "importedLeaveOfAbsenceId": {
@@ -14659,7 +14659,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "leaveOfAbsenceType": {
@@ -14795,7 +14795,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "knr": {
@@ -20502,6 +20502,39 @@
       },
       "type": "object"
     },
+    "ListResponseSalaryV2VoucherOverview": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SalaryV2VoucherOverview"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseSalesForceAccountInfo": {
       "properties": {
         "count": {
@@ -22421,7 +22454,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "moduleSuggestedProductNumber": {
@@ -22490,7 +22523,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "negate": {
@@ -22772,7 +22805,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isCompanyCar": {
@@ -23021,7 +23054,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isContact": {
@@ -23227,7 +23260,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "monthYear": {
@@ -23377,7 +23410,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -23582,7 +23615,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -23904,7 +23937,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "link": {
@@ -23956,7 +23989,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "nameNO": {
@@ -24204,7 +24237,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "invoiceComment": {
@@ -24431,7 +24464,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "order": {
@@ -24500,7 +24533,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "inventory": {
@@ -24575,7 +24608,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "orderLine": {
@@ -24623,7 +24656,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "number": {
@@ -24662,7 +24695,7 @@
           "readOnly": true
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "order": {
@@ -24749,7 +24782,7 @@
           "type": "object"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "key": {
@@ -24861,7 +24894,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "mileageAllowance": {
@@ -25004,7 +25037,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "idForVoucherUrl": {
@@ -25251,7 +25284,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "supplier": {
@@ -25319,7 +25352,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isBruttoWageDeduction": {
@@ -25465,7 +25498,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "month": {
@@ -25523,7 +25556,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "number": {
@@ -25570,7 +25603,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isDeductionForBreakfast": {
@@ -26174,7 +26207,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "incomeGroupId": {
@@ -26409,7 +26442,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -26438,7 +26471,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -26524,7 +26557,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "invoiceNumber": {
@@ -26778,7 +26811,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "image": {
@@ -26901,7 +26934,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isDeletable": {
@@ -26941,7 +26974,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "product": {
@@ -26993,7 +27026,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "importFile": {
@@ -27076,7 +27109,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -27127,7 +27160,7 @@
           "$ref": "#/definitions/ProductImportHeader"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "productImport": {
@@ -27174,7 +27207,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "inventory": {
@@ -27249,7 +27282,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "location": {
@@ -27299,7 +27332,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "productImport": {
@@ -27348,7 +27381,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "product": {
@@ -27465,7 +27498,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "modulePurchaseOrderNumberSeries": {
@@ -27532,7 +27565,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isDeletable": {
@@ -27584,7 +27617,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isInactive": {
@@ -27840,7 +27873,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "ignoreCompanyProductDiscountAgreement": {
@@ -28081,7 +28114,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isClosed": {
@@ -28133,7 +28166,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -28180,7 +28213,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "signatureRequired": {
@@ -28221,7 +28254,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -28261,7 +28294,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "project": {
@@ -28373,7 +28406,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "includeHours": {
@@ -28502,7 +28535,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "inventory": {
@@ -28671,7 +28704,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "project": {
@@ -29007,7 +29040,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "projectHourlyRate": {
@@ -29212,7 +29245,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isClosed": {
@@ -29315,7 +29348,7 @@
           "readOnly": true
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "internalComment": {
@@ -29470,7 +29503,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "knr": {
@@ -29521,7 +29554,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "message": {
@@ -29551,7 +29584,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "orderOut": {
@@ -29585,7 +29618,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "totalAmount": {
@@ -29637,7 +29670,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "product": {
@@ -30169,7 +30202,7 @@
           "readOnly": true
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "interestRate": {
@@ -30278,7 +30311,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "nameNO": {
@@ -30335,7 +30368,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -30401,7 +30434,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "permission": {
@@ -31225,7 +31258,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -31249,17 +31282,17 @@
           "type": "array"
         },
         "companyId": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "employeeId": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "method": {
@@ -31279,7 +31312,7 @@
           "type": "string"
         },
         "tripletexEmployeeId": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -34682,7 +34715,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "product": {
@@ -34733,7 +34766,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "rate": {
@@ -35180,7 +35213,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "municipality": {
@@ -35240,7 +35273,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "month": {
@@ -35349,7 +35382,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "orderId": {
@@ -35405,7 +35438,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isHistorical": {
@@ -35460,7 +35493,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -35516,7 +35549,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "lastName": {
@@ -35843,7 +35876,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isEmploymentInfoAmeldinger": {
@@ -36018,7 +36051,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "prefersOtherPayrollTaxCalculationMethod": {
@@ -36076,7 +36109,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "month": {
@@ -36197,7 +36230,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "numberOfDays": {
@@ -36302,7 +36335,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isHistorical": {
@@ -36426,7 +36459,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isExpense": {
@@ -36476,7 +36509,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "maxRate": {
@@ -36602,7 +36635,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "notDeletableMessage": {
@@ -36640,6 +36673,61 @@
       "required": [
         "date"
       ],
+      "type": "object"
+    },
+    "SalaryV2VoucherOverview": {
+      "properties": {
+        "ameldingWageId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "datePeriod": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "paymentDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "voucherDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "voucherDescription": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "voucherNumberAsString": {
+          "type": "string"
+        },
+        "wagePaymentTransactionId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "SalesForceAccountInfo": {
@@ -36838,7 +36926,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "inactive": {
@@ -36977,7 +37065,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -37020,7 +37108,7 @@
           "readOnly": true
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "postalCode": {
@@ -37049,7 +37137,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isoAlpha2Code": {
@@ -37117,7 +37205,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isAccountAdministrator": {
@@ -37211,7 +37299,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "roleId": {
@@ -37340,7 +37428,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "purchaseDate": {
@@ -38093,7 +38181,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "token": {
@@ -38169,7 +38257,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isActive": {
@@ -38296,7 +38384,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "postType": {
@@ -38587,7 +38675,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "interestIncome": {
@@ -39233,7 +39321,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -39328,7 +39416,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "inventory": {
@@ -39402,7 +39490,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "status": {
@@ -39500,7 +39588,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "invoiceEmail": {
@@ -39793,7 +39881,7 @@
           "$ref": "#/definitions/Currency"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "invoiceDate": {
@@ -39899,7 +39987,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isDeletable": {
@@ -40228,7 +40316,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -40641,11 +40729,19 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "sumAmountAnsDaGroup": {
+          "readOnly": true,
+          "type": "number"
+        },
         "sumDebt": {
           "readOnly": true,
           "type": "number"
         },
         "sumGrossAssets": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumTotalWealthDistribution": {
           "readOnly": true,
           "type": "number"
         },
@@ -40867,7 +40963,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "phoneNumberMobile": {
@@ -41011,7 +41107,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "lunchBreakDuration": {
@@ -41070,7 +41166,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isApproved": {
@@ -41143,7 +41239,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "invoice": {
@@ -41242,7 +41338,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "project": {
@@ -41293,7 +41389,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "salaryType": {
@@ -41332,7 +41428,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "timeClock": {
@@ -41511,7 +41607,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "periodStart": {
@@ -42004,7 +42100,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isPickUp": {
@@ -42043,7 +42139,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isInactive": {
@@ -42219,7 +42315,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "invoice": {
@@ -42369,7 +42465,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "url": {
@@ -42402,7 +42498,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "lunchDeductionRate": {
@@ -42449,7 +42545,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isRequiresOvernightAccommodation": {
@@ -42516,7 +42612,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isForeignTravel": {
@@ -42560,7 +42656,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "mileageNotCompensated": {
@@ -42613,7 +42709,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isDisabled": {
@@ -42652,7 +42748,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isInactive": {
@@ -43116,7 +43212,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "purchaseDate": {
@@ -43306,11 +43402,11 @@
     "UnreadCountDTO": {
       "properties": {
         "count": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "readCursor": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         }
       },
@@ -43345,7 +43441,7 @@
           "type": "integer"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "loginEmployeeId": {
@@ -43398,7 +43494,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "loginEmployee": {
@@ -43572,7 +43668,7 @@
           "readOnly": true
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "term": {
@@ -43652,7 +43748,7 @@
           "readOnly": true
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "term": {
@@ -43720,7 +43816,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isPaid": {
@@ -44040,7 +44136,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "kid": {
@@ -44302,7 +44398,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -44439,7 +44535,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "number": {
@@ -44534,7 +44630,7 @@
           "readOnly": true
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isVendorAttestant": {
@@ -45125,7 +45221,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "number": {
@@ -45209,7 +45305,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "sendTime": {
@@ -45231,7 +45327,7 @@
         },
         "voucherId": {
           "description": "The voucher to connect the message to, only set on create",
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         }
       },
@@ -45304,7 +45400,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "message": {
@@ -45396,7 +45492,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "name": {
@@ -45463,7 +45559,7 @@
           "readOnly": true
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "timesheetEntries": {
@@ -45699,7 +45795,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "nameNO": {
@@ -45801,7 +45897,7 @@
           "$ref": "#/definitions/AnnualAccountsSubTotalSection"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "liabilities": {
@@ -45942,7 +46038,7 @@
           "$ref": "#/definitions/YearEndReportType"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "inventories": {
@@ -46050,7 +46146,7 @@
           "$ref": "#/definitions/Employee"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "stepType": {
@@ -46111,7 +46207,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isMandatory": {
@@ -46144,7 +46240,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "note": {
@@ -46402,7 +46498,7 @@
           "type": "array"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "sentDate": {
@@ -46528,7 +46624,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "lastUpdated": {
@@ -46581,7 +46677,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "status": {
@@ -46671,7 +46767,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "onboardingUrl": {
@@ -46820,7 +46916,7 @@
           "type": "boolean"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "idForVoucherUrl": {
@@ -81732,9 +81828,6 @@
       "name": "bringCredentials"
     },
     {
-      "name": "chartOfAccounts"
-    },
-    {
       "name": "checkout"
     },
     {
@@ -82480,6 +82573,9 @@
     },
     {
       "name": "tsksalaryv2employee"
+    },
+    {
+      "name": "tsksalaryv2overview"
     },
     {
       "name": "tsksalaryv2payment"
