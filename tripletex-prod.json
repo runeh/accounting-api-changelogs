@@ -14539,7 +14539,7 @@
           "type": "number"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -20548,6 +20548,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/SalaryType"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseSalaryV2PensionVoucher": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SalaryV2PensionVoucher"
           },
           "readOnly": true,
           "type": "array"
@@ -34511,6 +34544,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperValidationMessages": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ValidationMessages"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperVatDeliveryStatusUpdate": {
       "properties": {
         "value": {
@@ -36181,6 +36222,41 @@
       },
       "type": "object"
     },
+    "SalaryV2PensionVoucher": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "date": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "voucherDescription": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "voucherNumberAsString": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SalaryV2Settings": {
       "properties": {
         "changes": {
@@ -37710,7 +37786,8 @@
             "YEAR_END_REPORTING_ORG",
             "YEAR_END_REPORTING_SA",
             "YEAR_END_REPORTING_FLI",
-            "YEAR_END_REPORTING_NUF"
+            "YEAR_END_REPORTING_NUF",
+            "PRIMARY_INDUSTRY"
           ],
           "type": "string"
         }
@@ -38716,6 +38793,14 @@
           "type": "string"
         },
         "numberOfShares": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "numberOfSharesAfter": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "numberOfSharesBefore": {
           "readOnly": true,
           "type": "number"
         },
@@ -43727,6 +43812,34 @@
         "message": {
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ValidationMessages": {
+      "properties": {
+        "isDuplicatedTimestamp": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isValidClosingBalanceShareCapital": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isValidDisbributedClosingBalanceShareCapital": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isValidDisbributedOpeningBalanceShareCapital": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isValidOpeningBalanceShareCapital": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
         }
       },
       "type": "object"
