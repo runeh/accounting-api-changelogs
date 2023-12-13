@@ -25616,6 +25616,13 @@
           },
           "type": "array"
         },
+        "overdueTransactionsSum": {
+          "description": "Sum of all overdue payments by currencies.",
+          "items": {
+            "$ref": "#/definitions/CurrencyPaymentsSumDTO"
+          },
+          "type": "array"
+        },
         "rejectedPaymentsCount": {
           "$ref": "#/definitions/TlxNumber",
           "description": "Number of rejected payments."
@@ -45908,6 +45915,7 @@
             "EASY_ONBOARDING",
             "GET_STARTED_SUMMARY",
             "HELP_CENTER",
+            "HELP_CENTER_EACCOUNTING",
             "INCOME_AND_COST_CHART",
             "INVOICE_SUMMARY",
             "REMINDER",
