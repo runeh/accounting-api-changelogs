@@ -14455,6 +14455,10 @@
     },
     "InvoiceSummaryDTO": {
       "properties": {
+        "lastUpdated": {
+          "format": "date-time",
+          "type": "string"
+        },
         "lessThan30DaysOverdueSum": {
           "$ref": "#/definitions/TlxNumber"
         },
@@ -24964,7 +24968,8 @@
             "OrderFormViewOptions",
             "BankAccountsOverviewViewOptions",
             "PaymentsOverviewViewOptions",
-            "InvoiceOverviewOptions"
+            "InvoiceOverviewOptions",
+            "VoucherFlowViewOptions"
           ],
           "type": "string"
         },
