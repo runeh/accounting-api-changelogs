@@ -27,7 +27,7 @@ info:
     All URLs start with https://api.fiken.no/api/v2. Note that TLS is required, unencrypted HTTP is not supported. Although we currently redirect HTTP requests to HTTPS, you are not allowed to this with your application as using HTTP is a security risk. In the future we might respond with 403 Forbidden instead.
 
     ## Concurrent requests / rate limiting
-    You are only allowed to make a single concurrent API-request. This is currently not automatically enforced, but it might be in the future. If you break this rule you might be banned. In case of a ban please contact us to be unbanned.
+    You are only allowed to make a single concurrent API-request. Sending multiple requests concurrently may result in a 429 error response. If you break this rule you might be banned. In case of a ban please contact us to be unbanned.
 
     API calls may be slowed if you execute more than 4 requests per second.
 
@@ -1481,9 +1481,15 @@ paths:
         - $ref: '#/components/parameters/pageSize'
         - name: orderReference
           in: query
-          description: Filter based on order reference for a given invoice
+          description: Filter based on order reference for a given invoice draft
           schema:
             type: string
+        - name: uuid
+          in: query
+          description: Filter based on the UUID of the draft.
+          schema:
+            type: string
+            format: uuid
       responses:
         '200':
           description: OK
@@ -3843,8 +3849,10 @@ components:
           description: User-defined identifier for attachment. Could be the Invoice Id or receipt number for example.
         downloadUrl:
           type: string
+          description: For use with API credentials (bearer token or oauth 2)
         downloadUrlWithFikenNormalUserCredentials:
           type: string
+          description: Requires the user to login with username and password in Fiken.
         comment:
           type: string
           description: Field for additional information for this attachment.
