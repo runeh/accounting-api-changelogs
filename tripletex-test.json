@@ -25449,6 +25449,12 @@
           "format": "int64",
           "type": "integer"
         },
+        "sequence": {
+          "description": "Defines the priority of order, when displayed in a list with order payment types",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
         "supplier": {
           "$ref": "#/definitions/Supplier",
           "readOnly": true
