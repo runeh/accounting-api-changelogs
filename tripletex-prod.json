@@ -6660,9 +6660,25 @@
           "readOnly": true,
           "type": "integer"
         },
+        "eventType": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "foundationNumberOfShares": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
         "numberOfShares": {
           "readOnly": true,
           "type": "number"
+        },
+        "paidUpPremium": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
+        },
+        "paidUpShareCapital": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
         },
         "shareClassGroupId": {
           "format": "int32",
@@ -6794,6 +6810,7 @@
         "dividendType": {
           "enum": [
             "DIVIDEND",
+            "FOUNDATION",
             "SHAREHOLDER_LOAN"
           ],
           "type": "string"
@@ -6809,6 +6826,10 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "hasRegiseredFoundationInfo": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "keyInfo": {
           "items": {
@@ -14570,6 +14591,9 @@
             "SHAREHOLDER_NO_OF_SHARES",
             "DISTRIBUTE_MANUALLY",
             "EVENT_TIME",
+            "FOUNDATION_PAID_UP_SHARE_CAPITAL",
+            "FOUNDATION_PAID_UP_PREMIUM",
+            "FOUNDATION_NO_OF_SHARES",
             "CONTACT_NAME",
             "CONTACT_ROLE",
             "CONTACT_EMAIL",
@@ -38636,6 +38660,9 @@
             "SHAREHOLDER_NO_OF_SHARES",
             "DISTRIBUTE_MANUALLY",
             "EVENT_TIME",
+            "FOUNDATION_PAID_UP_SHARE_CAPITAL",
+            "FOUNDATION_PAID_UP_PREMIUM",
+            "FOUNDATION_NO_OF_SHARES",
             "CONTACT_NAME",
             "CONTACT_ROLE",
             "CONTACT_EMAIL",
