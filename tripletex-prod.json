@@ -11939,7 +11939,20 @@
       "properties": {
         "banner": {
           "enum": [
-            "TestBannerPleaseIgnore"
+            "TestBannerPleaseIgnore",
+            "SalaryTaxCardBanner",
+            "UpdateHourListBanner",
+            "TravelsAndExpensesBanner",
+            "ReportViewerBanner",
+            "ClientTasksViewBanner",
+            "YearEndPageBanner",
+            "InboxArchiveBanner",
+            "BankReconciliationAutoBanner",
+            "VoucherReceptionBanner",
+            "CreateSalaryBanner",
+            "NewOrderInvoiceBanner",
+            "TripletexDashboardBanner",
+            "VoucherAutomationBanner"
           ],
           "type": "string"
         },
@@ -20588,6 +20601,72 @@
       },
       "type": "object"
     },
+    "ListResponseSalaryV2OverviewReimbursements": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SalaryV2OverviewReimbursements"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseSalaryV2OverviewTax": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SalaryV2OverviewTax"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseSalaryV2PensionVoucher": {
       "properties": {
         "count": {
@@ -24194,6 +24273,9 @@
     "OnboardAccountDTO": {
       "properties": {
         "address": {
+          "type": "string"
+        },
+        "bankAccountNumber": {
           "type": "string"
         },
         "city": {
@@ -36008,6 +36090,41 @@
       },
       "type": "object"
     },
+    "SalaryV2OverviewReimbursements": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "date": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "voucherDescription": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "voucherNumberAsString": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SalaryV2OverviewRow": {
       "properties": {
         "displayName": {
@@ -36029,6 +36146,41 @@
           },
           "description": "A map of all the wage code ids used for one employee and their respective amount",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "SalaryV2OverviewTax": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "date": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "voucherDescription": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "voucherNumberAsString": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -43864,6 +44016,10 @@
     "ValidationMessages": {
       "properties": {
         "isDuplicatedTimestamp": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isEventBeforeFoundation": {
           "readOnly": true,
           "type": "boolean"
         },

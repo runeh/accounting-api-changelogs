@@ -3995,13 +3995,17 @@ components:
         name:
           type: string
           example: 'Fiken AS'
+          minLength: 1
+          maxLength: 200
         email:
           type: string
           example: 'kontakt@fiken.gmail'
+          maxLength: 200
         organizationNumber:
           type: string
           example: '913312465'
           description: Brreg organization number.
+          maxLength: 200
         customerNumber:
           type: integer
           format: int64
@@ -4042,6 +4046,7 @@ components:
         bankAccountNumber:
           type: string
           example: '11112233334'
+          maxLength: 11
         contactPerson:
           type: array
           items:
