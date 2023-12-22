@@ -11952,7 +11952,11 @@
             "CreateSalaryBanner",
             "NewOrderInvoiceBanner",
             "TripletexDashboardBanner",
-            "VoucherAutomationBanner"
+            "VoucherAutomationBanner",
+            "PurchaseOrdersBanner",
+            "CompanyInformationBanner",
+            "PaymentsBanner",
+            "YearEndReportTripletexDashboardBanner"
           ],
           "type": "string"
         },
@@ -64791,18 +64795,18 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "description": "From index",
+            "description": "Number of elements to return",
+            "format": "int32",
             "in": "query",
-            "name": "from",
+            "name": "count",
             "required": false,
             "type": "integer"
           },
           {
-            "default": 1000,
-            "description": "Number of elements to return",
+            "default": 0,
+            "description": "From index",
             "in": "query",
-            "name": "count",
+            "name": "from",
             "required": false,
             "type": "integer"
           },
