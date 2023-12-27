@@ -172,11 +172,11 @@
         },
         "quantityType1": {
           "$ref": "#/definitions/ProductUnit",
-          "description": "The quantity type that has been associated to this account"
+          "description": "The quantity type 1 that has been associated to this account"
         },
         "quantityType2": {
           "$ref": "#/definitions/ProductUnit",
-          "description": "The quantity type that has been associated to this account"
+          "description": "The quantity type 2 that has been associated to this account"
         },
         "requireReconciliation": {
           "description": "True if this account must be reconciled before the accounting period closure.",
