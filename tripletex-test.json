@@ -8319,9 +8319,6 @@
         "showTourMe": {
           "type": "boolean"
         },
-        "showYearEndTourMe": {
-          "type": "boolean"
-        },
         "trialAccount": {
           "type": "boolean"
         },
@@ -14414,6 +14411,22 @@
         "id": {
           "format": "int64",
           "type": "integer"
+        },
+        "invoicesDueIn": {
+          "description": "Sets the default value on customers for number of days/months in which invoices created from this order is due",
+          "format": "int32",
+          "maximum": 10000,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "invoicesDueInType": {
+          "description": "Set the default time unit of invoicesDueIn. The special case RECURRING_DAY_OF_MONTH enables the due date to be fixed to a specific day of the month, in this case the fixed due date will automatically be set as standard on all invoices created from this order. Note that when RECURRING_DAY_OF_MONTH is set, the due date will be set to the last day of month if \"31\" is set in invoicesDueIn.",
+          "enum": [
+            "DAYS",
+            "MONTHS",
+            "RECURRING_DAY_OF_MONTH"
+          ],
+          "type": "string"
         },
         "isAutomaticNoticeOfDebtCollectionEnabled": {
           "description": "Has automatic notices of debt collection enabled for this company. This setting need to be enabled both here and on each customer card to take effect.",
@@ -38622,10 +38635,10 @@
           "format": "int64",
           "type": "integer"
         },
-        "name": {
+        "lifeCycleStage": {
           "type": "string"
         },
-        "status": {
+        "name": {
           "type": "string"
         }
       },
