@@ -12027,6 +12027,46 @@
       },
       "type": "object"
     },
+    "GlobalPension": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "fromDate": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "number": {
+          "type": "string"
+        },
+        "toDate": {
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "fromDate",
+        "number"
+      ],
+      "type": "object"
+    },
     "GoodsReceipt": {
       "properties": {
         "changes": {
@@ -17549,6 +17589,39 @@
       },
       "type": "object"
     },
+    "ListResponseGlobalPension": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/GlobalPension"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseGoodsReceipt": {
       "properties": {
         "count": {
@@ -18593,6 +18666,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/PaymentDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponsePaymentRecipientDTO": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/PaymentRecipientDTO"
           },
           "readOnly": true,
           "type": "array"
@@ -25092,7 +25198,8 @@
             "BankAccountsOverviewViewOptions",
             "PaymentsOverviewViewOptions",
             "InvoiceOverviewOptions",
-            "VoucherFlowViewOptions"
+            "VoucherFlowViewOptions",
+            "SalaryOnboardingOptions"
           ],
           "type": "string"
         },
@@ -25512,6 +25619,17 @@
       },
       "type": "object"
     },
+    "PaymentRecipientDTO": {
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PaymentStatusInfoDTO": {
       "properties": {
         "color": {
@@ -25860,6 +25978,10 @@
         "number": {
           "type": "string"
         },
+        "pensionSchemeId": {
+          "format": "int32",
+          "type": "integer"
+        },
         "startDate": {
           "type": "string"
         },
@@ -25873,7 +25995,6 @@
         }
       },
       "required": [
-        "number",
         "startDate"
       ],
       "type": "object"
@@ -34023,6 +34144,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperSalarySettingsInternal": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/SalarySettingsInternal"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperSalarySpecification": {
       "properties": {
         "value": {
@@ -35567,6 +35696,109 @@
       },
       "required": [
         "payrollTaxCalcMethod"
+      ],
+      "type": "object"
+    },
+    "SalarySettingsInternal": {
+      "properties": {
+        "halfTaxMonth": {
+          "description": "Month for half tax",
+          "enum": [
+            "JANUARY",
+            "FEBRUARY",
+            "MARCH",
+            "APRIL",
+            "MAY",
+            "JUNE",
+            "JULY",
+            "AUGUST",
+            "SEPTEMBER",
+            "OCTOBER",
+            "NOVEMBER",
+            "DECEMBER",
+            "NOT_CHOSEN"
+          ],
+          "type": "string"
+        },
+        "isFreeCar": {
+          "description": "Company has free car",
+          "type": "boolean"
+        },
+        "isPaidInAdvance": {
+          "description": "Is salary paid in advance",
+          "type": "boolean"
+        },
+        "isUnionDeduction": {
+          "description": "Company has union deduction",
+          "type": "boolean"
+        },
+        "taxBankAccountNumber": {
+          "description": "Bank account number of tax account",
+          "type": "string"
+        },
+        "vacationCorrectionMonth": {
+          "description": "Month for salary correction",
+          "enum": [
+            "JANUARY",
+            "FEBRUARY",
+            "MARCH",
+            "APRIL",
+            "MAY",
+            "JUNE",
+            "JULY",
+            "AUGUST",
+            "SEPTEMBER",
+            "OCTOBER",
+            "NOVEMBER",
+            "DECEMBER",
+            "NOT_CHOSEN"
+          ],
+          "type": "string"
+        },
+        "vacationMonth": {
+          "description": "Month for vacation",
+          "enum": [
+            "JANUARY",
+            "FEBRUARY",
+            "MARCH",
+            "APRIL",
+            "MAY",
+            "JUNE",
+            "JULY",
+            "AUGUST",
+            "SEPTEMBER",
+            "OCTOBER",
+            "NOVEMBER",
+            "DECEMBER",
+            "NOT_CHOSEN"
+          ],
+          "type": "string"
+        },
+        "vacationPayMonth": {
+          "description": "Month for vacation pay",
+          "enum": [
+            "JANUARY",
+            "FEBRUARY",
+            "MARCH",
+            "APRIL",
+            "MAY",
+            "JUNE",
+            "JULY",
+            "AUGUST",
+            "SEPTEMBER",
+            "OCTOBER",
+            "NOVEMBER",
+            "DECEMBER",
+            "NOT_CHOSEN"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "halfTaxMonth",
+        "vacationCorrectionMonth",
+        "vacationMonth",
+        "vacationPayMonth"
       ],
       "type": "object"
     },
@@ -43732,6 +43964,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isShowSalaryOnboarding": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "loginEmployeeId": {
           "format": "int32",
           "readOnly": true,
@@ -44032,6 +44268,13 @@
     },
     "ValidationMessages": {
       "properties": {
+        "invalidShareholderNumbers": {
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "isDuplicatedTimestamp": {
           "readOnly": true,
           "type": "boolean"
@@ -63917,6 +64160,75 @@
         ]
       }
     },
+    "/pension": {
+      "get": {
+        "description": "",
+        "operationId": "Pension_search",
+        "parameters": [
+          {
+            "description": "Containing",
+            "in": "query",
+            "name": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Equals",
+            "in": "query",
+            "name": "startDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseGlobalPension"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Find countries corresponding with sent data.",
+        "tags": [
+          "pension"
+        ]
+      }
+    },
     "/pickupPoint": {
       "get": {
         "description": "",
@@ -83308,6 +83620,9 @@
       "name": "tsksalaryv2voucher"
     },
     {
+      "name": "salarytskinternalsettings"
+    },
+    {
       "name": "salarytskinternaltaxcard"
     },
     {
@@ -83342,6 +83657,9 @@
     },
     {
       "name": "salary/settings/holiday"
+    },
+    {
+      "name": "pension"
     },
     {
       "name": "salarysettingspensionScheme"
