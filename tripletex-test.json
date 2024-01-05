@@ -6704,13 +6704,17 @@
     },
     "CompanyEventShareholderInfo": {
       "properties": {
+        "calculatedDistributedDividend": {
+          "readOnly": true,
+          "type": "number"
+        },
         "calculatedNumberOfShares": {
           "readOnly": true,
           "type": "number"
         },
-        "distributed": {
-          "readOnly": true,
-          "type": "number"
+        "distributedDividend": {
+          "$ref": "#/definitions/ShareholderRegisterData",
+          "readOnly": true
         },
         "eventShareholderGroupId": {
           "format": "int32",
@@ -10593,7 +10597,8 @@
             "REAL_ESTATE_DWELLING_TYPE",
             "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE",
             "REAL_ESTATE_ASSOCIATION_OR_COOPERATIVE_DWELLING_OWNERSHIP_TYPE",
-            "FINANCIAL_PRODUCT"
+            "FINANCIAL_PRODUCT",
+            "TRANSACTION_TYPE"
           ],
           "readOnly": true,
           "type": "string"
@@ -12943,6 +12948,80 @@
       },
       "type": "object"
     },
+    "IncomeVoucher": {
+      "properties": {
+        "companyName": {
+          "type": "string"
+        },
+        "customerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "dueDate": {
+          "type": "string"
+        },
+        "incomeDate": {
+          "type": "string"
+        },
+        "incomePostings": {
+          "description": "Income postings",
+          "items": {
+            "$ref": "#/definitions/IncomeVoucherPosting"
+          },
+          "type": "array"
+        },
+        "invoiceDate": {
+          "type": "string"
+        },
+        "invoiceNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "sendToLedger": {
+          "type": "boolean"
+        },
+        "voucherNumber": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "companyName",
+        "customerId",
+        "incomeDate",
+        "sendToLedger"
+      ],
+      "type": "object"
+    },
+    "IncomeVoucherPosting": {
+      "properties": {
+        "accountId": {
+          "$ref": "#/definitions/Account"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "customerId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "incomeDescription": {
+          "type": "string"
+        },
+        "vatType": {
+          "$ref": "#/definitions/VatType"
+        }
+      },
+      "required": [
+        "accountId",
+        "amount",
+        "customerId"
+      ],
+      "type": "object"
+    },
     "IncomingInvoicePaymentHistory": {
       "properties": {
         "baseVoucherId": {
@@ -14664,6 +14743,7 @@
             "FOUNDATION_PAID_UP_SHARE_CAPITAL",
             "FOUNDATION_PAID_UP_PREMIUM",
             "FOUNDATION_NO_OF_SHARES",
+            "SHAREHOLDER_DISTRIBUTED_DIVIDEND",
             "CONTACT_NAME",
             "CONTACT_ROLE",
             "CONTACT_EMAIL",
@@ -39064,6 +39144,7 @@
             "FOUNDATION_PAID_UP_SHARE_CAPITAL",
             "FOUNDATION_PAID_UP_PREMIUM",
             "FOUNDATION_NO_OF_SHARES",
+            "SHAREHOLDER_DISTRIBUTED_DIVIDEND",
             "CONTACT_NAME",
             "CONTACT_ROLE",
             "CONTACT_EMAIL",
@@ -83231,6 +83312,9 @@
     },
     {
       "name": "ledger/voucher/historical"
+    },
+    {
+      "name": "ledgervoucherincomeVoucher"
     },
     {
       "name": "ledgervoucherinternal"
