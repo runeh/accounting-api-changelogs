@@ -20804,6 +20804,39 @@
       },
       "type": "object"
     },
+    "ListResponseSalaryV2AMessageWageOverview": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SalaryV2AMessageWageOverview"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseSalaryV2OverviewReimbursements": {
       "properties": {
         "count": {
@@ -36148,6 +36181,46 @@
         },
         "version": {
           "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SalaryV2AMessageWageOverview": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "date": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "period": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "voucherId": {
+          "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -83237,6 +83310,9 @@
     },
     {
       "name": "invoicesettings"
+    },
+    {
+      "name": "invoicesettingspdflogo"
     },
     {
       "name": "internalinvoiceOverview"
