@@ -25696,7 +25696,8 @@
             "PAYROLL_PAYMENT_ACCEPTED_TECHNICAL_VALIDATION",
             "PAYROLL_ACCEPTED_FOR_EXECUTION",
             "PAYROLL_FAILED",
-            "PAYROLL_EXECUTION_COMPLETED"
+            "PAYROLL_EXECUTION_COMPLETED",
+            "AUTHORIZATION_REQUIRED_MULTIPLE_APPROVERS"
           ],
           "readOnly": true,
           "type": "string"
@@ -40185,7 +40186,8 @@
             "PAYMENT_AMOUNT_CHANGED",
             "PAYMENT_DUE_DATE_CHANGED",
             "PAYMENT_REJECTED",
-            "PAYMENT_NOT_UPDATED"
+            "PAYMENT_NOT_UPDATED",
+            "PAYMENT_APPROVAL_MULTIPLE_APPROVERS"
           ],
           "type": "string"
         },
@@ -47431,6 +47433,7 @@
             "STARTED",
             "UPDATED",
             "RESTARTED",
+            "REJECTED",
             "SUBMITTED_UNSIGNED",
             "SUBMITTED_SIGNED",
             "USER_MARKED_AS_SIGNEDBYALL",
@@ -47999,7 +48002,8 @@
             "PAYROLL_PAYMENT_ACCEPTED_TECHNICAL_VALIDATION",
             "PAYROLL_ACCEPTED_FOR_EXECUTION",
             "PAYROLL_FAILED",
-            "PAYROLL_EXECUTION_COMPLETED"
+            "PAYROLL_EXECUTION_COMPLETED",
+            "AUTHORIZATION_REQUIRED_MULTIPLE_APPROVERS"
           ],
           "readOnly": true,
           "type": "string"
