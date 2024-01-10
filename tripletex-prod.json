@@ -24981,7 +24981,7 @@
           "type": "array"
         },
         "sortIndex": {
-          "description": "Minimum 1. Defines the presentation order of the orderGroups. Does not need to be, and is often not continuous.",
+          "description": "Defines the presentation order of the orderGroups. Does not need to be, and is often not continuous. Only applicable if parent order has orderLineSorting as CUSTOM.",
           "format": "int32",
           "minimum": 0,
           "type": "integer"
@@ -25064,7 +25064,7 @@
           "$ref": "#/definitions/Product"
         },
         "sortIndex": {
-          "description": "Minimum 1. Defines the presentation order of the lines. Does not need to be, and is often not continuous.",
+          "description": "Defines the presentation order of the lines. Does not need to be, and is often not continuous. Only applicable if parent order has orderLineSorting as CUSTOM.",
           "format": "int32",
           "minimum": 0,
           "type": "integer"
