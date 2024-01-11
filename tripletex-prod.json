@@ -40187,7 +40187,9 @@
             "PAYMENT_DUE_DATE_CHANGED",
             "PAYMENT_REJECTED",
             "PAYMENT_NOT_UPDATED",
-            "PAYMENT_APPROVAL_MULTIPLE_APPROVERS"
+            "PAYMENT_APPROVAL_MULTIPLE_APPROVERS",
+            "PAYMENT_ATTESTED",
+            "PAYMENT_ATTESTATION_REJECTED"
           ],
           "type": "string"
         },
@@ -46520,18 +46522,18 @@
         },
         "id": {
           "enum": [
-            "APP",
             "BANKING",
-            "EASY_ONBOARDING",
             "GET_STARTED_SUMMARY",
             "HELP_CENTER",
+            "HELP_CENTER_AGRO",
+            "HELP_CENTER_AI",
             "HELP_CENTER_EACCOUNTING",
+            "HELP_CENTER_MAMUT",
             "INCOME_AND_COST_CHART",
             "INVOICE_SUMMARY",
             "REMINDER",
             "SALARY_SUMMARY",
             "TASKS",
-            "TRIAL",
             "UPSALE_AUTOMATION",
             "UPSALE_SALARY",
             "VOUCHER_SUMMARY"
