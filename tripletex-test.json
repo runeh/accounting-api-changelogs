@@ -14574,6 +14574,9 @@
           "format": "int32",
           "type": "integer"
         },
+        "orderOfferEmailSignature": {
+          "type": "string"
+        },
         "sendTypes": {
           "items": {
             "enum": [
@@ -63471,6 +63474,47 @@
         ]
       }
     },
+    "/order/orderConfirmation/{orderId}/pdf": {
+      "get": {
+        "description": "",
+        "operationId": "OrderOrderConfirmationPdf_downloadPdf",
+        "parameters": [
+          {
+            "description": "Order ID from which PDF is downloaded.",
+            "format": "int32",
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "default": true,
+            "description": "Equals",
+            "in": "query",
+            "name": "download",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get PDF representation of order by ID.",
+        "tags": [
+          "order"
+        ]
+      }
+    },
     "/order/orderGroup": {
       "get": {
         "description": "",
@@ -63933,6 +63977,57 @@
         "summary": "[BETA] Put order line",
         "tags": [
           "order/orderline"
+        ]
+      }
+    },
+    "/order/sendOrderConfirmation/{orderId}": {
+      "put": {
+        "description": "",
+        "operationId": "OrderSendOrderConfirmation_postOrderConfirmation",
+        "parameters": [
+          {
+            "description": "orderId",
+            "format": "int64",
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "email",
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "message",
+            "in": "query",
+            "name": "message",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "saveAsDefault",
+            "in": "query",
+            "name": "saveAsDefault",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Send Order Confirmation to customer by email.",
+        "tags": [
+          "order"
         ]
       }
     },
