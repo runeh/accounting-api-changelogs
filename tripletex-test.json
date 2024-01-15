@@ -15151,8 +15151,9 @@
         },
         "id": {
           "description": "Returns the license id.",
+          "format": "int64",
           "readOnly": true,
-          "type": "number"
+          "type": "integer"
         },
         "name": {
           "description": "Returns license name.",
@@ -18188,6 +18189,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/LegacyAddress"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseLicense": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/License"
           },
           "readOnly": true,
           "type": "array"
@@ -23997,6 +24031,9 @@
           "type": "string"
         },
         "futurePurchase": {
+          "type": "boolean"
+        },
+        "hasAutoInvoice": {
           "type": "boolean"
         },
         "id": {
@@ -33110,17 +33147,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperLicenseDTO[]": {
-      "properties": {
-        "value": {
-          "items": {
-            "$ref": "#/definitions/License"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperListAccountantClientAccessModel": {
       "properties": {
         "value": {
@@ -35217,7 +35243,7 @@
           "type": "string"
         },
         "customerId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         }
       },
@@ -38305,7 +38331,7 @@
       "properties": {
         "customerId": {
           "description": "Customer Id",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
