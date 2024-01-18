@@ -1379,6 +1379,11 @@
             "CLOSING_BALANCE_CREDIT_SALES",
             "OPENING_BALANCE_WRITE_DOWN_NEW_COMPANY",
             "CLOSING_BALANCE_WRITE_DOWN_NEW_COMPANY",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ID",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ADDITION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_DEDUCTION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_REPORTED_BENEFIT",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -1464,6 +1469,7 @@
             "SHOW_CONCERN_RELATION",
             "OWN_BUSINESS_PROPERTIES",
             "OWN_ASSET_PAPER",
+            "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
             "SET_ACCOUNTANT_REVISED",
@@ -5253,7 +5259,8 @@
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
-            "PARTICIPANT"
+            "PARTICIPANT",
+            "SALARY_AND_PENSION_EXPENSES"
           ],
           "readOnly": true,
           "type": "string"
@@ -5440,6 +5447,11 @@
             "CLOSING_BALANCE_CREDIT_SALES",
             "OPENING_BALANCE_WRITE_DOWN_NEW_COMPANY",
             "CLOSING_BALANCE_WRITE_DOWN_NEW_COMPANY",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ID",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ADDITION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_DEDUCTION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_REPORTED_BENEFIT",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -5525,6 +5537,7 @@
             "SHOW_CONCERN_RELATION",
             "OWN_BUSINESS_PROPERTIES",
             "OWN_ASSET_PAPER",
+            "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
             "SET_ACCOUNTANT_REVISED",
@@ -9107,7 +9120,8 @@
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
-            "PARTICIPANT"
+            "PARTICIPANT",
+            "SALARY_AND_PENSION_EXPENSES"
           ],
           "type": "string"
         },
@@ -9195,6 +9209,11 @@
             "CLOSING_BALANCE_CREDIT_SALES",
             "OPENING_BALANCE_WRITE_DOWN_NEW_COMPANY",
             "CLOSING_BALANCE_WRITE_DOWN_NEW_COMPANY",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ID",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ADDITION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_DEDUCTION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_REPORTED_BENEFIT",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -9280,6 +9299,7 @@
             "SHOW_CONCERN_RELATION",
             "OWN_BUSINESS_PROPERTIES",
             "OWN_ASSET_PAPER",
+            "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
             "SET_ACCOUNTANT_REVISED",
@@ -11381,7 +11401,8 @@
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
-            "PARTICIPANT"
+            "PARTICIPANT",
+            "SALARY_AND_PENSION_EXPENSES"
           ],
           "type": "string"
         },
@@ -11469,6 +11490,11 @@
             "CLOSING_BALANCE_CREDIT_SALES",
             "OPENING_BALANCE_WRITE_DOWN_NEW_COMPANY",
             "CLOSING_BALANCE_WRITE_DOWN_NEW_COMPANY",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ID",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ADDITION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_DEDUCTION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_REPORTED_BENEFIT",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -11554,6 +11580,7 @@
             "SHOW_CONCERN_RELATION",
             "OWN_BUSINESS_PROPERTIES",
             "OWN_ASSET_PAPER",
+            "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
             "SET_ACCOUNTANT_REVISED",
@@ -11837,7 +11864,8 @@
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
-            "PARTICIPANT"
+            "PARTICIPANT",
+            "SALARY_AND_PENSION_EXPENSES"
           ],
           "readOnly": true,
           "type": "string"
@@ -13248,6 +13276,11 @@
             "CLOSING_BALANCE_CREDIT_SALES",
             "OPENING_BALANCE_WRITE_DOWN_NEW_COMPANY",
             "CLOSING_BALANCE_WRITE_DOWN_NEW_COMPANY",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ID",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ADDITION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_DEDUCTION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_REPORTED_BENEFIT",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -13333,6 +13366,7 @@
             "SHOW_CONCERN_RELATION",
             "OWN_BUSINESS_PROPERTIES",
             "OWN_ASSET_PAPER",
+            "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
             "SET_ACCOUNTANT_REVISED",
@@ -13616,6 +13650,11 @@
             "CLOSING_BALANCE_CREDIT_SALES",
             "OPENING_BALANCE_WRITE_DOWN_NEW_COMPANY",
             "CLOSING_BALANCE_WRITE_DOWN_NEW_COMPANY",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ID",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ADDITION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_DEDUCTION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_REPORTED_BENEFIT",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -13701,6 +13740,7 @@
             "SHOW_CONCERN_RELATION",
             "OWN_BUSINESS_PROPERTIES",
             "OWN_ASSET_PAPER",
+            "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
             "SET_ACCOUNTANT_REVISED",
@@ -23876,7 +23916,8 @@
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
-            "PARTICIPANT"
+            "PARTICIPANT",
+            "SALARY_AND_PENSION_EXPENSES"
           ],
           "readOnly": true,
           "type": "string"
@@ -26345,6 +26386,11 @@
             "CLOSING_BALANCE_CREDIT_SALES",
             "OPENING_BALANCE_WRITE_DOWN_NEW_COMPANY",
             "CLOSING_BALANCE_WRITE_DOWN_NEW_COMPANY",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ID",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ADDITION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_DEDUCTION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_REPORTED_BENEFIT",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -26430,6 +26476,7 @@
             "SHOW_CONCERN_RELATION",
             "OWN_BUSINESS_PROPERTIES",
             "OWN_ASSET_PAPER",
+            "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
             "SET_ACCOUNTANT_REVISED",
@@ -26920,7 +26967,7 @@
           "type": "integer"
         },
         "industryId": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -34238,6 +34285,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperSalaryAndPensionExpenses": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/SalaryAndPensionExpenses"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperSalaryCompilation": {
       "properties": {
         "value": {
@@ -35694,6 +35749,58 @@
       "required": [
         "altinnTaxDeductionCardId"
       ],
+      "type": "object"
+    },
+    "SalaryAndPensionAccount": {
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/Account",
+          "description": "The account",
+          "readOnly": true
+        },
+        "additions": {
+          "description": "The additions",
+          "type": "number"
+        },
+        "deductions": {
+          "description": "The deductions",
+          "type": "number"
+        },
+        "expensedBenefits": {
+          "description": "The expensed benefits",
+          "type": "number"
+        },
+        "groupId": {
+          "description": "The group id",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "reportedBenefits": {
+          "description": "The reported benefits",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SalaryAndPensionExpenses": {
+      "properties": {
+        "accounts": {
+          "description": "List of salary and pension accounts",
+          "items": {
+            "$ref": "#/definitions/SalaryAndPensionAccount"
+          },
+          "type": "array"
+        },
+        "manualFilling": {
+          "description": "True if user wants to manually file expenses for the year",
+          "type": "boolean"
+        },
+        "requireAuditorSignature": {
+          "description": "True if expenses is required to be signed by auditor",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "SalaryCompilation": {
@@ -39487,7 +39594,8 @@
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
-            "PARTICIPANT"
+            "PARTICIPANT",
+            "SALARY_AND_PENSION_EXPENSES"
           ],
           "type": "string"
         },
@@ -39590,6 +39698,11 @@
             "CLOSING_BALANCE_CREDIT_SALES",
             "OPENING_BALANCE_WRITE_DOWN_NEW_COMPANY",
             "CLOSING_BALANCE_WRITE_DOWN_NEW_COMPANY",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ID",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_ADDITION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_DEDUCTION",
+            "SALARY_AND_PENSION_EXPENSES_ACCOUNT_REPORTED_BENEFIT",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -39675,6 +39788,7 @@
             "SHOW_CONCERN_RELATION",
             "OWN_BUSINESS_PROPERTIES",
             "OWN_ASSET_PAPER",
+            "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
             "SET_ACCOUNTANT_REVISED",
@@ -44193,7 +44307,8 @@
             "DOCUMENTATION",
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
-            "PARTICIPANT"
+            "PARTICIPANT",
+            "SALARY_AND_PENSION_EXPENSES"
           ],
           "readOnly": true,
           "type": "string"
