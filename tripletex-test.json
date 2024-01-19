@@ -2197,6 +2197,18 @@
     },
     "ApproveResponseDTO": {
       "properties": {
+        "exchangeRateExpiration": {
+          "description": "ZTL exchange rate expiration date",
+          "format": "date-time",
+          "type": "string"
+        },
+        "exchangeRateSums": {
+          "description": "Sum of all to be approved payments by currencies",
+          "items": {
+            "$ref": "#/definitions/CurrencyPaymentsSumDTO"
+          },
+          "type": "array"
+        },
         "notApproved": {
           "description": "List of payments that won't be sent to AutoPay approval/ZTL",
           "items": {
@@ -7683,6 +7695,18 @@
         "currency": {
           "$ref": "#/definitions/Currency",
           "description": "Currency of the sum"
+        },
+        "displayExchangeRate": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Display exchange rate used for the sum. Eg. EURNOK are displayed per 1 (9.87), while SEKNOK per 100 (98,27)"
+        },
+        "exchangeRate": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Exchange rate used for the sum"
+        },
+        "exchangedAmountsSum": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Sum of the exchanged amounts"
         },
         "sum": {
           "$ref": "#/definitions/TlxNumber",
@@ -44457,7 +44481,6 @@
           "$ref": "#/definitions/Employee"
         },
         "message": {
-          "maxLength": 500,
           "type": "string"
         },
         "pageTitle": {
