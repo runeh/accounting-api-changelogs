@@ -4,6 +4,7 @@
     "AccommodationAllowance": {
       "properties": {
         "address": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "amount": {
@@ -108,6 +109,7 @@
           "description": "The department for this account. If multiple industries are activated, all postings on this account will be towards this department. If multiple industries are not activated, it is ignored."
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "displayName": {
@@ -870,6 +872,7 @@
           "type": "number"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "displayName": {
@@ -4175,6 +4178,7 @@
           "type": "string"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "invoiceNumber": {
@@ -4232,10 +4236,12 @@
           "type": "integer"
         },
         "link": {
+          "maxLength": 65535,
           "readOnly": true,
           "type": "string"
         },
         "message": {
+          "maxLength": 65535,
           "readOnly": true,
           "type": "string"
         },
@@ -7283,6 +7289,7 @@
           "type": "array"
         },
         "comments": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "costCategory": {
@@ -7819,6 +7826,7 @@
           "$ref": "#/definitions/Department"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "discountPercentage": {
@@ -7992,6 +8000,7 @@
           "type": "array"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "displayName": {
@@ -8639,6 +8648,7 @@
           "type": "array"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "date": {
@@ -9792,6 +9802,7 @@
           "type": "array"
         },
         "comments": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "companyId": {
@@ -9933,6 +9944,7 @@
           "type": "array"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "displayName": {
@@ -12134,6 +12146,7 @@
           "type": "array"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "goodsReceiptLines": {
@@ -12617,6 +12630,7 @@
         },
         "description": {
           "description": "The description of the posting.",
+          "maxLength": 16777215,
           "type": "string"
         },
         "employee": {
@@ -12703,6 +12717,7 @@
         },
         "description": {
           "description": "The voucher description.",
+          "maxLength": 16777215,
           "type": "string"
         },
         "externalVoucherNumber": {
@@ -14202,6 +14217,7 @@
         },
         "comment": {
           "description": "Comment text for the specific invoice.",
+          "maxLength": 65535,
           "type": "string"
         },
         "creditedInvoice": {
@@ -14261,6 +14277,7 @@
         },
         "invoiceRemarks": {
           "description": "Deprecated Invoice remarks - please use the 'invoiceRemark' instead.",
+          "maxLength": 16777215,
           "type": "string"
         },
         "isApproved": {
@@ -14436,6 +14453,7 @@
           "type": "array"
         },
         "description": {
+          "maxLength": 65535,
           "type": "string"
         },
         "id": {
@@ -23029,6 +23047,7 @@
           "type": "boolean"
         },
         "purchaseOrderDefaultComment": {
+          "maxLength": 65535,
           "type": "string"
         },
         "showOnboardingWizard": {
@@ -23359,9 +23378,11 @@
           "type": "string"
         },
         "departureLocation": {
+          "maxLength": 65535,
           "type": "string"
         },
         "destination": {
+          "maxLength": 65535,
           "type": "string"
         },
         "drivingStops": {
@@ -24795,6 +24816,7 @@
           "description": "Delivery address of this order. This can be a new or existing address\n(useful to know, especially if the delivery is to a private person: if 'deliveryAddress.name' is set, we ignore the state of 'customer.id')"
         },
         "deliveryComment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "deliveryDate": {
@@ -24817,6 +24839,7 @@
         },
         "invoiceComment": {
           "description": "Comment to be displayed in the invoice based on this order. Can be also found in Invoice.invoiceComment on Invoice objects.",
+          "maxLength": 16777215,
           "type": "string"
         },
         "invoiceOnAccountVatHigh": {
@@ -25036,6 +25059,7 @@
           "type": "array"
         },
         "comment": {
+          "maxLength": 65535,
           "type": "string"
         },
         "id": {
@@ -25101,6 +25125,7 @@
           "readOnly": true
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "discount": {
@@ -26188,6 +26213,7 @@
     "PerDiemCompensation": {
       "properties": {
         "address": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "amount": {
@@ -27156,6 +27182,7 @@
           "$ref": "#/definitions/Department"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "employee": {
@@ -27381,6 +27408,7 @@
           "$ref": "#/definitions/Department"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "discountGroup": {
@@ -27862,6 +27890,7 @@
           "type": "array"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "costCurrency": {
@@ -28433,6 +28462,7 @@
           "$ref": "#/definitions/Department"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "discountPercentage": {
@@ -28492,6 +28522,7 @@
         },
         "invoiceComment": {
           "description": "Comment for project invoices",
+          "maxLength": 16777215,
           "type": "string"
         },
         "invoiceDueDate": {
@@ -28771,6 +28802,7 @@
           "type": "array"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "displayName": {
@@ -28813,6 +28845,7 @@
           "type": "array"
         },
         "comment": {
+          "maxLength": 65535,
           "minLength": 1,
           "type": "string"
         },
@@ -29013,6 +29046,7 @@
         },
         "feeInvoiceText": {
           "description": "The fee comment on the project invoice.",
+          "maxLength": 16777215,
           "readOnly": true,
           "type": "string"
         },
@@ -29041,6 +29075,7 @@
         },
         "invoiceText": {
           "description": "The comment on the project invoice.",
+          "maxLength": 16777215,
           "readOnly": true,
           "type": "string"
         },
@@ -29139,6 +29174,7 @@
           "type": "string"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "discount": {
@@ -29713,6 +29749,7 @@
           "$ref": "#/definitions/Department"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "displayNameFormat": {
@@ -29746,6 +29783,7 @@
         },
         "invoiceComment": {
           "description": "Comment for project invoices",
+          "maxLength": 16777215,
           "type": "string"
         },
         "isFixedPrice": {
@@ -29837,6 +29875,7 @@
           "$ref": "#/definitions/Customer"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "finalAdditionalServicesValue": {
@@ -29924,6 +29963,7 @@
         },
         "comments": {
           "description": "Delivery information and invoice comments",
+          "maxLength": 16777215,
           "type": "string"
         },
         "creationDate": {
@@ -30274,6 +30314,7 @@
           "readOnly": true
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "discount": {
@@ -30805,6 +30846,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -36062,6 +36104,7 @@
           "$ref": "#/definitions/Department"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "employee": {
@@ -36285,6 +36328,7 @@
           "type": "array"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "id": {
@@ -36733,6 +36777,7 @@
           "type": "array"
         },
         "comment": {
+          "maxLength": 65535,
           "type": "string"
         },
         "date": {
@@ -37037,6 +37082,7 @@
           "$ref": "#/definitions/Department"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "employee": {
@@ -37321,6 +37367,7 @@
         },
         "payslipGeneralComment": {
           "description": "Comment to be shown on all payslips",
+          "maxLength": 65535,
           "type": "string"
         },
         "periodAsString": {
@@ -37372,6 +37419,7 @@
         },
         "voucherComment": {
           "description": "Comment on voucher",
+          "maxLength": 16777215,
           "type": "string"
         },
         "year": {
@@ -37443,6 +37491,7 @@
           "type": "array"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "displayName": {
@@ -37572,6 +37621,7 @@
           "type": "boolean"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "id": {
@@ -37630,6 +37680,7 @@
           "type": "array"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "datePeriod": {
@@ -39214,6 +39265,7 @@
           "$ref": "#/definitions/Municipality"
         },
         "note": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "numberOfSharesLastYear": {
@@ -40372,6 +40424,7 @@
           "type": "array"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "date": {
@@ -40469,6 +40522,7 @@
         "targetUrl": {
           "description": "The callback URL used for subscriptions (including authentication tokens). Must be absolute and use HTTPS. Basic authentication is supported.",
           "example": "https://username:password@myintegration.example/tripletexCallback",
+          "maxLength": 65535,
           "minLength": 1,
           "type": "string"
         },
@@ -40537,6 +40591,7 @@
           "$ref": "#/definitions/DeliveryAddress"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "displayName": {
@@ -40934,6 +40989,7 @@
           "$ref": "#/definitions/Currency"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "discountPrice": {
@@ -42177,6 +42233,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "date": {
@@ -42294,6 +42351,7 @@
           "type": "string"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "employee": {
@@ -42345,6 +42403,7 @@
           "type": "string"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "employee": {
@@ -43161,6 +43220,7 @@
           "type": "string"
         },
         "detailedJourneyDescription": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "isCompensationFromRates": {
@@ -43173,6 +43233,7 @@
           "type": "boolean"
         },
         "purpose": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "returnDate": {
@@ -43356,6 +43417,7 @@
           "readOnly": true
         },
         "rejectedComment": {
+          "maxLength": 65535,
           "readOnly": true,
           "type": "string"
         },
@@ -44481,6 +44543,7 @@
           "$ref": "#/definitions/Employee"
         },
         "message": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "pageTitle": {
@@ -44895,6 +44958,7 @@
           "type": "string"
         },
         "userComment": {
+          "maxLength": 65535,
           "readOnly": true,
           "type": "string"
         },
@@ -45305,6 +45369,7 @@
         },
         "userComment": {
           "description": "User comment",
+          "maxLength": 65535,
           "type": "string"
         },
         "vatAmount": {
@@ -45548,6 +45613,7 @@
           "type": "string"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "document": {
@@ -45646,9 +45712,11 @@
           "type": "array"
         },
         "comment": {
+          "maxLength": 65535,
           "type": "string"
         },
         "commentFromOriginator": {
+          "maxLength": 65535,
           "type": "string"
         },
         "department": {
@@ -46234,6 +46302,7 @@
           "type": "string"
         },
         "description": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "document": {
@@ -46332,6 +46401,7 @@
         },
         "content": {
           "description": "The message",
+          "maxLength": 65535,
           "type": "string"
         },
         "id": {
@@ -46422,6 +46492,7 @@
           "type": "array"
         },
         "comment": {
+          "maxLength": 65535,
           "type": "string"
         },
         "externalObjectUrl": {
@@ -47291,6 +47362,7 @@
           "type": "integer"
         },
         "postMediumTextValue": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "postType": {
@@ -47701,6 +47773,7 @@
           "type": "string"
         },
         "consentUrl": {
+          "maxLength": 65535,
           "readOnly": true,
           "type": "string"
         },
