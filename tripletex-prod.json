@@ -10287,6 +10287,43 @@
       },
       "type": "object"
     },
+    "EmployeeVacationBalance": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "date": {
+          "type": "string"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "vacationbalance": {
+          "type": "number"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "employeeId"
+      ],
+      "type": "object"
+    },
     "Employment": {
       "properties": {
         "changes": {
@@ -32946,6 +32983,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/EmployeeTokenBundle"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperEmployeeVacationBalance": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/EmployeeVacationBalance"
         }
       },
       "type": "object"
@@ -83411,6 +83456,9 @@
     },
     {
       "name": "employee/category"
+    },
+    {
+      "name": "employeeVacationBalance"
     },
     {
       "name": "employeeemployment"
