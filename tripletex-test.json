@@ -9103,6 +9103,54 @@
       ],
       "type": "object"
     },
+    "DocumentReceptionItem": {
+      "properties": {
+        "archiveDate": {
+          "description": "Archive Date.",
+          "type": "string"
+        },
+        "created": {
+          "description": "Document create date.",
+          "type": "string"
+        },
+        "documentId": {
+          "description": "Document Id.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "documentName": {
+          "description": "The name of the document.",
+          "type": "string"
+        },
+        "edited": {
+          "description": "Document edit date.",
+          "type": "string"
+        },
+        "recipient": {
+          "description": "Recipient of the document.",
+          "type": "string"
+        },
+        "senderName": {
+          "description": "Document sender.",
+          "type": "string"
+        },
+        "size": {
+          "description": "Document size.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "archiveDate",
+        "created",
+        "documentId",
+        "documentName",
+        "edited",
+        "recipient",
+        "senderName",
+        "size"
+      ],
+      "type": "object"
+    },
     "DocumentationGenericData": {
       "properties": {
         "changes": {
@@ -33364,6 +33412,17 @@
         "value": {
           "items": {
             "$ref": "#/definitions/CurrencyPaymentsSumDTO"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperListDocumentReceptionItem": {
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "#/definitions/DocumentReceptionItem"
           },
           "type": "array"
         }
@@ -83525,6 +83584,9 @@
     },
     {
       "name": "documentArchive"
+    },
+    {
+      "name": "documentReception"
     },
     {
       "name": "employee"
