@@ -2198,11 +2198,6 @@
     },
     "ApproveResponseDTO": {
       "properties": {
-        "exchangeRateExpiration": {
-          "description": "ZTL exchange rate expiration date",
-          "format": "date-time",
-          "type": "string"
-        },
         "exchangeRateSums": {
           "description": "Sum of all to be approved payments by currencies",
           "items": {
@@ -2220,6 +2215,11 @@
         "redirectUrl": {
           "description": "The redirect URL to AutoPay 2FA or ZTL SCA after payments are sent to be approved",
           "type": "string"
+        },
+        "secondsUntilExchangeRateExpires": {
+          "description": "Seconds until exchange rate expires",
+          "format": "int64",
+          "type": "integer"
         },
         "toBeApproved": {
           "description": "List of payments that will be sent to AutoPay approval/ZTL",
@@ -7700,6 +7700,11 @@
     },
     "CurrencyPaymentsSumDTO": {
       "properties": {
+        "count": {
+          "description": "Count of the payments in currency",
+          "format": "int32",
+          "type": "integer"
+        },
         "currency": {
           "$ref": "#/definitions/Currency",
           "description": "Currency of the sum"
@@ -7714,11 +7719,11 @@
         },
         "exchangedAmountsSum": {
           "$ref": "#/definitions/TlxNumber",
-          "description": "Sum of the exchanged amounts"
+          "description": "Sum of the amounts after exchange rate applied. Eg. if exchange rate is 10, then 100 EUR will be 1000 NOK"
         },
         "sum": {
           "$ref": "#/definitions/TlxNumber",
-          "description": "Sum of the payments"
+          "description": "Sum of the payments in currency"
         }
       },
       "type": "object"
@@ -12093,6 +12098,7 @@
           "enum": [
             "TestBannerPleaseIgnore",
             "SalaryTaxCardBanner",
+            "SalaryAmeldingBanner",
             "UpdateHourListBanner",
             "TravelsAndExpensesBanner",
             "ReportViewerBanner",
