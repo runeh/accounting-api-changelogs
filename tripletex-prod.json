@@ -401,6 +401,9 @@
         "id": {
           "format": "int32",
           "type": "integer"
+        },
+        "numberPretty": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -11041,7 +11044,8 @@
             "LOAN_AND_PROVISION_OF_SECURITY_WAIVED_AMOUNTS_BOARD_MEMBERS",
             "LOAN_AND_PROVISION_OF_SECURITY_WAIVED_AMOUNTS_MEMBERS_OF_OTHER_BODIES",
             "LOAN_AND_PROVISION_OF_SECURITY_ADDITIONAL_INFORMATION",
-            "FREE_NOTE_FREE_TEXT"
+            "FREE_NOTE_FREE_TEXT",
+            "CUSTOM_GROUPING"
           ],
           "readOnly": true,
           "type": "string"
@@ -11274,7 +11278,8 @@
             "LOAN_AND_PROVISION_OF_SECURITY_WAIVED_AMOUNTS_BOARD_MEMBERS",
             "LOAN_AND_PROVISION_OF_SECURITY_WAIVED_AMOUNTS_MEMBERS_OF_OTHER_BODIES",
             "LOAN_AND_PROVISION_OF_SECURITY_ADDITIONAL_INFORMATION",
-            "FREE_NOTE_FREE_TEXT"
+            "FREE_NOTE_FREE_TEXT",
+            "CUSTOM_GROUPING"
           ],
           "readOnly": true,
           "type": "string"
@@ -12552,7 +12557,8 @@
             "LOAN_AND_PROVISION_OF_SECURITY_WAIVED_AMOUNTS_BOARD_MEMBERS",
             "LOAN_AND_PROVISION_OF_SECURITY_WAIVED_AMOUNTS_MEMBERS_OF_OTHER_BODIES",
             "LOAN_AND_PROVISION_OF_SECURITY_ADDITIONAL_INFORMATION",
-            "FREE_NOTE_FREE_TEXT"
+            "FREE_NOTE_FREE_TEXT",
+            "CUSTOM_GROUPING"
           ],
           "readOnly": true,
           "type": "string"
@@ -22863,6 +22869,39 @@
       },
       "type": "object"
     },
+    "ListResponseYearEndAnnualAccountsCode": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/YearEndAnnualAccountsCode"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseYearEndReportMunicipality": {
       "properties": {
         "count": {
@@ -24592,7 +24631,8 @@
             "LOAN_AND_PROVISION_OF_SECURITY_WAIVED_AMOUNTS_BOARD_MEMBERS",
             "LOAN_AND_PROVISION_OF_SECURITY_WAIVED_AMOUNTS_MEMBERS_OF_OTHER_BODIES",
             "LOAN_AND_PROVISION_OF_SECURITY_ADDITIONAL_INFORMATION",
-            "FREE_NOTE_FREE_TEXT"
+            "FREE_NOTE_FREE_TEXT",
+            "CUSTOM_GROUPING"
           ],
           "readOnly": true,
           "type": "string"
@@ -33661,6 +33701,17 @@
         "value": {
           "items": {
             "$ref": "#/definitions/TodoListWageTransaction"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperListYearEndAnnualAccountsCode": {
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "#/definitions/YearEndAnnualAccountsCode"
           },
           "type": "array"
         }
@@ -47218,6 +47269,32 @@
       },
       "type": "object"
     },
+    "YearEndAnnualAccountsCode": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "guid": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "languageTextEN": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "languageTextNO": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "YearEndReport": {
       "properties": {
         "altinnMetadata": {
@@ -47627,7 +47704,8 @@
             "LOAN_AND_PROVISION_OF_SECURITY_WAIVED_AMOUNTS_BOARD_MEMBERS",
             "LOAN_AND_PROVISION_OF_SECURITY_WAIVED_AMOUNTS_MEMBERS_OF_OTHER_BODIES",
             "LOAN_AND_PROVISION_OF_SECURITY_ADDITIONAL_INFORMATION",
-            "FREE_NOTE_FREE_TEXT"
+            "FREE_NOTE_FREE_TEXT",
+            "CUSTOM_GROUPING"
           ],
           "type": "string"
         },
