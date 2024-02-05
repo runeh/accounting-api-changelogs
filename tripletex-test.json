@@ -27415,6 +27415,49 @@
       },
       "type": "object"
     },
+    "PredictionKey": {
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "department": {
+          "type": "string"
+        },
+        "project": {
+          "type": "string"
+        },
+        "vatNumber": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PredictionLine": {
+      "properties": {
+        "account": {
+          "type": "string"
+        },
+        "amount": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "department": {
+          "type": "string"
+        },
+        "key": {
+          "$ref": "#/definitions/PredictionKey"
+        },
+        "project": {
+          "type": "string"
+        },
+        "vatNumber": {
+          "type": "string"
+        },
+        "vatPercentage": {
+          "$ref": "#/definitions/TlxNumber"
+        }
+      },
+      "type": "object"
+    },
     "PrepareTaxcardsArgsInternal": {
       "properties": {
         "contactEmail": {
@@ -46142,11 +46185,6 @@
           "readOnly": true,
           "type": "string"
         },
-        "accountId": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
         "allowPostingBeforeVoucherApproved": {
           "readOnly": true,
           "type": "boolean"
@@ -46250,11 +46288,6 @@
         "department": {
           "readOnly": true,
           "type": "string"
-        },
-        "departmentId": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
         },
         "description": {
           "readOnly": true,
@@ -46403,6 +46436,13 @@
           "readOnly": true,
           "type": "integer"
         },
+        "predictionLines": {
+          "items": {
+            "$ref": "#/definitions/PredictionLine"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "preferDetailedInvoice": {
           "readOnly": true,
           "type": "boolean"
@@ -46410,11 +46450,6 @@
         "project": {
           "readOnly": true,
           "type": "string"
-        },
-        "projectId": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
         },
         "projectRef": {
           "readOnly": true,
