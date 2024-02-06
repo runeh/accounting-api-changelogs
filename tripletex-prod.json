@@ -14156,9 +14156,6 @@
           "format": "int64",
           "type": "integer"
         },
-        "inactive": {
-          "type": "boolean"
-        },
         "isInactive": {
           "type": "boolean"
         },
@@ -14167,9 +14164,6 @@
         },
         "lastStocking": {
           "type": "string"
-        },
-        "mainInventory": {
-          "type": "boolean"
         },
         "name": {
           "maxLength": 255,
