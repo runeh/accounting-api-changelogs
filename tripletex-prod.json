@@ -9134,6 +9134,16 @@
           "description": "Document edit date.",
           "type": "string"
         },
+        "messageId": {
+          "description": "Message Id.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "receiverEmployeeId": {
+          "description": "Employee Id of the receiver of the document.",
+          "format": "int64",
+          "type": "integer"
+        },
         "recipient": {
           "description": "Recipient of the document.",
           "type": "string"
@@ -9153,6 +9163,8 @@
         "documentId",
         "documentName",
         "edited",
+        "messageId",
+        "receiverEmployeeId",
         "recipient",
         "senderName",
         "size"
@@ -21312,39 +21324,6 @@
       },
       "type": "object"
     },
-    "ListResponseShareholder": {
-      "properties": {
-        "count": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/Shareholder"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListResponseShareholderTransaction": {
       "properties": {
         "count": {
@@ -33014,6 +32993,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperDocumentReceptionItem": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/DocumentReceptionItem"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperDownloadedBrreg": {
       "properties": {
         "value": {
@@ -34789,6 +34776,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ShareholderInfo"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperShareholderOverviewDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ShareholderOverviewDTO"
         }
       },
       "type": "object"
@@ -39540,6 +39535,29 @@
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "ShareholderOverviewDTO": {
+      "properties": {
+        "shareholders": {
+          "items": {
+            "$ref": "#/definitions/Shareholder"
+          },
+          "type": "array"
+        },
+        "sumNumberOfSharesLastYear": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "sumNumberOfSharesThisYear": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "sumOwnershipLastYear": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "sumOwnershipThisYear": {
+          "$ref": "#/definitions/TlxNumber"
         }
       },
       "type": "object"
