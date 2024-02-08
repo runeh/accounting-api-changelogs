@@ -9139,14 +9139,14 @@
           "format": "int64",
           "type": "integer"
         },
+        "receiver": {
+          "description": "Document receiver.",
+          "type": "string"
+        },
         "receiverEmployeeId": {
           "description": "Employee Id of the receiver of the document.",
           "format": "int64",
           "type": "integer"
-        },
-        "recipient": {
-          "description": "Recipient of the document.",
-          "type": "string"
         },
         "senderName": {
           "description": "Document sender.",
@@ -9164,8 +9164,8 @@
         "documentName",
         "edited",
         "messageId",
+        "receiver",
         "receiverEmployeeId",
-        "recipient",
         "senderName",
         "size"
       ],
