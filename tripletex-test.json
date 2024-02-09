@@ -7319,7 +7319,7 @@
         "participants": {
           "description": "Link to individual expense participant.",
           "items": {
-            "$ref": "#/definitions/TravelExpenseParticipant"
+            "$ref": "#/definitions/CostParticipant"
           },
           "type": "array"
         },
@@ -7353,6 +7353,45 @@
       "required": [
         "amountCurrencyIncVat",
         "paymentType"
+      ],
+      "type": "object"
+    },
+    "CostParticipant": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "cost": {
+          "$ref": "#/definitions/Cost"
+        },
+        "displayName": {
+          "maxLength": 200,
+          "type": "string"
+        },
+        "employeeId": {
+          "description": "Optional employee id in case the participant is an employee",
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cost"
       ],
       "type": "object"
     },
@@ -14717,6 +14756,12 @@
           "format": "int64",
           "type": "integer"
         },
+        "invoiceFromCurrentUser": {
+          "type": "boolean"
+        },
+        "invoiceFromEmail": {
+          "type": "string"
+        },
         "invoicesDueIn": {
           "description": "Sets the default value on customers for number of days/months in which invoices created from this order is due",
           "format": "int32",
@@ -14759,6 +14804,18 @@
         "nextInvoiceNumber": {
           "format": "int32",
           "type": "integer"
+        },
+        "offerFromCurrentUser": {
+          "type": "boolean"
+        },
+        "offerFromEmail": {
+          "type": "string"
+        },
+        "orderConfirmationCurrentUser": {
+          "type": "boolean"
+        },
+        "orderConfirmationEmail": {
+          "type": "string"
         },
         "orderOfferEmailSignature": {
           "type": "string"
@@ -16791,6 +16848,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Cost"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseCostParticipant": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/CostParticipant"
           },
           "readOnly": true,
           "type": "array"
@@ -22104,39 +22194,6 @@
         "values": {
           "items": {
             "$ref": "#/definitions/TravelExpense"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListResponseTravelExpenseParticipant": {
-      "properties": {
-        "count": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/TravelExpenseParticipant"
           },
           "readOnly": true,
           "type": "array"
@@ -32816,6 +32873,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperCostParticipant": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CostParticipant"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperCountry": {
       "properties": {
         "value": {
@@ -35078,14 +35143,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/TravelExpense"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperTravelExpenseParticipant": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/TravelExpenseParticipant"
         }
       },
       "type": "object"
@@ -43696,44 +43753,6 @@
       },
       "required": [
         "employee"
-      ],
-      "type": "object"
-    },
-    "TravelExpenseParticipant": {
-      "properties": {
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "cost": {
-          "$ref": "#/definitions/Cost"
-        },
-        "displayName": {
-          "type": "string"
-        },
-        "employeeId": {
-          "description": "Optional employee id in case the participant is an employee",
-          "format": "int32",
-          "type": "integer"
-        },
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "cost"
       ],
       "type": "object"
     },
@@ -80520,7 +80539,7 @@
             "name": "body",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/TravelExpenseParticipant"
+              "$ref": "#/definitions/CostParticipant"
             }
           }
         ],
@@ -80528,7 +80547,7 @@
           "200": {
             "description": "successfully created",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapperTravelExpenseParticipant"
+              "$ref": "#/definitions/ResponseWrapperCostParticipant"
             }
           }
         },
@@ -80576,7 +80595,7 @@
           "200": {
             "description": "successfully created",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapperTravelExpenseParticipant"
+              "$ref": "#/definitions/ResponseWrapperCostParticipant"
             }
           }
         },
@@ -80603,7 +80622,7 @@
             "required": false,
             "schema": {
               "items": {
-                "$ref": "#/definitions/TravelExpenseParticipant"
+                "$ref": "#/definitions/CostParticipant"
               },
               "type": "array"
             }
@@ -80638,7 +80657,7 @@
             "required": false,
             "schema": {
               "items": {
-                "$ref": "#/definitions/TravelExpenseParticipant"
+                "$ref": "#/definitions/CostParticipant"
               },
               "type": "array"
             }
@@ -80648,7 +80667,7 @@
           "200": {
             "description": "successfully created",
             "schema": {
-              "$ref": "#/definitions/ListResponseTravelExpenseParticipant"
+              "$ref": "#/definitions/ListResponseCostParticipant"
             }
           }
         },
@@ -80711,7 +80730,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/ListResponseTravelExpenseParticipant"
+              "$ref": "#/definitions/ListResponseCostParticipant"
             }
           }
         },
@@ -80779,7 +80798,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapperTravelExpenseParticipant"
+              "$ref": "#/definitions/ResponseWrapperCostParticipant"
             }
           }
         },
