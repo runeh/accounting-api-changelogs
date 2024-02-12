@@ -2371,6 +2371,9 @@
           "description": "Acquisition cost.",
           "type": "number"
         },
+        "annualDepreciation": {
+          "type": "number"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -2381,15 +2384,25 @@
         "dateOfAcquisition": {
           "type": "string"
         },
+        "depreciationAccount": {
+          "$ref": "#/definitions/Account"
+        },
+        "depreciationFrom": {
+          "type": "string"
+        },
         "depreciationMethod": {
           "description": "Depreciation method",
           "enum": [
             "MANUAL",
             "TAX_RELATED",
             "STRAIGHT_LINE",
-            "CUSTOMIZED_AMOUNT"
+            "CUSTOMIZED_AMOUNT",
+            "NO_DEPRECIATION"
           ],
           "type": "string"
+        },
+        "depreciationRate": {
+          "type": "number"
         },
         "depreciationRemainingValue": {
           "type": "number"
@@ -2499,6 +2512,11 @@
           "description": "For STRAIGHT_LINE: the total amount to write off.  FOR TAX_RELATED: the base amount to calculate the write off amounts from.  Not used for CUSTOM",
           "type": "number"
         },
+        "assetId": {
+          "description": "Asset id",
+          "format": "int64",
+          "type": "integer"
+        },
         "balanceAccount": {
           "$ref": "#/definitions/Account",
           "description": "The balance account for the asset.  This should be the account where the value of the asset is stored."
@@ -2517,9 +2535,18 @@
             "MANUAL",
             "TAX_RELATED",
             "STRAIGHT_LINE",
-            "CUSTOMIZED_AMOUNT"
+            "CUSTOMIZED_AMOUNT",
+            "NO_DEPRECIATION"
           ],
           "type": "string"
+        },
+        "depreciationRate": {
+          "description": "How many percent to depreciate for each year.  Only used for TAX_RELATED",
+          "type": "number"
+        },
+        "diff": {
+          "description": "HdddddiiifffD",
+          "type": "number"
         },
         "noOfMonths": {
           "description": "The depreciation period in months.",
@@ -2538,6 +2565,7 @@
       },
       "required": [
         "amount",
+        "assetId",
         "balanceAccount",
         "depreciationAccount",
         "depreciationMethod",
@@ -2552,8 +2580,16 @@
           "readOnly": true,
           "type": "number"
         },
+        "annualDepreciation": {
+          "type": "number"
+        },
         "assetId": {
           "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "balanceAccountId": {
+          "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
@@ -2573,15 +2609,65 @@
           "readOnly": true,
           "type": "string"
         },
+        "deprecationTotal": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "depreciationAccountId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "depreciationAmount": {
+          "type": "number"
+        },
+        "depreciationBasis": {
+          "type": "number"
+        },
+        "depreciationDiscrepancy": {
+          "type": "number"
+        },
+        "depreciationFrom": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "depreciationMethod": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "depreciationRate": {
+          "type": "number"
+        },
+        "depreciationRemainingValue": {
+          "type": "number"
+        },
+        "externalAccumulatedDepreciation": {
+          "type": "number"
+        },
+        "externalLastAccountedValue": {
+          "type": "number"
+        },
+        "externalLastDepreciation": {
+          "type": "string"
+        },
         "lifetime": {
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
+        "missingTaxTransactionType": {
+          "type": "boolean"
+        },
         "name": {
           "maxLength": 255,
           "minLength": 1,
           "type": "string"
+        },
+        "numberOfMonths": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
         },
         "status": {
           "readOnly": true,
@@ -2692,6 +2778,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "depreciationExist": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "endDate": {
           "readOnly": true,
@@ -9148,6 +9238,20 @@
         "fileName",
         "mimeType"
       ],
+      "type": "object"
+    },
+    "DocumentArchiveTargetPath": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "DocumentReceptionItem": {
@@ -17409,6 +17513,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/DocumentArchive"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseDocumentArchiveTargetPath": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/DocumentArchiveTargetPath"
           },
           "readOnly": true,
           "type": "array"
@@ -33553,6 +33690,29 @@
       },
       "type": "object"
     },
+    "ResponseWrapperListDocumentArchiveModelType": {
+      "properties": {
+        "value": {
+          "items": {
+            "enum": [
+              "NONE",
+              "CUSTOMER",
+              "SUPPLIER",
+              "PROJECT",
+              "ORDER",
+              "OFFER",
+              "PRODUCT",
+              "EMPLOYEE",
+              "ACCOUNT",
+              "ASSET"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperListDocumentReceptionItem": {
       "properties": {
         "value": {
@@ -39375,6 +39535,59 @@
         },
         "roleSystemAdministrator": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SendToDocumentArchive": {
+      "properties": {
+        "archiveDate": {
+          "type": "string"
+        },
+        "fileName": {
+          "description": "Override filename",
+          "type": "string"
+        },
+        "invoiceArchiveRelation": {
+          "description": "Add to document to invoice",
+          "enum": [
+            "ADD_TO_INVOICE_NONE",
+            "ADD_TO_INVOICE_NEXT",
+            "ADD_TO_INVOICE_ALL"
+          ],
+          "type": "string"
+        },
+        "messageIds": {
+          "description": "List of messageIds to move to archive",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "modelId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "modelType": {
+          "description": "Add to specific archive",
+          "enum": [
+            "NONE",
+            "CUSTOMER",
+            "SUPPLIER",
+            "PROJECT",
+            "ORDER",
+            "OFFER",
+            "PRODUCT",
+            "EMPLOYEE",
+            "ACCOUNT",
+            "ASSET"
+          ],
+          "type": "string"
+        },
+        "pathId": {
+          "description": "Target path in archive",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
