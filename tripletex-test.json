@@ -9338,6 +9338,26 @@
       ],
       "type": "object"
     },
+    "DocumentReceptionPageContext": {
+      "properties": {
+        "authAllEmployees": {
+          "description": "Can see all receivers",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "authVoucherReception": {
+          "description": "Auth Voucher Reception",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "documentReceptionEmail": {
+          "description": "document reception email",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DocumentationGenericData": {
       "properties": {
         "changes": {
@@ -33262,6 +33282,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperDocumentReceptionPageContext": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/DocumentReceptionPageContext"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperDownloadedBrreg": {
       "properties": {
         "value": {
@@ -36302,6 +36330,11 @@
         "reportedBenefits": {
           "description": "The reported benefits",
           "type": "number"
+        },
+        "totalBenefits": {
+          "description": "The total expensed benefits",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -36323,9 +36356,30 @@
           "description": "True if user wants to manually file expenses for the year",
           "type": "boolean"
         },
-        "requireAuditorSignature": {
-          "description": "True if expenses is required to be signed by auditor",
-          "type": "boolean"
+        "sumAdditions": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Sum of additions",
+          "readOnly": true
+        },
+        "sumDeductions": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Sum of deductions",
+          "readOnly": true
+        },
+        "sumExpensedBenefits": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Sum of expensed benefits including employer's payment of subsidy",
+          "readOnly": true
+        },
+        "sumReportedBenefits": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Sum of reported benefits including total amount credited to natural benefits",
+          "readOnly": true
+        },
+        "sumTotalBenefits": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Sum of total benefits",
+          "readOnly": true
         },
         "totalAmountCreditedToNaturalBenefits": {
           "$ref": "#/definitions/TlxNumber",
