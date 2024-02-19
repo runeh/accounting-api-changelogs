@@ -46512,10 +46512,6 @@
           "readOnly": true,
           "type": "integer"
         },
-        "paymentOverviewPilotActive": {
-          "readOnly": true,
-          "type": "boolean"
-        },
         "showAttestation": {
           "readOnly": true,
           "type": "boolean"
