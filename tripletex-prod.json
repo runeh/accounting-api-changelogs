@@ -41592,8 +41592,7 @@
         }
       },
       "required": [
-        "invoiceDate",
-        "invoiceDueDate"
+        "invoiceDate"
       ],
       "type": "object"
     },
@@ -85048,6 +85047,9 @@
       "name": "vatTermSizeSettings"
     },
     {
+      "name": "vismaconnectlogout"
+    },
+    {
       "name": "vismaconnectonboard"
     },
     {
@@ -85127,6 +85129,9 @@
     },
     {
       "name": "yearEndannualAccounts"
+    },
+    {
+      "name": "yearEndpdf"
     },
     {
       "name": "yearEndtaxCalculation"
