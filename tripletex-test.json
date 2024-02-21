@@ -7737,11 +7737,6 @@
           "description": "App secret",
           "type": "string"
         },
-        "mfaCode": {
-          "description": "Optional mfa auth code",
-          "format": "int32",
-          "type": "integer"
-        },
         "password": {
           "description": "Users password",
           "type": "string"
@@ -23841,11 +23836,6 @@
         "expirationDate": {
           "description": "Expiration date for the combined token",
           "type": "string"
-        },
-        "mfaCode": {
-          "description": "Optional mfa auth code",
-          "format": "int32",
-          "type": "integer"
         },
         "password": {
           "description": "Users password",
