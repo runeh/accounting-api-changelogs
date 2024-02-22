@@ -45102,7 +45102,7 @@
           "$ref": "#/definitions/Employee"
         },
         "browser": {
-          "maxLength": 100,
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
