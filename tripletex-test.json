@@ -2988,9 +2988,6 @@
         "canAddAutoPayPayments": {
           "type": "boolean"
         },
-        "hasAutomation2022ToolbarPilot": {
-          "type": "boolean"
-        },
         "hasBookkeepingBeforeAttestationSetting": {
           "type": "boolean"
         },
