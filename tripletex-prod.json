@@ -26192,7 +26192,8 @@
             "PAYROLL_ACCEPTED_FOR_EXECUTION",
             "PAYROLL_FAILED",
             "PAYROLL_EXECUTION_COMPLETED",
-            "AUTHORIZATION_REQUIRED_MULTIPLE_APPROVERS"
+            "AUTHORIZATION_REQUIRED_MULTIPLE_APPROVERS",
+            "REJECTED_FUNDS_NOT_RECEIVED_IN_TIME"
           ],
           "readOnly": true,
           "type": "string"
@@ -48823,7 +48824,8 @@
             "PAYROLL_ACCEPTED_FOR_EXECUTION",
             "PAYROLL_FAILED",
             "PAYROLL_EXECUTION_COMPLETED",
-            "AUTHORIZATION_REQUIRED_MULTIPLE_APPROVERS"
+            "AUTHORIZATION_REQUIRED_MULTIPLE_APPROVERS",
+            "REJECTED_FUNDS_NOT_RECEIVED_IN_TIME"
           ],
           "readOnly": true,
           "type": "string"
