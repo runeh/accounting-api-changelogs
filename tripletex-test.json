@@ -1392,6 +1392,9 @@
             "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "EMPLOYERS_PAYMENT_OF_SUBSIDY",
             "TOTAL_AMOUNT_CREDITED_TO_NATURAL_BENEFITS",
+            "BASIS_FOR_INCREASED_EMPLOYERS_TAX",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_DESCRIPTION",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_EXPENSED_BENEFIT",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -5567,6 +5570,9 @@
             "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "EMPLOYERS_PAYMENT_OF_SUBSIDY",
             "TOTAL_AMOUNT_CREDITED_TO_NATURAL_BENEFITS",
+            "BASIS_FOR_INCREASED_EMPLOYERS_TAX",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_DESCRIPTION",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_EXPENSED_BENEFIT",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -5953,6 +5959,7 @@
             "PROFIT_AND_LOSS",
             "INVENTORIES",
             "CUSTOMER_RECEIVABLES",
+            "SALARY_AND_PENSION",
             "COMMERCIAL_VEHICLE",
             "ACCOMMODATION_AND_RESTAURANT",
             "RESEARCH_AND_DEVELOPMENT",
@@ -8425,6 +8432,7 @@
             "PROFIT_AND_LOSS",
             "INVENTORIES",
             "CUSTOMER_RECEIVABLES",
+            "SALARY_AND_PENSION",
             "COMMERCIAL_VEHICLE",
             "ACCOMMODATION_AND_RESTAURANT",
             "RESEARCH_AND_DEVELOPMENT",
@@ -9498,6 +9506,9 @@
             "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "EMPLOYERS_PAYMENT_OF_SUBSIDY",
             "TOTAL_AMOUNT_CREDITED_TO_NATURAL_BENEFITS",
+            "BASIS_FOR_INCREASED_EMPLOYERS_TAX",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_DESCRIPTION",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_EXPENSED_BENEFIT",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -11685,6 +11696,95 @@
       },
       "type": "object"
     },
+    "GeneralLedgerAccount": {
+      "properties": {
+        "accountId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "accountName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "isComplete": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "postings": {
+          "items": {
+            "$ref": "#/definitions/GeneralLedgerPosting"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GeneralLedgerContext": {
+      "properties": {
+        "companyName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "contextId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "hasDepartments": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasProjects": {
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GeneralLedgerPosting": {
+      "properties": {
+        "amount": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "amountCurrency": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "currency": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "postingDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "postingIds": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "voucherId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherNumber": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GenericData": {
       "properties": {
         "changes": {
@@ -11827,6 +11927,9 @@
             "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "EMPLOYERS_PAYMENT_OF_SUBSIDY",
             "TOTAL_AMOUNT_CREDITED_TO_NATURAL_BENEFITS",
+            "BASIS_FOR_INCREASED_EMPLOYERS_TAX",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_DESCRIPTION",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_EXPENSED_BENEFIT",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -13625,6 +13728,9 @@
             "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "EMPLOYERS_PAYMENT_OF_SUBSIDY",
             "TOTAL_AMOUNT_CREDITED_TO_NATURAL_BENEFITS",
+            "BASIS_FOR_INCREASED_EMPLOYERS_TAX",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_DESCRIPTION",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_EXPENSED_BENEFIT",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -14006,6 +14112,9 @@
             "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "EMPLOYERS_PAYMENT_OF_SUBSIDY",
             "TOTAL_AMOUNT_CREDITED_TO_NATURAL_BENEFITS",
+            "BASIS_FOR_INCREASED_EMPLOYERS_TAX",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_DESCRIPTION",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_EXPENSED_BENEFIT",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -18105,6 +18214,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/GeneralBannerDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseGeneralLedgerAccount": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/GeneralLedgerAccount"
           },
           "readOnly": true,
           "type": "array"
@@ -26831,6 +26973,9 @@
             "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "EMPLOYERS_PAYMENT_OF_SUBSIDY",
             "TOTAL_AMOUNT_CREDITED_TO_NATURAL_BENEFITS",
+            "BASIS_FOR_INCREASED_EMPLOYERS_TAX",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_DESCRIPTION",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_EXPENSED_BENEFIT",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -33472,6 +33617,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperGeneralLedgerContext": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/GeneralLedgerContext"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperGenericData": {
       "properties": {
         "value": {
@@ -36375,9 +36528,17 @@
           },
           "type": "array"
         },
+        "basisForIncreasedEmployersTax": {
+          "$ref": "#/definitions/TlxNumber",
+          "description": "Basis for increased employer's tax"
+        },
         "employersPaymentOfSubsidy": {
           "$ref": "#/definitions/TlxNumber",
           "description": "This year's payment of a subsidy subject to employer's contribution and premium to a pension scheme"
+        },
+        "manualAccount": {
+          "$ref": "#/definitions/SalaryAndPensionManualAccount",
+          "description": "Manual account for salary and pension expenses"
         },
         "manualFilling": {
           "description": "True if user wants to manually file expenses for the year",
@@ -36411,6 +36572,36 @@
         "totalAmountCreditedToNaturalBenefits": {
           "$ref": "#/definitions/TlxNumber",
           "description": "Total amount credited to \"account for benefits in kind\""
+        }
+      },
+      "type": "object"
+    },
+    "SalaryAndPensionManualAccount": {
+      "properties": {
+        "additions": {
+          "description": "The additions",
+          "type": "number"
+        },
+        "deductions": {
+          "description": "The deductions",
+          "type": "number"
+        },
+        "description": {
+          "description": "The description",
+          "type": "string"
+        },
+        "expensedBenefits": {
+          "description": "The expensed benefits",
+          "type": "number"
+        },
+        "reportedBenefits": {
+          "description": "The reported benefits",
+          "type": "number"
+        },
+        "totalBenefits": {
+          "description": "The total expensed benefits",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -40403,6 +40594,9 @@
             "SALARY_AND_PENSION_EXPENSES_MANUAL_FILLING",
             "EMPLOYERS_PAYMENT_OF_SUBSIDY",
             "TOTAL_AMOUNT_CREDITED_TO_NATURAL_BENEFITS",
+            "BASIS_FOR_INCREASED_EMPLOYERS_TAX",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_DESCRIPTION",
+            "SALARY_AND_PENSION_EXPENSES_MANUAL_ACCOUNT_EXPENSED_BENEFIT",
             "OPENING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "CLOSING_BALANCE_RAW_MATERIAL_AND_SEMI_FINISHED_PRODUCTS",
             "OPENING_BALANCE_PRODUCT_UNDER_MANUFACTURING",
@@ -47739,6 +47933,9 @@
           "readOnly": true
         },
         "annualResult": {
+          "type": "number"
+        },
+        "annualResultPreviousYear": {
           "type": "number"
         },
         "asset": {
@@ -84352,6 +84549,9 @@
     },
     {
       "name": "ledger/closeGroup"
+    },
+    {
+      "name": "ledgerinternalgeneral"
     },
     {
       "name": "ledgerpaymentTypeOut"

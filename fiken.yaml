@@ -15,7 +15,7 @@ info:
       1. OAuth2
       2. Personal API tokens
 
-    Third parties that wish to integrate with Fiken on behalf of their customers should use the OAuth2 authorization method. In order to develop OAuth2 applications that integrate with this API you must log into your Fiken account and check the box saying that you are a developer (**Rediger konto → Profil → Andre innstillinger**). This will allow you to create an App by clicking on the "API" tab under Brukerinnstillinger. If you don't have an existing Fiken account you can create a new user and demo company (demoforetak) at no charge. Send an email to <api@fiken.no> to get free access to Fiken for longer than the included 30 day free trial period. 
+    Third parties that wish to integrate with Fiken on behalf of their customers should use the OAuth2 authorization method. In order to develop OAuth2 applications that integrate with this API you must log into your Fiken account and check the box saying that you are a developer (**Rediger konto -> Profil -> Andre innstillinger**). This will allow you to create an App by clicking on the "API" tab under Brukerinnstillinger. If you don't have an existing Fiken account you can create a new user and demo company (demoforetak) at no charge. Send an email to <api@fiken.no> to get free access to Fiken for longer than the included 30 day free trial period. 
 
     Upon creation of the new App you will be provided a Client ID and Client Secret that are needed for the OAuth2 authorization flow.
 
@@ -4283,6 +4283,8 @@ components:
           $ref: '#/components/schemas/attachment'
         project:
           $ref: '#/components/schemas/projectResult'
+        sale:
+          $ref: '#/components/schemas/saleResult'
     draftLineRequest:
       type: object
       required:
