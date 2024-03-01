@@ -11699,11 +11699,15 @@
     "GeneralLedgerAccount": {
       "properties": {
         "accountId": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
         "accountName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "accountNumber": {
           "readOnly": true,
           "type": "string"
         },
@@ -11757,9 +11761,30 @@
           "readOnly": true,
           "type": "string"
         },
+        "departmentIds": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "departmentName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "departmentUrl": {
+          "readOnly": true,
+          "type": "string"
+        },
         "description": {
           "readOnly": true,
           "type": "string"
+        },
+        "descriptionCount": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "postingDate": {
           "readOnly": true,
@@ -11772,6 +11797,22 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "projectIds": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "projectName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "projectUrl": {
+          "readOnly": true,
+          "type": "string"
         },
         "voucherId": {
           "format": "int64",
@@ -41385,7 +41426,7 @@
           "type": "array"
         },
         "bankAccounts": {
-          "description": "[DEPRECATED] List of the bank account numbers for this supplier.  Norwegian bank account numbers only.",
+          "description": "[DEPRECATED] List of the bank account numbers for this supplier. Norwegian bank account numbers only.",
           "items": {
             "type": "string"
           },
