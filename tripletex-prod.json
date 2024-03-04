@@ -1666,6 +1666,7 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
+            "REAL_ESTATE_USE_INCREASED_CALCULATION_FACTOR",
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
@@ -5844,6 +5845,7 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
+            "REAL_ESTATE_USE_INCREASED_CALCULATION_FACTOR",
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
@@ -9780,6 +9782,7 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
+            "REAL_ESTATE_USE_INCREASED_CALCULATION_FACTOR",
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
@@ -9980,6 +9983,10 @@
           "type": "boolean"
         },
         "previousTemplateId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "rootTemplateId": {
           "format": "int64",
           "type": "integer"
         },
@@ -11761,6 +11768,22 @@
           "readOnly": true,
           "type": "string"
         },
+        "customerIds": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "customerName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "customerUrl": {
+          "readOnly": true,
+          "type": "string"
+        },
         "departmentIds": {
           "items": {
             "format": "int64",
@@ -11786,6 +11809,22 @@
           "readOnly": true,
           "type": "integer"
         },
+        "employeeIds": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "employeeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "employeeUrl": {
+          "readOnly": true,
+          "type": "string"
+        },
         "postingDate": {
           "readOnly": true,
           "type": "string"
@@ -11797,6 +11836,22 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "productIds": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "productName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "productUrl": {
+          "readOnly": true,
+          "type": "string"
         },
         "projectIds": {
           "items": {
@@ -11813,6 +11868,35 @@
         "projectUrl": {
           "readOnly": true,
           "type": "string"
+        },
+        "supplierIds": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "supplierName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "supplierUrl": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "vatNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "vatPercentage": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "vatTypeId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         },
         "voucherId": {
           "format": "int64",
@@ -12242,6 +12326,7 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
+            "REAL_ESTATE_USE_INCREASED_CALCULATION_FACTOR",
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
@@ -12319,6 +12404,14 @@
           "type": "array"
         },
         "closingBalanceProfitAndLoss": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "estimatedDiffTaxValue": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "estimatedIncreasedTaxValue": {
           "readOnly": true,
           "type": "number"
         },
@@ -14043,6 +14136,7 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
+            "REAL_ESTATE_USE_INCREASED_CALCULATION_FACTOR",
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
@@ -14427,6 +14521,7 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
+            "REAL_ESTATE_USE_INCREASED_CALCULATION_FACTOR",
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
@@ -27288,6 +27383,7 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
+            "REAL_ESTATE_USE_INCREASED_CALCULATION_FACTOR",
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
@@ -30148,6 +30244,22 @@
         },
         "defaultProjectInvoicingComment": {
           "type": "string"
+        },
+        "dynamicControlFormIdsRequiredForHourTracking": {
+          "description": "Dynamic control form ids required for hour tracking",
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "dynamicControlFormIdsRequiredForInvoicing": {
+          "description": "Dynamic control form ids required for invoicing",
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
         },
         "emailOnDocuments": {
           "type": "string"
@@ -40909,6 +41021,7 @@
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_AREA",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_CONSTRUCTION_YEAR",
             "REAL_ESTATE_MULTI_UNIT_BUILDING_UNIT_VALUE",
+            "REAL_ESTATE_USE_INCREASED_CALCULATION_FACTOR",
             "YEARLY_DIVIDEND",
             "DIVIDEND_CREDIT",
             "DIVIDEND_SECURITY_OFFERED",
@@ -42607,6 +42720,10 @@
           },
           "type": "array"
         },
+        "correctedAssetValue": {
+          "readOnly": true,
+          "type": "number"
+        },
         "groupContributionReceived": {
           "readOnly": true,
           "type": "number"
@@ -42640,6 +42757,10 @@
             "$ref": "#/definitions/GenericData"
           },
           "type": "array"
+        },
+        "reductionOfAssetValue": {
+          "readOnly": true,
+          "type": "number"
         },
         "showConcernRelation": {
           "readOnly": true,
