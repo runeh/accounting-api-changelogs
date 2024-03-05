@@ -11805,7 +11805,7 @@
           "type": "string"
         },
         "descriptionCount": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -24233,6 +24233,15 @@
         "userIsAuthCustomerInfo": {
           "type": "boolean"
         },
+        "userIsAuthDirectRemitAutopayAdmin": {
+          "type": "boolean"
+        },
+        "userIsAuthDirectRemitAutopayLight": {
+          "type": "boolean"
+        },
+        "userIsAuthDirectRemitZtl": {
+          "type": "boolean"
+        },
         "userIsAuthEmployeeInfo": {
           "type": "boolean"
         },
@@ -32712,6 +32721,20 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceGroupRelation": {
+      "properties": {
+        "resourceGroupIds": {
+          "type": "string"
+        },
+        "resourceIds": {
+          "type": "string"
+        },
+        "resourceProductIds": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -49874,7 +49897,7 @@
             "type": "boolean"
           },
           {
-            "description": "Start date for asset registry. Should always be on the last day of the previous year.",
+            "description": "Start date for asset registry. Should always be on the first day of the year.",
             "in": "query",
             "name": "startDate",
             "required": true,
@@ -66818,14 +66841,20 @@
     "/product/groupRelation/list": {
       "delete": {
         "description": "",
-        "operationId": "ProductGroupRelationList_deleteByIds",
+        "operationId": "ProductGroupRelationList_deleteList",
         "parameters": [
           {
-            "description": "ID of the elements",
-            "in": "query",
-            "name": "ids",
-            "required": true,
-            "type": "string"
+            "description": "JSON representing a list of new objects to be created. Should not have ID and version set.",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "format": "int64",
+                "type": "integer"
+              },
+              "type": "array"
+            }
           }
         ],
         "responses": {
