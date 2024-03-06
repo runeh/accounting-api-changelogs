@@ -4542,6 +4542,23 @@
       },
       "type": "object"
     },
+    "BulkUpdateDocumentItemReceiver": {
+      "properties": {
+        "messageIds": {
+          "description": "List of messageIds to change the receiver",
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "receiverId": {
+          "description": "Receiver Id",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "CalloutDTO": {
       "properties": {
         "id": {
@@ -9982,6 +9999,9 @@
         "isArchived": {
           "type": "boolean"
         },
+        "isNelfo": {
+          "type": "boolean"
+        },
         "previousTemplateId": {
           "format": "int64",
           "type": "integer"
@@ -11763,6 +11783,15 @@
         "amountCurrency": {
           "$ref": "#/definitions/TlxNumber",
           "readOnly": true
+        },
+        "amountVat": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "closeGroupId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         },
         "currency": {
           "readOnly": true,
@@ -42646,6 +42675,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "taxCalculatedOnWealth": {
+          "readOnly": true,
+          "type": "number"
+        },
         "taxDiff": {
           "readOnly": true,
           "type": "number"
@@ -42686,11 +42719,19 @@
           "readOnly": true,
           "type": "number"
         },
+        "totalTaxCalculated": {
+          "readOnly": true,
+          "type": "number"
+        },
         "totalTaxSetAside": {
           "readOnly": true,
           "type": "number"
         },
         "totalTaxToSetAsside": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "totalWealthDistribution": {
           "readOnly": true,
           "type": "number"
         }
