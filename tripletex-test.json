@@ -1483,7 +1483,6 @@
             "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
-            "SET_ACCOUNTANT_REVISED",
             "IS_TAXABLE",
             "AUDITING_OBLIGATION",
             "VALIDATION_ONLY_ON_SUBMIT",
@@ -1533,6 +1532,7 @@
             "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
+            "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -5679,7 +5679,6 @@
             "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
-            "SET_ACCOUNTANT_REVISED",
             "IS_TAXABLE",
             "AUDITING_OBLIGATION",
             "VALIDATION_ONLY_ON_SUBMIT",
@@ -5729,6 +5728,7 @@
             "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
+            "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -9616,7 +9616,6 @@
             "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
-            "SET_ACCOUNTANT_REVISED",
             "IS_TAXABLE",
             "AUDITING_OBLIGATION",
             "VALIDATION_ONLY_ON_SUBMIT",
@@ -9666,6 +9665,7 @@
             "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
+            "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -11788,10 +11788,13 @@
           "$ref": "#/definitions/TlxNumber",
           "readOnly": true
         },
-        "closeGroupId": {
-          "format": "int64",
+        "closeGroupIds": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
           "readOnly": true,
-          "type": "integer"
+          "type": "array"
         },
         "currency": {
           "readOnly": true,
@@ -11853,6 +11856,10 @@
         "employeeUrl": {
           "readOnly": true,
           "type": "string"
+        },
+        "isClosed": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "postingDate": {
           "readOnly": true,
@@ -12172,7 +12179,6 @@
             "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
-            "SET_ACCOUNTANT_REVISED",
             "IS_TAXABLE",
             "AUDITING_OBLIGATION",
             "VALIDATION_ONLY_ON_SUBMIT",
@@ -12222,6 +12228,7 @@
             "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
+            "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -13982,7 +13989,6 @@
             "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
-            "SET_ACCOUNTANT_REVISED",
             "IS_TAXABLE",
             "AUDITING_OBLIGATION",
             "VALIDATION_ONLY_ON_SUBMIT",
@@ -14032,6 +14038,7 @@
             "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
+            "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -14367,7 +14374,6 @@
             "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
-            "SET_ACCOUNTANT_REVISED",
             "IS_TAXABLE",
             "AUDITING_OBLIGATION",
             "VALIDATION_ONLY_ON_SUBMIT",
@@ -14417,6 +14423,7 @@
             "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
+            "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -21526,6 +21533,39 @@
       },
       "type": "object"
     },
+    "ListResponseSalaryAndPensionAccountInfo": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SalaryAndPensionAccountInfo"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseSalarySpecification": {
       "properties": {
         "count": {
@@ -27238,7 +27278,6 @@
             "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
-            "SET_ACCOUNTANT_REVISED",
             "IS_TAXABLE",
             "AUDITING_OBLIGATION",
             "VALIDATION_ONLY_ON_SUBMIT",
@@ -27288,6 +27327,7 @@
             "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
+            "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -35213,10 +35253,18 @@
       },
       "type": "object"
     },
-    "ResponseWrapperSalaryAndPensionExpenses": {
+    "ResponseWrapperSalaryAndPensionManualAccount": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/SalaryAndPensionExpenses"
+          "$ref": "#/definitions/SalaryAndPensionManualAccount"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperSalaryAndPensionSums": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/SalaryAndPensionSums"
         }
       },
       "type": "object"
@@ -36687,96 +36735,36 @@
       ],
       "type": "object"
     },
-    "SalaryAndPensionAccount": {
+    "SalaryAndPensionAccountInfo": {
       "properties": {
         "account": {
           "$ref": "#/definitions/Account",
-          "description": "The account",
           "readOnly": true
         },
         "additions": {
-          "description": "The additions",
+          "readOnly": true,
+          "type": "number"
+        },
+        "benefitSubjectToEmployerTax": {
+          "readOnly": true,
           "type": "number"
         },
         "deductions": {
-          "description": "The deductions",
-          "type": "number"
-        },
-        "expensedBenefits": {
-          "description": "The expensed benefits",
+          "readOnly": true,
           "type": "number"
         },
         "groupId": {
-          "description": "The group id",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
-        "reportedBenefits": {
-          "description": "The reported benefits",
-          "type": "number"
-        },
-        "totalBenefits": {
-          "description": "The total expensed benefits",
+        "outgoingBalance": {
           "readOnly": true,
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "SalaryAndPensionExpenses": {
-      "properties": {
-        "accounts": {
-          "description": "List of salary and pension accounts",
-          "items": {
-            "$ref": "#/definitions/SalaryAndPensionAccount"
-          },
-          "type": "array"
         },
-        "basisForIncreasedEmployersTax": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Basis for increased employer's tax"
-        },
-        "employersPaymentOfSubsidy": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "This year's payment of a subsidy subject to employer's contribution and premium to a pension scheme"
-        },
-        "manualAccount": {
-          "$ref": "#/definitions/SalaryAndPensionManualAccount",
-          "description": "Manual account for salary and pension expenses"
-        },
-        "manualFilling": {
-          "description": "True if user wants to manually file expenses for the year",
-          "type": "boolean"
-        },
-        "sumAdditions": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Sum of additions",
-          "readOnly": true
-        },
-        "sumDeductions": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Sum of deductions",
-          "readOnly": true
-        },
-        "sumExpensedBenefits": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Sum of expensed benefits including employer's payment of subsidy",
-          "readOnly": true
-        },
-        "sumReportedBenefits": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Sum of reported benefits including total amount credited to natural benefits",
-          "readOnly": true
-        },
-        "sumTotalBenefits": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Sum of total benefits",
-          "readOnly": true
-        },
-        "totalAmountCreditedToNaturalBenefits": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Total amount credited to \"account for benefits in kind\""
+        "totalNotifiableBenefits": {
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -36784,27 +36772,56 @@
     "SalaryAndPensionManualAccount": {
       "properties": {
         "additions": {
-          "description": "The additions",
+          "readOnly": true,
+          "type": "number"
+        },
+        "benefitSubjectToEmployerTax": {
+          "readOnly": true,
           "type": "number"
         },
         "deductions": {
-          "description": "The deductions",
+          "readOnly": true,
           "type": "number"
         },
         "description": {
-          "description": "The description",
+          "readOnly": true,
           "type": "string"
         },
-        "expensedBenefits": {
-          "description": "The expensed benefits",
+        "groupId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "outgoingBalance": {
+          "readOnly": true,
           "type": "number"
         },
-        "reportedBenefits": {
-          "description": "The reported benefits",
+        "totalNotifiableBenefits": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "SalaryAndPensionSums": {
+      "properties": {
+        "additions": {
+          "readOnly": true,
           "type": "number"
         },
-        "totalBenefits": {
-          "description": "The total expensed benefits",
+        "benefitSubjectToEmployerTax": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "deductions": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "outgoingBalance": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "totalNotifiableBenefits": {
           "readOnly": true,
           "type": "number"
         }
@@ -40890,7 +40907,6 @@
             "SHOW_SALARY_AND_PENSION_EXPENSES",
             "TRANSFERRED_BY",
             "TRANSFERRED_DATE",
-            "SET_ACCOUNTANT_REVISED",
             "IS_TAXABLE",
             "AUDITING_OBLIGATION",
             "VALIDATION_ONLY_ON_SUBMIT",
@@ -40940,6 +40956,7 @@
             "YEAR_END_DOCUMENTATION_ANNUAL_REPORT",
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
+            "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -65217,6 +65234,57 @@
         "summary": "[BETA] Put order line",
         "tags": [
           "order/orderline"
+        ]
+      }
+    },
+    "/order/sendInvoicePreview/{orderId}": {
+      "put": {
+        "description": "",
+        "operationId": "OrderSendInvoicePreview_postInvoicePreview",
+        "parameters": [
+          {
+            "description": "orderId",
+            "format": "int64",
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "email",
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "message",
+            "in": "query",
+            "name": "message",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "saveAsDefault",
+            "in": "query",
+            "name": "saveAsDefault",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Send Invoice Preview to customer by email.",
+        "tags": [
+          "order"
         ]
       }
     },
