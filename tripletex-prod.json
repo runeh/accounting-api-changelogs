@@ -1061,6 +1061,10 @@
     },
     "Address": {
       "properties": {
+        "addressAsString": {
+          "readOnly": true,
+          "type": "string"
+        },
         "addressLine1": {
           "maxLength": 255,
           "minLength": 0,
@@ -6804,6 +6808,38 @@
       },
       "type": "object"
     },
+    "CompanyEmployeeRate": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "hourCostRate": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "rate": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "CompanyEvent": {
       "properties": {
         "date": {
@@ -7730,7 +7766,16 @@
             "DIVISION",
             "STATUS",
             "PREVIOUS_SALARIES",
-            "NUMBER"
+            "NUMBER",
+            "EMAIL",
+            "ADDRESS",
+            "PHONE",
+            "PERCENTOFEMPLOYMENT",
+            "YEARLYSALARY",
+            "MONTHLYSALARY",
+            "HOURLYSALARY",
+            "RATE",
+            "HOUR_COST_RATE"
           ],
           "type": "string"
         },
@@ -8618,6 +8663,10 @@
     },
     "DeliveryAddress": {
       "properties": {
+        "addressAsString": {
+          "readOnly": true,
+          "type": "string"
+        },
         "addressLine1": {
           "maxLength": 255,
           "minLength": 0,
@@ -10383,6 +10432,119 @@
       },
       "type": "object"
     },
+    "EmployeeOverview": {
+      "properties": {
+        "address": {
+          "$ref": "#/definitions/Address",
+          "readOnly": true
+        },
+        "bankAccountNumber": {
+          "maxLength": 100,
+          "type": "string"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "companyId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "currentCompanyEmployeeRate": {
+          "$ref": "#/definitions/CompanyEmployeeRate",
+          "readOnly": true
+        },
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "deliveryMethodWageSlipString": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "department": {
+          "$ref": "#/definitions/Department",
+          "readOnly": true
+        },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "email": {
+          "format": "email",
+          "maxLength": 100,
+          "type": "string"
+        },
+        "employeeCategory": {
+          "$ref": "#/definitions/EmployeeCategory"
+        },
+        "firstName": {
+          "maxLength": 100,
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "isContact": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "lastActiveEmployment": {
+          "$ref": "#/definitions/Employment",
+          "readOnly": true
+        },
+        "lastName": {
+          "maxLength": 100,
+          "minLength": 1,
+          "type": "string"
+        },
+        "nationalIdentityNumber": {
+          "maxLength": 100,
+          "type": "string"
+        },
+        "number": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "phoneNumberHome": {
+          "maxLength": 100,
+          "type": "string"
+        },
+        "phoneNumberMobile": {
+          "maxLength": 100,
+          "readOnly": true,
+          "type": "string"
+        },
+        "phoneNumberWork": {
+          "maxLength": 100,
+          "type": "string"
+        },
+        "pictureId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "firstName",
+        "lastName"
+      ],
+      "type": "object"
+    },
     "EmployeePreferences": {
       "properties": {
         "changes": {
@@ -10676,6 +10838,10 @@
         "lastSalaryChangeDate": {
           "type": "string"
         },
+        "latestSalary": {
+          "$ref": "#/definitions/EmploymentDetails",
+          "readOnly": true
+        },
         "noEmploymentRelationship": {
           "description": "Activate pensions and other benefits with no employment relationship.",
           "type": "boolean"
@@ -10758,6 +10924,10 @@
         },
         "maritimeEmployment": {
           "$ref": "#/definitions/MaritimeEmployment"
+        },
+        "monthlySalary": {
+          "readOnly": true,
+          "type": "number"
         },
         "occupationCode": {
           "$ref": "#/definitions/OccupationCode",
@@ -11872,6 +12042,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "postingsKey": {
+          "readOnly": true,
+          "type": "string"
         },
         "productIds": {
           "items": {
@@ -15710,6 +15884,10 @@
     },
     "LegacyAddress": {
       "properties": {
+        "addressAsString": {
+          "readOnly": true,
+          "type": "string"
+        },
         "addressLine1": {
           "maxLength": 255,
           "minLength": 0,
@@ -18089,6 +18267,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/EmployeeFilters"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseEmployeeOverview": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/EmployeeOverview"
           },
           "readOnly": true,
           "type": "array"
@@ -30917,6 +31128,10 @@
     },
     "PurchaseOrderAddress": {
       "properties": {
+        "addressAsString": {
+          "readOnly": true,
+          "type": "string"
+        },
         "addressLine1": {
           "maxLength": 255,
           "minLength": 0,
@@ -33415,6 +33630,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CompanyChooserDTO"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperCompanyEmployeeRate": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CompanyEmployeeRate"
         }
       },
       "type": "object"
@@ -74637,6 +74860,46 @@
         ]
       }
     },
+    "/salary/company-employee-rate/{id}": {
+      "get": {
+        "description": "",
+        "operationId": "SalaryCompany-employee-rate_get",
+        "parameters": [
+          {
+            "description": "Element ID",
+            "format": "int64",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperCompanyEmployeeRate"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get companyEmployeeRate by ID.",
+        "tags": [
+          "salarycompany-employee-rate"
+        ]
+      }
+    },
     "/salary/compilation": {
       "get": {
         "description": "",
@@ -85245,6 +85508,12 @@
     },
     {
       "name": "salarytskinternalamelding"
+    },
+    {
+      "name": "salarycompany-employee-rate"
+    },
+    {
+      "name": "salaryemployeeoverview"
     },
     {
       "name": "salarytskinternalmeta"
