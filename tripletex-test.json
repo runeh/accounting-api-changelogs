@@ -1537,6 +1537,7 @@
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
+            "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -1677,7 +1678,15 @@
             "DIVIDEND_DISPOSITIONS",
             "PARTICIPANT_NAME",
             "PARTICIPANT_NUMBER",
-            "PARTICIPANT_OWNERSHIP"
+            "PARTICIPANT_OWNERSHIP",
+            "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
+            "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_SALES",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
           ],
           "readOnly": true,
           "type": "string"
@@ -5398,7 +5407,8 @@
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
             "PARTICIPANT",
-            "SALARY_AND_PENSION_EXPENSES"
+            "SALARY_AND_PENSION_EXPENSES",
+            "COOPERATIVE_ENTERPRISE"
           ],
           "readOnly": true,
           "type": "string"
@@ -5759,6 +5769,7 @@
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
+            "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -5899,7 +5910,15 @@
             "DIVIDEND_DISPOSITIONS",
             "PARTICIPANT_NAME",
             "PARTICIPANT_NUMBER",
-            "PARTICIPANT_OWNERSHIP"
+            "PARTICIPANT_OWNERSHIP",
+            "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
+            "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_SALES",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
           ],
           "readOnly": true,
           "type": "string"
@@ -7447,6 +7466,32 @@
         },
         "type": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CooperativeEnterpriseOverview": {
+      "properties": {
+        "posts": {
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "shareOfSales": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "totalRetroactivePayment": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "totalSales": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
         }
       },
       "type": "object"
@@ -9520,7 +9565,8 @@
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
             "PARTICIPANT",
-            "SALARY_AND_PENSION_EXPENSES"
+            "SALARY_AND_PENSION_EXPENSES",
+            "COOPERATIVE_ENTERPRISE"
           ],
           "type": "string"
         },
@@ -9756,6 +9802,7 @@
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
+            "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -9896,7 +9943,15 @@
             "DIVIDEND_DISPOSITIONS",
             "PARTICIPANT_NAME",
             "PARTICIPANT_NUMBER",
-            "PARTICIPANT_OWNERSHIP"
+            "PARTICIPANT_OWNERSHIP",
+            "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
+            "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_SALES",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
           ],
           "type": "string"
         },
@@ -11986,6 +12041,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "hasOnlyAccessToOwnDepartment": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "hasProducts": {
           "readOnly": true,
           "type": "boolean"
@@ -11993,6 +12052,11 @@
         "hasProjects": {
           "readOnly": true,
           "type": "boolean"
+        },
+        "loginEmployeeDepartmentId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -12224,7 +12288,8 @@
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
             "PARTICIPANT",
-            "SALARY_AND_PENSION_EXPENSES"
+            "SALARY_AND_PENSION_EXPENSES",
+            "COOPERATIVE_ENTERPRISE"
           ],
           "type": "string"
         },
@@ -12460,6 +12525,7 @@
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
+            "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -12600,7 +12666,15 @@
             "DIVIDEND_DISPOSITIONS",
             "PARTICIPANT_NAME",
             "PARTICIPANT_NUMBER",
-            "PARTICIPANT_OWNERSHIP"
+            "PARTICIPANT_OWNERSHIP",
+            "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
+            "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_SALES",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
           ],
           "type": "string"
         },
@@ -12706,7 +12780,8 @@
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
             "PARTICIPANT",
-            "SALARY_AND_PENSION_EXPENSES"
+            "SALARY_AND_PENSION_EXPENSES",
+            "COOPERATIVE_ENTERPRISE"
           ],
           "readOnly": true,
           "type": "string"
@@ -14270,6 +14345,7 @@
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
+            "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -14410,7 +14486,15 @@
             "DIVIDEND_DISPOSITIONS",
             "PARTICIPANT_NAME",
             "PARTICIPANT_NUMBER",
-            "PARTICIPANT_OWNERSHIP"
+            "PARTICIPANT_OWNERSHIP",
+            "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
+            "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_SALES",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
           ],
           "readOnly": true,
           "type": "string"
@@ -14655,6 +14739,7 @@
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
+            "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -14795,7 +14880,15 @@
             "DIVIDEND_DISPOSITIONS",
             "PARTICIPANT_NAME",
             "PARTICIPANT_NUMBER",
-            "PARTICIPANT_OWNERSHIP"
+            "PARTICIPANT_OWNERSHIP",
+            "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
+            "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_SALES",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
           ],
           "readOnly": true,
           "type": "string"
@@ -18720,6 +18813,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/GeneralLedgerAccount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseGeneralLedgerPosting": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/GeneralLedgerPosting"
           },
           "readOnly": true,
           "type": "array"
@@ -25015,7 +25141,8 @@
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
             "PARTICIPANT",
-            "SALARY_AND_PENSION_EXPENSES"
+            "SALARY_AND_PENSION_EXPENSES",
+            "COOPERATIVE_ENTERPRISE"
           ],
           "readOnly": true,
           "type": "string"
@@ -25086,6 +25213,9 @@
         },
         "discountsNotReinstated": {
           "type": "boolean"
+        },
+        "mikroVoucherModule": {
+          "type": "string"
         },
         "readOnlyPackagePrice": {
           "$ref": "#/definitions/TlxNumber"
@@ -25682,19 +25812,12 @@
         "orgNumber": {
           "type": "string"
         },
-        "packageId": {
-          "format": "int32",
-          "type": "integer"
-        },
         "postalCode": {
           "type": "string"
         },
         "registrationDate": {
           "format": "date",
           "type": "string"
-        },
-        "salaryModule": {
-          "type": "boolean"
         },
         "startDateMunicipality": {
           "format": "date",
@@ -27633,6 +27756,7 @@
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
+            "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -27773,7 +27897,15 @@
             "DIVIDEND_DISPOSITIONS",
             "PARTICIPANT_NAME",
             "PARTICIPANT_NUMBER",
-            "PARTICIPANT_OWNERSHIP"
+            "PARTICIPANT_OWNERSHIP",
+            "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
+            "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_SALES",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
           ],
           "readOnly": true,
           "type": "string"
@@ -33814,6 +33946,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ContactInfo"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperCooperativeEnterpriseOverview": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CooperativeEnterpriseOverview"
         }
       },
       "type": "object"
@@ -41029,7 +41169,8 @@
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
             "PARTICIPANT",
-            "SALARY_AND_PENSION_EXPENSES"
+            "SALARY_AND_PENSION_EXPENSES",
+            "COOPERATIVE_ENTERPRISE"
           ],
           "type": "string"
         },
@@ -41280,6 +41421,7 @@
             "YEAR_END_DOCUMENTATION_CASH_FLOW_STATEMENT",
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
+            "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -41420,7 +41562,15 @@
             "DIVIDEND_DISPOSITIONS",
             "PARTICIPANT_NAME",
             "PARTICIPANT_NUMBER",
-            "PARTICIPANT_OWNERSHIP"
+            "PARTICIPANT_OWNERSHIP",
+            "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
+            "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_SALES",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
           ],
           "type": "string"
         },
@@ -45779,7 +45929,8 @@
             "SHARES_AND_SECURITIES",
             "REAL_ESTATE",
             "PARTICIPANT",
-            "SALARY_AND_PENSION_EXPENSES"
+            "SALARY_AND_PENSION_EXPENSES",
+            "COOPERATIVE_ENTERPRISE"
           ],
           "readOnly": true,
           "type": "string"

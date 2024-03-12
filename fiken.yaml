@@ -805,6 +805,21 @@ paths:
                 type: string
                 format: uri
               description: Full URL of updated contact
+    delete:
+      description: Deletes the contact if possible (no associated journal entries/sales/invoices/etc). 
+        If not possible to delete will set the contact to inactive
+      operationId: deleteContact
+      tags:
+        - contacts
+      responses:
+        '204':
+          description: Contact deleted successfully.
+        '200':
+          description: Contact set to inactive because it has associated journal entries/sales/invoices/etc.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/contact'
 
   /companies/{companySlug}/contacts/{contactId}/attachments:
     parameters:
@@ -5162,6 +5177,7 @@ components:
         transactionId:
           type: integer
           format: int64
+          readOnly: true
         offsetTransactionId:
           type: integer
           format: int64
@@ -5909,6 +5925,7 @@ components:
           type: integer
           format: int64
           example: 3458156
+          readOnly: true
         saleNumber:
           type: string
           example: 'XK455L'
@@ -6095,6 +6112,7 @@ components:
           type: integer
           format: int64
           example: 734083065
+          readOnly: true
         createdDate:
           type: string
           format: date
