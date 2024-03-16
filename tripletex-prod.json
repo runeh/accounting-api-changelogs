@@ -16213,6 +16213,14 @@
       },
       "type": "object"
     },
+    "LicenseStatusResponseDTO": {
+      "properties": {
+        "hasSigned": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "Link": {
       "properties": {
         "href": {
@@ -28441,23 +28449,19 @@
         },
         "quantityAmount1": {
           "description": "The quantity amount associated with the posting",
-          "readOnly": true,
           "type": "number"
         },
         "quantityAmount2": {
           "description": "The quantity amount associated with the posting",
-          "readOnly": true,
           "type": "number"
         },
         "quantityType1": {
           "$ref": "#/definitions/ProductUnit",
-          "description": "The quantity type associated with the posting",
-          "readOnly": true
+          "description": "The quantity type associated with the posting"
         },
         "quantityType2": {
           "$ref": "#/definitions/ProductUnit",
-          "description": "The quantity type associated with the posting",
-          "readOnly": true
+          "description": "The quantity type associated with the posting"
         },
         "row": {
           "format": "int32",
@@ -34619,6 +34623,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/LegacyProfileDTO"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperLicenseStatusResponseDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/LicenseStatusResponseDTO"
         }
       },
       "type": "object"
