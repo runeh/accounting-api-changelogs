@@ -1538,6 +1538,7 @@
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
+            "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -1691,7 +1692,25 @@
             "COOPERATIVE_ENTERPRISE_OTHER_SALES",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
-            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
+            "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
+            "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_SHAREHOLDER_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_INCOME",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_EXPENSES",
+            "OTHER_CIRCUMSTANCES_LOAN_BALANCE",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_RENTAL_WITHDRAWAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_RENTAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_ASSET_TYPE",
+            "OTHER_CIRCUMSTANCES_PRICING_METHOD",
+            "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
           ],
           "readOnly": true,
           "type": "string"
@@ -2813,6 +2832,10 @@
           "type": "boolean"
         },
         "endDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "establishedDate": {
           "readOnly": true,
           "type": "string"
         },
@@ -5413,7 +5436,8 @@
             "REAL_ESTATE",
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
-            "COOPERATIVE_ENTERPRISE"
+            "COOPERATIVE_ENTERPRISE",
+            "OTHER_CIRCUMSTANCES"
           ],
           "readOnly": true,
           "type": "string"
@@ -5775,6 +5799,7 @@
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
+            "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -5928,7 +5953,25 @@
             "COOPERATIVE_ENTERPRISE_OTHER_SALES",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
-            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
+            "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
+            "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_SHAREHOLDER_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_INCOME",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_EXPENSES",
+            "OTHER_CIRCUMSTANCES_LOAN_BALANCE",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_RENTAL_WITHDRAWAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_RENTAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_ASSET_TYPE",
+            "OTHER_CIRCUMSTANCES_PRICING_METHOD",
+            "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
           ],
           "readOnly": true,
           "type": "string"
@@ -5949,6 +5992,29 @@
     },
     "ChatResponseDTO": {
       "properties": {
+        "confidence": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "errorCode": {
+          "enum": [
+            "NO_ERROR",
+            "OTHER_ERROR",
+            "RATE_LIMIT_EXCEEDED",
+            "NO_ENVIRONMENT",
+            "NO_ACCESS",
+            "SUPPORT_AI_SERVER_UNAVAILABLE",
+            "SUPPORT_AI_SERVER_INVALID_FORMAT",
+            "CHUNK_HAS_ERROR",
+            "ILLEGAL_USER_INPUT",
+            "STICOS_SERVER_UNAVAILABLE",
+            "STICOS_UNSUCCESSFUL_RESPONSE",
+            "STICOS_INVALID_RESPONSE",
+            "STICOS_PARSE_ERROR",
+            "STICOS_DATABASE_ERROR"
+          ],
+          "type": "string"
+        },
         "feedback": {
           "enum": [
             "NO_FEEDBACK",
@@ -5956,6 +6022,10 @@
             "THUMBS_DOWN"
           ],
           "type": "string"
+        },
+        "flag": {
+          "format": "int32",
+          "type": "integer"
         },
         "followUpQuestions": {
           "items": {
@@ -5974,7 +6044,7 @@
         },
         "links": {
           "items": {
-            "type": "string"
+            "$ref": "#/definitions/SticosResponseLink"
           },
           "type": "array"
         },
@@ -5983,6 +6053,10 @@
           "type": "integer"
         },
         "prompt": {
+          "type": "string"
+        },
+        "promptTimestamp": {
+          "format": "date-time",
           "type": "string"
         },
         "source": {
@@ -9547,7 +9621,9 @@
             "CASH_REGISTER_SYSTEM",
             "PRIVATE_WITHDRAWAL_OF_GOODS",
             "ENTERTAINMENT",
-            "MULTI_UNIT_BUILDING_UNIT"
+            "MULTI_UNIT_BUILDING_UNIT",
+            "RENTAL_WITHDRAWAL_SALE_COMPANY",
+            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER"
           ],
           "type": "string"
         },
@@ -9576,7 +9652,8 @@
             "REAL_ESTATE",
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
-            "COOPERATIVE_ENTERPRISE"
+            "COOPERATIVE_ENTERPRISE",
+            "OTHER_CIRCUMSTANCES"
           ],
           "type": "string"
         },
@@ -9813,6 +9890,7 @@
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
+            "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -9966,7 +10044,25 @@
             "COOPERATIVE_ENTERPRISE_OTHER_SALES",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
-            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
+            "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
+            "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_SHAREHOLDER_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_INCOME",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_EXPENSES",
+            "OTHER_CIRCUMSTANCES_LOAN_BALANCE",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_RENTAL_WITHDRAWAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_RENTAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_ASSET_TYPE",
+            "OTHER_CIRCUMSTANCES_PRICING_METHOD",
+            "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
           ],
           "type": "string"
         },
@@ -11265,7 +11361,9 @@
             "REAL_ESTATE_PRIMARY_SECONDARY_DWELLING_TYPE",
             "REAL_ESTATE_ASSOCIATION_OR_COOPERATIVE_DWELLING_OWNERSHIP_TYPE",
             "FINANCIAL_PRODUCT",
-            "TRANSACTION_TYPE"
+            "TRANSACTION_TYPE",
+            "ASSET_TYPE",
+            "PRICING_METHOD"
           ],
           "readOnly": true,
           "type": "string"
@@ -12275,7 +12373,9 @@
             "CASH_REGISTER_SYSTEM",
             "PRIVATE_WITHDRAWAL_OF_GOODS",
             "ENTERTAINMENT",
-            "MULTI_UNIT_BUILDING_UNIT"
+            "MULTI_UNIT_BUILDING_UNIT",
+            "RENTAL_WITHDRAWAL_SALE_COMPANY",
+            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER"
           ],
           "type": "string"
         },
@@ -12304,7 +12404,8 @@
             "REAL_ESTATE",
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
-            "COOPERATIVE_ENTERPRISE"
+            "COOPERATIVE_ENTERPRISE",
+            "OTHER_CIRCUMSTANCES"
           ],
           "type": "string"
         },
@@ -12541,6 +12642,7 @@
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
+            "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -12694,7 +12796,25 @@
             "COOPERATIVE_ENTERPRISE_OTHER_SALES",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
-            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
+            "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
+            "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_SHAREHOLDER_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_INCOME",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_EXPENSES",
+            "OTHER_CIRCUMSTANCES_LOAN_BALANCE",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_RENTAL_WITHDRAWAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_RENTAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_ASSET_TYPE",
+            "OTHER_CIRCUMSTANCES_PRICING_METHOD",
+            "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
           ],
           "type": "string"
         },
@@ -12801,7 +12921,8 @@
             "REAL_ESTATE",
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
-            "COOPERATIVE_ENTERPRISE"
+            "COOPERATIVE_ENTERPRISE",
+            "OTHER_CIRCUMSTANCES"
           ],
           "readOnly": true,
           "type": "string"
@@ -14366,6 +14487,7 @@
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
+            "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -14519,7 +14641,25 @@
             "COOPERATIVE_ENTERPRISE_OTHER_SALES",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
-            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
+            "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
+            "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_SHAREHOLDER_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_INCOME",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_EXPENSES",
+            "OTHER_CIRCUMSTANCES_LOAN_BALANCE",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_RENTAL_WITHDRAWAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_RENTAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_ASSET_TYPE",
+            "OTHER_CIRCUMSTANCES_PRICING_METHOD",
+            "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
           ],
           "readOnly": true,
           "type": "string"
@@ -14765,6 +14905,7 @@
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
+            "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -14918,7 +15059,25 @@
             "COOPERATIVE_ENTERPRISE_OTHER_SALES",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
-            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
+            "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
+            "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_SHAREHOLDER_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_INCOME",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_EXPENSES",
+            "OTHER_CIRCUMSTANCES_LOAN_BALANCE",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_RENTAL_WITHDRAWAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_RENTAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_ASSET_TYPE",
+            "OTHER_CIRCUMSTANCES_PRICING_METHOD",
+            "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
           ],
           "readOnly": true,
           "type": "string"
@@ -25180,7 +25339,8 @@
             "REAL_ESTATE",
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
-            "COOPERATIVE_ENTERPRISE"
+            "COOPERATIVE_ENTERPRISE",
+            "OTHER_CIRCUMSTANCES"
           ],
           "readOnly": true,
           "type": "string"
@@ -26503,6 +26663,32 @@
       },
       "type": "object"
     },
+    "OtherCircumstancesOverview": {
+      "properties": {
+        "assetsCompanyPosts": {
+          "items": {
+            "$ref": "#/definitions/RealizationAndRentalOfAssets"
+          },
+          "type": "array"
+        },
+        "assetsShareholderPosts": {
+          "items": {
+            "$ref": "#/definitions/RealizationAndRentalOfAssets"
+          },
+          "type": "array"
+        },
+        "posts": {
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
     "OutgoingStock": {
       "properties": {
         "changes": {
@@ -27795,6 +27981,7 @@
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
+            "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -27948,7 +28135,25 @@
             "COOPERATIVE_ENTERPRISE_OTHER_SALES",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
-            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
+            "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
+            "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_SHAREHOLDER_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_INCOME",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_EXPENSES",
+            "OTHER_CIRCUMSTANCES_LOAN_BALANCE",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_RENTAL_WITHDRAWAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_RENTAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_ASSET_TYPE",
+            "OTHER_CIRCUMSTANCES_PRICING_METHOD",
+            "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
           ],
           "readOnly": true,
           "type": "string"
@@ -32042,6 +32247,100 @@
       },
       "type": "object"
     },
+    "RealizationAndRentalOfAssets": {
+      "properties": {
+        "assetType": {
+          "enum": [
+            "EMPTY",
+            "GOODS",
+            "RESIDENTIAL_PROPERTY",
+            "HOLIDAY_PROPERTY",
+            "OTHER_PROPERTY",
+            "CAR",
+            "MOTORHOMES",
+            "MOTORCYCLES",
+            "OTHER_VEHICLES",
+            "BOAT",
+            "HELICOPTER",
+            "PLANE",
+            "OTHER_WEALTH"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "genericDataSubType": {
+          "enum": [
+            "NONE",
+            "NOT_LICENSED",
+            "FREIGHT_TRANSPORT",
+            "TAXI",
+            "PRODUCT_TYPE_INVENTORY",
+            "CASH_REGISTER_SYSTEM",
+            "PRIVATE_WITHDRAWAL_OF_GOODS",
+            "ENTERTAINMENT",
+            "MULTI_UNIT_BUILDING_UNIT",
+            "RENTAL_WITHDRAWAL_SALE_COMPANY",
+            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "genericDataSubTypeGroupId": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "genericDataType": {
+          "enum": [
+            "MISC",
+            "TRANSPORT",
+            "ACCOMMODATION_AND_RESTAURANT",
+            "PROFIT_AND_LOSS",
+            "CUSTOMER_RECEIVABLE",
+            "INVENTORIES",
+            "TANGIBLE_FIXED_ASSETS",
+            "RECONCILIATION_OF_EQUITY",
+            "PERMANENT_DIFFERENCES",
+            "TEMPORARY_DIFFERENCES",
+            "DOCUMENT_DOWNLOADED",
+            "GROUP_CONTRIBUTIONS",
+            "TAX_RETURN",
+            "TAX_CALCULATIONS",
+            "DOCUMENTATION",
+            "SHARES_AND_SECURITIES",
+            "REAL_ESTATE",
+            "PARTICIPANT",
+            "SALARY_AND_PENSION_EXPENSES",
+            "COOPERATIVE_ENTERPRISE",
+            "OTHER_CIRCUMSTANCES"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "groupId": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "pricingMethod": {
+          "enum": [
+            "SELF_ASSESSED_VALUE",
+            "VALUATION_BY_A_VALUER",
+            "VALUATION_BY_A_THIRD_PARTY",
+            "OTHER_VALUATION"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "rentalValue": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "valueOfSaleOrWithdrawal": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "ReconciliationOfEquityOverview": {
       "properties": {
         "calculatedClosingEquity": {
@@ -35237,6 +35536,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/OrderOffer"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperOtherCircumstancesOverview": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/OtherCircumstancesOverview"
         }
       },
       "type": "object"
@@ -41232,7 +41539,9 @@
             "CASH_REGISTER_SYSTEM",
             "PRIVATE_WITHDRAWAL_OF_GOODS",
             "ENTERTAINMENT",
-            "MULTI_UNIT_BUILDING_UNIT"
+            "MULTI_UNIT_BUILDING_UNIT",
+            "RENTAL_WITHDRAWAL_SALE_COMPANY",
+            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER"
           ],
           "type": "string"
         },
@@ -41261,7 +41570,8 @@
             "REAL_ESTATE",
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
-            "COOPERATIVE_ENTERPRISE"
+            "COOPERATIVE_ENTERPRISE",
+            "OTHER_CIRCUMSTANCES"
           ],
           "type": "string"
         },
@@ -41513,6 +41823,7 @@
             "YEAR_END_DOCUMENTATION_ANNEXES_TO_THE_ANNUAL_ACCOUNTS",
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
+            "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -41666,7 +41977,25 @@
             "COOPERATIVE_ENTERPRISE_OTHER_SALES",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
-            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET"
+            "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
+            "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
+            "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_SHAREHOLDER_HAS_GRANTED_LOAN",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_LOAN_AMOUNT_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_INCOME",
+            "OTHER_CIRCUMSTANCES_INTEREST_RECOGNISED_AS_EXPENSES",
+            "OTHER_CIRCUMSTANCES_LOAN_BALANCE",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_COMPANY",
+            "OTHER_CIRCUMSTANCES_COLLATERAL_AMOUNT_INCOME_YEAR_TO_SHAREHOLDER",
+            "OTHER_CIRCUMSTANCES_RENTAL_WITHDRAWAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_RENTAL_SALE_GRANTED",
+            "OTHER_CIRCUMSTANCES_ASSET_TYPE",
+            "OTHER_CIRCUMSTANCES_PRICING_METHOD",
+            "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
           ],
           "type": "string"
         },
@@ -42005,6 +42334,24 @@
         "rejectionMessage": {
           "description": "Rejection message if payment was rejected by the bank.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SticosResponseLink": {
+      "properties": {
+        "header": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "title": {
+          "type": "string"
+        },
+        "url": {
           "type": "string"
         }
       },
@@ -46026,7 +46373,8 @@
             "REAL_ESTATE",
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
-            "COOPERATIVE_ENTERPRISE"
+            "COOPERATIVE_ENTERPRISE",
+            "OTHER_CIRCUMSTANCES"
           ],
           "readOnly": true,
           "type": "string"
@@ -86361,6 +86709,9 @@
     },
     {
       "name": "yearEndgenericData"
+    },
+    {
+      "name": "yearEndotherCircumstances"
     },
     {
       "name": "yearEndsharesAndSecurities"
