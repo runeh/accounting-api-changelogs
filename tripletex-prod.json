@@ -4423,7 +4423,8 @@
             "REINDEER_HUSBANDRY",
             "FAMILY_DAY_CARE_CENTRE_IN_OWN_HOME",
             "SLATE_QUARRYING",
-            "FORESTRY"
+            "FORESTRY",
+            "NOT_INDUSTRY"
           ],
           "type": "string"
         },
@@ -28272,7 +28273,8 @@
             "REINDEER_HUSBANDRY",
             "FAMILY_DAY_CARE_CENTRE_IN_OWN_HOME",
             "SLATE_QUARRYING",
-            "FORESTRY"
+            "FORESTRY",
+            "NOT_INDUSTRY"
           ],
           "type": "string"
         },
@@ -28391,7 +28393,8 @@
             "REINDEER_HUSBANDRY",
             "FAMILY_DAY_CARE_CENTRE_IN_OWN_HOME",
             "SLATE_QUARRYING",
-            "FORESTRY"
+            "FORESTRY",
+            "NOT_INDUSTRY"
           ],
           "type": "string"
         },
@@ -35227,6 +35230,17 @@
         "value": {
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperListTangibleFixedAssetOverview": {
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "#/definitions/TangibleFixedAssetOverview"
           },
           "type": "array"
         }
@@ -43086,6 +43100,9 @@
         "available": {
           "type": "boolean"
         },
+        "firstName": {
+          "type": "string"
+        },
         "myHelpRequestsUrl": {
           "type": "string"
         },
@@ -43176,6 +43193,10 @@
         "basisForDepreciationOrIncomeRecognitionTaxValue": {
           "readOnly": true,
           "type": "number"
+        },
+        "businessActivityTitle": {
+          "readOnly": true,
+          "type": "string"
         },
         "closingBalance": {
           "readOnly": true,
@@ -43316,6 +43337,50 @@
         "writeupsOrWritedowns": {
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "TangibleFixedAssetOverview": {
+      "properties": {
+        "businessActivityDescription": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "businessActivityType": {
+          "enum": [
+            "OTHER_COMMERCIAL_ACTIVITIES",
+            "OTHER_COMMERCIAL_ACTIVITIES_2",
+            "OTHER_COMMERCIAL_ACTIVITIES_3",
+            "OTHER_COMMERCIAL_ACTIVITIES_4",
+            "AGRICULTURE_HORTICULTURE_FUR_FARMING",
+            "FISHING_AND_HUNTING_AT_SEA",
+            "REINDEER_HUSBANDRY",
+            "FAMILY_DAY_CARE_CENTRE_IN_OWN_HOME",
+            "SLATE_QUARRYING",
+            "FORESTRY",
+            "NOT_INDUSTRY"
+          ],
+          "type": "string"
+        },
+        "incomeGroupId": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "industryId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "posts": {
+          "items": {
+            "$ref": "#/definitions/TangibleFixedAsset"
+          },
+          "type": "array"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
         }
       },
       "type": "object"
@@ -86742,6 +86807,9 @@
     },
     {
       "name": "yearEndriskFreeInterestRate"
+    },
+    {
+      "name": "yearEndtangibleFixedAsset"
     },
     {
       "name": "yearEndshareholderRegister"
