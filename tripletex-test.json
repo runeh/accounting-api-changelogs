@@ -8800,6 +8800,15 @@
     "DatabaseComponentAuthorizationManagerRequestlogModel": {
       "type": "object"
     },
+    "DataflytValidationDTO": {
+      "properties": {
+        "validationMessageCode": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Day": {
       "properties": {
         "hours": {
@@ -9539,6 +9548,11 @@
         "edited": {
           "description": "Document edit date.",
           "type": "string"
+        },
+        "isNew": {
+          "description": "Is new document.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "messageId": {
           "description": "Message Id.",
@@ -47749,6 +47763,15 @@
           "readOnly": true,
           "type": "string"
         },
+        "actionEmployeeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "actionEmployeePictureId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -48159,6 +48182,10 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "hasAttachment": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "hasPredictions": {
           "description": "Has one or more predictions from FabricAi",
@@ -53576,6 +53603,13 @@
             "description": "Equals",
             "in": "query",
             "name": "isDisabled",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Equals",
+            "in": "query",
+            "name": "supportedInZtl",
             "required": false,
             "type": "boolean"
           },
@@ -85643,6 +85677,9 @@
     },
     {
       "name": "dashboard"
+    },
+    {
+      "name": "internaldataflyt"
     },
     {
       "name": "department"
