@@ -9536,6 +9536,11 @@
           "description": "Document create date.",
           "type": "string"
         },
+        "displaySize": {
+          "description": "Document size in human readable format.",
+          "readOnly": true,
+          "type": "string"
+        },
         "documentId": {
           "description": "Document Id.",
           "format": "int64",
@@ -9559,6 +9564,11 @@
           "format": "int64",
           "type": "integer"
         },
+        "mimeType": {
+          "description": "Document mime type.",
+          "readOnly": true,
+          "type": "string"
+        },
         "receiverEmployeeId": {
           "description": "Employee Id of the receiver of the document.",
           "format": "int64",
@@ -9576,7 +9586,9 @@
         },
         "size": {
           "description": "Document size.",
-          "type": "string"
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "required": [
@@ -9586,8 +9598,7 @@
         "documentName",
         "edited",
         "messageId",
-        "receiverEmployeeId",
-        "size"
+        "receiverEmployeeId"
       ],
       "type": "object"
     },
@@ -25421,6 +25432,9 @@
     },
     "MySubscriptionAccountInfoDTO": {
       "properties": {
+        "basisVoucherModule": {
+          "type": "string"
+        },
         "canReopen": {
           "type": "boolean"
         },
@@ -43116,6 +43130,9 @@
         },
         "firstName": {
           "type": "string"
+        },
+        "hasSticosPilot": {
+          "type": "boolean"
         },
         "myHelpRequestsUrl": {
           "type": "string"
