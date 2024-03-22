@@ -50100,7 +50100,7 @@
           "type": "string"
         },
         "creditorName": {
-          "maxLength": 50,
+          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
