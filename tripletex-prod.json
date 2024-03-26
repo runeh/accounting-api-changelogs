@@ -1510,6 +1510,9 @@
             "CONTROLLED_TRANSACTION_AND_INBETWEEN",
             "LIMITATION_OF_DEDUCTION",
             "EXCEPTION_FOR_INTEREST_LIMITATION",
+            "NUF_COMPANY_ID",
+            "NUF_COMPANY_NAME",
+            "NUF_COUNTRY_CODE",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -5772,6 +5775,9 @@
             "CONTROLLED_TRANSACTION_AND_INBETWEEN",
             "LIMITATION_OF_DEDUCTION",
             "EXCEPTION_FOR_INTEREST_LIMITATION",
+            "NUF_COMPANY_ID",
+            "NUF_COMPANY_NAME",
+            "NUF_COUNTRY_CODE",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -5989,6 +5995,39 @@
           "$ref": "#/definitions/YearEndReport"
         }
       },
+      "type": "object"
+    },
+    "ChatFeedbackRequest": {
+      "properties": {
+        "feedback": {
+          "description": "Feedback value, ranging from 0 to 2",
+          "format": "int32",
+          "maximum": 2,
+          "minimum": 0,
+          "type": "integer"
+        },
+        "messageId": {
+          "description": "Unique identifier for the message",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "feedback",
+        "messageId"
+      ],
+      "type": "object"
+    },
+    "ChatRequest": {
+      "properties": {
+        "prompt": {
+          "description": "The prompt to send to the chatbot",
+          "type": "string"
+        }
+      },
+      "required": [
+        "prompt"
+      ],
       "type": "object"
     },
     "ChatResponseDTO": {
@@ -7906,7 +7945,8 @@
           "enum": [
             "START_NOT_AFTER",
             "ACTIVE",
-            "RESIGNED"
+            "RESIGNED",
+            "ALL"
           ],
           "type": "string"
         },
@@ -7941,12 +7981,13 @@
             "EMAIL",
             "ADDRESS",
             "PHONE",
-            "PERCENTOFEMPLOYMENT",
-            "YEARLYSALARY",
-            "MONTHLYSALARY",
-            "HOURLYSALARY",
             "RATE",
-            "HOUR_COST_RATE"
+            "HOUR_COST_RATE",
+            "PERCENT_OF_EMPLOYMENT",
+            "ANNUAL_SALARY",
+            "HOURLY_WAGE",
+            "DELIVERY_METHOD_WAGE_SLIP",
+            "BANK_ACCOUNT_NUMBER"
           ],
           "type": "string"
         },
@@ -9888,6 +9929,9 @@
             "CONTROLLED_TRANSACTION_AND_INBETWEEN",
             "LIMITATION_OF_DEDUCTION",
             "EXCEPTION_FOR_INTEREST_LIMITATION",
+            "NUF_COMPANY_ID",
+            "NUF_COMPANY_NAME",
+            "NUF_COUNTRY_CODE",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -12640,6 +12684,9 @@
             "CONTROLLED_TRANSACTION_AND_INBETWEEN",
             "LIMITATION_OF_DEDUCTION",
             "EXCEPTION_FOR_INTEREST_LIMITATION",
+            "NUF_COMPANY_ID",
+            "NUF_COMPANY_NAME",
+            "NUF_COUNTRY_CODE",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -14485,6 +14532,9 @@
             "CONTROLLED_TRANSACTION_AND_INBETWEEN",
             "LIMITATION_OF_DEDUCTION",
             "EXCEPTION_FOR_INTEREST_LIMITATION",
+            "NUF_COMPANY_ID",
+            "NUF_COMPANY_NAME",
+            "NUF_COUNTRY_CODE",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -14903,6 +14953,9 @@
             "CONTROLLED_TRANSACTION_AND_INBETWEEN",
             "LIMITATION_OF_DEDUCTION",
             "EXCEPTION_FOR_INTEREST_LIMITATION",
+            "NUF_COMPANY_ID",
+            "NUF_COMPANY_NAME",
+            "NUF_COUNTRY_CODE",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -27982,6 +28035,9 @@
             "CONTROLLED_TRANSACTION_AND_INBETWEEN",
             "LIMITATION_OF_DEDUCTION",
             "EXCEPTION_FOR_INTEREST_LIMITATION",
+            "NUF_COMPANY_ID",
+            "NUF_COMPANY_NAME",
+            "NUF_COUNTRY_CODE",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -41837,6 +41893,9 @@
             "CONTROLLED_TRANSACTION_AND_INBETWEEN",
             "LIMITATION_OF_DEDUCTION",
             "EXCEPTION_FOR_INTEREST_LIMITATION",
+            "NUF_COMPANY_ID",
+            "NUF_COMPANY_NAME",
+            "NUF_COUNTRY_CODE",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
