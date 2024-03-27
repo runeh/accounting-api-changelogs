@@ -1636,6 +1636,7 @@
             "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
             "TOTAL_AREA",
             "CALCULATED_RENTAL_VALUE",
+            "CALCULATED_VALUE_IS_OUTDATED",
             "REAL_ESTATE_SERG_NO",
             "REAL_ESTATE_ADDRESS",
             "REAL_ESTATE_ZIP_CODE",
@@ -5901,6 +5902,7 @@
             "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
             "TOTAL_AREA",
             "CALCULATED_RENTAL_VALUE",
+            "CALCULATED_VALUE_IS_OUTDATED",
             "REAL_ESTATE_SERG_NO",
             "REAL_ESTATE_ADDRESS",
             "REAL_ESTATE_ZIP_CODE",
@@ -10055,6 +10057,7 @@
             "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
             "TOTAL_AREA",
             "CALCULATED_RENTAL_VALUE",
+            "CALCULATED_VALUE_IS_OUTDATED",
             "REAL_ESTATE_SERG_NO",
             "REAL_ESTATE_ADDRESS",
             "REAL_ESTATE_ZIP_CODE",
@@ -12810,6 +12813,7 @@
             "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
             "TOTAL_AREA",
             "CALCULATED_RENTAL_VALUE",
+            "CALCULATED_VALUE_IS_OUTDATED",
             "REAL_ESTATE_SERG_NO",
             "REAL_ESTATE_ADDRESS",
             "REAL_ESTATE_ZIP_CODE",
@@ -13117,7 +13121,9 @@
             "PurchaseOrdersBanner",
             "CompanyInformationBanner",
             "PaymentsBanner",
-            "YearEndReportTripletexDashboardBanner"
+            "YearEndReportTripletexDashboardBanner",
+            "YearEndSubmissionOpenEnkBanner",
+            "YearEndSubmissionOpenAsBanner"
           ],
           "type": "string"
         },
@@ -13384,7 +13390,23 @@
           "readOnly": true,
           "type": "number"
         },
+        "sumPaidWithTaxRelatedEffect": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumPaidWithoutTaxRelatedEffect": {
+          "readOnly": true,
+          "type": "number"
+        },
         "sumReceived": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumReceivedWithTaxRelatedEffect": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumReceivedWithoutTaxRelatedEffect": {
           "readOnly": true,
           "type": "number"
         },
@@ -14658,6 +14680,7 @@
             "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
             "TOTAL_AREA",
             "CALCULATED_RENTAL_VALUE",
+            "CALCULATED_VALUE_IS_OUTDATED",
             "REAL_ESTATE_SERG_NO",
             "REAL_ESTATE_ADDRESS",
             "REAL_ESTATE_ZIP_CODE",
@@ -15079,6 +15102,7 @@
             "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
             "TOTAL_AREA",
             "CALCULATED_RENTAL_VALUE",
+            "CALCULATED_VALUE_IS_OUTDATED",
             "REAL_ESTATE_SERG_NO",
             "REAL_ESTATE_ADDRESS",
             "REAL_ESTATE_ZIP_CODE",
@@ -23688,6 +23712,39 @@
       },
       "type": "object"
     },
+    "ListResponseUserLicense": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/UserLicense"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseVatReturnsComment": {
       "properties": {
         "count": {
@@ -28161,6 +28218,7 @@
             "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
             "TOTAL_AREA",
             "CALCULATED_RENTAL_VALUE",
+            "CALCULATED_VALUE_IS_OUTDATED",
             "REAL_ESTATE_SERG_NO",
             "REAL_ESTATE_ADDRESS",
             "REAL_ESTATE_ZIP_CODE",
@@ -42019,6 +42077,7 @@
             "VALUE_BEFORE_VALUATION_DISCOUNT_ASSET_SHARE",
             "TOTAL_AREA",
             "CALCULATED_RENTAL_VALUE",
+            "CALCULATED_VALUE_IS_OUTDATED",
             "REAL_ESTATE_SERG_NO",
             "REAL_ESTATE_ADDRESS",
             "REAL_ESTATE_ZIP_CODE",
@@ -46708,6 +46767,71 @@
         "message",
         "pageTitle",
         "team"
+      ],
+      "type": "object"
+    },
+    "UserLicense": {
+      "properties": {
+        "deletedEmployeeDisplayName": {
+          "description": "Display name of the deleted employee",
+          "readOnly": true,
+          "type": "string"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee",
+          "description": "Employee that owns this user license.",
+          "readOnly": true
+        },
+        "employeeDeleted": {
+          "description": "True if the employee was deleted but the user license still exists",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "endDate": {
+          "description": "User license end date.",
+          "type": "string"
+        },
+        "id": {
+          "description": "User license id.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "isStartupPaid": {
+          "description": "True if startup fee has been paid, false otherwise.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "monthlyPrice": {
+          "description": "Monthly fee paid for the user license",
+          "readOnly": true,
+          "type": "number"
+        },
+        "startDate": {
+          "description": "User license start date.",
+          "type": "string"
+        },
+        "startupPaid": {
+          "type": "boolean"
+        },
+        "userCategory": {
+          "description": "User category of the license.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "userLicenseStatus": {
+          "description": "User license status (terminated or active)",
+          "enum": [
+            "TERMINATED",
+            "ACTIVE"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "startDate"
       ],
       "type": "object"
     },
@@ -86746,6 +86870,9 @@
     },
     {
       "name": "tripletexDashboardvoucherSummary"
+    },
+    {
+      "name": "userLicense"
     },
     {
       "name": "vatReturnsOverview"
