@@ -12204,6 +12204,40 @@
       },
       "type": "object"
     },
+    "GeneralLedgerAccountSum": {
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/Account",
+          "readOnly": true
+        },
+        "balanceIn": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "balanceOut": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "currencySum": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "noOfCurrencies": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "postingsCurrency": {
+          "$ref": "#/definitions/Currency",
+          "readOnly": true
+        },
+        "sum": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "GeneralLedgerContext": {
       "properties": {
         "companyName": {
@@ -19113,6 +19147,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/GeneralLedgerAccount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseGeneralLedgerAccountSum": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/GeneralLedgerAccountSum"
           },
           "readOnly": true,
           "type": "array"
@@ -47962,6 +48029,10 @@
         "actionDate": {
           "readOnly": true,
           "type": "string"
+        },
+        "actionEmployeeIsAuthCompanyAttestor": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "actionEmployeeName": {
           "readOnly": true,
