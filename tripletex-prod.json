@@ -2463,6 +2463,9 @@
           "maxLength": 255,
           "type": "string"
         },
+        "displayName": {
+          "type": "string"
+        },
         "externalAccumulatedDepreciation": {
           "type": "number"
         },
@@ -14130,6 +14133,9 @@
             "$ref": "#/definitions/TlxNumber"
           },
           "type": "array"
+        },
+        "widgetDisabled": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -15987,6 +15993,9 @@
           "$ref": "#/definitions/TlxNumber"
         },
         "showInvoiceAction": {
+          "type": "boolean"
+        },
+        "widgetDisabled": {
           "type": "boolean"
         }
       },
