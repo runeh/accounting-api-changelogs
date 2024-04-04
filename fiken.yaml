@@ -2776,6 +2776,12 @@ paths:
             that have not been fully settled.
           schema:
             type: boolean
+        - name: contactId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: Find all sale results for a given customer
       responses:
         '200':
           description: OK
@@ -5850,7 +5856,7 @@ components:
           type: string
           format: date
           example: '2018-04-03'
-          description: Due date of the invoice, format yyyy-mm-dd
+          description: Date of the invoice, format yyyy-mm-dd
         kind:
           type: string
           enum: [cash_sale, invoice, external_invoice]
