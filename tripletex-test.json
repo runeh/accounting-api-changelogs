@@ -12266,8 +12266,29 @@
     },
     "GeneralLedgerAccountSum": {
       "properties": {
-        "account": {
-          "$ref": "#/definitions/Account",
+        "accountId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "balanceChange": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "balanceCurrency": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "balanceCurrencyChange": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "balanceCurrencyIn": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "balanceCurrencyOut": {
+          "$ref": "#/definitions/TlxNumber",
           "readOnly": true
         },
         "balanceIn": {
@@ -12278,22 +12299,10 @@
           "$ref": "#/definitions/TlxNumber",
           "readOnly": true
         },
-        "currencySum": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
-        },
         "noOfCurrencies": {
           "format": "int64",
           "readOnly": true,
           "type": "integer"
-        },
-        "postingsCurrency": {
-          "$ref": "#/definitions/Currency",
-          "readOnly": true
-        },
-        "sum": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
         }
       },
       "type": "object"
