@@ -12364,6 +12364,22 @@
           "$ref": "#/definitions/TlxNumber",
           "readOnly": true
         },
+        "assetIds": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "assetName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "assetUrl": {
+          "readOnly": true,
+          "type": "string"
+        },
         "closeGroupIds": {
           "items": {
             "format": "int64",
@@ -12465,6 +12481,38 @@
           "readOnly": true,
           "type": "string"
         },
+        "productUnit1Name": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "productUnit1Url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "productUnit2Name": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "productUnit2Url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "productUnitIds1": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "productUnitIds2": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "productUrl": {
           "readOnly": true,
           "type": "string"
@@ -12485,6 +12533,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "quantityAmount1": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "quantityAmount2": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
         "supplierIds": {
           "items": {
             "format": "int64",
@@ -12500,6 +12556,17 @@
         "supplierUrl": {
           "readOnly": true,
           "type": "string"
+        },
+        "taxTransactionTypeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "taxTransactionTypes": {
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "vatNumber": {
           "readOnly": true,
@@ -15920,6 +15987,9 @@
           "readOnly": true,
           "type": "integer"
         },
+        "availableInventory": {
+          "type": "boolean"
+        },
         "bankAccountReady": {
           "type": "boolean"
         },
@@ -16617,6 +16687,11 @@
     },
     "License": {
       "properties": {
+        "content": {
+          "description": "Returns license content",
+          "readOnly": true,
+          "type": "string"
+        },
         "date": {
           "description": "Returns license creation date.",
           "readOnly": true,
@@ -29981,6 +30056,9 @@
         "isStockItem": {
           "type": "string"
         },
+        "isStockItemDisplayName": {
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
@@ -36973,6 +37051,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/TaxcardContactInternal"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperTermsOfService": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TermsOfService"
         }
       },
       "type": "object"
@@ -44586,6 +44672,42 @@
       },
       "type": "object"
     },
+    "TermsOfService": {
+      "properties": {
+        "askCanSign": {
+          "description": "If there are no account admin and no accountant paying the bills, we don't know who should sign",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "askMarketingConsent": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "companyLicense": {
+          "$ref": "#/definitions/License",
+          "description": "Terms for the company",
+          "readOnly": true
+        },
+        "renderCompanyLicense": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "renderDialog": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "renderUserLicense": {
+          "description": "Terms for the user",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "userLicense": {
+          "$ref": "#/definitions/License",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "TimeClock": {
       "properties": {
         "activity": {
@@ -48405,6 +48527,10 @@
           "type": "boolean"
         },
         "canUserUpload": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "companyAttestorCanOverride": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -86936,6 +87062,9 @@
     },
     {
       "name": "supportAccessrequestread"
+    },
+    {
+      "name": "termsofservice"
     },
     {
       "name": "testaccountdata"

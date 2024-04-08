@@ -218,7 +218,7 @@ info:
     | https://api.fiken.no/api/v2/companies/{companySlug}/projects           | Yes         | No        |                                       | Yes         | completed                                                                                                                               |
     | https://api.fiken.no/api/v2/companies/{companySlug}/purchases          | Yes         | Yes       | createdDate                           | No          | date                                                                                                                                    |
     | https://api.fiken.no/api/v2/companies/{companySlug}/purchases/drafts   | Yes         | No        |                                       | No          |                                                                                                                                         |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/sales              | Yes         | No        |                                       | Yes         | saleNumber, lastModified, date                                                                                                          |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/sales              | Yes         | No        |                                       | Yes         | saleNumber, lastModified, date, contactId                                                                                                          |
     | https://api.fiken.no/api/v2/companies/{companySlug}/sales/drafts       | Yes         | No        |                                       | No          |                                                                                                                                         |
     | https://api.fiken.no/api/v2/companies/{companySlug}/transactions       | Yes         | No        |                                       | Yes         | createdDate, lastModified                                                                                                               |
 
@@ -4121,6 +4121,16 @@ components:
         note:
           type: string
           example: 'Garage 45'
+    note:
+      type: object
+      description: Used for invoices and sales
+      properties:
+        author:
+          type: string
+          example: 'James Jones'
+        note:
+          type: string
+          example: 'Invoice sent after telephone conversation with customer'
     contactPerson:
       type: object
       required:
@@ -6025,6 +6035,11 @@ components:
           description: Payment date of the invoice, format yyyy-mm-dd
         project:
           $ref: '#/components/schemas/projectResult'
+        notes:
+          type: array
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/note'
         deleted:
           type: boolean
           description: Whether the sale has been deleted or not
