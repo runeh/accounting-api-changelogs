@@ -13312,7 +13312,8 @@
             "PaymentsBanner",
             "YearEndReportTripletexDashboardBanner",
             "YearEndSubmissionOpenEnkBanner",
-            "YearEndSubmissionOpenAsBanner"
+            "YearEndSubmissionOpenAsBanner",
+            "FeedbackDeadlinesAndTasksSurveyBanner"
           ],
           "type": "string"
         },
@@ -49515,6 +49516,7 @@
             "UPSALE_SALARY",
             "UPSALE_AUTOMATION",
             "INCOME_AND_COST_CHART",
+            "FEEDBACK_DEADLINES_AND_TASKS_SURVEY",
             "HELP_CENTER",
             "HELP_CENTER_AGRO",
             "HELP_CENTER_AI",
