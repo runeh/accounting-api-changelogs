@@ -2272,6 +2272,11 @@
     },
     "ApproveResponseDTO": {
       "properties": {
+        "exchangeRateExpiration": {
+          "description": "Expiration for given exchangeRate/quote. Only shown for international transactions. Example: 2022-08-05T13:13:59.633957965+02:00",
+          "format": "date-time",
+          "type": "string"
+        },
         "exchangeRateSums": {
           "description": "Sum of all to be approved payments by currencies",
           "items": {
@@ -2289,11 +2294,6 @@
         "redirectUrl": {
           "description": "The redirect URL to AutoPay 2FA or ZTL SCA after payments are sent to be approved",
           "type": "string"
-        },
-        "secondsUntilExchangeRateExpires": {
-          "description": "Seconds until exchange rate expires",
-          "format": "int64",
-          "type": "integer"
         },
         "toBeApproved": {
           "description": "List of payments that will be sent to AutoPay approval/ZTL",
@@ -13313,7 +13313,8 @@
             "YearEndReportTripletexDashboardBanner",
             "YearEndSubmissionOpenEnkBanner",
             "YearEndSubmissionOpenAsBanner",
-            "FeedbackDeadlinesAndTasksSurveyBanner"
+            "FeedbackDeadlinesAndTasksSurveyBanner",
+            "MySubscriptionSurveyBanner"
           ],
           "type": "string"
         },
@@ -41511,6 +41512,9 @@
         "isAuthCreateOrder": {
           "type": "boolean"
         },
+        "isAuthDirectRemitZtl": {
+          "type": "boolean"
+        },
         "isAuthInboxVoucher": {
           "type": "boolean"
         },
@@ -41567,7 +41571,7 @@
           "type": "array"
         },
         "modelId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "modelType": {
@@ -41588,7 +41592,7 @@
         },
         "pathId": {
           "description": "Target path in archive",
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         }
       },
