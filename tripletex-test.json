@@ -13314,7 +13314,8 @@
             "YearEndSubmissionOpenEnkBanner",
             "YearEndSubmissionOpenAsBanner",
             "FeedbackDeadlinesAndTasksSurveyBanner",
-            "MySubscriptionSurveyBanner"
+            "MySubscriptionSurveyBanner",
+            "AIAssistantInstructionsBanner"
           ],
           "type": "string"
         },
@@ -48508,6 +48509,10 @@
         "actionDate": {
           "readOnly": true,
           "type": "string"
+        },
+        "actionEmployee": {
+          "$ref": "#/definitions/Employee",
+          "readOnly": true
         },
         "actionEmployeeIsAuthCompanyAttestor": {
           "readOnly": true,
