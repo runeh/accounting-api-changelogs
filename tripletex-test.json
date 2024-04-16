@@ -12449,6 +12449,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "hasAttachment": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isClosed": {
           "readOnly": true,
           "type": "boolean"
@@ -16394,17 +16398,6 @@
         "amount": {
           "$ref": "#/definitions/TlxNumber",
           "readOnly": true
-        },
-        "approvalElements": {
-          "items": {
-            "$ref": "#/definitions/VoucherApprovalListElement"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "attestationStatus": {
-          "readOnly": true,
-          "type": "string"
         },
         "automaticallyPosted": {
           "readOnly": true,
@@ -24339,6 +24332,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Voucher"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseVoucherApprovalListElement": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/VoucherApprovalListElement"
           },
           "readOnly": true,
           "type": "array"
