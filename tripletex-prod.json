@@ -13853,6 +13853,58 @@
       },
       "type": "object"
     },
+    "HeatfloorProduct": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "type": "string"
+        },
+        "elNumber": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "length": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "manufacturer": {
+          "type": "string"
+        },
+        "nomEffect": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "nomResistance": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "vktype": {
+          "type": "string"
+        },
+        "wattsPerMeter": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "HelpCenterArticles": {
       "properties": {
         "faqs": {
@@ -19646,6 +19698,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/GoodsReceiptLine"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseHeatfloorProduct": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/HeatfloorProduct"
           },
           "readOnly": true,
           "type": "array"
@@ -29553,6 +29638,11 @@
           "$ref": "#/definitions/Document",
           "readOnly": true
         },
+        "incomingStock": {
+          "description": "Available only on demand",
+          "readOnly": true,
+          "type": "number"
+        },
         "isDeletable": {
           "description": "For performance reasons, field is deprecated and it will always return false.",
           "type": "boolean"
@@ -29588,6 +29678,11 @@
           "maxLength": 100,
           "type": "string"
         },
+        "outgoingStock": {
+          "description": "Available only on demand",
+          "readOnly": true,
+          "type": "number"
+        },
         "priceExcludingVatCurrency": {
           "description": "Price of purchase excluding VAT in the product's currency",
           "type": "number"
@@ -29611,7 +29706,7 @@
           "$ref": "#/definitions/Product"
         },
         "stockOfGoods": {
-          "description": "From January 23rd 2023 this field will be available only on demand",
+          "description": "Available only on demand",
           "readOnly": true,
           "type": "number"
         },
@@ -35346,6 +35441,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperHeatfloorProduct": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/HeatfloorProduct"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperHelpCenterArticles": {
       "properties": {
         "value": {
@@ -39732,15 +39835,6 @@
         },
         "hasBankTransfers": {
           "type": "boolean"
-        },
-        "hourlyWageCodeIds": {
-          "description": "List of wage code ids that are hourly wage code",
-          "items": {
-            "format": "int32",
-            "type": "integer"
-          },
-          "readOnly": true,
-          "type": "array"
         },
         "id": {
           "format": "int64",
@@ -86604,6 +86698,9 @@
     },
     {
       "name": "feedback"
+    },
+    {
+      "name": "internalheatfloorProduct"
     },
     {
       "name": "idporten"
