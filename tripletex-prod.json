@@ -8828,6 +8828,9 @@
         "contextId": {
           "type": "string"
         },
+        "isEligibleForOnboardingFeedback": {
+          "type": "boolean"
+        },
         "language": {
           "type": "string"
         },
@@ -9676,7 +9679,6 @@
         }
       },
       "required": [
-        "archiveDate",
         "created",
         "documentId",
         "documentName",
@@ -43884,6 +43886,50 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "SurveyFeedback": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "comment": {
+          "description": "A comment given in addition to the highest rating.",
+          "type": "string"
+        },
+        "contactRequest": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "rating": {
+          "description": "A rating based on numbers from 1 to 5.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "surveyType": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "contactRequest",
+        "surveyType"
+      ],
       "type": "object"
     },
     "SystemMessage": {
@@ -87364,6 +87410,9 @@
     },
     {
       "name": "supportAccessrequestread"
+    },
+    {
+      "name": "surveyFeedback"
     },
     {
       "name": "termsofservice"
