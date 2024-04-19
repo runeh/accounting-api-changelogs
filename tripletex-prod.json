@@ -52258,106 +52258,6 @@
         ]
       }
     },
-    "/bank/advice": {
-      "get": {
-        "description": "",
-        "operationId": "BankAdvice_search",
-        "parameters": [
-          {
-            "default": 0,
-            "description": "From index",
-            "in": "query",
-            "name": "from",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "default": 1000,
-            "description": "Number of elements to return",
-            "in": "query",
-            "name": "count",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "description": "Sorting pattern",
-            "in": "query",
-            "name": "sorting",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ListResponseBankDashboardAdvice"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Find advices for the company context",
-        "tags": [
-          "bank/advice"
-        ]
-      }
-    },
-    "/bank/advice/{id}": {
-      "put": {
-        "consumes": [
-          "application/json; charset=utf-8"
-        ],
-        "description": "",
-        "operationId": "BankAdvice_put",
-        "parameters": [
-          {
-            "description": "Element ID",
-            "format": "int64",
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "description": "Partial object describing what should be updated",
-            "in": "body",
-            "name": "body",
-            "required": false,
-            "schema": {
-              "$ref": "#/definitions/BankDashboardAdvice"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperBankDashboardAdvice"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Update advice.",
-        "tags": [
-          "bank/advice"
-        ]
-      }
-    },
     "/bank/reconciliation": {
       "get": {
         "description": "",
@@ -60851,258 +60751,6 @@
         "summary": "[BETA] Get example webhook payload",
         "tags": [
           "event"
-        ]
-      }
-    },
-    "/internal/auth/config": {
-      "get": {
-        "description": "",
-        "operationId": "InternalAuthConfig_getConfig",
-        "parameters": [
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperAuthConfigDTO"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Get auth config",
-        "tags": [
-          "auth/internal"
-        ]
-      }
-    },
-    "/internal/favorites": {
-      "get": {
-        "description": "",
-        "operationId": "InternalFavorites_get",
-        "parameters": [
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperFavoriteMenu"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Get favorite menu",
-        "tags": [
-          "favorites/internal"
-        ]
-      },
-      "post": {
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "description": "",
-        "operationId": "InternalFavorites_post",
-        "parameters": [
-          {
-            "description": "Equals",
-            "in": "formData",
-            "name": "pageUrl",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "Equals",
-            "in": "formData",
-            "name": "name",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successfully created",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperInteger"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Add new favorite",
-        "tags": [
-          "favorites/internal"
-        ]
-      }
-    },
-    "/internal/favorites/{id}": {
-      "delete": {
-        "description": "",
-        "operationId": "InternalFavorites_delete",
-        "parameters": [
-          {
-            "description": "Equals",
-            "format": "int64",
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Delete a favorite",
-        "tags": [
-          "favorites/internal"
-        ]
-      },
-      "put": {
-        "consumes": [
-          "application/x-www-form-urlencoded"
-        ],
-        "description": "",
-        "operationId": "InternalFavorites_put",
-        "parameters": [
-          {
-            "description": "Equals",
-            "format": "int64",
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "description": "Equals",
-            "in": "formData",
-            "name": "name",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Equals",
-            "format": "int32",
-            "in": "formData",
-            "name": "rank",
-            "required": false,
-            "type": "integer"
-          }
-        ],
-        "responses": {
-          "default": {
-            "description": "successful operation"
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Update a favorite",
-        "tags": [
-          "favorites/internal"
-        ]
-      }
-    },
-    "/internal/resourcePlan2/permissions/modal/{jobId}": {
-      "get": {
-        "description": "",
-        "operationId": "InternalResourcePlan2PermissionsModal_getModal",
-        "parameters": [
-          {
-            "description": "Element ID",
-            "format": "int64",
-            "in": "path",
-            "name": "jobId",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperRP2ModalPermissionsDTO"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Gets information about user permissions when editing a job",
-        "tags": [
-          "internalresourcePlan2permissions"
-        ]
-      }
-    },
-    "/internal/segmentation": {
-      "get": {
-        "description": "",
-        "operationId": "InternalSegmentation_get",
-        "parameters": [
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperSegmentationData"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Get segmentation data",
-        "tags": [
-          "segmentation/internal"
         ]
       }
     },
@@ -76612,46 +76260,6 @@
         ]
       }
     },
-    "/salary/company-employee-rate/{id}": {
-      "get": {
-        "description": "",
-        "operationId": "SalaryCompany-employee-rate_get",
-        "parameters": [
-          {
-            "description": "Element ID",
-            "format": "int64",
-            "in": "path",
-            "name": "id",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperCompanyEmployeeRate"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Get companyEmployeeRate by ID.",
-        "tags": [
-          "salarycompany-employee-rate"
-        ]
-      }
-    },
     "/salary/compilation": {
       "get": {
         "description": "",
@@ -78253,38 +77861,6 @@
           }
         ],
         "summary": "Reopen account with previous modules",
-        "tags": [
-          "subscription"
-        ]
-      }
-    },
-    "/subscription/services": {
-      "get": {
-        "description": "",
-        "operationId": "SubscriptionServices_getServices",
-        "parameters": [
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperMySubscriptionModuleDTO[]"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Returns the services that are available for an account.",
         "tags": [
           "subscription"
         ]
@@ -86431,9 +86007,6 @@
       "name": "internalauth"
     },
     {
-      "name": "auth/internal"
-    },
-    {
       "name": "balanceSheet"
     },
     {
@@ -86444,9 +86017,6 @@
     },
     {
       "name": "bankadvice"
-    },
-    {
-      "name": "bank/advice"
     },
     {
       "name": "bankagreements"
@@ -87670,9 +87240,6 @@
       "name": "internalfavorites"
     },
     {
-      "name": "favorites/internal"
-    },
-    {
       "name": "internalpilotFeatureuser"
     },
     {
@@ -87698,9 +87265,6 @@
     },
     {
       "name": "internalsegmentation"
-    },
-    {
-      "name": "segmentation/internal"
     },
     {
       "name": "internalspacesuit"
