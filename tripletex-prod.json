@@ -25738,6 +25738,9 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "moduleLogistics": {
+          "type": "boolean"
+        },
         "moduleProductAccounting": {
           "description": "read only",
           "readOnly": true,
@@ -25765,10 +25768,16 @@
         "moduledepartment": {
           "type": "boolean"
         },
+        "moduleelectro": {
+          "type": "boolean"
+        },
         "moduleemployee": {
           "type": "boolean"
         },
         "moduleinvoice": {
+          "type": "boolean"
+        },
+        "modulenrf": {
           "type": "boolean"
         },
         "moduleproject": {
@@ -47221,6 +47230,10 @@
           "type": "boolean"
         },
         "isLoginEmployeeWageDepartmentOnly": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isPayInAdvance": {
           "readOnly": true,
           "type": "boolean"
         },
