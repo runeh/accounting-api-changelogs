@@ -9267,6 +9267,46 @@
       ],
       "type": "object"
     },
+    "DiscountPolicy": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "customer": {
+          "$ref": "#/definitions/Customer"
+        },
+        "fixedAmount": {
+          "type": "number"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "percentage": {
+          "type": "number"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "customer",
+        "product"
+      ],
+      "type": "object"
+    },
     "Disposition": {
       "properties": {
         "annualResult": {
@@ -18743,6 +18783,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/DiscountGroup"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseDiscountPolicy": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/DiscountPolicy"
           },
           "readOnly": true,
           "type": "array"
@@ -30276,6 +30349,9 @@
         "eanGtin": {
           "type": "string"
         },
+        "expenses": {
+          "type": "string"
+        },
         "incomeAccountDisplayName": {
           "type": "string"
         },
@@ -35168,6 +35244,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/DiscountGroup"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperDiscountPolicy": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/DiscountPolicy"
         }
       },
       "type": "object"
@@ -86588,6 +86672,9 @@
     },
     {
       "name": "product/discountGroup"
+    },
+    {
+      "name": "discountPolicy"
     },
     {
       "name": "productinventoryLocation"
