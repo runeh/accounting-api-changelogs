@@ -8841,16 +8841,7 @@
         "segmentationData": {
           "$ref": "#/definitions/SegmentationData"
         },
-        "showAgroTourMe": {
-          "type": "boolean"
-        },
         "showEaccountingMessage": {
-          "type": "boolean"
-        },
-        "showMamutTourMe": {
-          "type": "boolean"
-        },
-        "showTourMe": {
           "type": "boolean"
         },
         "trialAccount": {
@@ -14431,6 +14422,10 @@
         "companyName": {
           "type": "string"
         },
+        "currencyId": {
+          "format": "int32",
+          "type": "integer"
+        },
         "customerId": {
           "format": "int32",
           "type": "integer"
@@ -14455,6 +14450,15 @@
           "type": "string"
         },
         "invoiceNumber": {
+          "type": "string"
+        },
+        "paymentAmount": {
+          "type": "number"
+        },
+        "paymentDate": {
+          "type": "string"
+        },
+        "paymentTypeId": {
           "format": "int32",
           "type": "integer"
         },
@@ -14464,6 +14468,9 @@
         "voucherId": {
           "format": "int32",
           "type": "integer"
+        },
+        "voucherNumber": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -28088,8 +28095,21 @@
         "creditAccount": {
           "$ref": "#/definitions/Account"
         },
+        "currencyCode": {
+          "description": "currency code",
+          "type": "string"
+        },
+        "currencyId": {
+          "description": "currency Id",
+          "format": "int32",
+          "type": "integer"
+        },
         "description": {
           "maxLength": 255,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Value of a Dropdown Type used in the payment type dropdown",
           "type": "string"
         },
         "id": {
