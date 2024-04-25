@@ -39457,10 +39457,6 @@
           "readOnly": true,
           "type": "number"
         },
-        "grossAmountDescription": {
-          "readOnly": true,
-          "type": "string"
-        },
         "holidayAllowanceRate": {
           "readOnly": true,
           "type": "number"
@@ -39491,14 +39487,6 @@
           "readOnly": true,
           "type": "integer"
         },
-        "payrollTaxAmount": {
-          "readOnly": true,
-          "type": "number"
-        },
-        "payrollTaxBasis": {
-          "readOnly": true,
-          "type": "number"
-        },
         "payrollTaxMunicipality": {
           "$ref": "#/definitions/Municipality",
           "readOnly": true
@@ -39525,17 +39513,6 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "sumAmountTaxDeductions": {
-          "readOnly": true,
-          "type": "number"
-        },
-        "taxDescription": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "transaction": {
-          "$ref": "#/definitions/SalaryV2Transaction"
-        },
         "travelExpenses": {
           "description": "Link to salary specifications.",
           "items": {
@@ -39546,10 +39523,6 @@
         "url": {
           "readOnly": true,
           "type": "string"
-        },
-        "vacationAllowanceAmount": {
-          "readOnly": true,
-          "type": "number"
         },
         "validationResults": {
           "$ref": "#/definitions/SalaryV2PaymentValidationResult",
@@ -39724,9 +39697,6 @@
         "description": {
           "maxLength": 16777215,
           "type": "string"
-        },
-        "employee": {
-          "$ref": "#/definitions/SalaryV2Employee"
         },
         "externalChangesSinceLastTime": {
           "type": "boolean"
@@ -39987,10 +39957,6 @@
           "description": "Payment type in use, or default payment type",
           "readOnly": true
         },
-        "payrollTaxBasisAmount": {
-          "readOnly": true,
-          "type": "number"
-        },
         "payrollTaxCalcMethod": {
           "description": "Employee National Insurance calculation method",
           "maxLength": 2,
@@ -40021,15 +39987,7 @@
           "readOnly": true,
           "type": "number"
         },
-        "sumPayrollTaxAmount": {
-          "readOnly": true,
-          "type": "number"
-        },
         "sumTaxDeductionAmount": {
-          "readOnly": true,
-          "type": "number"
-        },
-        "sumTotalVacationAllowanceAmount": {
           "readOnly": true,
           "type": "number"
         },
