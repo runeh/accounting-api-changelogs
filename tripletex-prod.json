@@ -2095,6 +2095,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "freeNotes": {
+          "readOnly": true,
+          "type": "string"
+        },
         "grouping": {
           "readOnly": true,
           "type": "string"
@@ -24841,6 +24845,39 @@
       },
       "type": "object"
     },
+    "ListResponseYearEndAnnualAccountsFreeNote": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/YearEndAnnualAccountsFreeNote"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseYearEndReportMunicipality": {
       "properties": {
         "count": {
@@ -37852,6 +37889,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperYearEndAnnualAccountsFreeNote": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/YearEndAnnualAccountsFreeNote"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperYearEndReport": {
       "properties": {
         "value": {
@@ -49178,7 +49223,8 @@
             "PDF_CREDIT_NOTE",
             "ERROR_EHF_IMPORT",
             "REPLAYABLE_VOUCHER",
-            "REMINDER_SPECIFICATION"
+            "REMINDER_SPECIFICATION",
+            "PDF_INVOICE_PREDICTIONS"
           ],
           "readOnly": true,
           "type": "string"
@@ -50174,6 +50220,82 @@
           "type": "string"
         },
         "languageTextNO": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "YearEndAnnualAccountsFreeNote": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "checked": {
+          "type": "boolean"
+        },
+        "content": {
+          "maxLength": 16777215,
+          "type": "string"
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "grouping": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "lastModifiedInfo": {
+          "$ref": "#/definitions/YearEndAnnualAccountsFreeNoteLastModifiedInfo",
+          "readOnly": true
+        },
+        "numerated": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "sortOrder": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "YearEndAnnualAccountsFreeNoteLastModifiedInfo": {
+      "properties": {
+        "date": {
+          "description": "The date of when the note has been modified",
+          "readOnly": true,
+          "type": "string"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee",
+          "description": "The employee who last modified the note",
+          "readOnly": true
+        },
+        "time": {
+          "description": "The time of when the note has been modified",
           "readOnly": true,
           "type": "string"
         }
@@ -87355,6 +87477,9 @@
     },
     {
       "name": "yearEndannualAccounts"
+    },
+    {
+      "name": "yearEndannualAccountsfreeNotes"
     },
     {
       "name": "yearEndpdf"
