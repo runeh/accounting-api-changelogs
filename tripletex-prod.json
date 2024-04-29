@@ -34384,55 +34384,120 @@
     },
     "RequestlogModel": {
       "properties": {
+        "authorizationManager": {
+          "$ref": "#/definitions/DatabaseComponentAuthorizationManagerRequestlogModel"
+        },
+        "authorizationManagerForCsvPrinter": {
+          "$ref": "#/definitions/AuthorizationManager"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
           },
-          "readOnly": true,
           "type": "array"
+        },
+        "clientId": {
+          "type": "string"
         },
         "companyId": {
           "format": "int64",
-          "readOnly": true,
           "type": "integer"
+        },
+        "createLog": {
+          "$ref": "#/definitions/RequestlogModel"
+        },
+        "createLogAsString": {
+          "type": "string"
+        },
+        "createLogId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "deleteLog": {
+          "$ref": "#/definitions/RequestlogModel"
+        },
+        "deleteLogAsString": {
+          "type": "string"
+        },
+        "deleteLogId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "deleted": {
+          "type": "boolean"
+        },
+        "dirty": {
+          "type": "boolean"
+        },
+        "dirtyProperties": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "displayName": {
+          "type": "string"
         },
         "employeeId": {
           "format": "int64",
-          "readOnly": true,
+          "type": "integer"
+        },
+        "guiId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "guiRevision": {
+          "format": "int32",
           "type": "integer"
         },
         "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "longId": {
           "format": "int64",
           "type": "integer"
         },
         "method": {
-          "readOnly": true,
           "type": "string"
         },
-        "queryString": {
-          "readOnly": true,
+        "new": {
+          "type": "boolean"
+        },
+        "querystring": {
           "type": "string"
         },
-        "requestUri": {
-          "readOnly": true,
+        "requesturi": {
           "type": "string"
+        },
+        "revision": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "selected": {
+          "type": "boolean"
         },
         "time": {
-          "readOnly": true,
+          "format": "date-time",
           "type": "string"
         },
         "tripletexEmployeeId": {
           "format": "int64",
-          "readOnly": true,
           "type": "integer"
         },
-        "url": {
-          "readOnly": true,
+        "updateLog": {
+          "$ref": "#/definitions/RequestlogModel"
+        },
+        "updateLogAsString": {
           "type": "string"
         },
-        "version": {
-          "format": "int32",
+        "updateLogId": {
+          "format": "int64",
           "type": "integer"
+        },
+        "urlDetails": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -36927,14 +36992,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ReportResultEnvelope"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperRequestlogModel": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/RequestlogModel"
         }
       },
       "type": "object"
