@@ -27875,6 +27875,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "mergingBanksMessage": {
+          "description": "Message regarding merging of banks",
+          "readOnly": true,
+          "type": "string"
+        },
         "paymentCategory": {
           "description": "The payment category.",
           "enum": [
@@ -27907,7 +27912,7 @@
           "readOnly": true
         },
         "receiverLink": {
-          "description": "The payment receiver link or name",
+          "description": "The payment receiver link or name.",
           "readOnly": true,
           "type": "string"
         },
@@ -51354,6 +51359,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "mergingBanksMessage": {
+          "description": "Message regarding merging of banks",
+          "readOnly": true,
+          "type": "string"
+        },
         "paymentCategory": {
           "description": "The payment category.",
           "enum": [
@@ -51391,7 +51401,7 @@
           "readOnly": true
         },
         "receiverLink": {
-          "description": "The payment receiver link or name",
+          "description": "The payment receiver link or name.",
           "readOnly": true,
           "type": "string"
         },
