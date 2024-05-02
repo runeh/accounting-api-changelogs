@@ -6067,9 +6067,24 @@
     },
     "ChatRequest": {
       "properties": {
+        "isConversationStarter": {
+          "description": "Indicates if the message is a pre-generated conversation starter for the AI-assistant",
+          "format": "int32",
+          "type": "integer"
+        },
+        "isFollowUpQuestion": {
+          "description": "Indicates if the message is a pre-generated follow-up question for the AI-assistant",
+          "format": "int32",
+          "type": "integer"
+        },
         "prompt": {
           "description": "The prompt to send to the chatbot",
           "type": "string"
+        },
+        "quickPromptOrder": {
+          "description": "Indicates the number of the quick prompt that was chosen for the AI-assistant",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "required": [
@@ -13356,7 +13371,8 @@
             "YearEndSubmissionOpenAsBanner",
             "FeedbackDeadlinesAndTasksSurveyBanner",
             "MySubscriptionSurveyBanner",
-            "AIAssistantInstructionsBanner"
+            "AIAssistantInstructionsBanner",
+            "SticosInfoBanner"
           ],
           "type": "string"
         },
