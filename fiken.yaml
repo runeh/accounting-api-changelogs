@@ -5120,6 +5120,25 @@ components:
           $ref: '#/components/schemas/saleResult'
         project:
           $ref: '#/components/schemas/projectResult'
+        dispatches:
+          type: array
+          items:
+            $ref: '#/components/schemas/dispatchResult'
+    dispatchResult:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          readOnly: true
+          example: '2024-04-03'
+          description: Date that invoice was sent from Fiken, format yyyy-mm-dd
+        dispatchType:
+          type: string
+          enum: [ email, sms, ehf, letter, vipps, efaktura, unknown ]
+          description: The type of disptach. Unknown is returned when an invoice was manually sent and Fiken doesn't know the dispatch method.
+          example: 'email'
+          readOnly: true
     journalEntryLine:
       type: object
       required:
@@ -5647,6 +5666,8 @@ components:
       type: object
       required:
         - startDate
+        - number
+        - name
       properties:
         number:
           type: string
