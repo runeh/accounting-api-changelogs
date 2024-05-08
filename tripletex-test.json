@@ -14662,9 +14662,23 @@
           "format": "int32",
           "type": "integer"
         },
+        "productUnit1Id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "productUnit2Id": {
+          "format": "int64",
+          "type": "integer"
+        },
         "projectId": {
           "format": "int32",
           "type": "integer"
+        },
+        "quantity1": {
+          "type": "number"
+        },
+        "quantity2": {
+          "type": "number"
         },
         "vatTypeId": {
           "format": "int32",
@@ -31630,6 +31644,18 @@
           "type": "string"
         },
         "vatTypeId": {
+          "type": "string"
+        },
+        "volume": {
+          "type": "string"
+        },
+        "volumeUnit": {
+          "type": "string"
+        },
+        "weight": {
+          "type": "string"
+        },
+        "weightUnit": {
           "type": "string"
         }
       },
