@@ -4313,6 +4313,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "paymentId": {
+          "maxLength": 255,
+          "type": "string"
+        },
         "postedDate": {
           "type": "string"
         },
@@ -80833,14 +80837,6 @@
             "in": "path",
             "name": "id",
             "required": true,
-            "type": "integer"
-          },
-          {
-            "description": "Number of current version",
-            "format": "int32",
-            "in": "query",
-            "name": "version",
-            "required": false,
             "type": "integer"
           }
         ],
