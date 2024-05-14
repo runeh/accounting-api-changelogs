@@ -1425,6 +1425,7 @@
             "NEGATIVE_DIFF_BETWEEN_ALLOCATED_AND_DISTRIBUTED_DIVIDEND",
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
+            "LATE_PAYMENT",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -5752,6 +5753,7 @@
             "NEGATIVE_DIFF_BETWEEN_ALLOCATED_AND_DISTRIBUTED_DIVIDEND",
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
+            "LATE_PAYMENT",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -8044,101 +8046,6 @@
       },
       "type": "object"
     },
-    "CreateSalaryWithSearch": {
-      "properties": {
-        "allSelected": {
-          "type": "boolean"
-        },
-        "contactsFilter": {
-          "enum": [
-            "INCLUDE_CONTACTS",
-            "NONE",
-            "ONLY_CONTACTS"
-          ],
-          "type": "string"
-        },
-        "date": {
-          "type": "string"
-        },
-        "departmentIds": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "divisionIds": {
-          "type": "string"
-        },
-        "employeeAvailability": {
-          "enum": [
-            "START_NOT_AFTER",
-            "ACTIVE",
-            "RESIGNED",
-            "ALL"
-          ],
-          "type": "string"
-        },
-        "employeeCategoryIds": {
-          "type": "string"
-        },
-        "employmentIds": {
-          "type": "string"
-        },
-        "explicitlyDeselectedEmploymentIds": {
-          "type": "string"
-        },
-        "historical": {
-          "type": "boolean"
-        },
-        "isHistorical": {
-          "type": "boolean"
-        },
-        "month": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "orderBy": {
-          "enum": [
-            "FIRSTNAME",
-            "STARTDATE",
-            "DEPARTMENT",
-            "DIVISION",
-            "STATUS",
-            "PREVIOUS_SALARIES",
-            "NUMBER",
-            "EMAIL",
-            "ADDRESS",
-            "PHONE",
-            "RATE",
-            "HOUR_COST_RATE",
-            "PERCENT_OF_EMPLOYMENT",
-            "ANNUAL_SALARY",
-            "HOURLY_WAGE",
-            "DELIVERY_METHOD_WAGE_SLIP",
-            "BANK_ACCOUNT_NUMBER"
-          ],
-          "type": "string"
-        },
-        "orderDirection": {
-          "enum": [
-            "ASC",
-            "DESC"
-          ],
-          "type": "string"
-        },
-        "query": {
-          "type": "string"
-        },
-        "specTypesToAdd": {
-          "type": "string"
-        },
-        "year": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "Credentials": {
       "properties": {
         "appSecret": {
@@ -9722,7 +9629,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         }
@@ -10005,6 +9912,7 @@
             "NEGATIVE_DIFF_BETWEEN_ALLOCATED_AND_DISTRIBUTED_DIVIDEND",
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
+            "LATE_PAYMENT",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -12475,6 +12383,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "developerMode": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "hasDepartments": {
           "readOnly": true,
           "type": "boolean"
@@ -12933,6 +12845,7 @@
             "NEGATIVE_DIFF_BETWEEN_ALLOCATED_AND_DISTRIBUTED_DIVIDEND",
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
+            "LATE_PAYMENT",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -14953,6 +14866,7 @@
             "NEGATIVE_DIFF_BETWEEN_ALLOCATED_AND_DISTRIBUTED_DIVIDEND",
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
+            "LATE_PAYMENT",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -15425,6 +15339,7 @@
             "NEGATIVE_DIFF_BETWEEN_ALLOCATED_AND_DISTRIBUTED_DIVIDEND",
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
+            "LATE_PAYMENT",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -28259,6 +28174,7 @@
             "NEGATIVE_DIFF_BETWEEN_ALLOCATED_AND_DISTRIBUTED_DIVIDEND",
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
+            "LATE_PAYMENT",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -29809,6 +29725,7 @@
             "NEGATIVE_DIFF_BETWEEN_ALLOCATED_AND_DISTRIBUTED_DIVIDEND",
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
+            "LATE_PAYMENT",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -40618,6 +40535,11 @@
     },
     "SalaryV2OverviewReimbursements": {
       "properties": {
+        "ameldingWageId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -40625,7 +40547,8 @@
           "readOnly": true,
           "type": "array"
         },
-        "date": {
+        "displayName": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
@@ -40640,13 +40563,17 @@
           "format": "int32",
           "type": "integer"
         },
+        "voucherDate": {
+          "type": "string"
+        },
         "voucherDescription": {
           "readOnly": true,
           "type": "string"
         },
-        "voucherNumberAsString": {
+        "wagePeriodTransactionId": {
+          "format": "int32",
           "readOnly": true,
-          "type": "string"
+          "type": "integer"
         }
       },
       "type": "object"
@@ -40685,9 +40612,6 @@
           "readOnly": true,
           "type": "array"
         },
-        "date": {
-          "type": "string"
-        },
         "id": {
           "format": "int64",
           "type": "integer"
@@ -40699,6 +40623,9 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        },
+        "voucherDate": {
+          "type": "string"
         },
         "voucherDescription": {
           "readOnly": true,
@@ -40918,6 +40845,11 @@
     },
     "SalaryV2PensionVoucher": {
       "properties": {
+        "ameldingWageId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -40925,7 +40857,8 @@
           "readOnly": true,
           "type": "array"
         },
-        "date": {
+        "displayName": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
@@ -40940,13 +40873,17 @@
           "format": "int32",
           "type": "integer"
         },
-        "voucherDescription": {
-          "readOnly": true,
+        "voucherDate": {
           "type": "string"
         },
         "voucherNumberAsString": {
           "readOnly": true,
           "type": "string"
+        },
+        "wagePeriodTransactionId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -41584,12 +41521,25 @@
           "maxLength": 16777215,
           "type": "string"
         },
+        "completedLogId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
         "datePeriod": {
+          "type": "string"
+        },
+        "displayName": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
           "format": "int64",
           "type": "integer"
+        },
+        "isReversed": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "paymentDate": {
           "type": "string"
@@ -41605,15 +41555,11 @@
         "voucherDate": {
           "type": "string"
         },
-        "voucherDescription": {
-          "readOnly": true,
-          "type": "string"
-        },
         "voucherNumberAsString": {
           "readOnly": true,
           "type": "string"
         },
-        "wagePaymentTransactionId": {
+        "wagePeriodTransactionId": {
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -43800,6 +43746,7 @@
             "NEGATIVE_DIFF_BETWEEN_ALLOCATED_AND_DISTRIBUTED_DIVIDEND",
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
+            "LATE_PAYMENT",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
