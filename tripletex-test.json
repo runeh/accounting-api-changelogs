@@ -1765,7 +1765,36 @@
             "OTHER_CIRCUMSTANCES_ASSET_TYPE",
             "OTHER_CIRCUMSTANCES_PRICING_METHOD",
             "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
-            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_NUMBER",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_APPLICATION_APPROVED_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_START_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_END_DATE",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_START_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_END_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS_DATE",
+            "RESEARCH_AND_DEVELOPMENT_BUSINESS_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_IS_COLLABORATIVE_PROJECT_WITH_OTHER_ENTERPRISES",
+            "RESEARCH_AND_DEVELOPMENT_HAS_EXTENSIVE_DISSEMINATION_THROUGH_CONFERENCES_PUBLICATIONS_ETC",
+            "RESEARCH_AND_DEVELOPMENT_MAXIMUM_APPROVED_PUBLIC_SUPPORT_AS_A_SHARE_OF_TOTAL_COSTS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_INCLUDED_PERSONNEL_COSTS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_NUMBER_OF_OWN_HOURS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PUBLIC_SUPPORT_AS_REDUCED_WORKER_FEE",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_PUBLIC_SUPPORT_IN_PROJECT_PERIOD",
+            "RESEARCH_AND_DEVELOPMENT_WAS_IN_ECONOMIC_DIFFICULTIES_AT_APPLICATION_TIME",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTS_USED_FOR_ASSESSMENT",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTATION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_TYPE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DELIMITATION",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT"
           ],
           "readOnly": true,
           "type": "string"
@@ -5504,7 +5533,8 @@
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
-            "OTHER_CIRCUMSTANCES"
+            "OTHER_CIRCUMSTANCES",
+            "RESEARCH_AND_DEVELOPMENT"
           ],
           "readOnly": true,
           "type": "string"
@@ -6093,7 +6123,36 @@
             "OTHER_CIRCUMSTANCES_ASSET_TYPE",
             "OTHER_CIRCUMSTANCES_PRICING_METHOD",
             "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
-            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_NUMBER",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_APPLICATION_APPROVED_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_START_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_END_DATE",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_START_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_END_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS_DATE",
+            "RESEARCH_AND_DEVELOPMENT_BUSINESS_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_IS_COLLABORATIVE_PROJECT_WITH_OTHER_ENTERPRISES",
+            "RESEARCH_AND_DEVELOPMENT_HAS_EXTENSIVE_DISSEMINATION_THROUGH_CONFERENCES_PUBLICATIONS_ETC",
+            "RESEARCH_AND_DEVELOPMENT_MAXIMUM_APPROVED_PUBLIC_SUPPORT_AS_A_SHARE_OF_TOTAL_COSTS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_INCLUDED_PERSONNEL_COSTS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_NUMBER_OF_OWN_HOURS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PUBLIC_SUPPORT_AS_REDUCED_WORKER_FEE",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_PUBLIC_SUPPORT_IN_PROJECT_PERIOD",
+            "RESEARCH_AND_DEVELOPMENT_WAS_IN_ECONOMIC_DIFFICULTIES_AT_APPLICATION_TIME",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTS_USED_FOR_ASSESSMENT",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTATION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_TYPE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DELIMITATION",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT"
           ],
           "readOnly": true,
           "type": "string"
@@ -9758,7 +9817,9 @@
             "ENTERTAINMENT",
             "MULTI_UNIT_BUILDING_UNIT",
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
-            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER"
+            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
+            "RESOLUTION",
+            "OTHER_PUBLIC_SUPPORT"
           ],
           "type": "string"
         },
@@ -9788,7 +9849,8 @@
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
-            "OTHER_CIRCUMSTANCES"
+            "OTHER_CIRCUMSTANCES",
+            "RESEARCH_AND_DEVELOPMENT"
           ],
           "type": "string"
         },
@@ -10252,7 +10314,36 @@
             "OTHER_CIRCUMSTANCES_ASSET_TYPE",
             "OTHER_CIRCUMSTANCES_PRICING_METHOD",
             "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
-            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_NUMBER",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_APPLICATION_APPROVED_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_START_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_END_DATE",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_START_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_END_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS_DATE",
+            "RESEARCH_AND_DEVELOPMENT_BUSINESS_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_IS_COLLABORATIVE_PROJECT_WITH_OTHER_ENTERPRISES",
+            "RESEARCH_AND_DEVELOPMENT_HAS_EXTENSIVE_DISSEMINATION_THROUGH_CONFERENCES_PUBLICATIONS_ETC",
+            "RESEARCH_AND_DEVELOPMENT_MAXIMUM_APPROVED_PUBLIC_SUPPORT_AS_A_SHARE_OF_TOTAL_COSTS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_INCLUDED_PERSONNEL_COSTS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_NUMBER_OF_OWN_HOURS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PUBLIC_SUPPORT_AS_REDUCED_WORKER_FEE",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_PUBLIC_SUPPORT_IN_PROJECT_PERIOD",
+            "RESEARCH_AND_DEVELOPMENT_WAS_IN_ECONOMIC_DIFFICULTIES_AT_APPLICATION_TIME",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTS_USED_FOR_ASSESSMENT",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTATION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_TYPE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DELIMITATION",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT"
           ],
           "type": "string"
         },
@@ -12691,7 +12782,9 @@
             "ENTERTAINMENT",
             "MULTI_UNIT_BUILDING_UNIT",
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
-            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER"
+            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
+            "RESOLUTION",
+            "OTHER_PUBLIC_SUPPORT"
           ],
           "type": "string"
         },
@@ -12721,7 +12814,8 @@
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
-            "OTHER_CIRCUMSTANCES"
+            "OTHER_CIRCUMSTANCES",
+            "RESEARCH_AND_DEVELOPMENT"
           ],
           "type": "string"
         },
@@ -13185,7 +13279,36 @@
             "OTHER_CIRCUMSTANCES_ASSET_TYPE",
             "OTHER_CIRCUMSTANCES_PRICING_METHOD",
             "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
-            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_NUMBER",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_APPLICATION_APPROVED_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_START_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_END_DATE",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_START_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_END_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS_DATE",
+            "RESEARCH_AND_DEVELOPMENT_BUSINESS_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_IS_COLLABORATIVE_PROJECT_WITH_OTHER_ENTERPRISES",
+            "RESEARCH_AND_DEVELOPMENT_HAS_EXTENSIVE_DISSEMINATION_THROUGH_CONFERENCES_PUBLICATIONS_ETC",
+            "RESEARCH_AND_DEVELOPMENT_MAXIMUM_APPROVED_PUBLIC_SUPPORT_AS_A_SHARE_OF_TOTAL_COSTS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_INCLUDED_PERSONNEL_COSTS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_NUMBER_OF_OWN_HOURS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PUBLIC_SUPPORT_AS_REDUCED_WORKER_FEE",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_PUBLIC_SUPPORT_IN_PROJECT_PERIOD",
+            "RESEARCH_AND_DEVELOPMENT_WAS_IN_ECONOMIC_DIFFICULTIES_AT_APPLICATION_TIME",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTS_USED_FOR_ASSESSMENT",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTATION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_TYPE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DELIMITATION",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT"
           ],
           "type": "string"
         },
@@ -13293,7 +13416,8 @@
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
-            "OTHER_CIRCUMSTANCES"
+            "OTHER_CIRCUMSTANCES",
+            "RESEARCH_AND_DEVELOPMENT"
           ],
           "readOnly": true,
           "type": "string"
@@ -13410,6 +13534,7 @@
             "VoucherReceptionBanner",
             "CreateSalaryBanner",
             "NewOrderInvoiceBanner",
+            "SimpleInvoiceToEffortlessBanner",
             "TripletexDashboardBanner",
             "VoucherAutomationBanner",
             "PurchaseOrdersBanner",
@@ -13431,65 +13556,6 @@
             "MINIMIZED",
             "DISMISSED"
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GetStartedSummaryDTO": {
-      "properties": {
-        "daysRemaining": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "numberOfCompletedTasks": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "tasks": {
-          "items": {
-            "$ref": "#/definitions/GetStartedTaskWidgetDTO"
-          },
-          "type": "array"
-        },
-        "totalNumberOfTasks": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "GetStartedTaskWidgetDTO": {
-      "properties": {
-        "actionUrl": {
-          "type": "string"
-        },
-        "articleUrl": {
-          "type": "string"
-        },
-        "duration": {
-          "type": "string"
-        },
-        "icon": {
-          "type": "string"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "status": {
-          "enum": [
-            "INITIAL",
-            "UNAVAILABLE",
-            "PENDING",
-            "DONE"
-          ],
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "watchVideoUrl": {
           "type": "string"
         }
       },
@@ -15206,7 +15272,36 @@
             "OTHER_CIRCUMSTANCES_ASSET_TYPE",
             "OTHER_CIRCUMSTANCES_PRICING_METHOD",
             "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
-            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_NUMBER",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_APPLICATION_APPROVED_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_START_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_END_DATE",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_START_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_END_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS_DATE",
+            "RESEARCH_AND_DEVELOPMENT_BUSINESS_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_IS_COLLABORATIVE_PROJECT_WITH_OTHER_ENTERPRISES",
+            "RESEARCH_AND_DEVELOPMENT_HAS_EXTENSIVE_DISSEMINATION_THROUGH_CONFERENCES_PUBLICATIONS_ETC",
+            "RESEARCH_AND_DEVELOPMENT_MAXIMUM_APPROVED_PUBLIC_SUPPORT_AS_A_SHARE_OF_TOTAL_COSTS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_INCLUDED_PERSONNEL_COSTS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_NUMBER_OF_OWN_HOURS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PUBLIC_SUPPORT_AS_REDUCED_WORKER_FEE",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_PUBLIC_SUPPORT_IN_PROJECT_PERIOD",
+            "RESEARCH_AND_DEVELOPMENT_WAS_IN_ECONOMIC_DIFFICULTIES_AT_APPLICATION_TIME",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTS_USED_FOR_ASSESSMENT",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTATION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_TYPE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DELIMITATION",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT"
           ],
           "readOnly": true,
           "type": "string"
@@ -15679,7 +15774,36 @@
             "OTHER_CIRCUMSTANCES_ASSET_TYPE",
             "OTHER_CIRCUMSTANCES_PRICING_METHOD",
             "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
-            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_NUMBER",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_APPLICATION_APPROVED_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_START_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_END_DATE",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_START_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_END_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS_DATE",
+            "RESEARCH_AND_DEVELOPMENT_BUSINESS_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_IS_COLLABORATIVE_PROJECT_WITH_OTHER_ENTERPRISES",
+            "RESEARCH_AND_DEVELOPMENT_HAS_EXTENSIVE_DISSEMINATION_THROUGH_CONFERENCES_PUBLICATIONS_ETC",
+            "RESEARCH_AND_DEVELOPMENT_MAXIMUM_APPROVED_PUBLIC_SUPPORT_AS_A_SHARE_OF_TOTAL_COSTS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_INCLUDED_PERSONNEL_COSTS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_NUMBER_OF_OWN_HOURS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PUBLIC_SUPPORT_AS_REDUCED_WORKER_FEE",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_PUBLIC_SUPPORT_IN_PROJECT_PERIOD",
+            "RESEARCH_AND_DEVELOPMENT_WAS_IN_ECONOMIC_DIFFICULTIES_AT_APPLICATION_TIME",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTS_USED_FOR_ASSESSMENT",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTATION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_TYPE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DELIMITATION",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT"
           ],
           "readOnly": true,
           "type": "string"
@@ -22909,6 +23033,105 @@
       },
       "type": "object"
     },
+    "ListResponseResearchAndDevelopment": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ResearchAndDevelopment"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseResearchAndDevelopmentOtherPublicSupport": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ResearchAndDevelopmentOtherPublicSupport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseResearchAndDevelopmentResolution": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ResearchAndDevelopmentResolution"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseResultBudget": {
       "properties": {
         "count": {
@@ -26266,7 +26489,8 @@
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
-            "OTHER_CIRCUMSTANCES"
+            "OTHER_CIRCUMSTANCES",
+            "RESEARCH_AND_DEVELOPMENT"
           ],
           "readOnly": true,
           "type": "string"
@@ -28514,7 +28738,36 @@
             "OTHER_CIRCUMSTANCES_ASSET_TYPE",
             "OTHER_CIRCUMSTANCES_PRICING_METHOD",
             "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
-            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_NUMBER",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_APPLICATION_APPROVED_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_START_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_END_DATE",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_START_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_END_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS_DATE",
+            "RESEARCH_AND_DEVELOPMENT_BUSINESS_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_IS_COLLABORATIVE_PROJECT_WITH_OTHER_ENTERPRISES",
+            "RESEARCH_AND_DEVELOPMENT_HAS_EXTENSIVE_DISSEMINATION_THROUGH_CONFERENCES_PUBLICATIONS_ETC",
+            "RESEARCH_AND_DEVELOPMENT_MAXIMUM_APPROVED_PUBLIC_SUPPORT_AS_A_SHARE_OF_TOTAL_COSTS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_INCLUDED_PERSONNEL_COSTS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_NUMBER_OF_OWN_HOURS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PUBLIC_SUPPORT_AS_REDUCED_WORKER_FEE",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_PUBLIC_SUPPORT_IN_PROJECT_PERIOD",
+            "RESEARCH_AND_DEVELOPMENT_WAS_IN_ECONOMIC_DIFFICULTIES_AT_APPLICATION_TIME",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTS_USED_FOR_ASSESSMENT",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTATION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_TYPE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DELIMITATION",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT"
           ],
           "type": "string"
         },
@@ -30065,7 +30318,36 @@
             "OTHER_CIRCUMSTANCES_ASSET_TYPE",
             "OTHER_CIRCUMSTANCES_PRICING_METHOD",
             "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
-            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_NUMBER",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_APPLICATION_APPROVED_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_START_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_END_DATE",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_START_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_END_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS_DATE",
+            "RESEARCH_AND_DEVELOPMENT_BUSINESS_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_IS_COLLABORATIVE_PROJECT_WITH_OTHER_ENTERPRISES",
+            "RESEARCH_AND_DEVELOPMENT_HAS_EXTENSIVE_DISSEMINATION_THROUGH_CONFERENCES_PUBLICATIONS_ETC",
+            "RESEARCH_AND_DEVELOPMENT_MAXIMUM_APPROVED_PUBLIC_SUPPORT_AS_A_SHARE_OF_TOTAL_COSTS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_INCLUDED_PERSONNEL_COSTS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_NUMBER_OF_OWN_HOURS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PUBLIC_SUPPORT_AS_REDUCED_WORKER_FEE",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_PUBLIC_SUPPORT_IN_PROJECT_PERIOD",
+            "RESEARCH_AND_DEVELOPMENT_WAS_IN_ECONOMIC_DIFFICULTIES_AT_APPLICATION_TIME",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTS_USED_FOR_ASSESSMENT",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTATION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_TYPE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DELIMITATION",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT"
           ],
           "readOnly": true,
           "type": "string"
@@ -34227,7 +34509,9 @@
             "ENTERTAINMENT",
             "MULTI_UNIT_BUILDING_UNIT",
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
-            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER"
+            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
+            "RESOLUTION",
+            "OTHER_PUBLIC_SUPPORT"
           ],
           "readOnly": true,
           "type": "string"
@@ -34258,7 +34542,8 @@
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
-            "OTHER_CIRCUMSTANCES"
+            "OTHER_CIRCUMSTANCES",
+            "RESEARCH_AND_DEVELOPMENT"
           ],
           "readOnly": true,
           "type": "string"
@@ -35621,6 +35906,268 @@
       },
       "type": "object"
     },
+    "ResearchAndDevelopment": {
+      "properties": {
+        "applicationApprovedDate": {
+          "description": "Application approved date",
+          "example": "2024-04-29",
+          "type": "string"
+        },
+        "approvedRndIncentiveEndYear": {
+          "description": "Approved R&D Incentive End Year",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "approvedRndIncentiveStartYear": {
+          "description": "Approved R&D Incentive Start Year",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "businessCategory": {
+          "description": "Business Category",
+          "enum": [
+            "NONE",
+            "SMALL_BUSINESS",
+            "MEDIUM_BUSINESS",
+            "LARGE_BUSINESS"
+          ],
+          "type": "string"
+        },
+        "costInIncomeYear": {
+          "description": "Cost In Income Year",
+          "type": "number"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "hasExtensiveDisseminationThroughConferencesPublicationsEtc": {
+          "description": "Has Extensive Dissemination Through Conferences Publications Etc",
+          "enum": [
+            "NONE",
+            "NO",
+            "YES"
+          ],
+          "type": "string"
+        },
+        "includedPersonnelCostsInIncomeYear": {
+          "description": "Included Personnel Costs In Income Year",
+          "type": "number"
+        },
+        "isCollaborativeProjectWIthOtherEnterprises": {
+          "description": "Is Collaborative Project With Other Enterprises",
+          "enum": [
+            "NONE",
+            "NO",
+            "YES"
+          ],
+          "type": "string"
+        },
+        "maximumApprovedPublicSupportAsAShareOfTotalCosts": {
+          "description": "Maximum Approved Public Support As A Share Of Total Costs",
+          "type": "number"
+        },
+        "numberOfOwnHoursInIncomeYear": {
+          "description": "Number Of Own Hours In Income Year",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "posts": {
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "projectCategory": {
+          "description": "Project Category",
+          "enum": [
+            "NONE",
+            "RESEARCH",
+            "DEVELOPMENT"
+          ],
+          "type": "string"
+        },
+        "projectEndDate": {
+          "description": "Project end date",
+          "example": "2024-04-29",
+          "type": "string"
+        },
+        "projectNumber": {
+          "description": "Project Number",
+          "type": "string"
+        },
+        "projectStartDate": {
+          "description": "Project start date",
+          "example": "2024-04-29",
+          "type": "string"
+        },
+        "projectStatus": {
+          "description": "Project Status",
+          "enum": [
+            "NONE",
+            "APPLICATION_REJECTED",
+            "APPLICATION_APPROVED",
+            "COMPLAINT_RECEIVED",
+            "PROJECT_CANCELLED_BY_NFR",
+            "APPROVAL_RESCINDED",
+            "PROCESSING_AFTER_APPROVED_COMPLAINT",
+            "ADMINISTRATIVELY_APPROVED_COMPLAINT"
+          ],
+          "type": "string"
+        },
+        "projectStatusDate": {
+          "description": "Project status date",
+          "example": "2024-04-29",
+          "type": "string"
+        },
+        "projectTitle": {
+          "description": "Project Title",
+          "type": "string"
+        },
+        "publicSupportAsReducedWorkerFee": {
+          "description": "Public Support As Reduced Worker Fee",
+          "type": "number"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCostsPreviousYears": {
+          "description": "Total Costs Previous Years",
+          "type": "number"
+        },
+        "totalGrossPublicSupportInProjectPeriod": {
+          "description": "Total Gross Public Support In Project Period",
+          "type": "number"
+        },
+        "totalGrossTaxDeductionFromPreviousYears": {
+          "description": "Total Gross Tax Deduction From Previous Years",
+          "type": "number"
+        },
+        "underlyingDocumentationDate": {
+          "description": "Underlying Documentation Date",
+          "example": "2024-04-29",
+          "type": "string"
+        },
+        "underlyingDocumentsUsedForAssessment": {
+          "description": "Underlying Documents Used For Assessment",
+          "enum": [
+            "NONE",
+            "INTERIM_BALANCE",
+            "ANNUAL_ACCOUNTS"
+          ],
+          "type": "string"
+        },
+        "wasInEconomicDifficultiesAtApplicationTime": {
+          "description": "Was In Economic Difficulties At Application Time",
+          "enum": [
+            "NONE",
+            "NO",
+            "YES"
+          ],
+          "type": "string"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
+    "ResearchAndDevelopmentOtherPublicSupport": {
+      "properties": {
+        "amount": {
+          "description": "Amount",
+          "type": "number"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "payerName": {
+          "description": "Payer name",
+          "type": "string"
+        },
+        "posts": {
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
+    "ResearchAndDevelopmentResolution": {
+      "properties": {
+        "date": {
+          "description": "The date of the resolution",
+          "type": "string"
+        },
+        "delimitation": {
+          "description": "The delimitation of the resolution",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "posts": {
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "type": {
+          "description": "The type of the resolution",
+          "enum": [
+            "NONE",
+            "DELIMITATION",
+            "PROCESSING_AFTER_APPROVED_COMPLAINT",
+            "APPROVAL_RESCINDED",
+            "ADMINISTRATIVELY_APPROVED_COMPLAINT",
+            "COMPLAINT_RECEIVED",
+            "PROJECT_CANCELLED",
+            "FINAL_REPORT_APPROVED",
+            "FINAL_REPORT_SENT",
+            "FINAL_REPORT_RETURNED",
+            "FINAL_REPORT_PENDING",
+            "APPLICATION_REJECTED",
+            "APPLICATION_APPROVED",
+            "ANNUAL_REPORT_APPROVED",
+            "ANNUAL_REPORT_SENT",
+            "ANNUAL_REPORT_RETURNED",
+            "ANNUAL_REPORT_PENDING"
+          ],
+          "type": "string"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
     "ResourceGroupRelation": {
       "properties": {
         "resourceGroupIds": {
@@ -36741,14 +37288,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/GetStartedBannerData"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperGetStartedSummaryDTO": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/GetStartedSummaryDTO"
         }
       },
       "type": "object"
@@ -38119,6 +38658,30 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ReportResultEnvelope"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperResearchAndDevelopment": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ResearchAndDevelopment"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperResearchAndDevelopmentOtherPublicSupport": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ResearchAndDevelopmentOtherPublicSupport"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperResearchAndDevelopmentResolution": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ResearchAndDevelopmentResolution"
         }
       },
       "type": "object"
@@ -43577,7 +44140,9 @@
             "ENTERTAINMENT",
             "MULTI_UNIT_BUILDING_UNIT",
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
-            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER"
+            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
+            "RESOLUTION",
+            "OTHER_PUBLIC_SUPPORT"
           ],
           "type": "string"
         },
@@ -43607,7 +44172,8 @@
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
-            "OTHER_CIRCUMSTANCES"
+            "OTHER_CIRCUMSTANCES",
+            "RESEARCH_AND_DEVELOPMENT"
           ],
           "type": "string"
         },
@@ -44086,7 +44652,36 @@
             "OTHER_CIRCUMSTANCES_ASSET_TYPE",
             "OTHER_CIRCUMSTANCES_PRICING_METHOD",
             "OTHER_CIRCUMSTANCES_RENTAL_VALUE",
-            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL"
+            "OTHER_CIRCUMSTANCES_VALUE_OF_SALE_OR_WITHDRAWAL",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_NUMBER",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_APPLICATION_APPROVED_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_START_DATE",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_END_DATE",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_START_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_APPROVED_RND_INCENTIVE_END_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS",
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_STATUS_DATE",
+            "RESEARCH_AND_DEVELOPMENT_BUSINESS_CATEGORY",
+            "RESEARCH_AND_DEVELOPMENT_IS_COLLABORATIVE_PROJECT_WITH_OTHER_ENTERPRISES",
+            "RESEARCH_AND_DEVELOPMENT_HAS_EXTENSIVE_DISSEMINATION_THROUGH_CONFERENCES_PUBLICATIONS_ETC",
+            "RESEARCH_AND_DEVELOPMENT_MAXIMUM_APPROVED_PUBLIC_SUPPORT_AS_A_SHARE_OF_TOTAL_COSTS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_PREVIOUS_YEARS",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_TAX_DEDUCTION_FROM_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_INCLUDED_PERSONNEL_COSTS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_NUMBER_OF_OWN_HOURS_IN_INCOME_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_PUBLIC_SUPPORT_AS_REDUCED_WORKER_FEE",
+            "RESEARCH_AND_DEVELOPMENT_TOTAL_GROSS_PUBLIC_SUPPORT_IN_PROJECT_PERIOD",
+            "RESEARCH_AND_DEVELOPMENT_WAS_IN_ECONOMIC_DIFFICULTIES_AT_APPLICATION_TIME",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTS_USED_FOR_ASSESSMENT",
+            "RESEARCH_AND_DEVELOPMENT_UNDERLYING_DOCUMENTATION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DATE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_TYPE",
+            "RESEARCH_AND_DEVELOPMENT_RESOLUTION_DELIMITATION",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
+            "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT"
           ],
           "type": "string"
         },
@@ -48670,7 +49265,8 @@
             "PARTICIPANT",
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
-            "OTHER_CIRCUMSTANCES"
+            "OTHER_CIRCUMSTANCES",
+            "RESEARCH_AND_DEVELOPMENT"
           ],
           "readOnly": true,
           "type": "string"
@@ -51054,7 +51650,6 @@
         "id": {
           "enum": [
             "BANKING",
-            "GET_STARTED_SUMMARY",
             "VOUCHER_SUMMARY",
             "INVOICE_SUMMARY",
             "SALARY_SUMMARY",
@@ -88600,9 +89195,6 @@
     },
     {
       "name": "tripletexDashboard"
-    },
-    {
-      "name": "tripletexDashboardgetStartedSummary"
     },
     {
       "name": "tripletexDashboardincomeAndCostSummary"
