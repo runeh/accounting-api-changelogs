@@ -935,7 +935,7 @@
           "type": "boolean"
         },
         "apiConsumerId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "categories": {
@@ -967,19 +967,12 @@
           },
           "type": "array"
         },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
         "description": {
           "maxLength": 1024,
           "type": "string"
         },
         "id": {
-          "format": "int64",
+          "format": "int32",
           "type": "integer"
         },
         "isPublic": {
@@ -1019,14 +1012,6 @@
         "targetSystemName": {
           "type": "string"
         },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        },
         "visibility": {
           "enum": [
             "COMPANY_WIDE",
@@ -1053,7 +1038,7 @@
           "type": "array"
         },
         "documentId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         }
       },
@@ -9321,6 +9306,14 @@
         "customer": {
           "$ref": "#/definitions/Customer"
         },
+        "discountType": {
+          "enum": [
+            "CUSTOMER_DISCOUNT",
+            "PRODUCT_DISCOUNT",
+            "PRODUCT_GROUP_DISCOUNT"
+          ],
+          "type": "string"
+        },
         "fixedAmount": {
           "type": "number"
         },
@@ -9328,11 +9321,17 @@
           "format": "int64",
           "type": "integer"
         },
+        "isPercentage": {
+          "type": "number"
+        },
         "percentage": {
           "type": "number"
         },
         "product": {
           "$ref": "#/definitions/Product"
+        },
+        "salesPriceWithDiscount": {
+          "type": "number"
         },
         "url": {
           "readOnly": true,
@@ -45832,6 +45831,9 @@
         "firstName": {
           "type": "string"
         },
+        "hasAiAssistantRestrictChatForAccountingOfficesPilot": {
+          "type": "boolean"
+        },
         "hasSticosPilot": {
           "type": "boolean"
         },
@@ -63011,7 +63013,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find inventories corresponding with sent data.",
+        "summary": "Find inventories corresponding with sent data.",
         "tags": [
           "inventory/inventories"
         ]
@@ -63087,7 +63089,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find inventory locations by inventory ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Find inventory locations by inventory ID. Only available for Logistics Basic.",
         "tags": [
           "inventory/location"
         ]
@@ -63122,7 +63124,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create new inventory location. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Create new inventory location. Only available for Logistics Basic.",
         "tags": [
           "inventory/location"
         ]
@@ -63151,7 +63153,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete inventory location. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Delete inventory location. Only available for Logistics Basic.",
         "tags": [
           "inventory/location"
         ]
@@ -63189,7 +63191,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Add multiple inventory locations. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Add multiple inventory locations. Only available for Logistics Basic.",
         "tags": [
           "inventory/location"
         ]
@@ -63227,7 +63229,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update multiple inventory locations. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Update multiple inventory locations. Only available for Logistics Basic.",
         "tags": [
           "inventory/location"
         ]
@@ -63257,7 +63259,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete inventory location. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Delete inventory location. Only available for Logistics Basic.",
         "tags": [
           "inventory/location"
         ]
@@ -63295,7 +63297,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Get inventory location by ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Get inventory location by ID. Only available for Logistics Basic.",
         "tags": [
           "inventory/location"
         ]
@@ -63338,7 +63340,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update inventory location. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Update inventory location. Only available for Logistics Basic.",
         "tags": [
           "inventory/location"
         ]
@@ -63415,7 +63417,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find stocktaking corresponding with sent data.",
+        "summary": "Find stocktaking corresponding with sent data.",
         "tags": [
           "inventory/stocktaking"
         ]
@@ -63462,7 +63464,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create new stocktaking.",
+        "summary": "Create new stocktaking.",
         "tags": [
           "inventory/stocktaking"
         ]
@@ -63560,7 +63562,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find all product lines by stocktaking ID.",
+        "summary": "Find all order lines by stocktaking ID.",
         "tags": [
           "inventory/stocktaking/productline"
         ]
@@ -63595,7 +63597,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create product line. When creating several product lines, use /list for better performance.",
+        "summary": "Create order line. When creating several order lines, use /list for better performance.",
         "tags": [
           "inventory/stocktaking/productline"
         ]
@@ -63625,7 +63627,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete product line.",
+        "summary": "Delete order line.",
         "tags": [
           "inventory/stocktaking/productline"
         ]
@@ -63663,7 +63665,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Get product line by ID.",
+        "summary": "Get order line by ID.",
         "tags": [
           "inventory/stocktaking/productline"
         ]
@@ -63706,7 +63708,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update product line.",
+        "summary": "Update order line.",
         "tags": [
           "inventory/stocktaking/productline"
         ]
@@ -63736,7 +63738,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete stocktaking.",
+        "summary": "Delete stocktaking.",
         "tags": [
           "inventory/stocktaking"
         ]
@@ -63774,7 +63776,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Get stocktaking by ID.",
+        "summary": "Get stocktaking by ID.",
         "tags": [
           "inventory/stocktaking"
         ]
@@ -63817,7 +63819,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update stocktaking.",
+        "summary": "Update stocktaking.",
         "tags": [
           "inventory/stocktaking"
         ]
@@ -63847,7 +63849,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete inventory.",
+        "summary": "Delete inventory.",
         "tags": [
           "inventory"
         ]
@@ -69548,7 +69550,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Search pickup points.",
+        "summary": "Search pickup points.",
         "tags": [
           "pickupPoint"
         ]
@@ -69588,7 +69590,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find pickup point by ID.",
+        "summary": "Find pickup point by ID.",
         "tags": [
           "pickupPoint"
         ]
@@ -70178,7 +70180,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find product group with sent data",
+        "summary": "Find product group with sent data. Only available for Logistics Basic.",
         "tags": [
           "product/group"
         ]
@@ -70213,7 +70215,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create new product group.",
+        "summary": "Create new product group. Only available for Logistics Basic.",
         "tags": [
           "product/group"
         ]
@@ -70242,7 +70244,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete multiple product groups.",
+        "summary": "Delete multiple product groups. Only available for Logistics Basic.",
         "tags": [
           "product/group"
         ]
@@ -70280,7 +70282,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Add multiple products groups.",
+        "summary": "Add multiple products groups. Only available for Logistics Basic.",
         "tags": [
           "product/group"
         ]
@@ -70318,7 +70320,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update a list of product groups.",
+        "summary": "Update a list of product groups. Only available for Logistics Basic.",
         "tags": [
           "product/group"
         ]
@@ -70388,7 +70390,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Wildcard search.",
+        "summary": "Wildcard search. Only available for Logistics Basic.",
         "tags": [
           "product/group"
         ]
@@ -70418,7 +70420,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete product group.",
+        "summary": "Delete product group. Only available for Logistics Basic.",
         "tags": [
           "product/group"
         ]
@@ -70456,7 +70458,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find product group by ID.",
+        "summary": "Find product group by ID. Only available for Logistics Basic.",
         "tags": [
           "product/group"
         ]
@@ -70499,7 +70501,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update product group.",
+        "summary": "Update product group. Only available for Logistics Basic.",
         "tags": [
           "product/group"
         ]
@@ -70575,7 +70577,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find product group relation with sent data.",
+        "summary": "Find product group relation with sent data. Only available for Logistics Basic.",
         "tags": [
           "product/groupRelation"
         ]
@@ -70610,7 +70612,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create new product group relation.",
+        "summary": "Create new product group relation. Only available for Logistics Basic.",
         "tags": [
           "product/groupRelation"
         ]
@@ -70645,7 +70647,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete multiple product group relations.",
+        "summary": "Delete multiple product group relations. Only available for Logistics Basic.",
         "tags": [
           "product/groupRelation"
         ]
@@ -70683,7 +70685,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Add multiple products group relations.",
+        "summary": "Add multiple products group relations. Only available for Logistics Basic.",
         "tags": [
           "product/groupRelation"
         ]
@@ -70713,7 +70715,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete product group relation.",
+        "summary": "Delete product group relation. Only available for Logistics Basic.",
         "tags": [
           "product/groupRelation"
         ]
@@ -70751,7 +70753,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find product group relation by ID.",
+        "summary": "Find product group relation by ID. Only available for Logistics Basic.",
         "tags": [
           "product/groupRelation"
         ]
@@ -70827,7 +70829,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find inventory locations by product ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Find inventory locations by product ID. Only available for Logistics Basic.",
         "tags": [
           "product/inventoryLocation"
         ]
@@ -70862,7 +70864,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create new product inventory location. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Create new product inventory location. Only available for Logistics Basic.",
         "tags": [
           "product/inventoryLocation"
         ]
@@ -70902,7 +70904,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Add multiple product inventory locations. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Add multiple product inventory locations. Only available for Logistics Basic.",
         "tags": [
           "product/inventoryLocation"
         ]
@@ -70940,7 +70942,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update multiple product inventory locations. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Update multiple product inventory locations. Only available for Logistics Basic.",
         "tags": [
           "product/inventoryLocation"
         ]
@@ -70970,7 +70972,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete product inventory location. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Delete product inventory location. Only available for Logistics Basic.",
         "tags": [
           "product/inventoryLocation"
         ]
@@ -71008,7 +71010,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Get inventory location by ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Get inventory location by ID. Only available for Logistics Basic.",
         "tags": [
           "product/inventoryLocation"
         ]
@@ -71051,7 +71053,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update product inventory location. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Update product inventory location. Only available for Logistics Basic.",
         "tags": [
           "product/inventoryLocation"
         ]
@@ -71091,7 +71093,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Add multiple products.",
+        "summary": "Add multiple products.",
         "tags": [
           "product"
         ]
@@ -71129,7 +71131,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update a list of products.",
+        "summary": "Update a list of products.",
         "tags": [
           "product"
         ]
@@ -71161,7 +71163,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Get logistics settings of logged in company.",
+        "summary": "Get logistics settings for the logged in company.",
         "tags": [
           "product/logisticsSettings"
         ]
@@ -71196,7 +71198,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update logistics settings of logged in company.",
+        "summary": "Update logistics settings for the logged in company.",
         "tags": [
           "product/logisticsSettings"
         ]
@@ -71279,7 +71281,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find prices for a product. Only available for users that have activated the Logistics/Logistics Plus Beta-program in 'Our customer account'.",
+        "summary": "Find prices for a product. Only available for Logistics Basic.",
         "tags": [
           "product/productPrice"
         ]
@@ -71485,7 +71487,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update a list of supplierProduct.",
+        "summary": "Update a list of supplierProduct.",
         "tags": [
           "product/supplierProduct"
         ]
@@ -71515,7 +71517,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete supplierProduct.",
+        "summary": "Delete supplierProduct.",
         "tags": [
           "product/supplierProduct"
         ]
@@ -71714,7 +71716,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create new product unit.",
+        "summary": "Create new product unit.",
         "tags": [
           "product/unit"
         ]
@@ -71754,7 +71756,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create multiple product units.",
+        "summary": "Create multiple product units.",
         "tags": [
           "product/unit"
         ]
@@ -71792,7 +71794,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update list of product units.",
+        "summary": "Update list of product units.",
         "tags": [
           "product/unit"
         ]
@@ -71897,7 +71899,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find product units master corresponding with sent data.",
+        "summary": "Find product units master corresponding with sent data.",
         "tags": [
           "product/unit/master"
         ]
@@ -71937,7 +71939,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Get product unit master by ID.",
+        "summary": "Get product unit master by ID.",
         "tags": [
           "product/unit/master"
         ]
@@ -72001,7 +72003,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Wildcard search.",
+        "summary": "Wildcard search.",
         "tags": [
           "product/unit"
         ]
@@ -72031,7 +72033,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete product unit by ID.",
+        "summary": "Delete product unit by ID.",
         "tags": [
           "product/unit"
         ]
@@ -72112,7 +72114,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update product unit.",
+        "summary": "Update product unit.",
         "tags": [
           "product/unit"
         ]
@@ -72142,7 +72144,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete product.",
+        "summary": "Delete product.",
         "tags": [
           "product"
         ]
@@ -72253,7 +72255,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete image.",
+        "summary": "Delete image.",
         "tags": [
           "product"
         ]
@@ -72294,7 +72296,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Upload image to Product. Existing image on product will be replaced if exists",
+        "summary": "Upload image to product. Existing image on product will be replaced if exists",
         "tags": [
           "product"
         ]
@@ -75382,7 +75384,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find purchase orders with send data",
+        "summary": "Find purchase orders with send data. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder"
         ]
@@ -75417,7 +75419,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Creates a new purchase order",
+        "summary": "Creates a new purchase order. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder"
         ]
@@ -75480,7 +75482,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find handled deviations for purchase order. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Find handled deviations for purchase order. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/deviation"
         ]
@@ -75515,7 +75517,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Register deviation on goods receipt. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Register deviation on goods receipt. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/deviation"
         ]
@@ -75555,7 +75557,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Register multiple deviations. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Register multiple deviations. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/deviation"
         ]
@@ -75593,7 +75595,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update multiple deviations. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Update multiple deviations. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/deviation"
         ]
@@ -75623,7 +75625,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete goods receipt by purchase order ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Delete goods receipt by purchase order ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/deviation"
         ]
@@ -75661,7 +75663,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": " [BETA] Get deviation by order line ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Get deviation by order line ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/deviation"
         ]
@@ -75704,7 +75706,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Update deviation. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Update deviation. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/deviation"
         ]
@@ -75740,7 +75742,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Approve deviations. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Approve deviations. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/deviation"
         ]
@@ -75776,7 +75778,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Send deviations to approval. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Send deviations to approval. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/deviation"
         ]
@@ -75812,7 +75814,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Undeliver the deviations. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Set status to Not delivered for deviations. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/deviation"
         ]
@@ -75900,7 +75902,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Get goods receipt. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Get goods receipt. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceipt"
         ]
@@ -75943,7 +75945,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Register goods receipt without an existing purchase order. When registration of several goods receipt, use /list for better performance. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Register goods receipt without an existing purchase order. When registration of several goods receipt, use /list for better performance. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceipt"
         ]
@@ -75972,7 +75974,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete multiple goods receipt by ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Delete multiple goods receipts by ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceipt"
         ]
@@ -76018,7 +76020,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Register multiple goods receipt without an existing purchase order. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Register multiple goods receipts without an existing purchase order. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceipt"
         ]
@@ -76048,7 +76050,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete goods receipt by ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Delete goods receipt by ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceipt"
         ]
@@ -76086,7 +76088,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Get goods receipt by purchase order ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Get goods receipt by purchase order ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceipt"
         ]
@@ -76137,7 +76139,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update goods receipt. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Update goods receipt. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceipt"
         ]
@@ -76189,7 +76191,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Confirm goods receipt. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Confirm goods receipt. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceipt"
         ]
@@ -76248,7 +76250,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA]  Receive all ordered products and approve goods receipt. Only available for users that have activated the Logistics/Logistics Plus Beta-program in 'Our customer account'",
+        "summary": " Receive all ordered products and approve goods receipt. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceipt"
         ]
@@ -76314,7 +76316,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Register goods receipt. Quantity received on the products is set to the same as quantity ordered. To update the quantity received, use PUT /purchaseOrder/goodsReceiptLine/{id}. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Register goods receipt. Quantity received on the products is set to the same as quantity ordered. To update the quantity received, use PUT /purchaseOrder/goodsReceiptLine/{id}. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceipt"
         ]
@@ -76377,7 +76379,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find goods receipt lines for purchase order. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Find goods receipt lines for purchase order. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceiptLine"
         ]
@@ -76412,7 +76414,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Register new goods receipt; new product on an existing purchase order. When registration of several goods receipt, use /list for better performance. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Register new goods receipt; new product on an existing purchase order. When registration of several goods receipts, use /list for better performance. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceiptLine"
         ]
@@ -76446,7 +76448,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete goods receipt lines by ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Delete goods receipt lines by ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceiptLine"
         ]
@@ -76484,7 +76486,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Register multiple new goods receipt on an existing purchase order. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Register multiple new goods receipts on an existing purchase order. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceiptLine"
         ]
@@ -76522,7 +76524,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update goods receipt lines on a goods receipt. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Update goods receipt lines on a goods receipt. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceiptLine"
         ]
@@ -76552,7 +76554,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete goods receipt line by ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Delete goods receipt line by ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceiptLine"
         ]
@@ -76590,7 +76592,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Get goods receipt line by purchase order line ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Get goods receipt line by purchase order line ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceiptLine"
         ]
@@ -76633,7 +76635,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update a goods receipt line on a goods receipt. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Update a goods receipt line on a goods receipt. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/goodsReceiptLine"
         ]
@@ -76670,7 +76672,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": " [BETA] Creates purchase order line.",
+        "summary": "Creates purchase order line. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/orderline"
         ]
@@ -76704,7 +76706,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete purchase order lines by ID.",
+        "summary": "Delete purchase order lines by ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/orderline"
         ]
@@ -76742,7 +76744,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Create list of new purchase order lines.",
+        "summary": "Create list of new purchase order lines. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/orderline"
         ]
@@ -76780,7 +76782,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update a list of purchase order lines.",
+        "summary": "Update a list of purchase order lines. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/orderline"
         ]
@@ -76810,7 +76812,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": " [BETA] Delete purchase order line.",
+        "summary": "Delete purchase order line. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/orderline"
         ]
@@ -76848,7 +76850,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": " [BETA] Find purchase order line by ID.",
+        "summary": "Find purchase order line by ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/orderline"
         ]
@@ -76891,7 +76893,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": " [BETA] Updates purchase order line",
+        "summary": "Updates purchase order line. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/orderline"
         ]
@@ -76967,7 +76969,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find purchase order relation to voucher with sent data. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Find purchase order relation to voucher with sent data. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/purchaseOrderIncomingInvoiceRelation"
         ]
@@ -77002,7 +77004,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create new relation between purchase order and a voucher. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Create new relation between purchase order and a voucher. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/purchaseOrderIncomingInvoiceRelation"
         ]
@@ -77031,7 +77033,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete multiple purchase order voucher relations. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Delete multiple purchase order voucher relations. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/purchaseOrderIncomingInvoiceRelation"
         ]
@@ -77069,7 +77071,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create a new list of relations between purchase order and voucher. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Create a new list of relations between purchase order and voucher. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/purchaseOrderIncomingInvoiceRelation"
         ]
@@ -77099,7 +77101,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete purchase order voucher relation. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Delete purchase order voucher relation. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/purchaseOrderIncomingInvoiceRelation"
         ]
@@ -77137,7 +77139,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Find purchase order relation to voucher by ID. Only available for users that have activated the Logistics Plus Beta-program in 'Our customer account'",
+        "summary": "Find purchase order relation to voucher by ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder/purchaseOrderIncomingInvoiceRelation"
         ]
@@ -77167,7 +77169,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": " [BETA] Delete purchase order.",
+        "summary": " Delete purchase order. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder"
         ]
@@ -77205,7 +77207,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": " [BETA] Find purchase order by ID.",
+        "summary": "Find purchase order by ID. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder"
         ]
@@ -77248,7 +77250,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": " [BETA] Update purchase order.",
+        "summary": " Update purchase order. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder"
         ]
@@ -77294,7 +77296,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Send purchase order by id and sendType.",
+        "summary": "Send purchase order by ID and sendType. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder"
         ]
@@ -77339,7 +77341,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Send purchase order by customisable email.",
+        "summary": "Send purchase order by customisable email. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder"
         ]
@@ -77369,7 +77371,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete attachment.",
+        "summary": "Delete attachment. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder"
         ]
@@ -77418,7 +77420,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Upload attachment to Purchase Order.",
+        "summary": "Upload attachment to purchase order. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder"
         ]
@@ -77463,7 +77465,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Upload multiple attachments to Purchase Order.",
+        "summary": "Upload multiple attachments to Purchase Order. Only available for Logistics Basic.",
         "tags": [
           "purchaseOrder"
         ]
