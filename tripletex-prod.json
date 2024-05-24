@@ -13545,6 +13545,8 @@
             "YearEndReportTripletexDashboardBanner",
             "YearEndSubmissionOpenEnkBanner",
             "YearEndSubmissionOpenAsBanner",
+            "YearEndSubmissionReminderEnkBanner",
+            "YearEndSubmissionReminderBanner",
             "FeedbackDeadlinesAndTasksSurveyBanner",
             "MySubscriptionSurveyBanner",
             "AIAssistantInstructionsBanner",
