@@ -46621,6 +46621,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "negativeTaxValueCustomerReceivables": {
+          "readOnly": true,
+          "type": "number"
+        },
         "obtainedPrivateAgreementAndDebtForgiveness": {
           "readOnly": true,
           "type": "number"
