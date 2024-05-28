@@ -66515,7 +66515,8 @@
               "OUTGOING",
               "INCOMING",
               "INCOMING_INVOICE",
-              "PROJECT"
+              "PROJECT",
+              "LEDGER"
             ],
             "in": "query",
             "name": "typeOfVat",
