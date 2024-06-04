@@ -1786,7 +1786,9 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
-            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR"
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
           "readOnly": true,
           "type": "string"
@@ -5526,7 +5528,8 @@
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
-            "RESEARCH_AND_DEVELOPMENT"
+            "RESEARCH_AND_DEVELOPMENT",
+            "CONTROLLED_TRANSACTIONS"
           ],
           "readOnly": true,
           "type": "string"
@@ -6148,7 +6151,9 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
-            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR"
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
           "readOnly": true,
           "type": "string"
@@ -7200,17 +7205,17 @@
           "readOnly": true,
           "type": "array"
         },
-        "hourCostRate": {
+        "hourlyCost": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "hourlyRate": {
           "$ref": "#/definitions/TlxNumber",
           "readOnly": true
         },
         "id": {
           "format": "int64",
           "type": "integer"
-        },
-        "rate": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
         },
         "url": {
           "readOnly": true,
@@ -7789,6 +7794,39 @@
         },
         "type": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ControlledTransactions": {
+      "properties": {
+        "exemptFromPriceSharing": {
+          "description": "Is exempt from sharing prices",
+          "type": "boolean"
+        },
+        "exemptFromTransactionSharing": {
+          "description": "Is exempt from sharing transactions",
+          "type": "boolean"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "posts": {
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
         }
       },
       "type": "object"
@@ -9874,7 +9912,8 @@
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
-            "RESEARCH_AND_DEVELOPMENT"
+            "RESEARCH_AND_DEVELOPMENT",
+            "CONTROLLED_TRANSACTIONS"
           ],
           "type": "string"
         },
@@ -10371,7 +10410,9 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
-            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR"
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
           "type": "string"
         },
@@ -12518,6 +12559,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "hasMultipleVatReportTypes": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "hasOnlyAccessToOwnDepartment": {
           "readOnly": true,
           "type": "boolean"
@@ -12843,7 +12888,8 @@
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
-            "RESEARCH_AND_DEVELOPMENT"
+            "RESEARCH_AND_DEVELOPMENT",
+            "CONTROLLED_TRANSACTIONS"
           ],
           "type": "string"
         },
@@ -13340,7 +13386,9 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
-            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR"
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
           "type": "string"
         },
@@ -13449,7 +13497,8 @@
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
-            "RESEARCH_AND_DEVELOPMENT"
+            "RESEARCH_AND_DEVELOPMENT",
+            "CONTROLLED_TRANSACTIONS"
           ],
           "readOnly": true,
           "type": "string"
@@ -15339,7 +15388,9 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
-            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR"
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
           "readOnly": true,
           "type": "string"
@@ -15845,7 +15896,9 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
-            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR"
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
           "readOnly": true,
           "type": "string"
@@ -17194,6 +17247,9 @@
     "LicenseStatusResponseDTO": {
       "properties": {
         "hasSigned": {
+          "type": "boolean"
+        },
+        "hasSignedV2": {
           "type": "boolean"
         }
       },
@@ -26565,7 +26621,8 @@
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
-            "RESEARCH_AND_DEVELOPMENT"
+            "RESEARCH_AND_DEVELOPMENT",
+            "CONTROLLED_TRANSACTIONS"
           ],
           "readOnly": true,
           "type": "string"
@@ -28854,7 +28911,9 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
-            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR"
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
           "type": "string"
         },
@@ -30438,7 +30497,9 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
-            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR"
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
           "readOnly": true,
           "type": "string"
@@ -34634,7 +34695,8 @@
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
-            "RESEARCH_AND_DEVELOPMENT"
+            "RESEARCH_AND_DEVELOPMENT",
+            "CONTROLLED_TRANSACTIONS"
           ],
           "readOnly": true,
           "type": "string"
@@ -37010,6 +37072,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ContactInfo"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperControlledTransactions": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ControlledTransactions"
         }
       },
       "type": "object"
@@ -44304,7 +44374,8 @@
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
-            "RESEARCH_AND_DEVELOPMENT"
+            "RESEARCH_AND_DEVELOPMENT",
+            "CONTROLLED_TRANSACTIONS"
           ],
           "type": "string"
         },
@@ -44816,7 +44887,9 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_PAYER_NAME",
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
-            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR"
+            "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
+            "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
           "type": "string"
         },
@@ -49318,7 +49391,47 @@
           "readOnly": true,
           "type": "integer"
         },
+        "hasDepartment": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasDivision": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasEmployeeCategory": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isAuth": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isAuthCompanyEmployeeAdmin": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isAuthCompanyWageAdmin": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isAuthDepartmentEmployeeAdmin": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isAuthDepartmentWageAdmin": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isAuthEmployeeInfo": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isAuthReadonly": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isFetched": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -49371,6 +49484,11 @@
         "showEmployeeCategory": {
           "readOnly": true,
           "type": "boolean"
+        },
+        "userDepartmentId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -49412,7 +49530,8 @@
             "SALARY_AND_PENSION_EXPENSES",
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
-            "RESEARCH_AND_DEVELOPMENT"
+            "RESEARCH_AND_DEVELOPMENT",
+            "CONTROLLED_TRANSACTIONS"
           ],
           "readOnly": true,
           "type": "string"
@@ -51020,6 +51139,14 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isActiveAccountantProxy": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isActiveAuditorProxy": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "mainBankAccountId": {
           "format": "int32",
           "readOnly": true,
@@ -51046,6 +51173,10 @@
           "type": "boolean"
         },
         "showLastUpdated": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "showUserSurveyBanner": {
           "readOnly": true,
           "type": "boolean"
         },
