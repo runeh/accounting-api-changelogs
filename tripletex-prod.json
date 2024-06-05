@@ -1521,6 +1521,7 @@
             "NUF_COMPANY_ID",
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
+            "TIMBER_ACCOUNT",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -1787,6 +1788,16 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
+            "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
+            "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
+            "TIMBER_ACCOUNT_INCOMING_VALUE_FROM_AQUIRED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_VALUE_OF_SHARE_OF_REALIZED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_SHARE_OF_BASIS_NEXT_YEAR",
+            "TIMBER_ACCOUNT_REMAINDER_NOT_TAXED_FELLING",
+            "TIMBER_ACCOUNT_REMAINDER_INCLUDED_THIS_YEAR",
+            "TIMBER_ACCOUNT_MUNICIPALITY_NO",
+            "TIMBER_ACCOUNT_PAID_PUBLIC_CONTRIBUTION_FOREST_FUND",
             "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
             "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
@@ -3226,6 +3237,43 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "BalanceData": {
+      "properties": {
+        "basisBalanceAdjustment": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "incomeOrExpenseFromTimberAccount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "incomingValueFromAquiredTimberAccount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "shareOfBasisNextYear": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "shareOfBasisNextYearRate": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumTransferred": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "transferredIncomeOrExpenseToTimberAccount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "valueOfShareOfRealizedTimberAccount": {
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -5529,6 +5577,7 @@
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
+            "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS"
           ],
           "readOnly": true,
@@ -5886,6 +5935,7 @@
             "NUF_COMPANY_ID",
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
+            "TIMBER_ACCOUNT",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -6152,6 +6202,16 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
+            "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
+            "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
+            "TIMBER_ACCOUNT_INCOMING_VALUE_FROM_AQUIRED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_VALUE_OF_SHARE_OF_REALIZED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_SHARE_OF_BASIS_NEXT_YEAR",
+            "TIMBER_ACCOUNT_REMAINDER_NOT_TAXED_FELLING",
+            "TIMBER_ACCOUNT_REMAINDER_INCLUDED_THIS_YEAR",
+            "TIMBER_ACCOUNT_MUNICIPALITY_NO",
+            "TIMBER_ACCOUNT_PAID_PUBLIC_CONTRIBUTION_FOREST_FUND",
             "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
             "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
@@ -6867,20 +6927,6 @@
         },
         "version": {
           "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ClosePostingValidationMessage": {
-      "properties": {
-        "message": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "postingId": {
-          "format": "int64",
-          "readOnly": true,
           "type": "integer"
         }
       },
@@ -9913,6 +9959,7 @@
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
+            "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS"
           ],
           "type": "string"
@@ -10145,6 +10192,7 @@
             "NUF_COMPANY_ID",
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
+            "TIMBER_ACCOUNT",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -10411,6 +10459,16 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
+            "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
+            "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
+            "TIMBER_ACCOUNT_INCOMING_VALUE_FROM_AQUIRED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_VALUE_OF_SHARE_OF_REALIZED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_SHARE_OF_BASIS_NEXT_YEAR",
+            "TIMBER_ACCOUNT_REMAINDER_NOT_TAXED_FELLING",
+            "TIMBER_ACCOUNT_REMAINDER_INCLUDED_THIS_YEAR",
+            "TIMBER_ACCOUNT_MUNICIPALITY_NO",
+            "TIMBER_ACCOUNT_PAID_PUBLIC_CONTRIBUTION_FOREST_FUND",
             "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
             "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
@@ -11856,6 +11914,31 @@
       },
       "type": "object"
     },
+    "ExtraordinaryDistributionData": {
+      "properties": {
+        "municipalityNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "paidPublicContributionForestFund": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "remainderIncludedThisYear": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "remainderNotTaxedFelling": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumLaterIncomeRecognition": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "ExtraordinaryIncomeAndCost": {
       "properties": {
         "amount": {
@@ -12283,6 +12366,27 @@
           "type": "number"
         },
         "outgoingHourBalance": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ForestFundData": {
+      "properties": {
+        "basisForCalculationTaxAssets": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "calculatedReversalOfPrevCalculations": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "municipalityNumber": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
+        "paidPublicContributionForestFund": {
           "readOnly": true,
           "type": "number"
         }
@@ -12889,6 +12993,7 @@
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
+            "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS"
           ],
           "type": "string"
@@ -13121,6 +13226,7 @@
             "NUF_COMPANY_ID",
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
+            "TIMBER_ACCOUNT",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -13387,6 +13493,16 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
+            "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
+            "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
+            "TIMBER_ACCOUNT_INCOMING_VALUE_FROM_AQUIRED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_VALUE_OF_SHARE_OF_REALIZED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_SHARE_OF_BASIS_NEXT_YEAR",
+            "TIMBER_ACCOUNT_REMAINDER_NOT_TAXED_FELLING",
+            "TIMBER_ACCOUNT_REMAINDER_INCLUDED_THIS_YEAR",
+            "TIMBER_ACCOUNT_MUNICIPALITY_NO",
+            "TIMBER_ACCOUNT_PAID_PUBLIC_CONTRIBUTION_FOREST_FUND",
             "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
             "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
@@ -13498,6 +13614,7 @@
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
+            "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS"
           ],
           "readOnly": true,
@@ -15123,6 +15240,7 @@
             "NUF_COMPANY_ID",
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
+            "TIMBER_ACCOUNT",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -15389,6 +15507,16 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
+            "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
+            "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
+            "TIMBER_ACCOUNT_INCOMING_VALUE_FROM_AQUIRED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_VALUE_OF_SHARE_OF_REALIZED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_SHARE_OF_BASIS_NEXT_YEAR",
+            "TIMBER_ACCOUNT_REMAINDER_NOT_TAXED_FELLING",
+            "TIMBER_ACCOUNT_REMAINDER_INCLUDED_THIS_YEAR",
+            "TIMBER_ACCOUNT_MUNICIPALITY_NO",
+            "TIMBER_ACCOUNT_PAID_PUBLIC_CONTRIBUTION_FOREST_FUND",
             "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
             "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
@@ -15631,6 +15759,7 @@
             "NUF_COMPANY_ID",
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
+            "TIMBER_ACCOUNT",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -15897,6 +16026,16 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
+            "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
+            "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
+            "TIMBER_ACCOUNT_INCOMING_VALUE_FROM_AQUIRED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_VALUE_OF_SHARE_OF_REALIZED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_SHARE_OF_BASIS_NEXT_YEAR",
+            "TIMBER_ACCOUNT_REMAINDER_NOT_TAXED_FELLING",
+            "TIMBER_ACCOUNT_REMAINDER_INCLUDED_THIS_YEAR",
+            "TIMBER_ACCOUNT_MUNICIPALITY_NO",
+            "TIMBER_ACCOUNT_PAID_PUBLIC_CONTRIBUTION_FOREST_FUND",
             "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
             "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
@@ -18499,39 +18638,6 @@
         "values": {
           "items": {
             "$ref": "#/definitions/CloseGroup"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListResponseClosePostingValidationMessage": {
-      "properties": {
-        "count": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/ClosePostingValidationMessage"
           },
           "readOnly": true,
           "type": "array"
@@ -21667,6 +21773,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Posting"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponsePostingValidationMessage": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/PostingValidationMessage"
           },
           "readOnly": true,
           "type": "array"
@@ -26622,6 +26761,7 @@
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
+            "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS"
           ],
           "readOnly": true,
@@ -28646,6 +28786,7 @@
             "NUF_COMPANY_ID",
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
+            "TIMBER_ACCOUNT",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -28912,6 +29053,16 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
+            "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
+            "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
+            "TIMBER_ACCOUNT_INCOMING_VALUE_FROM_AQUIRED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_VALUE_OF_SHARE_OF_REALIZED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_SHARE_OF_BASIS_NEXT_YEAR",
+            "TIMBER_ACCOUNT_REMAINDER_NOT_TAXED_FELLING",
+            "TIMBER_ACCOUNT_REMAINDER_INCLUDED_THIS_YEAR",
+            "TIMBER_ACCOUNT_MUNICIPALITY_NO",
+            "TIMBER_ACCOUNT_PAID_PUBLIC_CONTRIBUTION_FOREST_FUND",
             "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
             "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
@@ -30232,6 +30383,7 @@
             "NUF_COMPANY_ID",
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
+            "TIMBER_ACCOUNT",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -30498,6 +30650,16 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
+            "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
+            "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
+            "TIMBER_ACCOUNT_INCOMING_VALUE_FROM_AQUIRED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_VALUE_OF_SHARE_OF_REALIZED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_SHARE_OF_BASIS_NEXT_YEAR",
+            "TIMBER_ACCOUNT_REMAINDER_NOT_TAXED_FELLING",
+            "TIMBER_ACCOUNT_REMAINDER_INCLUDED_THIS_YEAR",
+            "TIMBER_ACCOUNT_MUNICIPALITY_NO",
+            "TIMBER_ACCOUNT_PAID_PUBLIC_CONTRIBUTION_FOREST_FUND",
             "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
             "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
@@ -30716,6 +30878,14 @@
           "type": "number"
         },
         "basisForRiskFreeReturnIncEnterpriseDebt": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "biomassCorrectionAgriculture": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "biomassCorrectionForestry": {
           "readOnly": true,
           "type": "number"
         },
@@ -31100,6 +31270,20 @@
         },
         "version": {
           "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PostingValidationMessage": {
+      "properties": {
+        "message": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "postingId": {
+          "format": "int64",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -32301,6 +32485,27 @@
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "ProfitAndLossData": {
+      "properties": {
+        "correctionBiomassWoodProduction": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "incomeOrDeductionFromTimberAccount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "incomeOrDeficitNotOnTimberAccount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumProfitAndLoss": {
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -34696,6 +34901,7 @@
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
+            "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS"
           ],
           "readOnly": true,
@@ -39393,6 +39599,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/TermsOfService"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperTimberAccountOverview": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TimberAccountOverview"
         }
       },
       "type": "object"
@@ -44375,6 +44589,7 @@
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
+            "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS"
           ],
           "type": "string"
@@ -44622,6 +44837,7 @@
             "NUF_COMPANY_ID",
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
+            "TIMBER_ACCOUNT",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -44888,6 +45104,16 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
+            "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
+            "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
+            "TIMBER_ACCOUNT_INCOMING_VALUE_FROM_AQUIRED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_VALUE_OF_SHARE_OF_REALIZED_TIMBER_ACCOUNT",
+            "TIMBER_ACCOUNT_SHARE_OF_BASIS_NEXT_YEAR",
+            "TIMBER_ACCOUNT_REMAINDER_NOT_TAXED_FELLING",
+            "TIMBER_ACCOUNT_REMAINDER_INCLUDED_THIS_YEAR",
+            "TIMBER_ACCOUNT_MUNICIPALITY_NO",
+            "TIMBER_ACCOUNT_PAID_PUBLIC_CONTRIBUTION_FOREST_FUND",
             "CONTROLLED_TRANSACTIONS_EXEMPT_TRANSACTION_SHARING",
             "CONTROLLED_TRANSACTIONS_EXEMPT_PRICE_SHARING"
           ],
@@ -47214,6 +47440,156 @@
       },
       "type": "object"
     },
+    "TimberAccount": {
+      "properties": {
+        "balanceData": {
+          "$ref": "#/definitions/BalanceData",
+          "description": "Balansc data",
+          "readOnly": true
+        },
+        "department": {
+          "$ref": "#/definitions/Department",
+          "readOnly": true
+        },
+        "extraordinaryDistributionData": {
+          "$ref": "#/definitions/ExtraordinaryDistributionData",
+          "description": "Forest fund and extraordinary distribution data",
+          "readOnly": true
+        },
+        "forestFundData": {
+          "$ref": "#/definitions/ForestFundData",
+          "description": "Forest fund and extraordinary distribution data",
+          "readOnly": true
+        },
+        "forestFundPaymentToPurposeWithTaxAssets": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "forestFundPaymentToPurposeWithoutTaxAssets": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "groupId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "incomeDeductionProfitAndLoss": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "incomeHuntingFishingEtc": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "operatingCostIncDepreciationAndAllocationForestFund": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "operatingRevenuesIncTaxablePartOfForestFund": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "paidUpGovernmentContributionsToForestFund": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "profitAndLossData": {
+          "$ref": "#/definitions/ProfitAndLossData",
+          "description": "Profit and loss data",
+          "readOnly": true
+        },
+        "revenueRecognitionNegativeBalance": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "reversalOfPrevCalculatedTaxAssetsForestFund": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "salesIncomeAndWithdrawalsFirewoodBiomass": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "salesIncomeAndWithdrawalsTimberPulpwoodEtc": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "taxAssetsForestFund": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "taxableIncomeForestFund": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        },
+        "transferredData": {
+          "$ref": "#/definitions/TransferredData",
+          "description": "Transferred data",
+          "readOnly": true
+        },
+        "transferredFromPreviousYear": {
+          "$ref": "#/definitions/TimberGroupDetails",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "TimberAccountOverview": {
+      "properties": {
+        "deductedAccounting": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "deductedInTimberAccount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "registeredAccounting": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "registeredInTimberAccount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "timberAccounts": {
+          "items": {
+            "$ref": "#/definitions/TimberAccount"
+          },
+          "type": "array"
+        },
+        "transferredFromTimberAccountAccounting": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "transferredFromTimberAccountInTimberAccount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "TimberGroupDetails": {
+      "properties": {
+        "grouping": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "TimeClock": {
       "properties": {
         "activity": {
@@ -48221,6 +48597,43 @@
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "TransferredData": {
+      "properties": {
+        "operatingProfitLoss": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "profitLossHuntingFishingEtc": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "profitLossToTimberAccount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "shareFromExtraordinaryDistribution": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "shareOfOperatingRevenuesHuntingFishingEtc": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "shareOfProfitToRegister": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "standardIncomeBiomassWoodproduction": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumTransferred": {
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -49531,6 +49944,7 @@
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
+            "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS"
           ],
           "readOnly": true,
@@ -89640,6 +90054,9 @@
     },
     {
       "name": "yearEndsharesAndSecurities"
+    },
+    {
+      "name": "yearEndtimberAccount"
     },
     {
       "name": "yearEndgenericDataRate"
