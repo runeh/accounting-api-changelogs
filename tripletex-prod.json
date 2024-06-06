@@ -25794,6 +25794,9 @@
           "format": "int32",
           "type": "integer"
         },
+        "employeeIsProxy": {
+          "type": "boolean"
+        },
         "language": {
           "type": "string"
         },
@@ -41552,6 +41555,10 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "wagePeriodTransactionVoucherNumber": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -41862,6 +41869,10 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "wagePeriodTransactionVoucherNumber": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -42541,6 +42552,10 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "wagePeriodTransactionVoucherNumber": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -57628,7 +57643,7 @@
             "type": "string"
           },
           {
-            "description": "List of IDs",
+            "description": "List of customer numbers",
             "in": "query",
             "name": "customerAccountNumber",
             "required": false,
