@@ -1733,6 +1733,17 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
+            "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
+            "PARTICIPANT_ASSESSMENT_REPORT_COUNTRY_CODE",
+            "PARTICIPANT_ASSESSMENT_REPORT_VALUE_BEFORE_APPRECIATION_FOR_NET_ASSETS",
+            "PARTICIPANT_ASSESSMENT_REPORT_DEBT",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORDINARY_INCOME",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS",
+            "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
+            "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -5578,7 +5589,8 @@
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
-            "CONTROLLED_TRANSACTIONS"
+            "CONTROLLED_TRANSACTIONS",
+            "PARTICIPANT_ASSESSMENT_REPORT"
           ],
           "readOnly": true,
           "type": "string"
@@ -6147,6 +6159,17 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
+            "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
+            "PARTICIPANT_ASSESSMENT_REPORT_COUNTRY_CODE",
+            "PARTICIPANT_ASSESSMENT_REPORT_VALUE_BEFORE_APPRECIATION_FOR_NET_ASSETS",
+            "PARTICIPANT_ASSESSMENT_REPORT_DEBT",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORDINARY_INCOME",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS",
+            "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
+            "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -6934,8 +6957,15 @@
     },
     "Comment": {
       "properties": {
-        "actualEmployee": {
-          "$ref": "#/definitions/Employee"
+        "actualEmployeeCompanyId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "actualEmployeeId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         },
         "actualEmployeeName": {
           "readOnly": true,
@@ -6962,7 +6992,8 @@
           "type": "string"
         },
         "employee": {
-          "$ref": "#/definitions/Employee"
+          "$ref": "#/definitions/Employee",
+          "readOnly": true
         },
         "id": {
           "format": "int64",
@@ -6977,15 +7008,11 @@
           "type": "integer"
         },
         "voucherId": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         }
       },
-      "required": [
-        "actualEmployee",
-        "employee"
-      ],
       "type": "object"
     },
     "CommentCreation": {
@@ -7860,6 +7887,7 @@
           "type": "integer"
         },
         "posts": {
+          "description": "Associated posts",
           "items": {
             "$ref": "#/definitions/GenericData"
           },
@@ -8099,6 +8127,19 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CountryCode": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -9960,7 +10001,8 @@
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
-            "CONTROLLED_TRANSACTIONS"
+            "CONTROLLED_TRANSACTIONS",
+            "PARTICIPANT_ASSESSMENT_REPORT"
           ],
           "type": "string"
         },
@@ -10404,6 +10446,17 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
+            "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
+            "PARTICIPANT_ASSESSMENT_REPORT_COUNTRY_CODE",
+            "PARTICIPANT_ASSESSMENT_REPORT_VALUE_BEFORE_APPRECIATION_FOR_NET_ASSETS",
+            "PARTICIPANT_ASSESSMENT_REPORT_DEBT",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORDINARY_INCOME",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS",
+            "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
+            "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -12994,7 +13047,8 @@
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
-            "CONTROLLED_TRANSACTIONS"
+            "CONTROLLED_TRANSACTIONS",
+            "PARTICIPANT_ASSESSMENT_REPORT"
           ],
           "type": "string"
         },
@@ -13438,6 +13492,17 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
+            "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
+            "PARTICIPANT_ASSESSMENT_REPORT_COUNTRY_CODE",
+            "PARTICIPANT_ASSESSMENT_REPORT_VALUE_BEFORE_APPRECIATION_FOR_NET_ASSETS",
+            "PARTICIPANT_ASSESSMENT_REPORT_DEBT",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORDINARY_INCOME",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS",
+            "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
+            "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -13615,7 +13680,8 @@
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
-            "CONTROLLED_TRANSACTIONS"
+            "CONTROLLED_TRANSACTIONS",
+            "PARTICIPANT_ASSESSMENT_REPORT"
           ],
           "readOnly": true,
           "type": "string"
@@ -13662,11 +13728,23 @@
           "readOnly": true,
           "type": "number"
         },
+        "totalAssetValueAfterValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
         "typeOfGoodsPosts": {
           "items": {
             "$ref": "#/definitions/TypeOfGoods"
           },
           "type": "array"
+        },
+        "valuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "valuationDiscountAmount": {
+          "readOnly": true,
+          "type": "number"
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport",
@@ -15452,6 +15530,17 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
+            "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
+            "PARTICIPANT_ASSESSMENT_REPORT_COUNTRY_CODE",
+            "PARTICIPANT_ASSESSMENT_REPORT_VALUE_BEFORE_APPRECIATION_FOR_NET_ASSETS",
+            "PARTICIPANT_ASSESSMENT_REPORT_DEBT",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORDINARY_INCOME",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS",
+            "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
+            "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -15971,6 +16060,17 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
+            "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
+            "PARTICIPANT_ASSESSMENT_REPORT_COUNTRY_CODE",
+            "PARTICIPANT_ASSESSMENT_REPORT_VALUE_BEFORE_APPRECIATION_FOR_NET_ASSETS",
+            "PARTICIPANT_ASSESSMENT_REPORT_DEBT",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORDINARY_INCOME",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS",
+            "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
+            "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -18947,6 +19047,39 @@
       },
       "type": "object"
     },
+    "ListResponseCountryCode": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/CountryCode"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseCreateSalaryEmployeeToEmploymentRelationship": {
       "properties": {
         "count": {
@@ -21356,6 +21489,39 @@
       },
       "type": "object"
     },
+    "ListResponseParticipantAssessmentReport": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ParticipantAssessmentReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponsePassenger": {
       "properties": {
         "count": {
@@ -23324,72 +23490,6 @@
         "values": {
           "items": {
             "$ref": "#/definitions/ResearchAndDevelopment"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListResponseResearchAndDevelopmentOtherPublicSupport": {
-      "properties": {
-        "count": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/ResearchAndDevelopmentOtherPublicSupport"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListResponseResearchAndDevelopmentResolution": {
-      "properties": {
-        "count": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/ResearchAndDevelopmentResolution"
           },
           "readOnly": true,
           "type": "array"
@@ -26765,7 +26865,8 @@
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
-            "CONTROLLED_TRANSACTIONS"
+            "CONTROLLED_TRANSACTIONS",
+            "PARTICIPANT_ASSESSMENT_REPORT"
           ],
           "readOnly": true,
           "type": "string"
@@ -28332,6 +28433,327 @@
       },
       "type": "object"
     },
+    "ParticipantAssessmentReport": {
+      "properties": {
+        "companyName": {
+          "description": "Company name",
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "Country code",
+          "enum": [
+            "NO",
+            "DK",
+            "GL",
+            "FI",
+            "FO",
+            "IS",
+            "SE",
+            "AL",
+            "BE",
+            "BG",
+            "AD",
+            "EE",
+            "FR",
+            "GI",
+            "GR",
+            "BY",
+            "IE",
+            "HR",
+            "IT",
+            "LV",
+            "MT",
+            "NL",
+            "LI",
+            "LU",
+            "MC",
+            "PL",
+            "PT",
+            "RO",
+            "SM",
+            "LT",
+            "ES",
+            "MD",
+            "GB",
+            "RU",
+            "CH",
+            "TR",
+            "DE",
+            "SI",
+            "UA",
+            "AX",
+            "HU",
+            "AT",
+            "VA",
+            "BA",
+            "MK",
+            "SK",
+            "CZ",
+            "RS",
+            "ME",
+            "DZ",
+            "AO",
+            "BW",
+            "SH",
+            "IO",
+            "BI",
+            "KM",
+            "BJ",
+            "GQ",
+            "CI",
+            "ER",
+            "ET",
+            "EG",
+            "DJ",
+            "GA",
+            "GM",
+            "GH",
+            "GN",
+            "GW",
+            "CM",
+            "CV",
+            "KE",
+            "CG",
+            "CD",
+            "LS",
+            "LR",
+            "LY",
+            "MG",
+            "MW",
+            "ML",
+            "MA",
+            "EH",
+            "XK",
+            "GG",
+            "JE",
+            "IM",
+            "MR",
+            "MU",
+            "NA",
+            "NE",
+            "NG",
+            "MZ",
+            "YT",
+            "RE",
+            "ZW",
+            "RW",
+            "ST",
+            "SN",
+            "CF",
+            "SC",
+            "SL",
+            "SO",
+            "SD",
+            "SZ",
+            "ZA",
+            "TZ",
+            "TD",
+            "TG",
+            "TN",
+            "UG",
+            "ZM",
+            "BF",
+            "AF",
+            "AM",
+            "AZ",
+            "BH",
+            "BD",
+            "BT",
+            "BN",
+            "MM",
+            "LK",
+            "AE",
+            "PH",
+            "GE",
+            "TW",
+            "HK",
+            "IN",
+            "SS",
+            "ID",
+            "IQ",
+            "IR",
+            "IL",
+            "JP",
+            "JO",
+            "KH",
+            "KZ",
+            "CN",
+            "KP",
+            "KR",
+            "KW",
+            "CY",
+            "KG",
+            "LA",
+            "LB",
+            "MO",
+            "MY",
+            "MV",
+            "MN",
+            "OM",
+            "PS",
+            "NP",
+            "PK",
+            "TL",
+            "QA",
+            "SA",
+            "SG",
+            "TJ",
+            "TM",
+            "UZ",
+            "SY",
+            "TH",
+            "VN",
+            "YE",
+            "VI",
+            "BB",
+            "AG",
+            "BZ",
+            "BS",
+            "BM",
+            "VG",
+            "CA",
+            "KY",
+            "CR",
+            "CU",
+            "DM",
+            "DO",
+            "GD",
+            "GP",
+            "GT",
+            "HT",
+            "HN",
+            "JM",
+            "MQ",
+            "MX",
+            "MS",
+            "AW",
+            "AI",
+            "NI",
+            "PA",
+            "SV",
+            "PM",
+            "KN",
+            "LC",
+            "VC",
+            "TT",
+            "TC",
+            "US",
+            "PR",
+            "AR",
+            "BO",
+            "BR",
+            "GY",
+            "CL",
+            "CO",
+            "EC",
+            "FK",
+            "GF",
+            "MF",
+            "BL",
+            "CW",
+            "BQ",
+            "SX",
+            "PY",
+            "PE",
+            "SR",
+            "UY",
+            "VE",
+            "AS",
+            "AU",
+            "SB",
+            "CX",
+            "CC",
+            "CK",
+            "FJ",
+            "VU",
+            "TO",
+            "PF",
+            "KI",
+            "TV",
+            "GU",
+            "NR",
+            "UM",
+            "NZ",
+            "NU",
+            "NF",
+            "FM",
+            "PG",
+            "PN",
+            "TK",
+            "WS",
+            "WF",
+            "NC",
+            "MH",
+            "PW",
+            "MP",
+            "AQ",
+            "BV",
+            "GS",
+            "HM",
+            "SJ"
+          ],
+          "type": "string"
+        },
+        "debt": {
+          "description": "Debt",
+          "type": "number"
+        },
+        "gainOnRealizationOfShare": {
+          "description": "Gain on realization of share",
+          "type": "number"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "loss": {
+          "description": "Loss",
+          "type": "number"
+        },
+        "lossOnRealizationOfShare": {
+          "description": "Loss on realization of share",
+          "type": "number"
+        },
+        "municipality": {
+          "$ref": "#/definitions/Municipality",
+          "description": "Municipality"
+        },
+        "ordinaryIncome": {
+          "description": "Ordinary income",
+          "type": "number"
+        },
+        "orgNumber": {
+          "description": "Organization number",
+          "type": "string"
+        },
+        "paymentToParticipant": {
+          "description": "Payment to participant",
+          "type": "number"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "valueBeforeAppreciationForNetAssets": {
+          "description": "Value before appreciation for net assets",
+          "type": "number"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
     "ParticipantOverview": {
       "properties": {
         "participants": {
@@ -29001,6 +29423,17 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
+            "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
+            "PARTICIPANT_ASSESSMENT_REPORT_COUNTRY_CODE",
+            "PARTICIPANT_ASSESSMENT_REPORT_VALUE_BEFORE_APPRECIATION_FOR_NET_ASSETS",
+            "PARTICIPANT_ASSESSMENT_REPORT_DEBT",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORDINARY_INCOME",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS",
+            "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
+            "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -30598,6 +31031,17 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
+            "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
+            "PARTICIPANT_ASSESSMENT_REPORT_COUNTRY_CODE",
+            "PARTICIPANT_ASSESSMENT_REPORT_VALUE_BEFORE_APPRECIATION_FOR_NET_ASSETS",
+            "PARTICIPANT_ASSESSMENT_REPORT_DEBT",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORDINARY_INCOME",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS",
+            "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
+            "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -34905,7 +35349,8 @@
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
-            "CONTROLLED_TRANSACTIONS"
+            "CONTROLLED_TRANSACTIONS",
+            "PARTICIPANT_ASSESSMENT_REPORT"
           ],
           "readOnly": true,
           "type": "string"
@@ -36355,7 +36800,15 @@
           "minimum": 0,
           "type": "integer"
         },
+        "otherPublicSupports": {
+          "description": "Other Public Supports",
+          "items": {
+            "$ref": "#/definitions/ResearchAndDevelopmentOtherPublicSupport"
+          },
+          "type": "array"
+        },
         "posts": {
+          "description": "Associated posts",
           "items": {
             "$ref": "#/definitions/GenericData"
           },
@@ -36419,6 +36872,13 @@
         "publicSupportAsReducedWorkerFee": {
           "description": "Public Support As Reduced Worker Fee",
           "type": "number"
+        },
+        "resolutions": {
+          "description": "Resolutions",
+          "items": {
+            "$ref": "#/definitions/ResearchAndDevelopmentResolution"
+          },
+          "type": "array"
         },
         "subGroupId": {
           "description": "Sub group ID",
@@ -36497,6 +36957,7 @@
           "type": "string"
         },
         "posts": {
+          "description": "Associated posts",
           "items": {
             "$ref": "#/definitions/GenericData"
           },
@@ -36530,6 +36991,7 @@
           "type": "integer"
         },
         "posts": {
+          "description": "Associated posts",
           "items": {
             "$ref": "#/definitions/GenericData"
           },
@@ -38544,6 +39006,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperParticipantAssessmentReport": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ParticipantAssessmentReport"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperParticipantOverview": {
       "properties": {
         "value": {
@@ -39076,22 +39546,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ResearchAndDevelopment"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperResearchAndDevelopmentOtherPublicSupport": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/ResearchAndDevelopmentOtherPublicSupport"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperResearchAndDevelopmentResolution": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/ResearchAndDevelopmentResolution"
         }
       },
       "type": "object"
@@ -39842,6 +40296,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/UserFeedback"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperUserLicenseSettingsDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/UserLicenseSettingsDTO"
         }
       },
       "type": "object"
@@ -44605,7 +45067,8 @@
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
-            "CONTROLLED_TRANSACTIONS"
+            "CONTROLLED_TRANSACTIONS",
+            "PARTICIPANT_ASSESSMENT_REPORT"
           ],
           "type": "string"
         },
@@ -45064,6 +45527,17 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
+            "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
+            "PARTICIPANT_ASSESSMENT_REPORT_COUNTRY_CODE",
+            "PARTICIPANT_ASSESSMENT_REPORT_VALUE_BEFORE_APPRECIATION_FOR_NET_ASSETS",
+            "PARTICIPANT_ASSESSMENT_REPORT_DEBT",
+            "PARTICIPANT_ASSESSMENT_REPORT_ORDINARY_INCOME",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS",
+            "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
+            "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -47014,6 +47488,14 @@
           "readOnly": true,
           "type": "number"
         },
+        "customerReceivablesValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "forestryValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
         "groupContributionReceived": {
           "readOnly": true,
           "type": "number"
@@ -47021,6 +47503,10 @@
         "groupContributionReceivedGrouping": {
           "readOnly": true,
           "type": "string"
+        },
+        "inventoriesValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
         },
         "lossesInBusinessAndRealEstate": {
           "readOnly": true,
@@ -47052,7 +47538,23 @@
           },
           "type": "array"
         },
+        "realEstateValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "reductionDebtValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
         "reductionOfAssetValue": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sdfValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sharesAndSecuritiesValuationDiscount": {
           "readOnly": true,
           "type": "number"
         },
@@ -47080,6 +47582,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "tangibleFixedAssetsValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
         "taxToPay": {
           "readOnly": true,
           "type": "number"
@@ -47088,11 +47594,39 @@
           "readOnly": true,
           "type": "number"
         },
+        "taxValueCustomerReceivablesAfterValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "taxValueForestryAfterValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
         "taxValueInventories": {
           "readOnly": true,
           "type": "number"
         },
+        "taxValueInventoriesAfterValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "taxValueRealEstateAfterValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "taxValueSdfAfterValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "taxValueSharesAndSecuritiesAfterValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
         "taxValueTangibleFixedAssets": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "taxValueTangibleFixedAssetsAfterValuationDiscount": {
           "readOnly": true,
           "type": "number"
         },
@@ -49960,7 +50494,8 @@
             "OTHER_CIRCUMSTANCES",
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
-            "CONTROLLED_TRANSACTIONS"
+            "CONTROLLED_TRANSACTIONS",
+            "PARTICIPANT_ASSESSMENT_REPORT"
           ],
           "readOnly": true,
           "type": "string"
@@ -50205,6 +50740,14 @@
       "required": [
         "startDate"
       ],
+      "type": "object"
+    },
+    "UserLicenseSettingsDTO": {
+      "properties": {
+        "isPriceDifferentiation": {
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "VacationSummary": {
@@ -68823,7 +69366,7 @@
             "type": "string"
           },
           {
-            "default": "id, name, number",
+            "default": "id, displayName",
             "description": "Fields filter pattern",
             "in": "query",
             "name": "fields",
@@ -68831,18 +69374,19 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "description": "From index",
+            "default": 25,
+            "description": "Number of elements to return",
+            "format": "int32",
             "in": "query",
-            "name": "from",
+            "name": "count",
             "required": false,
             "type": "integer"
           },
           {
-            "default": 1000,
-            "description": "Number of elements to return",
+            "default": 0,
+            "description": "From index",
             "in": "query",
-            "name": "count",
+            "name": "from",
             "required": false,
             "type": "integer"
           },
