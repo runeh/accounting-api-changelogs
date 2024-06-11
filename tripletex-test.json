@@ -1395,6 +1395,10 @@
             "CLOSING_BALANCE_INVENTORIES_FINISHED_ITEM",
             "OPENING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
             "CLOSING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
+            "OPENING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "OPENING_BALANCE_LIVESTOCK",
+            "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
@@ -3795,6 +3799,55 @@
       },
       "type": "object"
     },
+    "BankMaintenancePeriod": {
+      "properties": {
+        "bank": {
+          "$ref": "#/definitions/Bank",
+          "description": "The bank for witch maintenance period if for."
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "endDateTime": {
+          "description": "The end date time of maintenance period.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "integration": {
+          "description": "The integration for witch maintenance period if for.",
+          "enum": [
+            "AUTOPAY",
+            "ZTL"
+          ],
+          "type": "string"
+        },
+        "startDateTime": {
+          "description": "The start date time of maintenance period.",
+          "format": "date-time",
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "bank"
+      ],
+      "type": "object"
+    },
     "BankOnboardingAccessRequestDTO": {
       "properties": {
         "id": {
@@ -5821,6 +5874,10 @@
             "CLOSING_BALANCE_INVENTORIES_FINISHED_ITEM",
             "OPENING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
             "CLOSING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
+            "OPENING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "OPENING_BALANCE_LIVESTOCK",
+            "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
@@ -9020,6 +9077,9 @@
         "language": {
           "type": "string"
         },
+        "loginEmployeeFirstName": {
+          "type": "string"
+        },
         "loginEmployeeId": {
           "format": "int32",
           "type": "integer"
@@ -9935,6 +9995,12 @@
           "description": "document reception email",
           "readOnly": true,
           "type": "string"
+        },
+        "maxFileSize": {
+          "description": "Max file size allowed",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -10108,6 +10174,10 @@
             "CLOSING_BALANCE_INVENTORIES_FINISHED_ITEM",
             "OPENING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
             "CLOSING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
+            "OPENING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "OPENING_BALANCE_LIVESTOCK",
+            "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
@@ -12736,6 +12806,11 @@
           "format": "int64",
           "readOnly": true,
           "type": "integer"
+        },
+        "loginEmployeeId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -12846,6 +12921,10 @@
         "isClosed": {
           "readOnly": true,
           "type": "boolean"
+        },
+        "lastComment": {
+          "readOnly": true,
+          "type": "string"
         },
         "postingDate": {
           "readOnly": true,
@@ -13154,6 +13233,10 @@
             "CLOSING_BALANCE_INVENTORIES_FINISHED_ITEM",
             "OPENING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
             "CLOSING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
+            "OPENING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "OPENING_BALANCE_LIVESTOCK",
+            "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
@@ -15192,6 +15275,10 @@
             "CLOSING_BALANCE_INVENTORIES_FINISHED_ITEM",
             "OPENING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
             "CLOSING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
+            "OPENING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "OPENING_BALANCE_LIVESTOCK",
+            "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
@@ -15722,6 +15809,10 @@
             "CLOSING_BALANCE_INVENTORIES_FINISHED_ITEM",
             "OPENING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
             "CLOSING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
+            "OPENING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "OPENING_BALANCE_LIVESTOCK",
+            "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
@@ -18210,6 +18301,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/BankDashboardAdvice"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseBankMaintenancePeriod": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/BankMaintenancePeriod"
           },
           "readOnly": true,
           "type": "array"
@@ -25973,6 +26097,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "groupingAgricultureEnk": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "groupingAgricultureEnkPreviousYear": {
+          "readOnly": true,
+          "type": "string"
+        },
         "groupingAns": {
           "readOnly": true,
           "type": "string"
@@ -25992,6 +26124,14 @@
           "type": "string"
         },
         "groupingEnkPreviousYear": {
+          "type": "string"
+        },
+        "groupingForestryEnk": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "groupingForestryEnkPreviousYear": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
@@ -29085,6 +29225,10 @@
             "CLOSING_BALANCE_INVENTORIES_FINISHED_ITEM",
             "OPENING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
             "CLOSING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
+            "OPENING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "OPENING_BALANCE_LIVESTOCK",
+            "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
@@ -29815,6 +29959,12 @@
           "description": "Amount specified in the currency of the bank agreements account.",
           "readOnly": true,
           "type": "number"
+        },
+        "bankId": {
+          "description": "The bank id for the payment.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         },
         "bookingDate": {
           "readOnly": true,
@@ -30693,6 +30843,10 @@
             "CLOSING_BALANCE_INVENTORIES_FINISHED_ITEM",
             "OPENING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
             "CLOSING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
+            "OPENING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "OPENING_BALANCE_LIVESTOCK",
+            "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
@@ -45189,6 +45343,10 @@
             "CLOSING_BALANCE_INVENTORIES_FINISHED_ITEM",
             "OPENING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
             "CLOSING_BALANCE_PURCHASED_ITEM_FOR_RESALE",
+            "OPENING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
+            "OPENING_BALANCE_LIVESTOCK",
+            "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "DEPRECIATION_PERCENTAGE",
@@ -53859,6 +54017,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "post": {
+          "readOnly": true,
+          "type": "string"
+        },
         "subPost": {
           "readOnly": true,
           "type": "string"
@@ -54262,6 +54424,12 @@
           "description": "Amount specified in the currency of the bank agreements account.",
           "readOnly": true,
           "type": "number"
+        },
+        "bankId": {
+          "description": "The bank id for the payment.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         },
         "bookingDate": {
           "readOnly": true,
@@ -89308,6 +89476,9 @@
     },
     {
       "name": "bankagreements"
+    },
+    {
+      "name": "bankmaintenance"
     },
     {
       "name": "bankonboarding"
