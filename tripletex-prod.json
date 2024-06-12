@@ -11956,9 +11956,6 @@
       "properties": {
         "description": {
           "type": "string"
-        },
-        "payloadModel": {
-          "type": "string"
         }
       },
       "type": "object"
@@ -27125,6 +27122,9 @@
           "type": "boolean"
         },
         "category": {
+          "type": "string"
+        },
+        "currencyCode": {
           "type": "string"
         },
         "deactivationError": {
@@ -46914,9 +46914,6 @@
           "type": "string"
         },
         "hasAiAssistantRestrictChatForAccountingOfficesPilot": {
-          "type": "boolean"
-        },
-        "hasSticosPilot": {
           "type": "boolean"
         },
         "myHelpRequestsUrl": {
