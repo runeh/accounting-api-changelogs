@@ -47818,6 +47818,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "sdfDebt": {
+          "readOnly": true,
+          "type": "number"
+        },
         "sdfValuationDiscount": {
           "readOnly": true,
           "type": "number"
@@ -47879,6 +47883,10 @@
           "type": "number"
         },
         "taxValueRealEstateAfterValuationDiscount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "taxValueSdf": {
           "readOnly": true,
           "type": "number"
         },
