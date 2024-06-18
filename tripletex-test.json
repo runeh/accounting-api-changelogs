@@ -8041,6 +8041,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "taxableBusinessIncome": {
+          "$ref": "#/definitions/TlxNumber",
+          "readOnly": true
+        },
         "totalRetroactivePayment": {
           "$ref": "#/definitions/TlxNumber",
           "readOnly": true
