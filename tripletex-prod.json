@@ -1748,6 +1748,24 @@
             "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
             "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
             "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_REPORT_ROE_TRANSFER_TYPE",
+            "PARTICIPANT_REPORT_ROE_NAME",
+            "PARTICIPANT_REPORT_ROE_IDENTIFICATION",
+            "PARTICIPANT_REPORT_ROE_TRANSACTION_TYPE",
+            "PARTICIPANT_REPORT_ROE_TIME",
+            "PARTICIPANT_REPORT_ROE_AMOUNT",
+            "PARTICIPANT_REPORT_ROE_REMUNERATION",
+            "PARTICIPANT_REPORT_ROE_COSTS",
+            "PARTICIPANT_REPORT_ROE_ADDITION_NON_DEDUCTIBLE_LOSS",
+            "PARTICIPANT_REPORT_ROE_UNUSED_SHIELDING_PREVIOUS_YEARS",
+            "PARTICIPANT_REPORT_ROE_OTHER_CORRECTIONS",
+            "PARTICIPANT_REPORT_ROE_GAIN_LOSS_REALIZATION",
+            "PARTICIPANT_REPORT_ROE_IS_COVERED_EXEMPTION_METHOD",
+            "PARTICIPANT_REPORT_ROE_ACQUIRED_INITIAL_VALUE",
+            "PARTICIPANT_REPORT_ROE_PRICE",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
+            "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
+            "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -6250,6 +6268,24 @@
             "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
             "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
             "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_REPORT_ROE_TRANSFER_TYPE",
+            "PARTICIPANT_REPORT_ROE_NAME",
+            "PARTICIPANT_REPORT_ROE_IDENTIFICATION",
+            "PARTICIPANT_REPORT_ROE_TRANSACTION_TYPE",
+            "PARTICIPANT_REPORT_ROE_TIME",
+            "PARTICIPANT_REPORT_ROE_AMOUNT",
+            "PARTICIPANT_REPORT_ROE_REMUNERATION",
+            "PARTICIPANT_REPORT_ROE_COSTS",
+            "PARTICIPANT_REPORT_ROE_ADDITION_NON_DEDUCTIBLE_LOSS",
+            "PARTICIPANT_REPORT_ROE_UNUSED_SHIELDING_PREVIOUS_YEARS",
+            "PARTICIPANT_REPORT_ROE_OTHER_CORRECTIONS",
+            "PARTICIPANT_REPORT_ROE_GAIN_LOSS_REALIZATION",
+            "PARTICIPANT_REPORT_ROE_IS_COVERED_EXEMPTION_METHOD",
+            "PARTICIPANT_REPORT_ROE_ACQUIRED_INITIAL_VALUE",
+            "PARTICIPANT_REPORT_ROE_PRICE",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
+            "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
+            "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -7643,6 +7679,206 @@
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "CompanyModules": {
+      "properties": {
+        "modules": {
+          "items": {
+            "enum": [
+              "MODULE_TRAVEL_EXPENSE",
+              "MODULE_INVOICE",
+              "MODULE_INVOICE_OPTION_AUTOINVOICE_EHF",
+              "MODULE_INVOICE_OPTION_PAPER",
+              "MODULE_INVOICE_OPTION_EFAKTURA",
+              "MODULE_ACCOUNTING_INTERNAL",
+              "MODULE_ACCOUNTING_EXTERNAL",
+              "MODULE_PROJECT",
+              "MODULE_PRODUCT",
+              "MODULE_CUSTOMER",
+              "MODULE_EMPLOYEE",
+              "MODULE_DEPARTMENT",
+              "APPROVE_INVOICES",
+              "APPROVE_HOURLISTS",
+              "APPROVE_TRAVEL_REPORTS",
+              "MODULE_BUDGET",
+              "MODULE_NOTE",
+              "MODULE_TASK",
+              "MODULE_YEAR_END_REPORT",
+              "MODULE_RESOURCE_ALLOCATION",
+              "MODULE_PROJECT_ECONOMY",
+              "MODULE_REFERENCE_FEE",
+              "MODULE_RORKJOP",
+              "MODULE_HISTORICAL",
+              "MODULE_PROJECT_CATEGORY",
+              "MODULE_PROJECT_LOCATION",
+              "MODULE_PROJECT_BUDGET",
+              "MODULE_PENSION_REPORT",
+              "MODULE_QUANTITY_HANDLING",
+              "MODULE_SUBSCRIPTION",
+              "COMPLETE_WEEKLY_HOURLISTS",
+              "COMPLETE_MONTHLY_HOURLISTS",
+              "APPROVE_MONTHLY_HOURLISTS",
+              "MODULE_PROJECT_PROGNOSIS",
+              "MODULE_BUNCHES",
+              "MODULE_ACCOUNTING_REPORTS",
+              "MODULE_CUSTOMER_CATEGORIES",
+              "MODULE_PROJECT_SUBCONTRACT",
+              "MODULE_PAYROLL_ACCOUNTING",
+              "INVOICE_APPROVED_HOURS_MANDATORY",
+              "IS_CURRENT_MONTH_DEFAULT_PERIOD",
+              "SHOW_TRAVEL_REPORT_LETTERHEAD",
+              "MODULE_TIME_BALANCE",
+              "MODULE_VACATION_BALANCE",
+              "MODULE_WORKING_HOURS",
+              "MODULE_CREDIT_SCORING",
+              "MODULE_CURRENCY",
+              "MODULE_WAGE_EXPORT",
+              "APPROVE_WEEKLY_HOURLISTS",
+              "MODULE_AUTO_CUSTOMER_NUMBER",
+              "MODULE_AUTO_VENDOR_NUMBER",
+              "MODULE_PROVISION_SALARY",
+              "HIDE_SINGLE_ACTIVITY_ON_INVOICE",
+              "MODULE_ORDER_NUMBER",
+              "MODULE_ORDER_DISCOUNT",
+              "MODULE_ORDER_MARKUP",
+              "MODULE_ORDER_LINE_COST",
+              "MODULE_LOGISTICS_LIGHT",
+              "MODULE_STOP_WATCH",
+              "MODULE_CONTACT",
+              "INVOICE_RESERVE_IS_ZERO_FOR_CLOSED_PROJECT",
+              "MODULE_AUTO_PROJECT_NUMBER",
+              "MODULE_RESOURCE_GROUPS",
+              "TRAVEL_REPORT_COMP_RATES_DEFAULT_VALUE",
+              "IS_TRAVEL_REPORT_TAX_FREE_DIET_RATES",
+              "MODULE_OCR",
+              "MODULE_REMIT",
+              "MODULE_TRAVEL_EXPENSE_RATES",
+              "MONTHLY_HOURLIST_MINUS_TIME_WARNING",
+              "MODULE_VOUCHER_SCANNING",
+              "MODULE_INVOICE_SCANNING",
+              "MODULE_LOGISTICS",
+              "MODULE_PROJECT_PARTICIPANTS",
+              "ALLOW_TIME_TRACKING_FOR_PARTICIPANTS_ONLY",
+              "MODULE_HOLYDAY_PLAN",
+              "MODULE_HOURLIST",
+              "AUTO_EXPORT_VOUCHERS",
+              "AUTO_EXPORT_CUSTOMERS",
+              "PROJECT_ORDER_VIEW_DUE_IN_SCALE",
+              "SEND_PAYSLIPS_BY_EMAIL",
+              "MODULE_EMPLOYEE_CATEGORY",
+              "ALLOW_MAX_ONE_HOLYDAY_PER_DAY",
+              "PROJECT_NAME_SCHEME",
+              "MODULE_CUSTOMER_CATEGORY1",
+              "MODULE_CUSTOMER_CATEGORY2",
+              "MODULE_CUSTOMER_CATEGORY3",
+              "MODULE_PRODUCT_INVOICE",
+              "IS_AUTO_REMIND_ENABLED_TYPE0",
+              "IS_AUTO_REMIND_ENABLED_TYPE1",
+              "INVOICE_FROM_CURRENT_USER",
+              "INVOICE_BCC_CURRENT_USER",
+              "AUTO_REMIND_DAYS_TYPE0",
+              "AUTO_REMIND_DAYS_TYPE1",
+              "AUTO_REMIND_DAYS_TYPE2",
+              "AUTO_REMIND_DAYS_TYPE3",
+              "PAYSLIP_FROM_CURRENT_USER",
+              "PAYSLIP_BCC_CURRENT_USER",
+              "AUTO_INVOICING",
+              "AUTO_CLOSE_INVOICED_PROJECTS",
+              "GENERAL_ACTIVITIES_PER_PROJECT",
+              "VALIDATE_HOURS_PER_WEEK_WH",
+              "VALIDATE_HOURS_PER_DAY24",
+              "MODULE_INVOICE_FEE_COMMENT",
+              "INVOICE_ROUNDOFF",
+              "MODULE_EMPLOYEE_ACCOUNTING",
+              "MODULE_DEPARTMENT_ACCOUNTING",
+              "MODULE_PROJECT_ACCOUNTING",
+              "MODULE_PRODUCT_ACCOUNTING",
+              "MODULE_SUBSCRIPTION_ADDRESS_LIST",
+              "SEND_IMPORTED_INVOICES",
+              "MODULE_GTIN",
+              "MODULE_ELECTRO",
+              "MODULE_NRF",
+              "API_AUTO_SEND_INVOICES",
+              "MODULE_ELPROFFEN",
+              "IS_PRODUCT_ADMIN",
+              "MODULE_ORDER_EXT",
+              "MODULE_AMORTIZATION",
+              "MODULE_RESULT_BUDGET",
+              "MODULE_CHANGE_DEBT_COLLECTOR",
+              "INVOICE_PERIOD_COUNT",
+              "INVOICING_PERIOD_TYPE",
+              "INVOICING_PERIOD_UNIT",
+              "IS_AUTO_REMIND_ENABLED_TYPE2",
+              "IS_AUTO_REMIND_ENABLED_TYPE3",
+              "SINGLE_CUSTOMER_INVOICE_COMPRESSES",
+              "MODULE_VOUCHER_TYPES",
+              "MODULE_ONNINEN123",
+              "MODULE_ELEKTRO_UNION",
+              "MODULE_AHLSELL_PARTNER",
+              "MODULE_ARCHIVE",
+              "VACATION_BALANCE_REDUCED_DAYS",
+              "IS_ACCOUNTANT",
+              "IS_AUDITOR",
+              "IS_RESELLER",
+              "ALLOW_MULTIPLE_PROJECT_INVOICE_VAT",
+              "PROJECT_ACTIVITY_BUDGET_IS_MASTER",
+              "HOURLIST_COMPLETED_REMINDER",
+              "MODULE_PROJECT_BUDGET_REFERENCE_FEE",
+              "CONFIRM_ETC_BEFORE_INVOICING",
+              "TRAVEL_DIET_IGNORE_POSTING",
+              "TRAVEL_NIGHT_IGNORE_POSTING",
+              "TRAVEL_DRIVING_IGNORE_POSTING",
+              "MODULE_WAREHOUSE",
+              "ORDER_SHOW_ORDER_DATE",
+              "OFFER_SHOW_OFFER_DATE",
+              "HOURLY_RATE_PROJECTS_WRITE_UP_DOWN",
+              "SHOW_RECENTLY_CLOSED_PROJECTS_ON_SUPPLIER_INVOICE",
+              "FIXED_PRICE_PROJECTS_INVOICE_BY_PROGRESS",
+              "MODULE_INVOICE_IMPORT",
+              "MODULE_EMAIL",
+              "PRODUCT_SET_COST_FROM_ORDER_LINE",
+              "INVOICE_SHOW_MARKUP_DISCOUNT",
+              "INVOICE_SHOW_PRODUCT_NUMBER",
+              "MODULE_NETS_EBOKS",
+              "MODULE_NETS_PRINT_SALARY",
+              "MODULE_NETS_PRINT_INVOICE",
+              "MODULE_BOLIGMAPPA",
+              "MODULE_APPROVE_VOUCHER",
+              "MODULE_APPROVE_DEPARTMENT_VOUCHER",
+              "MODULE_APPROVE_PROJECT_VOUCHER",
+              "DEFAULT_IS_PRIVATE_CUSTOMER",
+              "DEFAULT_CHARGE_ON_PROJECT",
+              "MODULE_MESAN",
+              "MODULE_MULTIPLE_LEDGERS",
+              "MODULE_DIVISIONS",
+              "OFFER_FROM_CURRENT_USER",
+              "ORDER_CONFIRMATION_CURRENT_USER",
+              "MODULE_ACCOUNTANT_CONNECT_CLIENT",
+              "MODULE_ADDITION_PROJECT_MARKUP",
+              "MODULE_WAGE_PROJECT_ACCOUNTING",
+              "MODULE_WAGE_AMORTIZATION",
+              "TRIPLETEX_SUPPORT_LOGIN_ACCESS",
+              "MODULE_ACTIVITY_HOURLY_WAGE_WAGE_CODE",
+              "MODULE_SUBSCRIPTIONS_PERIODISATION",
+              "MODULE_API_20",
+              "REMIT_VOUCHERS_ONLY",
+              "MODULE_FINANCE_TAX",
+              "MODULE_SMART_SCAN",
+              "MODULE_ORDER_OUT",
+              "IS_TRAVEL_REPORT_TAX_FREE_DRIVING_RATES",
+              "INCLUDE_TRIPLETEX_ACCOUNTANT_INVOICE_SUMMARY_CSV",
+              "HIDE_INACTIVE_PROJECTS",
+              "INVOICE_INCLUDE_COMMON_ATTACHMENTS",
+              "MODULE_CONTROL_SCHEMA_REQUIRED_HOUR_TRACKING",
+              "MODULE_CONTROL_SCHEMA_REQUIRED_INVOICING",
+              "MODULE_INVOICE_OPTION_VIPPS"
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -10097,6 +10333,7 @@
             "NOT_LICENSED",
             "FREIGHT_TRANSPORT",
             "TAXI",
+            "ACQUISITION_AND_REALIZATION",
             "PRODUCT_TYPE_INVENTORY",
             "CASH_REGISTER_SYSTEM",
             "PRIVATE_WITHDRAWAL_OF_GOODS",
@@ -10598,6 +10835,24 @@
             "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
             "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
             "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_REPORT_ROE_TRANSFER_TYPE",
+            "PARTICIPANT_REPORT_ROE_NAME",
+            "PARTICIPANT_REPORT_ROE_IDENTIFICATION",
+            "PARTICIPANT_REPORT_ROE_TRANSACTION_TYPE",
+            "PARTICIPANT_REPORT_ROE_TIME",
+            "PARTICIPANT_REPORT_ROE_AMOUNT",
+            "PARTICIPANT_REPORT_ROE_REMUNERATION",
+            "PARTICIPANT_REPORT_ROE_COSTS",
+            "PARTICIPANT_REPORT_ROE_ADDITION_NON_DEDUCTIBLE_LOSS",
+            "PARTICIPANT_REPORT_ROE_UNUSED_SHIELDING_PREVIOUS_YEARS",
+            "PARTICIPANT_REPORT_ROE_OTHER_CORRECTIONS",
+            "PARTICIPANT_REPORT_ROE_GAIN_LOSS_REALIZATION",
+            "PARTICIPANT_REPORT_ROE_IS_COVERED_EXEMPTION_METHOD",
+            "PARTICIPANT_REPORT_ROE_ACQUIRED_INITIAL_VALUE",
+            "PARTICIPANT_REPORT_ROE_PRICE",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
+            "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
+            "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -13165,6 +13420,7 @@
             "NOT_LICENSED",
             "FREIGHT_TRANSPORT",
             "TAXI",
+            "ACQUISITION_AND_REALIZATION",
             "PRODUCT_TYPE_INVENTORY",
             "CASH_REGISTER_SYSTEM",
             "PRIVATE_WITHDRAWAL_OF_GOODS",
@@ -13666,6 +13922,24 @@
             "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
             "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
             "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_REPORT_ROE_TRANSFER_TYPE",
+            "PARTICIPANT_REPORT_ROE_NAME",
+            "PARTICIPANT_REPORT_ROE_IDENTIFICATION",
+            "PARTICIPANT_REPORT_ROE_TRANSACTION_TYPE",
+            "PARTICIPANT_REPORT_ROE_TIME",
+            "PARTICIPANT_REPORT_ROE_AMOUNT",
+            "PARTICIPANT_REPORT_ROE_REMUNERATION",
+            "PARTICIPANT_REPORT_ROE_COSTS",
+            "PARTICIPANT_REPORT_ROE_ADDITION_NON_DEDUCTIBLE_LOSS",
+            "PARTICIPANT_REPORT_ROE_UNUSED_SHIELDING_PREVIOUS_YEARS",
+            "PARTICIPANT_REPORT_ROE_OTHER_CORRECTIONS",
+            "PARTICIPANT_REPORT_ROE_GAIN_LOSS_REALIZATION",
+            "PARTICIPANT_REPORT_ROE_IS_COVERED_EXEMPTION_METHOD",
+            "PARTICIPANT_REPORT_ROE_ACQUIRED_INITIAL_VALUE",
+            "PARTICIPANT_REPORT_ROE_PRICE",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
+            "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
+            "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -15716,6 +15990,24 @@
             "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
             "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
             "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_REPORT_ROE_TRANSFER_TYPE",
+            "PARTICIPANT_REPORT_ROE_NAME",
+            "PARTICIPANT_REPORT_ROE_IDENTIFICATION",
+            "PARTICIPANT_REPORT_ROE_TRANSACTION_TYPE",
+            "PARTICIPANT_REPORT_ROE_TIME",
+            "PARTICIPANT_REPORT_ROE_AMOUNT",
+            "PARTICIPANT_REPORT_ROE_REMUNERATION",
+            "PARTICIPANT_REPORT_ROE_COSTS",
+            "PARTICIPANT_REPORT_ROE_ADDITION_NON_DEDUCTIBLE_LOSS",
+            "PARTICIPANT_REPORT_ROE_UNUSED_SHIELDING_PREVIOUS_YEARS",
+            "PARTICIPANT_REPORT_ROE_OTHER_CORRECTIONS",
+            "PARTICIPANT_REPORT_ROE_GAIN_LOSS_REALIZATION",
+            "PARTICIPANT_REPORT_ROE_IS_COVERED_EXEMPTION_METHOD",
+            "PARTICIPANT_REPORT_ROE_ACQUIRED_INITIAL_VALUE",
+            "PARTICIPANT_REPORT_ROE_PRICE",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
+            "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
+            "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -16258,6 +16550,24 @@
             "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
             "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
             "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_REPORT_ROE_TRANSFER_TYPE",
+            "PARTICIPANT_REPORT_ROE_NAME",
+            "PARTICIPANT_REPORT_ROE_IDENTIFICATION",
+            "PARTICIPANT_REPORT_ROE_TRANSACTION_TYPE",
+            "PARTICIPANT_REPORT_ROE_TIME",
+            "PARTICIPANT_REPORT_ROE_AMOUNT",
+            "PARTICIPANT_REPORT_ROE_REMUNERATION",
+            "PARTICIPANT_REPORT_ROE_COSTS",
+            "PARTICIPANT_REPORT_ROE_ADDITION_NON_DEDUCTIBLE_LOSS",
+            "PARTICIPANT_REPORT_ROE_UNUSED_SHIELDING_PREVIOUS_YEARS",
+            "PARTICIPANT_REPORT_ROE_OTHER_CORRECTIONS",
+            "PARTICIPANT_REPORT_ROE_GAIN_LOSS_REALIZATION",
+            "PARTICIPANT_REPORT_ROE_IS_COVERED_EXEMPTION_METHOD",
+            "PARTICIPANT_REPORT_ROE_ACQUIRED_INITIAL_VALUE",
+            "PARTICIPANT_REPORT_ROE_PRICE",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
+            "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
+            "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -29021,6 +29331,14 @@
     },
     "ParticipantReport": {
       "properties": {
+        "acquisitionAndRealization": {
+          "description": "Acquisition and Realization",
+          "items": {
+            "$ref": "#/definitions/ParticipantReportAcquisitionAndRealization"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "agriculture": {
           "$ref": "#/definitions/ParticipantReportAgriculture",
           "description": "Agriculture",
@@ -29100,6 +29418,105 @@
           "description": "Total labor remuneration",
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ParticipantReportAcquisitionAndRealization": {
+      "properties": {
+        "acquiredInitialValue": {
+          "description": "Acquired initial value",
+          "readOnly": true,
+          "type": "number"
+        },
+        "additionNonDeductibleLoss": {
+          "description": "Addition non deductible loss",
+          "readOnly": true,
+          "type": "number"
+        },
+        "amount": {
+          "description": "Amount",
+          "readOnly": true,
+          "type": "number"
+        },
+        "costs": {
+          "description": "Costs",
+          "readOnly": true,
+          "type": "number"
+        },
+        "coveredExemptionMethod": {
+          "type": "boolean"
+        },
+        "gainLossRealization": {
+          "description": "Gain loss realization",
+          "readOnly": true,
+          "type": "number"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "identification": {
+          "description": "Identification",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "otherCorrections": {
+          "description": "Other corrections",
+          "readOnly": true,
+          "type": "number"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "price": {
+          "description": "Price",
+          "readOnly": true,
+          "type": "number"
+        },
+        "remuneration": {
+          "description": "Remuneration",
+          "readOnly": true,
+          "type": "number"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "time": {
+          "description": "Time",
+          "readOnly": true,
+          "type": "string"
+        },
+        "transactionType": {
+          "description": "Realization and acquisition transaction type codelist",
+          "readOnly": true,
+          "type": "string"
+        },
+        "transferType": {
+          "description": "Acquisition and realization types",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unusedShieldingPreviousYears": {
+          "description": "Unused shielding previous years",
+          "readOnly": true,
+          "type": "number"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
         }
       },
       "type": "object"
@@ -29236,6 +29653,32 @@
     },
     "ParticipantReportPost": {
       "properties": {
+        "dataSubType": {
+          "description": "Sub group id",
+          "enum": [
+            "NONE",
+            "NOT_LICENSED",
+            "FREIGHT_TRANSPORT",
+            "TAXI",
+            "ACQUISITION_AND_REALIZATION",
+            "PRODUCT_TYPE_INVENTORY",
+            "CASH_REGISTER_SYSTEM",
+            "PRIVATE_WITHDRAWAL_OF_GOODS",
+            "ENTERTAINMENT",
+            "MULTI_UNIT_BUILDING_UNIT",
+            "RENTAL_WITHDRAWAL_SALE_COMPANY",
+            "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
+            "RESOLUTION",
+            "OTHER_PUBLIC_SUPPORT"
+          ],
+          "type": "string"
+        },
+        "dataSubTypeGroupId": {
+          "description": "Group id",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
         "groupId": {
           "description": "Group id",
           "format": "int32",
@@ -29689,6 +30132,24 @@
             "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
             "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
             "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_REPORT_ROE_TRANSFER_TYPE",
+            "PARTICIPANT_REPORT_ROE_NAME",
+            "PARTICIPANT_REPORT_ROE_IDENTIFICATION",
+            "PARTICIPANT_REPORT_ROE_TRANSACTION_TYPE",
+            "PARTICIPANT_REPORT_ROE_TIME",
+            "PARTICIPANT_REPORT_ROE_AMOUNT",
+            "PARTICIPANT_REPORT_ROE_REMUNERATION",
+            "PARTICIPANT_REPORT_ROE_COSTS",
+            "PARTICIPANT_REPORT_ROE_ADDITION_NON_DEDUCTIBLE_LOSS",
+            "PARTICIPANT_REPORT_ROE_UNUSED_SHIELDING_PREVIOUS_YEARS",
+            "PARTICIPANT_REPORT_ROE_OTHER_CORRECTIONS",
+            "PARTICIPANT_REPORT_ROE_GAIN_LOSS_REALIZATION",
+            "PARTICIPANT_REPORT_ROE_IS_COVERED_EXEMPTION_METHOD",
+            "PARTICIPANT_REPORT_ROE_ACQUIRED_INITIAL_VALUE",
+            "PARTICIPANT_REPORT_ROE_PRICE",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
+            "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
+            "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -29833,6 +30294,25 @@
           "type": "number"
         }
       },
+      "type": "object"
+    },
+    "ParticipantReportRoECreate": {
+      "properties": {
+        "groupId": {
+          "description": "Group id",
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "Year",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "groupId",
+        "year"
+      ],
       "type": "object"
     },
     "ParticipantReportShieldingBasis": {
@@ -31315,6 +31795,24 @@
             "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
             "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
             "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_REPORT_ROE_TRANSFER_TYPE",
+            "PARTICIPANT_REPORT_ROE_NAME",
+            "PARTICIPANT_REPORT_ROE_IDENTIFICATION",
+            "PARTICIPANT_REPORT_ROE_TRANSACTION_TYPE",
+            "PARTICIPANT_REPORT_ROE_TIME",
+            "PARTICIPANT_REPORT_ROE_AMOUNT",
+            "PARTICIPANT_REPORT_ROE_REMUNERATION",
+            "PARTICIPANT_REPORT_ROE_COSTS",
+            "PARTICIPANT_REPORT_ROE_ADDITION_NON_DEDUCTIBLE_LOSS",
+            "PARTICIPANT_REPORT_ROE_UNUSED_SHIELDING_PREVIOUS_YEARS",
+            "PARTICIPANT_REPORT_ROE_OTHER_CORRECTIONS",
+            "PARTICIPANT_REPORT_ROE_GAIN_LOSS_REALIZATION",
+            "PARTICIPANT_REPORT_ROE_IS_COVERED_EXEMPTION_METHOD",
+            "PARTICIPANT_REPORT_ROE_ACQUIRED_INITIAL_VALUE",
+            "PARTICIPANT_REPORT_ROE_PRICE",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
+            "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
+            "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -35589,6 +36087,7 @@
             "NOT_LICENSED",
             "FREIGHT_TRANSPORT",
             "TAXI",
+            "ACQUISITION_AND_REALIZATION",
             "PRODUCT_TYPE_INVENTORY",
             "CASH_REGISTER_SYSTEM",
             "PRIVATE_WITHDRAWAL_OF_GOODS",
@@ -37983,6 +38482,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CompanyInfoOverview"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperCompanyModules": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CompanyModules"
         }
       },
       "type": "object"
@@ -45316,6 +45823,7 @@
             "NOT_LICENSED",
             "FREIGHT_TRANSPORT",
             "TAXI",
+            "ACQUISITION_AND_REALIZATION",
             "PRODUCT_TYPE_INVENTORY",
             "CASH_REGISTER_SYSTEM",
             "PRIVATE_WITHDRAWAL_OF_GOODS",
@@ -45832,6 +46340,24 @@
             "PARTICIPANT_ASSESSMENT_REPORT_PAYMENT_TO_PARTICIPANT",
             "PARTICIPANT_ASSESSMENT_REPORT_GAIN_ON_REALIZATION_OF_SHARE",
             "PARTICIPANT_ASSESSMENT_REPORT_LOSS_ON_REALIZATION_OF_SHARE",
+            "PARTICIPANT_REPORT_ROE_TRANSFER_TYPE",
+            "PARTICIPANT_REPORT_ROE_NAME",
+            "PARTICIPANT_REPORT_ROE_IDENTIFICATION",
+            "PARTICIPANT_REPORT_ROE_TRANSACTION_TYPE",
+            "PARTICIPANT_REPORT_ROE_TIME",
+            "PARTICIPANT_REPORT_ROE_AMOUNT",
+            "PARTICIPANT_REPORT_ROE_REMUNERATION",
+            "PARTICIPANT_REPORT_ROE_COSTS",
+            "PARTICIPANT_REPORT_ROE_ADDITION_NON_DEDUCTIBLE_LOSS",
+            "PARTICIPANT_REPORT_ROE_UNUSED_SHIELDING_PREVIOUS_YEARS",
+            "PARTICIPANT_REPORT_ROE_OTHER_CORRECTIONS",
+            "PARTICIPANT_REPORT_ROE_GAIN_LOSS_REALIZATION",
+            "PARTICIPANT_REPORT_ROE_IS_COVERED_EXEMPTION_METHOD",
+            "PARTICIPANT_REPORT_ROE_ACQUIRED_INITIAL_VALUE",
+            "PARTICIPANT_REPORT_ROE_PRICE",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
+            "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
+            "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -52386,6 +52912,15 @@
         "companyAttestorCanOverride": {
           "readOnly": true,
           "type": "boolean"
+        },
+        "companyCurrency": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "companyCurrencyId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "companyName": {
           "readOnly": true,
@@ -89780,6 +90315,9 @@
       "name": "bankonboarding"
     },
     {
+      "name": "platformAgnosticbankonboarding"
+    },
+    {
       "name": "bankreconciliation"
     },
     {
@@ -89910,6 +90448,9 @@
     },
     {
       "name": "contact"
+    },
+    {
+      "name": "internalcopilot"
     },
     {
       "name": "country"
@@ -90744,6 +91285,12 @@
     },
     {
       "name": "termsofservice"
+    },
+    {
+      "name": "testingcompanyModules"
+    },
+    {
+      "name": "usertest"
     },
     {
       "name": "testaccountdata"
