@@ -813,6 +813,19 @@
           "readOnly": true,
           "type": "array"
         },
+        "checkLedgerLogEmployeeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "checkLedgerLogEmployeePictureId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "checkLedgerLogTime": {
+          "readOnly": true,
+          "type": "string"
+        },
         "end": {
           "readOnly": true,
           "type": "string"
@@ -13135,6 +13148,10 @@
     },
     "GeneralLedgerContext": {
       "properties": {
+        "canUserMarkAccountingPeriodAsChecked": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "companyName": {
           "readOnly": true,
           "type": "string"
@@ -13332,33 +13349,19 @@
           "readOnly": true,
           "type": "string"
         },
-        "productUnit1Url": {
-          "readOnly": true,
-          "type": "string"
-        },
         "productUnit2Name": {
           "readOnly": true,
           "type": "string"
         },
-        "productUnit2Url": {
+        "productUnitId1": {
+          "format": "int64",
           "readOnly": true,
-          "type": "string"
+          "type": "integer"
         },
-        "productUnitIds1": {
-          "items": {
-            "format": "int64",
-            "type": "integer"
-          },
+        "productUnitId2": {
+          "format": "int64",
           "readOnly": true,
-          "type": "array"
-        },
-        "productUnitIds2": {
-          "items": {
-            "format": "int64",
-            "type": "integer"
-          },
-          "readOnly": true,
-          "type": "array"
+          "type": "integer"
         },
         "productUrl": {
           "readOnly": true,
@@ -27223,6 +27226,9 @@
         "moduleLogistics": {
           "type": "boolean"
         },
+        "moduleProduct": {
+          "type": "boolean"
+        },
         "moduleProductAccounting": {
           "description": "read only",
           "readOnly": true,
@@ -27234,6 +27240,9 @@
           "type": "boolean"
         },
         "moduleProjectBudget": {
+          "type": "boolean"
+        },
+        "moduleQuantityHandling": {
           "type": "boolean"
         },
         "moduleVacationBalance": {
