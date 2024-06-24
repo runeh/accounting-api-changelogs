@@ -1153,8 +1153,8 @@
           "type": "string"
         },
         "amount": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Amount value in invoice currency"
+          "description": "Amount value in invoice currency",
+          "type": "number"
         },
         "creditorAddress": {
           "description": "AutoPay's creditor address for an abroad payment",
@@ -1256,8 +1256,8 @@
           "type": "string"
         },
         "oppositeAmount": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Amount value in payment type currency"
+          "description": "Amount value in payment type currency",
+          "type": "number"
         },
         "paymentTypes": {
           "description": "List of payment types used in this Advanced Payment Widget",
@@ -1267,8 +1267,8 @@
           "type": "array"
         },
         "prepaidAmount": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Prepaid Amount value in invoice currency"
+          "description": "Prepaid Amount value in invoice currency",
+          "type": "number"
         },
         "regulatoryReportingCode": {
           "description": "AutoPay's regulatory reporting code",
@@ -1779,6 +1779,7 @@
             "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
             "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
             "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_ACQUISITION_OF_SHARE_VALUE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -1853,7 +1854,13 @@
             "CONTROLLED_TRANSACTIONS_NUMBER_OF_REGISTERED_PATENTS",
             "CONTROLLED_TRANSACTIONS_GROUP_HAS_BEEN_RESTRUCTURED",
             "CONTROLLED_TRANSACTIONS_COMPANY_HAS_SERVICED_OTHER_COMPANY_IN_GROUP_FOR_FREE",
-            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP"
+            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
           ],
           "readOnly": true,
           "type": "string"
@@ -2098,14 +2105,14 @@
           "readOnly": true
         },
         "financeTaxAccrued": {
-          "$ref": "#/definitions/TlxNumber",
           "description": "Finance tax amount accrued from a-melding",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "financeTaxNotPaid": {
-          "$ref": "#/definitions/TlxNumber",
           "description": "Finance tax amount not paid",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "id": {
           "format": "int64",
@@ -2122,14 +2129,14 @@
           "type": "string"
         },
         "mandatoryDeductionAccrued": {
-          "$ref": "#/definitions/TlxNumber",
           "description": "Mandatory deduction amount accrued from a-melding",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "mandatoryDeductionNotPaid": {
-          "$ref": "#/definitions/TlxNumber",
           "description": "Mandatory deduction amount not paid",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "paymentActorEmployee": {
           "$ref": "#/definitions/Employee",
@@ -2137,24 +2144,24 @@
           "readOnly": true
         },
         "payrollTaxAccrued": {
-          "$ref": "#/definitions/TlxNumber",
           "description": "Payroll tax (ENI) amount accrued from a-melding",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "payrollTaxNotPaid": {
-          "$ref": "#/definitions/TlxNumber",
           "description": "Payroll tax (ENI) amount not paid",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "taxDeductionAccrued": {
-          "$ref": "#/definitions/TlxNumber",
           "description": "Tax deduction amount accrued from a-melding",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "taxDeductionNotPaid": {
-          "$ref": "#/definitions/TlxNumber",
           "description": "Tax deduction amount not paid",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "taxPeriodName": {
           "description": "Name of the period the tax is accrued",
@@ -3117,10 +3124,10 @@
           "type": "string"
         },
         "amountMax": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "amountMaxMonthly": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "autoPayBankAgreementId": {
           "format": "int32",
@@ -4457,8 +4464,8 @@
           "type": "number"
         },
         "bankReconciliationMatchSum": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "bankStatement": {
           "$ref": "#/definitions/BankStatement"
@@ -6299,6 +6306,7 @@
             "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
             "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
             "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_ACQUISITION_OF_SHARE_VALUE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -6373,7 +6381,13 @@
             "CONTROLLED_TRANSACTIONS_NUMBER_OF_REGISTERED_PATENTS",
             "CONTROLLED_TRANSACTIONS_GROUP_HAS_BEEN_RESTRUCTURED",
             "CONTROLLED_TRANSACTIONS_COMPANY_HAS_SERVICED_OTHER_COMPANY_IN_GROUP_FOR_FREE",
-            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP"
+            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
           ],
           "readOnly": true,
           "type": "string"
@@ -7424,12 +7438,12 @@
           "type": "array"
         },
         "hourlyCost": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "hourlyRate": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "id": {
           "format": "int64",
@@ -8227,8 +8241,8 @@
           "type": "boolean"
         },
         "consolidatedMarginPercentage": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Percentage of consolidated margin"
+          "description": "Percentage of consolidated margin",
+          "type": "number"
         },
         "consolidatedMarginYear": {
           "description": "Year of consolidated margin",
@@ -8247,6 +8261,13 @@
         "exemptFromTransactionSharing": {
           "description": "Is exempt from sharing transactions",
           "type": "boolean"
+        },
+        "functionAndRisk": {
+          "description": "List of functions and risks",
+          "items": {
+            "$ref": "#/definitions/ControlledTransactionsFunctionAndRisk"
+          },
+          "type": "array"
         },
         "groupBeenRestructured": {
           "description": "Whether or not the group related to the company has undergone restructuring",
@@ -8270,9 +8291,92 @@
           },
           "type": "array"
         },
+        "relatedCompaniesUsingImmaterialAssets": {
+          "description": "Related companies that's using the company's immaterial assets",
+          "items": {
+            "$ref": "#/definitions/ControlledTransactionsRelatedCompanies"
+          },
+          "type": "array"
+        },
         "reportsOnlyProvisionIncome": {
           "description": "Whether or not the company only reports provision income",
           "type": "string"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
+    "ControlledTransactionsFunctionAndRisk": {
+      "properties": {
+        "description": {
+          "description": "Description of the function and risk combination",
+          "type": "string"
+        },
+        "functionType": {
+          "description": "The type of the function",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "riskType": {
+          "description": "The type of risk",
+          "type": "string"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
+    "ControlledTransactionsRelatedCompanies": {
+      "properties": {
+        "companyName": {
+          "description": "The name of the company",
+          "type": "string"
+        },
+        "country": {
+          "description": "Country wherein the company is registered",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "identifier": {
+          "description": "The public identifier of the company",
+          "type": "string"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
         },
         "subGroupId": {
           "description": "Sub group ID",
@@ -8299,12 +8403,12 @@
           "type": "number"
         },
         "taxableBusinessIncome": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "totalRetroactivePayment": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "totalSales": {
           "readOnly": true,
@@ -9655,7 +9759,7 @@
           "type": "number"
         },
         "maxPercentagePreviousYear": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "oppositePostingAccount": {
           "format": "int32",
@@ -10029,12 +10133,12 @@
           "type": "array"
         },
         "difference": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "equity": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "equityInAccount": {
           "items": {
@@ -10043,8 +10147,8 @@
           "type": "array"
         },
         "maxCalculatedDividend": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "name": {
           "readOnly": true,
@@ -10385,7 +10489,9 @@
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
             "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
             "RESOLUTION",
-            "OTHER_PUBLIC_SUPPORT"
+            "OTHER_PUBLIC_SUPPORT",
+            "RELATED_COMPANY",
+            "FUNCTION_AND_RISK"
           ],
           "type": "string"
         },
@@ -10896,6 +11002,7 @@
             "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
             "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
             "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_ACQUISITION_OF_SHARE_VALUE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -10970,7 +11077,13 @@
             "CONTROLLED_TRANSACTIONS_NUMBER_OF_REGISTERED_PATENTS",
             "CONTROLLED_TRANSACTIONS_GROUP_HAS_BEEN_RESTRUCTURED",
             "CONTROLLED_TRANSACTIONS_COMPANY_HAS_SERVICED_OTHER_COMPANY_IN_GROUP_FOR_FREE",
-            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP"
+            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
           ],
           "type": "string"
         },
@@ -12889,8 +13002,8 @@
           "type": "number"
         },
         "municipalityNumber": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "paidPublicContributionForestFund": {
           "readOnly": true,
@@ -13111,32 +13224,32 @@
           "type": "integer"
         },
         "balanceChange": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "balanceCurrency": {
           "readOnly": true,
           "type": "string"
         },
         "balanceCurrencyChange": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "balanceCurrencyIn": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "balanceCurrencyOut": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "balanceIn": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "balanceOut": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "noOfCurrencies": {
           "format": "int64",
@@ -13209,16 +13322,16 @@
     "GeneralLedgerPosting": {
       "properties": {
         "amount": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "amountCurrency": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "amountVat": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "assetIds": {
           "items": {
@@ -13384,12 +13497,12 @@
           "type": "string"
         },
         "quantityAmount1": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "quantityAmount2": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "supplierIds": {
           "items": {
@@ -13423,8 +13536,8 @@
           "type": "string"
         },
         "vatPercentage": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "vatTypeId": {
           "format": "int64",
@@ -13471,7 +13584,9 @@
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
             "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
             "RESOLUTION",
-            "OTHER_PUBLIC_SUPPORT"
+            "OTHER_PUBLIC_SUPPORT",
+            "RELATED_COMPANY",
+            "FUNCTION_AND_RISK"
           ],
           "type": "string"
         },
@@ -13982,6 +14097,7 @@
             "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
             "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
             "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_ACQUISITION_OF_SHARE_VALUE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -14056,7 +14172,13 @@
             "CONTROLLED_TRANSACTIONS_NUMBER_OF_REGISTERED_PATENTS",
             "CONTROLLED_TRANSACTIONS_GROUP_HAS_BEEN_RESTRUCTURED",
             "CONTROLLED_TRANSACTIONS_COMPANY_HAS_SERVICED_OTHER_COMPANY_IN_GROUP_FOR_FREE",
-            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP"
+            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
           ],
           "type": "string"
         },
@@ -14258,7 +14380,7 @@
           "type": "number"
         },
         "ratePreviousYear": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "rateType": {
           "readOnly": true,
@@ -15463,12 +15585,12 @@
     "IncomingInvoicePaymentHistoryTransaction": {
       "properties": {
         "amountCurrencyNegative": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "amountNegative": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "baseVoucherId": {
           "format": "int32",
@@ -16050,6 +16172,7 @@
             "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
             "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
             "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_ACQUISITION_OF_SHARE_VALUE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -16124,7 +16247,13 @@
             "CONTROLLED_TRANSACTIONS_NUMBER_OF_REGISTERED_PATENTS",
             "CONTROLLED_TRANSACTIONS_GROUP_HAS_BEEN_RESTRUCTURED",
             "CONTROLLED_TRANSACTIONS_COMPANY_HAS_SERVICED_OTHER_COMPANY_IN_GROUP_FOR_FREE",
-            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP"
+            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
           ],
           "readOnly": true,
           "type": "string"
@@ -16610,6 +16739,7 @@
             "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
             "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
             "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_ACQUISITION_OF_SHARE_VALUE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -16684,7 +16814,13 @@
             "CONTROLLED_TRANSACTIONS_NUMBER_OF_REGISTERED_PATENTS",
             "CONTROLLED_TRANSACTIONS_GROUP_HAS_BEEN_RESTRUCTURED",
             "CONTROLLED_TRANSACTIONS_COMPANY_HAS_SERVICED_OTHER_COMPANY_IN_GROUP_FOR_FREE",
-            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP"
+            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
           ],
           "readOnly": true,
           "type": "string"
@@ -17649,8 +17785,8 @@
           "type": "integer"
         },
         "amount": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "automaticallyPosted": {
           "readOnly": true,
@@ -27785,12 +27921,12 @@
     "NoteContainer": {
       "properties": {
         "acquisitionCostIntangibleAssets": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "acquisitionCostTangibleFixedAssets": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "assetPosts": {
           "items": {
@@ -27799,12 +27935,12 @@
           "type": "array"
         },
         "capitalisedValueIntangibleAssets": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "capitalisedValueTangibleFixedAssets": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "closingSumSalary": {
           "readOnly": true,
@@ -27854,20 +27990,20 @@
           "type": "array"
         },
         "sumExtraordinaryCost": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "sumExtraordinaryIncome": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "sumRealValue": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "sumValueAdjustment": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport",
@@ -28872,8 +29008,8 @@
           "type": "array"
         },
         "count": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "id": {
           "format": "int64",
@@ -29036,8 +29172,8 @@
           "type": "string"
         },
         "ownership": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "posts": {
           "items": {
@@ -29046,12 +29182,12 @@
           "type": "array"
         },
         "shareOfResult": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "shareOfWealth": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport",
@@ -29736,7 +29872,9 @@
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
             "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
             "RESOLUTION",
-            "OTHER_PUBLIC_SUPPORT"
+            "OTHER_PUBLIC_SUPPORT",
+            "RELATED_COMPANY",
+            "FUNCTION_AND_RISK"
           ],
           "type": "string"
         },
@@ -30217,6 +30355,7 @@
             "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
             "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
             "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_ACQUISITION_OF_SHARE_VALUE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -30291,7 +30430,13 @@
             "CONTROLLED_TRANSACTIONS_NUMBER_OF_REGISTERED_PATENTS",
             "CONTROLLED_TRANSACTIONS_GROUP_HAS_BEEN_RESTRUCTURED",
             "CONTROLLED_TRANSACTIONS_COMPANY_HAS_SERVICED_OTHER_COMPANY_IN_GROUP_FOR_FREE",
-            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP"
+            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
           ],
           "type": "string"
         },
@@ -31880,6 +32025,7 @@
             "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
             "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
             "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_ACQUISITION_OF_SHARE_VALUE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -31954,7 +32100,13 @@
             "CONTROLLED_TRANSACTIONS_NUMBER_OF_REGISTERED_PATENTS",
             "CONTROLLED_TRANSACTIONS_GROUP_HAS_BEEN_RESTRUCTURED",
             "CONTROLLED_TRANSACTIONS_COMPANY_HAS_SERVICED_OTHER_COMPANY_IN_GROUP_FOR_FREE",
-            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP"
+            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
           ],
           "readOnly": true,
           "type": "string"
@@ -33365,8 +33517,8 @@
           "type": "array"
         },
         "costPrice": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Cost Price"
+          "description": "Cost Price",
+          "type": "number"
         },
         "fromDate": {
           "type": "string"
@@ -33379,20 +33531,20 @@
           "$ref": "#/definitions/Product"
         },
         "purchasePrice": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Purchase Price excluding VAT"
+          "description": "Purchase Price excluding VAT",
+          "type": "number"
         },
         "purchasePriceCurrency": {
           "description": "Purchase Price (cost) excluding VAT in the product's currency",
           "type": "number"
         },
         "salesPriceExcludingVat": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Sales Price excluding VAT"
+          "description": "Sales Price excluding VAT",
+          "type": "number"
         },
         "salesPriceIncludingVat": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Sales Price including VAT"
+          "description": "Sales Price including VAT",
+          "type": "number"
         },
         "toDate": {
           "type": "string"
@@ -35790,7 +35942,7 @@
     "RP2EmployeeAvailableTime": {
       "properties": {
         "duration": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "durationUnit": {
           "type": "string"
@@ -35811,7 +35963,7 @@
     "RP2EmployeeBookedTime": {
       "properties": {
         "duration": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "durationUnit": {
           "type": "string"
@@ -35831,7 +35983,7 @@
     "RP2EmployeeJob": {
       "properties": {
         "duration": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "durationUnit": {
           "type": "string"
@@ -35898,7 +36050,7 @@
           "type": "string"
         },
         "durationAmount": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "durationUnit": {
           "type": "string"
@@ -35939,7 +36091,7 @@
           "type": "string"
         },
         "durationAmount": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "durationUnit": {
           "type": "string"
@@ -36026,7 +36178,7 @@
     "RP2ProjectBookedTime": {
       "properties": {
         "duration": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "durationUnit": {
           "type": "string"
@@ -36046,7 +36198,7 @@
     "RP2ProjectJob": {
       "properties": {
         "duration": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "durationUnit": {
           "type": "string"
@@ -36099,7 +36251,7 @@
     "RP2TotalTime": {
       "properties": {
         "duration": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "durationUnit": {
           "type": "string"
@@ -36163,7 +36315,9 @@
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
             "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
             "RESOLUTION",
-            "OTHER_PUBLIC_SUPPORT"
+            "OTHER_PUBLIC_SUPPORT",
+            "RELATED_COMPANY",
+            "FUNCTION_AND_RISK"
           ],
           "readOnly": true,
           "type": "string"
@@ -37980,7 +38134,7 @@
     "ResourcePlanEmployee": {
       "properties": {
         "budget": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "employeeId": {
           "format": "int32",
@@ -37997,13 +38151,13 @@
           "type": "array"
         },
         "remaining": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "totalAllocated": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "totalHours": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         }
       },
       "type": "object"
@@ -38011,13 +38165,13 @@
     "ResourcePlanHours": {
       "properties": {
         "allocatedHours": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "label": {
           "type": "string"
         },
         "workedHours": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         }
       },
       "type": "object"
@@ -39728,6 +39882,17 @@
         "value": {
           "additionalProperties": {
             "$ref": "#/definitions/EventInfoDescription"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperMapStringString": {
+      "properties": {
+        "value": {
+          "additionalProperties": {
+            "type": "string"
           },
           "type": "object"
         }
@@ -45520,20 +45685,20 @@
           "type": "string"
         },
         "numberOfSharesLastYear": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "numberOfSharesThisYear": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "ownershipLastYear": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "ownershipThisYear": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "phoneNumber": {
           "maxLength": 32,
@@ -45589,16 +45754,16 @@
           "readOnly": true
         },
         "numberOfSharesThisYear": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "ownershipLastYear": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "ownershipThisYear": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "shareholder": {
           "$ref": "#/definitions/Shareholder"
@@ -45898,7 +46063,7 @@
           "type": "string"
         },
         "dividend": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "exemptionMethod": {
           "format": "int32",
@@ -45922,7 +46087,9 @@
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
             "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
             "RESOLUTION",
-            "OTHER_PUBLIC_SUPPORT"
+            "OTHER_PUBLIC_SUPPORT",
+            "RELATED_COMPANY",
+            "FUNCTION_AND_RISK"
           ],
           "type": "string"
         },
@@ -45969,16 +46136,16 @@
           "type": "integer"
         },
         "interestIncome": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "isin": {
           "type": "string"
         },
         "lossInterest": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "lossRealisation": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "name": {
           "type": "string"
@@ -46448,6 +46615,7 @@
             "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_REALIZATION_OF_SHARE_VALUE",
             "PARTICIPANT_REPORT_SHIELDING_DEDUCTION_OFFSET_AGAINST_REALIZATION_GAIN",
             "PARTICIPANT_REPORT_SHIELDING_BASIS_REDUCTION_OF_USED_SHIELDING_DUE_TO_REALIZATION",
+            "PARTICIPANT_REPORT_TAX_BASIS_SPECIFICATION_ACQUISITION_OF_SHARE_VALUE",
             "COOPERATIVE_ENTERPRISE_TAXABLE_BUSINESS_INCOME",
             "COOPERATIVE_ENTERPRISE_FROM_SALES_INVOLVING_MEMBER",
             "COOPERATIVE_ENTERPRISE_SALES_INVOLVING_MEMBER_SEPARATE",
@@ -46522,7 +46690,13 @@
             "CONTROLLED_TRANSACTIONS_NUMBER_OF_REGISTERED_PATENTS",
             "CONTROLLED_TRANSACTIONS_GROUP_HAS_BEEN_RESTRUCTURED",
             "CONTROLLED_TRANSACTIONS_COMPANY_HAS_SERVICED_OTHER_COMPANY_IN_GROUP_FOR_FREE",
-            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP"
+            "CONTROLLED_TRANSACTIONS_COMPANY_IS_GUARANTOR_FOR_AGREEMENTS_BY_OTHER_COMPANIES_IN_SAME_GROUP",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
           ],
           "type": "string"
         },
@@ -46530,32 +46704,32 @@
           "type": "string"
         },
         "profitInterest": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "profitRealisation": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "shareClass": {
           "type": "string"
         },
         "sharesByTheEndOfTheYear": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "sharesByTheStartOfTheYear": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "stockType": {
           "type": "string"
         },
         "totalValue": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "url": {
           "readOnly": true,
           "type": "string"
         },
         "value": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         },
         "vatNumber": {
           "type": "string"
@@ -46594,8 +46768,8 @@
     "SimplePaymentWidget": {
       "properties": {
         "amount": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Amount of the payment to be registered in the Payment Widget"
+          "description": "Amount of the payment to be registered in the Payment Widget",
+          "type": "number"
         },
         "bankAccount": {
           "description": "Bank account used to register payment in the Payment Widget",
@@ -47796,7 +47970,7 @@
         },
         "accountingValueProfitAndLoss": {
           "readOnly": true,
-          "type": "string"
+          "type": "number"
         },
         "acquisitionCost": {
           "readOnly": true,
@@ -48072,8 +48246,8 @@
     "TaxAdminCalculatedMarketValue": {
       "properties": {
         "marketValue": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -48081,8 +48255,8 @@
     "TaxAdminCalculatedRentalValue": {
       "properties": {
         "rentalValue": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -52217,8 +52391,8 @@
     "VatReturnsOverviewItem": {
       "properties": {
         "amount": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "dueDate": {
           "readOnly": true,
@@ -52304,8 +52478,8 @@
           "type": "string"
         },
         "amount": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Amount to pay or receive"
+          "description": "Amount to pay or receive",
+          "type": "number"
         },
         "changes": {
           "items": {
@@ -52406,14 +52580,14 @@
           "type": "string"
         },
         "totalAmountVat": {
-          "$ref": "#/definitions/TlxNumber",
           "description": "Total vat amount on the group",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "totalAmountVatBasis": {
-          "$ref": "#/definitions/TlxNumber",
           "description": "Total vat basis amount on the group",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -52421,8 +52595,8 @@
     "VatSpecificationLine": {
       "properties": {
         "basis": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Basis"
+          "description": "Basis",
+          "type": "number"
         },
         "expectedSign": {
           "description": "Expected delivery sign",
@@ -52442,8 +52616,8 @@
           "type": "boolean"
         },
         "rate": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Rate"
+          "description": "Rate",
+          "type": "number"
         },
         "specificationType": {
           "description": "Vat specificationType",
@@ -52473,8 +52647,8 @@
           "type": "string"
         },
         "vatAmount": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Vat amount"
+          "description": "Vat amount",
+          "type": "number"
         },
         "vatReturns2022DTO": {
           "$ref": "#/definitions/VatReturns2022",
@@ -54345,6 +54519,9 @@
         "asset": {
           "type": "number"
         },
+        "assetPreviousYear": {
+          "type": "number"
+        },
         "capitalCost": {
           "$ref": "#/definitions/YearEndReportType"
         },
@@ -54371,6 +54548,9 @@
           "$ref": "#/definitions/YearEndReportType"
         },
         "equityAndDebt": {
+          "type": "number"
+        },
+        "equityAndDebtPreviousYear": {
           "type": "number"
         },
         "extraordinaryCost": {
@@ -54940,8 +55120,8 @@
           "$ref": "#/definitions/Account"
         },
         "availableBalanceCurrency": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "bban": {
           "maxLength": 50,
@@ -54949,8 +55129,8 @@
           "type": "string"
         },
         "bookedBalanceCurrency": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "changes": {
           "items": {
