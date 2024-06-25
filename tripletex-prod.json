@@ -14433,6 +14433,7 @@
             "FeedbackDeadlinesAndTasksSurveyBanner",
             "MySubscriptionSurveyBanner",
             "AIAssistantInstructionsBanner",
+            "SticosSurveyBanner",
             "SticosInfoBanner"
           ],
           "type": "string"
@@ -47851,6 +47852,9 @@
           "type": "boolean"
         },
         "hasCopilotTab": {
+          "type": "boolean"
+        },
+        "hasMoreThanTwoSticosSessions": {
           "type": "boolean"
         },
         "myHelpRequestsUrl": {
@@ -91081,9 +91085,6 @@
     },
     {
       "name": "subscription"
-    },
-    {
-      "name": "openid"
     },
     {
       "name": "order"
