@@ -15527,7 +15527,8 @@
           "type": "string"
         },
         "postingId": {
-          "type": "string"
+          "format": "int64",
+          "type": "integer"
         },
         "productId": {
           "format": "int32",
@@ -51469,10 +51470,6 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "isAuth": {
-          "readOnly": true,
-          "type": "boolean"
-        },
         "isAuthCompanyEmployeeAdmin": {
           "readOnly": true,
           "type": "boolean"
@@ -51501,15 +51498,7 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "isLoginEmployeeWageDepartmentOnly": {
-          "readOnly": true,
-          "type": "boolean"
-        },
         "isPayInAdvance": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isPilot": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -51538,18 +51527,6 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
-        },
-        "showDepartment": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "showDivision": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "showEmployeeCategory": {
-          "readOnly": true,
-          "type": "boolean"
         },
         "userDepartmentId": {
           "format": "int32",
