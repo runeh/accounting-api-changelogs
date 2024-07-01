@@ -43040,6 +43040,10 @@
           "readOnly": true,
           "type": "array"
         },
+        "datePeriod": {
+          "readOnly": true,
+          "type": "string"
+        },
         "displayName": {
           "readOnly": true,
           "type": "string"
@@ -43059,7 +43063,7 @@
         "voucherDate": {
           "type": "string"
         },
-        "voucherDescription": {
+        "voucherNumberAsString": {
           "readOnly": true,
           "type": "string"
         },
@@ -43353,6 +43357,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "datePeriod": {
+          "readOnly": true,
+          "type": "string"
         },
         "displayName": {
           "readOnly": true,
