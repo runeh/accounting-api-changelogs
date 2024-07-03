@@ -10338,10 +10338,6 @@
     },
     "DocumentReceptionItem": {
       "properties": {
-        "archiveDate": {
-          "description": "Archive Date.",
-          "type": "string"
-        },
         "created": {
           "description": "Document create date.",
           "type": "string"
@@ -27198,9 +27194,6 @@
           "type": "boolean"
         },
         "userIsAuthProjectMenu": {
-          "type": "boolean"
-        },
-        "userIsAuthRemitApprove": {
           "type": "boolean"
         },
         "userIsAuthTravelAndExpenseApprove": {
@@ -45516,9 +45509,6 @@
     },
     "SendToDocumentArchive": {
       "properties": {
-        "archiveDate": {
-          "type": "string"
-        },
         "fileName": {
           "description": "Override filename",
           "type": "string"
@@ -91445,6 +91435,9 @@
     },
     {
       "name": "salarytskinternalsettings"
+    },
+    {
+      "name": "salaryshowPayInAdvance"
     },
     {
       "name": "salarytskinternaltaxcard"
