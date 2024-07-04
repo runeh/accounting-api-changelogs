@@ -275,18 +275,18 @@
       },
       "type": "object"
     },
-    "AccountClosureInfoDTO": {
+    "AccountClosureInfo": {
       "properties": {
         "customerCompanyId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "endDate": {
-          "format": "date",
           "type": "string"
         },
         "nbOfYears": {
           "format": "int32",
+          "minimum": 0,
           "type": "integer"
         },
         "readAccess": {
@@ -366,7 +366,7 @@
       },
       "type": "object"
     },
-    "AccountSuggestionDTO": {
+    "AccountSuggestion": {
       "properties": {
         "description": {
           "readOnly": true,
@@ -382,27 +382,31 @@
       },
       "type": "object"
     },
-    "AccountWithHelpInfoDTO": {
+    "AccountWithHelpInfo": {
       "properties": {
         "account": {
           "$ref": "#/definitions/Account",
           "readOnly": true
         },
         "accountHelp": {
-          "$ref": "#/definitions/AccountSuggestionDTO",
+          "$ref": "#/definitions/AccountSuggestion",
           "readOnly": true
         },
         "description": {
+          "readOnly": true,
           "type": "string"
         },
         "displayName": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "numberPretty": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1292,7 +1296,7 @@
       },
       "type": "object"
     },
-    "AgroToTripletexDTO": {
+    "AgroToTripletex": {
       "properties": {
         "userEmail": {
           "type": "string"
@@ -2405,7 +2409,7 @@
       "properties": {
         "exchangeRateExpiration": {
           "description": "Expiration for given exchangeRate/quote. Only shown for international transactions. Example: 2022-08-05T13:13:59.633957965+02:00",
-          "format": "date-time",
+          "readOnly": true,
           "type": "string"
         },
         "exchangeRateSums": {
@@ -2413,6 +2417,7 @@
           "items": {
             "$ref": "#/definitions/CurrencyPaymentsSumDTO"
           },
+          "readOnly": true,
           "type": "array"
         },
         "notApproved": {
@@ -2420,10 +2425,12 @@
           "items": {
             "$ref": "#/definitions/PaymentDTO"
           },
+          "readOnly": true,
           "type": "array"
         },
         "redirectUrl": {
           "description": "The redirect URL to AutoPay 2FA or ZTL SCA after payments are sent to be approved",
+          "readOnly": true,
           "type": "string"
         },
         "toBeApproved": {
@@ -2431,6 +2438,7 @@
           "items": {
             "$ref": "#/definitions/PaymentDTO"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -2439,27 +2447,35 @@
     "AprilaCashCreditApplicationResponseDTO": {
       "properties": {
         "activeProduct": {
+          "readOnly": true,
           "type": "boolean"
         },
         "annualInterestRate": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "maxCreditLimitAmount": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "maxCreditLimitCurrency": {
+          "readOnly": true,
           "type": "string"
         },
         "monthlyFeeAmount": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "monthlyFeeCurrency": {
+          "readOnly": true,
           "type": "string"
         },
         "monthlyInterestRate": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "signUpUrl": {
+          "readOnly": true,
           "type": "string"
         },
         "status": {
@@ -2474,12 +2490,15 @@
             "ERROR",
             "PENDING_NEW_SIGNATURE"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "statusReason": {
+          "readOnly": true,
           "type": "string"
         },
         "submittedApplication": {
+          "readOnly": true,
           "type": "boolean"
         }
       },
@@ -2536,30 +2555,6 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "Article": {
-      "properties": {
-        "body": {
-          "type": "string"
-        },
-        "href": {
-          "type": "string"
-        },
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "imageSrc": {
-          "type": "string"
-        },
-        "summary": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
         }
       },
       "type": "object"
@@ -3032,7 +3027,7 @@
       },
       "type": "object"
     },
-    "AutoLoginPayloadDTO": {
+    "AutoLoginPayload": {
       "properties": {
         "redirectPath": {
           "type": "string"
@@ -3040,7 +3035,7 @@
       },
       "type": "object"
     },
-    "AutoPayMessageDTO": {
+    "AutoPayMessage": {
       "properties": {
         "message": {
           "type": "string"
@@ -3551,7 +3546,7 @@
       },
       "type": "object"
     },
-    "BankAgreementCreationDTO": {
+    "BankAgreementCreation": {
       "properties": {
         "accountInBankId": {
           "description": "Customer number in bank",
@@ -3671,7 +3666,7 @@
       },
       "type": "object"
     },
-    "BankAgreementUpdateDTO": {
+    "BankAgreementUpdate": {
       "properties": {
         "account": {
           "$ref": "#/definitions/Account",
@@ -3932,27 +3927,33 @@
     "BankOnboardingDTO": {
       "properties": {
         "autoPayTwoFAEnabled": {
+          "readOnly": true,
           "type": "boolean"
         },
         "companyOrgnr": {
+          "readOnly": true,
           "type": "string"
         },
         "hasFullAccess": {
+          "readOnly": true,
           "type": "boolean"
         },
         "lockedCurrenciesMap": {
           "additionalProperties": {
             "type": "boolean"
           },
+          "readOnly": true,
           "type": "object"
         },
         "steps": {
           "items": {
             "$ref": "#/definitions/BankOnboardingStepDTO"
           },
+          "readOnly": true,
           "type": "array"
         },
         "userIsAutoPayProvisioned": {
+          "readOnly": true,
           "type": "boolean"
         }
       },
@@ -4813,34 +4814,43 @@
       ],
       "type": "object"
     },
-    "BrregCompanyLookupDTO": {
+    "BrregCompanyLookup": {
       "properties": {
         "address": {
+          "readOnly": true,
           "type": "string"
         },
         "businessAddress": {
+          "readOnly": true,
           "type": "string"
         },
         "businessPostalArea": {
+          "readOnly": true,
           "type": "string"
         },
         "businessPostalCode": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "name": {
+          "readOnly": true,
           "type": "string"
         },
         "number": {
+          "readOnly": true,
           "type": "string"
         },
         "postalArea": {
+          "readOnly": true,
           "type": "string"
         },
         "postalCode": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4863,16 +4873,19 @@
       },
       "type": "object"
     },
-    "CalloutDTO": {
+    "Callout": {
       "properties": {
         "id": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "message": {
+          "readOnly": true,
           "type": "string"
         },
         "pageSpecific": {
+          "readOnly": true,
           "type": "boolean"
         },
         "severity": {
@@ -4882,6 +4895,7 @@
             "ERROR",
             "CONFIRMATION"
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -4891,14 +4905,17 @@
       "properties": {
         "cancellationSuccessful": {
           "description": "Was the cancellation successful?",
+          "readOnly": true,
           "type": "boolean"
         },
         "paymentToBeCancelled": {
           "$ref": "#/definitions/PaymentDTO",
-          "description": "Payment to be cancelled"
+          "description": "Payment to be cancelled",
+          "readOnly": true
         },
         "redirectUrl": {
           "description": "The redirect URL to ZTL SCA for cancelling the payment",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -6689,25 +6706,6 @@
       ],
       "type": "object"
     },
-    "Choice": {
-      "properties": {
-        "name": {
-          "type": "string"
-        },
-        "positive": {
-          "type": "boolean"
-        },
-        "value": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "name",
-        "positive",
-        "value"
-      ],
-      "type": "object"
-    },
     "Client": {
       "properties": {
         "accountantOrSimilar": {
@@ -7354,7 +7352,7 @@
       ],
       "type": "object"
     },
-    "CompanyAuthorityDTO": {
+    "CompanyAuthority": {
       "properties": {
         "hasCompanyAuthority": {
           "enum": [
@@ -7999,6 +7997,69 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CompanyResponseWrapper": {
+      "properties": {
+        "businessUnit": {
+          "type": "string"
+        },
+        "changedOn": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "countryCode": {
+          "enum": [
+            "NO",
+            "SE",
+            "DK",
+            "FI",
+            "NL"
+          ],
+          "type": "string"
+        },
+        "externalId": {
+          "type": "string"
+        },
+        "name": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "newCreditorWarningsCheck": {
+          "enum": [
+            "Always",
+            "AfterThreeMonths",
+            "AfterSixMonths"
+          ],
+          "type": "string"
+        },
+        "organizationNumber": {
+          "maxLength": 100,
+          "type": "string"
+        },
+        "ownerEmailAddress": {
+          "type": "string"
+        },
+        "provisioner": {
+          "type": "string"
+        },
+        "tenantId": {
+          "type": "string"
+        },
+        "twoFactorAuthenticationTypes": {
+          "items": {
+            "enum": [
+              "Totp",
+              "BankIdNorway",
+              "BankIdSweden",
+              "BankIdFinland"
+            ],
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
         }
       },
       "type": "object"
@@ -9329,7 +9390,7 @@
         },
         "modules": {
           "items": {
-            "$ref": "#/definitions/SalesModuleDTO"
+            "$ref": "#/definitions/SalesModule"
           },
           "type": "array"
         },
@@ -9487,46 +9548,58 @@
     "DashboardContextDTO": {
       "properties": {
         "companyCurrency": {
+          "readOnly": true,
           "type": "string"
         },
         "companyId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "companyName": {
+          "readOnly": true,
           "type": "string"
         },
         "companyStartDate": {
-          "format": "date-time",
+          "readOnly": true,
           "type": "string"
         },
         "contextId": {
+          "readOnly": true,
           "type": "string"
         },
         "isEligibleForOnboardingFeedback": {
+          "readOnly": true,
           "type": "boolean"
         },
         "language": {
+          "readOnly": true,
           "type": "string"
         },
         "loginEmployeeFirstName": {
+          "readOnly": true,
           "type": "string"
         },
         "loginEmployeeId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "segmentationData": {
-          "$ref": "#/definitions/SegmentationData"
+          "$ref": "#/definitions/SegmentationData",
+          "readOnly": true
         },
         "showEaccountingMessage": {
+          "readOnly": true,
           "type": "boolean"
         },
         "trialAccount": {
+          "readOnly": true,
           "type": "boolean"
         },
         "tripletexEmployeeId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -9535,7 +9608,6 @@
     "DashboardDTO": {
       "properties": {
         "content": {
-          "minLength": 1,
           "type": "string"
         },
         "version": {
@@ -9575,24 +9647,6 @@
         },
         "weekDay": {
           "$ref": "#/definitions/TlxNumber"
-        }
-      },
-      "type": "object"
-    },
-    "Delete": {
-      "properties": {
-        "available": {
-          "description": "Is the delete operation available for this Voucher?",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "reasons": {
-          "description": "If the delete operation is not available then this is a list of reasons why. Otherwise the list will be empty",
-          "items": {
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
         }
       },
       "type": "object"
@@ -11331,14 +11385,17 @@
         "bankId": {
           "description": "Bank ID",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "bankName": {
           "description": "Name of the bank",
+          "readOnly": true,
           "type": "string"
         },
         "bankUrl": {
           "description": "Bank url for ordering electronic agreements for ElectronicSupportDTO of type PARTIAL.",
+          "readOnly": true,
           "type": "string"
         },
         "type": {
@@ -11348,6 +11405,7 @@
             "COMPLETE",
             "PSD2"
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -11560,7 +11618,7 @@
       ],
       "type": "object"
     },
-    "EmployeeCompanyDTO": {
+    "EmployeeCompany": {
       "properties": {
         "company": {
           "$ref": "#/definitions/Company"
@@ -12265,63 +12323,75 @@
       ],
       "type": "object"
     },
-    "EnhetsregisteretDTO": {
+    "Enhetsregisteret": {
       "properties": {
         "address": {
+          "readOnly": true,
           "type": "string"
         },
         "city": {
+          "readOnly": true,
           "type": "string"
         },
         "enterprises": {
           "items": {
-            "$ref": "#/definitions/EnterpriseDTO"
+            "$ref": "#/definitions/Enterprise"
           },
+          "readOnly": true,
           "type": "array"
         },
         "id": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "municipality": {
+          "readOnly": true,
           "type": "string"
         },
         "name": {
+          "readOnly": true,
           "type": "string"
         },
         "orgNumber": {
+          "readOnly": true,
           "type": "string"
         },
         "postalCode": {
+          "readOnly": true,
           "type": "string"
         },
         "registrationDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "vatRegistered": {
+          "readOnly": true,
           "type": "boolean"
         }
       },
       "type": "object"
     },
-    "EnterpriseDTO": {
+    "Enterprise": {
       "properties": {
         "municipality": {
+          "readOnly": true,
           "type": "string"
         },
         "name": {
+          "readOnly": true,
           "type": "string"
         },
         "orgNumber": {
+          "readOnly": true,
           "type": "string"
         },
         "registrationDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "startDateMunicipality": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -12427,21 +12497,25 @@
       },
       "type": "object"
     },
-    "EventInfoDTO": {
+    "EventInfo": {
       "properties": {
         "description": {
+          "readOnly": true,
           "type": "string"
         },
         "examples": {
           "items": {
             "$ref": "#/definitions/WebHookWrapper"
           },
+          "readOnly": true,
           "type": "array"
         },
         "name": {
+          "readOnly": true,
           "type": "string"
         },
         "payloadModel": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -12761,7 +12835,7 @@
       },
       "type": "object"
     },
-    "FileIdForIncomingPaymentsDTO": {
+    "FileIdForIncomingPayments": {
       "properties": {
         "accountNumber": {
           "description": "Account number.",
@@ -12770,7 +12844,6 @@
         },
         "date": {
           "description": "Date on incoming payments file.",
-          "format": "date",
           "readOnly": true,
           "type": "string"
         },
@@ -14430,7 +14503,8 @@
             "MySubscriptionSurveyBanner",
             "AIAssistantInstructionsBanner",
             "SticosSurveyBanner",
-            "SticosInfoBanner"
+            "SticosInfoBanner",
+            "SalaryOverviewBanner"
           ],
           "type": "string"
         },
@@ -14957,40 +15031,96 @@
       },
       "type": "object"
     },
+    "HelpCenterArticle": {
+      "properties": {
+        "body": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "href": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "imageSrc": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "summary": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "HelpCenterArticles": {
       "properties": {
         "faqs": {
           "items": {
-            "$ref": "#/definitions/Article"
+            "$ref": "#/definitions/HelpCenterArticle"
           },
+          "readOnly": true,
           "type": "array"
         },
         "helpCenterSearchUrl": {
+          "readOnly": true,
           "type": "string"
         },
         "helpCenterUrl": {
+          "readOnly": true,
           "type": "string"
         },
         "keyboardShortcutsArticleUrl": {
+          "readOnly": true,
           "type": "string"
         },
         "mainArticle": {
-          "$ref": "#/definitions/Article"
+          "$ref": "#/definitions/HelpCenterArticle",
+          "readOnly": true
         },
         "relevantArticles": {
           "items": {
-            "$ref": "#/definitions/Article"
+            "$ref": "#/definitions/HelpCenterArticle"
           },
+          "readOnly": true,
           "type": "array"
         },
         "salesforceSupportRequestsUrl": {
+          "readOnly": true,
           "type": "string"
         },
         "videos": {
           "items": {
-            "$ref": "#/definitions/Video"
+            "$ref": "#/definitions/HelpCenterVideo"
           },
+          "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "HelpCenterVideo": {
+      "properties": {
+        "href": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "title": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -15383,21 +15513,25 @@
           "items": {
             "$ref": "#/definitions/TlxNumber"
           },
+          "readOnly": true,
           "type": "array"
         },
         "costValues": {
           "items": {
             "$ref": "#/definitions/TlxNumber"
           },
+          "readOnly": true,
           "type": "array"
         },
         "incomeValues": {
           "items": {
             "$ref": "#/definitions/TlxNumber"
           },
+          "readOnly": true,
           "type": "array"
         },
         "widgetDisabled": {
+          "readOnly": true,
           "type": "boolean"
         }
       },
@@ -17317,24 +17451,31 @@
       "properties": {
         "companyCurrencyId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "hasModuleDepartment": {
+          "readOnly": true,
           "type": "boolean"
         },
         "hasModuleDepartmentAccounting": {
+          "readOnly": true,
           "type": "boolean"
         },
         "hasModuleProjectEconomy": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isCreditActionAllowed": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isReminderDebtCollectionActionAllowed": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isVatOn": {
+          "readOnly": true,
           "type": "boolean"
         }
       },
@@ -17405,22 +17546,27 @@
       },
       "type": "object"
     },
-    "InvoiceSendTypeDTO": {
+    "InvoiceSendType": {
       "properties": {
         "canReceiveEFaktura": {
+          "readOnly": true,
           "type": "boolean"
         },
         "canReceiveEHF": {
+          "readOnly": true,
           "type": "boolean"
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "elmaLookupAlive": {
+          "readOnly": true,
           "type": "boolean"
         },
         "phoneNumber": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -17626,28 +17772,161 @@
       },
       "type": "object"
     },
+    "InvoiceSummary": {
+      "properties": {
+        "amountCurrency": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "amountExVat": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "amountInclVat": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "amountOutstanding": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "currency": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "currencyId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "customer": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "customerAccountNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "customerDetailsUrl": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "customerId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "documentId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "dueDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "invoiceDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "invoiceDetailsUrl": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "invoiceId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "invoiceNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "invoiceStatus": {
+          "$ref": "#/definitions/InvoiceStatus",
+          "readOnly": true
+        },
+        "invoiceViewUrl": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "messages": {
+          "items": {
+            "$ref": "#/definitions/InvoiceMessage"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "paidAmount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "pepppolSendStatus": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "projectDetailsUrl": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "projectReferenceNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "remainingAmount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "reminders": {
+          "items": {
+            "$ref": "#/definitions/InvoiceReminder"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "InvoiceSummaryDTO": {
       "properties": {
         "lastUpdated": {
-          "format": "date-time",
+          "readOnly": true,
           "type": "string"
         },
         "lessThan30DaysOverdueSum": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "moreThan30DaysOverdueSum": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "notOverdueSum": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "outstandingOrdersSum": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "showInvoiceAction": {
+          "readOnly": true,
           "type": "boolean"
         },
         "widgetDisabled": {
+          "readOnly": true,
           "type": "boolean"
         }
       },
@@ -18195,7 +18474,7 @@
       },
       "type": "object"
     },
-    "LinkMobilityReportDTO": {
+    "LinkMobilityReport": {
       "properties": {
         "operator": {
           "type": "string"
@@ -18309,7 +18588,7 @@
       },
       "type": "object"
     },
-    "ListResponseAccountWithHelpInfoDTO": {
+    "ListResponseAccountWithHelpInfo": {
       "properties": {
         "count": {
           "format": "int64",
@@ -18329,7 +18608,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/AccountWithHelpInfoDTO"
+            "$ref": "#/definitions/AccountWithHelpInfo"
           },
           "readOnly": true,
           "type": "array"
@@ -19167,7 +19446,7 @@
       },
       "type": "object"
     },
-    "ListResponseBrregCompanyLookupDTO": {
+    "ListResponseBrregCompanyLookup": {
       "properties": {
         "count": {
           "format": "int64",
@@ -19187,7 +19466,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/BrregCompanyLookupDTO"
+            "$ref": "#/definitions/BrregCompanyLookup"
           },
           "readOnly": true,
           "type": "array"
@@ -19200,7 +19479,7 @@
       },
       "type": "object"
     },
-    "ListResponseCalloutDTO": {
+    "ListResponseCallout": {
       "properties": {
         "count": {
           "format": "int64",
@@ -19220,7 +19499,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/CalloutDTO"
+            "$ref": "#/definitions/Callout"
           },
           "readOnly": true,
           "type": "array"
@@ -20520,7 +20799,7 @@
       },
       "type": "object"
     },
-    "ListResponseEmployeeCompanyDTO": {
+    "ListResponseEmployeeCompany": {
       "properties": {
         "count": {
           "format": "int64",
@@ -20540,7 +20819,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/EmployeeCompanyDTO"
+            "$ref": "#/definitions/EmployeeCompany"
           },
           "readOnly": true,
           "type": "array"
@@ -20751,7 +21030,7 @@
       },
       "type": "object"
     },
-    "ListResponseEnhetsregisteretDTO": {
+    "ListResponseEnhetsregisteret": {
       "properties": {
         "count": {
           "format": "int64",
@@ -20771,7 +21050,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/EnhetsregisteretDTO"
+            "$ref": "#/definitions/Enhetsregisteret"
           },
           "readOnly": true,
           "type": "array"
@@ -21444,7 +21723,7 @@
       },
       "type": "object"
     },
-    "ListResponseInvoiceSendTypeDTO": {
+    "ListResponseInvoiceSendType": {
       "properties": {
         "count": {
           "format": "int64",
@@ -21464,7 +21743,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/InvoiceSendTypeDTO"
+            "$ref": "#/definitions/InvoiceSendType"
           },
           "readOnly": true,
           "type": "array"
@@ -21477,7 +21756,7 @@
       },
       "type": "object"
     },
-    "ListResponseInvoiceSummaryDTO": {
+    "ListResponseInvoiceSummary": {
       "properties": {
         "count": {
           "format": "int64",
@@ -21497,7 +21776,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/InvoiceSummaryDTO"
+            "$ref": "#/definitions/InvoiceSummary"
           },
           "readOnly": true,
           "type": "array"
@@ -21741,7 +22020,7 @@
       },
       "type": "object"
     },
-    "ListResponseMenuItemDTO": {
+    "ListResponseMenuItem": {
       "properties": {
         "count": {
           "format": "int64",
@@ -21761,7 +22040,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/MenuItemDTO"
+            "$ref": "#/definitions/MenuItem"
           },
           "readOnly": true,
           "type": "array"
@@ -22500,7 +22779,7 @@
       },
       "type": "object"
     },
-    "ListResponsePerDiemCompensationTransientDTO": {
+    "ListResponsePerDiemCompensationTransient": {
       "properties": {
         "count": {
           "format": "int64",
@@ -22520,7 +22799,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/PerDiemCompensationTransientDTO"
+            "$ref": "#/definitions/PerDiemCompensationTransient"
           },
           "readOnly": true,
           "type": "array"
@@ -22830,7 +23109,7 @@
       },
       "type": "object"
     },
-    "ListResponseProductImportFieldDTO": {
+    "ListResponseProductImportField": {
       "properties": {
         "count": {
           "format": "int64",
@@ -22850,7 +23129,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/ProductImportFieldDTO"
+            "$ref": "#/definitions/ProductImportField"
           },
           "readOnly": true,
           "type": "array"
@@ -23886,7 +24165,7 @@
       },
       "type": "object"
     },
-    "ListResponseReelDomainDTO": {
+    "ListResponseReelDomain": {
       "properties": {
         "count": {
           "format": "int64",
@@ -23906,7 +24185,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/ReelDomainDTO"
+            "$ref": "#/definitions/ReelDomain"
           },
           "readOnly": true,
           "type": "array"
@@ -23919,7 +24198,7 @@
       },
       "type": "object"
     },
-    "ListResponseReelFunctionDTO": {
+    "ListResponseReelFunction": {
       "properties": {
         "count": {
           "format": "int64",
@@ -23939,7 +24218,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/ReelFunctionDTO"
+            "$ref": "#/definitions/ReelFunction"
           },
           "readOnly": true,
           "type": "array"
@@ -24678,7 +24957,7 @@
       },
       "type": "object"
     },
-    "ListResponseSalesModuleDTO": {
+    "ListResponseSalesModule": {
       "properties": {
         "count": {
           "format": "int64",
@@ -24698,7 +24977,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/SalesModuleDTO"
+            "$ref": "#/definitions/SalesModule"
           },
           "readOnly": true,
           "type": "array"
@@ -24777,7 +25056,7 @@
       },
       "type": "object"
     },
-    "ListResponseSignatureCombinationDTO": {
+    "ListResponseSignatureCombination": {
       "properties": {
         "count": {
           "format": "int64",
@@ -24797,7 +25076,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/SignatureCombinationDTO"
+            "$ref": "#/definitions/SignatureCombination"
           },
           "readOnly": true,
           "type": "array"
@@ -25107,7 +25386,7 @@
       },
       "type": "object"
     },
-    "ListResponseSystemReportCategoryDTO": {
+    "ListResponseSystemReportCategory": {
       "properties": {
         "count": {
           "format": "int64",
@@ -25127,7 +25406,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/SystemReportCategoryDTO"
+            "$ref": "#/definitions/SystemReportCategory"
           },
           "readOnly": true,
           "type": "array"
@@ -26262,7 +26541,7 @@
       },
       "type": "object"
     },
-    "ListResponseYearDTO": {
+    "ListResponseYear": {
       "properties": {
         "count": {
           "format": "int64",
@@ -26282,7 +26561,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/YearDTO"
+            "$ref": "#/definitions/Year"
           },
           "readOnly": true,
           "type": "array"
@@ -26427,7 +26706,7 @@
       },
       "type": "object"
     },
-    "ListResponseZendeskSearchResultDTO": {
+    "ListResponseZendeskSearchResult": {
       "properties": {
         "count": {
           "format": "int64",
@@ -26447,7 +26726,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/ZendeskSearchResultDTO"
+            "$ref": "#/definitions/ZendeskSearchResult"
           },
           "readOnly": true,
           "type": "array"
@@ -26592,29 +26871,36 @@
       },
       "type": "object"
     },
-    "LoggedInUserInfoDTO": {
+    "LoggedInUserInfo": {
       "properties": {
         "company": {
-          "$ref": "#/definitions/Company"
+          "$ref": "#/definitions/Company",
+          "readOnly": true
         },
         "companyId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "employee": {
-          "$ref": "#/definitions/Employee"
+          "$ref": "#/definitions/Employee",
+          "readOnly": true
         },
         "employeeId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "employeeIsProxy": {
+          "readOnly": true,
           "type": "boolean"
         },
         "language": {
+          "readOnly": true,
           "type": "string"
         },
         "loggedInWithConnect": {
+          "readOnly": true,
           "type": "boolean"
         }
       },
@@ -26794,7 +27080,7 @@
       },
       "type": "object"
     },
-    "MaventaEventDataDTO": {
+    "MaventaEventData": {
       "properties": {
         "destination": {
           "type": "string"
@@ -26842,7 +27128,7 @@
       ],
       "type": "object"
     },
-    "MaventaStatusDTO": {
+    "MaventaStatus": {
       "properties": {
         "company_id": {
           "type": "string"
@@ -26851,10 +27137,9 @@
           "type": "string"
         },
         "event_data": {
-          "$ref": "#/definitions/MaventaEventDataDTO"
+          "$ref": "#/definitions/MaventaEventData"
         },
         "event_timestamp": {
-          "format": "date-time",
           "type": "string"
         }
       },
@@ -26943,26 +27228,6 @@
           "type": "string"
         },
         "theme": {
-          "type": "string"
-        },
-        "title": {
-          "type": "string"
-        },
-        "url": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "MenuItemDTO": {
-      "properties": {
-        "category": {
-          "type": "string"
-        },
-        "child": {
-          "type": "boolean"
-        },
-        "id": {
           "type": "string"
         },
         "title": {
@@ -28268,7 +28533,7 @@
       },
       "type": "object"
     },
-    "OnboardAccountDTO": {
+    "OnboardAccount": {
       "properties": {
         "address": {
           "type": "string"
@@ -28284,7 +28549,7 @@
         },
         "enterprises": {
           "items": {
-            "$ref": "#/definitions/EnterpriseDTO"
+            "$ref": "#/definitions/Enterprise"
           },
           "type": "array"
         },
@@ -28301,14 +28566,12 @@
           "type": "boolean"
         },
         "registrationDate": {
-          "format": "date",
           "type": "string"
         },
         "salaryModule": {
           "type": "boolean"
         },
         "startDateMunicipality": {
-          "format": "date",
           "type": "string"
         },
         "timeSheetModule": {
@@ -28884,7 +29147,7 @@
       },
       "type": "object"
     },
-    "OrderLinePostingDTO": {
+    "OrderLinePosting": {
       "properties": {
         "changes": {
           "items": {
@@ -29029,7 +29292,7 @@
       },
       "type": "object"
     },
-    "PGCallbackDTO": {
+    "PGCallback": {
       "properties": {
         "ODPCompanyID": {
           "format": "int32",
@@ -29043,7 +29306,6 @@
           "type": "string"
         },
         "autoPayKeyLastGeneratedDate": {
-          "format": "date",
           "type": "string"
         },
         "errorMessage": {
@@ -30708,6 +30970,7 @@
           "items": {
             "$ref": "#/definitions/PaymentCardInfoDetailsDTO"
           },
+          "readOnly": true,
           "type": "array"
         },
         "forApproval": {
@@ -30715,6 +30978,7 @@
           "items": {
             "$ref": "#/definitions/PaymentCardInfoDetailsDTO"
           },
+          "readOnly": true,
           "type": "array"
         },
         "underProcessing": {
@@ -30722,6 +30986,7 @@
           "items": {
             "$ref": "#/definitions/PaymentCardInfoDetailsDTO"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -31040,9 +31305,11 @@
           "additionalProperties": {
             "$ref": "#/definitions/PaymentStatusInfoDTO"
           },
+          "readOnly": true,
           "type": "object"
         },
         "version": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -31260,18 +31527,21 @@
     "PaymentsSumDTO": {
       "properties": {
         "cancelledPaymentsCount": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Number of cancelled payments."
+          "description": "Number of cancelled payments.",
+          "readOnly": true,
+          "type": "number"
         },
         "forApprovalPaymentsCount": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Number of payments for approval."
+          "description": "Number of payments for approval.",
+          "readOnly": true,
+          "type": "number"
         },
         "ongoingTransactionsSum": {
           "description": "Sum of the all ongoing payments by currencies.",
           "items": {
             "$ref": "#/definitions/CurrencyPaymentsSumDTO"
           },
+          "readOnly": true,
           "type": "array"
         },
         "overdueTransactionsSum": {
@@ -31279,17 +31549,20 @@
           "items": {
             "$ref": "#/definitions/CurrencyPaymentsSumDTO"
           },
+          "readOnly": true,
           "type": "array"
         },
         "rejectedPaymentsCount": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Number of rejected payments."
+          "description": "Number of rejected payments.",
+          "readOnly": true,
+          "type": "number"
         },
         "unpaidTransactionsSum": {
           "description": "Sum of all payments excluding paid and under process in bank, by currencies.",
           "items": {
             "$ref": "#/definitions/CurrencyPaymentsSumDTO"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -31486,31 +31759,39 @@
       ],
       "type": "object"
     },
-    "PerDiemCompensationTransientDTO": {
+    "PerDiemCompensationTransient": {
       "properties": {
         "address": {
+          "readOnly": true,
           "type": "string"
         },
         "amount": {
+          "readOnly": true,
           "type": "number"
         },
         "count": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "countryCode": {
+          "readOnly": true,
           "type": "string"
         },
         "isDeductionForBreakfast": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isDeductionForDinner": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isDeductionForLunch": {
+          "readOnly": true,
           "type": "boolean"
         },
         "location": {
+          "readOnly": true,
           "type": "string"
         },
         "overnightAccommodation": {
@@ -31520,22 +31801,28 @@
             "BOARDING_HOUSE_WITHOUT_COOKING",
             "BOARDING_HOUSE_WITH_COOKING"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "rate": {
+          "readOnly": true,
           "type": "number"
         },
         "rateCategory": {
-          "$ref": "#/definitions/TravelExpenseRateCategory"
+          "$ref": "#/definitions/TravelExpenseRateCategory",
+          "readOnly": true
         },
         "rateType": {
-          "$ref": "#/definitions/TravelExpenseRate"
+          "$ref": "#/definitions/TravelExpenseRate",
+          "readOnly": true
         },
         "travelExpense": {
-          "$ref": "#/definitions/TravelExpense"
+          "$ref": "#/definitions/TravelExpense",
+          "readOnly": true
         },
         "travelExpenseZoneId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -33211,26 +33498,32 @@
       },
       "type": "object"
     },
-    "ProductImportFieldDTO": {
+    "ProductImportField": {
       "properties": {
         "displayName": {
+          "readOnly": true,
           "type": "string"
         },
         "fieldName": {
+          "readOnly": true,
           "type": "string"
         },
         "format": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "isMandatory": {
+          "readOnly": true,
           "type": "boolean"
         },
         "sequence": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -33267,7 +33560,7 @@
           "type": "string"
         },
         "suggestedColumnField": {
-          "$ref": "#/definitions/ProductImportFieldDTO",
+          "$ref": "#/definitions/ProductImportField",
           "readOnly": true
         },
         "url": {
@@ -33291,7 +33584,7 @@
           "type": "array"
         },
         "field": {
-          "$ref": "#/definitions/ProductImportFieldDTO"
+          "$ref": "#/definitions/ProductImportField"
         },
         "header": {
           "$ref": "#/definitions/ProductImportHeader"
@@ -34667,22 +34960,39 @@
       },
       "type": "object"
     },
-    "ProjectOnboardingSummaryDTO": {
+    "ProjectOnboardingChoice": {
       "properties": {
-        "choices": {
-          "items": {
-            "$ref": "#/definitions/Choice"
-          },
-          "type": "array"
+        "name": {
+          "type": "string"
         },
-        "observations": {
+        "positive": {
+          "type": "boolean"
+        },
+        "value": {
           "type": "string"
         }
       },
       "required": [
-        "choices",
-        "observations"
+        "name",
+        "positive",
+        "value"
       ],
+      "type": "object"
+    },
+    "ProjectOnboardingSummary": {
+      "properties": {
+        "choices": {
+          "items": {
+            "$ref": "#/definitions/ProjectOnboardingChoice"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "observations": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ProjectOrderLine": {
@@ -36118,7 +36428,7 @@
       },
       "type": "object"
     },
-    "RP2ModalPermissionsDTO": {
+    "RP2ModalPermissions": {
       "properties": {
         "readonly": {
           "type": "boolean"
@@ -36126,7 +36436,7 @@
       },
       "type": "object"
     },
-    "RP2PermissionsDTO": {
+    "RP2Permissions": {
       "properties": {
         "canAssignAllProjects": {
           "type": "boolean"
@@ -36407,7 +36717,7 @@
       },
       "type": "object"
     },
-    "ReelDocumentationDTO": {
+    "ReelDocumentation": {
       "properties": {
         "descriptionKey": {
           "description": "The description text key",
@@ -36420,34 +36730,38 @@
       },
       "type": "object"
     },
-    "ReelDomainDTO": {
+    "ReelDomain": {
       "properties": {
         "documentation": {
-          "$ref": "#/definitions/ReelDocumentationDTO",
-          "description": "The documentation for this domain"
+          "$ref": "#/definitions/ReelDocumentation",
+          "description": "The documentation for this domain",
+          "readOnly": true
         },
         "functions": {
           "description": "The functions of the domain",
           "items": {
-            "$ref": "#/definitions/ReelFunctionDTO"
+            "$ref": "#/definitions/ReelFunction"
           },
+          "readOnly": true,
           "type": "array"
         },
         "name": {
           "description": "The name of the domain",
+          "readOnly": true,
           "type": "string"
         },
         "namespace": {
           "description": "The namespace of the domain",
+          "readOnly": true,
           "type": "string"
         }
       },
       "type": "object"
     },
-    "ReelFunctionDTO": {
+    "ReelFunction": {
       "properties": {
         "documentation": {
-          "$ref": "#/definitions/ReelDocumentationDTO",
+          "$ref": "#/definitions/ReelDocumentation",
           "description": "The documentation for this function"
         },
         "name": {
@@ -36478,19 +36792,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -36511,7 +36821,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -36535,7 +36844,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -36592,6 +36900,7 @@
           "items": {
             "$ref": "#/definitions/ReminderWidgetDTO"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -36600,17 +36909,20 @@
     "ReminderWidgetDTO": {
       "properties": {
         "deadline": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "id": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "name": {
+          "readOnly": true,
           "type": "string"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -38646,10 +38958,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperCompanyAuthorityDTO": {
+    "ResponseWrapperCompanyAuthority": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/CompanyAuthorityDTO"
+          "$ref": "#/definitions/CompanyAuthority"
         }
       },
       "type": "object"
@@ -38706,6 +39018,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CompanyModules"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperCompanyResponseWrapper": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CompanyResponseWrapper"
         }
       },
       "type": "object"
@@ -39129,10 +39449,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperEventInfoDTO": {
+    "ResponseWrapperEventInfo": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/EventInfoDTO"
+          "$ref": "#/definitions/EventInfo"
         }
       },
       "type": "object"
@@ -39338,10 +39658,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperInvoiceSendTypeDTO": {
+    "ResponseWrapperInvoiceSendType": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/InvoiceSendTypeDTO"
+          "$ref": "#/definitions/InvoiceSendType"
         }
       },
       "type": "object"
@@ -39560,11 +39880,11 @@
       },
       "type": "object"
     },
-    "ResponseWrapperListFileIdForIncomingPaymentsDTO": {
+    "ResponseWrapperListFileIdForIncomingPayments": {
       "properties": {
         "value": {
           "items": {
-            "$ref": "#/definitions/FileIdForIncomingPaymentsDTO"
+            "$ref": "#/definitions/FileIdForIncomingPayments"
           },
           "type": "array"
         }
@@ -39588,6 +39908,17 @@
         "value": {
           "items": {
             "$ref": "#/definitions/Job"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperListMySubscriptionModuleDTO": {
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "#/definitions/MySubscriptionModuleDTO"
           },
           "type": "array"
         }
@@ -39803,10 +40134,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperLoggedInUserInfoDTO": {
+    "ResponseWrapperLoggedInUserInfo": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/LoggedInUserInfoDTO"
+          "$ref": "#/definitions/LoggedInUserInfo"
         }
       },
       "type": "object"
@@ -39938,17 +40269,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/MySubscriptionAccountInfoDTO"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperMySubscriptionModuleDTO[]": {
-      "properties": {
-        "value": {
-          "items": {
-            "$ref": "#/definitions/MySubscriptionModuleDTO"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -40353,10 +40673,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperProjectOnboardingSummaryDTO": {
+    "ResponseWrapperProjectOnboardingSummary": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/ProjectOnboardingSummaryDTO"
+          "$ref": "#/definitions/ProjectOnboardingSummary"
         }
       },
       "type": "object"
@@ -40489,18 +40809,18 @@
       },
       "type": "object"
     },
-    "ResponseWrapperRP2ModalPermissionsDTO": {
+    "ResponseWrapperRP2ModalPermissions": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/RP2ModalPermissionsDTO"
+          "$ref": "#/definitions/RP2ModalPermissions"
         }
       },
       "type": "object"
     },
-    "ResponseWrapperRP2PermissionsDTO": {
+    "ResponseWrapperRP2Permissions": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/RP2PermissionsDTO"
+          "$ref": "#/definitions/RP2Permissions"
         }
       },
       "type": "object"
@@ -40529,10 +40849,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperReelDomainDTO": {
+    "ResponseWrapperReelDomain": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/ReelDomainDTO"
+          "$ref": "#/definitions/ReelDomain"
         }
       },
       "type": "object"
@@ -40833,10 +41153,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperSalesModuleDTO": {
+    "ResponseWrapperSalesModule": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/SalesModuleDTO"
+          "$ref": "#/definitions/SalesModule"
         }
       },
       "type": "object"
@@ -40959,10 +41279,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperSseInitializationResultDTO": {
+    "ResponseWrapperSseInitializationResult": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/SseInitializationResultDTO"
+          "$ref": "#/definitions/SseInitializationResult"
         }
       },
       "type": "object"
@@ -41327,10 +41647,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperUnreadCountDTO": {
+    "ResponseWrapperUnreadCount": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/UnreadCountDTO"
+          "$ref": "#/definitions/UnreadCount"
         }
       },
       "type": "object"
@@ -41375,10 +41695,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperVatReportTypesDTO": {
+    "ResponseWrapperVatReportTypes": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/VatReportTypesDTO"
+          "$ref": "#/definitions/VatReportTypes"
         }
       },
       "type": "object"
@@ -42508,36 +42828,44 @@
     "SalarySummaryDTO": {
       "properties": {
         "currency": {
+          "readOnly": true,
           "type": "string"
         },
         "employersPaymentPercentage": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "numberOfActiveEmployees": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "salaryPaymentSum": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "salaryPercentage": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "salaryPeriodMonthFirstDay": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "salaryPeriodMonthLastDay": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "salaryVoucherPresent": {
+          "readOnly": true,
           "type": "boolean"
         },
         "taxesPercentage": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "validAltInnConfig": {
+          "readOnly": true,
           "type": "boolean"
         }
       },
@@ -44046,6 +44374,10 @@
         "paymentDate": {
           "type": "string"
         },
+        "reversedBy": {
+          "readOnly": true,
+          "type": "string"
+        },
         "reversedVoucherDisplayName": {
           "readOnly": true,
           "type": "string"
@@ -44862,7 +45194,7 @@
       },
       "type": "object"
     },
-    "SalesModuleDTO": {
+    "SalesModule": {
       "properties": {
         "costStartDate": {
           "type": "string"
@@ -45780,19 +46112,24 @@
           "items": {
             "$ref": "#/definitions/Shareholder"
           },
+          "readOnly": true,
           "type": "array"
         },
         "sumNumberOfSharesLastYear": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "sumNumberOfSharesThisYear": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "sumOwnershipLastYear": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "sumOwnershipThisYear": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -46748,18 +47085,21 @@
       ],
       "type": "object"
     },
-    "SignatureCombinationDTO": {
+    "SignatureCombination": {
       "properties": {
         "companyRepresentativeDTOList": {
           "items": {
             "$ref": "#/definitions/CompanyRepresentative"
           },
+          "readOnly": true,
           "type": "array"
         },
         "signatureCombinationDescription": {
+          "readOnly": true,
           "type": "string"
         },
         "uniqueKey": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -46926,18 +47266,21 @@
     "SpacesuitNotificationMeta": {
       "properties": {
         "clientName": {
+          "readOnly": true,
           "type": "string"
         },
         "notificationSettingsUrl": {
+          "readOnly": true,
           "type": "string"
         },
         "sseUrl": {
+          "readOnly": true,
           "type": "string"
         }
       },
       "type": "object"
     },
-    "SseInitializationResultDTO": {
+    "SseInitializationResult": {
       "properties": {
         "contextId": {
           "description": "The contextId of the employee",
@@ -47917,49 +48260,57 @@
       },
       "type": "object"
     },
-    "SystemReportCategoryDTO": {
+    "SystemReport": {
       "properties": {
-        "icon": {
-          "description": "The icon for the report category",
+        "path": {
+          "description": "The path to the report",
+          "readOnly": true,
           "type": "string"
         },
-        "reports": {
-          "description": "The reports in this report category",
-          "items": {
-            "$ref": "#/definitions/SystemReportDTO"
-          },
-          "type": "array"
-        },
-        "subCategories": {
-          "description": "The report categories in this report category",
-          "items": {
-            "$ref": "#/definitions/SystemReportCategoryDTO"
-          },
-          "type": "array"
+        "text": {
+          "description": "The name of the report",
+          "readOnly": true,
+          "type": "string"
         },
         "textKey": {
-          "description": "The text key for the name of the report category",
-          "type": "string"
-        },
-        "theme": {
-          "description": "The theme of the report category",
+          "description": "The text key for the name of the report",
+          "readOnly": true,
           "type": "string"
         }
       },
       "type": "object"
     },
-    "SystemReportDTO": {
+    "SystemReportCategory": {
       "properties": {
-        "path": {
-          "description": "The path to the report",
+        "icon": {
+          "description": "The icon for the report category",
+          "readOnly": true,
           "type": "string"
         },
-        "text": {
-          "description": "The name of the report",
-          "type": "string"
+        "reports": {
+          "description": "The reports in this report category",
+          "items": {
+            "$ref": "#/definitions/SystemReport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "subCategories": {
+          "description": "The report categories in this report category",
+          "items": {
+            "$ref": "#/definitions/SystemReportCategory"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "textKey": {
-          "description": "The text key for the name of the report",
+          "description": "The text key for the name of the report category",
+          "readOnly": true,
+          "type": "string"
+        },
+        "theme": {
+          "description": "The theme of the report category",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -48220,6 +48571,7 @@
           "items": {
             "$ref": "#/definitions/TaskWidgetDTO"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -48228,19 +48580,24 @@
     "TaskWidgetDTO": {
       "properties": {
         "icon": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "message": {
+          "readOnly": true,
           "type": "string"
         },
         "title": {
+          "readOnly": true,
           "type": "string"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -50962,13 +51319,15 @@
     "TrialDTO": {
       "properties": {
         "companyEndDate": {
-          "format": "date-time",
+          "readOnly": true,
           "type": "string"
         },
         "packageName": {
+          "readOnly": true,
           "type": "string"
         },
         "packageNameTranslated": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -51232,7 +51591,7 @@
         "modules": {
           "description": "Sales modules (functionality in the application) to activate for the newly created account. Some modules have extra costs.",
           "items": {
-            "$ref": "#/definitions/SalesModuleDTO"
+            "$ref": "#/definitions/SalesModule"
           },
           "type": "array"
         },
@@ -51314,28 +51673,36 @@
             },
             "type": "object"
           },
+          "readOnly": true,
           "type": "object"
         },
         "listPriceCategory1UserService": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "listPriceCategory1UserStartup": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "sumService": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "sumServiceCategory1Users": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "sumStartup": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "sumStartupCategory1Users": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "sumYearlyService": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -51364,7 +51731,57 @@
     "TripletexDashboardDTO": {
       "properties": {
         "widgets": {
-          "$ref": "#/definitions/Widgets"
+          "$ref": "#/definitions/TripletexDashboardWidgets",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "TripletexDashboardWidget": {
+      "properties": {
+        "hidden": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "id": {
+          "enum": [
+            "BANKING",
+            "VOUCHER_SUMMARY",
+            "INVOICE_SUMMARY",
+            "SALARY_SUMMARY",
+            "UPSALE_SALARY",
+            "UPSALE_AUTOMATION",
+            "INCOME_AND_COST_CHART",
+            "FEEDBACK_DEADLINES_AND_TASKS_SURVEY",
+            "HELP_CENTER",
+            "HELP_CENTER_AGRO",
+            "HELP_CENTER_AI",
+            "HELP_CENTER_EACCOUNTING",
+            "HELP_CENTER_MAMUT",
+            "REMINDER",
+            "TASKS"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TripletexDashboardWidgets": {
+      "properties": {
+        "content": {
+          "items": {
+            "$ref": "#/definitions/TripletexDashboardWidget"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "sidebar": {
+          "items": {
+            "$ref": "#/definitions/TripletexDashboardWidget"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -51449,6 +51866,7 @@
           "type": "integer"
         },
         "companyName": {
+          "readOnly": true,
           "type": "string"
         },
         "contextCompanyId": {
@@ -51621,14 +52039,16 @@
       },
       "type": "object"
     },
-    "UnreadCountDTO": {
+    "UnreadCount": {
       "properties": {
         "count": {
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "readCursor": {
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -52110,7 +52530,7 @@
       },
       "type": "object"
     },
-    "VatReportTypesDTO": {
+    "VatReportTypes": {
       "properties": {
         "hasGeneralIndustry": {
           "readOnly": true,
@@ -52775,21 +53195,6 @@
       },
       "type": "object"
     },
-    "Video": {
-      "properties": {
-        "href": {
-          "type": "string"
-        },
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "title": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "VismaConnectLogin": {
       "properties": {
         "connectEnabled": {
@@ -53074,10 +53479,12 @@
     "VoucherDetailsDTO": {
       "properties": {
         "baseLink": {
+          "readOnly": true,
           "type": "string"
         },
         "count": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -53721,10 +54128,28 @@
       },
       "type": "object"
     },
+    "VoucherOptionDeleteMetadata": {
+      "properties": {
+        "available": {
+          "description": "Is the delete operation available for this Voucher?",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "reasons": {
+          "description": "If the delete operation is not available then this is a list of reasons why. Otherwise the list will be empty",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "VoucherOptions": {
       "properties": {
         "delete": {
-          "$ref": "#/definitions/Delete",
+          "$ref": "#/definitions/VoucherOptionDeleteMetadata",
           "description": "A data structure containing information about the delete operation.",
           "readOnly": true
         }
@@ -53857,16 +54282,20 @@
     "VoucherSummaryDTO": {
       "properties": {
         "attestationVouchersData": {
-          "$ref": "#/definitions/VoucherDetailsDTO"
+          "$ref": "#/definitions/VoucherDetailsDTO",
+          "readOnly": true
         },
         "automatedVouchersData": {
-          "$ref": "#/definitions/VoucherDetailsDTO"
+          "$ref": "#/definitions/VoucherDetailsDTO",
+          "readOnly": true
         },
         "nonPostedVouchersData": {
-          "$ref": "#/definitions/VoucherDetailsDTO"
+          "$ref": "#/definitions/VoucherDetailsDTO",
+          "readOnly": true
         },
         "voucherReceptionData": {
-          "$ref": "#/definitions/VoucherDetailsDTO"
+          "$ref": "#/definitions/VoucherDetailsDTO",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -53979,82 +54408,47 @@
       },
       "type": "object"
     },
-    "Widget": {
-      "properties": {
-        "hidden": {
-          "type": "boolean"
-        },
-        "id": {
-          "enum": [
-            "BANKING",
-            "VOUCHER_SUMMARY",
-            "INVOICE_SUMMARY",
-            "SALARY_SUMMARY",
-            "UPSALE_SALARY",
-            "UPSALE_AUTOMATION",
-            "INCOME_AND_COST_CHART",
-            "FEEDBACK_DEADLINES_AND_TASKS_SURVEY",
-            "HELP_CENTER",
-            "HELP_CENTER_AGRO",
-            "HELP_CENTER_AI",
-            "HELP_CENTER_EACCOUNTING",
-            "HELP_CENTER_MAMUT",
-            "REMINDER",
-            "TASKS"
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Widgets": {
-      "properties": {
-        "content": {
-          "items": {
-            "$ref": "#/definitions/Widget"
-          },
-          "type": "array"
-        },
-        "sidebar": {
-          "items": {
-            "$ref": "#/definitions/Widget"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "WootricDTO": {
       "properties": {
         "cesToken": {
+          "readOnly": true,
           "type": "string"
         },
         "created_at": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "email": {
+          "readOnly": true,
           "type": "string"
         },
         "external_id": {
+          "readOnly": true,
           "type": "string"
         },
         "language": {
+          "readOnly": true,
           "type": "string"
         },
         "npsToken": {
+          "readOnly": true,
           "type": "string"
         },
         "product_name": {
+          "readOnly": true,
           "type": "string"
         },
         "properties": {
-          "$ref": "#/definitions/WootricPropertiesDTO"
+          "$ref": "#/definitions/WootricPropertiesDTO",
+          "readOnly": true
         },
         "thankYouMessageMain": {
+          "readOnly": true,
           "type": "string"
         },
         "thankYouMessageSetup": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -54063,78 +54457,103 @@
     "WootricPropertiesDTO": {
       "properties": {
         "age": {
+          "readOnly": true,
           "type": "string"
         },
         "ageMonths": {
+          "readOnly": true,
           "type": "string"
         },
         "category1": {
+          "readOnly": true,
           "type": "string"
         },
         "category2": {
+          "readOnly": true,
           "type": "string"
         },
         "category3": {
+          "readOnly": true,
           "type": "string"
         },
         "company_type": {
+          "readOnly": true,
           "type": "string"
         },
         "device": {
+          "readOnly": true,
           "type": "boolean"
         },
         "email": {
+          "readOnly": true,
           "type": "string"
         },
         "employees": {
+          "readOnly": true,
           "type": "string"
         },
         "gotAccountantRelationship": {
+          "readOnly": true,
           "type": "string"
         },
         "isAccountant": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isadmin": {
+          "readOnly": true,
           "type": "boolean"
         },
         "language": {
+          "readOnly": true,
           "type": "string"
         },
         "mainModule": {
+          "readOnly": true,
           "type": "string"
         },
         "moduleAccountingExternal": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleElectro": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleFabricAI": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleInvoice": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleLogistics": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleNrf": {
+          "readOnly": true,
           "type": "boolean"
         },
         "modulePayrollAccounting": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleRemit": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleTravelExpense": {
+          "readOnly": true,
           "type": "boolean"
         },
         "modulehourlist": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleproject": {
+          "readOnly": true,
           "type": "boolean"
         }
       },
@@ -54218,7 +54637,7 @@
       ],
       "type": "object"
     },
-    "YearDTO": {
+    "Year": {
       "properties": {
         "displayName": {
           "readOnly": true,
@@ -55052,42 +55471,51 @@
     "ZendeskChatMetaDTO": {
       "properties": {
         "apiKey": {
+          "readOnly": true,
           "type": "string"
         },
         "departments": {
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "email": {
+          "readOnly": true,
           "type": "string"
         },
         "locale": {
+          "readOnly": true,
           "type": "string"
         },
         "name": {
+          "readOnly": true,
           "type": "string"
         },
         "tags": {
           "items": {
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
       "type": "object"
     },
-    "ZendeskSearchResultDTO": {
+    "ZendeskSearchResult": {
       "properties": {
         "id": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "title": {
+          "readOnly": true,
           "type": "string"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -58366,7 +58794,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/ListResponseSalesModuleDTO"
+              "$ref": "#/definitions/ListResponseSalesModule"
             }
           }
         },
@@ -58393,7 +58821,7 @@
             "name": "body",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/SalesModuleDTO"
+              "$ref": "#/definitions/SalesModule"
             }
           }
         ],
@@ -58401,7 +58829,7 @@
           "200": {
             "description": "successfully created",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapperSalesModuleDTO"
+              "$ref": "#/definitions/ResponseWrapperSalesModule"
             }
           }
         },
@@ -65192,7 +65620,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapperEventInfoDTO"
+              "$ref": "#/definitions/ResponseWrapperEventInfo"
             }
           }
         },
@@ -82337,7 +82765,7 @@
             "name": "body",
             "required": false,
             "schema": {
-              "$ref": "#/definitions/AccountClosureInfoDTO"
+              "$ref": "#/definitions/AccountClosureInfo"
             }
           }
         ],
@@ -82374,7 +82802,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapperMySubscriptionModuleDTO[]"
+              "$ref": "#/definitions/ResponseWrapperListMySubscriptionModuleDTO"
             }
           }
         },
@@ -83151,7 +83579,7 @@
             "required": false,
             "schema": {
               "items": {
-                "$ref": "#/definitions/OrderLinePostingDTO"
+                "$ref": "#/definitions/OrderLinePosting"
               },
               "type": "array"
             }
@@ -86351,7 +86779,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapperLoggedInUserInfoDTO"
+              "$ref": "#/definitions/ResponseWrapperLoggedInUserInfo"
             }
           }
         },
@@ -90565,6 +90993,9 @@
     },
     {
       "name": "platformAgnosticbankonboarding"
+    },
+    {
+      "name": "platformAgnosticcompany"
     },
     {
       "name": "bankreconciliation"
