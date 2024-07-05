@@ -29912,11 +29912,6 @@
           "readOnly": true,
           "type": "number"
         },
-        "groupId": {
-          "description": "Group ID",
-          "format": "int32",
-          "type": "integer"
-        },
         "identification": {
           "description": "Identification",
           "readOnly": true,
@@ -29932,13 +29927,6 @@
           "readOnly": true,
           "type": "number"
         },
-        "posts": {
-          "description": "Associated posts",
-          "items": {
-            "$ref": "#/definitions/GenericData"
-          },
-          "type": "array"
-        },
         "price": {
           "description": "Price",
           "readOnly": true,
@@ -29948,11 +29936,6 @@
           "description": "Remuneration",
           "readOnly": true,
           "type": "number"
-        },
-        "subGroupId": {
-          "description": "Sub group ID",
-          "format": "int32",
-          "type": "integer"
         },
         "time": {
           "description": "Time",
@@ -29973,10 +29956,6 @@
           "description": "Unused shielding previous years",
           "readOnly": true,
           "type": "number"
-        },
-        "yearEndReport": {
-          "$ref": "#/definitions/YearEndReport",
-          "description": "Year-end Report"
         }
       },
       "type": "object"
@@ -36792,15 +36771,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -36821,6 +36804,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -36844,6 +36828,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -41303,6 +41288,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperStoredPublicKey": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/StoredPublicKey"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperString": {
       "properties": {
         "value": {
@@ -41659,6 +41652,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/UserFeedback"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperUserLicense": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/UserLicense"
         }
       },
       "type": "object"
@@ -47371,7 +47372,8 @@
             "PAYMENT_NOT_UPDATED",
             "PAYMENT_APPROVAL_MULTIPLE_APPROVERS",
             "PAYMENT_ATTESTED",
-            "PAYMENT_ATTESTATION_REJECTED"
+            "PAYMENT_ATTESTATION_REJECTED",
+            "PAYMENT_IMPORTED_AND_NOT_SENT"
           ],
           "type": "string"
         },
@@ -47539,6 +47541,39 @@
         "date",
         "inventory"
       ],
+      "type": "object"
+    },
+    "StoredPublicKey": {
+      "properties": {
+        "algorithm": {
+          "description": "Signature algorithm used for Platform Agnostic",
+          "enum": [
+            "RsaSha256",
+            "RsaPssSha512",
+            "EcdsaP256Sha256",
+            "EcdsaP384Sha384",
+            "Ed25519"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "expiresOn": {
+          "description": "Date when the key will expire",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "id": {
+          "description": "Public key id used for Platform Agnostic",
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "description": "Public key value used for Platform Agnostic",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Subscription": {
@@ -52178,6 +52213,12 @@
     },
     "UserLicense": {
       "properties": {
+        "companyId": {
+          "description": "Company id.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
         "deletedEmployeeDisplayName": {
           "description": "Display name of the deleted employee",
           "readOnly": true,
@@ -52243,6 +52284,9 @@
     },
     "UserLicenseSettingsDTO": {
       "properties": {
+        "isAuthTripletexSupportInvoiceManager": {
+          "type": "boolean"
+        },
         "isPriceDifferentiation": {
           "type": "boolean"
         }
@@ -90984,6 +91028,9 @@
     },
     {
       "name": "bankagreements"
+    },
+    {
+      "name": "platformAgnosticcryptography"
     },
     {
       "name": "bankmaintenance"
