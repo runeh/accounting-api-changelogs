@@ -252,10 +252,6 @@
           "maxLength": 1024,
           "type": "string"
         },
-        "customerCompanyId": {
-          "format": "int32",
-          "type": "integer"
-        },
         "id": {
           "format": "int64",
           "type": "integer"
@@ -6521,6 +6517,9 @@
           "type": "boolean"
         },
         "hasError": {
+          "type": "boolean"
+        },
+        "hasStandardResponse": {
           "type": "boolean"
         },
         "links": {
@@ -33251,6 +33250,10 @@
           "maxLength": 100,
           "type": "string"
         },
+        "orderLineDescription": {
+          "maxLength": 255,
+          "type": "string"
+        },
         "outgoingStock": {
           "description": "Available only on demand",
           "readOnly": true,
@@ -36771,19 +36774,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -36804,7 +36803,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -36828,7 +36826,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
