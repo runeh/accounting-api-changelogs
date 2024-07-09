@@ -1860,7 +1860,15 @@
             "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
-            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT"
           ],
           "readOnly": true,
           "type": "string"
@@ -5717,7 +5725,8 @@
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS",
-            "PARTICIPANT_ASSESSMENT_REPORT"
+            "PARTICIPANT_ASSESSMENT_REPORT",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION"
           ],
           "readOnly": true,
           "type": "string"
@@ -6400,7 +6409,15 @@
             "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
-            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT"
           ],
           "readOnly": true,
           "type": "string"
@@ -8367,6 +8384,62 @@
           "format": "int32",
           "type": "integer"
         },
+        "summary": {
+          "$ref": "#/definitions/ControlledTransactionsSummary",
+          "description": "Summary of something"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
+    "ControlledTransactionsCompanySpecification": {
+      "properties": {
+        "companyName": {
+          "description": "The official name of the company",
+          "type": "string"
+        },
+        "country": {
+          "description": "The country where the company is registered",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "identifier": {
+          "description": "The official identifier of the company",
+          "type": "string"
+        },
+        "outstandingBalances": {
+          "description": "A list of outstanding accounts between this company and users company",
+          "items": {
+            "$ref": "#/definitions/ControlledTransactionsOutstanding"
+          },
+          "type": "array"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "transactions": {
+          "description": "A list of transactions made between this company and users company",
+          "items": {
+            "$ref": "#/definitions/ControlledTransactionsTransaction"
+          },
+          "type": "array"
+        },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport",
           "description": "Year-end Report"
@@ -8412,6 +8485,40 @@
       },
       "type": "object"
     },
+    "ControlledTransactionsOutstanding": {
+      "properties": {
+        "account": {
+          "description": "The type of account which is outstanding",
+          "type": "string"
+        },
+        "amount": {
+          "description": "The amount of money transferred",
+          "type": "number"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
     "ControlledTransactionsRelatedCompanies": {
       "properties": {
         "companyName": {
@@ -8442,6 +8549,89 @@
           "description": "Sub group ID",
           "format": "int32",
           "type": "integer"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
+    "ControlledTransactionsSummary": {
+      "properties": {
+        "sumFinancialIncome": {
+          "description": "The sum of all transactions with the category financial income",
+          "type": "number"
+        },
+        "sumOperationalIncome": {
+          "description": "The sum of all transactions with the category operational income",
+          "type": "number"
+        },
+        "totalClaims": {
+          "description": "The sum of all outstanding with the category claim",
+          "type": "number"
+        },
+        "totalDebt": {
+          "description": "The sum of all outstanding with the category debt",
+          "type": "number"
+        },
+        "totalExtraordinaryPurchases": {
+          "description": "The sum of all transactions with the category extraordinary purchase",
+          "type": "number"
+        },
+        "totalExtraordinarySales": {
+          "description": "The sum of all transactions with the category extraordinary sale",
+          "type": "number"
+        },
+        "totalFinancialCost": {
+          "description": "The sum of all transactions with the category financial cost",
+          "type": "number"
+        },
+        "totalGuaranteeBasis": {
+          "description": "The sum of all outstanding with the category guarantee basis",
+          "type": "number"
+        },
+        "totalGuarantorResponsibility": {
+          "description": "The sum of all outstanding with the category guarantor responsibility",
+          "type": "number"
+        },
+        "totalOperationalCost": {
+          "description": "The sum of all transactions with the category operational cost",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ControlledTransactionsTransaction": {
+      "properties": {
+        "amount": {
+          "description": "The amount of money transferred",
+          "type": "number"
+        },
+        "description": {
+          "description": "A description of the transaction",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "transactionType": {
+          "description": "The type of the transaction",
+          "type": "string"
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport",
@@ -10540,7 +10730,9 @@
             "RESOLUTION",
             "OTHER_PUBLIC_SUPPORT",
             "RELATED_COMPANY",
-            "FUNCTION_AND_RISK"
+            "FUNCTION_AND_RISK",
+            "TRANSACTION",
+            "OUTSTANDING"
           ],
           "type": "string"
         },
@@ -10574,7 +10766,8 @@
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS",
-            "PARTICIPANT_ASSESSMENT_REPORT"
+            "PARTICIPANT_ASSESSMENT_REPORT",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION"
           ],
           "type": "string"
         },
@@ -11132,7 +11325,15 @@
             "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
-            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT"
           ],
           "type": "string"
         },
@@ -13654,7 +13855,9 @@
             "RESOLUTION",
             "OTHER_PUBLIC_SUPPORT",
             "RELATED_COMPANY",
-            "FUNCTION_AND_RISK"
+            "FUNCTION_AND_RISK",
+            "TRANSACTION",
+            "OUTSTANDING"
           ],
           "type": "string"
         },
@@ -13688,7 +13891,8 @@
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS",
-            "PARTICIPANT_ASSESSMENT_REPORT"
+            "PARTICIPANT_ASSESSMENT_REPORT",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION"
           ],
           "type": "string"
         },
@@ -14246,7 +14450,15 @@
             "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
-            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT"
           ],
           "type": "string"
         },
@@ -14358,7 +14570,8 @@
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS",
-            "PARTICIPANT_ASSESSMENT_REPORT"
+            "PARTICIPANT_ASSESSMENT_REPORT",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION"
           ],
           "readOnly": true,
           "type": "string"
@@ -16384,7 +16597,15 @@
             "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
-            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT"
           ],
           "readOnly": true,
           "type": "string"
@@ -16951,7 +17172,15 @@
             "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
-            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT"
           ],
           "readOnly": true,
           "type": "string"
@@ -19928,6 +20157,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Contact"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseControlledTransactionsCompanySpecification": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ControlledTransactionsCompanySpecification"
           },
           "readOnly": true,
           "type": "array"
@@ -27882,7 +28144,8 @@
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS",
-            "PARTICIPANT_ASSESSMENT_REPORT"
+            "PARTICIPANT_ASSESSMENT_REPORT",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION"
           ],
           "readOnly": true,
           "type": "string"
@@ -29911,6 +30174,11 @@
           "readOnly": true,
           "type": "number"
         },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
         "identification": {
           "description": "Identification",
           "readOnly": true,
@@ -29926,6 +30194,13 @@
           "readOnly": true,
           "type": "number"
         },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
         "price": {
           "description": "Price",
           "readOnly": true,
@@ -29935,6 +30210,11 @@
           "description": "Remuneration",
           "readOnly": true,
           "type": "number"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
         },
         "time": {
           "description": "Time",
@@ -29955,6 +30235,10 @@
           "description": "Unused shielding previous years",
           "readOnly": true,
           "type": "number"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
         }
       },
       "type": "object"
@@ -30109,7 +30393,9 @@
             "RESOLUTION",
             "OTHER_PUBLIC_SUPPORT",
             "RELATED_COMPANY",
-            "FUNCTION_AND_RISK"
+            "FUNCTION_AND_RISK",
+            "TRANSACTION",
+            "OUTSTANDING"
           ],
           "type": "string"
         },
@@ -30671,7 +30957,15 @@
             "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
-            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT"
           ],
           "type": "string"
         },
@@ -32366,7 +32660,15 @@
             "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
-            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT"
           ],
           "readOnly": true,
           "type": "string"
@@ -36604,7 +36906,9 @@
             "RESOLUTION",
             "OTHER_PUBLIC_SUPPORT",
             "RELATED_COMPANY",
-            "FUNCTION_AND_RISK"
+            "FUNCTION_AND_RISK",
+            "TRANSACTION",
+            "OUTSTANDING"
           ],
           "readOnly": true,
           "type": "string"
@@ -36639,7 +36943,8 @@
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS",
-            "PARTICIPANT_ASSESSMENT_REPORT"
+            "PARTICIPANT_ASSESSMENT_REPORT",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION"
           ],
           "readOnly": true,
           "type": "string"
@@ -36774,15 +37079,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -36803,6 +37112,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -36826,6 +37136,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -39066,6 +39377,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ControlledTransactions"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperControlledTransactionsCompanySpecification": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ControlledTransactionsCompanySpecification"
         }
       },
       "type": "object"
@@ -43382,6 +43701,11 @@
         "voucherDate": {
           "type": "string"
         },
+        "voucherId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "voucherNumberAsString": {
           "readOnly": true,
           "type": "string"
@@ -43699,6 +44023,11 @@
         },
         "voucherDate": {
           "type": "string"
+        },
+        "voucherId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "voucherNumberAsString": {
           "readOnly": true,
@@ -44390,6 +44719,11 @@
         },
         "voucherDate": {
           "type": "string"
+        },
+        "voucherId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "voucherNumberAsString": {
           "readOnly": true,
@@ -46424,7 +46758,9 @@
             "RESOLUTION",
             "OTHER_PUBLIC_SUPPORT",
             "RELATED_COMPANY",
-            "FUNCTION_AND_RISK"
+            "FUNCTION_AND_RISK",
+            "TRANSACTION",
+            "OUTSTANDING"
           ],
           "type": "string"
         },
@@ -46458,7 +46794,8 @@
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS",
-            "PARTICIPANT_ASSESSMENT_REPORT"
+            "PARTICIPANT_ASSESSMENT_REPORT",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION"
           ],
           "type": "string"
         },
@@ -47031,7 +47368,15 @@
             "CONTROLLED_TRANSACTIONS_RELATED_COMPANY_COUNTRY",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_FUNCTION_TYPE",
             "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_RISK_TYPE",
-            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION"
+            "CONTROLLED_TRANSACTIONS_FUNCTION_AND_RISK_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_IDENTIFIER",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_NAME",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION_COMPANY_COUNTRY",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_TYPE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_DESCRIPTION",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT"
           ],
           "type": "string"
         },
@@ -52024,7 +52369,8 @@
             "RESEARCH_AND_DEVELOPMENT",
             "TIMBER_ACCOUNT",
             "CONTROLLED_TRANSACTIONS",
-            "PARTICIPANT_ASSESSMENT_REPORT"
+            "PARTICIPANT_ASSESSMENT_REPORT",
+            "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION"
           ],
           "readOnly": true,
           "type": "string"
