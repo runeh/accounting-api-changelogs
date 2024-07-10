@@ -3846,6 +3846,24 @@
     },
     "BankGlobals": {
       "properties": {
+        "delegatorEmployeeId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "isAuthAccountingSettings": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isAuthDirectRemitZtl": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "loginEmployeeId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
         "remitPaymentType": {
           "enum": [
             "OFF",
@@ -3854,7 +3872,13 @@
             "BOTH",
             "ZTL"
           ],
+          "readOnly": true,
           "type": "string"
+        },
+        "tripletexCustomerCategoryId2": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
