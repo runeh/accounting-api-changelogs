@@ -239,6 +239,18 @@
       ],
       "type": "object"
     },
+    "AccountBuilder": {
+      "properties": {
+        "bankAccount": {
+          "type": "string"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "AccountClosureFeedback": {
       "properties": {
         "changes": {
@@ -938,6 +950,73 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ActivityBuilder": {
+      "properties": {
+        "allowTimetracking": {
+          "type": "boolean"
+        },
+        "chargeable": {
+          "type": "boolean"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "crm": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "general": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "projectActivity": {
+          "type": "boolean"
+        },
+        "task": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "ActivityExtBuilder": {
+      "properties": {
+        "activityId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "closedLogId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "projectId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "startDate": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -3113,6 +3192,54 @@
         }
       ]
     },
+    "AutoPayTransactionBuilder": {
+      "properties": {
+        "amountCurrency": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "autopayName": {
+          "type": "string"
+        },
+        "bookingDate": {
+          "type": "string"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "creditorBic": {
+          "type": "string"
+        },
+        "currencyId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "internalStatus": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "isSalary": {
+          "type": "boolean"
+        },
+        "paymentDate": {
+          "type": "string"
+        },
+        "regulatoryReportingCode": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "regulatoryReportingInfo": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "statusId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "AutomationRuleDetails": {
       "properties": {
         "accountId": {
@@ -4484,6 +4611,33 @@
       },
       "type": "object"
     },
+    "BankStatementBuilder": {
+      "properties": {
+        "accountId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "closingBalanceCurrency": {
+          "format": "double",
+          "type": "number"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "documentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fromDate": {
+          "type": "string"
+        },
+        "toDate": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BankTransaction": {
       "properties": {
         "account": {
@@ -4584,6 +4738,33 @@
           "description": "Total outgoing amount on given transactions.",
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "BankTransactionBuilder": {
+      "properties": {
+        "accountId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "amountCurrency": {
+          "format": "double",
+          "type": "number"
+        },
+        "bankStatementId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "postedDate": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -4739,6 +4920,27 @@
           "type": "string"
         },
         "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "BbsAgreementBuilder": {
+      "properties": {
+        "accountId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "serviceCode": {
           "format": "int32",
           "type": "integer"
         }
@@ -7434,6 +7636,70 @@
       },
       "type": "object"
     },
+    "CompanyBuilder": {
+      "properties": {
+        "accountManagerId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "currencyId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "customerType": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "inactive": {
+          "type": "boolean"
+        },
+        "invoiceDefaultDueIn": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "invoiceEmail": {
+          "type": "string"
+        },
+        "invoiceSMSNotificationNumber": {
+          "type": "string"
+        },
+        "invoiceSendSMSNotification": {
+          "type": "boolean"
+        },
+        "merchant": {
+          "type": "boolean"
+        },
+        "municipalityId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "projectTypeOfContract": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "salaryStartDate": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CompanyChooserDTO": {
       "properties": {
         "currentCompany": {
@@ -8713,6 +8979,23 @@
       },
       "type": "object"
     },
+    "CopilotModels": {
+      "properties": {
+        "models": {
+          "description": "List of model identifiers or names",
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 2147483647,
+          "minItems": 1,
+          "type": "array"
+        }
+      },
+      "required": [
+        "models"
+      ],
+      "type": "object"
+    },
     "Cost": {
       "properties": {
         "amountCurrencyIncVat": {
@@ -9273,6 +9556,11 @@
             "ATTACHMENT"
           ],
           "type": "string"
+        },
+        "globalLocationNumber": {
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
         },
         "id": {
           "format": "int64",
@@ -10004,6 +10292,32 @@
       ],
       "type": "object"
     },
+    "DepartmentBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "departmentManagerEmployeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "externalAccountNumber": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "DepreciationRate": {
       "properties": {
         "balanceGroup": {
@@ -10599,6 +10913,18 @@
           "format": "int64",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DocumentBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "xhtml": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -11799,6 +12125,93 @@
       ],
       "type": "object"
     },
+    "EmployeeBuilder": {
+      "properties": {
+        "accountant": {
+          "type": "boolean"
+        },
+        "allowLogin": {
+          "type": "boolean"
+        },
+        "allowRegInfo": {
+          "type": "boolean"
+        },
+        "auditor": {
+          "type": "boolean"
+        },
+        "authorized": {
+          "type": "boolean"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "createLogId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "customerId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "departmentId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "employeeCategoryId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "enkeltpersonsforetak": {
+          "type": "boolean"
+        },
+        "external": {
+          "type": "boolean"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "inactive": {
+          "type": "boolean"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "loginEndDate": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "owner": {
+          "type": "boolean"
+        },
+        "proxy": {
+          "type": "boolean"
+        },
+        "robot": {
+          "type": "boolean"
+        },
+        "userCategory": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "userId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "wageReceiver": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "EmployeeCategory": {
       "properties": {
         "changes": {
@@ -11855,6 +12268,30 @@
         },
         "isSuspended": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "EmployeeDeductionTableBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "percentage": {
+          "format": "double",
+          "type": "number"
+        },
+        "taxFreeAmount": {
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -11951,6 +12388,38 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EmployeeLoginInfoBuilder": {
+      "properties": {
+        "browserDetails": {
+          "type": "string"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "ip": {
+          "type": "string"
+        },
+        "loginResult": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "port": {
+          "type": "string"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "username": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -12109,6 +12578,34 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EmployeeRoleBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "customerId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "robotEmployeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "roleIds": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -12304,6 +12801,23 @@
       ],
       "type": "object"
     },
+    "EmployeeWageCodeBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "wageCodeId": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Employment": {
       "properties": {
         "changes": {
@@ -12399,6 +12913,29 @@
       "required": [
         "startDate"
       ],
+      "type": "object"
+    },
+    "EmploymentBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "divisionId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "EmploymentDetails": {
@@ -12545,6 +13082,27 @@
       "required": [
         "employmentType"
       ],
+      "type": "object"
+    },
+    "EnhetsRegisteretBuilder": {
+      "properties": {
+        "address": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "orgNumber": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "postCity": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Enhetsregisteret": {
@@ -15572,6 +16130,44 @@
       },
       "type": "object"
     },
+    "HourBuilder": {
+      "properties": {
+        "activityId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "approved": {
+          "type": "boolean"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "hours": {
+          "format": "double",
+          "type": "number"
+        },
+        "invoiceId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "projectId": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "HourSummary": {
       "properties": {
         "budgetChargeableHours": {
@@ -15605,6 +16201,21 @@
         "sumHours": {
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "HourlistSettingsBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "isCurrentMonthDefaultPeriod": {
+          "type": "boolean"
+        },
+        "requireCommentsOnRegisteredHoursAllProjects": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -17671,6 +18282,82 @@
       ],
       "type": "object"
     },
+    "InvoiceBuilder": {
+      "properties": {
+        "amount": {
+          "format": "double",
+          "type": "number"
+        },
+        "amountCurrency": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "amountExVat": {
+          "format": "double",
+          "type": "number"
+        },
+        "amountExVatCurrency": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "approved": {
+          "type": "boolean"
+        },
+        "charged": {
+          "type": "boolean"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "currencyId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        },
+        "expense": {
+          "type": "boolean"
+        },
+        "externalNumberSeries": {
+          "type": "boolean"
+        },
+        "history": {
+          "type": "string"
+        },
+        "kid": {
+          "type": "string"
+        },
+        "number": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "projectId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "termOfPayment": {
+          "type": "string"
+        },
+        "vendorId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "vendorInvoiceNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "voucherId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "InvoiceMessage": {
       "properties": {
         "contentId": {
@@ -17694,6 +18381,26 @@
         },
         "status": {
           "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "InvoiceOrderBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "includeHours": {
+          "type": "boolean"
+        },
+        "invoiceId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "projectId": {
+          "format": "int64",
           "type": "integer"
         }
       },
@@ -27985,6 +28692,38 @@
       },
       "type": "object"
     },
+    "MonthlyHourlistBuilder": {
+      "properties": {
+        "approved": {
+          "type": "boolean"
+        },
+        "approvedById": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "approvedDate": {
+          "type": "string"
+        },
+        "approvedUntil": {
+          "type": "string"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "date": {
+          "type": "string"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "MonthlyStatus": {
       "properties": {
         "approved": {
@@ -28462,6 +29201,28 @@
         "name",
         "phoneNumber"
       ],
+      "type": "object"
+    },
+    "NoteBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "content": {
+          "type": "string"
+        },
+        "createdDate": {
+          "type": "string"
+        },
+        "projectId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "updatedDate": {
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "NoteContainer": {
@@ -29433,6 +30194,27 @@
       },
       "type": "object"
     },
+    "OrderLineBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "invoiceId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "orderLineId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "projectId": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "OrderLinePosting": {
       "properties": {
         "changes": {
@@ -29510,6 +30292,29 @@
           "type": "string"
         },
         "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "OrderOutBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "invoiceComment": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "projectId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "type": {
           "format": "int32",
           "type": "integer"
         }
@@ -33120,6 +33925,32 @@
       },
       "type": "object"
     },
+    "PilotFeature": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "pilotFeatures": {
+          "items": {
+            "enum": [
+              "LOGISTICS",
+              "REPORT_ENGINE",
+              "MULTIPLE_LEDGERS",
+              "FINANCIAL_SERVICES",
+              "YEAR_END",
+              "CREATE_SALARY_REDESIGN_MVP",
+              "SALARY_REDESIGN_MVP",
+              "NEW_DOCUMENT_RECEPTION",
+              "NONE"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Posting": {
       "properties": {
         "account": {
@@ -33267,6 +34098,61 @@
         "voucher": {
           "$ref": "#/definitions/Voucher",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "PostingRuleBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "customerId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "debitAccountId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "disabled": {
+          "type": "boolean"
+        },
+        "inactive": {
+          "type": "boolean"
+        },
+        "paymentIn": {
+          "type": "boolean"
+        },
+        "paymentOut": {
+          "type": "boolean"
+        },
+        "showIncomingInvoice": {
+          "type": "boolean"
+        },
+        "showOrderInvoice": {
+          "type": "boolean"
+        },
+        "showVatReturns": {
+          "type": "boolean"
+        },
+        "showWagePayment": {
+          "type": "boolean"
+        },
+        "showWagePeriodTransaction": {
+          "type": "boolean"
+        },
+        "syncId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "vendorId": {
+          "format": "int64",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -33647,6 +34533,37 @@
             "hg"
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProductBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "elNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "productUnitId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "vatType": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -34360,6 +35277,24 @@
       ],
       "type": "object"
     },
+    "ProductUnitBuilder": {
+      "properties": {
+        "commonCode": {
+          "type": "string"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "nameShort": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProductUnitMaster": {
       "properties": {
         "changes": {
@@ -34935,6 +35870,58 @@
       },
       "type": "object"
     },
+    "ProjectBuilder": {
+      "properties": {
+        "allowTimeTrackingForParticipantsOnly": {
+          "type": "boolean"
+        },
+        "closed": {
+          "type": "boolean"
+        },
+        "comment": {
+          "type": "string"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "currencyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "deliveryAddressId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "internal": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "parentId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "project": {
+          "type": "boolean"
+        },
+        "startDate": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProjectCategory": {
       "properties": {
         "changes": {
@@ -35053,6 +36040,19 @@
         },
         "version": {
           "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ProjectControlSchemaBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "projectId": {
+          "format": "int64",
           "type": "integer"
         }
       },
@@ -35524,6 +36524,30 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ProjectParticipantBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "mesanPercentageHourPriceReduction": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "projectId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "projectManager": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -37103,19 +38127,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -37136,7 +38156,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -37160,7 +38179,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -37463,6 +38481,15 @@
         },
         "version": {
           "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReportBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
           "type": "integer"
         }
       },
@@ -39283,6 +40310,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperCompanyBuilder": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CompanyBuilder"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperCompanyChooserDTO": {
       "properties": {
         "value": {
@@ -39417,6 +40452,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CooperativeEnterpriseOverview"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperCopilotModels": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CopilotModels"
         }
       },
       "type": "object"
@@ -39690,6 +40733,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/Employee"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperEmployeeBuilder": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/EmployeeBuilder"
         }
       },
       "type": "object"
@@ -40233,6 +41284,18 @@
         "value": {
           "items": {
             "$ref": "#/definitions/Job"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperListLong": {
+      "properties": {
+        "value": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
           },
           "type": "array"
         }
@@ -41222,6 +42285,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperReportBuilder": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ReportBuilder"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperReportResultEnvelope": {
       "properties": {
         "value": {
@@ -41956,6 +43027,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperTripletexCompanyBuilder": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TripletexCompanyBuilder"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperTripletexDashboardDTO": {
       "properties": {
         "value": {
@@ -42072,6 +43151,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/VatReturnsValidationResult"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperVatSettingsBuilder": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/VatSettingsBuilder"
         }
       },
       "type": "object"
@@ -52129,6 +53216,53 @@
       },
       "type": "object"
     },
+    "TripletexCompanyBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "customerCompanyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "customerId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "invoiceNumberOfMonths": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "invoiceNumberOfMonthsInAdvance": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "priceList": {
+          "enum": [
+            "TRIPLETEX_OLD_MODEL",
+            "TRIPLETEX_STANDARD",
+            "AGRO",
+            "MAMUT",
+            "BASIS",
+            "SMART",
+            "KOMPLETT",
+            "VVS_ELEKTRO",
+            "AUTOPLUS",
+            "MIKRO",
+            "INTEGRATION_PARTNER",
+            "PLUSS",
+            "DIYPACKAGE"
+          ],
+          "type": "string"
+        },
+        "type": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "TripletexDashboardDTO": {
       "properties": {
         "widgets": {
@@ -53374,6 +54508,34 @@
       },
       "type": "object"
     },
+    "VatSettingsBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "hasVatInMedium": {
+          "type": "boolean"
+        },
+        "hasVatOutInside": {
+          "type": "boolean"
+        },
+        "hasVatOutLow": {
+          "type": "boolean"
+        },
+        "hasVatOutMedium": {
+          "type": "boolean"
+        },
+        "hasVatOutMediumFish": {
+          "type": "boolean"
+        },
+        "status": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "VatSpecificationGroup": {
       "properties": {
         "lines": {
@@ -53849,6 +55011,29 @@
           "$ref": "#/definitions/Voucher",
           "description": "The voucher.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "VoucherBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "type": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -54606,6 +55791,21 @@
       },
       "type": "object"
     },
+    "VoucherSettingsBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "moduleWageInfoPrivacy": {
+          "type": "boolean"
+        },
+        "receptionImportAttachmentless": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "VoucherStatus": {
       "properties": {
         "changes": {
@@ -54690,6 +55890,34 @@
       ],
       "type": "object"
     },
+    "VoucherStatusBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "processOwner": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "status": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "timestamp": {
+          "type": "string"
+        },
+        "type": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "voucherId": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "VoucherSummaryDTO": {
       "properties": {
         "attestationVouchersData": {
@@ -54735,6 +55963,126 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "WageCodeBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "forceTaxPercentageDeduction": {
+          "type": "boolean"
+        },
+        "hourlistRestrictAccess": {
+          "type": "boolean"
+        },
+        "inactive": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "showInHourlist": {
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "WagePaymentBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "vacationAllowanceExtraAmount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "wageTransactionId": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "WageSettingsBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "maxEmployeesPerVoucher": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "WageSpecificationBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "count": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "date": {
+          "type": "string"
+        },
+        "description": {
+          "type": "string"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "type": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "wageCodeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "wagePaymentId": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "WageTransactionBuilder": {
+      "properties": {
+        "comment": {
+          "type": "string"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "historical": {
+          "type": "boolean"
+        },
+        "payrollTaxCalcMethod": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -54814,6 +56162,43 @@
         "year": {
           "format": "int32",
           "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "WeeklyHourlistBuilder": {
+      "properties": {
+        "approved": {
+          "type": "boolean"
+        },
+        "approvedBy": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "approvedUntil": {
+          "type": "string"
+        },
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "completed": {
+          "type": "boolean"
+        },
+        "date": {
+          "type": "string"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "week": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "year": {
+          "format": "int64",
           "type": "integer"
         }
       },
@@ -92381,10 +93766,76 @@
       "name": "termsofservice"
     },
     {
+      "name": "testingaccount"
+    },
+    {
+      "name": "testingactivity"
+    },
+    {
+      "name": "testingautopay"
+    },
+    {
+      "name": "testingbank"
+    },
+    {
+      "name": "testingbbsAgreement"
+    },
+    {
+      "name": "testingcompany"
+    },
+    {
       "name": "testingcompanyModules"
     },
     {
+      "name": "testingdepartment"
+    },
+    {
+      "name": "testingdocument"
+    },
+    {
+      "name": "testingemployee"
+    },
+    {
+      "name": "testenhetsregisteret"
+    },
+    {
+      "name": "testinghour"
+    },
+    {
+      "name": "testinginventory"
+    },
+    {
+      "name": "testingnote"
+    },
+    {
+      "name": "testingorder"
+    },
+    {
+      "name": "testingpilotfeature"
+    },
+    {
+      "name": "testposting"
+    },
+    {
+      "name": "testproduct"
+    },
+    {
+      "name": "testingproject"
+    },
+    {
+      "name": "testingreport"
+    },
+    {
       "name": "usertest"
+    },
+    {
+      "name": "testingvatSettings"
+    },
+    {
+      "name": "testingvoucher"
+    },
+    {
+      "name": "testwage"
     },
     {
       "name": "testaccountdata"
