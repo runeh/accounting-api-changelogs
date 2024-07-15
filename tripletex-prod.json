@@ -3973,6 +3973,10 @@
     },
     "BankGlobals": {
       "properties": {
+        "companyName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "delegatorEmployeeId": {
           "format": "int64",
           "readOnly": true,
@@ -34022,6 +34026,16 @@
           "maxLength": 100,
           "type": "string"
         },
+        "isAmountVatClosed": {
+          "description": "Is amount of this posting (for VAT purposes) changeable",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isVatReadonly": {
+          "description": "Is vat code readonly?",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "matched": {
           "readOnly": true,
           "type": "boolean"
@@ -38125,19 +38139,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -38158,7 +38168,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -38182,7 +38191,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -49326,6 +49334,12 @@
           "description": "email of the vendor",
           "type": "string"
         },
+        "invoicesWithValidPredictionCount": {
+          "description": "Number of invoices with valid predictions",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
         "name": {
           "type": "string"
         },
@@ -49350,6 +49364,10 @@
           "format": "int64",
           "minimum": 0,
           "type": "integer"
+        },
+        "paymentTypeName": {
+          "description": "Description of the payment type",
+          "type": "string"
         },
         "vendorAccountNumber": {
           "format": "int32",
