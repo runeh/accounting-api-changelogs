@@ -285,10 +285,6 @@
     },
     "AccountClosureInfo": {
       "properties": {
-        "customerCompanyId": {
-          "format": "int64",
-          "type": "integer"
-        },
         "endDate": {
           "type": "string"
         },
@@ -49707,7 +49703,7 @@
         "firstName": {
           "type": "string"
         },
-        "hasAiAssistantRestrictChatForAccountingOfficesPilot": {
+        "hasAlwaysSeeChatWithSupportAI": {
           "type": "boolean"
         },
         "hasCopilotTab": {
@@ -54930,6 +54926,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "vendorInvoiceNumber": {
+          "description": "Vendor invoice number.",
+          "type": "string"
+        },
         "version": {
           "format": "int32",
           "type": "integer"
@@ -55680,6 +55680,10 @@
           "type": "string"
         },
         "urlDetails": {
+          "type": "string"
+        },
+        "vendorInvoiceNumber": {
+          "description": "Vendor invoice number.",
           "type": "string"
         },
         "version": {
