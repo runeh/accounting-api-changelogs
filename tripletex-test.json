@@ -1825,6 +1825,11 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_PRICE_MANAGEMENT_PRICING",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_TAX_EQUITY",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_COST_PRICE",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_OF_PRICE_ADJUSTMENT",
+            "PARTICIPANT_PRICE_MANAGEMENT_ACCUMULATED_ADJUSTMENTS",
             "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
             "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
             "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
@@ -6525,6 +6530,11 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_PRICE_MANAGEMENT_PRICING",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_TAX_EQUITY",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_COST_PRICE",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_OF_PRICE_ADJUSTMENT",
+            "PARTICIPANT_PRICE_MANAGEMENT_ACCUMULATED_ADJUSTMENTS",
             "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
             "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
             "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
@@ -8993,6 +9003,78 @@
       },
       "required": [
         "models"
+      ],
+      "type": "object"
+    },
+    "CopilotRequest": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "employeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "feedback": {
+          "enum": [
+            "NO_FEEDBACK",
+            "THUMBS_UP",
+            "THUMBS_DOWN"
+          ],
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "model": {
+          "enum": [
+            "SUPPORT_ARTICLES",
+            "KONTOHJELPEN",
+            "DATA_ANALYZER",
+            "TRIPLETEX_COPILOT",
+            "TEST",
+            "REPORT_MODEL",
+            "STICOS"
+          ],
+          "type": "string"
+        },
+        "prompt": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "promptTimestamp": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "tripletexEmployeeCompanyId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tripletexEmployeeId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "employeeId",
+        "feedback",
+        "prompt",
+        "promptTimestamp",
+        "tripletexEmployeeCompanyId",
+        "tripletexEmployeeId"
       ],
       "type": "object"
     },
@@ -11565,6 +11647,11 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_PRICE_MANAGEMENT_PRICING",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_TAX_EQUITY",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_COST_PRICE",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_OF_PRICE_ADJUSTMENT",
+            "PARTICIPANT_PRICE_MANAGEMENT_ACCUMULATED_ADJUSTMENTS",
             "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
             "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
             "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
@@ -14922,6 +15009,11 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_PRICE_MANAGEMENT_PRICING",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_TAX_EQUITY",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_COST_PRICE",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_OF_PRICE_ADJUSTMENT",
+            "PARTICIPANT_PRICE_MANAGEMENT_ACCUMULATED_ADJUSTMENTS",
             "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
             "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
             "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
@@ -17123,6 +17215,11 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_PRICE_MANAGEMENT_PRICING",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_TAX_EQUITY",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_COST_PRICE",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_OF_PRICE_ADJUSTMENT",
+            "PARTICIPANT_PRICE_MANAGEMENT_ACCUMULATED_ADJUSTMENTS",
             "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
             "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
             "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
@@ -17698,6 +17795,11 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_PRICE_MANAGEMENT_PRICING",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_TAX_EQUITY",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_COST_PRICE",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_OF_PRICE_ADJUSTMENT",
+            "PARTICIPANT_PRICE_MANAGEMENT_ACCUMULATED_ADJUSTMENTS",
             "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
             "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
             "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
@@ -28362,6 +28464,53 @@
       ],
       "type": "object"
     },
+    "MobileAppModules": {
+      "properties": {
+        "numberOfOpenAndRejectedTravelsExpenses": {
+          "description": "Number of open and rejected travels & expenses.",
+          "minimum": 0,
+          "readOnly": true,
+          "type": "number"
+        },
+        "numberOfOpenOrders": {
+          "description": "Number of orders.",
+          "minimum": 0,
+          "readOnly": true,
+          "type": "number"
+        },
+        "numberOfRegisteredHoursToday": {
+          "description": "Number of registered hours today.",
+          "minimum": 0,
+          "readOnly": true,
+          "type": "number"
+        },
+        "numberOfRequestedVacationDaysForApproval": {
+          "description": "Number of pending approvals requested vacation days for approval.",
+          "minimum": 0,
+          "readOnly": true,
+          "type": "number"
+        },
+        "numberOfTravelsAndExpensesForApproval": {
+          "description": "Number of travels & expenses for approval.",
+          "minimum": 0,
+          "readOnly": true,
+          "type": "number"
+        },
+        "numberOfVouchersForApproval": {
+          "description": "Number of vouchers for approval.",
+          "minimum": 0,
+          "readOnly": true,
+          "type": "number"
+        },
+        "payslip": {
+          "description": "Number of payslips.",
+          "minimum": 0,
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "MobileAppSpecificRightsInfo": {
       "properties": {
         "approveTravelExpenseEnabled": {
@@ -30524,6 +30673,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "ownershipAtBeginningOfYear": {
+          "readOnly": true,
+          "type": "number"
+        },
         "posts": {
           "items": {
             "$ref": "#/definitions/GenericData"
@@ -30936,6 +31089,11 @@
           "description": "Information about the participant",
           "readOnly": true
         },
+        "priceAdjustmentManagement": {
+          "$ref": "#/definitions/ParticipantReportPriceAdjustmentManagement",
+          "description": "Price adjustment management",
+          "readOnly": true
+        },
         "residentInNordTromsOrFinnmark": {
           "description": "Resides in Nord Troms or Finnnmark",
           "readOnly": true,
@@ -31014,6 +31172,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "initialValueRealizedShares": {
+          "description": "Initial value realized shares",
+          "readOnly": true,
+          "type": "number"
+        },
         "name": {
           "description": "Name",
           "readOnly": true,
@@ -31045,6 +31208,11 @@
           "description": "Sub group ID",
           "format": "int32",
           "type": "integer"
+        },
+        "temporaryGainLossRealization": {
+          "description": "Temporary gain loss realization",
+          "readOnly": true,
+          "type": "number"
         },
         "time": {
           "description": "Time",
@@ -31677,6 +31845,11 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_PRICE_MANAGEMENT_PRICING",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_TAX_EQUITY",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_COST_PRICE",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_OF_PRICE_ADJUSTMENT",
+            "PARTICIPANT_PRICE_MANAGEMENT_ACCUMULATED_ADJUSTMENTS",
             "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
             "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
             "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
@@ -31815,6 +31988,36 @@
         "postValue",
         "year"
       ],
+      "type": "object"
+    },
+    "ParticipantReportPriceAdjustmentManagement": {
+      "properties": {
+        "accumulatedAdjustments": {
+          "description": "Accumulated adjustments",
+          "readOnly": true,
+          "type": "number"
+        },
+        "pricingAdjustment": {
+          "description": "Pricing adjustment",
+          "readOnly": true,
+          "type": "number"
+        },
+        "realizedShareCostPrice": {
+          "description": "Realized share cost price",
+          "readOnly": true,
+          "type": "number"
+        },
+        "realizedShareOfPriceAdjustment": {
+          "description": "Realized share of price adjustment",
+          "readOnly": true,
+          "type": "number"
+        },
+        "realizedShareTaxEquity": {
+          "description": "Realized share tax equity",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
       "type": "object"
     },
     "ParticipantReportRetainedEarnings": {
@@ -33380,6 +33583,11 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_PRICE_MANAGEMENT_PRICING",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_TAX_EQUITY",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_COST_PRICE",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_OF_PRICE_ADJUSTMENT",
+            "PARTICIPANT_PRICE_MANAGEMENT_ACCUMULATED_ADJUSTMENTS",
             "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
             "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
             "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
@@ -38136,19 +38344,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -38169,7 +38373,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -38193,7 +38396,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -40479,6 +40681,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperCopilotRequest": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CopilotRequest"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperCost": {
       "properties": {
         "value": {
@@ -41640,6 +41850,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/MileageAllowance"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperMobileAppModules": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/MobileAppModules"
         }
       },
       "type": "object"
@@ -48384,6 +48602,11 @@
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_RESULT",
             "PARTICIPANT_DISPROPORTIONATE_DISTRIBUTION_SHARE_OF_WEALTH",
+            "PARTICIPANT_PRICE_MANAGEMENT_PRICING",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_TAX_EQUITY",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_COST_PRICE",
+            "PARTICIPANT_PRICE_MANAGEMENT_REALIZED_SHARE_OF_PRICE_ADJUSTMENT",
+            "PARTICIPANT_PRICE_MANAGEMENT_ACCUMULATED_ADJUSTMENTS",
             "PARTICIPANT_ASSESSMENT_REPORT_COMPANY_NAME",
             "PARTICIPANT_ASSESSMENT_REPORT_ORG_NUMBER",
             "PARTICIPANT_ASSESSMENT_REPORT_MUNICIPALITY_ID",
@@ -93317,6 +93540,9 @@
     },
     {
       "name": "lookup"
+    },
+    {
+      "name": "mobileApp"
     },
     {
       "name": "download-app"
