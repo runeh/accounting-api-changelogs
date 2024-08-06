@@ -16903,9 +16903,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "customer": {
+          "$ref": "#/definitions/Customer"
+        },
         "customerId": {
-          "format": "int32",
-          "type": "integer"
+          "$ref": "#/definitions/Customer"
         },
         "description": {
           "type": "string"
@@ -16954,51 +16956,44 @@
     },
     "IncomeVoucherPosting": {
       "properties": {
-        "accountId": {
-          "format": "int32",
-          "type": "integer"
+        "account": {
+          "$ref": "#/definitions/Account"
         },
         "amount": {
           "type": "number"
         },
-        "assetId": {
-          "format": "int32",
-          "type": "integer"
+        "asset": {
+          "$ref": "#/definitions/Asset"
         },
-        "customerId": {
-          "format": "int32",
-          "type": "integer"
+        "client": {
+          "type": "string"
         },
-        "departmentId": {
-          "format": "int32",
-          "type": "integer"
+        "customer": {
+          "$ref": "#/definitions/Customer"
         },
-        "employeeId": {
-          "format": "int32",
-          "type": "integer"
+        "department": {
+          "$ref": "#/definitions/Department"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee"
         },
         "incomeDescription": {
           "type": "string"
         },
-        "postingId": {
-          "format": "int64",
-          "type": "integer"
+        "posting": {
+          "$ref": "#/definitions/Posting"
         },
-        "productId": {
-          "format": "int32",
-          "type": "integer"
+        "product": {
+          "$ref": "#/definitions/Product"
         },
-        "productUnit1Id": {
-          "format": "int64",
-          "type": "integer"
+        "productUnit1": {
+          "$ref": "#/definitions/ProductUnit"
         },
-        "productUnit2Id": {
-          "format": "int64",
-          "type": "integer"
+        "productUnit2": {
+          "$ref": "#/definitions/ProductUnit"
         },
-        "projectId": {
-          "format": "int32",
-          "type": "integer"
+        "project": {
+          "$ref": "#/definitions/Project"
         },
         "quantity1": {
           "type": "number"
@@ -17006,9 +17001,8 @@
         "quantity2": {
           "type": "number"
         },
-        "vatTypeId": {
-          "format": "int32",
-          "type": "integer"
+        "vatType": {
+          "$ref": "#/definitions/VatType"
         }
       },
       "type": "object"
