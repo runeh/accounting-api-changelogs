@@ -16899,10 +16899,6 @@
         "companyName": {
           "type": "string"
         },
-        "currencyId": {
-          "format": "int32",
-          "type": "integer"
-        },
         "customer": {
           "$ref": "#/definitions/Customer"
         },
@@ -16931,15 +16927,20 @@
         "invoiceNumber": {
           "type": "string"
         },
-        "paymentAmount": {
-          "type": "number"
+        "paymentPostingIdsForDeletion": {
+          "description": "Ids for payment postings to be deleted",
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
         },
-        "paymentDate": {
-          "type": "string"
-        },
-        "paymentTypeId": {
-          "format": "int32",
-          "type": "integer"
+        "paymentPostings": {
+          "description": "Payment postings",
+          "items": {
+            "$ref": "#/definitions/IncomeVoucherPosting"
+          },
+          "type": "array"
         },
         "sendToLedger": {
           "type": "boolean"
@@ -16971,6 +16972,9 @@
         "customer": {
           "$ref": "#/definitions/Customer"
         },
+        "date": {
+          "type": "string"
+        },
         "department": {
           "$ref": "#/definitions/Department"
         },
@@ -16979,6 +16983,9 @@
         },
         "incomeDescription": {
           "type": "string"
+        },
+        "paymentType": {
+          "$ref": "#/definitions/PaymentType"
         },
         "posting": {
           "$ref": "#/definitions/Posting"
@@ -38335,6 +38342,11 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "postingRuleId": {
+          "description": "The payment type id associated with the posting. This ID will only be set if the payment types used is an internal payment type like 'Nettbank' - it is not set if the payment is a bank payment like AutoPay or ZTL.",
+          "format": "int32",
+          "type": "integer"
+        },
         "product": {
           "$ref": "#/definitions/Product"
         },
@@ -42445,15 +42457,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -42474,6 +42490,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -42497,6 +42514,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -76372,6 +76390,69 @@
         "summary": "Import GBAT10. Send as multipart form.",
         "tags": [
           "ledger/voucher"
+        ]
+      }
+    },
+    "/ledger/voucher/incomeVoucher/paymentPostings": {
+      "get": {
+        "description": "",
+        "operationId": "LedgerVoucherIncomeVoucherPaymentPostings_getPaymentPostings",
+        "parameters": [
+          {
+            "description": "Element ID",
+            "format": "int64",
+            "in": "query",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponsePosting"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Find payment postings from history by posting ID.",
+        "tags": [
+          "ledger/posting"
         ]
       }
     },
