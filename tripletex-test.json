@@ -5176,6 +5176,20 @@
       },
       "type": "object"
     },
+    "BusinessActivityType": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Callout": {
       "properties": {
         "id": {
@@ -10697,6 +10711,41 @@
       "required": [
         "date",
         "purchaseOrderLine"
+      ],
+      "type": "object"
+    },
+    "DeviceRegistration": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "deviceRegistrationToken": {
+          "description": "Device registration token.",
+          "maxLength": 16777215,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "mobileSubscription": {
+          "$ref": "#/definitions/MobileSubscription"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "deviceRegistrationToken"
       ],
       "type": "object"
     },
@@ -24491,6 +24540,39 @@
       },
       "type": "object"
     },
+    "ListResponseBusinessActivityType": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/BusinessActivityType"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseCallout": {
       "properties": {
         "count": {
@@ -32646,6 +32728,37 @@
         "firstName",
         "lastName"
       ],
+      "type": "object"
+    },
+    "MobileSubscription": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "employeeId": {
+          "$ref": "#/definitions/Employee"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "webhookSubscriptionToken": {
+          "maxLength": 16777215,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Modules": {
@@ -44942,6 +45055,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/Deviation"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperDeviceRegistration": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/DeviceRegistration"
         }
       },
       "type": "object"
@@ -97854,6 +97975,9 @@
     },
     {
       "name": "lookup"
+    },
+    {
+      "name": "mobileAppregisterDevice"
     },
     {
       "name": "mobileApp"
