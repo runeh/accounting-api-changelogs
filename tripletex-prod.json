@@ -10025,6 +10025,29 @@
       ],
       "type": "object"
     },
+    "CustomerInvoiceDetails": {
+      "properties": {
+        "invoiceEmail": {
+          "maxLength": 254,
+          "minLength": 0,
+          "type": "string"
+        },
+        "invoiceSendMethod": {
+          "description": "Define the invoicing method for the customer.<br>EMAIL: Send invoices as email.<br>EHF: Send invoices as EHF.<br>EFAKTURA: Send invoices as EFAKTURA.<br>AVTALEGIRO: Send invoices as AVTALEGIRO.<br>VIPPS: Send invoices through VIPPS.<br>PAPER: Send invoices as paper invoice.<br>MANUAL: User will have to send invocie manually.<br>",
+          "enum": [
+            "EMAIL",
+            "EHF",
+            "EFAKTURA",
+            "AVTALEGIRO",
+            "VIPPS",
+            "PAPER",
+            "MANUAL"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CustomerReceivable": {
       "properties": {
         "accountedValue": {
@@ -19918,6 +19941,11 @@
           "description": "Group ID",
           "format": "int32",
           "type": "integer"
+        },
+        "netInterestCosts": {
+          "description": "Net interest costs",
+          "readOnly": true,
+          "type": "number"
         },
         "posts": {
           "description": "Associated posts",
@@ -42570,15 +42598,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -42599,6 +42631,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -42622,6 +42655,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
