@@ -12224,6 +12224,13 @@
           "maxLength": 255,
           "type": "string"
         },
+        "connectedInvoices": {
+          "items": {
+            "$ref": "#/definitions/Invoice"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "documentId": {
           "format": "int64",
           "type": "integer"
@@ -12239,6 +12246,14 @@
           "type": "integer"
         },
         "isCompleted": {
+          "type": "boolean"
+        },
+        "isInvoiced": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSentToBoligmappa": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isSigned": {
@@ -14569,6 +14584,42 @@
           "format": "int64",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GeneralLedgerCloseGroup": {
+      "properties": {
+        "closeGroupPostings": {
+          "items": {
+            "$ref": "#/definitions/GeneralLedgerPosting"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "closedByActualEmployeeId": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "closedByActualEmployeeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "closedByCompanyName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "closedByEmployeeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "closedTime": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "employeeRole": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -26416,39 +26467,6 @@
       },
       "type": "object"
     },
-    "ListResponseGeneralLedgerPosting": {
-      "properties": {
-        "count": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/GeneralLedgerPosting"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListResponseGenericDataRate": {
       "properties": {
         "count": {
@@ -34714,7 +34732,8 @@
             "OrderFormViewOptions",
             "InvoiceOverviewOptions",
             "VoucherFlowViewOptions",
-            "SalaryOnboardingOptions"
+            "SalaryOnboardingOptions",
+            "IncomePageViewOptions"
           ],
           "type": "string"
         },
@@ -38398,6 +38417,67 @@
       },
       "type": "object"
     },
+    "PlantScore": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "currentScore": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "currentStreak": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "employeeId": {
+          "$ref": "#/definitions/Employee",
+          "readOnly": true
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "longestStreak": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "monthlyScores": {
+          "items": {
+            "$ref": "#/definitions/TimeSheetMonthlyScore"
+          },
+          "type": "array"
+        },
+        "plantedTreesThisMonth": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "totalPlantedTrees": {
+          "minimum": 0,
+          "type": "number"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "currentScore",
+        "currentStreak",
+        "longestStreak",
+        "plantedTreesThisMonth",
+        "totalPlantedTrees"
+      ],
+      "type": "object"
+    },
     "Posting": {
       "properties": {
         "account": {
@@ -39961,6 +40041,9 @@
         "attention": {
           "$ref": "#/definitions/Contact",
           "description": "Customer in attention of person"
+        },
+        "boligmappaAddress": {
+          "$ref": "#/definitions/Address"
         },
         "changes": {
           "items": {
@@ -45351,6 +45434,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperGeneralLedgerCloseGroup": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/GeneralLedgerCloseGroup"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperGeneralLedgerContext": {
       "properties": {
         "value": {
@@ -46400,6 +46491,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/PickupPoint"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperPlantScore": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/PlantScore"
         }
       },
       "type": "object"
@@ -51801,6 +51900,37 @@
       },
       "type": "object"
     },
+    "SendFormEmail": {
+      "properties": {
+        "emailAddress": {
+          "description": "The email address to send the form to. This can be one or more emails separated by a comma.",
+          "type": "string"
+        },
+        "ids": {
+          "description": "The IDs of the forms to send.",
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "mergeAttachments": {
+          "description": "If true, the attachments will be merged into one PDF file before sending the email.",
+          "type": "boolean"
+        },
+        "message": {
+          "allowEmptyValue": true,
+          "description": "The message to include in the email.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "emailAddress",
+        "ids",
+        "message"
+      ],
+      "type": "object"
+    },
     "SendToDocumentArchive": {
       "properties": {
         "fileName": {
@@ -55767,6 +55897,25 @@
       ],
       "type": "object"
     },
+    "TimeSheetMonthlyScore": {
+      "properties": {
+        "date": {
+          "type": "string"
+        },
+        "employeeId": {
+          "$ref": "#/definitions/Employee",
+          "readOnly": true
+        },
+        "score": {
+          "minimum": 0,
+          "type": "number"
+        }
+      },
+      "required": [
+        "score"
+      ],
+      "type": "object"
+    },
     "TimesheetAllocated": {
       "properties": {
         "activity": {
@@ -58370,6 +58519,16 @@
           "description": "True if startup fee has been paid, false otherwise.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "lastEditedByEmployee": {
+          "$ref": "#/definitions/Employee",
+          "description": "Employee that last edited the user license. Only relevant for Tripletex.",
+          "readOnly": true
+        },
+        "lastEditedByEmployeeTimestamp": {
+          "description": "Timestamp when the user license was last edited. Only relevant for Tripletex.",
+          "readOnly": true,
+          "type": "string"
         },
         "monthlyPrice": {
           "description": "Monthly fee paid for the user license",
@@ -77355,6 +77514,45 @@
         "summary": "Get voucher type by ID.",
         "tags": [
           "ledger/voucherType"
+        ]
+      }
+    },
+    "/mobileApp/plantScore": {
+      "post": {
+        "description": "",
+        "operationId": "MobileAppPlantScore_post",
+        "parameters": [
+          {
+            "description": "yyyy-MM-dd. Defaults to today.",
+            "in": "query",
+            "name": "date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Equals",
+            "in": "query",
+            "name": "timeZone",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperPlantScore"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Create new plant score",
+        "tags": [
+          "mobileAppplantScore"
         ]
       }
     },
@@ -98006,6 +98204,9 @@
     },
     {
       "name": "mobileAppregisterDevice"
+    },
+    {
+      "name": "mobileAppplantScore"
     },
     {
       "name": "mobileApp"
