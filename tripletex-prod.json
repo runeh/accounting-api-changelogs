@@ -12241,6 +12241,11 @@
           },
           "type": "object"
         },
+        "guid": {
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
         "id": {
           "format": "int64",
           "type": "integer"
@@ -12253,6 +12258,10 @@
           "type": "boolean"
         },
         "isSentToBoligmappa": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSentWithEmail": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -12318,6 +12327,9 @@
         },
         "isNelfo": {
           "type": "boolean"
+        },
+        "nhoVersion": {
+          "type": "string"
         },
         "previousTemplateId": {
           "format": "int64",
@@ -14597,27 +14609,19 @@
           "readOnly": true,
           "type": "array"
         },
-        "closedByActualEmployeeId": {
-          "readOnly": true,
-          "type": "string"
-        },
         "closedByActualEmployeeName": {
           "readOnly": true,
           "type": "string"
         },
-        "closedByCompanyName": {
+        "closedByExternalAccountant": {
           "readOnly": true,
-          "type": "string"
+          "type": "boolean"
         },
-        "closedByEmployeeName": {
+        "closedByIdentifier": {
           "readOnly": true,
           "type": "string"
         },
         "closedTime": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "employeeRole": {
           "readOnly": true,
           "type": "string"
         }
@@ -32776,6 +32780,60 @@
       ],
       "type": "object"
     },
+    "MobileSettings": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "isFridayActive": {
+          "type": "boolean"
+        },
+        "isMondayActive": {
+          "type": "boolean"
+        },
+        "isSaturdayActive": {
+          "type": "boolean"
+        },
+        "isSundayActive": {
+          "type": "boolean"
+        },
+        "isThursdayActive": {
+          "type": "boolean"
+        },
+        "isTimeSheetDailyNotificationActive": {
+          "type": "boolean"
+        },
+        "isTuesdayActive": {
+          "type": "boolean"
+        },
+        "isWednesdayActive": {
+          "type": "boolean"
+        },
+        "notificationTime": {
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "MobileSubscription": {
       "properties": {
         "changes": {
@@ -42681,19 +42739,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -42714,7 +42768,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -42738,7 +42791,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -46243,6 +46295,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/MobileAppSpecificRightsInfo"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperMobileSettings": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/MobileSettings"
         }
       },
       "type": "object"
@@ -98210,6 +98270,9 @@
     },
     {
       "name": "mobileApp"
+    },
+    {
+      "name": "mobileAppsettings"
     },
     {
       "name": "download-app"
