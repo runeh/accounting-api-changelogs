@@ -9208,20 +9208,16 @@
           "readOnly": true,
           "type": "array"
         },
-        "employeeId": {
+        "id": {
           "format": "int64",
           "type": "integer"
         },
-        "feedback": {
-          "enum": [
-            "NO_FEEDBACK",
-            "THUMBS_UP",
-            "THUMBS_DOWN"
-          ],
-          "type": "string"
+        "isConversationStarter": {
+          "format": "int32",
+          "type": "integer"
         },
-        "id": {
-          "format": "int64",
+        "isFollowUpQuestion": {
+          "format": "int32",
           "type": "integer"
         },
         "model": {
@@ -9244,11 +9240,7 @@
           "format": "date-time",
           "type": "string"
         },
-        "tripletexEmployeeCompanyId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "tripletexEmployeeId": {
+        "quickPromptOrder": {
           "format": "int32",
           "type": "integer"
         },
@@ -9262,12 +9254,10 @@
         }
       },
       "required": [
-        "employeeId",
-        "feedback",
+        "isConversationStarter",
+        "isFollowUpQuestion",
         "prompt",
-        "promptTimestamp",
-        "tripletexEmployeeCompanyId",
-        "tripletexEmployeeId"
+        "quickPromptOrder"
       ],
       "type": "object"
     },
@@ -42739,15 +42729,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -42768,6 +42762,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -42791,6 +42786,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -77574,45 +77570,6 @@
         "summary": "Get voucher type by ID.",
         "tags": [
           "ledger/voucherType"
-        ]
-      }
-    },
-    "/mobileApp/plantScore": {
-      "post": {
-        "description": "",
-        "operationId": "MobileAppPlantScore_post",
-        "parameters": [
-          {
-            "description": "yyyy-MM-dd. Defaults to today.",
-            "in": "query",
-            "name": "date",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "description": "Equals",
-            "in": "query",
-            "name": "timeZone",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successfully created",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperPlantScore"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Create new plant score",
-        "tags": [
-          "mobileAppplantScore"
         ]
       }
     },
