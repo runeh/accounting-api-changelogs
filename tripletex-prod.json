@@ -3187,6 +3187,63 @@
       },
       "type": "object"
     },
+    "AutoPayCompany": {
+      "properties": {
+        "changedOn": {
+          "description": "The last time the company data was changed.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "countryCode": {
+          "description": "The company's country code.",
+          "enum": [
+            "NO",
+            "SE",
+            "DK",
+            "FI",
+            "NL"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the company.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "organizationNumber": {
+          "description": "The company's organization number.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ownerEmailAddress": {
+          "description": "The owner's email address.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tenantId": {
+          "description": "The tenantId representing this company.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "twoFactorAuthenticationTypes": {
+          "description": "The 2FA options for the company.",
+          "items": {
+            "enum": [
+              "Totp",
+              "BankIdNorway",
+              "BankIdSweden",
+              "BankIdFinland"
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "type": "object"
+    },
     "AutoPayMessage": {
       "properties": {
         "message": {
@@ -8510,69 +8567,6 @@
       },
       "type": "object"
     },
-    "CompanyResponseWrapper": {
-      "properties": {
-        "businessUnit": {
-          "type": "string"
-        },
-        "changedOn": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "countryCode": {
-          "enum": [
-            "NO",
-            "SE",
-            "DK",
-            "FI",
-            "NL"
-          ],
-          "type": "string"
-        },
-        "externalId": {
-          "type": "string"
-        },
-        "name": {
-          "maxLength": 255,
-          "type": "string"
-        },
-        "newCreditorWarningsCheck": {
-          "enum": [
-            "Always",
-            "AfterThreeMonths",
-            "AfterSixMonths"
-          ],
-          "type": "string"
-        },
-        "organizationNumber": {
-          "maxLength": 100,
-          "type": "string"
-        },
-        "ownerEmailAddress": {
-          "type": "string"
-        },
-        "provisioner": {
-          "type": "string"
-        },
-        "tenantId": {
-          "type": "string"
-        },
-        "twoFactorAuthenticationTypes": {
-          "items": {
-            "enum": [
-              "Totp",
-              "BankIdNorway",
-              "BankIdSweden",
-              "BankIdFinland"
-            ],
-            "type": "string"
-          },
-          "type": "array",
-          "uniqueItems": true
-        }
-      },
-      "type": "object"
-    },
     "CompanyStandardTime": {
       "properties": {
         "changes": {
@@ -10875,6 +10869,9 @@
         },
         "product": {
           "$ref": "#/definitions/Product"
+        },
+        "productGroup": {
+          "$ref": "#/definitions/ProductGroup"
         },
         "salesPriceWithDiscount": {
           "type": "number"
@@ -14634,6 +14631,10 @@
           "type": "integer"
         },
         "developerMode": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasDepartmentIndustry": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -42176,7 +42177,7 @@
           "type": "string"
         },
         "employeeId": {
-          "format": "int32",
+          "format": "int64",
           "minimum": 0,
           "type": "integer"
         },
@@ -44642,6 +44643,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperAutoPayCompany": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/AutoPayCompany"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperAutoPayStatus": {
       "properties": {
         "value": {
@@ -44987,14 +44996,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CompanyModules"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperCompanyResponseWrapper": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/CompanyResponseWrapper"
         }
       },
       "type": "object"
@@ -55723,6 +55724,10 @@
           "description": "Terms for the company",
           "readOnly": true
         },
+        "newTOSAlive": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "renderCompanyLicense": {
           "readOnly": true,
           "type": "boolean"
@@ -62222,6 +62227,9 @@
           "type": "integer"
         }
       },
+      "required": [
+        "account"
+      ],
       "type": "object"
     },
     "ZtlConsent": {
@@ -98227,6 +98235,9 @@
     },
     {
       "name": "mobileApp"
+    },
+    {
+      "name": "mobileAppnotifyEmployee"
     },
     {
       "name": "mobileAppsettings"
