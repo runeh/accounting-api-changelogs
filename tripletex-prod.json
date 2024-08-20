@@ -9255,6 +9255,67 @@
       ],
       "type": "object"
     },
+    "CopilotResponse": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "copilotRequest": {
+          "$ref": "#/definitions/CopilotRequest"
+        },
+        "errorCode": {
+          "enum": [
+            "NO_ERROR",
+            "OTHER_ERROR",
+            "COPILOT_INVALID_FORMAT",
+            "SUPPORT_AI_SERVER_ERROR"
+          ],
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "responseEndTimestamp": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "responseStartTimestamp": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "SUPPORT",
+            "STICOS",
+            "ACCOUNT_PLAN"
+          ],
+          "type": "string"
+        },
+        "supportAIConversationMessage": {
+          "$ref": "#/definitions/SupportAIConversationMessage"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "copilotRequest",
+        "responseEndTimestamp",
+        "responseStartTimestamp",
+        "supportAIConversationMessage"
+      ],
+      "type": "object"
+    },
     "Cost": {
       "properties": {
         "amountCurrencyIncVat": {
@@ -10594,6 +10655,36 @@
           "type": "string"
         },
         "number": {
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DepartmentInfoDTO": {
+      "properties": {
+        "description": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DepartmentsResponseDTO": {
+      "properties": {
+        "departments": {
+          "items": {
+            "$ref": "#/definitions/DepartmentInfoDTO"
+          },
+          "type": "array"
+        },
+        "id": {
           "format": "int64",
           "type": "integer"
         }
@@ -13812,6 +13903,24 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ExtractResponseDTO": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "companyName": {
+          "type": "string"
+        },
+        "invoices": {
+          "items": {
+            "$ref": "#/definitions/InvoiceWithEHFAndOrderLinesDTO"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -23067,6 +23176,38 @@
       },
       "type": "object"
     },
+    "InvoiceWithEHFAndOrderLinesDTO": {
+      "properties": {
+        "departmentIdsFromVoucher": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "ehfXML": {
+          "type": "string"
+        },
+        "invoiceId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "orderLines": {
+          "items": {
+            "$ref": "#/definitions/OrderLineInformationDTO"
+          },
+          "type": "array"
+        },
+        "projectIdsFromVoucher": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Job": {
       "properties": {
         "group": {
@@ -23187,6 +23328,55 @@
           "$ref": "#/definitions/YearEndReport"
         }
       },
+      "type": "object"
+    },
+    "LLMVoucherAutomationCompanyInfoRequest": {
+      "description": "LLMVoucherAutomation Company, projects, and departments info Data Transfer Object",
+      "properties": {
+        "companyId": {
+          "description": "The companyId to extract vouchers for",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "companyId"
+      ],
+      "type": "object"
+    },
+    "LLMVoucherAutomationExtractRequest": {
+      "description": "LLMVoucherAutomation Extract vouchers and info for a single company Data Transfer Object",
+      "properties": {
+        "companyId": {
+          "description": "The companyId to extract vouchers for",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "date": {
+          "description": "The date to extract vouchers for",
+          "readOnly": true,
+          "type": "string"
+        },
+        "ignoreEHF": {
+          "description": "Flag to indicate if the EHF XML should be retrieved or not, for testing and debugging",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "limit": {
+          "description": "Limit of vouchers to extract, capped at 1000",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "companyId",
+        "date",
+        "ignoreEHF",
+        "limit"
+      ],
       "type": "object"
     },
     "LastPosted": {
@@ -34524,6 +34714,76 @@
       },
       "type": "object"
     },
+    "OrderLineInformationDTO": {
+      "properties": {
+        "departmentId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "orderLineAmountExVat": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "orderLineAmountExVatCurrency": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "orderLineAmountIncVat": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "orderLineAmountIncVatCurrency": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "orderLineCost": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "orderLineCount": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "orderLineDeliveryDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "orderLineDescription": {
+          "type": "string"
+        },
+        "orderLinePeriodEnd": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "orderLinePeriodStart": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "orderLineUnitCost": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "orderlineUnitPrice": {
+          "$ref": "#/definitions/TlxNumber"
+        },
+        "position": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "postingDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "postingDescription": {
+          "type": "string"
+        },
+        "postingQuantity": {
+          "type": "string"
+        },
+        "projectId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "row": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "OrderLinePosting": {
       "properties": {
         "changes": {
@@ -40740,6 +41000,42 @@
       },
       "type": "object"
     },
+    "ProjectInfoDTO": {
+      "properties": {
+        "accountNumber": {
+          "type": "string"
+        },
+        "address": {
+          "type": "string"
+        },
+        "departmentId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "endDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "number": {
+          "type": "string"
+        },
+        "projectManager": {
+          "type": "string"
+        },
+        "startDate": {
+          "format": "date-time",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProjectInvoiceDetails": {
       "properties": {
         "amountOrderLinesAndReinvoicing": {
@@ -41635,6 +41931,21 @@
         "vatType": {
           "$ref": "#/definitions/VatType",
           "description": "The default vat type for this project."
+        }
+      },
+      "type": "object"
+    },
+    "ProjectsResponseDTO": {
+      "properties": {
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "projects": {
+          "items": {
+            "$ref": "#/definitions/ProjectInfoDTO"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -42730,19 +43041,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -42763,7 +43070,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -42787,7 +43093,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -45082,10 +45387,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperCopilotRequest": {
+    "ResponseWrapperCopilotResponse": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/CopilotRequest"
+          "$ref": "#/definitions/CopilotResponse"
         }
       },
       "type": "object"
@@ -45207,6 +45512,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/Department"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperDepartmentsResponseDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/DepartmentsResponseDTO"
         }
       },
       "type": "object"
@@ -45471,6 +45784,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ExternalProduct"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperExtractResponseDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ExtractResponseDTO"
         }
       },
       "type": "object"
@@ -46812,6 +47133,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ProjectTemplate"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperProjectsResponseDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ProjectsResponseDTO"
         }
       },
       "type": "object"
@@ -50529,6 +50858,12 @@
     },
     "SalesForceAccountInfo": {
       "properties": {
+        "accountOwnerId": {
+          "description": "Employee id of the admin added when the account was created",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
         "activeMainModule": {
           "description": "Active main module",
           "enum": [
@@ -54471,6 +54806,37 @@
       },
       "required": [
         "supplier"
+      ],
+      "type": "object"
+    },
+    "SupportAIConversationMessage": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "response": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "response"
       ],
       "type": "object"
     },
@@ -66448,6 +66814,20 @@
             "type": "string"
           },
           {
+            "description": "Name",
+            "in": "query",
+            "name": "customerName",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Phone number mobile",
+            "in": "query",
+            "name": "phoneNumberMobile",
+            "required": false,
+            "type": "string"
+          },
+          {
             "default": false,
             "description": "Equals",
             "in": "query",
@@ -72280,6 +72660,117 @@
         "summary": "[BETA] Get example webhook payload",
         "tags": [
           "event"
+        ]
+      }
+    },
+    "/internal/optimus-voucher/extract": {
+      "post": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "InternalOptimus-voucherExtract_extract",
+        "parameters": [
+          {
+            "description": "The OptimusVoucherRequestDTO JSON",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LLMVoucherAutomationExtractRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperExtractResponseDTO"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Extract vouchers for voucher automation project",
+        "tags": [
+          "optimus-voucher"
+        ]
+      }
+    },
+    "/internal/optimus-voucher/extract-departments": {
+      "post": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "InternalOptimus-voucherExtract-departments_extractDepartments",
+        "parameters": [
+          {
+            "description": "The OptimusVoucherRequestDTO JSON",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LLMVoucherAutomationCompanyInfoRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperDepartmentsResponseDTO"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "LLMVoucherAutomation: Extract department information for a specific company",
+        "tags": [
+          "optimus-voucher"
+        ]
+      }
+    },
+    "/internal/optimus-voucher/extract-projects": {
+      "post": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "InternalOptimus-voucherExtract-projects_extractProjects",
+        "parameters": [
+          {
+            "description": "The OptimusVoucherRequestDTO JSON",
+            "in": "body",
+            "name": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/LLMVoucherAutomationCompanyInfoRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperProjectsResponseDTO"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "LLMVoucherAutomation: Extract projects information for a specific company",
+        "tags": [
+          "optimus-voucher"
         ]
       }
     },
@@ -97878,6 +98369,12 @@
     },
     {
       "name": "internalcopilot"
+    },
+    {
+      "name": "internaloptimus-voucher"
+    },
+    {
+      "name": "optimus-voucher"
     },
     {
       "name": "country"
