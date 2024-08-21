@@ -9276,6 +9276,14 @@
           ],
           "type": "string"
         },
+        "feedback": {
+          "enum": [
+            "NO_FEEDBACK",
+            "THUMBS_UP",
+            "THUMBS_DOWN"
+          ],
+          "type": "string"
+        },
         "id": {
           "format": "int64",
           "type": "integer"
@@ -10831,7 +10839,8 @@
           "type": "integer"
         },
         "mobileSubscription": {
-          "$ref": "#/definitions/MobileSubscription"
+          "$ref": "#/definitions/MobileSubscription",
+          "readOnly": true
         },
         "url": {
           "readOnly": true,
@@ -43041,15 +43050,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -43070,6 +43083,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -43093,6 +43107,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -72664,7 +72679,7 @@
       }
     },
     "/internal/optimus-voucher/extract": {
-      "post": {
+      "get": {
         "consumes": [
           "application/json; charset=utf-8"
         ],
@@ -72679,11 +72694,18 @@
             "schema": {
               "$ref": "#/definitions/LLMVoucherAutomationExtractRequest"
             }
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "successfully created",
+            "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/ResponseWrapperExtractResponseDTO"
             }
@@ -72701,7 +72723,7 @@
       }
     },
     "/internal/optimus-voucher/extract-departments": {
-      "post": {
+      "get": {
         "consumes": [
           "application/json; charset=utf-8"
         ],
@@ -72716,11 +72738,18 @@
             "schema": {
               "$ref": "#/definitions/LLMVoucherAutomationCompanyInfoRequest"
             }
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "successfully created",
+            "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/ResponseWrapperDepartmentsResponseDTO"
             }
@@ -72738,7 +72767,7 @@
       }
     },
     "/internal/optimus-voucher/extract-projects": {
-      "post": {
+      "get": {
         "consumes": [
           "application/json; charset=utf-8"
         ],
@@ -72753,11 +72782,18 @@
             "schema": {
               "$ref": "#/definitions/LLMVoucherAutomationCompanyInfoRequest"
             }
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "successfully created",
+            "description": "successful operation",
             "schema": {
               "$ref": "#/definitions/ResponseWrapperProjectsResponseDTO"
             }
@@ -98725,7 +98761,7 @@
       "name": "lookup"
     },
     {
-      "name": "mobileAppregisterDevice"
+      "name": "mobileAppsubscription"
     },
     {
       "name": "mobileAppplantScore"
