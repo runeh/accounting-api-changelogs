@@ -25341,6 +25341,39 @@
       },
       "type": "object"
     },
+    "ListResponseCopilotResponse": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/CopilotResponse"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseCost": {
       "properties": {
         "count": {
@@ -30741,6 +30774,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/SupplierProduct"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseSupportDashboardCustomer": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SupportDashboardCustomer"
           },
           "readOnly": true,
           "type": "array"
@@ -49796,17 +49862,17 @@
     },
     "SalaryV2OverviewReimbursements": {
       "properties": {
+        "ameldingDueDate": {
+          "type": "string"
+        },
+        "ameldingStatus": {
+          "readOnly": true,
+          "type": "string"
+        },
         "ameldingWageId": {
           "format": "int32",
           "readOnly": true,
           "type": "integer"
-        },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
         },
         "datePeriod": {
           "readOnly": true,
@@ -49818,14 +49884,7 @@
         },
         "id": {
           "format": "int64",
-          "type": "integer"
-        },
-        "url": {
           "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
           "type": "integer"
         },
         "voucherDate": {
@@ -49837,15 +49896,6 @@
           "type": "integer"
         },
         "voucherNumberAsString": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "wagePeriodTransactionId": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "wagePeriodTransactionVoucherNumber": {
           "readOnly": true,
           "type": "string"
         }
@@ -50119,17 +50169,17 @@
     },
     "SalaryV2PensionVoucher": {
       "properties": {
+        "ameldingDueDate": {
+          "type": "string"
+        },
+        "ameldingStatus": {
+          "readOnly": true,
+          "type": "string"
+        },
         "ameldingWageId": {
           "format": "int32",
           "readOnly": true,
           "type": "integer"
-        },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
         },
         "datePeriod": {
           "readOnly": true,
@@ -50141,14 +50191,7 @@
         },
         "id": {
           "format": "int64",
-          "type": "integer"
-        },
-        "url": {
           "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
           "type": "integer"
         },
         "voucherDate": {
@@ -50160,15 +50203,6 @@
           "type": "integer"
         },
         "voucherNumberAsString": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "wagePeriodTransactionId": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "wagePeriodTransactionVoucherNumber": {
           "readOnly": true,
           "type": "string"
         }
@@ -50792,17 +50826,17 @@
     },
     "SalaryV2VoucherOverview": {
       "properties": {
+        "ameldingDueDate": {
+          "type": "string"
+        },
+        "ameldingStatus": {
+          "readOnly": true,
+          "type": "string"
+        },
         "ameldingWageId": {
           "format": "int32",
           "readOnly": true,
           "type": "integer"
-        },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
         },
         "comment": {
           "maxLength": 16777215,
@@ -50814,6 +50848,7 @@
           "type": "integer"
         },
         "datePeriod": {
+          "readOnly": true,
           "type": "string"
         },
         "displayName": {
@@ -50822,6 +50857,7 @@
         },
         "id": {
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "isReversed": {
@@ -50838,14 +50874,6 @@
         "reversedVoucherDisplayName": {
           "readOnly": true,
           "type": "string"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
         },
         "voucherDate": {
           "type": "string"
@@ -54880,6 +54908,57 @@
         },
         "sseUrl": {
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SupportDashboardCustomer": {
+      "properties": {
+        "bankrupt": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "category2": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "category3": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "endDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "excludedFromDeletion": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "excludedFromDisabling": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "orgNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "startDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "tripletexCompanyId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "tripletexCustomerId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -91202,6 +91281,61 @@
         ]
       }
     },
+    "/supportDashboard/bankruptAndExcludedCustomers": {
+      "get": {
+        "description": "",
+        "operationId": "SupportDashboardBankruptAndExcludedCustomers_getBankruptAndExcludedCustomers",
+        "parameters": [
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseSupportDashboardCustomer"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Returns the customers for support dashboard.",
+        "tags": [
+          "supportDashboard"
+        ]
+      }
+    },
     "/timesheet/allocated": {
       "get": {
         "description": "",
@@ -99254,6 +99388,9 @@
     },
     {
       "name": "supportAccessrequestread"
+    },
+    {
+      "name": "supportDashboard"
     },
     {
       "name": "surveyFeedback"
