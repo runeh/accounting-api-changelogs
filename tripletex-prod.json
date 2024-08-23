@@ -10480,6 +10480,34 @@
     "DatabaseComponentAuthorizationManagerRequestlogModel": {
       "type": "object"
     },
+    "DatabaseMigrationGroup": {
+      "properties": {
+        "group": {
+          "$ref": "#/definitions/MigrationGroup",
+          "readOnly": true
+        },
+        "migrations": {
+          "items": {
+            "$ref": "#/definitions/MigrationTypeSchemaVersion"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DatabaseMigrationSummary": {
+      "properties": {
+        "migrationGroups": {
+          "items": {
+            "$ref": "#/definitions/DatabaseMigrationGroup"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "DataflytValidationDTO": {
       "properties": {
         "validationMessageCode": {
@@ -32675,6 +32703,80 @@
     "MessageBodyWorkers": {
       "type": "object"
     },
+    "MigrationGroup": {
+      "properties": {
+        "displayName": {
+          "type": "string"
+        },
+        "migrationCategory": {
+          "enum": [
+            "Structure",
+            "Data"
+          ],
+          "type": "string"
+        },
+        "migrationScope": {
+          "enum": [
+            "Common",
+            "Production",
+            "Api",
+            "Cactus",
+            "BugBounty"
+          ],
+          "type": "string"
+        },
+        "migrationSource": {
+          "enum": [
+            "TripletexMigrations",
+            "Tripletex"
+          ],
+          "type": "string"
+        },
+        "shardGroup": {
+          "enum": [
+            "GLOBAL",
+            "COMPANY"
+          ],
+          "type": "string"
+        },
+        "tableName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MigrationTypeSchemaVersion": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "schemaVersions": {
+          "items": {
+            "$ref": "#/definitions/SchemaVersion"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "shard": {
+          "$ref": "#/definitions/Shard",
+          "readOnly": true
+        },
+        "shardGroup": {
+          "enum": [
+            "GLOBAL",
+            "COMPANY"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "tableName": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MileageAllowance": {
       "properties": {
         "amount": {
@@ -45572,6 +45674,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperDatabaseMigrationSummary": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/DatabaseMigrationSummary"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperDate": {
       "properties": {
         "value": {
@@ -51763,6 +51873,29 @@
       ],
       "type": "object"
     },
+    "SchemaVersion": {
+      "properties": {
+        "executionTime": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "installedRank": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "script": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "success": {
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "SearchCompletionDTO": {
       "properties": {
         "address": {
@@ -52467,6 +52600,28 @@
         "expirationDate",
         "token"
       ],
+      "type": "object"
+    },
+    "Shard": {
+      "properties": {
+        "allowConnections": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "global": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "ShardInfo": {
@@ -98362,6 +98517,9 @@
     },
     {
       "name": "internalsystemMessage"
+    },
+    {
+      "name": "internaldatabaseoverview"
     },
     {
       "name": "altinninstance"
