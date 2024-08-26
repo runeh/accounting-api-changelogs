@@ -3366,6 +3366,19 @@
       },
       "type": "object"
     },
+    "AutocompleteSuggestion": {
+      "properties": {
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AutomationRuleDetails": {
       "properties": {
         "accountId": {
@@ -5037,9 +5050,16 @@
           "readOnly": true,
           "type": "array"
         },
+        "companyLiquidatedYear": {
+          "format": "int32",
+          "type": "integer"
+        },
         "id": {
           "format": "int64",
           "type": "integer"
+        },
+        "isCompanyLiquidated": {
+          "type": "boolean"
         },
         "nationalIdentityNumber": {
           "maxLength": 100,
@@ -10723,6 +10743,9 @@
         "id": {
           "format": "int64",
           "type": "integer"
+        },
+        "isCompanyVVS": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -24346,6 +24369,39 @@
       },
       "type": "object"
     },
+    "ListResponseAutocompleteSuggestion": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AutocompleteSuggestion"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseAutopayBankAgreement": {
       "properties": {
         "count": {
@@ -29977,6 +30033,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/RiskFreeInterestRate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseRoutePoint": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/RoutePoint"
           },
           "readOnly": true,
           "type": "array"
@@ -41185,6 +41274,9 @@
         "address": {
           "type": "string"
         },
+        "comment": {
+          "type": "string"
+        },
         "departmentId": {
           "format": "int64",
           "type": "integer"
@@ -41197,10 +41289,26 @@
           "format": "int64",
           "type": "integer"
         },
+        "latestPeriodEndDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "latestPeriodStartDate": {
+          "format": "date-time",
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
         "number": {
+          "type": "string"
+        },
+        "periodEndDate": {
+          "format": "date-time",
+          "type": "string"
+        },
+        "periodStartDate": {
+          "format": "date-time",
           "type": "string"
         },
         "projectManager": {
@@ -49007,6 +49115,19 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RoutePoint": {
+      "properties": {
+        "latitude": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "longitude": {
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -99063,6 +99184,9 @@
     },
     {
       "name": "mobileAppnotifyEmployee"
+    },
+    {
+      "name": "mobileAppplaces"
     },
     {
       "name": "mobileAppsettings"
