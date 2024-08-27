@@ -3366,19 +3366,6 @@
       },
       "type": "object"
     },
-    "AutocompleteSuggestion": {
-      "properties": {
-        "description": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "id": {
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "AutomationRuleDetails": {
       "properties": {
         "accountId": {
@@ -17225,7 +17212,7 @@
         "paymentPostings": {
           "description": "Payment postings",
           "items": {
-            "$ref": "#/definitions/IncomeVoucherPosting"
+            "$ref": "#/definitions/IncomeVoucherPaymentPosting"
           },
           "type": "array"
         },
@@ -17242,7 +17229,7 @@
       },
       "type": "object"
     },
-    "IncomeVoucherPosting": {
+    "IncomeVoucherPaymentPosting": {
       "properties": {
         "account": {
           "$ref": "#/definitions/Account"
@@ -17253,7 +17240,7 @@
         "asset": {
           "$ref": "#/definitions/Asset"
         },
-        "client": {
+        "clientId": {
           "type": "string"
         },
         "customer": {
@@ -17273,6 +17260,62 @@
         },
         "paymentType": {
           "$ref": "#/definitions/PaymentType"
+        },
+        "posting": {
+          "$ref": "#/definitions/Posting"
+        },
+        "product": {
+          "$ref": "#/definitions/Product"
+        },
+        "productUnit1": {
+          "$ref": "#/definitions/ProductUnit"
+        },
+        "productUnit2": {
+          "$ref": "#/definitions/ProductUnit"
+        },
+        "project": {
+          "$ref": "#/definitions/Project"
+        },
+        "quantity1": {
+          "type": "number"
+        },
+        "quantity2": {
+          "type": "number"
+        },
+        "vatType": {
+          "$ref": "#/definitions/VatType"
+        }
+      },
+      "type": "object"
+    },
+    "IncomeVoucherPosting": {
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/Account"
+        },
+        "amount": {
+          "type": "number"
+        },
+        "asset": {
+          "$ref": "#/definitions/Asset"
+        },
+        "clientId": {
+          "type": "string"
+        },
+        "customer": {
+          "$ref": "#/definitions/Customer"
+        },
+        "date": {
+          "type": "string"
+        },
+        "department": {
+          "$ref": "#/definitions/Department"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee"
+        },
+        "incomeDescription": {
+          "type": "string"
         },
         "posting": {
           "$ref": "#/definitions/Posting"
@@ -24369,39 +24412,6 @@
       },
       "type": "object"
     },
-    "ListResponseAutocompleteSuggestion": {
-      "properties": {
-        "count": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/AutocompleteSuggestion"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ListResponseAutopayBankAgreement": {
       "properties": {
         "count": {
@@ -30033,39 +30043,6 @@
         "values": {
           "items": {
             "$ref": "#/definitions/RiskFreeInterestRate"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListResponseRoutePoint": {
-      "properties": {
-        "count": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/RoutePoint"
           },
           "readOnly": true,
           "type": "array"
@@ -43326,19 +43303,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -43359,7 +43332,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -43383,7 +43355,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -49119,19 +49090,6 @@
       },
       "type": "object"
     },
-    "RoutePoint": {
-      "properties": {
-        "latitude": {
-          "readOnly": true,
-          "type": "number"
-        },
-        "longitude": {
-          "readOnly": true,
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
     "RushHoursToll": {
       "properties": {
         "days": {
@@ -54720,25 +54678,6 @@
           "minimum": 0,
           "type": "integer"
         },
-        "automaticallyPostedInvoicesLast10Count": {
-          "description": "Number automatically of the latest 10 posted invoices",
-          "format": "int32",
-          "minimum": 0,
-          "readOnly": true,
-          "type": "integer"
-        },
-        "automaticallyPostedInvoicesLast10CountAutomation": {
-          "description": "Number automatically of the latest 10 posted invoices",
-          "format": "int32",
-          "minimum": 0,
-          "type": "integer"
-        },
-        "automaticallyPostedInvoicesLast10CountAutomationRule": {
-          "description": "Number automatically of the latest 10 posted invoices",
-          "format": "int32",
-          "minimum": 0,
-          "type": "integer"
-        },
         "automationRulesDetails": {
           "$ref": "#/definitions/AutomationRuleDetails",
           "description": "The vendor rule details of the vendor if he/she has chosen to have his own rules on the automation instead of FabricAi."
@@ -54746,18 +54685,6 @@
         "canSendEhf": {
           "description": "Whether the vendor can send EHF",
           "type": "boolean"
-        },
-        "category": {
-          "description": "Automation category. 0-3.",
-          "format": "int32",
-          "minimum": 0,
-          "type": "integer"
-        },
-        "completedInvoices": {
-          "description": "Number of invoices with status completed based on the last 10 invoices.",
-          "format": "int32",
-          "minimum": 0,
-          "type": "integer"
         },
         "dateRequestEhfSent": {
           "description": "The date the user has sent the request to a supplier to receive EHF.",
@@ -54776,22 +54703,6 @@
         "name": {
           "type": "string"
         },
-        "notAutomaticallyPostedInvoicesLast10Count": {
-          "description": "Number of not automatically of the latest 10 posted invoices",
-          "format": "int32",
-          "minimum": 0,
-          "readOnly": true,
-          "type": "integer"
-        },
-        "notCompletedInvoices": {
-          "description": "Number of invoices with status not completed based on the last 10 invoices.",
-          "format": "int32",
-          "minimum": 0,
-          "type": "integer"
-        },
-        "number": {
-          "type": "string"
-        },
         "paymentTypeFabricAi": {
           "description": "If set, the payment type to be used when automating an invoice from this vendor.",
           "format": "int64",
@@ -54800,6 +54711,15 @@
         },
         "paymentTypeName": {
           "description": "Description of the payment type",
+          "type": "string"
+        },
+        "readyForAutomation": {
+          "description": "Ready for automation status",
+          "enum": [
+            "NOT_SENDING_EHF",
+            "TRAINING_IN_PROGRESS",
+            "READY"
+          ],
           "type": "string"
         },
         "vendorAccountNumber": {
@@ -54841,7 +54761,6 @@
         "canSendEhf",
         "email",
         "name",
-        "number",
         "vendorAccountNumber",
         "vendorId"
       ],
@@ -99184,9 +99103,6 @@
     },
     {
       "name": "mobileAppnotifyEmployee"
-    },
-    {
-      "name": "mobileAppplaces"
     },
     {
       "name": "mobileAppsettings"
