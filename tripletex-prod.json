@@ -3366,6 +3366,19 @@
       },
       "type": "object"
     },
+    "AutocompleteSuggestion": {
+      "properties": {
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AutomationRuleDetails": {
       "properties": {
         "accountId": {
@@ -24412,6 +24425,39 @@
       },
       "type": "object"
     },
+    "ListResponseAutocompleteSuggestion": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AutocompleteSuggestion"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseAutopayBankAgreement": {
       "properties": {
         "count": {
@@ -30055,6 +30101,39 @@
       },
       "type": "object"
     },
+    "ListResponseRoutePoint": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/RoutePoint"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseSalaryAndPensionAccountInfo": {
       "properties": {
         "count": {
@@ -33013,6 +33092,25 @@
           "minimum": 0,
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "MobileAppNotification": {
+      "properties": {
+        "event": {
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "subscriptionId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "value": {
+          "$ref": "#/definitions/Notification"
         }
       },
       "type": "object"
@@ -43303,15 +43401,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -43332,6 +43434,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -43355,6 +43458,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -49086,6 +49190,19 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RoutePoint": {
+      "properties": {
+        "latitude": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "longitude": {
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -99103,6 +99220,9 @@
     },
     {
       "name": "mobileAppnotifyEmployee"
+    },
+    {
+      "name": "mobileAppplaces"
     },
     {
       "name": "mobileAppsettings"
