@@ -9237,7 +9237,7 @@
         "model": {
           "enum": [
             "SUPPORT_ARTICLES",
-            "KONTOHJELPEN",
+            "ACCOUNTPLAN",
             "DATA_ANALYZER",
             "TRIPLETEX_COPILOT",
             "TEST",
@@ -12503,6 +12503,9 @@
     "DynamicFormField": {
       "properties": {
         "index": {
+          "type": "string"
+        },
+        "tag": {
           "type": "string"
         },
         "type": {
@@ -23024,6 +23027,9 @@
         },
         "invoiceFromEmail": {
           "type": "string"
+        },
+        "invoiceShowOrderNumber": {
+          "type": "boolean"
         },
         "invoicesDueIn": {
           "description": "Sets the default value on customers for number of days/months in which invoices created from this order is due",
@@ -46174,6 +46180,17 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/FavoriteMenu"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperFieldValues": {
+      "properties": {
+        "value": {
+          "additionalProperties": {
+            "$ref": "#/definitions/ObjectNode"
+          },
+          "type": "object"
         }
       },
       "type": "object"
