@@ -8587,6 +8587,21 @@
       },
       "type": "object"
     },
+    "CompanyResponseDTO": {
+      "properties": {
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "isVVS": {
+          "type": "boolean"
+        },
+        "name": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CompanyStandardTime": {
       "properties": {
         "changes": {
@@ -10646,6 +10661,12 @@
     },
     "Department": {
       "properties": {
+        "businessActivityTypeId": {
+          "description": "The business activity type for this department. Business activity types can be used to separate between different tax categories, and between general and primary VAT reports.  A posting done with a given departmentId, will belong to the business activity type defined on the department.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -10719,12 +10740,18 @@
     },
     "DepartmentInfoDTO": {
       "properties": {
+        "departmentManager": {
+          "type": "string"
+        },
         "description": {
           "type": "string"
         },
         "id": {
           "format": "int64",
           "type": "integer"
+        },
+        "isActive": {
+          "type": "boolean"
         },
         "name": {
           "type": "string"
@@ -10743,9 +10770,6 @@
         "id": {
           "format": "int64",
           "type": "integer"
-        },
-        "isCompanyVVS": {
-          "type": "boolean"
         }
       },
       "type": "object"
@@ -13976,12 +14000,9 @@
           "format": "int64",
           "type": "integer"
         },
-        "companyName": {
-          "type": "string"
-        },
         "invoices": {
           "items": {
-            "$ref": "#/definitions/InvoiceWithEHFAndOrderLinesDTO"
+            "$ref": "#/definitions/InvoiceWithEHFDTO"
           },
           "type": "array"
         }
@@ -23298,7 +23319,7 @@
       },
       "type": "object"
     },
-    "InvoiceWithEHFAndOrderLinesDTO": {
+    "InvoiceWithEHFDTO": {
       "properties": {
         "departmentIdsFromVoucher": {
           "items": {
@@ -23313,12 +23334,6 @@
         "invoiceId": {
           "format": "int64",
           "type": "integer"
-        },
-        "orderLines": {
-          "items": {
-            "$ref": "#/definitions/OrderLineInformationDTO"
-          },
-          "type": "array"
         },
         "projectIdsFromVoucher": {
           "items": {
@@ -23453,10 +23468,10 @@
       "type": "object"
     },
     "LLMVoucherAutomationCompanyInfoRequest": {
-      "description": "LLMVoucherAutomation Company, projects, and departments info Data Transfer Object",
+      "description": "LLMVoucherAutomation request Data Transfer Object for information on departments for a single company",
       "properties": {
         "companyId": {
-          "description": "The companyId to extract vouchers for",
+          "description": "The companyId to extract data for",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -23498,6 +23513,33 @@
         "date",
         "ignoreEHF",
         "limit"
+      ],
+      "type": "object"
+    },
+    "LLMVoucherAutomationProjectsRequest": {
+      "description": "LLMVoucherAutomation request Data Transfer Object for information on projects for a company",
+      "properties": {
+        "companyId": {
+          "description": "The companyId to extract data for",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "endDate": {
+          "description": "The date to end the extraction for",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startDate": {
+          "description": "The date to begin extraction for",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "required": [
+        "companyId",
+        "endDate",
+        "startDate"
       ],
       "type": "object"
     },
@@ -35061,76 +35103,6 @@
       },
       "type": "object"
     },
-    "OrderLineInformationDTO": {
-      "properties": {
-        "departmentId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "orderLineAmountExVat": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "orderLineAmountExVatCurrency": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "orderLineAmountIncVat": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "orderLineAmountIncVatCurrency": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "orderLineCost": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "orderLineCount": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "orderLineDeliveryDate": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "orderLineDescription": {
-          "type": "string"
-        },
-        "orderLinePeriodEnd": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "orderLinePeriodStart": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "orderLineUnitCost": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "orderlineUnitPrice": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "position": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "postingDate": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "postingDescription": {
-          "type": "string"
-        },
-        "postingQuantity": {
-          "type": "string"
-        },
-        "projectId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "row": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
     "OrderLinePosting": {
       "properties": {
         "changes": {
@@ -39387,7 +39359,7 @@
           "type": "integer"
         },
         "multipleIndustries": {
-          "description": "True if multiple industries are enabled, false if not.  If enabled, business activity types can be used to separate between different tax categories, and between general and common VAT reports. This is done by setting a business activity type on the departments, as well as setting a default business activity type.",
+          "description": "True if multiple industries are enabled, false if not.  If enabled, business activity types can be used to separate between different tax categories, and between general and primary VAT reports. This is done by setting a business activity type on the departments, as well as setting a default business activity type.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -41386,26 +41358,13 @@
           "format": "int64",
           "type": "integer"
         },
-        "latestPeriodEndDate": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "latestPeriodStartDate": {
-          "format": "date-time",
-          "type": "string"
+        "isActive": {
+          "type": "boolean"
         },
         "name": {
           "type": "string"
         },
         "number": {
-          "type": "string"
-        },
-        "periodEndDate": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "periodStartDate": {
-          "format": "date-time",
           "type": "string"
         },
         "projectManager": {
@@ -45689,6 +45648,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CompanyModules"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperCompanyResponseDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CompanyResponseDTO"
         }
       },
       "type": "object"
@@ -54509,6 +54476,11 @@
         "date": {
           "type": "string"
         },
+        "discrepancySum": {
+          "description": "Discrepancy sum",
+          "readOnly": true,
+          "type": "number"
+        },
         "id": {
           "format": "int64",
           "type": "integer"
@@ -54541,6 +54513,11 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        },
+        "warehouseValue": {
+          "description": "Warehouse value",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "required": [
@@ -73102,138 +73079,6 @@
         ]
       }
     },
-    "/internal/optimus-voucher/extract": {
-      "get": {
-        "consumes": [
-          "application/json; charset=utf-8"
-        ],
-        "description": "",
-        "operationId": "InternalOptimus-voucherExtract_extract",
-        "parameters": [
-          {
-            "description": "The OptimusVoucherRequestDTO JSON",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/LLMVoucherAutomationExtractRequest"
-            }
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperExtractResponseDTO"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Extract vouchers for voucher automation project",
-        "tags": [
-          "optimus-voucher"
-        ]
-      }
-    },
-    "/internal/optimus-voucher/extract-departments": {
-      "get": {
-        "consumes": [
-          "application/json; charset=utf-8"
-        ],
-        "description": "",
-        "operationId": "InternalOptimus-voucherExtract-departments_extractDepartments",
-        "parameters": [
-          {
-            "description": "The OptimusVoucherRequestDTO JSON",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/LLMVoucherAutomationCompanyInfoRequest"
-            }
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperDepartmentsResponseDTO"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "LLMVoucherAutomation: Extract department information for a specific company",
-        "tags": [
-          "optimus-voucher"
-        ]
-      }
-    },
-    "/internal/optimus-voucher/extract-projects": {
-      "get": {
-        "consumes": [
-          "application/json; charset=utf-8"
-        ],
-        "description": "",
-        "operationId": "InternalOptimus-voucherExtract-projects_extractProjects",
-        "parameters": [
-          {
-            "description": "The OptimusVoucherRequestDTO JSON",
-            "in": "body",
-            "name": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/LLMVoucherAutomationCompanyInfoRequest"
-            }
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperProjectsResponseDTO"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "LLMVoucherAutomation: Extract projects information for a specific company",
-        "tags": [
-          "optimus-voucher"
-        ]
-      }
-    },
     "/inventory": {
       "get": {
         "description": "",
@@ -73862,7 +73707,6 @@
         "operationId": "InventoryStocktaking_post",
         "parameters": [
           {
-            "description": "[DEPRECATED]",
             "enum": [
               "ALL_PRODUCTS_WITH_INVENTORIES",
               "INCLUDE_PRODUCTS",
@@ -98889,10 +98733,7 @@
       "name": "internalcopilot"
     },
     {
-      "name": "internaloptimus-voucher"
-    },
-    {
-      "name": "optimus-voucher"
+      "name": "internalllm-voucher-automation"
     },
     {
       "name": "country"
