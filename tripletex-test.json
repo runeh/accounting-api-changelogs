@@ -9307,7 +9307,9 @@
             "NO_ERROR",
             "OTHER_ERROR",
             "COPILOT_INVALID_FORMAT",
-            "SUPPORT_AI_SERVER_ERROR"
+            "SUPPORT_AI_SERVER_ERROR",
+            "SUPPORT_AI_SERVER_UNAVAILABLE",
+            "COPILOT_INCOMPLETE_RESPONSE"
           ],
           "type": "string"
         },
@@ -23474,7 +23476,7 @@
       "type": "object"
     },
     "LLMVoucherAutomationCompanyInfoRequest": {
-      "description": "LLMVoucherAutomation request Data Transfer Object for information on a single company",
+      "description": "LLMVoucherAutomation request Data Transfer Object for information on departments for a single company",
       "properties": {
         "companyId": {
           "description": "The companyId to extract data for",
@@ -55257,6 +55259,14 @@
           "type": "boolean"
         },
         "excludedFromDisabling": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "forceLiquidated": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "liquidated": {
           "readOnly": true,
           "type": "boolean"
         },
