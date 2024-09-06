@@ -33509,6 +33509,9 @@
         "moduleLogistics": {
           "type": "boolean"
         },
+        "moduleLogisticsLight": {
+          "type": "boolean"
+        },
         "moduleProduct": {
           "type": "boolean"
         },

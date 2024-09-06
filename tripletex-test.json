@@ -23476,7 +23476,7 @@
       "type": "object"
     },
     "LLMVoucherAutomationCompanyInfoRequest": {
-      "description": "LLMVoucherAutomation request Data Transfer Object for information on departments for a single company",
+      "description": "LLMVoucherAutomation request Data Transfer Object for information on a single company",
       "properties": {
         "companyId": {
           "description": "The companyId to extract data for",
@@ -33507,6 +33507,9 @@
           "type": "boolean"
         },
         "moduleLogistics": {
+          "type": "boolean"
+        },
+        "moduleLogisticsLight": {
           "type": "boolean"
         },
         "moduleProduct": {
