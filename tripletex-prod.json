@@ -42861,7 +42861,7 @@
           "type": "string"
         },
         "employeeId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "periodId": {
@@ -43081,7 +43081,7 @@
           "type": "integer"
         },
         "projectId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         }
       },

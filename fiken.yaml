@@ -207,7 +207,7 @@ info:
     | https://api.fiken.no/api/v2/companies/{companySlug}/accountBalances    | Yes         | No        |                                       | Yes         | fromAccount, toAccount                                                                                                                  |
     | https://api.fiken.no/api/v2/companies/{companySlug}/bankAccounts       | Yes         | No        |                                       | Yes         | inactive                                                                                                                                |
     | https://api.fiken.no/api/v2/companies/{companySlug}/contacts           | Yes         | Yes       | createdDate, lastModified             | Yes         | supplierNumber, customerNumber, memberNumber, name, organizationNumber, email, group, lastModified, createdDate, inactive, phoneNumber  |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/creditNotes        | Yes         | No        |                                       | Yes         | issueDate, settled, customerId                                                                                                          |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/creditNotes        | Yes         | No        |                                       | Yes         | issueDate, lastModified, settled, customerId                                                                                            |
     | https://api.fiken.no/api/v2/companies/{companySlug}/inbox              | Yes         | Yes       | createdDate, name                     | Yes         | status, name                                                                                                                            |
     | https://api.fiken.no/api/v2/companies/{companySlug}/invoices           | Yes         | No        |                                       | Yes         | issueDate, lastModified, settled, customerId, orderReference, invoiceDraftUuid                                                          |
     | https://api.fiken.no/api/v2/companies/{companySlug}/invoices/drafts    | Yes         | No        |                                       | No          |                                                                                                                                         |
@@ -330,7 +330,9 @@ paths:
                 $ref: '#/components/schemas/userinfo'
   /companies:
     get:
-      description: Returns all companies from the system that the user has access to
+      description: |
+        Returns all companies from the system that the user has access to. The user can update which companies a given app has 
+        access to in Fiken under Brukerinnstillinger -> Sikkerhet -> Apper du har gitt tilgang til.
       operationId: getCompanies
       tags:
         - companies
@@ -1690,6 +1692,11 @@ paths:
         - $ref: '#/components/parameters/issueDateLt'
         - $ref: '#/components/parameters/issueDateGe'
         - $ref: '#/components/parameters/issueDateGt'
+        - $ref: '#/components/parameters/lastModified'
+        - $ref: '#/components/parameters/lastModifiedLe'
+        - $ref: '#/components/parameters/lastModifiedLt'
+        - $ref: '#/components/parameters/lastModifiedGe'
+        - $ref: '#/components/parameters/lastModifiedGt'
         - name: customerId
           in: query
           description: |
@@ -4033,7 +4040,7 @@ components:
           maxLength: 200
         customerNumber:
           type: integer
-          format: int64
+          format: int32
           example: 51248
           readOnly: true
         customerAccountCode:
@@ -4053,7 +4060,7 @@ components:
           description: A number that can be used to connect a contact to your own data.
         supplierNumber:
           type: integer
-          format: int64
+          format: int32
           readOnly: true
         supplierAccountCode:
           type: string
@@ -4294,6 +4301,12 @@ components:
           format: date
           example: '2018-04-03'
           description: Issue date of the credit note, format yyyy-mm-dd
+        lastModifiedDate:
+          type: string
+          format: date
+          example: '2024-04-03'
+          readOnly: true
+          description: Date that the credit note was last modified in Fiken, format yyyy-mm-dd.
         settled:
           type: boolean
           example: true
@@ -4402,7 +4415,6 @@ components:
           description: Due date of draft, format yyyy-mm-dd
         invoiceNumber:
           type: string
-          format: int64
           example: 'NOEE2888156'
           description: If invoice associated with draft, this is the invoice number (not to be confused with the invoiceId of an invoice issued from Fiken)
         contactId:
@@ -5305,14 +5317,17 @@ components:
           default: 'NOK'
           description: ISO 4217 currency code, default value is NOK
         contactId:
+          type: integer
           format: int64
           example: 9688154
           description: Contact associated with offer.
         contactPersonId:
+          type: integer
           format: int64
           example: 9688154
           description: Contact person associated with offer. Must belong to the provided contact.
         projectId:
+          type: integer
           format: int64
           example: 2815556
         archived:
@@ -5385,17 +5400,21 @@ components:
           default: 'NOK'
           description: ISO 4217 currency code, default value is NOK
         contactId:
+          type: integer
           format: int64
           example: 9688154
           description: Contact associated with offer.
         contactPersonId:
+          type: integer
           format: int64
           example: 9688154
           description: Contact person associated with the order confirmation. Must belong to given contact.
         projectId:
+          type: integer
           format: int64
           example: 2815556
         createdInvoice:
+          type: integer
           format: int64
           example: 2815556
           readOnly: true
@@ -5429,7 +5448,7 @@ components:
           example: 500
         account:
           type: string
-          example: 1500
+          example: '3000'
           description: Expense account (kostnadskonto) associated with payment.
         vatType:
           type: string
