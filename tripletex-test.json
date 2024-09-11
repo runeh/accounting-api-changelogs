@@ -9341,6 +9341,9 @@
           ],
           "type": "string"
         },
+        "sticosConversationMessage": {
+          "$ref": "#/definitions/SticosConversationMessage"
+        },
         "supportAIConversationMessage": {
           "$ref": "#/definitions/SupportAIConversationMessage"
         },
@@ -9357,6 +9360,7 @@
         "copilotRequest",
         "responseEndTimestamp",
         "responseStartTimestamp",
+        "sticosConversationMessage",
         "supportAIConversationMessage"
       ],
       "type": "object"
@@ -54372,6 +54376,52 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "SticosConversationMessage": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "confidence": {
+          "format": "int32",
+          "minimum": -1,
+          "type": "integer"
+        },
+        "flag": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "response": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "sessionId": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "flag",
+        "response",
+        "sessionId"
+      ],
       "type": "object"
     },
     "SticosResponseLink": {
