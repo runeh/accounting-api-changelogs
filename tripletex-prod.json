@@ -876,7 +876,7 @@
     "Activity": {
       "properties": {
         "activityType": {
-          "description": "PROJECT_SPECIFIC_ACTIVITY are made via project/projectactivity, as they must be part of a project.",
+          "description": "PROJECT_SPECIFIC_ACTIVITY are made via project/projectActivity, as they must be part of a project.",
           "enum": [
             "GENERAL_ACTIVITY",
             "PROJECT_GENERAL_ACTIVITY",
@@ -948,6 +948,9 @@
           "type": "integer"
         }
       },
+      "required": [
+        "activityType"
+      ],
       "type": "object"
     },
     "ActivityBuilder": {
@@ -23480,7 +23483,7 @@
       "type": "object"
     },
     "LLMVoucherAutomationCompanyInfoRequest": {
-      "description": "LLMVoucherAutomation request Data Transfer Object for information on a single company",
+      "description": "LLMVoucherAutomation request Data Transfer Object for information on departments for a single company",
       "properties": {
         "companyId": {
           "description": "The companyId to extract data for",
