@@ -8000,7 +8000,7 @@
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         },
         "isSuspended": {
@@ -35305,6 +35305,10 @@
         "autoPayKeyLastGeneratedDate": {
           "type": "string"
         },
+        "erpCustomerId": {
+          "format": "int64",
+          "type": "integer"
+        },
         "errorMessage": {
           "type": "string"
         },
@@ -35330,8 +35334,7 @@
         "ODPCompanyID",
         "ODPCustomerID",
         "autoPayKey",
-        "autoPayKeyLastGeneratedDate",
-        "pgRequestId",
+        "erpCustomerId",
         "tenantId"
       ],
       "type": "object"
@@ -43400,15 +43403,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -43429,6 +43436,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -43452,6 +43460,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -54405,6 +54414,13 @@
           "maxLength": 255,
           "type": "string"
         },
+        "sticosLinks": {
+          "description": "List of sticos sources",
+          "items": {
+            "$ref": "#/definitions/SticosLink"
+          },
+          "type": "array"
+        },
         "url": {
           "readOnly": true,
           "type": "string"
@@ -54418,6 +54434,52 @@
         "flag",
         "response",
         "sessionId"
+      ],
+      "type": "object"
+    },
+    "SticosLink": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "header": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "linkId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "linkUrl": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "title": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "header",
+        "linkId",
+        "linkUrl",
+        "title"
       ],
       "type": "object"
     },
@@ -55259,6 +55321,13 @@
           "maxLength": 65535,
           "type": "string"
         },
+        "supportaimatchedarticles": {
+          "description": "List of supportaimatchedarticles",
+          "items": {
+            "$ref": "#/definitions/SupportAIMatchedArticle"
+          },
+          "type": "array"
+        },
         "url": {
           "readOnly": true,
           "type": "string"
@@ -55270,6 +55339,40 @@
       },
       "required": [
         "response"
+      ],
+      "type": "object"
+    },
+    "SupportAIMatchedArticle": {
+      "properties": {
+        "articleUrl": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "usedInResponse": {
+          "type": "boolean"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "articleUrl"
       ],
       "type": "object"
     },
@@ -98738,6 +98841,9 @@
     },
     {
       "name": "platformAgnosticbankonboarding"
+    },
+    {
+      "name": "platformAgnostictestpgmigration"
     },
     {
       "name": "platformAgnosticcompany"
