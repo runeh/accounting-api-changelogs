@@ -4205,6 +4205,53 @@
       ],
       "type": "object"
     },
+    "BankMergerPeriod": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "description": {
+          "description": "The description of the bank after merger.",
+          "type": "string"
+        },
+        "endDate": {
+          "description": "The end date time of maintenance period.",
+          "type": "string"
+        },
+        "fromBanks": {
+          "description": "The banks that are merging.",
+          "items": {
+            "$ref": "#/definitions/Bank"
+          },
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "startDate": {
+          "description": "The start date time of maintenance period.",
+          "type": "string"
+        },
+        "toBank": {
+          "$ref": "#/definitions/Bank",
+          "description": "The bank into which merger is done."
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "BankOnboardingAccessRequestDTO": {
       "properties": {
         "id": {
@@ -24752,6 +24799,39 @@
       },
       "type": "object"
     },
+    "ListResponseBankMergerPeriod": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/BankMergerPeriod"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseBankReconciliation": {
       "properties": {
         "count": {
@@ -43403,19 +43483,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -43436,7 +43512,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -43460,7 +43535,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -55321,8 +55395,8 @@
           "maxLength": 65535,
           "type": "string"
         },
-        "supportaimatchedarticles": {
-          "description": "List of supportaimatchedarticles",
+        "supportAIMatchedArticles": {
+          "description": "List of supportAIMatchedArticles",
           "items": {
             "$ref": "#/definitions/SupportAIMatchedArticle"
           },
@@ -82024,6 +82098,43 @@
         ]
       }
     },
+    "/product/supplierProduct/getSupplierProductsByIds": {
+      "post": {
+        "description": "",
+        "operationId": "ProductSupplierProductGetSupplierProductsByIds_getSupplierProductsByIds",
+        "parameters": [
+          {
+            "description": "JSON representing updates to objects. Should have ID and version set.",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/SupplierProduct"
+              },
+              "type": "array"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ListResponseSupplierProduct"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Find the products by ids. Method was added as a POST because GET request header has a maximum size that we can exceed with customers that a lot of products.",
+        "tags": [
+          "product/supplierProduct"
+        ]
+      }
+    },
     "/product/supplierProduct/list": {
       "post": {
         "consumes": [
@@ -98835,6 +98946,9 @@
     },
     {
       "name": "bankmaintenance"
+    },
+    {
+      "name": "bankmerger"
     },
     {
       "name": "bankonboarding"
