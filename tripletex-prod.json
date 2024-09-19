@@ -4115,6 +4115,16 @@
     },
     "BankGlobals": {
       "properties": {
+        "accountantCompanyId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "actualEmployeeId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
         "companyName": {
           "readOnly": true,
           "type": "string"
@@ -4124,6 +4134,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "isActiveAccountantProxy": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isAuthAccountingSettings": {
           "readOnly": true,
           "type": "boolean"
@@ -4132,10 +4146,18 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isMySubscriptionAuth": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "loginEmployeeId": {
           "format": "int64",
           "readOnly": true,
           "type": "integer"
+        },
+        "orgNumber": {
+          "readOnly": true,
+          "type": "string"
         },
         "remitPaymentType": {
           "enum": [
@@ -8637,21 +8659,6 @@
       },
       "type": "object"
     },
-    "CompanyResponseDTO": {
-      "properties": {
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "isVVS": {
-          "type": "boolean"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "CompanyStandardTime": {
       "properties": {
         "changes": {
@@ -10788,42 +10795,6 @@
           "type": "string"
         },
         "number": {
-          "format": "int64",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "DepartmentInfoDTO": {
-      "properties": {
-        "departmentManager": {
-          "type": "string"
-        },
-        "description": {
-          "type": "string"
-        },
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "isActive": {
-          "type": "boolean"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "DepartmentsResponseDTO": {
-      "properties": {
-        "departments": {
-          "items": {
-            "$ref": "#/definitions/DepartmentInfoDTO"
-          },
-          "type": "array"
-        },
-        "id": {
           "format": "int64",
           "type": "integer"
         }
@@ -14052,21 +14023,6 @@
         "version": {
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ExtractResponseDTO": {
-      "properties": {
-        "companyId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "invoices": {
-          "items": {
-            "$ref": "#/definitions/InvoiceWithEHFDTO"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -23381,32 +23337,6 @@
       },
       "type": "object"
     },
-    "InvoiceWithEHFDTO": {
-      "properties": {
-        "departmentIdsFromVoucher": {
-          "items": {
-            "format": "int64",
-            "type": "integer"
-          },
-          "type": "array"
-        },
-        "ehfXML": {
-          "type": "string"
-        },
-        "invoiceId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "projectIdsFromVoucher": {
-          "items": {
-            "format": "int64",
-            "type": "integer"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "Job": {
       "properties": {
         "group": {
@@ -23527,82 +23457,6 @@
           "$ref": "#/definitions/YearEndReport"
         }
       },
-      "type": "object"
-    },
-    "LLMVoucherAutomationCompanyInfoRequest": {
-      "description": "LLMVoucherAutomation request Data Transfer Object for information on departments for a single company",
-      "properties": {
-        "companyId": {
-          "description": "The companyId to extract data for",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        }
-      },
-      "required": [
-        "companyId"
-      ],
-      "type": "object"
-    },
-    "LLMVoucherAutomationExtractRequest": {
-      "description": "LLMVoucherAutomation Extract vouchers and info for a single company Data Transfer Object",
-      "properties": {
-        "companyId": {
-          "description": "The companyId to extract vouchers for",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "date": {
-          "description": "The date to extract vouchers for",
-          "readOnly": true,
-          "type": "string"
-        },
-        "ignoreEHF": {
-          "description": "Flag to indicate if the EHF XML should be retrieved or not, for testing and debugging",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "limit": {
-          "description": "Limit of vouchers to extract, capped at 1000",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        }
-      },
-      "required": [
-        "companyId",
-        "date",
-        "ignoreEHF",
-        "limit"
-      ],
-      "type": "object"
-    },
-    "LLMVoucherAutomationProjectsRequest": {
-      "description": "LLMVoucherAutomation request Data Transfer Object for information on projects for a company",
-      "properties": {
-        "companyId": {
-          "description": "The companyId to extract data for",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "endDate": {
-          "description": "The date to end the extraction for",
-          "readOnly": true,
-          "type": "string"
-        },
-        "startDate": {
-          "description": "The date to begin extraction for",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "required": [
-        "companyId",
-        "endDate",
-        "startDate"
-      ],
       "type": "object"
     },
     "LastPosted": {
@@ -41436,48 +41290,6 @@
       },
       "type": "object"
     },
-    "ProjectInfoDTO": {
-      "properties": {
-        "accountNumber": {
-          "type": "string"
-        },
-        "address": {
-          "type": "string"
-        },
-        "comment": {
-          "type": "string"
-        },
-        "departmentId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "endDate": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "isActive": {
-          "type": "boolean"
-        },
-        "name": {
-          "type": "string"
-        },
-        "number": {
-          "type": "string"
-        },
-        "projectManager": {
-          "type": "string"
-        },
-        "startDate": {
-          "format": "date-time",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ProjectInvoiceDetails": {
       "properties": {
         "amountOrderLinesAndReinvoicing": {
@@ -42373,21 +42185,6 @@
         "vatType": {
           "$ref": "#/definitions/VatType",
           "description": "The default vat type for this project."
-        }
-      },
-      "type": "object"
-    },
-    "ProjectsResponseDTO": {
-      "properties": {
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "projects": {
-          "items": {
-            "$ref": "#/definitions/ProjectInfoDTO"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -45747,14 +45544,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperCompanyResponseDTO": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/CompanyResponseDTO"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperCompanyStandardTime": {
       "properties": {
         "value": {
@@ -45970,14 +45759,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/Department"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperDepartmentsResponseDTO": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/DepartmentsResponseDTO"
         }
       },
       "type": "object"
@@ -46242,14 +46023,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ExternalProduct"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperExtractResponseDTO": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/ExtractResponseDTO"
         }
       },
       "type": "object"
@@ -47602,14 +47375,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ProjectTemplate"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperProjectsResponseDTO": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/ProjectsResponseDTO"
         }
       },
       "type": "object"
@@ -49917,6 +49682,18 @@
     },
     "SalaryType": {
       "properties": {
+        "accountNumberCredit": {
+          "$ref": "#/definitions/Account",
+          "readOnly": true
+        },
+        "accountNumberDebit": {
+          "$ref": "#/definitions/Account",
+          "readOnly": true
+        },
+        "ameldingWageCode": {
+          "readOnly": true,
+          "type": "string"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -49932,12 +49709,32 @@
           "format": "int64",
           "type": "integer"
         },
+        "isPayrollTaxable": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSickPayable": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isTaxable": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isVacationPayable": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "name": {
           "maxLength": 255,
           "type": "string"
         },
         "number": {
           "maxLength": 10,
+          "type": "string"
+        },
+        "payStatementCodeCode": {
+          "readOnly": true,
           "type": "string"
         },
         "showInTimesheet": {
@@ -55395,6 +55192,9 @@
           "maxLength": 65535,
           "type": "string"
         },
+        "responseType": {
+          "type": "string"
+        },
         "supportAIMatchedArticles": {
           "description": "List of supportAIMatchedArticles",
           "items": {
@@ -55524,6 +55324,10 @@
         "startDate": {
           "readOnly": true,
           "type": "string"
+        },
+        "suspended": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "tripletexCompanyId": {
           "format": "int64",
@@ -80234,7 +80038,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Search pickup points.",
+        "summary": "[DEPRECATED] Search pickup points.",
         "tags": [
           "pickupPoint"
         ]
@@ -80274,7 +80078,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Find pickup point by ID.",
+        "summary": "[DEPRECATED] Find pickup point by ID.",
         "tags": [
           "pickupPoint"
         ]
@@ -99099,9 +98903,6 @@
     },
     {
       "name": "internalgpt-wrapper"
-    },
-    {
-      "name": "internalllm-voucher-automation"
     },
     {
       "name": "country"
