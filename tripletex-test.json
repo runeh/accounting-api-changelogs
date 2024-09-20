@@ -43280,15 +43280,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -43309,6 +43313,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -43332,6 +43337,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -50064,6 +50070,15 @@
           "type": "string"
         },
         "ameldingStatus": {
+          "enum": [
+            "NEUTRAL",
+            "SUCCESS",
+            "WARNING",
+            "WARNING_GUIDELINE",
+            "ERROR",
+            "ERROR_IMMEDIATELY",
+            "ERROR_REJECTED"
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -50371,6 +50386,15 @@
           "type": "string"
         },
         "ameldingStatus": {
+          "enum": [
+            "NEUTRAL",
+            "SUCCESS",
+            "WARNING",
+            "WARNING_GUIDELINE",
+            "ERROR",
+            "ERROR_IMMEDIATELY",
+            "ERROR_REJECTED"
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -51033,6 +51057,15 @@
           "type": "string"
         },
         "ameldingStatus": {
+          "enum": [
+            "NEUTRAL",
+            "SUCCESS",
+            "WARNING",
+            "WARNING_GUIDELINE",
+            "ERROR",
+            "ERROR_IMMEDIATELY",
+            "ERROR_REJECTED"
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -54285,6 +54318,13 @@
           "maxLength": 255,
           "type": "string"
         },
+        "sticosFollowUpQuestions": {
+          "description": "List of follow-up questions",
+          "items": {
+            "$ref": "#/definitions/SticosFollowUpQuestion"
+          },
+          "type": "array"
+        },
         "sticosLinks": {
           "description": "List of sticos sources",
           "items": {
@@ -54305,6 +54345,37 @@
         "flag",
         "response",
         "sessionId"
+      ],
+      "type": "object"
+    },
+    "SticosFollowUpQuestion": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "question": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "question"
       ],
       "type": "object"
     },
