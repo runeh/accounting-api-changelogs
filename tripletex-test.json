@@ -6993,6 +6993,17 @@
       ],
       "type": "object"
     },
+    "ChatHistoryEntry": {
+      "properties": {
+        "message": {
+          "type": "string"
+        },
+        "role": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ChatRequest": {
       "properties": {
         "isConversationStarter": {
@@ -14694,6 +14705,51 @@
           "description": "Year-end Report"
         }
       },
+      "type": "object"
+    },
+    "GPTWrapperAPIRequestDTO": {
+      "description": "GPTWrapperAPIRequest Data Transfer Object",
+      "properties": {
+        "chat_history": {
+          "description": "Optional: The chat history",
+          "items": {
+            "$ref": "#/definitions/ChatHistoryEntry"
+          },
+          "type": "array"
+        },
+        "gpt_model": {
+          "description": "Which gpt model to use, defaults to gpt-4o-mini",
+          "enum": [
+            "GPT4o",
+            "GPT4oMini"
+          ],
+          "type": "string"
+        },
+        "json_schema": {
+          "description": "Optional: The json schema",
+          "type": "string"
+        },
+        "language": {
+          "description": "Optional: The language",
+          "enum": [
+            "EN",
+            "NO"
+          ],
+          "type": "string"
+        },
+        "question": {
+          "description": "The question to ask the LLM",
+          "type": "string"
+        },
+        "system_prompt": {
+          "description": "Optional: The system prompt to the LLM",
+          "type": "string"
+        }
+      },
+      "required": [
+        "gpt_model",
+        "question"
+      ],
       "type": "object"
     },
     "GeneralBannerDTO": {
@@ -22825,6 +22881,17 @@
         "status": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "InvoiceOptionsDTO": {
+      "properties": {
+        "sendTypes": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -43280,19 +43347,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -43313,7 +43376,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -43337,7 +43399,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -46233,6 +46294,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/Invoice"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperInvoiceOptionsDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/InvoiceOptionsDTO"
         }
       },
       "type": "object"
