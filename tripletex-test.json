@@ -55373,6 +55373,10 @@
           "format": "int64",
           "type": "integer"
         },
+        "title": {
+          "maxLength": 65535,
+          "type": "string"
+        },
         "url": {
           "readOnly": true,
           "type": "string"
