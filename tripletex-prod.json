@@ -4142,6 +4142,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isAuthBankDashboard": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isAuthDirectRemitZtl": {
           "readOnly": true,
           "type": "boolean"
@@ -6273,14 +6277,16 @@
             "REOPENED",
             "DO_NOT_SHOW"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "employeeId": {
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "timestamp": {
-          "format": "date-time",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -6289,6 +6295,7 @@
     "ChangeLog": {
       "properties": {
         "action": {
+          "readOnly": true,
           "type": "string"
         },
         "changeType": {
@@ -6300,13 +6307,15 @@
             "REOPENED",
             "DO_NOT_SHOW"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "employeeNameAndNumber": {
+          "readOnly": true,
           "type": "string"
         },
         "timestamp": {
-          "format": "date-time",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -7031,7 +7040,7 @@
       ],
       "type": "object"
     },
-    "ChatResponseDTO": {
+    "ChatResponse": {
       "properties": {
         "confidence": {
           "format": "int32",
@@ -25124,7 +25133,7 @@
       },
       "type": "object"
     },
-    "ListResponseChatResponseDTO": {
+    "ListResponseChatResponse": {
       "properties": {
         "count": {
           "format": "int64",
@@ -25144,7 +25153,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/ChatResponseDTO"
+            "$ref": "#/definitions/ChatResponse"
           },
           "readOnly": true,
           "type": "array"
@@ -28424,7 +28433,7 @@
       },
       "type": "object"
     },
-    "ListResponsePersonAutoCompleteDTO": {
+    "ListResponsePersonAutoComplete": {
       "properties": {
         "count": {
           "format": "int64",
@@ -28444,7 +28453,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/PersonAutoCompleteDTO"
+            "$ref": "#/definitions/PersonAutoComplete"
           },
           "readOnly": true,
           "type": "array"
@@ -29777,6 +29786,39 @@
       },
       "type": "object"
     },
+    "ListResponseReconciliationMatch": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ReconciliationMatch"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseReelDomain": {
       "properties": {
         "count": {
@@ -30635,7 +30677,7 @@
       },
       "type": "object"
     },
-    "ListResponseSearchCompletionDTO": {
+    "ListResponseSearchCompletion": {
       "properties": {
         "count": {
           "format": "int64",
@@ -30655,7 +30697,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/SearchCompletionDTO"
+            "$ref": "#/definitions/SearchCompletion"
           },
           "readOnly": true,
           "type": "array"
@@ -38644,7 +38686,7 @@
       },
       "type": "object"
     },
-    "PersonAutoCompleteDTO": {
+    "PersonAutoComplete": {
       "properties": {
         "address": {
           "type": "string"
@@ -43250,6 +43292,111 @@
       },
       "type": "object"
     },
+    "ReconciliationEntry": {
+      "properties": {
+        "amountCurrency": {
+          "description": "The amount of the posting or transaction",
+          "readOnly": true,
+          "type": "number"
+        },
+        "date": {
+          "description": "The date of the posting or transaction",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "The description of the posting or transaction",
+          "readOnly": true,
+          "type": "string"
+        },
+        "details": {
+          "description": "The details of the posting or transaction",
+          "readOnly": true,
+          "type": "string"
+        },
+        "entryType": {
+          "description": "Shows if it is a Posting or BankTransaction",
+          "enum": [
+            "Posting",
+            "BankTransaction"
+          ],
+          "type": "string"
+        },
+        "id": {
+          "description": "The id of the posting or transaction",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReconciliationGroup": {
+      "properties": {
+        "entries": {
+          "description": "List of entries in this group.",
+          "items": {
+            "$ref": "#/definitions/ReconciliationEntry"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "title": {
+          "description": "Title of this group.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalAmount": {
+          "description": "Total amount of this group.",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ReconciliationMatch": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "isApproved": {
+          "description": "Is this BankReconciliationMatch approved.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "postingsGroup": {
+          "$ref": "#/definitions/ReconciliationGroup",
+          "description": "Group of postings from this match.",
+          "readOnly": true
+        },
+        "reconciliationId": {
+          "description": "Id of the BankReconciliation.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "transactionsGroup": {
+          "$ref": "#/definitions/ReconciliationGroup",
+          "description": "Group of transactions from this match.",
+          "readOnly": true
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ReconciliationOfEquityOverview": {
       "properties": {
         "calculatedClosingEquity": {
@@ -43613,6 +43760,48 @@
       },
       "type": "object"
     },
+    "ReportAccountFilterV3": {
+      "properties": {
+        "complementSingularFilters": {
+          "type": "boolean"
+        },
+        "rangeFilters": {
+          "items": {
+            "$ref": "#/definitions/ReportRangeFilter"
+          },
+          "type": "array"
+        },
+        "singularFilters": {
+          "items": {
+            "$ref": "#/definitions/ReportSingularFilter"
+          },
+          "type": "array"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReportActivityFilter": {
+      "properties": {
+        "complement": {
+          "type": "boolean"
+        },
+        "filters": {
+          "items": {
+            "$ref": "#/definitions/ReportSingularFilter"
+          },
+          "type": "array"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ReportAuthorization": {
       "properties": {
         "changes": {
@@ -43753,64 +43942,7 @@
       },
       "type": "object"
     },
-    "ReportFeedbackSettings": {
-      "properties": {
-        "channel": {
-          "type": "string"
-        },
-        "team": {
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ReportFilterAccountV3": {
-      "properties": {
-        "complementSingularFilters": {
-          "type": "boolean"
-        },
-        "rangeFilters": {
-          "items": {
-            "$ref": "#/definitions/ReportFilterRange"
-          },
-          "type": "array"
-        },
-        "singularFilters": {
-          "items": {
-            "$ref": "#/definitions/ReportFilterSingular"
-          },
-          "type": "array"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ReportFilterActivity": {
-      "properties": {
-        "complement": {
-          "type": "boolean"
-        },
-        "filters": {
-          "items": {
-            "$ref": "#/definitions/ReportFilterSingular"
-          },
-          "type": "array"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ReportFilterCustomer": {
+    "ReportCustomerFilter": {
       "properties": {
         "complement": {
           "type": "boolean"
@@ -43820,7 +43952,7 @@
         },
         "filters": {
           "items": {
-            "$ref": "#/definitions/ReportFilterSingular"
+            "$ref": "#/definitions/ReportSingularFilter"
           },
           "type": "array"
         },
@@ -43831,7 +43963,7 @@
       },
       "type": "object"
     },
-    "ReportFilterDepartment": {
+    "ReportDepartmentFilter": {
       "properties": {
         "complement": {
           "type": "boolean"
@@ -43841,7 +43973,7 @@
         },
         "filters": {
           "items": {
-            "$ref": "#/definitions/ReportFilterSingular"
+            "$ref": "#/definitions/ReportSingularFilter"
           },
           "type": "array"
         },
@@ -43852,7 +43984,7 @@
       },
       "type": "object"
     },
-    "ReportFilterEmployee": {
+    "ReportEmployeeFilter": {
       "properties": {
         "complement": {
           "type": "boolean"
@@ -43862,7 +43994,7 @@
         },
         "filters": {
           "items": {
-            "$ref": "#/definitions/ReportFilterSingular"
+            "$ref": "#/definitions/ReportSingularFilter"
           },
           "type": "array"
         },
@@ -43873,7 +44005,20 @@
       },
       "type": "object"
     },
-    "ReportFilterGeneral": {
+    "ReportFilterPeriodDatum": {
+      "properties": {
+        "amount": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "unit": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReportGeneralFilter": {
       "properties": {
         "expression": {
           "type": "string"
@@ -43889,7 +44034,87 @@
       },
       "type": "object"
     },
-    "ReportFilterPeriod": {
+    "ReportGroupAutoGroup": {
+      "properties": {
+        "defaultOrder": {
+          "enum": [
+            "Ascending",
+            "Descending"
+          ],
+          "type": "string"
+        },
+        "orderBy": {
+          "items": {
+            "$ref": "#/definitions/ReportGroupOrderBy"
+          },
+          "type": "array"
+        },
+        "type": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReportGroupFilter": {
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/ReportAccountFilterV3"
+        },
+        "activity": {
+          "$ref": "#/definitions/ReportActivityFilter"
+        },
+        "customer": {
+          "$ref": "#/definitions/ReportCustomerFilter"
+        },
+        "department": {
+          "$ref": "#/definitions/ReportDepartmentFilter"
+        },
+        "employee": {
+          "$ref": "#/definitions/ReportEmployeeFilter"
+        },
+        "general": {
+          "$ref": "#/definitions/ReportGeneralFilter"
+        },
+        "period": {
+          "$ref": "#/definitions/ReportPeriodFilter"
+        },
+        "product": {
+          "$ref": "#/definitions/ReportProductFilter"
+        },
+        "project": {
+          "$ref": "#/definitions/ReportProjectFilter"
+        },
+        "supplier": {
+          "$ref": "#/definitions/ReportSupplierFilter"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReportGroupOrderBy": {
+      "properties": {
+        "expression": {
+          "type": "string"
+        },
+        "order": {
+          "enum": [
+            "Ascending",
+            "Descending"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReportPeriodFilter": {
       "properties": {
         "constrainEndToInterval": {
           "type": "boolean"
@@ -43919,20 +44144,7 @@
       },
       "type": "object"
     },
-    "ReportFilterPeriodDatum": {
-      "properties": {
-        "amount": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "unit": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ReportFilterProduct": {
+    "ReportProductFilter": {
       "properties": {
         "complement": {
           "type": "boolean"
@@ -43942,7 +44154,7 @@
         },
         "filters": {
           "items": {
-            "$ref": "#/definitions/ReportFilterSingular"
+            "$ref": "#/definitions/ReportSingularFilter"
           },
           "type": "array"
         },
@@ -43953,7 +44165,7 @@
       },
       "type": "object"
     },
-    "ReportFilterProject": {
+    "ReportProjectFilter": {
       "properties": {
         "complement": {
           "type": "boolean"
@@ -43963,7 +44175,7 @@
         },
         "filters": {
           "items": {
-            "$ref": "#/definitions/ReportFilterSingular"
+            "$ref": "#/definitions/ReportSingularFilter"
           },
           "type": "array"
         },
@@ -43974,7 +44186,7 @@
       },
       "type": "object"
     },
-    "ReportFilterRange": {
+    "ReportRangeFilter": {
       "properties": {
         "from": {
           "format": "int32",
@@ -43983,120 +44195,6 @@
         "to": {
           "format": "int32",
           "type": "integer"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ReportFilterSingular": {
-      "properties": {
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ReportFilterSupplier": {
-      "properties": {
-        "complement": {
-          "type": "boolean"
-        },
-        "excludeEmptyElement": {
-          "type": "boolean"
-        },
-        "filters": {
-          "items": {
-            "$ref": "#/definitions/ReportFilterSingular"
-          },
-          "type": "array"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ReportGroupAutoGroup": {
-      "properties": {
-        "defaultOrder": {
-          "enum": [
-            "Ascending",
-            "Descending"
-          ],
-          "type": "string"
-        },
-        "orderBy": {
-          "items": {
-            "$ref": "#/definitions/ReportGroupAutoGroupOrderBy"
-          },
-          "type": "array"
-        },
-        "type": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ReportGroupAutoGroupOrderBy": {
-      "properties": {
-        "expression": {
-          "type": "string"
-        },
-        "order": {
-          "enum": [
-            "Ascending",
-            "Descending"
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ReportGroupFilter": {
-      "properties": {
-        "account": {
-          "$ref": "#/definitions/ReportFilterAccountV3"
-        },
-        "activity": {
-          "$ref": "#/definitions/ReportFilterActivity"
-        },
-        "customer": {
-          "$ref": "#/definitions/ReportFilterCustomer"
-        },
-        "department": {
-          "$ref": "#/definitions/ReportFilterDepartment"
-        },
-        "employee": {
-          "$ref": "#/definitions/ReportFilterEmployee"
-        },
-        "general": {
-          "$ref": "#/definitions/ReportFilterGeneral"
-        },
-        "period": {
-          "$ref": "#/definitions/ReportFilterPeriod"
-        },
-        "product": {
-          "$ref": "#/definitions/ReportFilterProduct"
-        },
-        "project": {
-          "$ref": "#/definitions/ReportFilterProject"
-        },
-        "supplier": {
-          "$ref": "#/definitions/ReportFilterSupplier"
         },
         "version": {
           "format": "int32",
@@ -44320,7 +44418,7 @@
           "$ref": "#/definitions/ReportSettingsAccess"
         },
         "feedback": {
-          "$ref": "#/definitions/ReportFeedbackSettings"
+          "$ref": "#/definitions/ReportSettingsFeedback"
         },
         "filters": {
           "$ref": "#/definitions/ReportSettingsFilters"
@@ -44347,10 +44445,25 @@
       },
       "type": "object"
     },
+    "ReportSettingsFeedback": {
+      "properties": {
+        "channel": {
+          "type": "string"
+        },
+        "team": {
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ReportSettingsFilters": {
       "properties": {
         "options": {
-          "$ref": "#/definitions/ReportSettingsFilters"
+          "$ref": "#/definitions/ReportSettingsOptions"
         },
         "order": {
           "items": {
@@ -44444,6 +44557,52 @@
         },
         "showRowHeaders": {
           "type": "boolean"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSettingsOptions": {
+      "properties": {
+        "period": {
+          "$ref": "#/definitions/ReportSettingsFiltersOptionsPeriod"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSingularFilter": {
+      "properties": {
+        "id": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReportSupplierFilter": {
+      "properties": {
+        "complement": {
+          "type": "boolean"
+        },
+        "excludeEmptyElement": {
+          "type": "boolean"
+        },
+        "filters": {
+          "items": {
+            "$ref": "#/definitions/ReportSingularFilter"
+          },
+          "type": "array"
         },
         "version": {
           "format": "int32",
@@ -45489,10 +45648,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperChatResponseDTO": {
+    "ResponseWrapperChatResponse": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/ChatResponseDTO"
+          "$ref": "#/definitions/ChatResponse"
         }
       },
       "type": "object"
@@ -48322,18 +48481,18 @@
       },
       "type": "object"
     },
-    "ResponseWrapperTripDTO": {
+    "ResponseWrapperTrip": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/TripDTO"
+          "$ref": "#/definitions/Trip"
         }
       },
       "type": "object"
     },
-    "ResponseWrapperTripSearchResponseDTO": {
+    "ResponseWrapperTripSearchResponse": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/TripSearchResponseDTO"
+          "$ref": "#/definitions/TripSearchResponse"
         }
       },
       "type": "object"
@@ -50448,14 +50607,14 @@
         },
         "validations": {
           "items": {
-            "$ref": "#/definitions/ValidationLinkDTO"
+            "$ref": "#/definitions/ValidationLink"
           },
           "readOnly": true,
           "type": "array"
         },
         "warnings": {
           "items": {
-            "$ref": "#/definitions/ValidationLinkDTO"
+            "$ref": "#/definitions/ValidationLink"
           },
           "readOnly": true,
           "type": "array"
@@ -52105,7 +52264,7 @@
       },
       "type": "object"
     },
-    "SearchCompletionDTO": {
+    "SearchCompletion": {
       "properties": {
         "address": {
           "type": "string"
@@ -58749,7 +58908,7 @@
       },
       "type": "object"
     },
-    "TripDTO": {
+    "Trip": {
       "properties": {
         "distance": {
           "type": "number"
@@ -58763,7 +58922,7 @@
       },
       "type": "object"
     },
-    "TripSearchDTO": {
+    "TripSearch": {
       "properties": {
         "routePoints": {
           "items": {
@@ -58787,7 +58946,7 @@
       },
       "type": "object"
     },
-    "TripSearchResponseDTO": {
+    "TripSearchResponse": {
       "properties": {
         "distance": {
           "type": "number"
@@ -59658,7 +59817,7 @@
         "reasons": {
           "description": "The list of reasons of this error",
           "items": {
-            "$ref": "#/definitions/ValidationReasonDTO"
+            "$ref": "#/definitions/ValidationReason"
           },
           "readOnly": true,
           "type": "array"
@@ -59677,7 +59836,7 @@
       },
       "type": "object"
     },
-    "ValidationLinkDTO": {
+    "ValidationLink": {
       "properties": {
         "href": {
           "readOnly": true,
@@ -59729,7 +59888,7 @@
       },
       "type": "object"
     },
-    "ValidationReasonDTO": {
+    "ValidationReason": {
       "properties": {
         "developerReason": {
           "description": "Developer message for the error. In some cases it could be a xml error, then more info will be here.",
@@ -64928,6 +65087,53 @@
         ]
       }
     },
+    "/bank/reconciliation/byFilter": {
+      "get": {
+        "description": "",
+        "operationId": "BankReconciliationByFilter_getByFilter",
+        "parameters": [
+          {
+            "description": "Account ID",
+            "format": "int64",
+            "in": "query",
+            "name": "accountId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Format is yyyy-MM-dd",
+            "in": "query",
+            "name": "startDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperBankReconciliation"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Find bank reconciliation corresponding with sent data.",
+        "tags": [
+          "bank/reconciliation"
+        ]
+      }
+    },
     "/bank/reconciliation/closedWithUnmatchedTransactions": {
       "get": {
         "description": "",
@@ -65155,6 +65361,76 @@
           }
         ],
         "summary": "Get the total number of matches",
+        "tags": [
+          "bank/reconciliation/match"
+        ]
+      }
+    },
+    "/bank/reconciliation/match/new": {
+      "get": {
+        "description": "",
+        "operationId": "BankReconciliationMatchNew_search",
+        "parameters": [
+          {
+            "description": "The bank reconciliation id",
+            "format": "int64",
+            "in": "query",
+            "name": "bankReconciliationId",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Approved or unapproved matches",
+            "in": "query",
+            "name": "approved",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Number of elements to return",
+            "format": "int32",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseReconciliationMatch"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": " Find bank reconciliation matches corresponding with sent data.",
         "tags": [
           "bank/reconciliation/match"
         ]
@@ -98953,6 +99229,9 @@
     },
     {
       "name": "bank/reconciliation/settings"
+    },
+    {
+      "name": "bankreconciliationmatchnew"
     },
     {
       "name": "banksettings"
