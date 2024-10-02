@@ -1646,6 +1646,13 @@
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
+            "YEAR_END_DOCUMENTATION_TIMBER_ACCOUNT",
+            "YEAR_END_DOCUMENTATION_PARTICIPANT_ASSESSMENT",
+            "YEAR_END_DOCUMENTATION_RESEARCH_AND_DEVELOPMENT",
+            "YEAR_END_DOCUMENTATION_COMPANY_TAX_RETURN",
+            "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
+            "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
+            "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -3168,9 +3175,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "AuthorizationManager": {
       "type": "object"
     },
     "AutoLogin": {
@@ -6589,6 +6593,13 @@
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
+            "YEAR_END_DOCUMENTATION_TIMBER_ACCOUNT",
+            "YEAR_END_DOCUMENTATION_PARTICIPANT_ASSESSMENT",
+            "YEAR_END_DOCUMENTATION_RESEARCH_AND_DEVELOPMENT",
+            "YEAR_END_DOCUMENTATION_COMPANY_TAX_RETURN",
+            "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
+            "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
+            "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -10592,12 +10603,6 @@
       ],
       "type": "object"
     },
-    "DatabaseComponentAuthorizationManager": {
-      "type": "object"
-    },
-    "DatabaseComponentAuthorizationManagerRequestlogModel": {
-      "type": "object"
-    },
     "DatabaseMigrationGroup": {
       "properties": {
         "group": {
@@ -11936,6 +11941,13 @@
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
+            "YEAR_END_DOCUMENTATION_TIMBER_ACCOUNT",
+            "YEAR_END_DOCUMENTATION_PARTICIPANT_ASSESSMENT",
+            "YEAR_END_DOCUMENTATION_RESEARCH_AND_DEVELOPMENT",
+            "YEAR_END_DOCUMENTATION_COMPANY_TAX_RETURN",
+            "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
+            "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
+            "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -14950,6 +14962,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "hasQuantityHandling": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "loginEmployeeDepartmentId": {
           "format": "int64",
           "readOnly": true,
@@ -14959,6 +14975,10 @@
           "format": "int64",
           "readOnly": true,
           "type": "integer"
+        },
+        "shallNumberBePrettyPrinted": {
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -15544,6 +15564,13 @@
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
+            "YEAR_END_DOCUMENTATION_TIMBER_ACCOUNT",
+            "YEAR_END_DOCUMENTATION_PARTICIPANT_ASSESSMENT",
+            "YEAR_END_DOCUMENTATION_RESEARCH_AND_DEVELOPMENT",
+            "YEAR_END_DOCUMENTATION_COMPANY_TAX_RETURN",
+            "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
+            "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
+            "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -21310,6 +21337,13 @@
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
+            "YEAR_END_DOCUMENTATION_TIMBER_ACCOUNT",
+            "YEAR_END_DOCUMENTATION_PARTICIPANT_ASSESSMENT",
+            "YEAR_END_DOCUMENTATION_RESEARCH_AND_DEVELOPMENT",
+            "YEAR_END_DOCUMENTATION_COMPANY_TAX_RETURN",
+            "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
+            "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
+            "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -21958,6 +21992,13 @@
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
+            "YEAR_END_DOCUMENTATION_TIMBER_ACCOUNT",
+            "YEAR_END_DOCUMENTATION_PARTICIPANT_ASSESSMENT",
+            "YEAR_END_DOCUMENTATION_RESEARCH_AND_DEVELOPMENT",
+            "YEAR_END_DOCUMENTATION_COMPANY_TAX_RETURN",
+            "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
+            "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
+            "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -33934,10 +33975,17 @@
         "basisVoucherModule": {
           "type": "string"
         },
+        "calculatedEndDate": {
+          "format": "date",
+          "type": "string"
+        },
         "canReopen": {
           "type": "boolean"
         },
         "discountsNotReinstated": {
+          "type": "boolean"
+        },
+        "isTemporarilyActive": {
           "type": "boolean"
         },
         "mikroVoucherModule": {
@@ -33956,6 +34004,10 @@
         "reopenNumberOfDays": {
           "format": "int32",
           "type": "integer"
+        },
+        "subscriptionEndDate": {
+          "format": "date",
+          "type": "string"
         },
         "suspended": {
           "type": "boolean"
@@ -36484,6 +36536,13 @@
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
+            "YEAR_END_DOCUMENTATION_TIMBER_ACCOUNT",
+            "YEAR_END_DOCUMENTATION_PARTICIPANT_ASSESSMENT",
+            "YEAR_END_DOCUMENTATION_RESEARCH_AND_DEVELOPMENT",
+            "YEAR_END_DOCUMENTATION_COMPANY_TAX_RETURN",
+            "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
+            "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
+            "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -38290,6 +38349,13 @@
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
+            "YEAR_END_DOCUMENTATION_TIMBER_ACCOUNT",
+            "YEAR_END_DOCUMENTATION_PARTICIPANT_ASSESSMENT",
+            "YEAR_END_DOCUMENTATION_RESEARCH_AND_DEVELOPMENT",
+            "YEAR_END_DOCUMENTATION_COMPANY_TAX_RETURN",
+            "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
+            "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
+            "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -39107,7 +39173,6 @@
               "YEAR_END",
               "CREATE_SALARY_REDESIGN_MVP",
               "SALARY_REDESIGN_MVP",
-              "NEW_DOCUMENT_RECEPTION",
               "NONE"
             ],
             "type": "string"
@@ -43502,15 +43567,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -43531,6 +43600,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -43554,6 +43624,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -44629,126 +44700,6 @@
         "version": {
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "RequestlogModel": {
-      "properties": {
-        "authorizationManager": {
-          "$ref": "#/definitions/DatabaseComponentAuthorizationManagerRequestlogModel"
-        },
-        "authorizationManagerForCsvPrinter": {
-          "$ref": "#/definitions/AuthorizationManager"
-        },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "type": "array"
-        },
-        "clientId": {
-          "type": "string"
-        },
-        "companyId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "createLog": {
-          "$ref": "#/definitions/RequestlogModel"
-        },
-        "createLogAsString": {
-          "type": "string"
-        },
-        "createLogId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "deleteLog": {
-          "$ref": "#/definitions/RequestlogModel"
-        },
-        "deleteLogAsString": {
-          "type": "string"
-        },
-        "deleteLogId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "deleted": {
-          "type": "boolean"
-        },
-        "dirty": {
-          "type": "boolean"
-        },
-        "dirtyProperties": {
-          "items": {
-            "type": "string"
-          },
-          "type": "array",
-          "uniqueItems": true
-        },
-        "displayName": {
-          "type": "string"
-        },
-        "employeeId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "guiId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "guiRevision": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "id": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "longId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "method": {
-          "type": "string"
-        },
-        "new": {
-          "type": "boolean"
-        },
-        "querystring": {
-          "type": "string"
-        },
-        "requesturi": {
-          "type": "string"
-        },
-        "revision": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "selected": {
-          "type": "boolean"
-        },
-        "time": {
-          "format": "date-time",
-          "type": "string"
-        },
-        "tripletexEmployeeId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "updateLog": {
-          "$ref": "#/definitions/RequestlogModel"
-        },
-        "updateLogAsString": {
-          "type": "string"
-        },
-        "updateLogId": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "urlDetails": {
-          "type": "string"
         }
       },
       "type": "object"
@@ -52319,79 +52270,101 @@
     "SegmentationData": {
       "properties": {
         "companyName": {
+          "readOnly": true,
           "type": "string"
         },
         "companyStartDateYear": {
+          "readOnly": true,
           "type": "string"
         },
         "companyType": {
+          "readOnly": true,
           "type": "string"
         },
         "contextId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "employeeId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "employeeNumber": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "hackedOrSupportAccess": {
+          "readOnly": true,
           "type": "boolean"
         },
         "incomingInvoices": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "industry": {
+          "readOnly": true,
           "type": "string"
         },
         "isAccountant": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isReseller": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isTestOrFreeCompany": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isTrialAccount": {
+          "readOnly": true,
           "type": "boolean"
         },
         "mainAccountBank": {
+          "readOnly": true,
           "type": "string"
         },
         "modules": {
-          "$ref": "#/definitions/SegmentationModules"
+          "$ref": "#/definitions/SegmentationModules",
+          "readOnly": true
         },
         "orgNumber": {
+          "readOnly": true,
           "type": "string"
         },
         "outgoingInvoices": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "packageName": {
+          "readOnly": true,
           "type": "string"
         },
         "pilotFeatures": {
           "additionalProperties": {
             "type": "boolean"
           },
+          "readOnly": true,
           "type": "object"
         },
         "roles": {
-          "$ref": "#/definitions/SegmentationRoles"
+          "$ref": "#/definitions/SegmentationRoles",
+          "readOnly": true
         },
         "tripletexCustomerCategoryId2": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "tripletexCustomerCategoryId3": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -53800,6 +53773,13 @@
             "YEAR_END_DOCUMENTATION_SALARY_AND_PENSION_EXPENSES",
             "YEAR_END_DOCUMENTATION_COOPERATIVE_ENTERPRISE",
             "YEAR_END_DOCUMENTATION_OTHER_CIRCUMSTANCES",
+            "YEAR_END_DOCUMENTATION_TIMBER_ACCOUNT",
+            "YEAR_END_DOCUMENTATION_PARTICIPANT_ASSESSMENT",
+            "YEAR_END_DOCUMENTATION_RESEARCH_AND_DEVELOPMENT",
+            "YEAR_END_DOCUMENTATION_COMPANY_TAX_RETURN",
+            "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
+            "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
+            "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
