@@ -4150,6 +4150,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isAuthCashCredit": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isAuthDirectRemitZtl": {
           "readOnly": true,
           "type": "boolean"
@@ -7107,6 +7111,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "hasEasySupportAccess": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "hasError": {
           "readOnly": true,
           "type": "boolean"
@@ -7537,6 +7545,49 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ClientContext": {
+      "properties": {
+        "activeAccountantProxy": {
+          "description": "Whether the current session is a proxy for an accountant",
+          "type": "boolean"
+        },
+        "companyId": {
+          "description": "The id of the company which is selected in the current session",
+          "format": "int32",
+          "type": "integer"
+        },
+        "companyName": {
+          "description": "The name of the company which is selected in the current session",
+          "type": "string"
+        },
+        "companyTypeId": {
+          "description": "The category of the company which is selected in the current session",
+          "format": "int32",
+          "type": "integer"
+        },
+        "devMode": {
+          "description": "Whether the current session has access to development features",
+          "type": "boolean"
+        },
+        "hackedOrSupportAccess": {
+          "description": "Whether the current session is a Tripletex employee with extra privileges",
+          "type": "boolean"
+        },
+        "pilotMode": {
+          "description": "Whether the current session has access to pilot features",
+          "type": "boolean"
+        },
+        "subscribed": {
+          "description": "Whether the current session has access to the year-end module",
+          "type": "boolean"
+        },
+        "trial": {
+          "description": "Whether the current session is in a trial account",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -9319,23 +9370,6 @@
           "type": "number"
         }
       },
-      "type": "object"
-    },
-    "CopilotModels": {
-      "properties": {
-        "models": {
-          "description": "List of model identifiers or names",
-          "items": {
-            "type": "string"
-          },
-          "maxItems": 2147483647,
-          "minItems": 1,
-          "type": "array"
-        }
-      },
-      "required": [
-        "models"
-      ],
       "type": "object"
     },
     "CopilotRequest": {
@@ -14332,15 +14366,6 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
-        },
-        "postingIds": {
-          "description": "List of postingIds correlated to this fileId",
-          "items": {
-            "format": "int64",
-            "type": "integer"
-          },
-          "readOnly": true,
-          "type": "array"
         }
       },
       "type": "object"
@@ -35518,11 +35543,7 @@
         }
       },
       "required": [
-        "ODPCompanyID",
-        "ODPCustomerID",
-        "autoPayKey",
-        "erpCustomerId",
-        "tenantId"
+        "erpCustomerId"
       ],
       "type": "object"
     },
@@ -39879,6 +39900,7 @@
         },
         "orderLineDescription": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "outgoingStock": {
@@ -43664,19 +43686,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -43697,7 +43715,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -43721,7 +43738,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -45719,6 +45735,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperClientContext": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ClientContext"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperCloseGroup": {
       "properties": {
         "value": {
@@ -45893,14 +45917,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CooperativeEnterpriseOverview"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperCopilotModels": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/CopilotModels"
         }
       },
       "type": "object"
@@ -48512,10 +48528,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperTrialInfoAutomationDTO": {
+    "ResponseWrapperTrialInfoAutomation": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/TrialInfoAutomationDTO"
+          "$ref": "#/definitions/TrialInfoAutomation"
         }
       },
       "type": "object"
@@ -58895,77 +58911,95 @@
       },
       "type": "object"
     },
-    "TrialInfoAutomationDTO": {
+    "TrialInfoAutomation": {
       "properties": {
         "correctSuggestions190days": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "correctSuggestions365days": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "countActivatedVendors": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "countDeactivatedVendors": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "getvendorsCouldBeAutomated": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "percentAutomatedEHF": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "percentInvoicesNonEhf": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "percentSuggestionsEHF": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "percentVendorsNotSendingEhf": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "showProjectHint": {
+          "readOnly": true,
           "type": "boolean"
         },
         "totalAutomated190days": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "totalAutomated365days": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "totalCorrectSuggestions": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "totalCouldBeAutomated190days": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "totalCouldBeAutomated365days": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "totalEHFinvoices": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "vendorsNotSendingEhf": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "voucherCountNonEhf": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -99351,6 +99385,9 @@
     },
     {
       "name": "checkout"
+    },
+    {
+      "name": "yearEndclientContext"
     },
     {
       "name": "accountantClientAccess"
