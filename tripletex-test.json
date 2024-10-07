@@ -451,6 +451,7 @@
             "SOME",
             "ALL"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "category": {
@@ -473,18 +474,22 @@
             "VOUCHER",
             "YEAR_END_REPORT"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "description": {
+          "readOnly": true,
           "type": "string"
         },
         "hasReceivedAggregatedAccess": {
+          "readOnly": true,
           "type": "boolean"
         },
         "roles": {
           "items": {
             "$ref": "#/definitions/AccountantClientAccessRole"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -496,21 +501,26 @@
           "items": {
             "$ref": "#/definitions/AccountantClientAccessCategoryModel"
           },
+          "readOnly": true,
           "type": "array"
         },
         "companyId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "employeeId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "employeeName": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -519,6 +529,7 @@
     "AccountantClientAccessRole": {
       "properties": {
         "additionalInformation": {
+          "readOnly": true,
           "type": "string"
         },
         "dependencies": {
@@ -603,18 +614,23 @@
             ],
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "description": {
+          "readOnly": true,
           "type": "string"
         },
         "hasAccess": {
+          "readOnly": true,
           "type": "boolean"
         },
         "hasReceivedAccess": {
+          "readOnly": true,
           "type": "boolean"
         },
         "hasRequiredModule": {
+          "readOnly": true,
           "type": "boolean"
         },
         "reversedDependencies": {
@@ -699,6 +715,7 @@
             ],
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "role": {
@@ -780,6 +797,7 @@
             "AUTH_REMIT_FILES_VOUCHER_OVERVIEW",
             "YEAR_END_REPORT_ADMINISTRATOR"
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -2577,7 +2595,7 @@
         "exchangeRateSums": {
           "description": "Sum of all to be approved payments by currencies",
           "items": {
-            "$ref": "#/definitions/CurrencyPaymentsSumDTO"
+            "$ref": "#/definitions/CurrencyPaymentsSum"
           },
           "readOnly": true,
           "type": "array"
@@ -4205,7 +4223,6 @@
         },
         "endDateTime": {
           "description": "The end date time of maintenance period.",
-          "format": "date-time",
           "type": "string"
         },
         "id": {
@@ -4222,7 +4239,6 @@
         },
         "startDateTime": {
           "description": "The start date time of maintenance period.",
-          "format": "date-time",
           "type": "string"
         },
         "url": {
@@ -6239,9 +6255,11 @@
             "VOUCHER",
             "YEAR_END_REPORT"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "description": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -7140,7 +7158,6 @@
           "type": "string"
         },
         "promptTimestamp": {
-          "format": "date-time",
           "readOnly": true,
           "type": "string"
         },
@@ -7595,24 +7612,30 @@
     "ClientForApproval": {
       "properties": {
         "authorized": {
+          "readOnly": true,
           "type": "boolean"
         },
         "clientId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "clientName": {
+          "readOnly": true,
           "type": "string"
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "forApprovalCount": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -7621,24 +7644,30 @@
     "ClientForRemit": {
       "properties": {
         "authorized": {
+          "readOnly": true,
           "type": "boolean"
         },
         "clientId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "clientName": {
+          "readOnly": true,
           "type": "string"
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "forPaymentCount": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -7647,24 +7676,30 @@
     "ClientForReview": {
       "properties": {
         "authorized": {
+          "readOnly": true,
           "type": "boolean"
         },
         "clientId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "clientName": {
+          "readOnly": true,
           "type": "string"
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "forReviewCount": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -7673,24 +7708,30 @@
     "ClientForTravelsAndExpenses": {
       "properties": {
         "authorized": {
+          "readOnly": true,
           "type": "boolean"
         },
         "clientId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "clientName": {
+          "readOnly": true,
           "type": "string"
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "forTravelsAndExpensesCount": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8154,36 +8195,41 @@
       },
       "type": "object"
     },
+    "CompanyChooserCompany": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "isSuspended": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "parent": {
+          "$ref": "#/definitions/CompanyChooserCompany",
+          "readOnly": true
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CompanyChooserDTO": {
       "properties": {
         "currentCompany": {
-          "$ref": "#/definitions/CompanyDTO",
+          "$ref": "#/definitions/CompanyChooserCompany",
           "readOnly": true
         },
         "hasAccessToMultipleCompanies": {
           "readOnly": true,
           "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "CompanyDTO": {
-      "properties": {
-        "displayName": {
-          "type": "string"
-        },
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "isSuspended": {
-          "type": "boolean"
-        },
-        "parent": {
-          "$ref": "#/definitions/CompanyDTO"
-        },
-        "url": {
-          "type": "string"
         }
       },
       "type": "object"
@@ -8454,7 +8500,6 @@
           "type": "number"
         },
         "timestamp": {
-          "format": "date-time",
           "readOnly": true,
           "type": "string"
         },
@@ -9410,7 +9455,6 @@
           "type": "string"
         },
         "promptTimestamp": {
-          "format": "date-time",
           "type": "string"
         },
         "quickPromptOrder": {
@@ -9470,11 +9514,9 @@
           "type": "integer"
         },
         "responseEndTimestamp": {
-          "format": "date-time",
           "type": "string"
         },
         "responseStartTimestamp": {
-          "format": "date-time",
           "type": "string"
         },
         "source": {
@@ -9912,32 +9954,38 @@
       ],
       "type": "object"
     },
-    "CurrencyPaymentsSumDTO": {
+    "CurrencyPaymentsSum": {
       "properties": {
         "count": {
           "description": "Count of the payments in currency",
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "currency": {
           "$ref": "#/definitions/Currency",
-          "description": "Currency of the sum"
+          "description": "Currency of the sum",
+          "readOnly": true
         },
         "displayExchangeRate": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Display exchange rate used for the sum. Eg. EURNOK are displayed per 1 (9.87), while SEKNOK per 100 (98,27)"
+          "description": "Display exchange rate used for the sum. Eg. EURNOK are displayed per 1 (9.87), while SEKNOK per 100 (98,27)",
+          "readOnly": true,
+          "type": "number"
         },
         "exchangeRate": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Exchange rate used for the sum"
+          "description": "Exchange rate used for the sum",
+          "readOnly": true,
+          "type": "number"
         },
         "exchangedAmountsSum": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Sum of the amounts after exchange rate applied. Eg. if exchange rate is 10, then 100 EUR will be 1000 NOK"
+          "description": "Sum of the amounts after exchange rate applied. Eg. if exchange rate is 10, then 100 EUR will be 1000 NOK",
+          "readOnly": true,
+          "type": "number"
         },
         "sum": {
-          "$ref": "#/definitions/TlxNumber",
-          "description": "Sum of the payments in currency"
+          "description": "Sum of the payments in currency",
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -14036,6 +14084,7 @@
     "EventInfoDescription": {
       "properties": {
         "description": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -14797,14 +14846,6 @@
         },
         "json_schema": {
           "description": "Optional: The json schema",
-          "type": "string"
-        },
-        "language": {
-          "description": "Optional: The language",
-          "enum": [
-            "EN",
-            "NO"
-          ],
           "type": "string"
         },
         "question": {
@@ -37897,7 +37938,7 @@
         "ongoingTransactionsSum": {
           "description": "Sum of the all ongoing payments by currencies.",
           "items": {
-            "$ref": "#/definitions/CurrencyPaymentsSumDTO"
+            "$ref": "#/definitions/CurrencyPaymentsSum"
           },
           "readOnly": true,
           "type": "array"
@@ -37905,7 +37946,7 @@
         "overdueTransactionsSum": {
           "description": "Sum of all overdue payments by currencies.",
           "items": {
-            "$ref": "#/definitions/CurrencyPaymentsSumDTO"
+            "$ref": "#/definitions/CurrencyPaymentsSum"
           },
           "readOnly": true,
           "type": "array"
@@ -37918,7 +37959,7 @@
         "unpaidTransactionsSum": {
           "description": "Sum of all payments excluding paid and under process in bank, by currencies.",
           "items": {
-            "$ref": "#/definitions/CurrencyPaymentsSumDTO"
+            "$ref": "#/definitions/CurrencyPaymentsSum"
           },
           "readOnly": true,
           "type": "array"
@@ -40365,7 +40406,6 @@
         },
         "dateCounted": {
           "description": "When the line was counted - only for internal use",
-          "format": "date-time",
           "readOnly": true,
           "type": "string"
         },
@@ -43686,15 +43726,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -43715,6 +43759,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -43738,6 +43783,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -46694,22 +46740,22 @@
       },
       "type": "object"
     },
-    "ResponseWrapperListCompanyDTO": {
+    "ResponseWrapperListCompanyChooserCompany": {
       "properties": {
         "value": {
           "items": {
-            "$ref": "#/definitions/CompanyDTO"
+            "$ref": "#/definitions/CompanyChooserCompany"
           },
           "type": "array"
         }
       },
       "type": "object"
     },
-    "ResponseWrapperListCurrencyPaymentsSumDTO": {
+    "ResponseWrapperListCurrencyPaymentsSum": {
       "properties": {
         "value": {
           "items": {
-            "$ref": "#/definitions/CurrencyPaymentsSumDTO"
+            "$ref": "#/definitions/CurrencyPaymentsSum"
           },
           "type": "array"
         }
@@ -46852,11 +46898,11 @@
       },
       "type": "object"
     },
-    "ResponseWrapperListRoleCategoryContainerDTO": {
+    "ResponseWrapperListRoleCategoryContainer": {
       "properties": {
         "value": {
           "items": {
-            "$ref": "#/definitions/RoleCategoryContainerDTO"
+            "$ref": "#/definitions/RoleCategoryContainer"
           },
           "type": "array"
         }
@@ -46918,11 +46964,11 @@
       },
       "type": "object"
     },
-    "ResponseWrapperListStatusLogDTO": {
+    "ResponseWrapperListStatusLog": {
       "properties": {
         "value": {
           "items": {
-            "$ref": "#/definitions/StatusLogDTO"
+            "$ref": "#/definitions/StatusLog"
           },
           "type": "array"
         }
@@ -49074,29 +49120,33 @@
       },
       "type": "object"
     },
-    "RoleCategoryContainerDTO": {
+    "RoleCategoryContainer": {
       "properties": {
         "category": {
-          "$ref": "#/definitions/Category"
+          "$ref": "#/definitions/Category",
+          "readOnly": true
         },
         "hidden": {
           "type": "boolean"
         },
         "roleContainers": {
           "items": {
-            "$ref": "#/definitions/RoleContainerDTO"
+            "$ref": "#/definitions/RoleContainer"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
       "type": "object"
     },
-    "RoleContainerDTO": {
+    "RoleContainer": {
       "properties": {
         "category": {
-          "$ref": "#/definitions/Category"
+          "$ref": "#/definitions/Category",
+          "readOnly": true
         },
         "clientHasRequirements": {
+          "readOnly": true,
           "type": "boolean"
         },
         "container": {
@@ -49178,6 +49228,7 @@
             "AUTH_REMIT_FILES_VOUCHER_OVERVIEW",
             "YEAR_END_REPORT_ADMINISTRATOR"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "dependencies": {
@@ -49262,9 +49313,11 @@
             ],
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "description": {
+          "readOnly": true,
           "type": "string"
         },
         "hidden": {
@@ -49352,6 +49405,7 @@
             ],
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -54596,7 +54650,7 @@
       ],
       "type": "object"
     },
-    "StatusLogDTO": {
+    "StatusLog": {
       "properties": {
         "actionCreator": {
           "$ref": "#/definitions/Employee",
@@ -54604,6 +54658,7 @@
           "readOnly": true
         },
         "actionDate": {
+          "readOnly": true,
           "type": "string"
         },
         "actionType": {
@@ -54624,6 +54679,7 @@
             "PAYMENT_ATTESTATION_REJECTED",
             "PAYMENT_IMPORTED_AND_NOT_SENT"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "rejectionMessage": {
@@ -56296,12 +56352,10 @@
           "type": "integer"
         },
         "searchEnd": {
-          "format": "date-time",
           "readOnly": true,
           "type": "string"
         },
         "searchStart": {
-          "format": "date-time",
           "readOnly": true,
           "type": "string"
         }
@@ -57598,6 +57652,7 @@
           "items": {
             "$ref": "#/definitions/TodoListExpandedDetail"
           },
+          "readOnly": true,
           "type": "array"
         },
         "itemIdentifier": {
@@ -57674,6 +57729,7 @@
           "$ref": "#/definitions/TodoListItemStatus"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         },
         "year": {
@@ -57807,6 +57863,7 @@
           "items": {
             "$ref": "#/definitions/TodoListExpandedDetail"
           },
+          "readOnly": true,
           "type": "array"
         },
         "itemIdentifier": {
@@ -57908,6 +57965,7 @@
           "$ref": "#/definitions/TodoListItemStatus"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         },
         "year": {
@@ -58023,6 +58081,7 @@
           "$ref": "#/definitions/TodoListItemStatus"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         },
         "year": {
@@ -58074,6 +58133,7 @@
           "items": {
             "$ref": "#/definitions/TodoListExpandedDetail"
           },
+          "readOnly": true,
           "type": "array"
         },
         "itemIdentifier": {
@@ -59800,7 +59860,6 @@
           "type": "string"
         },
         "receivedAt": {
-          "format": "date-time",
           "type": "string"
         },
         "team": {
