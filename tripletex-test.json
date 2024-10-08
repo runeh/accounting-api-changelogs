@@ -8002,14 +8002,12 @@
         },
         "email": {
           "format": "email",
-          "maxLength": 254,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -8021,19 +8019,15 @@
           "type": "boolean"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "organizationNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "phoneNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobile": {
-          "maxLength": 100,
           "type": "string"
         },
         "startDate": {
@@ -33141,7 +33135,8 @@
         "shardGroup": {
           "enum": [
             "GLOBAL",
-            "COMPANY"
+            "COMPANY",
+            "ARCHIVE"
           ],
           "type": "string"
         },
@@ -33171,7 +33166,8 @@
         "shardGroup": {
           "enum": [
             "GLOBAL",
-            "COMPANY"
+            "COMPANY",
+            "ARCHIVE"
           ],
           "readOnly": true,
           "type": "string"
@@ -53106,6 +53102,9 @@
       "properties": {
         "allowConnections": {
           "readOnly": true,
+          "type": "boolean"
+        },
+        "archive": {
           "type": "boolean"
         },
         "global": {
