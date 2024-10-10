@@ -8023,12 +8023,14 @@
         },
         "email": {
           "format": "email",
+          "maxLength": 254,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -8040,15 +8042,19 @@
           "type": "boolean"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "organizationNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobile": {
+          "maxLength": 100,
           "type": "string"
         },
         "startDate": {
@@ -17598,6 +17604,113 @@
           "$ref": "#/definitions/VatType"
         }
       },
+      "type": "object"
+    },
+    "IncomingInvoiceDraft": {
+      "properties": {
+        "amountExclVat": {
+          "description": "Amount excluding VAT.",
+          "type": "number"
+        },
+        "amountInclVat": {
+          "description": "Amount including VAT.",
+          "type": "number"
+        },
+        "amountVat": {
+          "description": "Amount of VAT.",
+          "type": "number"
+        },
+        "changedByActualCompany": {
+          "description": "Company that changed the invoice.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "changedByActualEmployee": {
+          "description": "Actual employee that changed the invoice.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "changedByEmployee": {
+          "description": "Employee that changed the invoice.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency",
+          "description": "Currency used in the invoice."
+        },
+        "description": {
+          "description": "Description of the invoice.",
+          "maxLength": 255,
+          "type": "string"
+        },
+        "dueDate": {
+          "description": "The date the invoice is due.",
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "incomingInvoiceId": {
+          "description": "If value is set to 0, the invoice number will be generated.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "invoiceDate": {
+          "description": "The date the invoice was issued.",
+          "type": "string"
+        },
+        "invoiceNumber": {
+          "description": "If value is set to 0, the invoice number will be generated.",
+          "maxLength": 255,
+          "type": "string"
+        },
+        "purchaseOrder": {
+          "description": "The purchase order that the invoice belongs to.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "vendor": {
+          "$ref": "#/definitions/Company",
+          "description": "The Incoming invoice draft vendor",
+          "readOnly": true
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "voucher": {
+          "description": "The invoice voucher that the invoice belongs to.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherType": {
+          "description": "Voucher type of the invoice.",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "dueDate",
+        "invoiceDate"
+      ],
       "type": "object"
     },
     "IncomingInvoicePaymentHistory": {
@@ -27319,6 +27432,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/HourlyCostAndRate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseIncomingInvoiceDraft": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/IncomingInvoiceDraft"
           },
           "readOnly": true,
           "type": "array"
@@ -46562,6 +46708,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperIncomingInvoiceDraft": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/IncomingInvoiceDraft"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperIncomingInvoicePaymentHistory": {
       "properties": {
         "value": {
@@ -47955,6 +48109,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ResourcePlanBudget"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperResponseWrapperIncomingInvoiceDraft": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ResponseWrapperIncomingInvoiceDraft"
         }
       },
       "type": "object"
@@ -51493,6 +51655,10 @@
           "format": "int64",
           "readOnly": true,
           "type": "integer"
+        },
+        "isHistorical": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "isReversed": {
           "readOnly": true,
