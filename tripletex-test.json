@@ -7269,6 +7269,11 @@
             "CONTROLLED_TRANSACTIONS_AND_INBETWEEN",
             "LIMITATION_OF_DEDUCTION",
             "EXCEPTION_FOR_INTEREST_REDUCTION",
+            "COMPANY_TAX_RETURN",
+            "PARTICIPANTS_TASK",
+            "COOPERATIVE_ENTERPRISE",
+            "OTHER_CIRCUMSTANCES",
+            "TIMBER_ACCOUNT",
             "TAX_RETURN",
             "TAX_RETURN_TAX_CALCULATION",
             "CONTROL_TAX_RETURN",
@@ -7278,10 +7283,12 @@
             "NOTES",
             "CONTROL_ANNUAL_ACCOUNT",
             "ANNUAL_ACCOUNT_SUBMITTED",
+            "NOTES_INTERNAL",
             "ABOUT_BUSINESS",
             "PREPARATION",
             "SETTLEMENTS_ITEMS",
-            "WHAT_TO_REPORT"
+            "WHAT_TO_REPORT",
+            "PARTICIPANT"
           ],
           "type": "string"
         },
@@ -8023,14 +8030,12 @@
         },
         "email": {
           "format": "email",
-          "maxLength": 254,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -8042,19 +8047,15 @@
           "type": "boolean"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "organizationNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "phoneNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobile": {
-          "maxLength": 100,
           "type": "string"
         },
         "startDate": {
@@ -10612,6 +10613,11 @@
             "CONTROLLED_TRANSACTIONS_AND_INBETWEEN",
             "LIMITATION_OF_DEDUCTION",
             "EXCEPTION_FOR_INTEREST_REDUCTION",
+            "COMPANY_TAX_RETURN",
+            "PARTICIPANTS_TASK",
+            "COOPERATIVE_ENTERPRISE",
+            "OTHER_CIRCUMSTANCES",
+            "TIMBER_ACCOUNT",
             "TAX_RETURN",
             "TAX_RETURN_TAX_CALCULATION",
             "CONTROL_TAX_RETURN",
@@ -10621,10 +10627,12 @@
             "NOTES",
             "CONTROL_ANNUAL_ACCOUNT",
             "ANNUAL_ACCOUNT_SUBMITTED",
+            "NOTES_INTERNAL",
             "ABOUT_BUSINESS",
             "PREPARATION",
             "SETTLEMENTS_ITEMS",
-            "WHAT_TO_REPORT"
+            "WHAT_TO_REPORT",
+            "PARTICIPANT"
           ],
           "type": "string"
         },
@@ -41183,6 +41191,10 @@
         },
         "boligmappaAddress": {
           "$ref": "#/definitions/Address"
+        },
+        "budgetHourCost": {
+          "description": "Budget cost",
+          "type": "number"
         },
         "changes": {
           "items": {
