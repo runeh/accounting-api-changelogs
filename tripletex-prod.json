@@ -17446,6 +17446,9 @@
     },
     "IncomeVoucher": {
       "properties": {
+        "currency": {
+          "$ref": "#/definitions/Currency"
+        },
         "customer": {
           "$ref": "#/definitions/Customer"
         },
@@ -17628,22 +17631,23 @@
           "description": "Amount of VAT.",
           "type": "number"
         },
-        "changedByActualCompany": {
+        "changedAt": {
+          "description": "The date the invoice was last changed",
+          "type": "string"
+        },
+        "changedByActualCompanyId": {
           "description": "Company that changed the invoice.",
           "format": "int64",
-          "readOnly": true,
           "type": "integer"
         },
-        "changedByActualEmployee": {
+        "changedByActualEmployeeId": {
           "description": "Actual employee that changed the invoice.",
           "format": "int64",
-          "readOnly": true,
           "type": "integer"
         },
-        "changedByEmployee": {
+        "changedByEmployeeId": {
           "description": "Employee that changed the invoice.",
           "format": "int64",
-          "readOnly": true,
           "type": "integer"
         },
         "changes": {
@@ -17673,7 +17677,6 @@
         "incomingInvoiceId": {
           "description": "If value is set to 0, the invoice number will be generated.",
           "format": "int64",
-          "readOnly": true,
           "type": "integer"
         },
         "invoiceDate": {
@@ -17696,17 +17699,15 @@
         },
         "vendor": {
           "$ref": "#/definitions/Company",
-          "description": "The Incoming invoice draft vendor",
-          "readOnly": true
+          "description": "The Incoming invoice draft vendor"
         },
         "version": {
           "format": "int32",
           "type": "integer"
         },
-        "voucher": {
+        "voucherId": {
           "description": "The invoice voucher that the invoice belongs to.",
           "format": "int64",
-          "readOnly": true,
           "type": "integer"
         },
         "voucherType": {
@@ -17716,6 +17717,7 @@
         }
       },
       "required": [
+        "changedAt",
         "dueDate",
         "invoiceDate"
       ],
@@ -39168,12 +39170,15 @@
     "PersonAutoComplete": {
       "properties": {
         "address": {
+          "readOnly": true,
           "type": "string"
         },
         "alternateName": {
+          "readOnly": true,
           "type": "string"
         },
         "category": {
+          "readOnly": true,
           "type": "string"
         },
         "countryId": {
@@ -39190,6 +39195,7 @@
           "type": "string"
         },
         "id": {
+          "readOnly": true,
           "type": "string"
         },
         "lastname": {
@@ -39197,12 +39203,15 @@
           "type": "string"
         },
         "latitude": {
+          "readOnly": true,
           "type": "number"
         },
         "longitude": {
+          "readOnly": true,
           "type": "number"
         },
         "name": {
+          "readOnly": true,
           "type": "string"
         },
         "phoneNumber": {
@@ -39214,9 +39223,11 @@
           "type": "string"
         },
         "postalArea": {
+          "readOnly": true,
           "type": "string"
         },
         "postalCode": {
+          "readOnly": true,
           "type": "string"
         },
         "reserved": {
@@ -39225,6 +39236,7 @@
         },
         "score": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "sources": {
@@ -39247,6 +39259,7 @@
             ],
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "url": {
@@ -40859,6 +40872,9 @@
         "isStockItemDisplayName": {
           "type": "string"
         },
+        "locationNumber": {
+          "type": "string"
+        },
         "name": {
           "type": "string"
         },
@@ -40890,6 +40906,9 @@
         "sellingPriceInclVat": {
           "type": "string"
         },
+        "stockCount": {
+          "type": "string"
+        },
         "vatTypeDisplayName": {
           "type": "string"
         },
@@ -40900,6 +40919,9 @@
           "type": "string"
         },
         "volumeUnit": {
+          "type": "string"
+        },
+        "warehouseNumber": {
           "type": "string"
         },
         "weight": {
@@ -41262,10 +41284,6 @@
         "boligmappaAddress": {
           "$ref": "#/definitions/Address"
         },
-        "budgetHourCost": {
-          "description": "Budget cost",
-          "type": "number"
-        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -41623,6 +41641,10 @@
     },
     "ProjectBudgetStatus": {
       "properties": {
+        "budgetTotalCostCurrency": {
+          "readOnly": true,
+          "type": "number"
+        },
         "budgetTotalIncomeCurrency": {
           "readOnly": true,
           "type": "number"
@@ -43928,6 +43950,31 @@
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "ReconciliationState": {
+      "properties": {
+        "balanceDifference": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "bankStatementBalanceDescription": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency",
+          "readOnly": true
+        },
+        "ledgerAccountBalanceDescription": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "reconciliation": {
+          "$ref": "#/definitions/BankReconciliation",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -48121,6 +48168,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperReconciliationState": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ReconciliationState"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperReelDomain": {
       "properties": {
         "value": {
@@ -50760,8 +50815,8 @@
           "type": "string"
         },
         "eniBasis": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "id": {
           "format": "int64",
@@ -51080,8 +51135,8 @@
           "type": "string"
         },
         "eniBasis": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "id": {
           "format": "int64",
@@ -51764,8 +51819,8 @@
           "type": "string"
         },
         "eniBasis": {
-          "$ref": "#/definitions/TlxNumber",
-          "readOnly": true
+          "readOnly": true,
+          "type": "number"
         },
         "id": {
           "format": "int64",
@@ -52705,34 +52760,44 @@
     "SearchCompletion": {
       "properties": {
         "address": {
+          "readOnly": true,
           "type": "string"
         },
         "alternateName": {
+          "readOnly": true,
           "type": "string"
         },
         "category": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
+          "readOnly": true,
           "type": "string"
         },
         "latitude": {
+          "readOnly": true,
           "type": "number"
         },
         "longitude": {
+          "readOnly": true,
           "type": "number"
         },
         "name": {
+          "readOnly": true,
           "type": "string"
         },
         "postalArea": {
+          "readOnly": true,
           "type": "string"
         },
         "postalCode": {
+          "readOnly": true,
           "type": "string"
         },
         "score": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "sources": {
@@ -52755,6 +52820,7 @@
             ],
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -57943,38 +58009,46 @@
       "properties": {
         "accountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "accountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "clientCompanyId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "clientName": {
+          "readOnly": true,
           "type": "string"
         },
         "customAccountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "customAccountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "customDueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "customStatus": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "dueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "expandedDetails": {
@@ -57986,20 +58060,24 @@
         },
         "itemIdentifier": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "period": {
+          "readOnly": true,
           "type": "string"
         },
         "periodStart": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "year": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -58009,53 +58087,64 @@
       "properties": {
         "accountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "accountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "clientCompanyId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "clientName": {
+          "readOnly": true,
           "type": "string"
         },
         "customAccountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "customAccountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "customDueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "customStatus": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "dueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "itemIdentifier": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "period": {
+          "readOnly": true,
           "type": "string"
         },
         "periodStart": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "url": {
           "readOnly": true,
@@ -58063,6 +58152,7 @@
         },
         "year": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -58154,38 +58244,46 @@
       "properties": {
         "accountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "accountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "clientCompanyId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "clientName": {
+          "readOnly": true,
           "type": "string"
         },
         "customAccountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "customAccountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "customDueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "customStatus": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "dueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "expandedDetails": {
@@ -58197,20 +58295,24 @@
         },
         "itemIdentifier": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "period": {
+          "readOnly": true,
           "type": "string"
         },
         "periodStart": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "year": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -58245,53 +58347,64 @@
       "properties": {
         "accountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "accountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "clientCompanyId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "clientName": {
+          "readOnly": true,
           "type": "string"
         },
         "customAccountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "customAccountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "customDueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "customStatus": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "dueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "itemIdentifier": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "period": {
+          "readOnly": true,
           "type": "string"
         },
         "periodStart": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "url": {
           "readOnly": true,
@@ -58299,6 +58412,7 @@
         },
         "year": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -58361,53 +58475,64 @@
       "properties": {
         "accountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "accountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "clientCompanyId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "clientName": {
+          "readOnly": true,
           "type": "string"
         },
         "customAccountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "customAccountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "customDueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "customStatus": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "dueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "itemIdentifier": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "period": {
+          "readOnly": true,
           "type": "string"
         },
         "periodStart": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "url": {
           "readOnly": true,
@@ -58415,6 +58540,7 @@
         },
         "year": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -58424,38 +58550,46 @@
       "properties": {
         "accountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "accountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "clientCompanyId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "clientName": {
+          "readOnly": true,
           "type": "string"
         },
         "customAccountManagerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "customAccountManagerName": {
+          "readOnly": true,
           "type": "string"
         },
         "customDueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "customStatus": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "customerId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "dueDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "expandedDetails": {
@@ -58467,20 +58601,24 @@
         },
         "itemIdentifier": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "period": {
+          "readOnly": true,
           "type": "string"
         },
         "periodStart": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
-          "$ref": "#/definitions/TodoListItemStatus"
+          "$ref": "#/definitions/TodoListItemStatus",
+          "readOnly": true
         },
         "year": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -61715,6 +61853,9 @@
         },
         "incomePilotActive": {
           "readOnly": true,
+          "type": "boolean"
+        },
+        "incomingInvoicePilotActive": {
           "type": "boolean"
         },
         "isActiveAccountantProxy": {
@@ -66291,53 +66432,6 @@
         ]
       }
     },
-    "/bank/reconciliation/byFilter": {
-      "get": {
-        "description": "",
-        "operationId": "BankReconciliationByFilter_getByFilter",
-        "parameters": [
-          {
-            "description": "Account ID",
-            "format": "int64",
-            "in": "query",
-            "name": "accountId",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "description": "Format is yyyy-MM-dd",
-            "in": "query",
-            "name": "startDate",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ResponseWrapperBankReconciliation"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Find bank reconciliation corresponding with sent data.",
-        "tags": [
-          "bank/reconciliation"
-        ]
-      }
-    },
     "/bank/reconciliation/closedWithUnmatchedTransactions": {
       "get": {
         "description": "",
@@ -66515,6 +66609,123 @@
         "summary": " Find reconciliation postings corresponding with sent data.",
         "tags": [
           "bank/reconciliation/entry/posting"
+        ]
+      }
+    },
+    "/bank/reconciliation/internal/match": {
+      "get": {
+        "description": "",
+        "operationId": "BankReconciliationInternalMatch_search",
+        "parameters": [
+          {
+            "description": "The bank reconciliation id",
+            "format": "int64",
+            "in": "query",
+            "name": "bankReconciliationId",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Approved or unapproved matches",
+            "in": "query",
+            "name": "approved",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Number of elements to return",
+            "format": "int32",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseReconciliationMatch"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": " Find bank reconciliation matches corresponding with sent data.",
+        "tags": [
+          "bank/reconciliation/internal/match"
+        ]
+      }
+    },
+    "/bank/reconciliation/internal/state": {
+      "get": {
+        "description": "",
+        "operationId": "BankReconciliationInternalState_getState",
+        "parameters": [
+          {
+            "description": "Account ID",
+            "format": "int64",
+            "in": "query",
+            "name": "accountId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Format is yyyy-MM-dd",
+            "in": "query",
+            "name": "startDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperReconciliationState"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get reconciliation state details.",
+        "tags": [
+          "bank/reconciliation"
         ]
       }
     },
@@ -66698,76 +66909,6 @@
           }
         ],
         "summary": "Get the total number of matches",
-        "tags": [
-          "bank/reconciliation/match"
-        ]
-      }
-    },
-    "/bank/reconciliation/match/new": {
-      "get": {
-        "description": "",
-        "operationId": "BankReconciliationMatchNew_search",
-        "parameters": [
-          {
-            "description": "The bank reconciliation id",
-            "format": "int64",
-            "in": "query",
-            "name": "bankReconciliationId",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "description": "Approved or unapproved matches",
-            "in": "query",
-            "name": "approved",
-            "required": false,
-            "type": "boolean"
-          },
-          {
-            "description": "Number of elements to return",
-            "format": "int32",
-            "in": "query",
-            "name": "count",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "default": 0,
-            "description": "From index",
-            "in": "query",
-            "name": "from",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "description": "Sorting pattern",
-            "in": "query",
-            "name": "sorting",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ListResponseReconciliationMatch"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": " Find bank reconciliation matches corresponding with sent data.",
         "tags": [
           "bank/reconciliation/match"
         ]
@@ -100577,7 +100718,13 @@
       "name": "bank/reconciliation/entry/posting"
     },
     {
-      "name": "bankreconciliationmatchnew"
+      "name": "bankreconciliationinternalmatch"
+    },
+    {
+      "name": "bank/reconciliation/internal/match"
+    },
+    {
+      "name": "bankreconciliationinternal"
     },
     {
       "name": "banksettings"
