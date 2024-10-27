@@ -206,7 +206,7 @@ info:
     | https://api.fiken.no/api/v2/companies/{companySlug}/accounts           | No          | No        |                                       | Yes         | fromAccount, toAccount                                                                                                                  |
     | https://api.fiken.no/api/v2/companies/{companySlug}/accountBalances    | Yes         | No        |                                       | Yes         | fromAccount, toAccount                                                                                                                  |
     | https://api.fiken.no/api/v2/companies/{companySlug}/bankAccounts       | Yes         | No        |                                       | Yes         | inactive                                                                                                                                |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/contacts           | Yes         | Yes       | createdDate, lastModified             | Yes         | supplierNumber, customerNumber, memberNumber, name, organizationNumber, email, group, lastModified, createdDate, inactive, phoneNumber  |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/contacts           | Yes         | Yes       | createdDate, lastModified             | Yes         | supplierNumber, customerNumber, memberNumber, memberNumberString, name, organizationNumber, email, group, lastModified, createdDate, inactive, phoneNumber  |
     | https://api.fiken.no/api/v2/companies/{companySlug}/creditNotes        | Yes         | No        |                                       | Yes         | issueDate, lastModified, settled, customerId                                                                                            |
     | https://api.fiken.no/api/v2/companies/{companySlug}/inbox              | Yes         | Yes       | createdDate, name                     | Yes         | status, name                                                                                                                            |
     | https://api.fiken.no/api/v2/companies/{companySlug}/invoices           | Yes         | No        |                                       | Yes         | issueDate, lastModified, settled, customerId, orderReference, invoiceDraftUuid                                                          |
@@ -667,6 +667,12 @@ paths:
           in: query
           schema:
             type: integer
+          description: Find all results with the member number equal to the specified parameter.
+          deprecated: true
+        - name: memberNumberString
+          in: query
+          schema:
+            type: string
           description: Find all results with the member number equal to the specified parameter.
         - name: name
           in: query
@@ -4057,7 +4063,13 @@ components:
           type: number
           example: 5464
           writeOnly: true
-          description: A number that can be used to connect a contact to your own data.
+          description: A number that can be used to connect a contact to your own data. This field is no longer used and instead memberNumberString should be used.
+          deprecated: true
+        memberNumberString:
+          type: string
+          example: '5464'
+          writeOnly: true
+          description: A number/id that can be used to connect a contact to your own data.
         supplierNumber:
           type: integer
           format: int32

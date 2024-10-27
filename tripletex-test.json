@@ -10333,6 +10333,208 @@
       ],
       "type": "object"
     },
+    "CustomerImport": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "countCreated": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "countIgnored": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "countUpdated": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "customerImportHeaders": {
+          "items": {
+            "$ref": "#/definitions/CustomerImportHeader"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "importFile": {
+          "$ref": "#/definitions/Document",
+          "readOnly": true
+        },
+        "separator": {
+          "enum": [
+            "NONE",
+            "COMMA",
+            "SEMICOLON"
+          ],
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "FILE_UPLOADED",
+            "FIELDS_MAPPED",
+            "IMPORT_COMPLETED",
+            "IMPORT_ABORTED"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerImportField": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "fieldName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "format": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "isMandatory": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "sequence": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerImportHeader": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "customerImport": {
+          "$ref": "#/definitions/CustomerImport",
+          "readOnly": true
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "name": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "orderOfColumn": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "sampleValue": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "suggestedColumnField": {
+          "$ref": "#/definitions/CustomerImportField",
+          "readOnly": true
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerImportHeaderFieldsRelation": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "customerImport": {
+          "$ref": "#/definitions/CustomerImport"
+        },
+        "field": {
+          "$ref": "#/definitions/CustomerImportField"
+        },
+        "header": {
+          "$ref": "#/definitions/CustomerImportHeader"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "customerImport",
+        "field",
+        "header"
+      ],
+      "type": "object"
+    },
+    "CustomerImportRowErrorMessage": {
+      "properties": {
+        "errorMessage": {
+          "type": "string"
+        },
+        "fieldId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "fieldName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CustomerInvoiceDetails": {
       "properties": {
         "invoiceEmail": {
@@ -10354,6 +10556,55 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "CustomerPotential": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "customerImport": {
+          "$ref": "#/definitions/CustomerImport"
+        },
+        "errorMessage": {
+          "description": "errorMessage",
+          "items": {
+            "$ref": "#/definitions/CustomerImportRowErrorMessage"
+          },
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "rowContent": {
+          "$ref": "#/definitions/CustomerRowJSON",
+          "description": "rowContent"
+        },
+        "rowStatus": {
+          "enum": [
+            "NEW",
+            "UPDATE",
+            "FAIL"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "customerImport"
+      ],
       "type": "object"
     },
     "CustomerReceivable": {
@@ -10422,6 +10673,48 @@
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "CustomerRowJSON": {
+      "properties": {
+        "customerNumber": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organizationNumber": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "phoneNumberMobile": {
+          "type": "string"
+        },
+        "postalAddress1": {
+          "type": "string"
+        },
+        "postalAddress2": {
+          "type": "string"
+        },
+        "postalAddressCity": {
+          "type": "string"
+        },
+        "postalAddressCountry": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "rowNumber": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -17611,6 +17904,72 @@
       },
       "type": "object"
     },
+    "IncomingInvoiceAccount": {
+      "properties": {
+        "departmentId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "departmentLocked": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "legalVatTypes": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "number": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "productUnit1Id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "productUnit2Id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "requiresDepartment": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "requiresProject": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "vatLocked": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "vatTypeId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "IncomingInvoiceDraft": {
       "properties": {
         "amountExclVat": {
@@ -17819,6 +18178,34 @@
         "voucherNumberAsString": {
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IncomingInvoiceVatType": {
+      "properties": {
+        "basisPercentage": {
+          "description": "java.math.BigDecimal",
+          "type": "number"
+        },
+        "displayName": {
+          "description": "The vat type name",
+          "type": "string"
+        },
+        "name": {
+          "description": "The vat type name",
+          "type": "string"
+        },
+        "number": {
+          "description": "The vat type number",
+          "type": "string"
+        },
+        "percentage": {
+          "description": "java.math.BigDecimal",
+          "type": "number"
+        },
+        "reverseInVatCode": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -26161,6 +26548,171 @@
       },
       "type": "object"
     },
+    "ListResponseCustomerImport": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/CustomerImport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseCustomerImportField": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/CustomerImportField"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseCustomerImportHeader": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/CustomerImportHeader"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseCustomerImportHeaderFieldsRelation": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/CustomerImportHeaderFieldsRelation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseCustomerPotential": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/CustomerPotential"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseCustomizedChecklistProperty": {
       "properties": {
         "count": {
@@ -27448,6 +28000,39 @@
       },
       "type": "object"
     },
+    "ListResponseIncomingInvoiceAccount": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/IncomingInvoiceAccount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseIncomingInvoiceDraft": {
       "properties": {
         "count": {
@@ -27469,6 +28054,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/IncomingInvoiceDraft"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseIncomingInvoiceVatType": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/IncomingInvoiceVatType"
           },
           "readOnly": true,
           "type": "array"
@@ -33172,6 +33790,24 @@
     },
     "MaritimeEmployment": {
       "properties": {
+        "antallTimerPerYrkeskodePerMoenstring": {
+          "description": "Number of hours per profession code per boarding",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "avmoenstringsdato": {
+          "description": "Define the date for disemarking the vessel",
+          "type": "string"
+        },
+        "fartoeyId": {
+          "description": "Define the vessel ID",
+          "type": "string"
+        },
+        "paamoenstringsdato": {
+          "description": "Define the date for boarding the vessel",
+          "type": "string"
+        },
         "shipRegister": {
           "description": "Define the ship register. NIS: Norwegian International Ship Register, NOR: Norwegian Ordinary Ship Register, FOREIGN: Foreign Ship Register. ",
           "enum": [
@@ -33401,7 +34037,8 @@
         "shardGroup": {
           "enum": [
             "GLOBAL",
-            "COMPANY"
+            "COMPANY",
+            "ARCHIVE"
           ],
           "type": "string"
         },
@@ -33431,7 +34068,8 @@
         "shardGroup": {
           "enum": [
             "GLOBAL",
-            "COMPANY"
+            "COMPANY",
+            "ARCHIVE"
           ],
           "readOnly": true,
           "type": "string"
@@ -34421,6 +35059,21 @@
           "type": "boolean"
         },
         "category": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "categoryType": {
+          "enum": [
+            "ACCOUNTING",
+            "BANK_SERVICES",
+            "INVOICE",
+            "OTHER",
+            "PACKAGE",
+            "PROJECT_COST_MANAGEMENT",
+            "VOUCHER_SERVICES",
+            "WAREHOUSE_AND_LOGISTICS",
+            "WAGE"
+          ],
           "readOnly": true,
           "type": "string"
         },
@@ -43858,7 +44511,6 @@
           "items": {
             "$ref": "#/definitions/ReconciliationEntry"
           },
-          "readOnly": true,
           "type": "array"
         },
         "title": {
@@ -43894,8 +44546,7 @@
         },
         "postingsGroup": {
           "$ref": "#/definitions/ReconciliationGroup",
-          "description": "Group of postings from this match.",
-          "readOnly": true
+          "description": "Group of postings from this match."
         },
         "reconciliationId": {
           "description": "Id of the BankReconciliation.",
@@ -43904,8 +44555,7 @@
         },
         "transactionsGroup": {
           "$ref": "#/definitions/ReconciliationGroup",
-          "description": "Group of transactions from this match.",
-          "readOnly": true
+          "description": "Group of transactions from this match."
         },
         "url": {
           "readOnly": true,
@@ -44048,19 +44698,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -44081,7 +44727,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -44105,7 +44750,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -46357,6 +47001,22 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CustomerCategory"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperCustomerImport": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CustomerImport"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperCustomerPotential": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CustomerPotential"
         }
       },
       "type": "object"
@@ -53497,6 +54157,9 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "archive": {
+          "type": "boolean"
+        },
         "global": {
           "readOnly": true,
           "type": "boolean"
@@ -55066,7 +55729,9 @@
             "PAYMENT_APPROVAL_MULTIPLE_APPROVERS",
             "PAYMENT_ATTESTED",
             "PAYMENT_ATTESTATION_REJECTED",
-            "PAYMENT_IMPORTED_AND_NOT_SENT"
+            "PAYMENT_IMPORTED_AND_NOT_SENT",
+            "PAYMENT_PAID",
+            "PAYMENT_BOOKED"
           ],
           "readOnly": true,
           "type": "string"
@@ -59683,6 +60348,11 @@
           "format": "int32",
           "type": "integer"
         },
+        "customerCategoryId1": {
+          "description": "CustomerCategoryId1",
+          "format": "int32",
+          "type": "integer"
+        },
         "customerCategoryId2": {
           "description": "Customer category id used to indicate that the customer is created by Salesforce",
           "format": "int32",
@@ -60428,6 +61098,12 @@
     },
     "UserLicenseSettingsDTO": {
       "properties": {
+        "customerDisplayName": {
+          "type": "string"
+        },
+        "isAuthTripletexSupport": {
+          "type": "boolean"
+        },
         "isAuthTripletexSupportInvoiceManager": {
           "type": "boolean"
         },
@@ -66671,6 +67347,112 @@
           }
         ],
         "summary": " Find bank reconciliation matches corresponding with sent data.",
+        "tags": [
+          "bank/reconciliation/internal/match"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "BankReconciliationInternalMatch_post",
+        "parameters": [
+          {
+            "description": "Partial object describing what should be updated",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ReconciliationMatch"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Create a bank reconciliation match.",
+        "tags": [
+          "bank/reconciliation/internal/match"
+        ]
+      }
+    },
+    "/bank/reconciliation/internal/match/updateSuggestions": {
+      "put": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "BankReconciliationInternalMatchUpdateSuggestions_updateSuggestions",
+        "parameters": [
+          {
+            "description": "List of IDs",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ReconciliationMatch"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Approve or Reject",
+            "in": "query",
+            "name": "approve",
+            "required": true,
+            "type": "boolean"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Approve or reject bank reconciliation match suggestions.",
+        "tags": [
+          "bank/reconciliation/internal/match"
+        ]
+      }
+    },
+    "/bank/reconciliation/internal/match/{id}": {
+      "delete": {
+        "description": "",
+        "operationId": "BankReconciliationInternalMatch_delete",
+        "parameters": [
+          {
+            "description": "Element ID",
+            "format": "int64",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Delete a bank reconciliation match by ID.",
         "tags": [
           "bank/reconciliation/internal/match"
         ]
@@ -100847,6 +101629,21 @@
       "name": "customer/category"
     },
     {
+      "name": "importscustomer"
+    },
+    {
+      "name": "importscustomerfields"
+    },
+    {
+      "name": "importscustomerheaders"
+    },
+    {
+      "name": "importscustomerfields-relation"
+    },
+    {
+      "name": "importscustomerpotentials"
+    },
+    {
       "name": "dashboard"
     },
     {
@@ -101001,6 +101798,12 @@
     },
     {
       "name": "incomingInvoiceinternal"
+    },
+    {
+      "name": "incomingInvoiceinternalaccount"
+    },
+    {
+      "name": "incomingInvoiceinternalvat"
     },
     {
       "name": "integrationautopaymessages"
