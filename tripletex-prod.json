@@ -115,6 +115,11 @@
         "displayName": {
           "type": "string"
         },
+        "groupingCode": {
+          "description": "SAF-T 1.3 groupingCode for the account. It will be given a default value based on account number if empty.",
+          "maxLength": 35,
+          "type": "string"
+        },
         "id": {
           "format": "int64",
           "type": "integer"
@@ -193,7 +198,7 @@
           "type": "boolean"
         },
         "saftCode": {
-          "description": "SAF-T code for account. It will be given a default value based on account number if empty.",
+          "description": "SAF-T 1.0 standard account ID for account. It will be given a default value based on account number if empty.",
           "maxLength": 4,
           "type": "string"
         },
@@ -285,9 +290,6 @@
     },
     "AccountClosureInfo": {
       "properties": {
-        "endDate": {
-          "type": "string"
-        },
         "nbOfYears": {
           "format": "int32",
           "minimum": 0,
@@ -1092,7 +1094,7 @@
           "type": "string"
         },
         "logo": {
-          "$ref": "#/definitions/AddonLogoDTO"
+          "$ref": "#/definitions/AddonLogo"
         },
         "name": {
           "maxLength": 80,
@@ -1137,13 +1139,14 @@
       },
       "type": "object"
     },
-    "AddonLogoDTO": {
+    "AddonLogo": {
       "properties": {
         "content": {
           "items": {
             "format": "byte",
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "documentId": {
@@ -2570,16 +2573,20 @@
     "ApiValidationMessage": {
       "properties": {
         "field": {
+          "readOnly": true,
           "type": "string"
         },
         "message": {
+          "readOnly": true,
           "type": "string"
         },
         "path": {
+          "readOnly": true,
           "type": "string"
         },
         "rootId": {
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -2603,7 +2610,7 @@
         "notApproved": {
           "description": "List of payments that won't be sent to AutoPay approval/ZTL",
           "items": {
-            "$ref": "#/definitions/PaymentDTO"
+            "$ref": "#/definitions/Payment"
           },
           "readOnly": true,
           "type": "array"
@@ -2616,7 +2623,7 @@
         "toBeApproved": {
           "description": "List of payments that will be sent to AutoPay approval/ZTL",
           "items": {
-            "$ref": "#/definitions/PaymentDTO"
+            "$ref": "#/definitions/Payment"
           },
           "readOnly": true,
           "type": "array"
@@ -3322,7 +3329,7 @@
     "AutoPayTransaction": {
       "allOf": [
         {
-          "$ref": "#/definitions/PaymentDTO"
+          "$ref": "#/definitions/Payment"
         },
         {
           "properties": {
@@ -4366,7 +4373,7 @@
         },
         "steps": {
           "items": {
-            "$ref": "#/definitions/BankOnboardingStepDTO"
+            "$ref": "#/definitions/BankOnboardingStep"
           },
           "readOnly": true,
           "type": "array"
@@ -4378,13 +4385,15 @@
       },
       "type": "object"
     },
-    "BankOnboardingStepDTO": {
+    "BankOnboardingStep": {
       "properties": {
         "accessible": {
+          "readOnly": true,
           "type": "boolean"
         },
         "id": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "state": {
@@ -4393,6 +4402,7 @@
             "COMPLETED",
             "PROCESSING"
           ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -5424,7 +5434,7 @@
           "type": "boolean"
         },
         "paymentToBeCancelled": {
-          "$ref": "#/definitions/PaymentDTO",
+          "$ref": "#/definitions/Payment",
           "description": "Payment to be cancelled",
           "readOnly": true
         },
@@ -8030,12 +8040,14 @@
         },
         "email": {
           "format": "email",
+          "maxLength": 254,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -8047,15 +8059,19 @@
           "type": "boolean"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "organizationNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobile": {
+          "maxLength": 100,
           "type": "string"
         },
         "startDate": {
@@ -10390,8 +10406,7 @@
           "enum": [
             "FILE_UPLOADED",
             "FIELDS_MAPPED",
-            "IMPORT_COMPLETED",
-            "IMPORT_ABORTED"
+            "IMPORT_COMPLETED"
           ],
           "type": "string"
         },
@@ -10523,10 +10538,12 @@
     "CustomerImportRowErrorMessage": {
       "properties": {
         "errorMessage": {
+          "readOnly": true,
           "type": "string"
         },
         "fieldId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "fieldName": {
@@ -14688,17 +14705,21 @@
     "Favorite": {
       "properties": {
         "id": {
-          "format": "int32",
+          "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "name": {
+          "readOnly": true,
           "type": "string"
         },
         "pageUrl": {
+          "readOnly": true,
           "type": "string"
         },
         "rank": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -17736,8 +17757,9 @@
         "currency": {
           "$ref": "#/definitions/Currency"
         },
-        "customer": {
-          "$ref": "#/definitions/Customer"
+        "customerId": {
+          "format": "int32",
+          "type": "integer"
         },
         "description": {
           "type": "string"
@@ -17803,6 +17825,9 @@
         "clientId": {
           "type": "string"
         },
+        "currency": {
+          "$ref": "#/definitions/Currency"
+        },
         "customer": {
           "$ref": "#/definitions/Customer"
         },
@@ -17861,6 +17886,9 @@
         },
         "clientId": {
           "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency"
         },
         "customer": {
           "$ref": "#/definitions/Customer"
@@ -18010,9 +18038,10 @@
           "readOnly": true,
           "type": "array"
         },
-        "currency": {
-          "$ref": "#/definitions/Currency",
-          "description": "Currency used in the invoice."
+        "currencyId": {
+          "description": "Currency used in the invoice.",
+          "format": "int64",
+          "type": "integer"
         },
         "description": {
           "description": "Description of the invoice.",
@@ -18032,6 +18061,13 @@
           "format": "int64",
           "type": "integer"
         },
+        "incomingOrderLineDraftList": {
+          "description": "OrderLine drafts",
+          "items": {
+            "$ref": "#/definitions/IncomingOrderLineDraft"
+          },
+          "type": "array"
+        },
         "invoiceDate": {
           "description": "The date the invoice was issued.",
           "type": "string"
@@ -18041,7 +18077,7 @@
           "maxLength": 255,
           "type": "string"
         },
-        "purchaseOrder": {
+        "purchaseOrderId": {
           "description": "The purchase order that the invoice belongs to.",
           "format": "int64",
           "type": "integer"
@@ -18050,9 +18086,10 @@
           "readOnly": true,
           "type": "string"
         },
-        "vendor": {
-          "$ref": "#/definitions/Company",
-          "description": "The Incoming invoice draft vendor"
+        "vendorId": {
+          "description": "The Incoming invoice draft vendor",
+          "format": "int64",
+          "type": "integer"
         },
         "version": {
           "format": "int32",
@@ -18192,6 +18229,11 @@
           "description": "The vat type name",
           "type": "string"
         },
+        "id": {
+          "description": "Id of vat type",
+          "format": "int64",
+          "type": "integer"
+        },
         "name": {
           "description": "The vat type name",
           "type": "string"
@@ -18206,6 +18248,200 @@
         },
         "reverseInVatCode": {
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "IncomingOrderLineDraft": {
+      "properties": {
+        "accountId": {
+          "description": "ID of the account.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "amountExclVat": {
+          "description": "Amount excluding VAT.",
+          "type": "number"
+        },
+        "amountInclVat": {
+          "description": "Amount including VAT.",
+          "type": "number"
+        },
+        "amountType": {
+          "description": "Type of amount.",
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "amountVat": {
+          "description": "Amount of VAT.",
+          "type": "number"
+        },
+        "amountVatBase": {
+          "description": "Base amount of VAT.",
+          "type": "number"
+        },
+        "assetId": {
+          "description": "ID of the asset.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "changedAt": {
+          "description": "The date the order line was last changed.",
+          "type": "string"
+        },
+        "changedByActualCompanyId": {
+          "description": "Company that changed the order line.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "changedByActualEmployeeId": {
+          "description": "Actual employee that changed the order line.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "changedByEmployeeId": {
+          "description": "Employee that changed the order line.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "clientUUId": {
+          "description": "Client UUID.",
+          "maxLength": 50,
+          "type": "string"
+        },
+        "count": {
+          "description": "Count of the order line.",
+          "type": "number"
+        },
+        "currencyId": {
+          "description": "Currency used in the order line.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "customerId": {
+          "description": "ID of the customer.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "departmentId": {
+          "description": "ID of the department.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "description": {
+          "description": "Description of the order line.",
+          "maxLength": 255,
+          "type": "string"
+        },
+        "employeeId": {
+          "description": "ID of the employee.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "incomingInvoiceDraftId": {
+          "description": "ID of the incoming invoice draft.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "incomingOrderLineId": {
+          "description": "ID of the incoming order line.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "productId": {
+          "description": "ID of the product.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "productUnitId1": {
+          "description": "ID of the product unit 1.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "productUnitId2": {
+          "description": "ID of the product unit 2.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "projectId": {
+          "description": "ID of the project.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "quantityAmount1": {
+          "description": "Quantity amount 1.",
+          "type": "number"
+        },
+        "quantityAmount2": {
+          "description": "Quantity amount 2.",
+          "type": "number"
+        },
+        "reInvoiceOnProject": {
+          "description": "Re-invoice on project flag.",
+          "type": "boolean"
+        },
+        "row": {
+          "description": "Row number of the order line.",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "taxTransactionType": {
+          "description": "Type of tax transaction.",
+          "enum": [
+            "NONE",
+            "NEW_HIRES",
+            "IMPROVEMENTS",
+            "PUBLIC_GRANTS_FOR_NEW_HIRES",
+            "SALES_AND_OTHER_REALIZATIONS",
+            "SALES_AND_OTHER_REALIZATIONS_RECOGNIZED_AS_INCOME_IN_YEAR",
+            "RETURN_OF_GRANTS_FOR_INVESTMENTS_IN_DISTRICTS",
+            "ADJUSTMENTS_RELATED_MVA",
+            "UNKNOWN_TRANSACTION_TYPES",
+            "YEARLY_WRITEOFFS",
+            "NEGATIVE_BALANCE_RECOGNIZED_AS_INCOME",
+            "ADJUSTMENT_FOR_OBViOUS_VALUE_ADJUSTMENT",
+            "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "TRANSFER_TO_FROM_NEGATIVE_BALANCE",
+            "ACCOUNTING_VALUE_PROFIT_AND_LOSS",
+            "ACCOUNTING_WRITE_UPS_AND_WRITE_DOWNS"
+          ],
+          "type": "string"
+        },
+        "unitPrice": {
+          "description": "Unit price of the order line.",
+          "type": "number"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "vatTypeId": {
+          "description": "ID of the VAT type.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "vendorId": {
+          "description": "ID of the vendor.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -24079,7 +24315,7 @@
           "type": "boolean"
         },
         "jobDetail": {
-          "$ref": "#/definitions/JobDetailDTO",
+          "$ref": "#/definitions/JobDetail",
           "readOnly": true
         },
         "name": {
@@ -24092,7 +24328,7 @@
         },
         "triggers": {
           "items": {
-            "$ref": "#/definitions/TriggerDTO"
+            "$ref": "#/definitions/Trigger"
           },
           "readOnly": true,
           "type": "array"
@@ -24100,24 +24336,29 @@
       },
       "type": "object"
     },
-    "JobDetailDTO": {
+    "JobDetail": {
       "properties": {
         "description": {
+          "readOnly": true,
           "type": "string"
         },
         "group": {
+          "readOnly": true,
           "type": "string"
         },
         "jobData": {
           "additionalProperties": {
             "type": "object"
           },
+          "readOnly": true,
           "type": "object"
         },
         "jobclass": {
+          "readOnly": true,
           "type": "string"
         },
         "name": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -28561,7 +28802,7 @@
       },
       "type": "object"
     },
-    "ListResponseMenuItem": {
+    "ListResponseMenuItemV2": {
       "properties": {
         "count": {
           "format": "int64",
@@ -28581,7 +28822,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/MenuItem"
+            "$ref": "#/definitions/MenuItemV2"
           },
           "readOnly": true,
           "type": "array"
@@ -29089,7 +29330,7 @@
       },
       "type": "object"
     },
-    "ListResponsePaymentDTO": {
+    "ListResponsePayment": {
       "properties": {
         "count": {
           "format": "int64",
@@ -29109,7 +29350,7 @@
         },
         "values": {
           "items": {
-            "$ref": "#/definitions/PaymentDTO"
+            "$ref": "#/definitions/Payment"
           },
           "readOnly": true,
           "type": "array"
@@ -30760,6 +31001,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/ReconciliationMatch"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseReconciliationPaymentType": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ReconciliationPaymentType"
           },
           "readOnly": true,
           "type": "array"
@@ -33979,18 +34253,44 @@
     "MenuItem": {
       "properties": {
         "icon": {
+          "readOnly": true,
           "type": "string"
         },
         "subMenuItems": {
           "items": {
             "$ref": "#/definitions/MenuItem"
           },
+          "readOnly": true,
           "type": "array"
         },
         "testId": {
+          "readOnly": true,
           "type": "string"
         },
         "theme": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "MenuItemV2": {
+      "properties": {
+        "category": {
+          "type": "string"
+        },
+        "child": {
+          "type": "boolean"
+        },
+        "id": {
           "type": "string"
         },
         "title": {
@@ -38279,50 +38579,7 @@
       ],
       "type": "object"
     },
-    "PaymentCardInfoDTO": {
-      "properties": {
-        "cancelled": {
-          "description": "Amount of cancelled payments",
-          "items": {
-            "$ref": "#/definitions/PaymentCardInfoDetailsDTO"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "forApproval": {
-          "description": "Amount of payments for approval",
-          "items": {
-            "$ref": "#/definitions/PaymentCardInfoDetailsDTO"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "underProcessing": {
-          "description": "Amount of payments under processing",
-          "items": {
-            "$ref": "#/definitions/PaymentCardInfoDetailsDTO"
-          },
-          "readOnly": true,
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "PaymentCardInfoDetailsDTO": {
-      "properties": {
-        "amount": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "currency": {
-          "$ref": "#/definitions/Currency"
-        },
-        "numberOfPayments": {
-          "$ref": "#/definitions/TlxNumber"
-        }
-      },
-      "type": "object"
-    },
-    "PaymentDTO": {
+    "Payment": {
       "discriminator": "paymentSource",
       "properties": {
         "acceptors": {
@@ -38603,12 +38860,61 @@
       },
       "type": "object"
     },
-    "PaymentStatusInfoDTO": {
+    "PaymentCardInfoDTO": {
+      "properties": {
+        "cancelled": {
+          "description": "Amount of cancelled payments",
+          "items": {
+            "$ref": "#/definitions/PaymentCardInfoDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "forApproval": {
+          "description": "Amount of payments for approval",
+          "items": {
+            "$ref": "#/definitions/PaymentCardInfoDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "underProcessing": {
+          "description": "Amount of payments under processing",
+          "items": {
+            "$ref": "#/definitions/PaymentCardInfoDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PaymentCardInfoDetails": {
+      "properties": {
+        "amount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency",
+          "readOnly": true
+        },
+        "numberOfPayments": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "PaymentStatusInfo": {
       "properties": {
         "color": {
+          "readOnly": true,
           "type": "string"
         },
         "text": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -38618,7 +38924,7 @@
       "properties": {
         "statuses": {
           "additionalProperties": {
-            "$ref": "#/definitions/PaymentStatusInfoDTO"
+            "$ref": "#/definitions/PaymentStatusInfo"
           },
           "readOnly": true,
           "type": "object"
@@ -40321,6 +40627,43 @@
         "longestStreak",
         "plantedTreesThisMonth",
         "totalPlantedTrees"
+      ],
+      "type": "object"
+    },
+    "PostBalanceAdjustmentRequestDTO": {
+      "properties": {
+        "paymentTypeId": {
+          "description": "Payment Type Id",
+          "format": "int64",
+          "type": "integer"
+        },
+        "postings": {
+          "description": "Posting Ids",
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "reconciliationId": {
+          "description": "The id of the reconciliation where adjustment will be created",
+          "format": "int64",
+          "type": "integer"
+        },
+        "transactions": {
+          "description": "Transaction Ids",
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "paymentTypeId",
+        "postings",
+        "reconciliationId",
+        "transactions"
       ],
       "type": "object"
     },
@@ -44598,6 +44941,80 @@
       },
       "type": "object"
     },
+    "ReconciliationPaymentType": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Display Name",
+          "maxLength": 255,
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReconciliationSelectedState": {
+      "properties": {
+        "selectedDifference": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "showDifference": {
+          "description": "Flag to show difference for selected entries",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "showManualMatch": {
+          "description": "Flag to show manual match button for selected entries",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "showPostBalance": {
+          "description": "Flag to show enter balance button for selected entries",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "showPostEntries": {
+          "description": "Flag to show post transactions entries button for selected entries",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "showTransferEntries": {
+          "description": "Flag to show transfer entries button for selected entries",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "sumSelectedPostings": {
+          "description": "Total sum for selected postings",
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumSelectedTransactions": {
+          "description": "Total sum for selected transactions",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "ReconciliationState": {
       "properties": {
         "balanceDifference": {
@@ -47358,17 +47775,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperFieldValues": {
-      "properties": {
-        "value": {
-          "additionalProperties": {
-            "$ref": "#/definitions/ObjectNode"
-          },
-          "type": "object"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperGeneralLedgerCloseGroup": {
       "properties": {
         "value": {
@@ -48366,18 +48772,18 @@
       },
       "type": "object"
     },
-    "ResponseWrapperPaymentCardInfoDTO": {
+    "ResponseWrapperPayment": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/PaymentCardInfoDTO"
+          "$ref": "#/definitions/Payment"
         }
       },
       "type": "object"
     },
-    "ResponseWrapperPaymentDTO": {
+    "ResponseWrapperPaymentCardInfoDTO": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/PaymentDTO"
+          "$ref": "#/definitions/PaymentCardInfoDTO"
         }
       },
       "type": "object"
@@ -48818,6 +49224,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ReconciliationOfEquityOverview"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperReconciliationSelectedState": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ReconciliationSelectedState"
         }
       },
       "type": "object"
@@ -53586,375 +54000,499 @@
     "SegmentationModules": {
       "properties": {
         "approveHourLists": {
+          "readOnly": true,
           "type": "boolean"
         },
         "approveInvoices": {
+          "readOnly": true,
           "type": "boolean"
         },
         "approveWeeklyHourlists": {
+          "readOnly": true,
           "type": "boolean"
         },
         "approvemonthlyhourlists": {
+          "readOnly": true,
           "type": "boolean"
         },
         "approvetravelreports": {
+          "readOnly": true,
           "type": "boolean"
         },
         "autoGenerateProjectNumber": {
+          "readOnly": true,
           "type": "boolean"
         },
         "autoInvoicing": {
+          "readOnly": true,
           "type": "boolean"
         },
         "budgetOnSubcontracts": {
+          "readOnly": true,
           "type": "boolean"
         },
         "completemonthlyhourlists": {
+          "readOnly": true,
           "type": "boolean"
         },
         "completeweeklyhourlists": {
+          "readOnly": true,
           "type": "boolean"
         },
         "historicalInformation": {
+          "readOnly": true,
           "type": "boolean"
         },
         "holidayPlan": {
+          "readOnly": true,
           "type": "boolean"
         },
         "hourCostPercentage": {
+          "readOnly": true,
           "type": "boolean"
         },
         "hourlyRateProjectsWriteUpDown": {
+          "readOnly": true,
           "type": "boolean"
         },
         "markReadyForInvoicing": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleAPI20": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleAccountantConnectClient": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleAgro": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleAmortization": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleApproveDepartmentVoucher": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleApproveProjectVoucher": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleApproveVoucher": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleArchive": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleAutoBankReconciliation": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleAutoCustomerNumber": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleAutoVendorNumber": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleBoligmappa": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleCRM": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleCashCreditAprila": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleContact": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleControlSchemaRequiredHourTracking": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleControlSchemaRequiredInvoicing": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleCurrency": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleCustomerCategories": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleCustomerCategory1": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleCustomerCategory2": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleCustomerCategory3": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleDepartmentAccounting": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleDivisions": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleElectro": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleEmail": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleEmployeeAccounting": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleEmployeeCategory": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleEncryptedPaySlip": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleFactoring": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleFactoringAprila": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleHourCost": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleIndustry": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleInvoiceOptionAutoinvoiceEhf": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleInvoiceOptionAvtaleGiro": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleInvoiceOptionEfaktura": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleInvoiceOptionEhfIncoming": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleInvoiceOptionEhfOutbound": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleInvoiceOptionPaper": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleInvoiceOptionVipps": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleInvoiceScanning": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleLogistics": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleMamut": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleMesan": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleNetsEboks": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleNetsPrintInvoice": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleNetsPrintSalary": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleNrf": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleOcr": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleOffer": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleOrderDiscount": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleOrderLineCost": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleOrderMarkup": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleOrderNumber": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleOrderOut": {
+          "readOnly": true,
           "type": "boolean"
         },
         "modulePayrollAccounting": {
+          "readOnly": true,
           "type": "boolean"
         },
         "modulePayrollAccountingNO": {
+          "readOnly": true,
           "type": "boolean"
         },
         "modulePensionreport": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleProductAccounting": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleProductInvoice": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleProjectAccounting": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleProjectBudget": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleProvisionSalary": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleRemit": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleRemitAutoPay": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleRemitNets": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleRemitZtl": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleResultBudget": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleSmartScan": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleTimeBalance": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleTravelExpense": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleTravelExpenseRates": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleVacationBalance": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleVendor": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleVoucherAutomation": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleVoucherExport": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleVoucherScanning": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleVoucherTypes": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleWageExport": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleWageProjectAccounting": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleWarehouse": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleWorkingHours": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleaccountingexternal": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleaccountinginternal": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleaccountingreports": {
+          "readOnly": true,
           "type": "boolean"
         },
         "modulebudget": {
+          "readOnly": true,
           "type": "boolean"
         },
         "modulecustomer": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduledepartment": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleemployee": {
+          "readOnly": true,
           "type": "boolean"
         },
         "modulehourlist": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleinvoice": {
+          "readOnly": true,
           "type": "boolean"
         },
         "modulenote": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleproduct": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleproject": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduleprojecteconomy": {
+          "readOnly": true,
           "type": "boolean"
         },
         "modulesubscription": {
+          "readOnly": true,
           "type": "boolean"
         },
         "moduletask": {
+          "readOnly": true,
           "type": "boolean"
         },
         "multipleCustomerCategories": {
+          "readOnly": true,
           "type": "boolean"
         },
         "mustApproveRegisteredHours": {
+          "readOnly": true,
           "type": "boolean"
         },
         "projectCategories": {
+          "readOnly": true,
           "type": "boolean"
         },
         "projectForecast": {
+          "readOnly": true,
           "type": "boolean"
         },
         "referenceFee": {
+          "readOnly": true,
           "type": "boolean"
         },
         "resourceGroups": {
+          "readOnly": true,
           "type": "boolean"
         },
         "resourcePlanning": {
+          "readOnly": true,
           "type": "boolean"
         },
         "sendPayslipsByEmail": {
+          "readOnly": true,
           "type": "boolean"
         },
         "showRecentlyClosedProjectsOnSupplierInvoice": {
+          "readOnly": true,
           "type": "boolean"
         },
         "showTravelReportLetterhead": {
+          "readOnly": true,
           "type": "boolean"
         },
         "tripletexSupportLoginAccessCompanyLevel": {
+          "readOnly": true,
           "type": "boolean"
         },
         "yearEndReport": {
+          "readOnly": true,
           "type": "boolean"
         }
       },
@@ -53963,54 +54501,71 @@
     "SegmentationRoles": {
       "properties": {
         "isAutWageAdminSetting": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthAccountingSettings": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthAllVouchers": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthBankReconciliation": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthCompanyAdmin": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthCompanyWageAdmin": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthCreateOrder": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthDirectRemitZtl": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthInboxVoucher": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthInvoiceAdminSettings": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthInvoicing": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthReadOnly": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthTravelsAndExpensesAdminSettings": {
+          "readOnly": true,
           "type": "boolean"
         },
         "isAuthWageSettings": {
+          "readOnly": true,
           "type": "boolean"
         },
         "roleAccountAdministrator": {
+          "readOnly": true,
           "type": "boolean"
         },
         "roleAdministrator": {
+          "readOnly": true,
           "type": "boolean"
         },
         "roleSystemAdministrator": {
+          "readOnly": true,
           "type": "boolean"
         }
       },
@@ -56250,6 +56805,13 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "language": {
+          "enum": [
+            "NO",
+            "EN"
+          ],
+          "type": "string"
+        },
         "ledgerAccount": {
           "$ref": "#/definitions/Account",
           "description": "Can be used to specify the ledger account of the supplier if it's different from the default 2400 account"
@@ -56800,6 +57362,12 @@
         },
         "hasMoreThanTwoSticosSessions": {
           "type": "boolean"
+        },
+        "hasSalesforceSupport": {
+          "type": "boolean"
+        },
+        "lastName": {
+          "type": "string"
         },
         "myHelpRequestsUrl": {
           "type": "string"
@@ -60191,26 +60759,30 @@
       },
       "type": "object"
     },
-    "TriggerDTO": {
+    "Trigger": {
       "properties": {
         "calendarName": {
+          "readOnly": true,
           "type": "string"
         },
         "description": {
+          "readOnly": true,
           "type": "string"
         },
         "name": {
+          "readOnly": true,
           "type": "string"
         },
         "nextFireTime": {
-          "format": "date-time",
+          "readOnly": true,
           "type": "string"
         },
         "previousFireTime": {
-          "format": "date-time",
+          "readOnly": true,
           "type": "string"
         },
         "state": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -62166,6 +62738,10 @@
           "maxLength": 16777215,
           "type": "string"
         },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "document": {
           "$ref": "#/definitions/Document",
           "description": "If the documentation for the voucher has been generated by the system (e.g. an invoice) then this is a reference to the generated document. This document is always a PDF. Note that a voucher may have both a document, an attachment and an ediDocument.",
@@ -62922,6 +63498,10 @@
           "maxLength": 16777215,
           "type": "string"
         },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "document": {
           "$ref": "#/definitions/Document",
           "description": "If the documentation for the voucher has been generated by the system (e.g. an invoice) then this is a reference to the generated document. This document is always a PDF. Note that a voucher may have both a document, an attachment and an ediDocument.",
@@ -63420,17 +64000,21 @@
     "WebHookWrapper": {
       "properties": {
         "event": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "subscriptionId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "value": {
+          "readOnly": true,
           "type": "object"
         }
       },
@@ -65897,7 +66481,7 @@
     },
     "description": "## Usage\n\n- **Download the spec** [swagger.json](/v2/swagger.json) file, it is a [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).\n\n- **Generating a client** can easily be done using tools like [swagger-codegen](https://github.com/swagger-api/swagger-codegen) or other that accepts [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) specs.\n    - For swagger codegen it is recommended to use the flag: **--removeOperationIdPrefix**. \n      Unique operation ids are about to be introduced to the spec, and this ensures forward compatibility - and results in less verbose generated code.\n\n- **Please note** that Tripletex offers several packages. Some endpoints are only supported in certain packages. You can see the Tripletex packages [here](https://www.tripletex.no/priser/).\n\n## Overview\n\n- Partial resource updating is done using the `PUT` method with optional fields instead of the `PATCH` method.\n\n- **Actions** or **commands** are represented in our RESTful path with a prefixed `:`. Example: `/v2/hours/123/:approve`.\n\n- **Summaries** or **aggregated** results are represented in our RESTful path with a prefixed `>`. Example: `/v2/hours/>thisWeeksBillables`.\n\n- **Request ID** is a key found in all responses in the header with the name `x-tlx-request-id`. For validation and error responses it is also in the response body. If additional log information is absolutely necessary, our support division can locate the key value.\n\n- **version** This is a revision number found on all persisted resources. If included, it will prevent your PUT/POST from overriding any updates to the resource since your GET.\n\n- **Date** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DD`.\n\n- **DateTime** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DDThh:mm:ss`.\n\n- **Searching** is done by entering values in the optional fields for each API call. The values fall into the following categories: range, in, exact and like.\n\n- **Missing fields** or even **no response data** can occur because result objects and fields are filtered on authorization.\n\n- **See [GitHub](https://github.com/Tripletex/tripletex-api2) for more documentation, code examples, changelog and more.**\n\n- **See [Tripletex for developers](https://developer.tripletex.no/) for more practical information, support, updates and access form**\n\n\n## Authentication\n\n[Read more here](https://developer.tripletex.no/docs/documentation/authentication-and-tokens/)\n\n- **Tokens:** The Tripletex API uses 3 different tokens\n\n  - **consumerToken** is a token provided to the consumer by Tripletex after the API 2.0 registration is completed.\n\n  - **employeeToken** is a token created by an administrator in your Tripletex account via the user settings and the tab \"API access\". Each employee token must be given a set of entitlements.\n\n  - **sessionToken** is the token from `/token/session/:create` which requires a consumerToken and an employeeToken created with the same consumer token, but not an authentication header.\n\n- **Authentication** is done via [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)\n\n  - **username** is used to specify what company to access.\n\n    - `0` or blank means the company of the employee.\n\n    - Any other value means accountant clients. Use `/company/>withLoginAccess` to get a list of those.\n\n  - **password** is the **sessionToken**.\n\n  - If you need to create the header yourself use `Authorization: Basic <encoded token>` where `encoded token` is the string `<target company id or 0>:<your session token>` Base64 encoded.\n\n\n## Tags\n\n- `[BETA]` This is a beta endpoint and can be subject to change.\n- `[DEPRECATED]` Deprecated means that we intend to remove/change this feature or capability in a future \"major\" API release. We therefore discourage all use of this feature/capability.\n\n\n## Fields\n\nUse the `fields` parameter to specify which fields should be returned. This also supports fields from sub elements, done via `<field>(<subResourceFields>)`. `*` means all fields for that resource. Example values:\n- `project,activity,hours`  returns `{project:..., activity:...., hours:...}`.\n- just `project` returns `\"project\" : { \"id\": 12345, \"url\": \"tripletex.no/v2/projects/12345\"  }`.\n- `project(*)` returns `\"project\" : { \"id\": 12345 \"name\":\"ProjectName\" \"number.....startDate\": \"2013-01-07\" }`.\n- `project(name)` returns `\"project\" : { \"name\":\"ProjectName\" }`.\n- All resources and some subResources :  `*,activity(name),employee(*)`.\n\n\n## Sorting\n\nUse the `sorting` parameter to specify sorting. It takes a comma separated list, where a `-` prefix denotes descending. You can sort by sub object with the following format: `<field>.<subObjectField>`. Example values:\n- `date`\n- `project.name`\n- `project.name, -date`\n\n\n## Changes\n\nTo get the changes for a resource, `changes` have to be explicitly specified as part of the `fields` parameter, e.g. `*,changes`.\nThere are currently two types of change available: \n- `CREATE` for when the resource was created\n- `UPDATE` for when the resource was updated\n\n**NOTE**\n> For objects created prior to October 24th 2018 the list may be incomplete, but will always contain the CREATE and the last change (if the object has been changed after creation).\n\n\n## Rate limiting\n\nRate limiting is performed on the API calls for an employee for each API consumer. Status regarding the rate limit is returned as headers:\n- `X-Rate-Limit-Limit` - The number of allowed requests in the current period.\n- `X-Rate-Limit-Remaining` - The number of remaining requests.\n- `X-Rate-Limit-Reset` - The number of seconds left in the current period.\n\nOnce the rate limit is hit, all requests will return HTTP status code `429` for the remainder of the current period.\n\n\n## Response envelope\n\n#### Multiple values\n\n```json\n{\n  \"fullResultSize\": ###, // {number} [DEPRECATED]\n  \"from\": ###, // {number} Paging starting from\n  \"count\": ###, // {number} Paging count\n  \"versionDigest\": \"###\", // {string} Hash of full result, null if no result\n  \"values\": [...{...object...},{...object...},{...object...}...]\n}\n```\n\n#### Single value\n\n```json\n{\n  \"value\": {...single object...}\n}\n```\n\n\n## WebHook envelope\n\n```json\n{\n  \"subscriptionId\": ###, // Subscription id\n  \"event\": \"object.verb\", // As listed from /v2/event/\n  \"id\": ###, // Id of object this event is for\n  \"value\": {... single object, null if object.deleted ...}\n}\n```\n\n\n## Error/warning envelope\n\n```json\n{\n  \"status\": ###, // {number} HTTP status code\n  \"code\": #####, // {number} internal status code of event\n  \"message\": \"###\", // {string} Basic feedback message in your language\n  \"link\": \"###\", // {string} Link to doc\n  \"developerMessage\": \"###\", // {string} More technical message\n  \"validationMessages\": [ // {array} List of validation messages, can be null\n    {\n      \"field\": \"###\", // {string} Name of field\n      \"message\": \"###\" // {string} Validation message for field\n    }\n  ],\n  \"requestId\": \"###\" // {string} Same as x-tlx-request-id \n}\n```\n\n\n## Status codes / Error codes\n\n- **200 OK**\n- **201 Created** - From POSTs that create something new.\n- **204 No Content** - When there is no answer, ex: \"/:anAction\" or DELETE.\n- **400 Bad request** -\n  -  **4000** Bad Request Exception\n  - **11000** Illegal Filter Exception\n  - **12000** Path Param Exception\n  - **24000** Cryptography Exception\n- **401 Unauthorized** - When authentication is required and has failed or has not yet been provided\n  -  **3000** Authentication Exception\n- **403 Forbidden** - When AuthorisationManager says no.\n  -  **9000** Security Exception\n- **404 Not Found** - For resources that does not exist.\n  -  **6000** Not Found Exception\n- **409 Conflict** - Such as an edit conflict between multiple simultaneous updates\n  -  **7000** Object Exists Exception\n  -  **8000** Revision Exception\n  - **10000** Locked Exception\n  - **14000** Duplicate entry\n- **422 Bad Request** - For Required fields or things like malformed payload.\n  - **15000** Value Validation Exception\n  - **16000** Mapping Exception\n  - **17000** Sorting Exception\n  - **18000** Validation Exception\n  - **21000** Param Exception\n  - **22000** Invalid JSON Exception\n  - **23000** Result Set Too Large Exception\n- **429 Too Many Requests** - Request rate limit hit\n- **500 Internal Error** - Unexpected condition was encountered and no more specific message is suitable\n  - **1000** Exception\n",
     "title": "Tripletex API",
-    "version": "2.71.4"
+    "version": "2.71.5"
   },
   "paths": {
     "/activity": {
@@ -67458,23 +68042,53 @@
         ]
       }
     },
-    "/bank/reconciliation/internal/state": {
+    "/bank/reconciliation/internal/paymentType": {
       "get": {
         "description": "",
-        "operationId": "BankReconciliationInternalState_getState",
+        "operationId": "BankReconciliationInternalPaymentType_search",
         "parameters": [
           {
-            "description": "Account ID",
+            "description": "Containing",
+            "in": "query",
+            "name": "description",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Is income or cost",
+            "in": "query",
+            "name": "isIncome",
+            "required": true,
+            "type": "boolean"
+          },
+          {
+            "description": "Exclude Account ID",
             "format": "int64",
             "in": "query",
-            "name": "accountId",
-            "required": true,
+            "name": "excludedAccountId",
+            "required": false,
             "type": "integer"
           },
           {
-            "description": "Format is yyyy-MM-dd",
+            "default": 0,
+            "description": "From index",
             "in": "query",
-            "name": "startDate",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
             "required": false,
             "type": "string"
           },
@@ -67490,7 +68104,7 @@
           "200": {
             "description": "successful operation",
             "schema": {
-              "$ref": "#/definitions/ResponseWrapperReconciliationState"
+              "$ref": "#/definitions/ListResponseReconciliationPaymentType"
             }
           }
         },
@@ -67499,9 +68113,9 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Get reconciliation state details.",
+        "summary": "Find payment type corresponding with sent data.",
         "tags": [
-          "bank/reconciliation"
+          "bank/reconciliation/internal/paymentType"
         ]
       }
     },
@@ -86229,6 +86843,36 @@
         ]
       }
     },
+    "/project/dynamicControlForm/{id}/:copyFieldValuesFromLastEditedForm": {
+      "put": {
+        "description": "",
+        "operationId": "ProjectDynamicControlFormCopyFieldValuesFromLastEditedForm_copyFieldValuesFromLastEditedForm",
+        "parameters": [
+          {
+            "description": "The ID of the form that the values will be copied to",
+            "format": "int64",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Into each section in the specified form that only has empty or default values, and copyFieldValuesByDefault set as true in the form's template, copy field values from the equivalent section in the most recently edited control form. Completed forms will not be affected.",
+        "tags": [
+          "projectdynamicControlForm"
+        ]
+      }
+    },
     "/project/hourlyRates": {
       "get": {
         "description": "",
@@ -101498,6 +102142,12 @@
     },
     {
       "name": "bank/reconciliation/internal/match"
+    },
+    {
+      "name": "bankreconciliationinternalpaymentType"
+    },
+    {
+      "name": "bank/reconciliation/internal/paymentType"
     },
     {
       "name": "bankreconciliationinternal"
