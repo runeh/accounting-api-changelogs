@@ -1715,6 +1715,7 @@
             "CARRIED_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT_PREV_YEAR",
             "CARRY_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT",
             "TAXABLE_VALUE_ON_FORESTRY",
+            "REINSTATED_LOSS_FROM_PRELIMINARY_ASSESSMENT_IN_LATER_YEARS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -6694,6 +6695,7 @@
             "CARRIED_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT_PREV_YEAR",
             "CARRY_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT",
             "TAXABLE_VALUE_ON_FORESTRY",
+            "REINSTATED_LOSS_FROM_PRELIMINARY_ASSESSMENT_IN_LATER_YEARS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -8040,14 +8042,12 @@
         },
         "email": {
           "format": "email",
-          "maxLength": 254,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -8059,19 +8059,15 @@
           "type": "boolean"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "organizationNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "phoneNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobile": {
-          "maxLength": 100,
           "type": "string"
         },
         "startDate": {
@@ -9436,25 +9432,6 @@
       },
       "type": "object"
     },
-    "Coordinate": {
-      "properties": {
-        "geoEmpty": {
-          "type": "boolean"
-        },
-        "latitude": {
-          "format": "double",
-          "type": "number"
-        },
-        "location": {
-          "type": "string"
-        },
-        "longitude": {
-          "format": "double",
-          "type": "number"
-        }
-      },
-      "type": "object"
-    },
     "CopilotRequest": {
       "properties": {
         "changes": {
@@ -10373,13 +10350,6 @@
           "readOnly": true,
           "type": "integer"
         },
-        "customerImportHeaders": {
-          "items": {
-            "$ref": "#/definitions/CustomerImportHeader"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
         "employee": {
           "$ref": "#/definitions/Employee"
         },
@@ -10390,6 +10360,13 @@
         "importFile": {
           "$ref": "#/definitions/Document",
           "readOnly": true
+        },
+        "importHeaders": {
+          "items": {
+            "$ref": "#/definitions/CustomerImportHeader"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "separator": {
           "enum": [
@@ -10406,7 +10383,9 @@
           "enum": [
             "FILE_UPLOADED",
             "FIELDS_MAPPED",
-            "IMPORT_COMPLETED"
+            "IMPORT_STARTED",
+            "IMPORT_COMPLETED",
+            "DELETE_DATA_STARTED"
           ],
           "type": "string"
         },
@@ -10427,11 +10406,11 @@
           "readOnly": true,
           "type": "string"
         },
-        "fieldName": {
+        "displayNameExpanded": {
           "readOnly": true,
           "type": "string"
         },
-        "format": {
+        "fieldName": {
           "readOnly": true,
           "type": "string"
         },
@@ -10461,13 +10440,13 @@
           "readOnly": true,
           "type": "array"
         },
-        "customerImport": {
-          "$ref": "#/definitions/CustomerImport",
-          "readOnly": true
-        },
         "id": {
           "format": "int64",
           "type": "integer"
+        },
+        "importComponent": {
+          "$ref": "#/definitions/CustomerImport",
+          "readOnly": true
         },
         "name": {
           "maxLength": 250,
@@ -10506,9 +10485,6 @@
           "readOnly": true,
           "type": "array"
         },
-        "customerImport": {
-          "$ref": "#/definitions/CustomerImport"
-        },
         "field": {
           "$ref": "#/definitions/CustomerImportField"
         },
@@ -10518,6 +10494,9 @@
         "id": {
           "format": "int64",
           "type": "integer"
+        },
+        "importComponent": {
+          "$ref": "#/definitions/CustomerImport"
         },
         "url": {
           "readOnly": true,
@@ -10529,24 +10508,45 @@
         }
       },
       "required": [
-        "customerImport",
         "field",
-        "header"
+        "header",
+        "importComponent"
       ],
       "type": "object"
     },
-    "CustomerImportRowErrorMessage": {
+    "CustomerImportRowContent": {
       "properties": {
-        "errorMessage": {
-          "readOnly": true,
+        "customerNumber": {
           "type": "string"
         },
-        "fieldId": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
+        "email": {
+          "type": "string"
         },
-        "fieldName": {
+        "name": {
+          "type": "string"
+        },
+        "organizationNumber": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "phoneNumberMobile": {
+          "type": "string"
+        },
+        "postalAddress1": {
+          "type": "string"
+        },
+        "postalAddress2": {
+          "type": "string"
+        },
+        "postalAddressCity": {
+          "type": "string"
+        },
+        "postalAddressCountry": {
+          "type": "string"
+        },
+        "postalCode": {
           "type": "string"
         }
       },
@@ -10584,13 +10584,10 @@
           "readOnly": true,
           "type": "array"
         },
-        "customerImport": {
-          "$ref": "#/definitions/CustomerImport"
-        },
         "errorMessage": {
           "description": "errorMessage",
           "items": {
-            "$ref": "#/definitions/CustomerImportRowErrorMessage"
+            "$ref": "#/definitions/ImportRowErrorMessage"
           },
           "type": "array"
         },
@@ -10598,15 +10595,24 @@
           "format": "int64",
           "type": "integer"
         },
+        "importComponent": {
+          "$ref": "#/definitions/CustomerImport"
+        },
         "rowContent": {
-          "$ref": "#/definitions/CustomerRowJSON",
+          "$ref": "#/definitions/CustomerImportRowContent",
           "description": "rowContent"
+        },
+        "rowNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "rowStatus": {
           "enum": [
             "NEW",
             "UPDATE",
-            "FAIL"
+            "FAIL",
+            "DUPLICATE"
           ],
           "type": "string"
         },
@@ -10620,7 +10626,7 @@
         }
       },
       "required": [
-        "customerImport"
+        "importComponent"
       ],
       "type": "object"
     },
@@ -10690,48 +10696,6 @@
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
-        }
-      },
-      "type": "object"
-    },
-    "CustomerRowJSON": {
-      "properties": {
-        "customerNumber": {
-          "type": "string"
-        },
-        "email": {
-          "type": "string"
-        },
-        "name": {
-          "type": "string"
-        },
-        "organizationNumber": {
-          "type": "string"
-        },
-        "phoneNumber": {
-          "type": "string"
-        },
-        "phoneNumberMobile": {
-          "type": "string"
-        },
-        "postalAddress1": {
-          "type": "string"
-        },
-        "postalAddress2": {
-          "type": "string"
-        },
-        "postalAddressCity": {
-          "type": "string"
-        },
-        "postalAddressCountry": {
-          "type": "string"
-        },
-        "postalCode": {
-          "type": "string"
-        },
-        "rowNumber": {
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -11079,20 +11043,6 @@
         "validationMessageCode": {
           "format": "int64",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "Day": {
-      "properties": {
-        "hours": {
-          "items": {
-            "$ref": "#/definitions/Hours"
-          },
-          "type": "array"
-        },
-        "weekDay": {
-          "$ref": "#/definitions/TlxNumber"
         }
       },
       "type": "object"
@@ -11667,7 +11617,7 @@
           "type": "string"
         },
         "percentage": {
-          "$ref": "#/definitions/TlxNumber"
+          "type": "number"
         }
       },
       "type": "object"
@@ -12432,6 +12382,7 @@
             "CARRIED_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT_PREV_YEAR",
             "CARRY_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT",
             "TAXABLE_VALUE_ON_FORESTRY",
+            "REINSTATED_LOSS_FROM_PRELIMINARY_ASSESSMENT_IN_LATER_YEARS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -16041,6 +15992,7 @@
             "CARRIED_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT_PREV_YEAR",
             "CARRY_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT",
             "TAXABLE_VALUE_ON_FORESTRY",
+            "REINSTATED_LOSS_FROM_PRELIMINARY_ASSESSMENT_IN_LATER_YEARS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -17645,17 +17597,6 @@
       ],
       "type": "object"
     },
-    "Hours": {
-      "properties": {
-        "endTime": {
-          "type": "string"
-        },
-        "startTime": {
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "IdPortenLogin": {
       "properties": {
         "url": {
@@ -17684,6 +17625,23 @@
         },
         "expiresAt": {
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ImportRowErrorMessage": {
+      "properties": {
+        "errorMessage": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "fieldId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fieldName": {
           "type": "string"
         }
       },
@@ -17754,11 +17712,20 @@
     },
     "IncomeVoucher": {
       "properties": {
+        "attachmentId": {
+          "description": "Id of attachment linked to the voucher",
+          "format": "int32",
+          "type": "integer"
+        },
         "currency": {
           "$ref": "#/definitions/Currency"
         },
         "customerId": {
           "format": "int32",
+          "type": "integer"
+        },
+        "debitPostingId": {
+          "format": "int64",
           "type": "integer"
         },
         "description": {
@@ -17807,6 +17774,11 @@
         },
         "voucherNumber": {
           "type": "string"
+        },
+        "voucherTempNumber": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -17817,6 +17789,12 @@
           "$ref": "#/definitions/Account"
         },
         "amount": {
+          "type": "number"
+        },
+        "amountGross": {
+          "type": "number"
+        },
+        "amountGrossCurrency": {
           "type": "number"
         },
         "asset": {
@@ -17843,11 +17821,23 @@
         "incomeDescription": {
           "type": "string"
         },
-        "paymentType": {
-          "$ref": "#/definitions/PaymentType"
+        "isAmountVatClosed": {
+          "description": "Is amount of this posting (for VAT purposes) changeable",
+          "readOnly": true,
+          "type": "boolean"
         },
-        "posting": {
-          "$ref": "#/definitions/Posting"
+        "isVatClosed": {
+          "description": "Is vat code closed?",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "paymentTypeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "postingId": {
+          "format": "int64",
+          "type": "integer"
         },
         "product": {
           "$ref": "#/definitions/Product"
@@ -17881,6 +17871,12 @@
         "amount": {
           "type": "number"
         },
+        "amountGross": {
+          "type": "number"
+        },
+        "amountGrossCurrency": {
+          "type": "number"
+        },
         "asset": {
           "$ref": "#/definitions/Asset"
         },
@@ -17905,8 +17901,19 @@
         "incomeDescription": {
           "type": "string"
         },
-        "posting": {
-          "$ref": "#/definitions/Posting"
+        "isAmountVatClosed": {
+          "description": "Is amount of this posting (for VAT purposes) changeable",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isVatClosed": {
+          "description": "Is vat code closed?",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "postingId": {
+          "format": "int64",
+          "type": "integer"
         },
         "product": {
           "$ref": "#/definitions/Product"
@@ -18246,7 +18253,10 @@
           "description": "java.math.BigDecimal",
           "type": "number"
         },
-        "reverseInVatCode": {
+        "reverseInDeductableVatCode": {
+          "type": "boolean"
+        },
+        "reverseInNonDeductableVatCode": {
           "type": "boolean"
         }
       },
@@ -18305,13 +18315,6 @@
           "format": "int64",
           "type": "integer"
         },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
         "clientUUId": {
           "description": "Client UUID.",
           "maxLength": 50,
@@ -18343,10 +18346,6 @@
         },
         "employeeId": {
           "description": "ID of the employee.",
-          "format": "int64",
-          "type": "integer"
-        },
-        "id": {
           "format": "int64",
           "type": "integer"
         },
@@ -18425,10 +18424,6 @@
           "description": "Unit price of the order line.",
           "type": "number"
         },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
         "vatTypeId": {
           "description": "ID of the VAT type.",
           "format": "int64",
@@ -18437,10 +18432,6 @@
         "vendorId": {
           "description": "ID of the vendor.",
           "format": "int64",
-          "type": "integer"
-        },
-        "version": {
-          "format": "int32",
           "type": "integer"
         }
       },
@@ -22226,6 +22217,7 @@
             "CARRIED_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT_PREV_YEAR",
             "CARRY_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT",
             "TAXABLE_VALUE_ON_FORESTRY",
+            "REINSTATED_LOSS_FROM_PRELIMINARY_ASSESSMENT_IN_LATER_YEARS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -22881,6 +22873,7 @@
             "CARRIED_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT_PREV_YEAR",
             "CARRY_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT",
             "TAXABLE_VALUE_ON_FORESTRY",
+            "REINSTATED_LOSS_FROM_PRELIMINARY_ASSESSMENT_IN_LATER_YEARS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -23760,25 +23753,29 @@
       "properties": {
         "contentId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "messageContentType": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "readTime": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "receiverEmail": {
+          "readOnly": true,
           "type": "string"
         },
         "sendTime": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "status": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -23884,32 +23881,37 @@
     "InvoiceReminder": {
       "properties": {
         "debtCollectorName": {
+          "readOnly": true,
           "type": "string"
         },
         "interestsCurrency": {
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "messages": {
           "items": {
             "$ref": "#/definitions/InvoiceMessage"
           },
+          "readOnly": true,
           "type": "array"
         },
         "reminderDate": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "reminderType": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "termOfPayment": {
-          "format": "date",
+          "readOnly": true,
           "type": "string"
         },
         "totalChargeCurrency": {
           "format": "double",
+          "readOnly": true,
           "type": "number"
         }
       },
@@ -24136,9 +24138,11 @@
             "WARNING",
             "CRITICAL"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "title": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -33966,6 +33970,156 @@
       },
       "type": "object"
     },
+    "Lookup1881Coordinate": {
+      "properties": {
+        "latitude": {
+          "type": "number"
+        },
+        "longitude": {
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Lookup1881Day": {
+      "properties": {
+        "hours": {
+          "items": {
+            "$ref": "#/definitions/Lookup1881Hours"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "weekDay": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Lookup1881Hours": {
+      "properties": {
+        "endTime": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "startTime": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Lookup1881Price": {
+      "properties": {
+        "price": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "rushHoursToll": {
+          "$ref": "#/definitions/Lookup1881RushHoursToll",
+          "readOnly": true
+        },
+        "vehicle": {
+          "enum": [
+            "NotSet",
+            "CarDiesel",
+            "CarGasolineOrHybrid",
+            "CarZeroEmission",
+            "TruckEuroV",
+            "TruckEuroVI",
+            "CarGeneral",
+            "TruckGeneral"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "vehicleDescription": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Lookup1881RushHoursToll": {
+      "properties": {
+        "days": {
+          "items": {
+            "$ref": "#/definitions/Lookup1881Day"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "price": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Lookup1881TollStationV2": {
+      "properties": {
+        "coordinate": {
+          "$ref": "#/definitions/Lookup1881Coordinate",
+          "readOnly": true
+        },
+        "distance": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "prices": {
+          "items": {
+            "$ref": "#/definitions/Lookup1881Price"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "time": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "Lookup1881TotalToll": {
+      "properties": {
+        "regularToll": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "rushHoursToll": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "totalPrice": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "vehicle": {
+          "enum": [
+            "NotSet",
+            "CarDiesel",
+            "CarGasolineOrHybrid",
+            "CarZeroEmission",
+            "TruckEuroV",
+            "TruckEuroVI",
+            "CarGeneral",
+            "TruckGeneral"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Mapping": {
       "properties": {
         "changes": {
@@ -37947,6 +38101,7 @@
             "CARRIED_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT_PREV_YEAR",
             "CARRY_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT",
             "TAXABLE_VALUE_ON_FORESTRY",
+            "REINSTATED_LOSS_FROM_PRELIMINARY_ASSESSMENT_IN_LATER_YEARS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -39765,6 +39920,7 @@
             "CARRIED_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT_PREV_YEAR",
             "CARRY_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT",
             "TAXABLE_VALUE_ON_FORESTRY",
+            "REINSTATED_LOSS_FROM_PRELIMINARY_ASSESSMENT_IN_LATER_YEARS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -40637,7 +40793,7 @@
           "format": "int64",
           "type": "integer"
         },
-        "postings": {
+        "postingIds": {
           "description": "Posting Ids",
           "items": {
             "format": "int64",
@@ -40650,7 +40806,7 @@
           "format": "int64",
           "type": "integer"
         },
-        "transactions": {
+        "transactionIds": {
           "description": "Transaction Ids",
           "items": {
             "format": "int64",
@@ -40661,9 +40817,41 @@
       },
       "required": [
         "paymentTypeId",
-        "postings",
+        "postingIds",
         "reconciliationId",
-        "transactions"
+        "transactionIds"
+      ],
+      "type": "object"
+    },
+    "PostTransactionsAdjustmentsRequestDTO": {
+      "properties": {
+        "costPaymentTypeId": {
+          "description": "Cost Payment Type Id",
+          "format": "int64",
+          "type": "integer"
+        },
+        "incomePaymentTypeId": {
+          "description": "Income Payment Type Id",
+          "format": "int64",
+          "type": "integer"
+        },
+        "reconciliationId": {
+          "description": "The id of the reconciliation where adjustments will be created",
+          "format": "int64",
+          "type": "integer"
+        },
+        "transactionIds": {
+          "description": "Transaction Ids",
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
+      "required": [
+        "reconciliationId",
+        "transactionIds"
       ],
       "type": "object"
     },
@@ -40989,25 +41177,31 @@
     "PredictionLine": {
       "properties": {
         "account": {
+          "readOnly": true,
           "type": "string"
         },
         "amount": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         },
         "department": {
+          "readOnly": true,
           "type": "string"
         },
         "key": {
           "$ref": "#/definitions/PredictionKey"
         },
         "project": {
+          "readOnly": true,
           "type": "string"
         },
         "vatNumber": {
+          "readOnly": true,
           "type": "string"
         },
         "vatPercentage": {
-          "$ref": "#/definitions/TlxNumber"
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -41060,33 +41254,6 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "Price": {
-      "properties": {
-        "price": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "rushHoursToll": {
-          "$ref": "#/definitions/RushHoursToll"
-        },
-        "vehicle": {
-          "enum": [
-            "NotSet",
-            "CarDiesel",
-            "CarGasolineOrHybrid",
-            "CarZeroEmission",
-            "TruckEuroV",
-            "TruckEuroVI",
-            "CarGeneral",
-            "TruckGeneral"
-          ],
-          "type": "string"
-        },
-        "vehicleDescription": {
-          "type": "string"
         }
       },
       "type": "object"
@@ -41592,10 +41759,12 @@
     "ProductImportRowErrorMessage": {
       "properties": {
         "errorMessage": {
+          "readOnly": true,
           "type": "string"
         },
         "fieldId": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "fieldName": {
@@ -42138,16 +42307,20 @@
     "ProfileLoginCompany": {
       "properties": {
         "displayName": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
-          "format": "int32",
+          "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "isClientCompany": {
+          "readOnly": true,
           "type": "boolean"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -45115,15 +45288,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -45144,6 +45321,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -45167,6 +45345,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -49332,14 +49511,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperResponseWrapperIncomingInvoiceDraft": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/ResponseWrapperIncomingInvoiceDraft"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperResultBudget": {
       "properties": {
         "value": {
@@ -50856,23 +51027,6 @@
         "longitude": {
           "readOnly": true,
           "type": "number"
-        }
-      },
-      "type": "object"
-    },
-    "RushHoursToll": {
-      "properties": {
-        "days": {
-          "items": {
-            "$ref": "#/definitions/Day"
-          },
-          "type": "array"
-        },
-        "description": {
-          "type": "string"
-        },
-        "price": {
-          "$ref": "#/definitions/TlxNumber"
         }
       },
       "type": "object"
@@ -55593,6 +55747,7 @@
             "CARRIED_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT_PREV_YEAR",
             "CARRY_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT",
             "TAXABLE_VALUE_ON_FORESTRY",
+            "REINSTATED_LOSS_FROM_PRELIMINARY_ASSESSMENT_IN_LATER_YEARS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -56439,16 +56594,20 @@
     "SticosResponseLink": {
       "properties": {
         "header": {
+          "readOnly": true,
           "type": "string"
         },
         "id": {
           "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "title": {
+          "readOnly": true,
           "type": "string"
         },
         "url": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -59551,7 +59710,6 @@
           "type": "string"
         },
         "lastUpdatedDate": {
-          "format": "date",
           "type": "string"
         },
         "message": {
@@ -59847,56 +60005,6 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "TollStationV2": {
-      "properties": {
-        "coordinate": {
-          "$ref": "#/definitions/Coordinate"
-        },
-        "distance": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "name": {
-          "type": "string"
-        },
-        "prices": {
-          "items": {
-            "$ref": "#/definitions/Price"
-          },
-          "type": "array"
-        },
-        "time": {
-          "$ref": "#/definitions/TlxNumber"
-        }
-      },
-      "type": "object"
-    },
-    "TotalToll": {
-      "properties": {
-        "regularToll": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "rushHoursToll": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "totalPrice": {
-          "$ref": "#/definitions/TlxNumber"
-        },
-        "vehicle": {
-          "enum": [
-            "NotSet",
-            "CarDiesel",
-            "CarGasolineOrHybrid",
-            "CarZeroEmission",
-            "TruckEuroV",
-            "TruckEuroVI",
-            "CarGeneral",
-            "TruckGeneral"
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -60806,7 +60914,7 @@
       "properties": {
         "routePoints": {
           "items": {
-            "$ref": "#/definitions/Coordinate"
+            "$ref": "#/definitions/Lookup1881Coordinate"
           },
           "type": "array"
         },
@@ -60834,13 +60942,13 @@
         },
         "tollStations": {
           "items": {
-            "$ref": "#/definitions/TollStationV2"
+            "$ref": "#/definitions/Lookup1881TollStationV2"
           },
           "readOnly": true,
           "type": "array"
         },
         "totalToll": {
-          "$ref": "#/definitions/TotalToll",
+          "$ref": "#/definitions/Lookup1881TotalToll",
           "readOnly": true
         },
         "travelTimeInMinutes": {
@@ -64453,6 +64561,7 @@
             "CARRIED_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT_PREV_YEAR",
             "CARRY_FORWARD_DEDUCTION_LIMIT_LATE_PAYMENT",
             "TAXABLE_VALUE_ON_FORESTRY",
+            "REINSTATED_LOSS_FROM_PRELIMINARY_ASSESSMENT_IN_LATER_YEARS",
             "AID_SCHEME_TONNAGE_TAX_REGIME",
             "AID_SCHEME_RULES_FOR_ELECTRIC_DELIVERY_TRUCKS",
             "AID_SCHEME_FOR_LONG_TERM_INVESTMENTS",
@@ -80916,69 +81025,6 @@
         "summary": "Import GBAT10. Send as multipart form.",
         "tags": [
           "ledger/voucher"
-        ]
-      }
-    },
-    "/ledger/voucher/incomeVoucher/paymentPostings": {
-      "get": {
-        "description": "",
-        "operationId": "LedgerVoucherIncomeVoucherPaymentPostings_getPaymentPostings",
-        "parameters": [
-          {
-            "description": "Element ID",
-            "format": "int64",
-            "in": "query",
-            "name": "id",
-            "required": true,
-            "type": "integer"
-          },
-          {
-            "default": 0,
-            "description": "From index",
-            "in": "query",
-            "name": "from",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "default": 1000,
-            "description": "Number of elements to return",
-            "in": "query",
-            "name": "count",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "description": "Sorting pattern",
-            "in": "query",
-            "name": "sorting",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "schema": {
-              "$ref": "#/definitions/ListResponsePosting"
-            }
-          }
-        },
-        "security": [
-          {
-            "tokenAuthScheme": []
-          }
-        ],
-        "summary": "Find payment postings from history by posting ID.",
-        "tags": [
-          "ledger/posting"
         ]
       }
     },
@@ -102129,6 +102175,9 @@
       "name": "bank/reconciliation/settings"
     },
     {
+      "name": "bankreconciliationinternal"
+    },
+    {
       "name": "bankreconciliationentry"
     },
     {
@@ -102148,9 +102197,6 @@
     },
     {
       "name": "bank/reconciliation/internal/paymentType"
-    },
-    {
-      "name": "bankreconciliationinternal"
     },
     {
       "name": "banksettings"
