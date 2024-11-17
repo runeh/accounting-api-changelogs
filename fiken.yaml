@@ -5901,6 +5901,15 @@ components:
         deleted:
           type: boolean
           description: Whether the purchase has been deleted or not
+        settled:
+          type: boolean
+          example: true
+          description: If the purchase as been marked as settled (True) or not (False).
+        settledDate:
+          type: string
+          format: date
+          example: '2024-04-03'
+          description: Date the the purchase was marked as settled, format yyyy-mm-dd
     saleRequest:
       type: object
       required:

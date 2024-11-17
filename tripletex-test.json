@@ -8042,12 +8042,14 @@
         },
         "email": {
           "format": "email",
+          "maxLength": 254,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -8059,15 +8061,19 @@
           "type": "boolean"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "organizationNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobile": {
+          "maxLength": 100,
           "type": "string"
         },
         "startDate": {
@@ -9432,6 +9438,46 @@
       },
       "type": "object"
     },
+    "CopilotFollowUpQuestion": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "existing": {
+          "type": "boolean"
+        },
+        "followUpQuestion": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "sourceAgent": {
+          "maxLength": 255,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "existing",
+        "followUpQuestion",
+        "sourceAgent"
+      ],
+      "type": "object"
+    },
     "CopilotRequest": {
       "properties": {
         "changes": {
@@ -9500,6 +9546,13 @@
             "$ref": "#/definitions/Change"
           },
           "readOnly": true,
+          "type": "array"
+        },
+        "copilotFollowUpQuestion": {
+          "description": "List of follow-up questions",
+          "items": {
+            "$ref": "#/definitions/CopilotFollowUpQuestion"
+          },
           "type": "array"
         },
         "copilotRequest": {
@@ -14407,6 +14460,10 @@
           "readOnly": true,
           "type": "number"
         },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "elNumber": {
           "maxLength": 14,
           "type": "string"
@@ -17642,6 +17699,7 @@
           "type": "integer"
         },
         "fieldName": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -17716,6 +17774,9 @@
           "description": "Id of attachment linked to the voucher",
           "format": "int32",
           "type": "integer"
+        },
+        "canBeDeleted": {
+          "type": "boolean"
         },
         "currency": {
           "$ref": "#/definitions/Currency"
@@ -32238,6 +32299,138 @@
       },
       "type": "object"
     },
+    "ListResponseSupplierImport": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SupplierImport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseSupplierImportField": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SupplierImportField"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseSupplierImportHeader": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SupplierImportHeader"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseSupplierImportHeaderFieldsRelation": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SupplierImportHeaderFieldsRelation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseSupplierInvoice": {
       "properties": {
         "count": {
@@ -32259,6 +32452,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/SupplierInvoice"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseSupplierPotential": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SupplierPotential"
           },
           "readOnly": true,
           "type": "array"
@@ -48090,6 +48316,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperIncomeVoucherPosting": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/IncomeVoucherPosting"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperIncomingInvoiceDraft": {
       "properties": {
         "value": {
@@ -49917,10 +50151,26 @@
       },
       "type": "object"
     },
+    "ResponseWrapperSupplierImport": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/SupplierImport"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperSupplierInvoice": {
       "properties": {
         "value": {
           "$ref": "#/definitions/SupplierInvoice"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperSupplierPotential": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/SupplierPotential"
         }
       },
       "type": "object"
@@ -51884,6 +52134,11 @@
           "description": "Module wage project accounting",
           "readOnly": true,
           "type": "boolean"
+        },
+        "moduleZtl": {
+          "description": "Module Ztl",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -51930,6 +52185,9 @@
           "readOnly": true,
           "type": "string"
         },
+        "employee": {
+          "$ref": "#/definitions/Employee"
+        },
         "paymentAmount": {
           "readOnly": true,
           "type": "number"
@@ -51959,6 +52217,9 @@
         "displayName": {
           "readOnly": true,
           "type": "string"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee"
         },
         "isHours": {
           "readOnly": true,
@@ -52628,6 +52889,12 @@
         },
         "ameldingWageId": {
           "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "ameldingWageNumber": {
+          "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "anyExternalChangesOnThisTransaction": {
@@ -52716,6 +52983,10 @@
         "periodAsString": {
           "type": "string"
         },
+        "reverseVoucherDisplayName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "reversed": {
           "type": "boolean"
         },
@@ -52756,6 +53027,16 @@
           "description": "Comment on voucher",
           "maxLength": 16777215,
           "type": "string"
+        },
+        "wagePeriodTransactionId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "wagePeriodTransactionNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "year": {
           "format": "int32",
@@ -56484,13 +56765,6 @@
           "maxLength": 255,
           "type": "string"
         },
-        "sticosFollowUpQuestions": {
-          "description": "List of follow-up questions",
-          "items": {
-            "$ref": "#/definitions/SticosFollowUpQuestion"
-          },
-          "type": "array"
-        },
         "sticosLinks": {
           "description": "List of sticos sources",
           "items": {
@@ -56511,37 +56785,6 @@
         "flag",
         "response",
         "sessionId"
-      ],
-      "type": "object"
-    },
-    "SticosFollowUpQuestion": {
-      "properties": {
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "question": {
-          "maxLength": 65535,
-          "type": "string"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
-        }
-      },
-      "required": [
-        "question"
       ],
       "type": "object"
     },
@@ -57201,6 +57444,238 @@
       },
       "type": "object"
     },
+    "SupplierImport": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "countCreated": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "countIgnored": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "countUpdated": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "importFile": {
+          "$ref": "#/definitions/Document",
+          "readOnly": true
+        },
+        "importHeaders": {
+          "items": {
+            "$ref": "#/definitions/SupplierImportHeader"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "separator": {
+          "enum": [
+            "NONE",
+            "COMMA",
+            "SEMICOLON"
+          ],
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "FILE_UPLOADED",
+            "FIELDS_MAPPED",
+            "IMPORT_STARTED",
+            "IMPORT_COMPLETED",
+            "DELETE_DATA_STARTED"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SupplierImportField": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayNameExpanded": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "fieldName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "isMandatory": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "sequence": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SupplierImportHeader": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "importComponent": {
+          "$ref": "#/definitions/SupplierImport",
+          "readOnly": true
+        },
+        "name": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "orderOfColumn": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "sampleValue": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "suggestedColumnField": {
+          "$ref": "#/definitions/SupplierImportField",
+          "readOnly": true
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SupplierImportHeaderFieldsRelation": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "field": {
+          "$ref": "#/definitions/SupplierImportField"
+        },
+        "header": {
+          "$ref": "#/definitions/SupplierImportHeader"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "importComponent": {
+          "$ref": "#/definitions/SupplierImport"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "field",
+        "header",
+        "importComponent"
+      ],
+      "type": "object"
+    },
+    "SupplierImportRowContent": {
+      "properties": {
+        "bban": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "iban": {
+          "type": "string"
+        },
+        "name": {
+          "type": "string"
+        },
+        "organizationNumber": {
+          "type": "string"
+        },
+        "phoneNumber": {
+          "type": "string"
+        },
+        "phoneNumberMobile": {
+          "type": "string"
+        },
+        "postalAddress1": {
+          "type": "string"
+        },
+        "postalAddress2": {
+          "type": "string"
+        },
+        "postalAddressCity": {
+          "type": "string"
+        },
+        "postalAddressCountry": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "supplierNumber": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SupplierInvoice": {
       "properties": {
         "amount": {
@@ -57306,6 +57781,61 @@
       },
       "required": [
         "invoiceDate"
+      ],
+      "type": "object"
+    },
+    "SupplierPotential": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "errorMessage": {
+          "description": "errorMessage",
+          "items": {
+            "$ref": "#/definitions/ImportRowErrorMessage"
+          },
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "importComponent": {
+          "$ref": "#/definitions/SupplierImport"
+        },
+        "rowContent": {
+          "$ref": "#/definitions/SupplierImportRowContent",
+          "description": "rowContent"
+        },
+        "rowNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "rowStatus": {
+          "enum": [
+            "NEW",
+            "UPDATE",
+            "FAIL",
+            "DUPLICATE"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "importComponent"
       ],
       "type": "object"
     },
@@ -58706,6 +59236,9 @@
     },
     "TaxcardEmployeeInternal": {
       "properties": {
+        "department": {
+          "$ref": "#/definitions/Department"
+        },
         "displayName": {
           "type": "string"
         },
@@ -60050,6 +60583,43 @@
       },
       "type": "object"
     },
+    "TransferPostingsAdjustmentRequestDTO": {
+      "properties": {
+        "date": {
+          "description": "New Date for postings",
+          "type": "string"
+        },
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "interimAccountId": {
+          "description": "Interim Account Id",
+          "format": "int64",
+          "type": "integer"
+        },
+        "postingIds": {
+          "description": "Posting Ids",
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "reconciliationId": {
+          "description": "The id of the reconciliation where adjustment will be created",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "date",
+        "interimAccountId",
+        "postingIds",
+        "reconciliationId"
+      ],
+      "type": "object"
+    },
     "TransferredData": {
       "properties": {
         "operatingProfitLoss": {
@@ -60097,6 +60667,10 @@
           "type": "array"
         },
         "code": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
           "readOnly": true,
           "type": "string"
         },
@@ -61844,6 +62418,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "linkDescription": {
+          "readOnly": true,
+          "type": "string"
+        },
         "message": {
           "readOnly": true,
           "type": "string"
@@ -63154,6 +63732,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "canUserCreateVoucher": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "canUserRegisterAdvancedVoucher": {
           "readOnly": true,
           "type": "boolean"
@@ -63201,11 +63783,39 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "hasModuleDepartmentAccounting": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasModuleEmployee": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasModuleProduct": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasModuleProductAccounting": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasModuleProject": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasModuleQuantityHandling": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "inDeveloperMode": {
           "readOnly": true,
           "type": "boolean"
         },
         "incomePilotActive": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "incomingInvoicePilot": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -82744,6 +83354,59 @@
         ]
       }
     },
+    "/order/packingNote/{orderId}/pdf": {
+      "get": {
+        "description": "",
+        "operationId": "OrderPackingNotePdf_downloadPackingNotePdf",
+        "parameters": [
+          {
+            "description": "Order ID from which PDF is downloaded.",
+            "format": "int32",
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "default": "ALL_ORDER_LINES",
+            "description": "Type of packing note to download.",
+            "enum": [
+              "ALL_ORDER_LINES",
+              "STOCK_ITEMS_ONLY"
+            ],
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": true,
+            "description": "Equals",
+            "in": "query",
+            "name": "download",
+            "required": false,
+            "type": "boolean"
+          }
+        ],
+        "produces": [
+          "application/octet-stream"
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get PDF representation of packing note by ID.",
+        "tags": [
+          "order"
+        ]
+      }
+    },
     "/order/sendInvoicePreview/{orderId}": {
       "put": {
         "description": "",
@@ -82841,6 +83504,69 @@
           }
         ],
         "summary": "Send Order Confirmation to customer by email.",
+        "tags": [
+          "order"
+        ]
+      }
+    },
+    "/order/sendPackingNote/{orderId}": {
+      "put": {
+        "description": "",
+        "operationId": "OrderSendPackingNote_postPackingNote",
+        "parameters": [
+          {
+            "description": "orderId",
+            "format": "int64",
+            "in": "path",
+            "name": "orderId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "email",
+            "in": "query",
+            "name": "email",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "message",
+            "in": "query",
+            "name": "message",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "saveAsDefault",
+            "in": "query",
+            "name": "saveAsDefault",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "default": "ALL_ORDER_LINES",
+            "description": "Type of packing note to send.",
+            "enum": [
+              "ALL_ORDER_LINES",
+              "STOCK_ITEMS_ONLY"
+            ],
+            "in": "query",
+            "name": "type",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Send Packing Note to customer by email.",
         "tags": [
           "order"
         ]
@@ -95183,7 +95909,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Only for allocated hours on the company's internal holiday/vacation activity. Mark the allocated hour entry/entries as approved. The hours will be copied to the time sheet. Notifications will be sent to the entries' employees if the entries' approval statuses or comments have changed. If IDs are provided, the other args are ignored.",
+        "summary": "Only for allocated hours on the company's internal holiday/vacation activity. Mark the allocated hour entry/entries as approved. The hours will be copied to the time sheet if the relevant weeks/months are not approved, and there are no interfering time clocks that are active. Notifications will be sent to the entries' employees if the entries' approval statuses or comments have changed. If IDs are provided, the other args are ignored.",
         "tags": [
           "timesheet/allocated"
         ]
@@ -95321,7 +96047,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Update allocated hour entry. Multiple objects for different users can be sent in the same request. Note: Allocated hour entry object fields which are present but not set, or set to 0, will be nulled. Only holiday/vacation hours can receive comments. Notifications will be sent to the entries' employees if the entries' comments have changed.",
+        "summary": "Update allocated hour entry. Multiple objects for different users can be sent in the same request. Note: Allocated hour entry object fields which are present but not set, or set to 0, will be  nulled. Only holiday/vacation hours can receive comments. Notifications will be sent to the entries' employees if the entries' comments have changed.",
         "tags": [
           "timesheet/allocated"
         ]
@@ -95472,7 +96198,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Only for allocated hours on the company's internal holiday/vacation activity. Mark the allocated hour entry as approved. The hours will be copied to the time sheet. A notification will be sent to the entry's employee if the entry's approval status or comment has changed.",
+        "summary": "Only for allocated hours on the company's internal holiday/vacation activity. Mark the allocated hour entry as approved. The hours will be copied to the time sheet if the relevant week/month is not approved, and there are no interfering time clocks that are active. A notification will be sent to the entry's employee if the entry's approval status or comment has changed.",
         "tags": [
           "timesheet/allocated"
         ]
@@ -102181,10 +102907,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
       "name": "bankreconciliationinternalmatch"
@@ -102323,21 +103049,6 @@
     },
     {
       "name": "customer/category"
-    },
-    {
-      "name": "importscustomer"
-    },
-    {
-      "name": "importscustomerfields"
-    },
-    {
-      "name": "importscustomerheaders"
-    },
-    {
-      "name": "importscustomerfields-relation"
-    },
-    {
-      "name": "importscustomerpotentials"
     },
     {
       "name": "dashboard"
@@ -102491,6 +103202,36 @@
     },
     {
       "name": "idportenloginstatus"
+    },
+    {
+      "name": "importscustomer"
+    },
+    {
+      "name": "importscustomerfields"
+    },
+    {
+      "name": "importscustomerheaders"
+    },
+    {
+      "name": "importscustomerfields-relation"
+    },
+    {
+      "name": "importscustomerpotentials"
+    },
+    {
+      "name": "importssupplier"
+    },
+    {
+      "name": "importssupplierfields"
+    },
+    {
+      "name": "importssupplierheaders"
+    },
+    {
+      "name": "importssupplierfields-relation"
+    },
+    {
+      "name": "importssupplierpotentials"
     },
     {
       "name": "incomingInvoiceinternal"
