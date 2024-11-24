@@ -1638,6 +1638,7 @@
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
+            "KLAGE_PAA_SKJOENNSFASTSETTING",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -1674,6 +1675,8 @@
             "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
             "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -6249,7 +6252,8 @@
             "CONTROLLED_TRANSACTIONS",
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
-            "INTEREST_LIMITATION"
+            "INTEREST_LIMITATION",
+            "DOCUMENT_WITH_ALTINN_ID"
           ],
           "readOnly": true,
           "type": "string"
@@ -6618,6 +6622,7 @@
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
+            "KLAGE_PAA_SKJOENNSFASTSETTING",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -6654,6 +6659,8 @@
             "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
             "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -7197,6 +7204,39 @@
         "source": {
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ChatThread": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "employeeId": {
+          "description": "The employee id of the chat thread",
+          "format": "int64",
+          "type": "integer"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "timestamp": {
+          "description": "Timestamp for creation of the chat thread",
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -7843,6 +7883,20 @@
       },
       "type": "object"
     },
+    "Cluster": {
+      "properties": {
+        "id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Comment": {
       "properties": {
         "actualEmployeeCompanyId": {
@@ -8042,14 +8096,12 @@
         },
         "email": {
           "format": "email",
-          "maxLength": 254,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -8061,19 +8113,15 @@
           "type": "boolean"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "organizationNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "phoneNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobile": {
-          "maxLength": 100,
           "type": "string"
         },
         "startDate": {
@@ -10097,7 +10145,7 @@
           "$ref": "#/definitions/Currency"
         },
         "targetCurrencyId": {
-          "format": "int32",
+          "format": "int64",
           "type": "integer"
         }
       },
@@ -12121,7 +12169,8 @@
             "CONTROLLED_TRANSACTIONS",
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
-            "INTEREST_LIMITATION"
+            "INTEREST_LIMITATION",
+            "DOCUMENT_WITH_ALTINN_ID"
           ],
           "type": "string"
         },
@@ -12358,6 +12407,7 @@
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
+            "KLAGE_PAA_SKJOENNSFASTSETTING",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -12394,6 +12444,8 @@
             "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
             "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -13472,6 +13524,283 @@
       ],
       "type": "object"
     },
+    "EmployeeImport": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "countCreated": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "countIgnored": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "countUpdated": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "importFile": {
+          "$ref": "#/definitions/Document",
+          "readOnly": true
+        },
+        "importHeaders": {
+          "items": {
+            "$ref": "#/definitions/EmployeeImportHeader"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "separator": {
+          "enum": [
+            "NONE",
+            "COMMA",
+            "SEMICOLON"
+          ],
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "status": {
+          "enum": [
+            "FILE_UPLOADED",
+            "FIELDS_MAPPED",
+            "IMPORT_STARTED",
+            "IMPORT_COMPLETED",
+            "DELETE_DATA_STARTED"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EmployeeImportField": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayNameExpanded": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "fieldName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "isMandatory": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "sequence": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EmployeeImportHeader": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "importComponent": {
+          "$ref": "#/definitions/EmployeeImport",
+          "readOnly": true
+        },
+        "name": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "orderOfColumn": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "sampleValue": {
+          "maxLength": 250,
+          "type": "string"
+        },
+        "suggestedColumnField": {
+          "$ref": "#/definitions/EmployeeImportField",
+          "readOnly": true
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EmployeeImportHeaderFieldsRelation": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "field": {
+          "$ref": "#/definitions/EmployeeImportField"
+        },
+        "header": {
+          "$ref": "#/definitions/EmployeeImportHeader"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "importComponent": {
+          "$ref": "#/definitions/EmployeeImport"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "field",
+        "header",
+        "importComponent"
+      ],
+      "type": "object"
+    },
+    "EmployeeImportRowContent": {
+      "properties": {
+        "bban": {
+          "type": "string"
+        },
+        "dateOfBirth": {
+          "type": "string"
+        },
+        "dnumber": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "employeeNumber": {
+          "type": "string"
+        },
+        "employmentForm": {
+          "type": "string"
+        },
+        "employmentType": {
+          "type": "string"
+        },
+        "firstName": {
+          "type": "string"
+        },
+        "hourlyWage": {
+          "type": "string"
+        },
+        "iban": {
+          "type": "string"
+        },
+        "lastName": {
+          "type": "string"
+        },
+        "occupationCode": {
+          "type": "string"
+        },
+        "percentOfEmployment": {
+          "type": "string"
+        },
+        "phoneNumberMobile": {
+          "type": "string"
+        },
+        "phoneNumberWork": {
+          "type": "string"
+        },
+        "postalAddress1": {
+          "type": "string"
+        },
+        "postalAddress2": {
+          "type": "string"
+        },
+        "postalAddressCity": {
+          "type": "string"
+        },
+        "postalAddressCountry": {
+          "type": "string"
+        },
+        "postalCode": {
+          "type": "string"
+        },
+        "socialSecurityNumber": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "swift": {
+          "type": "string"
+        },
+        "vacationAllowanceAmount": {
+          "type": "string"
+        },
+        "vacationAllowanceBasis": {
+          "type": "string"
+        },
+        "vacationAllowanceEarnedYear": {
+          "type": "string"
+        },
+        "vacationAllowanceExtraWeekAmount": {
+          "type": "string"
+        },
+        "yearlyWage": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "EmployeeLoginInfo": {
       "properties": {
         "changes": {
@@ -13655,6 +13984,61 @@
       "required": [
         "firstName",
         "lastName"
+      ],
+      "type": "object"
+    },
+    "EmployeePotential": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "errorMessage": {
+          "description": "errorMessage",
+          "items": {
+            "$ref": "#/definitions/ImportRowErrorMessage"
+          },
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "importComponent": {
+          "$ref": "#/definitions/EmployeeImport"
+        },
+        "rowContent": {
+          "$ref": "#/definitions/EmployeeImportRowContent",
+          "description": "rowContent"
+        },
+        "rowNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "rowStatus": {
+          "enum": [
+            "NEW",
+            "UPDATE",
+            "FAIL",
+            "DUPLICATE"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "importComponent"
       ],
       "type": "object"
     },
@@ -15735,7 +16119,8 @@
             "CONTROLLED_TRANSACTIONS",
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
-            "INTEREST_LIMITATION"
+            "INTEREST_LIMITATION",
+            "DOCUMENT_WITH_ALTINN_ID"
           ],
           "type": "string"
         },
@@ -15972,6 +16357,7 @@
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
+            "KLAGE_PAA_SKJOENNSFASTSETTING",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -16008,6 +16394,8 @@
             "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
             "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -16496,7 +16884,8 @@
             "CONTROLLED_TRANSACTIONS",
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
-            "INTEREST_LIMITATION"
+            "INTEREST_LIMITATION",
+            "DOCUMENT_WITH_ALTINN_ID"
           ],
           "readOnly": true,
           "type": "string"
@@ -16642,7 +17031,8 @@
             "SticosSurveyBanner",
             "SticosInfoBanner",
             "SalaryOverviewBanner",
-            "UpsellFromBasisToSmartTripletexDashboardBanner"
+            "UpsellFromBasisToSmartTripletexDashboardBanner",
+            "CopilotInfoBanner"
           ],
           "type": "string"
         },
@@ -17778,6 +18168,9 @@
         "canBeDeleted": {
           "type": "boolean"
         },
+        "canBeReversed": {
+          "type": "boolean"
+        },
         "currency": {
           "$ref": "#/definitions/Currency"
         },
@@ -17810,6 +18203,12 @@
         },
         "invoiceNumber": {
           "type": "string"
+        },
+        "isReversed": {
+          "type": "boolean"
+        },
+        "isTemporary": {
+          "type": "boolean"
         },
         "paymentPostingIdsForDeletion": {
           "description": "Ids for payment postings to be deleted",
@@ -18176,7 +18575,6 @@
       },
       "required": [
         "changedAt",
-        "dueDate",
         "invoiceDate"
       ],
       "type": "object"
@@ -22201,6 +22599,7 @@
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
+            "KLAGE_PAA_SKJOENNSFASTSETTING",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -22237,6 +22636,8 @@
             "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
             "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -22857,6 +23258,7 @@
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
+            "KLAGE_PAA_SKJOENNSFASTSETTING",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -22893,6 +23295,8 @@
             "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
             "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -27646,6 +28050,138 @@
       },
       "type": "object"
     },
+    "ListResponseEmployeeImport": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/EmployeeImport"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseEmployeeImportField": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/EmployeeImportField"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseEmployeeImportHeader": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/EmployeeImportHeader"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseEmployeeImportHeaderFieldsRelation": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/EmployeeImportHeaderFieldsRelation"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseEmployeeOverview": {
       "properties": {
         "count": {
@@ -27667,6 +28203,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/EmployeeOverview"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseEmployeePotential": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/EmployeePotential"
           },
           "readOnly": true,
           "type": "array"
@@ -28327,39 +28896,6 @@
         "values": {
           "items": {
             "$ref": "#/definitions/IncomingInvoiceAccount"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListResponseIncomingInvoiceDraft": {
-      "properties": {
-        "count": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/IncomingInvoiceDraft"
           },
           "readOnly": true,
           "type": "array"
@@ -35590,7 +36126,8 @@
             "CONTROLLED_TRANSACTIONS",
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
-            "INTEREST_LIMITATION"
+            "INTEREST_LIMITATION",
+            "DOCUMENT_WITH_ALTINN_ID"
           ],
           "readOnly": true,
           "type": "string"
@@ -38250,6 +38787,7 @@
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
+            "KLAGE_PAA_SKJOENNSFASTSETTING",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -38286,6 +38824,8 @@
             "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
             "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -40069,6 +40609,7 @@
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
+            "KLAGE_PAA_SKJOENNSFASTSETTING",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -40105,6 +40646,8 @@
             "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
             "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -41046,6 +41589,27 @@
         "postingIds",
         "reconciliationId",
         "transactionIds"
+      ],
+      "type": "object"
+    },
+    "PostPrefill": {
+      "properties": {
+        "subject": {
+          "description": "Subject to prefill",
+          "enum": [
+            "REAL_ESTATE",
+            "SECURITY"
+          ],
+          "type": "string"
+        },
+        "year": {
+          "description": "Year where subject should be prefilled",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "subject"
       ],
       "type": "object"
     },
@@ -45178,7 +45742,8 @@
             "CONTROLLED_TRANSACTIONS",
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
-            "INTEREST_LIMITATION"
+            "INTEREST_LIMITATION",
+            "DOCUMENT_WITH_ALTINN_ID"
           ],
           "readOnly": true,
           "type": "string"
@@ -45514,19 +46079,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -45547,7 +46108,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -45571,7 +46131,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -47545,6 +48104,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperChatThread": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ChatThread"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperChecklist": {
       "properties": {
         "value": {
@@ -48092,10 +48659,26 @@
       },
       "type": "object"
     },
+    "ResponseWrapperEmployeeImport": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/EmployeeImport"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperEmployeeLoginInfo": {
       "properties": {
         "value": {
           "$ref": "#/definitions/EmployeeLoginInfo"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperEmployeePotential": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/EmployeePotential"
         }
       },
       "type": "object"
@@ -49845,14 +50428,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/SalaryV2Modules"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperSalaryV2Overview": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/SalaryV2Overview"
         }
       },
       "type": "object"
@@ -52143,23 +52718,6 @@
       },
       "type": "object"
     },
-    "SalaryV2Overview": {
-      "properties": {
-        "rows": {
-          "items": {
-            "$ref": "#/definitions/SalaryV2OverviewRow"
-          },
-          "type": "array"
-        },
-        "salaryTypesInUse": {
-          "items": {
-            "$ref": "#/definitions/SalaryV2Type"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "SalaryV2OverviewData": {
       "properties": {
         "rows": {
@@ -52317,31 +52875,6 @@
         "voucherNumberAsString": {
           "readOnly": true,
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "SalaryV2OverviewRow": {
-      "properties": {
-        "displayName": {
-          "type": "string"
-        },
-        "employeeId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "paymentSum": {
-          "type": "number"
-        },
-        "payrollTaxBasisSum": {
-          "type": "number"
-        },
-        "wageCodeBreakdown": {
-          "additionalProperties": {
-            "$ref": "#/definitions/TlxNumber"
-          },
-          "description": "A map of all the wage code ids used for one employee and their respective amount",
-          "type": "object"
         }
       },
       "type": "object"
@@ -55150,6 +55683,10 @@
         "archive": {
           "type": "boolean"
         },
+        "cluster": {
+          "$ref": "#/definitions/Cluster",
+          "readOnly": true
+        },
         "global": {
           "readOnly": true,
           "type": "boolean"
@@ -55699,7 +56236,8 @@
             "CONTROLLED_TRANSACTIONS",
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
-            "INTEREST_LIMITATION"
+            "INTEREST_LIMITATION",
+            "DOCUMENT_WITH_ALTINN_ID"
           ],
           "type": "string"
         },
@@ -55951,6 +56489,7 @@
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
+            "KLAGE_PAA_SKJOENNSFASTSETTING",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -55987,6 +56526,8 @@
             "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
             "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -59073,6 +59614,7 @@
             "UPLOADING_MAIN_CONTENT_TO_ALTINN_INSTANCE",
             "CLOSING_ALTINN_INSTANCE",
             "APPROVING_ALTINN_INSTANCE_FOR_TRANSFER",
+            "UPLOADING_ATTACHMENT_TO_ALTINN_INSTANCE",
             "NONE"
           ],
           "type": "string"
@@ -62086,7 +62628,8 @@
             "CONTROLLED_TRANSACTIONS",
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
-            "INTEREST_LIMITATION"
+            "INTEREST_LIMITATION",
+            "DOCUMENT_WITH_ALTINN_ID"
           ],
           "readOnly": true,
           "type": "string"
@@ -63732,7 +64275,7 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "canUserCreateVoucher": {
+        "canUserCreateIncomeVoucher": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -65094,6 +65637,7 @@
             "NUF_COMPANY_NAME",
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
+            "KLAGE_PAA_SKJOENNSFASTSETTING",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -65130,6 +65674,8 @@
             "YEAR_END_DOCUMENTATION_PARTICIPANTS_TASK",
             "YEAR_END_DOCUMENTATION_CONTROLLED_TRANSACTIONS",
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
+            "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -66094,6 +66640,7 @@
             "PREVALIDATED_DECLINED",
             "ALTINN_INSTANCE_CREATED_AND_INITIATED",
             "ALTINN_INSTANCE_MAIN_CONTENT_UPLOADED",
+            "ALTINN_INSTANCE_ATTACHMENT_UPLOADED",
             "ALTINN_INSTANCE_CLOSED",
             "ALTINN_INSTANCE_APPROVED_FOR_TRANSFER",
             "CONTENT_PROCESSING_AT_RECIPIENT",
@@ -68466,6 +69013,13 @@
             "type": "integer"
           },
           {
+            "description": "Query string",
+            "in": "query",
+            "name": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "default": 0,
             "description": "From index",
             "in": "query",
@@ -68532,6 +69086,13 @@
             "description": "Format is yyyy-MM-dd",
             "in": "query",
             "name": "startDate",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Query string",
+            "in": "query",
+            "name": "query",
             "required": false,
             "type": "string"
           },
@@ -102907,10 +103468,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
       "name": "bankreconciliationinternalmatch"
@@ -102947,6 +103508,9 @@
     },
     {
       "name": "bringCredentials"
+    },
+    {
+      "name": "internalchatthread"
     },
     {
       "name": "checkout"
@@ -103217,6 +103781,21 @@
     },
     {
       "name": "importscustomerpotentials"
+    },
+    {
+      "name": "importsemployee"
+    },
+    {
+      "name": "importsemployeefields"
+    },
+    {
+      "name": "importsemployeeheaders"
+    },
+    {
+      "name": "importsemployeefields-relation"
+    },
+    {
+      "name": "importsemployeepotentials"
     },
     {
       "name": "importssupplier"
@@ -103595,6 +104174,9 @@
     },
     {
       "name": "projectonboarding"
+    },
+    {
+      "name": "projectonboardingOld"
     },
     {
       "name": "projectorderline"
@@ -104372,6 +104954,9 @@
     },
     {
       "name": "yearEndpersonalIncome"
+    },
+    {
+      "name": "yearEndprefill"
     },
     {
       "name": "yearEndpropertytaxAdmin"
