@@ -74,6 +74,11 @@
     },
     "Account": {
       "properties": {
+        "balanceGroup": {
+          "description": "The balance group for this account.",
+          "readOnly": true,
+          "type": "string"
+        },
         "bankAccountCountry": {
           "$ref": "#/definitions/Country"
         },
@@ -2179,25 +2184,6 @@
         },
         "altInnPassword": {
           "type": "string"
-        },
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
         }
       },
       "required": [
@@ -2398,6 +2384,42 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        },
+        "year": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AnnualAccountStatement": {
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/Account",
+          "readOnly": true
+        },
+        "balanceChange": {
+          "description": "Balance change",
+          "readOnly": true,
+          "type": "number"
+        },
+        "balanceIn": {
+          "description": "Balance in",
+          "readOnly": true,
+          "type": "number"
+        },
+        "balanceOut": {
+          "description": "Balance out",
+          "readOnly": true,
+          "type": "number"
+        },
+        "postings": {
+          "items": {
+            "$ref": "#/definitions/Posting"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "year": {
           "format": "int32",
@@ -2755,11 +2777,27 @@
         "account": {
           "$ref": "#/definitions/Account"
         },
+        "accumulatedDepreciation": {
+          "type": "number"
+        },
         "acquisitionCost": {
           "description": "Acquisition cost.",
           "type": "number"
         },
         "annualDepreciation": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "balanceChange": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "balanceIn": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "balanceOut": {
+          "readOnly": true,
           "type": "number"
         },
         "changes": {
@@ -2772,8 +2810,23 @@
         "dateOfAcquisition": {
           "type": "string"
         },
+        "department": {
+          "$ref": "#/definitions/Department"
+        },
         "depreciationAccount": {
           "$ref": "#/definitions/Account"
+        },
+        "depreciationAmount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "depreciationBasis": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "depreciationDiscrepancy": {
+          "readOnly": true,
+          "type": "number"
         },
         "depreciationFrom": {
           "type": "string"
@@ -2833,16 +2886,42 @@
           "minLength": 1,
           "type": "string"
         },
+        "numberOfMonths": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "project": {
+          "$ref": "#/definitions/Project"
+        },
+        "saleDate": {
+          "type": "string"
+        },
+        "startingBalance": {
+          "readOnly": true,
+          "type": "number"
+        },
         "status": {
           "description": "Status",
           "enum": [
             "UNKNOWN",
-            "ACTIVE",
-            "SOLD",
-            "LOST",
-            "COMPLETED"
+            "MANUAL",
+            "NO_DEPRECIATION",
+            "INVALID_DATE",
+            "MISSING_TRANS_TYPE",
+            "MISSING_INFO",
+            "READY_TO_DEPRECIATE",
+            "CORRECTION_NEEDED",
+            "COMPLETED",
+            "REST_VALUE",
+            "NOTHING_TO_DEPRECIATE"
           ],
+          "readOnly": true,
           "type": "string"
+        },
+        "totalDepreciationAmount": {
+          "readOnly": true,
+          "type": "number"
         },
         "url": {
           "readOnly": true,
@@ -2965,127 +3044,8 @@
       ],
       "type": "object"
     },
-    "AssetDetails": {
-      "properties": {
-        "acquisitionCost": {
-          "readOnly": true,
-          "type": "number"
-        },
-        "annualDepreciation": {
-          "type": "number"
-        },
-        "assetId": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "balanceAccountId": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "balanceChange": {
-          "readOnly": true,
-          "type": "number"
-        },
-        "balanceIn": {
-          "readOnly": true,
-          "type": "number"
-        },
-        "balanceOut": {
-          "readOnly": true,
-          "type": "number"
-        },
-        "dateOfAcquisition": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "deprecationTotal": {
-          "readOnly": true,
-          "type": "number"
-        },
-        "depreciationAccountId": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "depreciationAmount": {
-          "type": "number"
-        },
-        "depreciationBasis": {
-          "type": "number"
-        },
-        "depreciationDiscrepancy": {
-          "type": "number"
-        },
-        "depreciationFrom": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "depreciationMethod": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "depreciationRate": {
-          "type": "number"
-        },
-        "depreciationRemainingValue": {
-          "type": "number"
-        },
-        "externalAccumulatedDepreciation": {
-          "type": "number"
-        },
-        "externalLastAccountedValue": {
-          "type": "number"
-        },
-        "externalLastDepreciation": {
-          "type": "string"
-        },
-        "lifetime": {
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "missingTaxTransactionType": {
-          "type": "boolean"
-        },
-        "name": {
-          "maxLength": 255,
-          "minLength": 1,
-          "type": "string"
-        },
-        "numberOfMonths": {
-          "format": "int32",
-          "minimum": 0,
-          "type": "integer"
-        },
-        "status": {
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "required": [
-        "name"
-      ],
-      "type": "object"
-    },
     "AssetGroup": {
       "properties": {
-        "accountId": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "accountName": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "accountNumber": {
-          "format": "int64",
-          "minimum": 0,
-          "type": "integer"
-        },
         "acquisitionCostSum": {
           "readOnly": true,
           "type": "number"
@@ -3096,9 +3056,9 @@
           "readOnly": true,
           "type": "integer"
         },
-        "assetDetails": {
+        "assets": {
           "items": {
-            "$ref": "#/definitions/AssetDetails"
+            "$ref": "#/definitions/Asset"
           },
           "readOnly": true,
           "type": "array"
@@ -3107,9 +3067,9 @@
           "readOnly": true,
           "type": "number"
         },
-        "balanceGroupName": {
+        "balanceInAccount": {
           "readOnly": true,
-          "type": "string"
+          "type": "number"
         },
         "balanceInSum": {
           "readOnly": true,
@@ -3118,11 +3078,25 @@
         "balanceOutSum": {
           "readOnly": true,
           "type": "number"
+        },
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "startingBalance": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumStartingBalance": {
+          "readOnly": true,
+          "type": "number"
         }
       },
-      "required": [
-        "accountNumber"
-      ],
       "type": "object"
     },
     "AssetImport": {
@@ -3170,10 +3144,6 @@
           "readOnly": true,
           "type": "array"
         },
-        "depreciationExist": {
-          "readOnly": true,
-          "type": "boolean"
-        },
         "endDate": {
           "readOnly": true,
           "type": "string"
@@ -3181,6 +3151,10 @@
         "establishedDate": {
           "readOnly": true,
           "type": "string"
+        },
+        "hasStartingBalanceVoucher": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "startDate": {
           "readOnly": true,
@@ -4187,6 +4161,10 @@
           "type": "boolean"
         },
         "isAuthBankDashboard": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isAuthBankReconciliation": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -10684,13 +10662,106 @@
     },
     "CustomerImportRowContent": {
       "properties": {
+        "businessAddress1": {
+          "type": "string"
+        },
+        "businessAddress2": {
+          "type": "string"
+        },
+        "businessAddressCity": {
+          "type": "string"
+        },
+        "businessAddressCountry": {
+          "type": "string"
+        },
+        "businessAddressPostalCode": {
+          "type": "string"
+        },
+        "category1Name": {
+          "type": "string"
+        },
+        "category1Number": {
+          "type": "string"
+        },
+        "category2Name": {
+          "type": "string"
+        },
+        "category2Number": {
+          "type": "string"
+        },
+        "category3Name": {
+          "type": "string"
+        },
+        "category3Number": {
+          "type": "string"
+        },
+        "contactAddress1": {
+          "type": "string"
+        },
+        "contactAddress2": {
+          "type": "string"
+        },
+        "contactAddressCity": {
+          "type": "string"
+        },
+        "contactAddressCountry": {
+          "type": "string"
+        },
+        "contactAddressPostalCode": {
+          "type": "string"
+        },
+        "contactEmail": {
+          "type": "string"
+        },
+        "contactFirstName": {
+          "type": "string"
+        },
+        "contactLastName": {
+          "type": "string"
+        },
+        "contactPhoneNumberMobile": {
+          "type": "string"
+        },
+        "contactPhoneNumberWork": {
+          "type": "string"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "customerName": {
+          "type": "string"
+        },
         "customerNumber": {
+          "type": "string"
+        },
+        "deliveryAddress1": {
+          "type": "string"
+        },
+        "deliveryAddress2": {
+          "type": "string"
+        },
+        "deliveryAddressCity": {
+          "type": "string"
+        },
+        "deliveryAddressCountry": {
+          "type": "string"
+        },
+        "deliveryAddressPostalCode": {
           "type": "string"
         },
         "email": {
           "type": "string"
         },
-        "name": {
+        "fax": {
+          "type": "string"
+        },
+        "invoiceDueDays": {
+          "type": "string"
+        },
+        "invoiceEmail": {
+          "type": "string"
+        },
+        "isPrivatePerson": {
           "type": "string"
         },
         "organizationNumber": {
@@ -10871,7 +10942,7 @@
     "CustomerTripletexAccount2": {
       "properties": {
         "accessRequestType": {
-          "description": "If the accounting office is both an accounatant and an auditor",
+          "description": "If the accounting office is both an accountant and an auditor",
           "enum": [
             "DEFAULT",
             "ACCOUNTANT",
@@ -11015,7 +11086,6 @@
         }
       },
       "required": [
-        "accountType",
         "modules",
         "type"
       ],
@@ -13843,6 +13913,9 @@
         "dateOfBirth": {
           "type": "string"
         },
+        "divisionNumber": {
+          "type": "string"
+        },
         "dnumber": {
           "type": "string"
         },
@@ -13865,6 +13938,15 @@
           "type": "string"
         },
         "iban": {
+          "type": "string"
+        },
+        "internationalIdCountry": {
+          "type": "string"
+        },
+        "internationalIdNumber": {
+          "type": "string"
+        },
+        "internationalIdType": {
           "type": "string"
         },
         "lastName": {
@@ -15921,6 +16003,10 @@
           "type": "integer"
         },
         "shallNumberBePrettyPrinted": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "showTourMe": {
           "readOnly": true,
           "type": "boolean"
         }
@@ -25297,6 +25383,7 @@
             "SyncProxyLoginAccess",
             "FilterNotificationsBasedOnAuth",
             "ResilienceMetrics",
+            "UseLoginAccessForEmployee",
             "InvoiceAPIIndex",
             "GlobalCacheOnApiTokenLookupForSessionTokenCreation",
             "TlxShard001Source4AuditLogs",
@@ -25305,8 +25392,8 @@
             "NewCompanyChooser",
             "DeepScanUploadedContainerForMimeType",
             "InvoiceInAdvanceMigration",
-            "OcrMpsNewOnboarding",
             "DocumentAuthManagerAdvancedCompanyAuth",
+            "DocumentAuthManagerAdvancedEmployeeAuth",
             "VismaConnectValidateEmailOnEveryRequest",
             "DocumentAuthManagerSet",
             "BoligmappaResilience",
@@ -25316,7 +25403,10 @@
             "SalesforceSupport",
             "CopilotAccess",
             "CleanupTripletexContactsJob",
-            "FasterBRAlgorithms"
+            "FasterBRAlgorithms",
+            "CustomerApiTripletexPagination",
+            "PostingApiTripletexPagination",
+            "CreateAccessToClientsJob"
           ],
           "readOnly": true,
           "type": "string"
@@ -26116,6 +26206,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/AnnualAccount"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseAnnualAccountStatement": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AnnualAccountStatement"
           },
           "readOnly": true,
           "type": "array"
@@ -28987,6 +29110,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/ExternalProduct"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseFileIdForIncomingPayments": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/FileIdForIncomingPayments"
           },
           "readOnly": true,
           "type": "array"
@@ -33673,6 +33829,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Task"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseTaxTransactionType": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/TaxTransactionType"
           },
           "readOnly": true,
           "type": "array"
@@ -46578,13 +46767,13 @@
     },
     "ReconciliationState": {
       "properties": {
-        "balanceDifference": {
+        "balanceOutDifference": {
           "readOnly": true,
           "type": "number"
         },
-        "bankStatementBalanceDescription": {
+        "bankStatementOutBalance": {
           "readOnly": true,
-          "type": "string"
+          "type": "number"
         },
         "currency": {
           "$ref": "#/definitions/Currency",
@@ -46602,9 +46791,13 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "ledgerAccountBalanceDescription": {
+        "ledgerAccountInBalance": {
           "readOnly": true,
-          "type": "string"
+          "type": "number"
+        },
+        "ledgerAccountOutBalance": {
+          "readOnly": true,
+          "type": "number"
         },
         "reconciliation": {
           "$ref": "#/definitions/BankReconciliation",
@@ -46688,15 +46881,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -46717,6 +46914,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -46740,6 +46938,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -50221,6 +50420,17 @@
       },
       "type": "object"
     },
+    "ResponseWrapperMapIntegerString": {
+      "properties": {
+        "value": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperMapIntegerTlxNumber": {
       "properties": {
         "value": {
@@ -52811,17 +53021,6 @@
     },
     "SalarySettings": {
       "properties": {
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
         "municipality": {
           "$ref": "#/definitions/Municipality"
         },
@@ -52839,14 +53038,6 @@
             "EMPTY"
           ],
           "type": "string"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
         }
       },
       "required": [
@@ -55519,10 +55710,27 @@
     },
     "SchemaVersion": {
       "properties": {
+        "checksum": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
         "executionTime": {
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "installedBy": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "installedOn": {
+          "readOnly": true,
+          "type": "string"
         },
         "installedRank": {
           "format": "int32",
@@ -55536,6 +55744,14 @@
         "success": {
           "readOnly": true,
           "type": "boolean"
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -58933,13 +59149,97 @@
         "bban": {
           "type": "string"
         },
+        "businessAddress1": {
+          "type": "string"
+        },
+        "businessAddress2": {
+          "type": "string"
+        },
+        "businessAddressCity": {
+          "type": "string"
+        },
+        "businessAddressCountry": {
+          "type": "string"
+        },
+        "businessAddressPostalCode": {
+          "type": "string"
+        },
+        "category1Name": {
+          "type": "string"
+        },
+        "category1Number": {
+          "type": "string"
+        },
+        "category2Name": {
+          "type": "string"
+        },
+        "category2Number": {
+          "type": "string"
+        },
+        "category3Name": {
+          "type": "string"
+        },
+        "category3Number": {
+          "type": "string"
+        },
+        "contactAddress1": {
+          "type": "string"
+        },
+        "contactAddress2": {
+          "type": "string"
+        },
+        "contactAddressCity": {
+          "type": "string"
+        },
+        "contactAddressCountry": {
+          "type": "string"
+        },
+        "contactAddressPostalCode": {
+          "type": "string"
+        },
+        "contactEmail": {
+          "type": "string"
+        },
+        "contactFirstName": {
+          "type": "string"
+        },
+        "contactLastName": {
+          "type": "string"
+        },
+        "contactPhoneNumberMobile": {
+          "type": "string"
+        },
+        "contactPhoneNumberWork": {
+          "type": "string"
+        },
+        "currencyCode": {
+          "type": "string"
+        },
+        "deliveryAddress1": {
+          "type": "string"
+        },
+        "deliveryAddress2": {
+          "type": "string"
+        },
+        "deliveryAddressCity": {
+          "type": "string"
+        },
+        "deliveryAddressCountry": {
+          "type": "string"
+        },
+        "deliveryAddressPostalCode": {
+          "type": "string"
+        },
         "email": {
+          "type": "string"
+        },
+        "fax": {
           "type": "string"
         },
         "iban": {
           "type": "string"
         },
-        "name": {
+        "isPrivatePerson": {
           "type": "string"
         },
         "organizationNumber": {
@@ -58966,7 +59266,19 @@
         "postalCode": {
           "type": "string"
         },
+        "selfEmployedWithoutBusinessAddress": {
+          "type": "string"
+        },
+        "socialSecurityNumber": {
+          "type": "string"
+        },
+        "supplierName": {
+          "type": "string"
+        },
         "supplierNumber": {
+          "type": "string"
+        },
+        "swift": {
           "type": "string"
         }
       },
@@ -60494,6 +60806,20 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaxTransactionType": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -62858,7 +63184,6 @@
           "type": "integer"
         },
         "accountType": {
-          "description": "Is this a test account or a paying account?",
           "enum": [
             "TEST",
             "PAYING",
@@ -63022,7 +63347,6 @@
         }
       },
       "required": [
-        "accountType",
         "modules"
       ],
       "type": "object"
@@ -63632,6 +63956,17 @@
           "description": "Display name of the deleted employee",
           "readOnly": true,
           "type": "string"
+        },
+        "discountPercentage": {
+          "description": "Discount percentage",
+          "readOnly": true,
+          "type": "number"
+        },
+        "discountPriority": {
+          "description": "Ordinal representing the position in line this discount has when receiving discounts.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "employee": {
           "$ref": "#/definitions/Employee",
@@ -65122,6 +65457,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "establishedCompany": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "hasAutomation": {
           "readOnly": true,
           "type": "boolean"
@@ -65139,6 +65478,10 @@
           "type": "boolean"
         },
         "hasModuleEmployee": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasModuleMultipleLedgers": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -69187,6 +69530,27 @@
         ]
       }
     },
+    "/asset/deleteStartingBalance": {
+      "delete": {
+        "description": "",
+        "operationId": "AssetDeleteStartingBalance_deleteStartingBalance",
+        "parameters": [],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "[BETA] Delete the asset starting balance.",
+        "tags": [
+          "asset"
+        ]
+      }
+    },
     "/asset/duplicate/{id}": {
       "post": {
         "description": "",
@@ -69412,6 +69776,84 @@
           }
         ],
         "summary": "Update asset.",
+        "tags": [
+          "asset"
+        ]
+      }
+    },
+    "/asset/{id}/postings": {
+      "get": {
+        "description": "",
+        "operationId": "AssetPostings_getPostings",
+        "parameters": [
+          {
+            "description": "Element ID",
+            "format": "int64",
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "yyyy-MM-dd. Defaults to today.",
+            "in": "query",
+            "name": "dateFrom",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "yyyy-MM-dd. Defaults to today.",
+            "in": "query",
+            "name": "dateToExclusive",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": "*",
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponsePosting"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get postings associated with asset",
         "tags": [
           "asset"
         ]
@@ -97158,10 +97600,10 @@
             "type": "integer"
           },
           {
-            "description": "ID of the elements",
+            "description": "The list of IDs of the debit postings that you want to change dimensions for",
             "in": "query",
             "name": "debitPostingIds",
-            "required": false,
+            "required": true,
             "type": "string"
           },
           {
@@ -105973,6 +106415,9 @@
     },
     {
       "name": "yearEndaccountSpecification"
+    },
+    {
+      "name": "yearEndannualAccountStatements"
     },
     {
       "name": "yearEndbasicData"
