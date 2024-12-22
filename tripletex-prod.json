@@ -1518,10 +1518,21 @@
             "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
-            "DEPRECIATION_PERCENTAGE",
+            "TAX_DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
             "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "ACQUISITION_COST",
+            "LIFETIME",
+            "ACQUISITION_DATE",
+            "REALISATION_DATE",
+            "IS_COMMERCIAL_BUILDING_ACQUIRED_BEFORE_1984",
+            "HISTORICAL_COST_PRICE",
+            "WRITTEN_DOWN_VALUE_PR_01011984",
+            "LOWER_LIMIT_DEPRECIATION",
+            "IS_PHYSICAL_OPERATING_ASSETS_IN_BALANCE_SHEET",
+            "FACILITY_TYPE",
+            "DEPRECIATION_PERCENTAGE",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -1644,6 +1655,7 @@
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
+            "DEV_PILOT_TEST_ORG_NO",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -2344,6 +2356,46 @@
           "description": "Name of the period the tax is accrued",
           "readOnly": true,
           "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AmeldingType": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "code": {
+          "description": "code",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "displayName",
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "type": {
+          "description": "type",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "url": {
           "readOnly": true,
@@ -4177,6 +4229,10 @@
           "type": "boolean"
         },
         "isMySubscriptionAuth": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isReadonlyLogin": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -6404,6 +6460,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "changeLogEmployeeDTO": {
+          "$ref": "#/definitions/ChangeLogEmployee",
+          "readOnly": true
+        },
         "changeType": {
           "enum": [
             "CREATE",
@@ -6420,7 +6480,43 @@
           "readOnly": true,
           "type": "string"
         },
+        "requestlogId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
         "timestamp": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ChangeLogEmployee": {
+      "properties": {
+        "id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "number": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "pictureId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "proxy": {
+          "$ref": "#/definitions/ChangeLogEmployee",
+          "readOnly": true
+        },
+        "url": {
           "readOnly": true,
           "type": "string"
         }
@@ -6541,10 +6637,21 @@
             "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
-            "DEPRECIATION_PERCENTAGE",
+            "TAX_DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
             "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "ACQUISITION_COST",
+            "LIFETIME",
+            "ACQUISITION_DATE",
+            "REALISATION_DATE",
+            "IS_COMMERCIAL_BUILDING_ACQUIRED_BEFORE_1984",
+            "HISTORICAL_COST_PRICE",
+            "WRITTEN_DOWN_VALUE_PR_01011984",
+            "LOWER_LIMIT_DEPRECIATION",
+            "IS_PHYSICAL_OPERATING_ASSETS_IN_BALANCE_SHEET",
+            "FACILITY_TYPE",
+            "DEPRECIATION_PERCENTAGE",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -6667,6 +6774,7 @@
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
+            "DEV_PILOT_TEST_ORG_NO",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -8136,12 +8244,14 @@
         },
         "email": {
           "format": "email",
+          "maxLength": 254,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -8153,15 +8263,19 @@
           "type": "boolean"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "organizationNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobile": {
+          "maxLength": 100,
           "type": "string"
         },
         "startDate": {
@@ -10752,6 +10866,9 @@
         "email": {
           "type": "string"
         },
+        "empty": {
+          "type": "boolean"
+        },
         "fax": {
           "type": "string"
         },
@@ -12467,10 +12584,21 @@
             "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
-            "DEPRECIATION_PERCENTAGE",
+            "TAX_DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
             "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "ACQUISITION_COST",
+            "LIFETIME",
+            "ACQUISITION_DATE",
+            "REALISATION_DATE",
+            "IS_COMMERCIAL_BUILDING_ACQUIRED_BEFORE_1984",
+            "HISTORICAL_COST_PRICE",
+            "WRITTEN_DOWN_VALUE_PR_01011984",
+            "LOWER_LIMIT_DEPRECIATION",
+            "IS_PHYSICAL_OPERATING_ASSETS_IN_BALANCE_SHEET",
+            "FACILITY_TYPE",
+            "DEPRECIATION_PERCENTAGE",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -12593,6 +12721,7 @@
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
+            "DEV_PILOT_TEST_ORG_NO",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -13916,9 +14045,6 @@
         "divisionNumber": {
           "type": "string"
         },
-        "dnumber": {
-          "type": "string"
-        },
         "email": {
           "type": "string"
         },
@@ -13931,7 +14057,13 @@
         "employmentType": {
           "type": "string"
         },
+        "empty": {
+          "type": "boolean"
+        },
         "firstName": {
+          "type": "string"
+        },
+        "getdNumber": {
           "type": "string"
         },
         "hourlyWage": {
@@ -16441,10 +16573,21 @@
             "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
-            "DEPRECIATION_PERCENTAGE",
+            "TAX_DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
             "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "ACQUISITION_COST",
+            "LIFETIME",
+            "ACQUISITION_DATE",
+            "REALISATION_DATE",
+            "IS_COMMERCIAL_BUILDING_ACQUIRED_BEFORE_1984",
+            "HISTORICAL_COST_PRICE",
+            "WRITTEN_DOWN_VALUE_PR_01011984",
+            "LOWER_LIMIT_DEPRECIATION",
+            "IS_PHYSICAL_OPERATING_ASSETS_IN_BALANCE_SHEET",
+            "FACILITY_TYPE",
+            "DEPRECIATION_PERCENTAGE",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -16567,6 +16710,7 @@
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
+            "DEV_PILOT_TEST_ORG_NO",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -17241,7 +17385,8 @@
             "SticosInfoBanner",
             "SalaryOverviewBanner",
             "UpsellFromBasisToSmartTripletexDashboardBanner",
-            "CopilotInfoBanner"
+            "CopilotInfoBanner",
+            "ProductOverviewBanner"
           ],
           "type": "string"
         },
@@ -22805,10 +22950,21 @@
             "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
-            "DEPRECIATION_PERCENTAGE",
+            "TAX_DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
             "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "ACQUISITION_COST",
+            "LIFETIME",
+            "ACQUISITION_DATE",
+            "REALISATION_DATE",
+            "IS_COMMERCIAL_BUILDING_ACQUIRED_BEFORE_1984",
+            "HISTORICAL_COST_PRICE",
+            "WRITTEN_DOWN_VALUE_PR_01011984",
+            "LOWER_LIMIT_DEPRECIATION",
+            "IS_PHYSICAL_OPERATING_ASSETS_IN_BALANCE_SHEET",
+            "FACILITY_TYPE",
+            "DEPRECIATION_PERCENTAGE",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -22931,6 +23087,7 @@
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
+            "DEV_PILOT_TEST_ORG_NO",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -23464,10 +23621,21 @@
             "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
-            "DEPRECIATION_PERCENTAGE",
+            "TAX_DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
             "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "ACQUISITION_COST",
+            "LIFETIME",
+            "ACQUISITION_DATE",
+            "REALISATION_DATE",
+            "IS_COMMERCIAL_BUILDING_ACQUIRED_BEFORE_1984",
+            "HISTORICAL_COST_PRICE",
+            "WRITTEN_DOWN_VALUE_PR_01011984",
+            "LOWER_LIMIT_DEPRECIATION",
+            "IS_PHYSICAL_OPERATING_ASSETS_IN_BALANCE_SHEET",
+            "FACILITY_TYPE",
+            "DEPRECIATION_PERCENTAGE",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -23590,6 +23758,7 @@
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
+            "DEV_PILOT_TEST_ORG_NO",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -25318,21 +25487,18 @@
             "ElmaLookup",
             "LinkMobilitySending",
             "ReportUriHeader",
-            "CreateBankAgreement",
             "CsrfValidation",
             "AuthorizeWebhookSending",
             "LargeArgumentsHelper",
             "SendSubscriptionInvoicingError",
             "AprilaV2",
-            "MySubscription",
-            "ProvisioningAPI",
             "KillLargeRequestsNearOOM",
+            "DeleteFromArchive",
             "Sentry",
             "PaymentOverviewStatusUpdates",
             "SendInvoicesToSmartScan",
             "GlobalCache",
             "UserOnboardWizard",
-            "BeehiveAuthManagersFirstBatch",
             "BeehiveAuthManagersJSONRPC",
             "ZendeskSso",
             "FabricAIIntegration",
@@ -25340,12 +25506,10 @@
             "GoldsharkPurchaseOrderLineApplySecurity",
             "StrutsReadReplica",
             "Api2ReadReplica",
-            "Api2ReadReplicaTentative",
             "JsonRpcReadReplica",
             "JsonRpcReadReplicaTentative",
             "CompanyCustomerVendorNumberSequence",
             "MissingCompanyIdFilterUpdateDeleteQueriesLogging",
-            "ResultSetLimitsProfileLogging",
             "InvalidScaleLogging",
             "SemiGlobalReadsLogging",
             "TskSalaryMVPPilot",
@@ -25378,7 +25542,6 @@
             "AccountDropdownWithHelp",
             "CreateCreditNoteJob",
             "NonCriticalExtremelySlowQueries",
-            "OScoreFeedbackContactMeToggle",
             "SyncLoginAccess",
             "SyncProxyLoginAccess",
             "FilterNotificationsBasedOnAuth",
@@ -25386,16 +25549,12 @@
             "UseLoginAccessForEmployee",
             "InvoiceAPIIndex",
             "GlobalCacheOnApiTokenLookupForSessionTokenCreation",
-            "TlxShard001Source4AuditLogs",
             "VismaConnectTokenFlow",
             "VismaConnectTokenFlowInvalidateSession",
             "NewCompanyChooser",
             "DeepScanUploadedContainerForMimeType",
             "InvoiceInAdvanceMigration",
-            "DocumentAuthManagerAdvancedCompanyAuth",
-            "DocumentAuthManagerAdvancedEmployeeAuth",
             "VismaConnectValidateEmailOnEveryRequest",
-            "DocumentAuthManagerSet",
             "BoligmappaResilience",
             "SalesforceWebhookForProjectManagerRole",
             "GlobalEventSystem",
@@ -25404,9 +25563,11 @@
             "CopilotAccess",
             "CleanupTripletexContactsJob",
             "FasterBRAlgorithms",
+            "MPSInvoiceOverviewBanner",
             "CustomerApiTripletexPagination",
             "PostingApiTripletexPagination",
-            "CreateAccessToClientsJob"
+            "CreateAccessToClientsJob",
+            "NewProjectOnboarding"
           ],
           "readOnly": true,
           "type": "string"
@@ -26173,6 +26334,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Addon"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseAmeldingType": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AmeldingType"
           },
           "readOnly": true,
           "type": "array"
@@ -30046,6 +30240,42 @@
       },
       "type": "object"
     },
+    "ListResponseListChangeLog": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "items": {
+              "$ref": "#/definitions/ChangeLog"
+            },
+            "type": "array"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseMapping": {
       "properties": {
         "count": {
@@ -31651,6 +31881,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/ProjectInvoiceDetails"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseProjectManager": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ProjectManager"
           },
           "readOnly": true,
           "type": "array"
@@ -36213,25 +36476,6 @@
       },
       "type": "object"
     },
-    "MobileAppNotification": {
-      "properties": {
-        "event": {
-          "type": "string"
-        },
-        "id": {
-          "format": "int64",
-          "type": "integer"
-        },
-        "subscriptionId": {
-          "format": "int32",
-          "type": "integer"
-        },
-        "value": {
-          "$ref": "#/definitions/Notification"
-        }
-      },
-      "type": "object"
-    },
     "MobileAppSpecificRightsInfo": {
       "properties": {
         "approveTravelExpenseEnabled": {
@@ -39412,10 +39656,21 @@
             "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
-            "DEPRECIATION_PERCENTAGE",
+            "TAX_DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
             "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "ACQUISITION_COST",
+            "LIFETIME",
+            "ACQUISITION_DATE",
+            "REALISATION_DATE",
+            "IS_COMMERCIAL_BUILDING_ACQUIRED_BEFORE_1984",
+            "HISTORICAL_COST_PRICE",
+            "WRITTEN_DOWN_VALUE_PR_01011984",
+            "LOWER_LIMIT_DEPRECIATION",
+            "IS_PHYSICAL_OPERATING_ASSETS_IN_BALANCE_SHEET",
+            "FACILITY_TYPE",
+            "DEPRECIATION_PERCENTAGE",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -39538,6 +39793,7 @@
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
+            "DEV_PILOT_TEST_ORG_NO",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -41238,10 +41494,21 @@
             "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
-            "DEPRECIATION_PERCENTAGE",
+            "TAX_DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
             "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "ACQUISITION_COST",
+            "LIFETIME",
+            "ACQUISITION_DATE",
+            "REALISATION_DATE",
+            "IS_COMMERCIAL_BUILDING_ACQUIRED_BEFORE_1984",
+            "HISTORICAL_COST_PRICE",
+            "WRITTEN_DOWN_VALUE_PR_01011984",
+            "LOWER_LIMIT_DEPRECIATION",
+            "IS_PHYSICAL_OPERATING_ASSETS_IN_BALANCE_SHEET",
+            "FACILITY_TYPE",
+            "DEPRECIATION_PERCENTAGE",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -41364,6 +41631,7 @@
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
+            "DEV_PILOT_TEST_ORG_NO",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -44772,6 +45040,27 @@
       },
       "type": "object"
     },
+    "ProjectManager": {
+      "properties": {
+        "canInvoice": {
+          "description": "Specifies whether the employee can invoice",
+          "type": "boolean"
+        },
+        "displayName": {
+          "description": "The display name of the employee that can be project manager",
+          "type": "string"
+        },
+        "employeeId": {
+          "description": "The employeeId of the employee to be added as a project manager",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "canInvoice"
+      ],
+      "type": "object"
+    },
     "ProjectOnboardingChoice": {
       "properties": {
         "name": {
@@ -46881,19 +47170,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -46914,7 +47199,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -46938,7 +47222,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -57327,10 +57610,21 @@
             "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
-            "DEPRECIATION_PERCENTAGE",
+            "TAX_DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
             "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "ACQUISITION_COST",
+            "LIFETIME",
+            "ACQUISITION_DATE",
+            "REALISATION_DATE",
+            "IS_COMMERCIAL_BUILDING_ACQUIRED_BEFORE_1984",
+            "HISTORICAL_COST_PRICE",
+            "WRITTEN_DOWN_VALUE_PR_01011984",
+            "LOWER_LIMIT_DEPRECIATION",
+            "IS_PHYSICAL_OPERATING_ASSETS_IN_BALANCE_SHEET",
+            "FACILITY_TYPE",
+            "DEPRECIATION_PERCENTAGE",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -57453,6 +57747,7 @@
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
+            "DEV_PILOT_TEST_ORG_NO",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -59233,6 +59528,9 @@
         "email": {
           "type": "string"
         },
+        "empty": {
+          "type": "boolean"
+        },
         "fax": {
           "type": "string"
         },
@@ -59652,6 +59950,9 @@
         "available": {
           "type": "boolean"
         },
+        "companyIsAnAS": {
+          "type": "boolean"
+        },
         "firstName": {
           "type": "string"
         },
@@ -59859,6 +60160,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "accountedDepreciationPercentage": {
+          "readOnly": true,
+          "type": "number"
+        },
         "accountingValueProfitAndLoss": {
           "readOnly": true,
           "type": "number"
@@ -59866,6 +60171,9 @@
         "acquisitionCost": {
           "readOnly": true,
           "type": "number"
+        },
+        "acquisitionDate": {
+          "type": "string"
         },
         "adjustmentOfInputVat": {
           "readOnly": true,
@@ -59883,6 +60191,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "calculatedDepreciation": {
+          "readOnly": true,
+          "type": "number"
+        },
         "closingBalance": {
           "readOnly": true,
           "type": "number"
@@ -59890,6 +60202,10 @@
         "closingBalanceTaxValue": {
           "readOnly": true,
           "type": "number"
+        },
+        "commercialBuildingAcquiredBefore1984": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "depreciation": {
           "readOnly": true,
@@ -59909,6 +60225,21 @@
         },
         "depreciationTaxValue": {
           "readOnly": true,
+          "type": "number"
+        },
+        "facilityType": {
+          "description": "Underlying Documents Used For Assessment",
+          "enum": [
+            "LIFETIME_OVER_20_YEARS",
+            "LIFETIME_UNDER_20_YEARS",
+            "LIVESTOCK_BUILDINGS",
+            "FRUIT_FIELD",
+            "BERRY_FIELD"
+          ],
+          "type": "string"
+        },
+        "historicalCostPrice": {
+          "description": "Additional tax for the project",
           "type": "number"
         },
         "improvements": {
@@ -59935,8 +60266,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "isPhysicalOperatingAssetsInBalanceSheet": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "lifetime": {
+          "description": "Additional tax for the project",
+          "type": "number"
+        },
         "lossTransferredToProfitAndLossAccount": {
           "readOnly": true,
+          "type": "number"
+        },
+        "lowerLimitDepreciation": {
+          "description": "Additional tax for the project",
           "type": "number"
         },
         "name": {
@@ -59971,6 +60314,9 @@
           "readOnly": true,
           "type": "number"
         },
+        "physicalOperatingAssetsInBalanceSheet": {
+          "type": "boolean"
+        },
         "profitTransferredToProfitAndLossAccount": {
           "readOnly": true,
           "type": "number"
@@ -59978,6 +60324,9 @@
         "publicSubsidies": {
           "readOnly": true,
           "type": "number"
+        },
+        "realisationDate": {
+          "type": "string"
         },
         "reversalOfSubsidiesForRegionalInvestments": {
           "readOnly": true,
@@ -60021,6 +60370,10 @@
         },
         "writeupsOrWritedowns": {
           "readOnly": true,
+          "type": "number"
+        },
+        "writtenDownValuePr01011984": {
+          "description": "Additional tax for the project",
           "type": "number"
         }
       },
@@ -66730,10 +67083,21 @@
             "CLOSING_BALANCE_LIVESTOCK",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
-            "DEPRECIATION_PERCENTAGE",
+            "TAX_DEPRECIATION_PERCENTAGE",
             "STRAIGHT_LINE_DEPRECIATION",
             "PROFIT_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
             "LOSS_TRANSFERRED_TO_PROFIT_AND_LOSS_ACCOUNT",
+            "ACQUISITION_COST",
+            "LIFETIME",
+            "ACQUISITION_DATE",
+            "REALISATION_DATE",
+            "IS_COMMERCIAL_BUILDING_ACQUIRED_BEFORE_1984",
+            "HISTORICAL_COST_PRICE",
+            "WRITTEN_DOWN_VALUE_PR_01011984",
+            "LOWER_LIMIT_DEPRECIATION",
+            "IS_PHYSICAL_OPERATING_ASSETS_IN_BALANCE_SHEET",
+            "FACILITY_TYPE",
+            "DEPRECIATION_PERCENTAGE",
             "CASH_DEPOSITS",
             "CONTRIBUTIONS_IN_KIND",
             "CAPITAL_REDUCTION_DISTRIBUTED_SHARED_CAPITAL_CASH",
@@ -66856,6 +67220,7 @@
             "NUF_COUNTRY_CODE",
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
+            "DEV_PILOT_TEST_ORG_NO",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -105517,9 +105882,6 @@
       "name": "mobileApp"
     },
     {
-      "name": "mobileAppnotifyEmployee"
-    },
-    {
       "name": "mobileAppplaces"
     },
     {
@@ -105869,6 +106231,9 @@
     },
     {
       "name": "salarytskinternalamelding"
+    },
+    {
+      "name": "salarytskinternalameldingtype"
     },
     {
       "name": "salarycompany-employee-rate"
