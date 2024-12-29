@@ -6494,6 +6494,10 @@
     },
     "ChangeLogEmployee": {
       "properties": {
+        "actualEmployee": {
+          "$ref": "#/definitions/ChangeLogEmployee",
+          "readOnly": true
+        },
         "id": {
           "format": "int64",
           "readOnly": true,
@@ -6511,10 +6515,6 @@
           "format": "int64",
           "readOnly": true,
           "type": "integer"
-        },
-        "proxy": {
-          "$ref": "#/definitions/ChangeLogEmployee",
-          "readOnly": true
         },
         "url": {
           "readOnly": true,
@@ -8244,12 +8244,14 @@
         },
         "email": {
           "format": "email",
+          "maxLength": 254,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -8261,15 +8263,19 @@
           "type": "boolean"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "organizationNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobile": {
+          "maxLength": 100,
           "type": "string"
         },
         "startDate": {
@@ -47164,15 +47170,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -47193,6 +47203,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -47216,6 +47227,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
