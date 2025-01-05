@@ -920,6 +920,10 @@
         "costPercentage": {
           "type": "number"
         },
+        "deletable": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "description": {
           "maxLength": 16777215,
           "type": "string"
@@ -8244,14 +8248,12 @@
         },
         "email": {
           "format": "email",
-          "maxLength": 254,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -8263,19 +8265,15 @@
           "type": "boolean"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "organizationNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "phoneNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobile": {
-          "maxLength": 100,
           "type": "string"
         },
         "startDate": {
@@ -25495,7 +25493,6 @@
             "KillLargeRequestsNearOOM",
             "DeleteFromArchive",
             "Sentry",
-            "PaymentOverviewStatusUpdates",
             "SendInvoicesToSmartScan",
             "GlobalCache",
             "UserOnboardWizard",
@@ -25567,6 +25564,7 @@
             "CustomerApiTripletexPagination",
             "PostingApiTripletexPagination",
             "CreateAccessToClientsJob",
+            "ClearResellerProvisions",
             "NewProjectOnboarding"
           ],
           "readOnly": true,
@@ -47170,19 +47168,15 @@
     "Reminder": {
       "properties": {
         "bank": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
-          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
-          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -47203,7 +47197,6 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -47227,7 +47220,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -54768,6 +54760,10 @@
           "type": "number"
         },
         "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "urlDetails": {
           "readOnly": true,
           "type": "string"
         },
@@ -63958,6 +63954,16 @@
           "readOnly": true,
           "type": "integer"
         },
+        "authLevelEmployeeOrWage": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "authLevelWage": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "companyName": {
           "readOnly": true,
           "type": "string"
@@ -64000,10 +64006,6 @@
           "type": "boolean"
         },
         "isAuthReadonly": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isFetched": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -105336,10 +105338,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
       "name": "bankreconciliationinternalmatch"
