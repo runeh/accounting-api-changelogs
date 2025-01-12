@@ -182,6 +182,11 @@
           "minimum": 0,
           "type": "integer"
         },
+        "numberPretty": {
+          "description": "number pretty",
+          "readOnly": true,
+          "type": "string"
+        },
         "quantityType1": {
           "$ref": "#/definitions/ProductUnit",
           "description": "The quantity type 1 that has been associated to this account"
@@ -349,6 +354,54 @@
         "accountName",
         "accountNumber"
       ],
+      "type": "object"
+    },
+    "AccountInventoryBalance": {
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/Account",
+          "readOnly": true
+        },
+        "balanceChange": {
+          "description": "balance change",
+          "readOnly": true,
+          "type": "number"
+        },
+        "balanceChangeQuantity": {
+          "description": "quantity balance change",
+          "readOnly": true,
+          "type": "number"
+        },
+        "balanceIn": {
+          "description": "incoming balance",
+          "readOnly": true,
+          "type": "number"
+        },
+        "balanceInQuantity": {
+          "description": "incoming quantity balance",
+          "readOnly": true,
+          "type": "number"
+        },
+        "balanceOut": {
+          "description": "outgoing balance",
+          "readOnly": true,
+          "type": "number"
+        },
+        "balanceOutQuantity": {
+          "description": "outgoing quantity balance",
+          "readOnly": true,
+          "type": "number"
+        },
+        "department": {
+          "$ref": "#/definitions/Department",
+          "readOnly": true
+        },
+        "unitRate": {
+          "description": "unit rate",
+          "readOnly": true,
+          "type": "number"
+        }
+      },
       "type": "object"
     },
     "AccountSpecification": {
@@ -1520,6 +1573,11 @@
             "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
             "OPENING_BALANCE_LIVESTOCK",
             "CLOSING_BALANCE_LIVESTOCK",
+            "ACCOUNT_INVENTORY_BALANCE_ACCOUNT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_DEPARTMENT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_UNIT_RATE",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT_QUANTITY",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "TAX_DEPRECIATION_PERCENTAGE",
@@ -1550,6 +1608,23 @@
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
             "LATE_PAYMENT",
+            "OTHER_INTEREST_INCOME",
+            "OTHER_INTEREST_EXPENSE",
+            "INCOME_FROM_OTHER_INVESTMENTS_AND_DIVIDENDS",
+            "PROFIT_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "PRIVATE_ACCOUNT",
+            "DEDUCTIBLE_COST_OF_USING_A_PRIVATE_CAR",
+            "OTHER_TAX_FREE_INCOME",
+            "OTHERNON_DEDUCTIBLECOST",
+            "TAX_FREE_PROFIT_FROM_THE_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "NON_DEDUCTIBLE_LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "TAX_FREE_PART_OF_DIVIDENDS_AND_DISTRIBUTIONS",
+            "RETURN_OF_PROFITS_TO_ISDF",
+            "RETURN_OF_DEFICIT_TO_ISDF",
+            "CASH_PAYMENT",
+            "WITHDRAWAL_OF_ASSETS_AND_SERVICES",
+            "OTHER_WITHDRAWALS_AND_DISTRIBUTIONS",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -5016,6 +5091,9 @@
         "postedDate": {
           "type": "string"
         },
+        "sourceVoucher": {
+          "$ref": "#/definitions/Voucher"
+        },
         "url": {
           "readOnly": true,
           "type": "string"
@@ -6639,6 +6717,11 @@
             "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
             "OPENING_BALANCE_LIVESTOCK",
             "CLOSING_BALANCE_LIVESTOCK",
+            "ACCOUNT_INVENTORY_BALANCE_ACCOUNT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_DEPARTMENT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_UNIT_RATE",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT_QUANTITY",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "TAX_DEPRECIATION_PERCENTAGE",
@@ -6669,6 +6752,23 @@
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
             "LATE_PAYMENT",
+            "OTHER_INTEREST_INCOME",
+            "OTHER_INTEREST_EXPENSE",
+            "INCOME_FROM_OTHER_INVESTMENTS_AND_DIVIDENDS",
+            "PROFIT_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "PRIVATE_ACCOUNT",
+            "DEDUCTIBLE_COST_OF_USING_A_PRIVATE_CAR",
+            "OTHER_TAX_FREE_INCOME",
+            "OTHERNON_DEDUCTIBLECOST",
+            "TAX_FREE_PROFIT_FROM_THE_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "NON_DEDUCTIBLE_LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "TAX_FREE_PART_OF_DIVIDENDS_AND_DISTRIBUTIONS",
+            "RETURN_OF_PROFITS_TO_ISDF",
+            "RETURN_OF_DEFICIT_TO_ISDF",
+            "CASH_PAYMENT",
+            "WITHDRAWAL_OF_ASSETS_AND_SERVICES",
+            "OTHER_WITHDRAWALS_AND_DISTRIBUTIONS",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -12586,6 +12686,11 @@
             "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
             "OPENING_BALANCE_LIVESTOCK",
             "CLOSING_BALANCE_LIVESTOCK",
+            "ACCOUNT_INVENTORY_BALANCE_ACCOUNT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_DEPARTMENT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_UNIT_RATE",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT_QUANTITY",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "TAX_DEPRECIATION_PERCENTAGE",
@@ -12616,6 +12721,23 @@
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
             "LATE_PAYMENT",
+            "OTHER_INTEREST_INCOME",
+            "OTHER_INTEREST_EXPENSE",
+            "INCOME_FROM_OTHER_INVESTMENTS_AND_DIVIDENDS",
+            "PROFIT_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "PRIVATE_ACCOUNT",
+            "DEDUCTIBLE_COST_OF_USING_A_PRIVATE_CAR",
+            "OTHER_TAX_FREE_INCOME",
+            "OTHERNON_DEDUCTIBLECOST",
+            "TAX_FREE_PROFIT_FROM_THE_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "NON_DEDUCTIBLE_LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "TAX_FREE_PART_OF_DIVIDENDS_AND_DISTRIBUTIONS",
+            "RETURN_OF_PROFITS_TO_ISDF",
+            "RETURN_OF_DEFICIT_TO_ISDF",
+            "CASH_PAYMENT",
+            "WITHDRAWAL_OF_ASSETS_AND_SERVICES",
+            "OTHER_WITHDRAWALS_AND_DISTRIBUTIONS",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -16575,6 +16697,11 @@
             "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
             "OPENING_BALANCE_LIVESTOCK",
             "CLOSING_BALANCE_LIVESTOCK",
+            "ACCOUNT_INVENTORY_BALANCE_ACCOUNT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_DEPARTMENT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_UNIT_RATE",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT_QUANTITY",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "TAX_DEPRECIATION_PERCENTAGE",
@@ -16605,6 +16732,23 @@
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
             "LATE_PAYMENT",
+            "OTHER_INTEREST_INCOME",
+            "OTHER_INTEREST_EXPENSE",
+            "INCOME_FROM_OTHER_INVESTMENTS_AND_DIVIDENDS",
+            "PROFIT_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "PRIVATE_ACCOUNT",
+            "DEDUCTIBLE_COST_OF_USING_A_PRIVATE_CAR",
+            "OTHER_TAX_FREE_INCOME",
+            "OTHERNON_DEDUCTIBLECOST",
+            "TAX_FREE_PROFIT_FROM_THE_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "NON_DEDUCTIBLE_LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "TAX_FREE_PART_OF_DIVIDENDS_AND_DISTRIBUTIONS",
+            "RETURN_OF_PROFITS_TO_ISDF",
+            "RETURN_OF_DEFICIT_TO_ISDF",
+            "CASH_PAYMENT",
+            "WITHDRAWAL_OF_ASSETS_AND_SERVICES",
+            "OTHER_WITHDRAWALS_AND_DISTRIBUTIONS",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -19013,7 +19157,11 @@
           "type": "string"
         },
         "paymentAmount": {
-          "description": "The amount of the payment type chosen",
+          "description": "The amount of the payment type chosen in the company currency",
+          "type": "number"
+        },
+        "paymentAmountCurrency": {
+          "description": "The amount of the payment type chosen in the chosen currency",
           "type": "number"
         },
         "paymentDate": {
@@ -22952,6 +23100,11 @@
             "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
             "OPENING_BALANCE_LIVESTOCK",
             "CLOSING_BALANCE_LIVESTOCK",
+            "ACCOUNT_INVENTORY_BALANCE_ACCOUNT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_DEPARTMENT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_UNIT_RATE",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT_QUANTITY",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "TAX_DEPRECIATION_PERCENTAGE",
@@ -22982,6 +23135,23 @@
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
             "LATE_PAYMENT",
+            "OTHER_INTEREST_INCOME",
+            "OTHER_INTEREST_EXPENSE",
+            "INCOME_FROM_OTHER_INVESTMENTS_AND_DIVIDENDS",
+            "PROFIT_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "PRIVATE_ACCOUNT",
+            "DEDUCTIBLE_COST_OF_USING_A_PRIVATE_CAR",
+            "OTHER_TAX_FREE_INCOME",
+            "OTHERNON_DEDUCTIBLECOST",
+            "TAX_FREE_PROFIT_FROM_THE_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "NON_DEDUCTIBLE_LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "TAX_FREE_PART_OF_DIVIDENDS_AND_DISTRIBUTIONS",
+            "RETURN_OF_PROFITS_TO_ISDF",
+            "RETURN_OF_DEFICIT_TO_ISDF",
+            "CASH_PAYMENT",
+            "WITHDRAWAL_OF_ASSETS_AND_SERVICES",
+            "OTHER_WITHDRAWALS_AND_DISTRIBUTIONS",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -23623,6 +23793,11 @@
             "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
             "OPENING_BALANCE_LIVESTOCK",
             "CLOSING_BALANCE_LIVESTOCK",
+            "ACCOUNT_INVENTORY_BALANCE_ACCOUNT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_DEPARTMENT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_UNIT_RATE",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT_QUANTITY",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "TAX_DEPRECIATION_PERCENTAGE",
@@ -23653,6 +23828,23 @@
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
             "LATE_PAYMENT",
+            "OTHER_INTEREST_INCOME",
+            "OTHER_INTEREST_EXPENSE",
+            "INCOME_FROM_OTHER_INVESTMENTS_AND_DIVIDENDS",
+            "PROFIT_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "PRIVATE_ACCOUNT",
+            "DEDUCTIBLE_COST_OF_USING_A_PRIVATE_CAR",
+            "OTHER_TAX_FREE_INCOME",
+            "OTHERNON_DEDUCTIBLECOST",
+            "TAX_FREE_PROFIT_FROM_THE_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "NON_DEDUCTIBLE_LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "TAX_FREE_PART_OF_DIVIDENDS_AND_DISTRIBUTIONS",
+            "RETURN_OF_PROFITS_TO_ISDF",
+            "RETURN_OF_DEFICIT_TO_ISDF",
+            "CASH_PAYMENT",
+            "WITHDRAWAL_OF_ASSETS_AND_SERVICES",
+            "OTHER_WITHDRAWALS_AND_DISTRIBUTIONS",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -25505,8 +25697,6 @@
             "BeehiveAuthManagersJSONRPC",
             "ZendeskSso",
             "FabricAIIntegration",
-            "GoldsharkRackbeatIntegration",
-            "GoldsharkPurchaseOrderLineApplySecurity",
             "StrutsReadReplica",
             "Api2ReadReplica",
             "JsonRpcReadReplica",
@@ -25563,7 +25753,6 @@
             "GlobalEventSystem",
             "Marketplace",
             "SalesforceSupport",
-            "CopilotAccess",
             "CleanupTripletexContactsJob",
             "FasterBRAlgorithms",
             "MPSInvoiceOverviewBanner",
@@ -25571,7 +25760,9 @@
             "PostingApiTripletexPagination",
             "CreateAccessToClientsJob",
             "ClearResellerProvisions",
-            "NewProjectOnboarding"
+            "SkipMissingTripletexOrdersInProvisioning",
+            "NewProjectOnboarding",
+            "OScoreFeedbackContactMeToggle"
           ],
           "readOnly": true,
           "type": "string"
@@ -26140,6 +26331,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Account"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseAccountInventoryBalance": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AccountInventoryBalance"
           },
           "readOnly": true,
           "type": "array"
@@ -39658,6 +39882,11 @@
             "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
             "OPENING_BALANCE_LIVESTOCK",
             "CLOSING_BALANCE_LIVESTOCK",
+            "ACCOUNT_INVENTORY_BALANCE_ACCOUNT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_DEPARTMENT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_UNIT_RATE",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT_QUANTITY",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "TAX_DEPRECIATION_PERCENTAGE",
@@ -39688,6 +39917,23 @@
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
             "LATE_PAYMENT",
+            "OTHER_INTEREST_INCOME",
+            "OTHER_INTEREST_EXPENSE",
+            "INCOME_FROM_OTHER_INVESTMENTS_AND_DIVIDENDS",
+            "PROFIT_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "PRIVATE_ACCOUNT",
+            "DEDUCTIBLE_COST_OF_USING_A_PRIVATE_CAR",
+            "OTHER_TAX_FREE_INCOME",
+            "OTHERNON_DEDUCTIBLECOST",
+            "TAX_FREE_PROFIT_FROM_THE_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "NON_DEDUCTIBLE_LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "TAX_FREE_PART_OF_DIVIDENDS_AND_DISTRIBUTIONS",
+            "RETURN_OF_PROFITS_TO_ISDF",
+            "RETURN_OF_DEFICIT_TO_ISDF",
+            "CASH_PAYMENT",
+            "WITHDRAWAL_OF_ASSETS_AND_SERVICES",
+            "OTHER_WITHDRAWALS_AND_DISTRIBUTIONS",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -40597,12 +40843,6 @@
           "format": "int64",
           "type": "integer"
         },
-        "idForVoucherUrl": {
-          "description": "The id of the connected invoice/wage period transaction/vat returns/wage transaction.",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
         "isApproveDisabled": {
           "description": "Can this payment be approved.",
           "readOnly": true,
@@ -40705,22 +40945,6 @@
           "description": "Voucher that was paid.",
           "readOnly": true
         },
-        "sourceVoucherType": {
-          "description": "The type of the source voucher connected to this payment.",
-          "enum": [
-            "REGULAR",
-            "AUTOPAY_PAYMENT",
-            "ZTL_PAYMENT",
-            "WAGE_PERIOD_TRANSACTION",
-            "CUSTOMS_DECLARATIONS",
-            "VAT_RETURNS",
-            "WAGE_TRANSACTION",
-            "INCOMING_INVOICE_DETAILED",
-            "INVOICE_IN"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "status": {
           "description": "The payment status.NOT_APPROVED: Payment not approved yet.<br>APPROVED: Payment approved, but not yet sent to bank.<br>SENT_TO_AUTOPAY: Payment sent to bank.<br>RECEIVED_BY_BANK: Payment received by the bank.<br>ACCEPTED_BY_BANK: Payment that was accepted by the bank.<br>FAILED: Payment that failed.<br>CANCELLED: Cancelled payment.<br>SUCCESS: Payment that ended successfully.<br>",
           "enum": [
@@ -40777,6 +41001,11 @@
           "type": "string"
         },
         "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "urlForVoucher": {
+          "description": "The url to access the connected invoice/wage period transaction/vat returns/wage transaction.",
           "readOnly": true,
           "type": "string"
         },
@@ -41496,6 +41725,11 @@
             "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
             "OPENING_BALANCE_LIVESTOCK",
             "CLOSING_BALANCE_LIVESTOCK",
+            "ACCOUNT_INVENTORY_BALANCE_ACCOUNT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_DEPARTMENT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_UNIT_RATE",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT_QUANTITY",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "TAX_DEPRECIATION_PERCENTAGE",
@@ -41526,6 +41760,23 @@
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
             "LATE_PAYMENT",
+            "OTHER_INTEREST_INCOME",
+            "OTHER_INTEREST_EXPENSE",
+            "INCOME_FROM_OTHER_INVESTMENTS_AND_DIVIDENDS",
+            "PROFIT_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "PRIVATE_ACCOUNT",
+            "DEDUCTIBLE_COST_OF_USING_A_PRIVATE_CAR",
+            "OTHER_TAX_FREE_INCOME",
+            "OTHERNON_DEDUCTIBLECOST",
+            "TAX_FREE_PROFIT_FROM_THE_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "NON_DEDUCTIBLE_LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "TAX_FREE_PART_OF_DIVIDENDS_AND_DISTRIBUTIONS",
+            "RETURN_OF_PROFITS_TO_ISDF",
+            "RETURN_OF_DEFICIT_TO_ISDF",
+            "CASH_PAYMENT",
+            "WITHDRAWAL_OF_ASSETS_AND_SERVICES",
+            "OTHER_WITHDRAWALS_AND_DISTRIBUTIONS",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -42635,7 +42886,7 @@
           "description": "Subject to prefill",
           "enum": [
             "REAL_ESTATE",
-            "SECURITY"
+            "SHARES_AND_SECURITIES"
           ],
           "type": "string"
         },
@@ -47174,15 +47425,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -47203,6 +47458,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -47226,6 +47482,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -57616,6 +57873,11 @@
             "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
             "OPENING_BALANCE_LIVESTOCK",
             "CLOSING_BALANCE_LIVESTOCK",
+            "ACCOUNT_INVENTORY_BALANCE_ACCOUNT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_DEPARTMENT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_UNIT_RATE",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT_QUANTITY",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "TAX_DEPRECIATION_PERCENTAGE",
@@ -57646,6 +57908,23 @@
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
             "LATE_PAYMENT",
+            "OTHER_INTEREST_INCOME",
+            "OTHER_INTEREST_EXPENSE",
+            "INCOME_FROM_OTHER_INVESTMENTS_AND_DIVIDENDS",
+            "PROFIT_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "PRIVATE_ACCOUNT",
+            "DEDUCTIBLE_COST_OF_USING_A_PRIVATE_CAR",
+            "OTHER_TAX_FREE_INCOME",
+            "OTHERNON_DEDUCTIBLECOST",
+            "TAX_FREE_PROFIT_FROM_THE_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "NON_DEDUCTIBLE_LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "TAX_FREE_PART_OF_DIVIDENDS_AND_DISTRIBUTIONS",
+            "RETURN_OF_PROFITS_TO_ISDF",
+            "RETURN_OF_DEFICIT_TO_ISDF",
+            "CASH_PAYMENT",
+            "WITHDRAWAL_OF_ASSETS_AND_SERVICES",
+            "OTHER_WITHDRAWALS_AND_DISTRIBUTIONS",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -59959,6 +60238,9 @@
           "type": "boolean"
         },
         "companyIsAnAS": {
+          "type": "boolean"
+        },
+        "employeeIsNew": {
           "type": "boolean"
         },
         "firstName": {
@@ -66057,6 +66339,14 @@
           "readOnly": true,
           "type": "array"
         },
+        "documentUploaderEmail": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "documentUploaderName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "documents": {
           "items": {
             "type": "string"
@@ -67095,6 +67385,11 @@
             "CLOSING_BALANCE_SELF_PRODUCED_PRODUCT_OWN_PRODUCTUION",
             "OPENING_BALANCE_LIVESTOCK",
             "CLOSING_BALANCE_LIVESTOCK",
+            "ACCOUNT_INVENTORY_BALANCE_ACCOUNT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_DEPARTMENT_ID",
+            "ACCOUNT_INVENTORY_BALANCE_UNIT_RATE",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT_QUANTITY",
+            "ACCOUNT_INVENTORY_BALANCE_BALANCE_OUT",
             "TANGIBLE_FIXED_ASSETS_TYPE",
             "OPENING_BALANCE_TANGIBLE_FIXED_ASSETS",
             "TAX_DEPRECIATION_PERCENTAGE",
@@ -67125,6 +67420,23 @@
             "OTHER_POSITIVE_CHANGE_IN_EQUITY",
             "OTHER_NEGATIVE_CHANGE_IN_EQUITY",
             "LATE_PAYMENT",
+            "OTHER_INTEREST_INCOME",
+            "OTHER_INTEREST_EXPENSE",
+            "INCOME_FROM_OTHER_INVESTMENTS_AND_DIVIDENDS",
+            "PROFIT_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "PRIVATE_ACCOUNT",
+            "DEDUCTIBLE_COST_OF_USING_A_PRIVATE_CAR",
+            "OTHER_TAX_FREE_INCOME",
+            "OTHERNON_DEDUCTIBLECOST",
+            "TAX_FREE_PROFIT_FROM_THE_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "NON_DEDUCTIBLE_LOSS_ON_REALIZATION_OF_FINANCIAL_INSTRUMENTS",
+            "TAX_FREE_PART_OF_DIVIDENDS_AND_DISTRIBUTIONS",
+            "RETURN_OF_PROFITS_TO_ISDF",
+            "RETURN_OF_DEFICIT_TO_ISDF",
+            "CASH_PAYMENT",
+            "WITHDRAWAL_OF_ASSETS_AND_SERVICES",
+            "OTHER_WITHDRAWALS_AND_DISTRIBUTIONS",
             "NONE_DEDUCTIBLE_COST",
             "POSITIVE_TAX_COST",
             "INTEREST_EXPENSE_FIXED_TAX",
@@ -69147,12 +69459,6 @@
           "format": "int64",
           "type": "integer"
         },
-        "idForVoucherUrl": {
-          "description": "The id of the connected invoice/wage period transaction/vat returns/wage transaction.",
-          "format": "int32",
-          "readOnly": true,
-          "type": "integer"
-        },
         "isApproveDisabled": {
           "description": "Can this payment be approved.",
           "readOnly": true,
@@ -69262,22 +69568,6 @@
           "description": "Voucher that was paid.",
           "readOnly": true
         },
-        "sourceVoucherType": {
-          "description": "The type of the source voucher connected to this payment.",
-          "enum": [
-            "REGULAR",
-            "AUTOPAY_PAYMENT",
-            "ZTL_PAYMENT",
-            "WAGE_PERIOD_TRANSACTION",
-            "CUSTOMS_DECLARATIONS",
-            "VAT_RETURNS",
-            "WAGE_TRANSACTION",
-            "INCOMING_INVOICE_DETAILED",
-            "INVOICE_IN"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "status": {
           "description": "The payment status.NOT_APPROVED: Payment not approved yet.<br>APPROVED: Payment approved, but not yet sent to bank.<br>SENT_TO_AUTOPAY: Payment sent to bank.<br>RECEIVED_BY_BANK: Payment received by the bank.<br>ACCEPTED_BY_BANK: Payment that was accepted by the bank.<br>FAILED: Payment that failed.<br>CANCELLED: Cancelled payment.<br>SUCCESS: Payment that ended successfully.<br>",
           "enum": [
@@ -69339,6 +69629,11 @@
           "type": "string"
         },
         "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "urlForVoucher": {
+          "description": "The url to access the connected invoice/wage period transaction/vat returns/wage transaction.",
           "readOnly": true,
           "type": "string"
         },
@@ -105344,10 +105639,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
       "name": "bankreconciliationinternalmatch"
@@ -106836,6 +107131,9 @@
     },
     {
       "name": "yearEndincomeStatement"
+    },
+    {
+      "name": "yearEndinventories"
     },
     {
       "name": "yearEndmapping"
