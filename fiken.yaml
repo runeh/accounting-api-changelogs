@@ -209,7 +209,7 @@ info:
     | https://api.fiken.no/api/v2/companies/{companySlug}/contacts           | Yes         | Yes       | createdDate, lastModified             | Yes         | supplierNumber, customerNumber, memberNumber, memberNumberString, name, organizationNumber, email, group, lastModified, createdDate, inactive, phoneNumber  |
     | https://api.fiken.no/api/v2/companies/{companySlug}/creditNotes        | Yes         | No        |                                       | Yes         | issueDate, lastModified, settled, customerId                                                                                            |
     | https://api.fiken.no/api/v2/companies/{companySlug}/inbox              | Yes         | Yes       | createdDate, name                     | Yes         | status, name                                                                                                                            |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/invoices           | Yes         | No        |                                       | Yes         | issueDate, lastModified, settled, customerId, orderReference, invoiceDraftUuid                                                          |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/invoices           | Yes         | No        |                                       | Yes         | issueDate, lastModified, dueDate, settled, customerId, orderReference, invoiceDraftUuid                                                 |
     | https://api.fiken.no/api/v2/companies/{companySlug}/invoices/drafts    | Yes         | No        |                                       | No          |                                                                                                                                         |
     | https://api.fiken.no/api/v2/companies/{companySlug}/journalEntries     | Yes         | No        |                                       | Yes         | date                                                                                                                                    |
     | https://api.fiken.no/api/v2/companies/{companySlug}/offers             | Yes         | No        |                                       | No          |                                                                                                                                         |
@@ -218,7 +218,7 @@ info:
     | https://api.fiken.no/api/v2/companies/{companySlug}/projects           | Yes         | No        |                                       | Yes         | completed                                                                                                                               |
     | https://api.fiken.no/api/v2/companies/{companySlug}/purchases          | Yes         | Yes       | createdDate                           | No          | date                                                                                                                                    |
     | https://api.fiken.no/api/v2/companies/{companySlug}/purchases/drafts   | Yes         | No        |                                       | No          |                                                                                                                                         |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/sales              | Yes         | No        |                                       | Yes         | saleNumber, lastModified, date, contactId                                                                                                          |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/sales              | Yes         | No        |                                       | Yes         | saleNumber, lastModified, date, contactId                                                                                               |
     | https://api.fiken.no/api/v2/companies/{companySlug}/sales/drafts       | Yes         | No        |                                       | No          |                                                                                                                                         |
     | https://api.fiken.no/api/v2/companies/{companySlug}/transactions       | Yes         | No        |                                       | Yes         | createdDate, lastModified                                                                                                               |
 
@@ -1274,6 +1274,11 @@ paths:
         - $ref: '#/components/parameters/lastModifiedLt'
         - $ref: '#/components/parameters/lastModifiedGe'
         - $ref: '#/components/parameters/lastModifiedGt'
+        - $ref: '#/components/parameters/dueDate'
+        - $ref: '#/components/parameters/dueDateLe'
+        - $ref: '#/components/parameters/dueDateLt'
+        - $ref: '#/components/parameters/dueDateGe'
+        - $ref: '#/components/parameters/dueDateGt'
         - name: customerId
           in: query
           description: |
@@ -4547,6 +4552,7 @@ components:
         description:
           type: string
           maxLength: 200
+          description: 'We add the flag ''Fri postering registrert via API: ''. This must be taken into account in the max length of the description'
         open:
           type: boolean
           example: false
@@ -5250,7 +5256,8 @@ components:
         description:
           type: string
           maxLength: 200
-          example: Purchase, Schweigaards Gate 34 AS (invoice nr 26083)
+          example: 'Purchase, Schweigaards Gate 34 AS (invoice nr 26083)'
+          description: 'We add the flag ''Fri postering registrert via API: ''. This must be taken into account in the max length of the description'
         date:
           type: string
           format: date
@@ -6580,6 +6587,56 @@ components:
         format: date
       description: |
         Returns results that have been last modified strictly after the date provided as a parameter value.
+        Dates are represented as strings formatted as YYYY-MM-DD.
+        Example: January 1st, 1970: "1970-01-01"
+    dueDate:
+      in: query
+      name: dueDate
+      schema:
+        type: string
+        format: date
+      description: |
+        Filter based on due date of invoice. Returns results from the date provided as a parameter value.
+        Dates are represented as strings formatted as YYYY-MM-DD.
+        Example: January 1st, 1970: "1970-01-01"
+    dueDateLe:
+      in: query
+      name: dueDateLe
+      schema:
+        type: string
+        format: date
+      description: |
+        Returns invoices with a due date before or on the date provided as a parameter value.
+        Dates are represented as strings formatted as YYYY-MM-DD.
+        Example: January 1st, 1970: "1970-01-01"
+    dueDateLt:
+      in: query
+      name: dueDateLt
+      schema:
+        type: string
+        format: date
+      description: |
+        Returns invoices with a due date that have been last modified strictly before the date provided as a parameter value.
+        Dates are represented as strings formatted as YYYY-MM-DD.
+        Example: January 1st, 1970: "1970-01-01"
+    dueDateGe:
+      in: query
+      name: dueDateGe
+      schema:
+        type: string
+        format: date
+      description: |
+        Returns invoices with a due date that have been last modified after or on the date provided as a parameter value.
+        Dates are represented as strings formatted as YYYY-MM-DD.
+        Example: January 1st, 1970: "1970-01-01"
+    dueDateGt:
+      in: query
+      name: dueDateGt
+      schema:
+        type: string
+        format: date
+      description: |
+        Returns invoices with a due date that have been last modified strictly after the date provided as a parameter value.
         Dates are represented as strings formatted as YYYY-MM-DD.
         Example: January 1st, 1970: "1970-01-01"
     inboxDocumentId:
