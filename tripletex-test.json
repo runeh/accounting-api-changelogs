@@ -3135,6 +3135,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "canDelete": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "importDate": {
           "readOnly": true,
           "type": "string"
@@ -4355,6 +4359,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "moduleVoucherScanning": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "orgNumber": {
           "readOnly": true,
           "type": "string"
@@ -4571,6 +4579,9 @@
         "approvable": {
           "readOnly": true,
           "type": "boolean"
+        },
+        "attachment": {
+          "$ref": "#/definitions/Document"
         },
         "autoPayReconciliation": {
           "readOnly": true,
@@ -6611,6 +6622,51 @@
       },
       "type": "object"
     },
+    "ChatMessage": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "content": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee",
+          "description": "Message sender",
+          "readOnly": true
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "thread": {
+          "$ref": "#/definitions/ChatThread",
+          "description": "All messages must belong to a thread"
+        },
+        "timestamp": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "content",
+        "thread"
+      ],
+      "type": "object"
+    },
     "ChatThread": {
       "properties": {
         "changes": {
@@ -6620,17 +6676,35 @@
           "readOnly": true,
           "type": "array"
         },
-        "employeeId": {
-          "description": "The employee id of the chat thread",
-          "format": "int64",
-          "type": "integer"
+        "createdByEmployee": {
+          "$ref": "#/definitions/Employee",
+          "readOnly": true
         },
         "id": {
           "format": "int64",
           "type": "integer"
         },
+        "messages": {
+          "items": {
+            "$ref": "#/definitions/ChatMessage"
+          },
+          "type": "array"
+        },
+        "participants": {
+          "description": "The employees that can participate in the chat thread",
+          "items": {
+            "$ref": "#/definitions/Employee"
+          },
+          "type": "array"
+        },
+        "threadUrl": {
+          "description": "Url to the topic of conversation",
+          "maxLength": 255,
+          "type": "string"
+        },
         "timestamp": {
           "description": "Timestamp for creation of the chat thread",
+          "readOnly": true,
           "type": "string"
         },
         "url": {
@@ -7499,12 +7573,14 @@
         },
         "email": {
           "format": "email",
+          "maxLength": 254,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -7516,15 +7592,19 @@
           "type": "boolean"
         },
         "name": {
+          "maxLength": 255,
           "type": "string"
         },
         "organizationNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumber": {
+          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobile": {
+          "maxLength": 100,
           "type": "string"
         },
         "startDate": {
@@ -10009,6 +10089,14 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "inputType": {
+          "enum": [
+            "SELECT",
+            "TEXTFIELD"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "isMandatory": {
           "readOnly": true,
@@ -13299,8 +13387,19 @@
           "readOnly": true,
           "type": "integer"
         },
+        "inputType": {
+          "enum": [
+            "SELECT",
+            "TEXTFIELD"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "isMandatory": {
           "readOnly": true,
+          "type": "boolean"
+        },
+        "mandatory": {
           "type": "boolean"
         },
         "sequence": {
@@ -13402,6 +13501,12 @@
         "dateOfBirth": {
           "type": "string"
         },
+        "dateVacationAndHourBalance": {
+          "type": "string"
+        },
+        "departmentNumber": {
+          "type": "string"
+        },
         "divisionNumber": {
           "type": "string"
         },
@@ -13411,7 +13516,13 @@
         "employeeNumber": {
           "type": "string"
         },
+        "employmentEndReason": {
+          "type": "string"
+        },
         "employmentForm": {
+          "type": "string"
+        },
+        "employmentScheduleTypeAmeldingTypeId": {
           "type": "string"
         },
         "employmentType": {
@@ -13420,16 +13531,31 @@
         "empty": {
           "type": "boolean"
         },
+        "endDate": {
+          "type": "string"
+        },
         "firstName": {
           "type": "string"
         },
         "getdNumber": {
           "type": "string"
         },
+        "hourBalance": {
+          "type": "string"
+        },
+        "hourCost": {
+          "type": "string"
+        },
+        "hourRate": {
+          "type": "string"
+        },
         "hourlyWage": {
           "type": "string"
         },
         "iban": {
+          "type": "string"
+        },
+        "importedEmploymentId": {
           "type": "string"
         },
         "internationalIdCountry": {
@@ -13439,6 +13565,9 @@
           "type": "string"
         },
         "internationalIdType": {
+          "type": "string"
+        },
+        "isMainEmployer": {
           "type": "string"
         },
         "lastName": {
@@ -13474,6 +13603,9 @@
         "salaryType": {
           "type": "string"
         },
+        "shiftDurationHours": {
+          "type": "string"
+        },
         "socialSecurityNumber": {
           "type": "string"
         },
@@ -13493,6 +13625,9 @@
           "type": "string"
         },
         "vacationAllowanceExtraWeekAmount": {
+          "type": "string"
+        },
+        "vacationBalance": {
           "type": "string"
         },
         "yearlyWage": {
@@ -13691,6 +13826,20 @@
         "firstName",
         "lastName"
       ],
+      "type": "object"
+    },
+    "EmployeeOverviewBodyArgs": {
+      "properties": {
+        "employeeIds": {
+          "type": "string"
+        },
+        "employeeIdsToShowOnTop": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "EmployeePotential": {
@@ -18088,6 +18237,11 @@
         "canBeReversed": {
           "type": "boolean"
         },
+        "commentCount": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
         "currency": {
           "$ref": "#/definitions/Currency"
         },
@@ -18123,6 +18277,9 @@
         },
         "isTemporary": {
           "type": "boolean"
+        },
+        "lastComment": {
+          "type": "string"
         },
         "paymentPostingIdsForDeletion": {
           "description": "Ids for payment postings to be deleted",
@@ -18406,6 +18563,14 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "validationErrors": {
+          "description": "List of validation errors",
+          "items": {
+            "$ref": "#/definitions/IncomingInvoiceValidationError"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -18579,9 +18744,6 @@
           "type": "integer"
         }
       },
-      "required": [
-        "invoiceDate"
-      ],
       "type": "object"
     },
     "IncomingInvoiceLookupData": {
@@ -18785,6 +18947,20 @@
         },
         "voucherNumberAsString": {
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IncomingInvoiceValidationError": {
+      "properties": {
+        "clientId": {
+          "type": "string"
+        },
+        "field": {
+          "type": "string"
+        },
+        "message": {
           "type": "string"
         }
       },
@@ -21663,6 +21839,41 @@
       ],
       "type": "object"
     },
+    "InventoryGrouping": {
+      "properties": {
+        "businessActivityType": {
+          "enum": [
+            "OTHER_COMMERCIAL_ACTIVITIES",
+            "OTHER_COMMERCIAL_ACTIVITIES_2",
+            "OTHER_COMMERCIAL_ACTIVITIES_3",
+            "OTHER_COMMERCIAL_ACTIVITIES_4",
+            "AGRICULTURE_HORTICULTURE_FUR_FARMING",
+            "FISHING_AND_HUNTING_AT_SEA",
+            "REINDEER_HUSBANDRY",
+            "FAMILY_DAY_CARE_CENTRE_IN_OWN_HOME",
+            "SLATE_QUARRYING",
+            "FORESTRY",
+            "NOT_INDUSTRY"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "grouping": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "year": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "InventoryLocation": {
       "properties": {
         "changes": {
@@ -22814,7 +23025,6 @@
             "Api2ReadReplica",
             "JsonRpcReadReplica",
             "JsonRpcReadReplicaTentative",
-            "CompanyCustomerVendorNumberSequence",
             "MissingCompanyIdFilterUpdateDeleteQueriesLogging",
             "InvalidScaleLogging",
             "SemiGlobalReadsLogging",
@@ -22876,7 +23086,8 @@
             "NewProjectOnboarding",
             "OScoreFeedbackContactMeToggle",
             "CalculateHmacOnWebhook",
-            "NewAddonsAuthorization"
+            "NewAddonsAuthorization",
+            "TimeBasedSessionInvalidation"
           ],
           "readOnly": true,
           "type": "string"
@@ -22962,6 +23173,10 @@
           "type": "string"
         },
         "timestamp": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
           "readOnly": true,
           "type": "string"
         },
@@ -24654,6 +24869,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/ChangeLog"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseChatThread": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ChatThread"
           },
           "readOnly": true,
           "type": "array"
@@ -27195,6 +27443,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/InventoryCorrection"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseInventoryGrouping": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/InventoryGrouping"
           },
           "readOnly": true,
           "type": "array"
@@ -30795,6 +31076,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/SearchCompletion"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseSelectFieldDTO": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/SelectFieldDTO"
           },
           "readOnly": true,
           "type": "array"
@@ -44283,15 +44597,19 @@
     "Reminder": {
       "properties": {
         "bank": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountIBAN": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountNumber": {
+          "maxLength": 255,
           "type": "string"
         },
         "bankAccountSWIFT": {
+          "maxLength": 255,
           "type": "string"
         },
         "changes": {
@@ -44312,6 +44630,7 @@
           "type": "number"
         },
         "comment": {
+          "maxLength": 16777215,
           "type": "string"
         },
         "currency": {
@@ -44335,6 +44654,7 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
+          "maxLength": 25,
           "type": "string"
         },
         "reminderDate": {
@@ -46341,6 +46661,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CancelResponseDTO"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperChatMessage": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ChatMessage"
         }
       },
       "type": "object"
@@ -52299,7 +52627,6 @@
             "INVOICE_OPTION_EFAKTURA",
             "INVOICE_OPTION_AVTALEGIRO",
             "INVOICE_OPTION_PAPER",
-            "FACTORING_APRILA",
             "INVOICE_OPTION_AUTOINVOICE_OUTBOUND_EHF",
             "API_V2",
             "SMART_SCAN",
@@ -53924,6 +54251,20 @@
         "roleSystemAdministrator": {
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SelectFieldDTO": {
+      "properties": {
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -56536,6 +56877,14 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "inputType": {
+          "enum": [
+            "SELECT",
+            "TEXTFIELD"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "isMandatory": {
           "readOnly": true,
@@ -67911,9 +68260,12 @@
       }
     },
     "/bank/reconciliation/entry/bankTransaction": {
-      "get": {
+      "put": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
         "description": "",
-        "operationId": "BankReconciliationEntryBankTransaction_getBankTransaction",
+        "operationId": "BankReconciliationEntryBankTransaction_bankTransaction",
         "parameters": [
           {
             "description": "The bank reconciliation id of the transactions to search for.",
@@ -67958,34 +68310,16 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "description": "From index",
-            "in": "query",
-            "name": "from",
+            "description": "List of entries to include in response",
+            "in": "body",
+            "name": "body",
             "required": false,
-            "type": "integer"
-          },
-          {
-            "default": 1000,
-            "description": "Number of elements to return",
-            "in": "query",
-            "name": "count",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "description": "Sorting pattern",
-            "in": "query",
-            "name": "sorting",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ReconciliationEntry"
+              },
+              "type": "array"
+            }
           }
         ],
         "responses": {
@@ -68008,9 +68342,12 @@
       }
     },
     "/bank/reconciliation/entry/posting": {
-      "get": {
+      "put": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
         "description": "",
-        "operationId": "BankReconciliationEntryPosting_getPosting",
+        "operationId": "BankReconciliationEntryPosting_posting",
         "parameters": [
           {
             "description": "Account ID",
@@ -68062,34 +68399,16 @@
             "type": "string"
           },
           {
-            "default": 0,
-            "description": "From index",
-            "in": "query",
-            "name": "from",
+            "description": "List of entries to include in response",
+            "in": "body",
+            "name": "body",
             "required": false,
-            "type": "integer"
-          },
-          {
-            "default": 1000,
-            "description": "Number of elements to return",
-            "in": "query",
-            "name": "count",
-            "required": false,
-            "type": "integer"
-          },
-          {
-            "description": "Sorting pattern",
-            "in": "query",
-            "name": "sorting",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "description": "Fields filter pattern",
-            "in": "query",
-            "name": "fields",
-            "required": false,
-            "type": "string"
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ReconciliationEntry"
+              },
+              "type": "array"
+            }
           }
         ],
         "responses": {
@@ -87363,7 +87682,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Into each section in the specified form that only has empty or default values, and copyFieldValuesByDefault set as true in the form's template, copy field values from the equivalent section in the most recently edited control form. Completed forms will not be affected.",
+        "summary": "Into each section in the specified form that only has empty or default values, and copyFieldValuesByDefault set as true in the form's template, copy field values from the equivalent section in the most recently edited control form. Signed or completed forms will not be affected.",
         "tags": [
           "projectdynamicControlForm"
         ]
@@ -102634,10 +102953,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
       "name": "bankreconciliationinternalmatch"
@@ -102674,6 +102993,9 @@
     },
     {
       "name": "bringCredentials"
+    },
+    {
+      "name": "internalchatmessage"
     },
     {
       "name": "internalchatthread"
