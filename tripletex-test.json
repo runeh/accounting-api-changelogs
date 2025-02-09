@@ -6697,6 +6697,9 @@
           },
           "type": "array"
         },
+        "read": {
+          "type": "boolean"
+        },
         "threadUrl": {
           "description": "Url to the topic of conversation",
           "maxLength": 255,
@@ -9061,6 +9064,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "hasCopilotUrlNavigationPilot": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "hasSalesforceSupport": {
           "readOnly": true,
           "type": "boolean"
@@ -9113,7 +9120,8 @@
             "TRIPLETEX_COPILOT",
             "TEST",
             "REPORT_MODEL",
-            "STICOS"
+            "STICOS",
+            "COPILOT_URL_NAVIGATION_INVOICE"
           ],
           "type": "string"
         },
@@ -9161,6 +9169,13 @@
         "copilotRequest": {
           "$ref": "#/definitions/CopilotRequest"
         },
+        "copilotUrlNavigations": {
+          "description": "List of CopilotUrlNavigation",
+          "items": {
+            "$ref": "#/definitions/CopilotUrlNavigation"
+          },
+          "type": "array"
+        },
         "errorCode": {
           "enum": [
             "NO_ERROR",
@@ -9194,7 +9209,8 @@
           "enum": [
             "SUPPORT",
             "STICOS",
-            "ACCOUNT_PLAN"
+            "ACCOUNT_PLAN",
+            "COPILOT_URL_NAVIGATION"
           ],
           "type": "string"
         },
@@ -9219,6 +9235,49 @@
         "responseStartTimestamp",
         "sticosConversationMessage",
         "supportAIConversationMessage"
+      ],
+      "type": "object"
+    },
+    "CopilotUrlNavigation": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "dataTable": {
+          "enum": [
+            "INVOICE",
+            "PROJECT"
+          ],
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "response": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "urlParameters": {
+          "maxLength": 65535,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "response",
+        "urlParameters"
       ],
       "type": "object"
     },
@@ -15005,9 +15064,8 @@
         },
         "fileId": {
           "description": "FileId corresponding to an Incoming Payment PDF.",
-          "format": "int32",
           "readOnly": true,
-          "type": "integer"
+          "type": "string"
         }
       },
       "type": "object"
@@ -15558,6 +15616,48 @@
           "format": "int64",
           "readOnly": true,
           "type": "integer"
+        },
+        "noOfQuantity1Units": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "noOfQuantity2Units": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "quantity1BalanceChange": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "quantity1BalanceIn": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "quantity1BalanceOut": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "quantity1ProductUnit": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "quantity2BalanceChange": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "quantity2BalanceIn": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "quantity2BalanceOut": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "quantity2ProductUnit": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -17487,6 +17587,34 @@
       },
       "type": "object"
     },
+    "Grouping": {
+      "properties": {
+        "businessActivityType": {
+          "description": "business activity type",
+          "enum": [
+            "OTHER_COMMERCIAL_ACTIVITIES",
+            "OTHER_COMMERCIAL_ACTIVITIES_2",
+            "OTHER_COMMERCIAL_ACTIVITIES_3",
+            "OTHER_COMMERCIAL_ACTIVITIES_4",
+            "AGRICULTURE_HORTICULTURE_FUR_FARMING",
+            "FISHING_AND_HUNTING_AT_SEA",
+            "REINDEER_HUSBANDRY",
+            "FAMILY_DAY_CARE_CENTRE_IN_OWN_HOME",
+            "SLATE_QUARRYING",
+            "FORESTRY",
+            "NOT_INDUSTRY"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "grouping": {
+          "description": "grouping",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "HeaderBlueprintV1": {
       "properties": {
         "autoGroup": {
@@ -18539,7 +18667,7 @@
       },
       "type": "object"
     },
-    "IncomingInvoiceDataRead": {
+    "IncomingInvoiceAggregateRead": {
       "properties": {
         "invoiceHeader": {
           "$ref": "#/definitions/IncomingInvoiceHeaderRead",
@@ -18552,7 +18680,7 @@
           "readOnly": true
         },
         "metadata": {
-          "$ref": "#/definitions/IncomingInvoiceMetaData",
+          "$ref": "#/definitions/IncomingInvoiceMetadata",
           "description": "The invoice meta data.",
           "readOnly": true
         },
@@ -18634,46 +18762,68 @@
       "properties": {
         "changedAt": {
           "description": "Last changed date of the header",
+          "readOnly": true,
           "type": "string"
         },
         "currencyId": {
           "description": "Currency id",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "description": {
           "description": "Description",
+          "readOnly": true,
           "type": "string"
         },
         "dueDate": {
           "description": "Due date",
+          "readOnly": true,
           "type": "string"
         },
         "invoiceAmount": {
           "description": "Invoice amount",
+          "readOnly": true,
           "type": "number"
         },
         "invoiceDate": {
           "description": "Invoice date",
+          "readOnly": true,
           "type": "string"
         },
         "invoiceNumber": {
           "description": "Invoice number",
+          "readOnly": true,
           "type": "string"
         },
         "purchaseOrderId": {
           "description": "Purchase order id",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "vendorId": {
           "description": "Id of the vendor",
           "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherNumber": {
+          "description": "Voucher number",
+          "format": "int32",
+          "readOnly": true,
           "type": "integer"
         },
         "voucherType": {
           "description": "Voucher type",
           "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherYear": {
+          "description": "Voucher number",
+          "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -18780,68 +18930,68 @@
       },
       "type": "object"
     },
-    "IncomingInvoiceMetaData": {
+    "IncomingInvoiceMetadata": {
       "properties": {
         "changedAt": {
           "description": "Changed at",
+          "readOnly": true,
           "type": "string"
         },
         "changedByActualCompanyId": {
           "description": "Changed by actual Company ID",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "changedByActualEmployeeId": {
           "description": "Changed by actual employee ID",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "changedByEmployeeId": {
           "description": "Changed by employee ID",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
-        },
-        "draft": {
-          "type": "boolean"
-        },
-        "draftChanged": {
-          "type": "boolean"
         },
         "incomingInvoiceDraftId": {
           "description": "Id of the incoming invoice",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "incomingInvoiceId": {
           "description": "Id of the incoming invoice",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
-        "locked": {
-          "type": "boolean"
+        "invoiceLifeCycle": {
+          "description": "Invoice Life Cycle.",
+          "enum": [
+            "DRAFT_IN_INBOX",
+            "TEMPORARY_IN_LEDGER",
+            "IN_LEDGER"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
-        "new": {
-          "type": "boolean"
-        },
-        "postedToLedger": {
-          "type": "boolean"
-        },
-        "vatLocked": {
-          "description": "VAT locked",
-          "type": "boolean"
+        "invoiceSourceType": {
+          "description": "Invoice Source Type.",
+          "enum": [
+            "PDF",
+            "EHF",
+            "EFO_NELFO"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "voucherId": {
           "description": "Voucher Id of the incoming invoice",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
-        },
-        "whyIsLocked": {
-          "description": "Why is locked",
-          "type": "string"
-        },
-        "whyIsVatLocked": {
-          "description": "Why is VAT locked",
-          "type": "string"
         }
       },
       "type": "object"
@@ -18969,36 +19119,44 @@
     "IncomingInvoiceVatType": {
       "properties": {
         "basisPercentage": {
-          "description": "java.math.BigDecimal",
+          "readOnly": true,
           "type": "number"
         },
         "direction": {
-          "description": "The vat type direction",
           "enum": [
             "IN",
             "OUT"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "displayName": {
-          "description": "The vat type name",
+          "readOnly": true,
           "type": "string"
         },
         "id": {
-          "description": "Id of vat type",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
+        "isReverseInDeductableVatCode": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isReverseInNonDeductableVatCode": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "name": {
-          "description": "The vat type name",
+          "readOnly": true,
           "type": "string"
         },
         "number": {
-          "description": "The vat type number",
+          "readOnly": true,
           "type": "string"
         },
         "percentage": {
-          "description": "java.math.BigDecimal",
+          "readOnly": true,
           "type": "number"
         },
         "reverseInDeductableVatCode": {
@@ -19034,113 +19192,136 @@
         "accountId": {
           "description": "ID of the account.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "amountExclVat": {
           "description": "Amount excluding VAT.",
+          "readOnly": true,
           "type": "number"
         },
         "amountInclVat": {
           "description": "Amount including VAT.",
+          "readOnly": true,
           "type": "number"
         },
         "assetId": {
           "description": "ID of the asset.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "changedAt": {
           "description": "The date the order line was last changed.",
+          "readOnly": true,
           "type": "string"
         },
         "changedByActualCompanyId": {
           "description": "Company that changed the order line.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "changedByActualEmployeeId": {
           "description": "Actual employee that changed the order line.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "changedByEmployeeId": {
           "description": "Employee that changed the order line.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "clientUUId": {
           "description": "Client UUID.",
+          "readOnly": true,
           "type": "string"
         },
         "count": {
           "description": "Count of the order line.",
+          "readOnly": true,
           "type": "number"
         },
         "customerId": {
           "description": "ID of the customer.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "departmentId": {
           "description": "ID of the department.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "description": {
           "description": "Description of the order line.",
+          "readOnly": true,
           "type": "string"
         },
         "employeeId": {
           "description": "ID of the employee.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "incomingOrderLineDraftId": {
           "description": "ID of the incoming invoice draft.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "incomingOrderLineId": {
           "description": "ID of the incoming order line.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "productId": {
           "description": "ID of the product.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "productUnitId1": {
           "description": "ID of the product unit 1.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "productUnitId2": {
           "description": "ID of the product unit 2.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "projectId": {
           "description": "ID of the project.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "quantityAmount1": {
           "description": "Quantity amount 1.",
+          "readOnly": true,
           "type": "number"
         },
         "quantityAmount2": {
           "description": "Quantity amount 2.",
+          "readOnly": true,
           "type": "number"
         },
         "reInvoiceOnProject": {
           "description": "Re-invoice on project flag.",
+          "readOnly": true,
           "type": "boolean"
         },
         "row": {
           "description": "Row number of the order line.",
           "format": "int32",
-          "minimum": 0,
+          "readOnly": true,
           "type": "integer"
         },
         "taxTransactionType": {
@@ -19164,20 +19345,24 @@
             "ACCOUNTING_VALUE_PROFIT_AND_LOSS",
             "ACCOUNTING_WRITE_UPS_AND_WRITE_DOWNS"
           ],
+          "readOnly": true,
           "type": "string"
         },
         "unitPrice": {
           "description": "Unit price of the order line.",
+          "readOnly": true,
           "type": "number"
         },
         "vatTypeId": {
           "description": "ID of the VAT type.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         },
         "vendorId": {
           "description": "ID of the vendor.",
           "format": "int64",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -21841,34 +22026,33 @@
     },
     "InventoryGrouping": {
       "properties": {
-        "businessActivityType": {
-          "enum": [
-            "OTHER_COMMERCIAL_ACTIVITIES",
-            "OTHER_COMMERCIAL_ACTIVITIES_2",
-            "OTHER_COMMERCIAL_ACTIVITIES_3",
-            "OTHER_COMMERCIAL_ACTIVITIES_4",
-            "AGRICULTURE_HORTICULTURE_FUR_FARMING",
-            "FISHING_AND_HUNTING_AT_SEA",
-            "REINDEER_HUSBANDRY",
-            "FAMILY_DAY_CARE_CENTRE_IN_OWN_HOME",
-            "SLATE_QUARRYING",
-            "FORESTRY",
-            "NOT_INDUSTRY"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "description": {
           "readOnly": true,
           "type": "string"
         },
-        "grouping": {
+        "groupings": {
+          "description": "groupings",
+          "items": {
+            "$ref": "#/definitions/Grouping"
+          },
           "readOnly": true,
+          "type": "array"
+        },
+        "path": {
+          "description": "path",
           "type": "string"
         },
+        "taxableBalanceIn": {
+          "description": "Taxable balance in",
+          "type": "number"
+        },
+        "taxableBalanceOut": {
+          "description": "Taxable balance out",
+          "type": "number"
+        },
         "year": {
+          "description": "year",
           "format": "int32",
-          "readOnly": true,
           "type": "integer"
         }
       },
@@ -22431,6 +22615,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "invoiceId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
         "isCreditNote": {
           "readOnly": true,
           "type": "boolean"
@@ -22440,6 +22629,10 @@
           "type": "boolean"
         },
         "lastChargedReminderDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastNoticeOfDebtCollectionDate": {
           "readOnly": true,
           "type": "string"
         },
@@ -22992,8 +23185,6 @@
           "enum": [
             "AlwaysOn",
             "DummyTestSwitch",
-            "DBActionListener",
-            "WebHooks",
             "WOOTRIC_NPS",
             "LogEverythingJavascript",
             "CspFontSrc",
@@ -23004,11 +23195,8 @@
             "AutoInvoiceValidatorOutgoing",
             "KillBillUseNewMailSender",
             "ElmaLookup",
-            "LinkMobilitySending",
             "ReportUriHeader",
             "CsrfValidation",
-            "AuthorizeWebhookSending",
-            "LargeArgumentsHelper",
             "SendSubscriptionInvoicingError",
             "AprilaV2",
             "KillLargeRequestsNearOOM",
@@ -23016,38 +23204,29 @@
             "ReadEmployeeLoginInfoFromArchive",
             "Sentry",
             "SendInvoicesToSmartScan",
+            "ApprovalVerifySendToLedger",
             "GlobalCache",
             "UserOnboardWizard",
             "BeehiveAuthManagersJSONRPC",
             "ZendeskSso",
             "FabricAIIntegration",
-            "StrutsReadReplica",
-            "Api2ReadReplica",
-            "JsonRpcReadReplica",
-            "JsonRpcReadReplicaTentative",
+            "GoldsharkRackbeatIntegration",
+            "GoldsharkPurchaseOrderLineApplySecurity",
             "MissingCompanyIdFilterUpdateDeleteQueriesLogging",
-            "InvalidScaleLogging",
-            "SemiGlobalReadsLogging",
             "TskUseGlobalCache",
             "KillBillAllowLongInvoiceNumberInKID",
-            "EnhanceUpdateDeleteQueriesCompanyId",
             "WholesalerFailedLoginNotifications",
             "KillBillEfakturaLookup",
             "KillBillKYCFeature",
             "VismaConnectLogin",
             "VismaConnectIframe",
-            "ArchiveRelationWebhook",
             "KrrBalanceSheetGlobalCache",
             "KrrFabricAiPredictionsInInbox",
             "KrrFabricAIProjectRulesEvent",
-            "QueryTimeout",
-            "UploadLimiting",
             "DisableInfoFTPLogging",
             "ConstrainCompanyIdUpdates",
-            "GuiAddressScatterGather",
             "KillBillGlobalCacheForEhfAndEFakturaLookup",
             "KillBillSubscriptionInvoicingEvent",
-            "ShardCompanyMappingIsSuspended",
             "TransactionTimeExceeded",
             "KillBillSequenceForNextInvoiceNumber",
             "React18Mount",
@@ -23056,16 +23235,13 @@
             "NonCriticalExtremelySlowQueries",
             "SyncLoginAccess",
             "SyncProxyLoginAccess",
-            "FilterNotificationsBasedOnAuth",
             "ResilienceMetrics",
             "UseLoginAccessForEmployee",
             "UseLoginAccessForEmployeeLoginInfo",
             "InvoiceAPIIndex",
-            "GlobalCacheOnApiTokenLookupForSessionTokenCreation",
             "VismaConnectTokenFlow",
             "VismaConnectTokenFlowInvalidateSession",
             "NewCompanyChooser",
-            "DeepScanUploadedContainerForMimeType",
             "InvoiceInAdvanceMigration",
             "VismaConnectValidateEmailOnEveryRequest",
             "BoligmappaResilience",
@@ -23087,7 +23263,11 @@
             "OScoreFeedbackContactMeToggle",
             "CalculateHmacOnWebhook",
             "NewAddonsAuthorization",
-            "TimeBasedSessionInvalidation"
+            "AccountingOfficeServiceOptimization",
+            "PilotFeatureRecordPatternQuery",
+            "LargeArgumentOptimizerHugeLimit",
+            "TimeBasedSessionInvalidation",
+            "ValidDateStringRangeValidation"
           ],
           "readOnly": true,
           "type": "string"
@@ -27542,6 +27722,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Invoice"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseInvoiceReminderDetails": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/InvoiceReminderDetails"
           },
           "readOnly": true,
           "type": "array"
@@ -39646,6 +39859,7 @@
             "INDUSTRY_TYPE",
             "INCOME_AMOUNT_FROM_PROFIT_AND_LOSS_ACCOUNT",
             "DEDUCTED_AMOUNT_FROM_PROFIT_AND_LOSS_ACCOUNT",
+            "MILK_QUOTA",
             "DISTRIBUTE_INCOME",
             "NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
             "COORDINATION_ENK_SPOUSE",
@@ -40596,6 +40810,11 @@
           "type": "boolean"
         },
         "isInactive": {
+          "type": "boolean"
+        },
+        "isRoundPriceIncVat": {
+          "description": "[BETA] Indicates whether the price incl. VAT is rounded off or not",
+          "readOnly": true,
           "type": "boolean"
         },
         "isStockItem": {
@@ -44118,6 +44337,23 @@
       },
       "type": "object"
     },
+    "RackbeatInventoryValue": {
+      "properties": {
+        "accountCredit": {
+          "type": "string"
+        },
+        "accountDebit": {
+          "type": "string"
+        },
+        "inventoryTotalValue": {
+          "type": "string"
+        },
+        "voucherDate": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RealEstate": {
       "properties": {
         "genericDataOverviews": {
@@ -47524,10 +47760,10 @@
       },
       "type": "object"
     },
-    "ResponseWrapperIncomingInvoiceDataRead": {
+    "ResponseWrapperIncomingInvoiceAggregateRead": {
       "properties": {
         "value": {
-          "$ref": "#/definitions/IncomingInvoiceDataRead"
+          "$ref": "#/definitions/IncomingInvoiceAggregateRead"
         }
       },
       "type": "object"
@@ -47573,6 +47809,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperInventoryGrouping": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/InventoryGrouping"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperInventoryLocation": {
       "properties": {
         "value": {
@@ -47609,14 +47853,6 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/InvoiceRemark"
-        }
-      },
-      "type": "object"
-    },
-    "ResponseWrapperInvoiceReminderDetails": {
-      "properties": {
-        "value": {
-          "$ref": "#/definitions/InvoiceReminderDetails"
         }
       },
       "type": "object"
@@ -47860,6 +48096,17 @@
         "value": {
           "items": {
             "$ref": "#/definitions/FileIdForIncomingPayments"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperListGetStartedBannerData": {
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "#/definitions/GetStartedBannerData"
           },
           "type": "array"
         }
@@ -48115,6 +48362,17 @@
         "value": {
           "items": {
             "$ref": "#/definitions/TripletexDashboardReminder"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperListVoucher": {
+      "properties": {
+        "value": {
+          "items": {
+            "$ref": "#/definitions/Voucher"
           },
           "type": "array"
         }
@@ -48873,6 +49131,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/RP2ProjectJobMoveResponse"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperRackbeatInventoryValue": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/RackbeatInventoryValue"
         }
       },
       "type": "object"
@@ -66908,7 +67174,7 @@
     },
     "description": "## Usage\n\n- **Download the spec** [swagger.json](/v2/swagger.json) file, it is a [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).\n\n- **Generating a client** can easily be done using tools like [swagger-codegen](https://github.com/swagger-api/swagger-codegen) or other that accepts [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) specs.\n    - For swagger codegen it is recommended to use the flag: **--removeOperationIdPrefix**. \n      Unique operation ids are about to be introduced to the spec, and this ensures forward compatibility - and results in less verbose generated code.\n\n- **Please note** that Tripletex offers several packages. Some endpoints are only supported in certain packages. You can see the Tripletex packages [here](https://www.tripletex.no/priser/).\n\n## Overview\n\n- Partial resource updating is done using the `PUT` method with optional fields instead of the `PATCH` method.\n\n- **Actions** or **commands** are represented in our RESTful path with a prefixed `:`. Example: `/v2/hours/123/:approve`.\n\n- **Summaries** or **aggregated** results are represented in our RESTful path with a prefixed `>`. Example: `/v2/hours/>thisWeeksBillables`.\n\n- **Request ID** is a key found in all responses in the header with the name `x-tlx-request-id`. For validation and error responses it is also in the response body. If additional log information is absolutely necessary, our support division can locate the key value.\n\n- **version** This is a revision number found on all persisted resources. If included, it will prevent your PUT/POST from overriding any updates to the resource since your GET.\n\n- **Date** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DD`.\n\n- **DateTime** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DDThh:mm:ss`.\n\n- **Searching** is done by entering values in the optional fields for each API call. The values fall into the following categories: range, in, exact and like.\n\n- **Missing fields** or even **no response data** can occur because result objects and fields are filtered on authorization.\n\n- **See [GitHub](https://github.com/Tripletex/tripletex-api2) for more documentation, code examples, changelog and more.**\n\n- **See [Tripletex for developers](https://developer.tripletex.no/) for more practical information, support, updates and access form**\n\n\n## Authentication\n\n[Read more here](https://developer.tripletex.no/docs/documentation/authentication-and-tokens/)\n\n- **Tokens:** The Tripletex API uses 3 different tokens\n\n  - **consumerToken** is a token provided to the consumer by Tripletex after the API 2.0 registration is completed.\n\n  - **employeeToken** is a token created by an administrator in your Tripletex account via the user settings and the tab \"API access\". Each employee token must be given a set of entitlements.\n\n  - **sessionToken** is the token from `/token/session/:create` which requires a consumerToken and an employeeToken created with the same consumer token, but not an authentication header.\n\n- **Authentication** is done via [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)\n\n  - **username** is used to specify what company to access.\n\n    - `0` or blank means the company of the employee.\n\n    - Any other value means accountant clients. Use `/company/>withLoginAccess` to get a list of those.\n\n  - **password** is the **sessionToken**.\n\n  - If you need to create the header yourself use `Authorization: Basic <encoded token>` where `encoded token` is the string `<target company id or 0>:<your session token>` Base64 encoded.\n\n\n## Tags\n\n- `[BETA]` This is a beta endpoint and can be subject to change.\n- `[DEPRECATED]` Deprecated means that we intend to remove/change this feature or capability in a future \"major\" API release. We therefore discourage all use of this feature/capability.\n\n\n## Fields\n\nUse the `fields` parameter to specify which fields should be returned. This also supports fields from sub elements, done via `<field>(<subResourceFields>)`. `*` means all fields for that resource. Example values:\n- `project,activity,hours`  returns `{project:..., activity:...., hours:...}`.\n- just `project` returns `\"project\" : { \"id\": 12345, \"url\": \"tripletex.no/v2/projects/12345\"  }`.\n- `project(*)` returns `\"project\" : { \"id\": 12345 \"name\":\"ProjectName\" \"number.....startDate\": \"2013-01-07\" }`.\n- `project(name)` returns `\"project\" : { \"name\":\"ProjectName\" }`.\n- All resources and some subResources :  `*,activity(name),employee(*)`.\n\n\n## Sorting\n\nUse the `sorting` parameter to specify sorting. It takes a comma separated list, where a `-` prefix denotes descending. You can sort by sub object with the following format: `<field>.<subObjectField>`. Example values:\n- `date`\n- `project.name`\n- `project.name, -date`\n\n\n## Changes\n\nTo get the changes for a resource, `changes` have to be explicitly specified as part of the `fields` parameter, e.g. `*,changes`.\nThere are currently two types of change available: \n- `CREATE` for when the resource was created\n- `UPDATE` for when the resource was updated\n\n**NOTE**\n> For objects created prior to October 24th 2018 the list may be incomplete, but will always contain the CREATE and the last change (if the object has been changed after creation).\n\n\n## Rate limiting\n\nRate limiting is performed on the API calls for an employee for each API consumer. Status regarding the rate limit is returned as headers:\n- `X-Rate-Limit-Limit` - The number of allowed requests in the current period.\n- `X-Rate-Limit-Remaining` - The number of remaining requests.\n- `X-Rate-Limit-Reset` - The number of seconds left in the current period.\n\nOnce the rate limit is hit, all requests will return HTTP status code `429` for the remainder of the current period.\n\n\n## Response envelope\n\n#### Multiple values\n\n```json\n{\n  \"fullResultSize\": ###, // {number} [DEPRECATED]\n  \"from\": ###, // {number} Paging starting from\n  \"count\": ###, // {number} Paging count\n  \"versionDigest\": \"###\", // {string} Hash of full result, null if no result\n  \"values\": [...{...object...},{...object...},{...object...}...]\n}\n```\n\n#### Single value\n\n```json\n{\n  \"value\": {...single object...}\n}\n```\n\n\n## WebHook envelope\n\n```json\n{\n  \"subscriptionId\": ###, // Subscription id\n  \"event\": \"object.verb\", // As listed from /v2/event/\n  \"id\": ###, // Id of object this event is for\n  \"value\": {... single object, null if object.deleted ...}\n}\n```\n\n\n## Error/warning envelope\n\n```json\n{\n  \"status\": ###, // {number} HTTP status code\n  \"code\": #####, // {number} internal status code of event\n  \"message\": \"###\", // {string} Basic feedback message in your language\n  \"link\": \"###\", // {string} Link to doc\n  \"developerMessage\": \"###\", // {string} More technical message\n  \"validationMessages\": [ // {array} List of validation messages, can be null\n    {\n      \"field\": \"###\", // {string} Name of field\n      \"message\": \"###\" // {string} Validation message for field\n    }\n  ],\n  \"requestId\": \"###\" // {string} Same as x-tlx-request-id \n}\n```\n\n\n## Status codes / Error codes\n\n- **200 OK**\n- **201 Created** - From POSTs that create something new.\n- **204 No Content** - When there is no answer, ex: \"/:anAction\" or DELETE.\n- **400 Bad request** -\n  -  **4000** Bad Request Exception\n  - **11000** Illegal Filter Exception\n  - **12000** Path Param Exception\n  - **24000** Cryptography Exception\n- **401 Unauthorized** - When authentication is required and has failed or has not yet been provided\n  -  **3000** Authentication Exception\n- **403 Forbidden** - When AuthorisationManager says no.\n  -  **9000** Security Exception\n- **404 Not Found** - For resources that does not exist.\n  -  **6000** Not Found Exception\n- **409 Conflict** - Such as an edit conflict between multiple simultaneous updates\n  -  **7000** Object Exists Exception\n  -  **8000** Revision Exception\n  - **10000** Locked Exception\n  - **14000** Duplicate entry\n- **422 Bad Request** - For Required fields or things like malformed payload.\n  - **15000** Value Validation Exception\n  - **16000** Mapping Exception\n  - **17000** Sorting Exception\n  - **18000** Validation Exception\n  - **21000** Param Exception\n  - **22000** Invalid JSON Exception\n  - **23000** Result Set Too Large Exception\n- **429 Too Many Requests** - Request rate limit hit\n- **500 Internal Error** - Unexpected condition was encountered and no more specific message is suitable\n  - **1000** Exception\n",
     "title": "Tripletex API",
-    "version": "2.71.11"
+    "version": "2.71.12"
   },
   "paths": {
     "/activity": {
@@ -76157,6 +76423,30 @@
         ]
       }
     },
+    "/employee/preferences/:changeLanguage": {
+      "put": {
+        "description": "",
+        "operationId": "EmployeePreferencesChangeLanguage_changeLanguage",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperEmployeePreferences"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Change language",
+        "tags": [
+          "employee/preferences"
+        ]
+      }
+    },
     "/employee/preferences/>loggedInEmployeePreferences": {
       "get": {
         "description": "",
@@ -78933,8 +79223,11 @@
           }
         ],
         "responses": {
-          "default": {
-            "description": "successful operation"
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperInteger"
+            }
           }
         },
         "security": [
@@ -102950,13 +103243,16 @@
       "name": "bankreconciliationinternal"
     },
     {
+      "name": "bankreconciliationinternalattachment"
+    },
+    {
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
       "name": "bankreconciliationinternalmatch"
@@ -103803,6 +104099,9 @@
     },
     {
       "name": "purchaseOrder/orderline"
+    },
+    {
+      "name": "rackbeat"
     },
     {
       "name": "reminder"
