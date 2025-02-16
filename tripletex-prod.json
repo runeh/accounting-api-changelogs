@@ -5,6 +5,7 @@
       "properties": {
         "address": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "amount": {
@@ -27,6 +28,7 @@
         },
         "location": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "rate": {
@@ -84,18 +86,22 @@
         },
         "bankAccountIBAN": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "bankAccountNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "bankAccountSWIFT": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "bankName": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -115,6 +121,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -123,6 +130,7 @@
         "groupingCode": {
           "description": "SAF-T 1.3 groupingCode for the account. It will be given a default value based on account number if empty.",
           "maxLength": 35,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -175,6 +183,7 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "number": {
@@ -210,6 +219,7 @@
         "saftCode": {
           "description": "SAF-T 1.0 standard account ID for account. It will be given a default value based on account number if empty.",
           "maxLength": 4,
+          "minLength": 0,
           "type": "string"
         },
         "type": {
@@ -277,6 +287,7 @@
         },
         "comment": {
           "maxLength": 1024,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -285,6 +296,7 @@
         },
         "reason": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -417,8 +429,8 @@
           "type": "integer"
         },
         "unitRate": {
-          "description": "unit rate",
-          "type": "number"
+          "$ref": "#/definitions/InventoryUnitRateCompanySpecific",
+          "description": "unit rate"
         },
         "year": {
           "description": "Year",
@@ -958,7 +970,6 @@
           "type": "boolean"
         },
         "name": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -1012,6 +1023,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -1045,10 +1057,12 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "number": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "rate": {
@@ -1175,6 +1189,7 @@
         },
         "description": {
           "maxLength": 1024,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -1186,6 +1201,7 @@
         },
         "linkToInfo": {
           "maxLength": 1024,
+          "minLength": 0,
           "type": "string"
         },
         "logo": {
@@ -1193,6 +1209,7 @@
         },
         "name": {
           "maxLength": 80,
+          "minLength": 0,
           "type": "string"
         },
         "partnerName": {
@@ -1200,10 +1217,12 @@
         },
         "redirectUrl": {
           "maxLength": 1024,
+          "minLength": 0,
           "type": "string"
         },
         "shortDescription": {
           "maxLength": 150,
+          "minLength": 0,
           "type": "string"
         },
         "status": {
@@ -1770,6 +1789,7 @@
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
+            "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -2309,6 +2329,8 @@
           "type": "integer"
         },
         "altInnPassword": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         }
       },
@@ -2323,6 +2345,7 @@
         "altinnId": {
           "description": "The altinn archive reference",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -2343,11 +2366,13 @@
         "instanceGuid": {
           "description": "The id of the instance in Altinn",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "partyId": {
           "description": "The partyId in altinn - refering to the organization",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -2672,6 +2697,7 @@
         },
         "failureMainMessage": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "failureStep": {
@@ -2710,6 +2736,8 @@
         },
         "emails": {
           "format": "email",
+          "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -3016,6 +3044,7 @@
         },
         "description": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -3052,6 +3081,11 @@
           "minLength": 1,
           "type": "string"
         },
+        "newHires": {
+          "description": "New hires",
+          "readOnly": true,
+          "type": "number"
+        },
         "numberOfMonths": {
           "format": "int64",
           "readOnly": true,
@@ -3062,6 +3096,11 @@
         },
         "saleDate": {
           "type": "string"
+        },
+        "salesAndOtherRealizations": {
+          "description": "Sales and other realizations",
+          "readOnly": true,
+          "type": "number"
         },
         "startingBalance": {
           "readOnly": true,
@@ -3654,7 +3693,6 @@
           "description": "The account for bank agreement."
         },
         "accountInBankId": {
-          "maxLength": 50,
           "type": "string"
         },
         "active": {
@@ -3672,11 +3710,9 @@
         },
         "bban": {
           "description": "The BBAN property.",
-          "maxLength": 50,
           "type": "string"
         },
         "ccmAgreementId": {
-          "maxLength": 50,
           "type": "string"
         },
         "changes": {
@@ -3699,7 +3735,6 @@
         },
         "description": {
           "description": "The description property.",
-          "maxLength": 250,
           "readOnly": true,
           "type": "string"
         },
@@ -3709,12 +3744,10 @@
           "type": "string"
         },
         "division": {
-          "maxLength": 50,
           "type": "string"
         },
         "iban": {
           "description": "The IBAN property.",
-          "maxLength": 50,
           "type": "string"
         },
         "id": {
@@ -3729,7 +3762,6 @@
           "type": "boolean"
         },
         "organisationNumber": {
-          "maxLength": 50,
           "type": "string"
         },
         "uploaderEmployee": {
@@ -4164,6 +4196,7 @@
       "properties": {
         "batchId": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "category": {
@@ -4194,6 +4227,7 @@
         "description": {
           "description": "java.lang.String",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -4454,6 +4488,8 @@
         },
         "description": {
           "description": "The description of the bank after merger.",
+          "maxLength": 50,
+          "minLength": 0,
           "type": "string"
         },
         "endDate": {
@@ -4820,7 +4856,6 @@
         },
         "description": {
           "description": "Description",
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -5103,6 +5138,7 @@
         },
         "description": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "groupedPostings": {
@@ -5132,6 +5168,7 @@
         },
         "paymentId": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "postedDate": {
@@ -5231,10 +5268,12 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "invoiceNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "postingMatchType": {
@@ -5264,7 +5303,6 @@
           "type": "string"
         },
         "button": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -5288,22 +5326,18 @@
           "type": "integer"
         },
         "link": {
-          "maxLength": 65535,
           "readOnly": true,
           "type": "string"
         },
         "message": {
-          "maxLength": 65535,
           "readOnly": true,
           "type": "string"
         },
         "tag": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
         "title": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -5322,6 +5356,7 @@
       "properties": {
         "businessActivityDescription": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "businessActivityType": {
@@ -5360,6 +5395,7 @@
         },
         "nationalIdentityNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -6180,6 +6216,7 @@
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
+            "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -6633,6 +6670,7 @@
         },
         "content": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "employee": {
@@ -6703,6 +6741,7 @@
         "threadUrl": {
           "description": "Url to the topic of conversation",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "timestamp": {
@@ -6741,6 +6780,7 @@
         },
         "comment": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "customizedChecklistProperty": {
@@ -6829,12 +6869,18 @@
           "type": "integer"
         },
         "info": {
+          "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "name": {
+          "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "section": {
+          "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "typeId": {
@@ -6928,6 +6974,7 @@
         "email": {
           "format": "email",
           "maxLength": 254,
+          "minLength": 0,
           "type": "string"
         },
         "endDate": {
@@ -6935,6 +6982,7 @@
         },
         "faxNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -6947,18 +6995,22 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "organizationNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumberMobile": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "startDate": {
@@ -7029,6 +7081,7 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "roleContainers": {
@@ -7401,7 +7454,6 @@
           "type": "array"
         },
         "comment": {
-          "maxLength": 1024,
           "readOnly": true,
           "type": "string"
         },
@@ -7576,12 +7628,16 @@
         },
         "email": {
           "format": "email",
+          "maxLength": 254,
+          "minLength": 0,
           "type": "string"
         },
         "endDate": {
           "type": "string"
         },
         "faxNumber": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -7593,15 +7649,23 @@
           "type": "boolean"
         },
         "name": {
+          "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "organizationNumber": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumber": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumberMobile": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "startDate": {
@@ -8343,17 +8407,16 @@
           "type": "array"
         },
         "companyName": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
         "description": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
         "email": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "employeeId": {
@@ -8366,7 +8429,6 @@
           "type": "integer"
         },
         "name": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -8559,6 +8621,7 @@
         },
         "phoneNumberMobile": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumberMobileCountry": {
@@ -8567,6 +8630,7 @@
         },
         "phoneNumberWork": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -9014,6 +9078,7 @@
         },
         "followUpQuestion": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -9022,6 +9087,7 @@
         },
         "sourceAgent": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -9066,6 +9132,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "hasSticosPaywallPilot": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "lastName": {
           "readOnly": true,
           "type": "string"
@@ -9079,6 +9149,15 @@
           "type": "boolean"
         },
         "sseUrl": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "sticosAccess": {
+          "enum": [
+            "NO_ACCESS",
+            "ACCESS",
+            "TRIAL"
+          ],
           "readOnly": true,
           "type": "string"
         }
@@ -9121,6 +9200,7 @@
         },
         "prompt": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "quickPromptOrder": {
@@ -9254,6 +9334,7 @@
         },
         "response": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -9262,6 +9343,7 @@
         },
         "urlParameters": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "version": {
@@ -9297,6 +9379,7 @@
         },
         "category": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -9308,6 +9391,7 @@
         },
         "comments": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "costCategory": {
@@ -9384,6 +9468,7 @@
         },
         "displayName": {
           "maxLength": 200,
+          "minLength": 0,
           "type": "string"
         },
         "employeeId": {
@@ -9600,9 +9685,13 @@
           "type": "array"
         },
         "code": {
+          "maxLength": 10,
+          "minLength": 0,
           "type": "string"
         },
         "description": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -9822,6 +9911,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "discountPercentage": {
@@ -9862,6 +9952,7 @@
         "invoiceSMSNotificationNumber": {
           "description": "Send SMS-notification to this number. Must be a norwegian phone number",
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "invoiceSendMethod": {
@@ -9940,10 +10031,12 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "organizationNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "overdueNoticeEmail": {
@@ -9955,10 +10048,12 @@
         },
         "phoneNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumberMobile": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "physicalAddress": {
@@ -9986,6 +10081,7 @@
         },
         "website": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         }
       },
@@ -10005,6 +10101,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -10021,6 +10118,7 @@
         },
         "number": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "type": {
@@ -10181,7 +10279,6 @@
           "readOnly": true
         },
         "name": {
-          "maxLength": 250,
           "type": "string"
         },
         "orderOfColumn": {
@@ -10190,7 +10287,6 @@
           "type": "integer"
         },
         "sampleValue": {
-          "maxLength": 250,
           "type": "string"
         },
         "suggestedColumnField": {
@@ -10748,6 +10844,7 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -10992,6 +11089,7 @@
         },
         "name": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "postalCode": {
@@ -11056,7 +11154,7 @@
         },
         "name": {
           "maxLength": 255,
-          "minLength": 1,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -11177,6 +11275,7 @@
         },
         "comment": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "date": {
@@ -11232,6 +11331,7 @@
         "deviceRegistrationToken": {
           "description": "Device registration token.",
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -11309,6 +11409,7 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "nameAndNumber": {
@@ -11316,7 +11417,6 @@
           "type": "string"
         },
         "number": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -11474,6 +11574,7 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -11605,11 +11706,12 @@
         },
         "name": {
           "maxLength": 255,
-          "minLength": 1,
+          "minLength": 0,
           "type": "string"
         },
         "organizationNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "startDate": {
@@ -11641,6 +11743,7 @@
         "fileName": {
           "description": "The name of the document.",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -11650,7 +11753,6 @@
         "mimeType": {
           "description": "Type of the document",
           "example": "type/subtype of resource. E.g. application/pdf",
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -11690,6 +11792,7 @@
         "fileName": {
           "description": "The name of the document.",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -11699,6 +11802,7 @@
         "mimeType": {
           "description": "Type of the document",
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "size": {
@@ -12223,6 +12327,7 @@
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
+            "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -12640,6 +12745,8 @@
           "type": "string"
         },
         "postValue": {
+          "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "size": {
@@ -12705,6 +12812,7 @@
         },
         "locationName": {
           "maxLength": 250,
+          "minLength": 0,
           "type": "string"
         },
         "longitude": {
@@ -12757,6 +12865,7 @@
         },
         "comment": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "connectedInvoices": {
@@ -12777,7 +12886,6 @@
           "type": "object"
         },
         "guid": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -12819,6 +12927,7 @@
         },
         "title": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -12843,6 +12952,7 @@
         },
         "description": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -12857,6 +12967,7 @@
         },
         "formVersion": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -12870,6 +12981,8 @@
           "type": "boolean"
         },
         "nhoVersion": {
+          "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "previousTemplateId": {
@@ -12886,6 +12999,7 @@
         },
         "type": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "typeNumber": {
@@ -12962,6 +13076,7 @@
         },
         "bankAccountNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "bic": {
@@ -12977,6 +13092,7 @@
         },
         "comments": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "companyId": {
@@ -13001,11 +13117,13 @@
         },
         "dnumber": {
           "maxLength": 11,
+          "minLength": 0,
           "type": "string"
         },
         "email": {
           "format": "email",
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "employeeCategory": {
@@ -13062,14 +13180,17 @@
         },
         "nationalIdentityNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumberHome": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumberMobile": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumberMobileCountry": {
@@ -13078,6 +13199,7 @@
         },
         "phoneNumberWork": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "pictureId": {
@@ -13211,6 +13333,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -13222,11 +13345,12 @@
         },
         "name": {
           "maxLength": 255,
-          "minLength": 1,
+          "minLength": 0,
           "type": "string"
         },
         "number": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -13309,6 +13433,7 @@
         },
         "filterUrl": {
           "maxLength": 250,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -13317,6 +13442,7 @@
         },
         "name": {
           "maxLength": 250,
+          "minLength": 0,
           "type": "string"
         },
         "params": {
@@ -13481,7 +13607,6 @@
           "readOnly": true
         },
         "name": {
-          "maxLength": 250,
           "type": "string"
         },
         "orderOfColumn": {
@@ -13490,7 +13615,6 @@
           "type": "integer"
         },
         "sampleValue": {
-          "maxLength": 250,
           "type": "string"
         },
         "suggestedColumnField": {
@@ -13719,7 +13843,6 @@
         },
         "username": {
           "description": "Employee username",
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -13772,7 +13895,6 @@
           "type": "boolean"
         },
         "bankAccountNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "changes": {
@@ -13809,6 +13931,7 @@
         "email": {
           "format": "email",
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "employeeCategory": {
@@ -13841,6 +13964,7 @@
         },
         "nationalIdentityNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "number": {
@@ -13850,15 +13974,16 @@
         },
         "phoneNumberHome": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumberMobile": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
         "phoneNumberWork": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "pictureId": {
@@ -14268,6 +14393,7 @@
         "employmentId": {
           "description": "Existing employment ID used by the current accounting system",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "endDate": {
@@ -14467,6 +14593,8 @@
           "type": "array"
         },
         "code": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "employmentType": {
@@ -14484,6 +14612,8 @@
           "type": "integer"
         },
         "nameNO": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -14761,6 +14891,7 @@
         },
         "elNumber": {
           "maxLength": 14,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -14775,10 +14906,12 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "nrfNumber": {
           "maxLength": 14,
+          "minLength": 0,
           "type": "string"
         },
         "priceExcludingVatCurrency": {
@@ -16350,6 +16483,7 @@
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
+            "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -16768,6 +16902,7 @@
         },
         "postValue": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -17030,7 +17165,8 @@
             "SalaryOverviewBanner",
             "UpsellFromBasisToSmartTripletexDashboardBanner",
             "CopilotInfoBanner",
-            "ProductOverviewBanner"
+            "ProductOverviewBanner",
+            "MySubscriptionInTripletexBanner"
           ],
           "type": "string"
         },
@@ -17179,6 +17315,8 @@
           "type": "integer"
         },
         "reminderUrl": {
+          "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "term": {
@@ -17227,6 +17365,7 @@
         },
         "comment": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "goodsReceiptLines": {
@@ -17895,6 +18034,7 @@
         "description": {
           "description": "The description of the posting.",
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "employee": {
@@ -17907,6 +18047,7 @@
         "invoiceNumber": {
           "description": "Invoice number.",
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "product": {
@@ -17982,6 +18123,7 @@
         "description": {
           "description": "The voucher description.",
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "externalVoucherNumber": {
@@ -18435,6 +18577,10 @@
           "format": "int32",
           "minimum": 0,
           "type": "integer"
+        },
+        "voucherTypeId": {
+          "format": "int64",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -18697,7 +18843,7 @@
       },
       "type": "object"
     },
-    "IncomingInvoiceDataWrite": {
+    "IncomingInvoiceAggregateWrite": {
       "properties": {
         "deletedOrderLines": {
           "description": "The invoice deleted order lines.",
@@ -18706,16 +18852,6 @@
           },
           "readOnly": true,
           "type": "array"
-        },
-        "incomingInvoiceDraftId": {
-          "description": "Id of the incoming invoice",
-          "format": "int64",
-          "type": "integer"
-        },
-        "incomingInvoiceId": {
-          "description": "Id of the incoming invoice",
-          "format": "int64",
-          "type": "integer"
         },
         "invoiceHeader": {
           "$ref": "#/definitions/IncomingInvoiceHeaderWrite",
@@ -18808,7 +18944,7 @@
           "readOnly": true,
           "type": "integer"
         },
-        "voucherType": {
+        "voucherTypeId": {
           "description": "Voucher type",
           "format": "int64",
           "readOnly": true,
@@ -18824,7 +18960,7 @@
       "required": [
         "description",
         "purchaseOrderId",
-        "voucherType"
+        "voucherTypeId"
       ],
       "type": "object"
     },
@@ -18855,23 +18991,6 @@
           "description": "If value is set to 0, the invoice number will be generated.",
           "type": "string"
         },
-        "paymentAmount": {
-          "description": "The amount of the payment type chosen in the company currency",
-          "type": "number"
-        },
-        "paymentAmountCurrency": {
-          "description": "The amount of the payment type chosen in the chosen currency",
-          "type": "number"
-        },
-        "paymentDate": {
-          "description": "The date of the payment",
-          "type": "string"
-        },
-        "paymentTypeId": {
-          "description": "The id of the payment type chosen",
-          "format": "int64",
-          "type": "integer"
-        },
         "purchaseOrderId": {
           "description": "The purchase order that the invoice belongs to.",
           "format": "int64",
@@ -18882,7 +19001,7 @@
           "format": "int64",
           "type": "integer"
         },
-        "voucherType": {
+        "voucherTypeId": {
           "description": "Voucher type of the invoice.",
           "format": "int64",
           "type": "integer"
@@ -18945,18 +19064,6 @@
         },
         "changedByEmployeeId": {
           "description": "Changed by employee ID",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "incomingInvoiceDraftId": {
-          "description": "Id of the incoming invoice",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "incomingInvoiceId": {
-          "description": "Id of the incoming invoice",
           "format": "int64",
           "readOnly": true,
           "type": "integer"
@@ -19101,6 +19208,9 @@
         "clientId": {
           "type": "string"
         },
+        "duplicateLink": {
+          "type": "string"
+        },
         "field": {
           "type": "string"
         },
@@ -19189,11 +19299,6 @@
           "readOnly": true,
           "type": "integer"
         },
-        "amountExclVat": {
-          "description": "Amount excluding VAT.",
-          "readOnly": true,
-          "type": "number"
-        },
         "amountInclVat": {
           "description": "Amount including VAT.",
           "readOnly": true,
@@ -19257,18 +19362,6 @@
         },
         "employeeId": {
           "description": "ID of the employee.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "incomingOrderLineDraftId": {
-          "description": "ID of the incoming invoice draft.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "incomingOrderLineId": {
-          "description": "ID of the incoming order line.",
           "format": "int64",
           "readOnly": true,
           "type": "integer"
@@ -19369,10 +19462,6 @@
           "format": "int64",
           "type": "integer"
         },
-        "amountExclVat": {
-          "description": "Amount excluding VAT.",
-          "type": "number"
-        },
         "amountInclVat": {
           "description": "Amount including VAT.",
           "type": "number"
@@ -19406,16 +19495,6 @@
         },
         "employeeId": {
           "description": "ID of the employee.",
-          "format": "int64",
-          "type": "integer"
-        },
-        "incomingOrderLineDraftId": {
-          "description": "ID of the incoming invoice draft.",
-          "format": "int64",
-          "type": "integer"
-        },
-        "incomingOrderLineId": {
-          "description": "ID of the incoming order line.",
           "format": "int64",
           "type": "integer"
         },
@@ -20438,6 +20517,7 @@
         },
         "number": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         }
       },
@@ -20727,6 +20807,7 @@
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
+            "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -21422,6 +21503,7 @@
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
+            "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -21908,6 +21990,7 @@
         },
         "description": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -21978,6 +22061,7 @@
         },
         "comment": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "date": {
@@ -22081,6 +22165,7 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "number": {
@@ -22101,6 +22186,77 @@
         "inventory",
         "name"
       ],
+      "type": "object"
+    },
+    "InventoryUnitRate": {
+      "properties": {
+        "accountNumber": {
+          "description": "account number",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "productUnit": {
+          "$ref": "#/definitions/ProductUnitMaster",
+          "description": "Product unit",
+          "readOnly": true
+        },
+        "rate": {
+          "description": "rate",
+          "readOnly": true,
+          "type": "number"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "year": {
+          "description": "year",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryUnitRateCompanySpecific": {
+      "properties": {
+        "account": {
+          "$ref": "#/definitions/Account",
+          "description": "Account",
+          "readOnly": true
+        },
+        "productUnit": {
+          "$ref": "#/definitions/ProductUnit",
+          "description": "Product unit",
+          "readOnly": true
+        },
+        "rate": {
+          "description": "Rate",
+          "type": "number"
+        },
+        "year": {
+          "description": "Year",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "Invoice": {
@@ -22165,6 +22321,7 @@
         "comment": {
           "description": "Comment text for the specific invoice.",
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "creditedInvoice": {
@@ -22225,6 +22382,7 @@
         "invoiceRemarks": {
           "description": "Deprecated Invoice remarks - please use the 'invoiceRemark' instead.",
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "isApproved": {
@@ -22250,6 +22408,7 @@
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
           "maxLength": 25,
+          "minLength": 0,
           "type": "string"
         },
         "orderLines": {
@@ -22533,6 +22692,7 @@
         },
         "description": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -23217,6 +23377,7 @@
             "KrrBalanceSheetGlobalCache",
             "KrrFabricAiPredictionsInInbox",
             "KrrFabricAIProjectRulesEvent",
+            "KrrFabricAIHistoricalPdfsTrainingEvent",
             "DisableInfoFTPLogging",
             "ConstrainCompanyIdUpdates",
             "KillBillGlobalCacheForEhfAndEFakturaLookup",
@@ -23254,14 +23415,18 @@
             "ClearResellerProvisions",
             "SkipMissingTripletexOrdersInProvisioning",
             "NewProjectOnboarding",
+            "NewSupplierInvoice",
             "OScoreFeedbackContactMeToggle",
             "CalculateHmacOnWebhook",
             "NewAddonsAuthorization",
             "AccountingOfficeServiceOptimization",
+            "AccountingOfficeServiceOptimizationPart2",
             "PilotFeatureRecordPatternQuery",
             "LargeArgumentOptimizerHugeLimit",
             "TimeBasedSessionInvalidation",
-            "ValidDateStringRangeValidation"
+            "ValidDateStringRangeValidation",
+            "DebugVoucherFormStoreTransactions",
+            "IsAuthSensitiveInfoTripletex"
           ],
           "readOnly": true,
           "type": "string"
@@ -23285,7 +23450,7 @@
               "PHOENIX",
               "SECURITY",
               "SHEET_STORM",
-              "TASK_FOX",
+              "FOXTROT",
               "TOOLKITTENS",
               "TSK",
               "UNKNOWN"
@@ -23394,6 +23559,7 @@
         "importedLeaveOfAbsenceId": {
           "description": "Existing leave of absence ID used by the current accounting system",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "isWageDeduction": {
@@ -23446,6 +23612,8 @@
           "type": "array"
         },
         "code": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -23469,6 +23637,8 @@
           "type": "string"
         },
         "nameNO": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -23602,6 +23772,7 @@
         },
         "name": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "postalCode": {
@@ -27695,6 +27866,39 @@
       },
       "type": "object"
     },
+    "ListResponseInventoryUnitRate": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/InventoryUnitRate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseInvoice": {
       "properties": {
         "count": {
@@ -28148,6 +28352,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/MenuItemV2"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseMessage": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/Message"
           },
           "readOnly": true,
           "type": "array"
@@ -33562,11 +33799,11 @@
         },
         "purchaseOrderDefaultComment": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "rackbeatAgreementNumber": {
           "description": "Agreement number provided to customers using Rackbeat integration",
-          "maxLength": 50,
           "readOnly": true,
           "type": "string"
         },
@@ -33575,6 +33812,7 @@
         },
         "suggestedProductNumber": {
           "maxLength": 50,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -34074,6 +34312,50 @@
       },
       "type": "object"
     },
+    "Message": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "content": {
+          "type": "string"
+        },
+        "emailAttachments": {
+          "items": {
+            "$ref": "#/definitions/Document"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "emailTo": {
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "sendTime": {
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "MessageBodyWorkers": {
       "type": "object"
     },
@@ -34170,10 +34452,12 @@
         },
         "departureLocation": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "destination": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "drivingStops": {
@@ -34469,6 +34753,7 @@
         },
         "email": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "employeeNumber": {
@@ -34594,6 +34879,7 @@
         },
         "webhookSubscriptionToken": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         }
       },
@@ -35283,6 +35569,7 @@
       "properties": {
         "address": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -35301,10 +35588,12 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumber": {
           "maxLength": 20,
+          "minLength": 0,
           "type": "string"
         },
         "typeOfRelationship": {
@@ -35646,18 +35935,20 @@
         },
         "link": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "message": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "title": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "type": {
-          "maxLength": 50,
           "type": "string"
         },
         "url": {
@@ -35690,6 +35981,8 @@
           "type": "array"
         },
         "code": {
+          "maxLength": 7,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -35697,6 +35990,8 @@
           "type": "integer"
         },
         "nameNO": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -35931,6 +36226,7 @@
         },
         "deliveryComment": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "deliveryDate": {
@@ -35954,6 +36250,7 @@
         "invoiceComment": {
           "description": "Comment to be displayed in the invoice based on this order. Can be also found in Invoice.invoiceComment on Invoice objects.",
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "invoiceOnAccountVatHigh": {
@@ -35963,6 +36260,7 @@
         "invoiceSMSNotificationNumber": {
           "description": "The phone number of the receiver of sms notifications. Must be a norwegian phone number",
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "invoiceSendSMSNotification": {
@@ -36011,6 +36309,7 @@
         },
         "number": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "orderDate": {
@@ -36049,6 +36348,7 @@
         "overdueNoticeEmail": {
           "format": "email",
           "maxLength": 254,
+          "minLength": 0,
           "type": "string"
         },
         "preliminaryInvoice": {
@@ -36065,10 +36365,12 @@
         },
         "receiverEmail": {
           "maxLength": 254,
+          "minLength": 0,
           "type": "string"
         },
         "reference": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "sendMethodDescription": {
@@ -36181,6 +36483,7 @@
         },
         "comment": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -36205,6 +36508,7 @@
         },
         "title": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -36247,6 +36551,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "discount": {
@@ -36415,6 +36720,7 @@
         },
         "number": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "offerDate": {
@@ -36589,6 +36895,7 @@
         "key": {
           "description": "The lookup key for this PageOptions entry",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "level": {
@@ -36609,7 +36916,8 @@
             "InvoiceOverviewOptions",
             "VoucherFlowViewOptions",
             "SalaryOnboardingOptions",
-            "IncomePageViewOptions"
+            "IncomePageViewOptions",
+            "ReconciliationViewOptions"
           ],
           "type": "string"
         },
@@ -37417,6 +37725,7 @@
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
+            "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -38113,6 +38422,7 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -38499,6 +38809,7 @@
         },
         "description": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -38585,6 +38896,7 @@
         },
         "description": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -38840,6 +39152,7 @@
       "properties": {
         "address": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "amount": {
@@ -38874,6 +39187,7 @@
         },
         "location": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "overnightAccommodation": {
@@ -39262,6 +39576,7 @@
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
+            "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -39865,6 +40180,7 @@
         },
         "postValue": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -40094,7 +40410,6 @@
           "type": "array"
         },
         "code": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -40103,7 +40418,6 @@
           "type": "integer"
         },
         "name": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -40361,6 +40675,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "employee": {
@@ -40368,7 +40683,6 @@
         },
         "externalRef": {
           "description": "External reference for identifying payment basis of the posting, e.g., KID, customer identification or credit note number.",
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -40378,6 +40692,7 @@
         },
         "invoiceNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "isAmountVatClosed": {
@@ -40746,6 +41061,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "discountGroup": {
@@ -40765,10 +41081,10 @@
         },
         "ean": {
           "maxLength": 14,
+          "minLength": 0,
           "type": "string"
         },
         "elNumber": {
-          "maxLength": 14,
           "readOnly": true,
           "type": "string"
         },
@@ -40784,6 +41100,7 @@
         },
         "hsnCode": {
           "maxLength": 20,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -40828,15 +41145,16 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "nrfNumber": {
-          "maxLength": 14,
           "readOnly": true,
           "type": "string"
         },
         "number": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "orderLineDescription": {
@@ -40971,6 +41289,7 @@
         "name": {
           "description": "Product group name",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "parentGroup": {
@@ -41146,7 +41465,6 @@
           "type": "integer"
         },
         "name": {
-          "maxLength": 250,
           "type": "string"
         },
         "orderOfColumn": {
@@ -41159,7 +41477,6 @@
           "readOnly": true
         },
         "sampleValue": {
-          "maxLength": 250,
           "type": "string"
         },
         "suggestedColumnField": {
@@ -41287,6 +41604,7 @@
         },
         "comment": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "costCurrency": {
@@ -41620,6 +41938,7 @@
         },
         "commonCode": {
           "maxLength": 50,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -41639,18 +41958,22 @@
         },
         "name": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "nameEN": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "nameShort": {
           "maxLength": 50,
+          "minLength": 0,
           "type": "string"
         },
         "nameShortEN": {
           "maxLength": 50,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -41940,6 +42263,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "discountPercentage": {
@@ -41967,6 +42291,7 @@
         },
         "externalAccountsNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "fixedprice": {
@@ -42000,6 +42325,7 @@
         "invoiceComment": {
           "description": "Comment for project invoices",
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "invoiceDueDate": {
@@ -42023,6 +42349,7 @@
         "invoiceReceiverEmail": {
           "description": "Set the project's invoice receiver email. Will override the default invoice receiver email of any customer that may also be set in the request body.",
           "maxLength": 254,
+          "minLength": 0,
           "type": "string"
         },
         "invoicingPlan": {
@@ -42067,11 +42394,13 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "number": {
           "description": "If NULL, a number is generated automatically.",
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "numberOfProjectParticipants": {
@@ -42095,6 +42424,7 @@
         "overdueNoticeEmail": {
           "description": "Set the project's overdue notice email. Will override the default overdue notice email of any customer that may also be set in the request body.",
           "maxLength": 254,
+          "minLength": 0,
           "type": "string"
         },
         "participants": {
@@ -42138,6 +42468,7 @@
         },
         "reference": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "startDate": {
@@ -42341,6 +42672,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -42357,6 +42689,7 @@
         },
         "number": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -42384,7 +42717,7 @@
         },
         "comment": {
           "maxLength": 65535,
-          "minLength": 1,
+          "minLength": 0,
           "type": "string"
         },
         "completed": {
@@ -42408,7 +42741,7 @@
         },
         "title": {
           "maxLength": 255,
-          "minLength": 1,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -42597,7 +42930,6 @@
         },
         "feeInvoiceText": {
           "description": "The fee comment on the project invoice.",
-          "maxLength": 16777215,
           "readOnly": true,
           "type": "string"
         },
@@ -42626,7 +42958,6 @@
         },
         "invoiceText": {
           "description": "The comment on the project invoice.",
-          "maxLength": 16777215,
           "readOnly": true,
           "type": "string"
         },
@@ -42764,6 +43095,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "discount": {
@@ -43378,7 +43710,6 @@
           "$ref": "#/definitions/Department"
         },
         "description": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "displayNameFormat": {
@@ -43395,7 +43726,6 @@
           "type": "string"
         },
         "externalAccountsNumber": {
-          "maxLength": 100,
           "type": "string"
         },
         "fixedprice": {
@@ -43412,7 +43742,6 @@
         },
         "invoiceComment": {
           "description": "Comment for project invoices",
-          "maxLength": 16777215,
           "type": "string"
         },
         "isFixedPrice": {
@@ -43438,11 +43767,9 @@
           "type": "number"
         },
         "name": {
-          "maxLength": 255,
           "type": "string"
         },
         "number": {
-          "maxLength": 100,
           "type": "string"
         },
         "priceCeilingAmount": {
@@ -43463,7 +43790,6 @@
           "$ref": "#/definitions/Employee"
         },
         "reference": {
-          "maxLength": 255,
           "type": "string"
         },
         "startDate": {
@@ -43495,6 +43821,7 @@
         },
         "competitor": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "createdDate": {
@@ -43505,6 +43832,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "finalAdditionalServicesValue": {
@@ -43532,6 +43860,7 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "project": {
@@ -43593,6 +43922,7 @@
         "comments": {
           "description": "Delivery information and invoice comments",
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "creationDate": {
@@ -43627,6 +43957,11 @@
           "description": "The machine readable document (such as EHF or EFO/NELFO) this PurchaseOrder is based on (if any)",
           "readOnly": true
         },
+        "hasWholesalerExportUser": {
+          "description": "This field is relevant only if the supplier is a wholesaler. It indicates whether the wholesaler's export user is set. Available only on demand.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "id": {
           "format": "int64",
           "type": "integer"
@@ -43646,6 +43981,7 @@
         "number": {
           "description": "Purchase order number - read only",
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "orderLines": {
@@ -43662,6 +43998,7 @@
         "packingNoteMessage": {
           "description": "Message on packing note.Wholesaler specific.",
           "maxLength": 50,
+          "minLength": 0,
           "type": "string"
         },
         "pickupPoint": {
@@ -43678,6 +44015,7 @@
         "receiverEmail": {
           "description": "Email when purchase order is send by email.",
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "restorder": {
@@ -43712,6 +44050,7 @@
         "transporterMessage": {
           "description": "Message to transporter.Wholesaler specific.",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -43797,6 +44136,7 @@
         },
         "name": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "postalCode": {
@@ -43948,6 +44288,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "discount": {
@@ -44514,6 +44855,16 @@
           "description": "Id of posting or transaction",
           "format": "int64",
           "type": "integer"
+        },
+        "isQueryMatch": {
+          "description": "This matches search",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "voucherId": {
+          "description": "Id of voucher from posting",
+          "format": "int64",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -44644,7 +44995,6 @@
         },
         "displayName": {
           "description": "Display Name",
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -44726,6 +45076,10 @@
           "type": "boolean"
         },
         "isApprovableIncomplete": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isInactiveAccount": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -44828,18 +45182,22 @@
       "properties": {
         "bank": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "bankAccountIBAN": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "bankAccountNumber": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "bankAccountSWIFT": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -44861,6 +45219,7 @@
         },
         "comment": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "currency": {
@@ -44885,6 +45244,7 @@
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
           "maxLength": 25,
+          "minLength": 0,
           "type": "string"
         },
         "reminderDate": {
@@ -45003,6 +45363,8 @@
           "type": "array"
         },
         "code": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -45010,6 +45372,8 @@
           "type": "integer"
         },
         "nameNO": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "remunerationType": {
@@ -47819,6 +48183,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperInventoryUnitRateCompanySpecific": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/InventoryUnitRateCompanySpecific"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperInvoice": {
       "properties": {
         "value": {
@@ -48362,17 +48734,6 @@
       },
       "type": "object"
     },
-    "ResponseWrapperListVoucher": {
-      "properties": {
-        "value": {
-          "items": {
-            "$ref": "#/definitions/Voucher"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "ResponseWrapperListYearEndAnnualAccountsCode": {
       "properties": {
         "value": {
@@ -48501,6 +48862,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/Menu"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperMessage": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/Message"
         }
       },
       "type": "object"
@@ -50842,14 +51211,17 @@
         },
         "tabellnummer": {
           "maxLength": 20,
+          "minLength": 0,
           "type": "string"
         },
         "tabelltype": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "trekkode": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "trekkodeDescription": {
@@ -51179,6 +51551,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "employee": {
@@ -51274,6 +51647,7 @@
       "properties": {
         "additionalInfo": {
           "maxLength": 250,
+          "minLength": 0,
           "type": "string"
         },
         "advanceTaxcards": {
@@ -51284,6 +51658,7 @@
         },
         "arbeidstakerIdentifikator": {
           "maxLength": 20,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -51423,6 +51798,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -51447,10 +51823,12 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "number": {
           "maxLength": 10,
+          "minLength": 0,
           "type": "string"
         },
         "payStatementCodeCode": {
@@ -51538,7 +51916,6 @@
           "type": "string"
         },
         "firstName": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -51546,7 +51923,6 @@
           "type": "integer"
         },
         "lastName": {
-          "maxLength": 100,
           "type": "string"
         },
         "nameAndNumber": {
@@ -51881,6 +52257,7 @@
         },
         "comment": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "date": {
@@ -52179,6 +52556,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "externalChangesSinceLastTime": {
@@ -52285,6 +52663,7 @@
         },
         "carRegistrationNumber": {
           "maxLength": 20,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -52454,11 +52833,13 @@
         "payrollTaxCalcMethod": {
           "description": "Employee National Insurance calculation method",
           "maxLength": 2,
+          "minLength": 0,
           "type": "string"
         },
         "payslipGeneralComment": {
           "description": "Comment to be shown on all payslips",
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "periodAsString": {
@@ -52511,6 +52892,7 @@
         "voucherComment": {
           "description": "Comment on voucher",
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "wagePeriodTransactionId": {
@@ -52593,6 +52975,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -52612,10 +52995,12 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "number": {
           "maxLength": 10,
+          "minLength": 0,
           "type": "string"
         },
         "payStatementCode": {
@@ -52722,7 +53107,6 @@
           "type": "boolean"
         },
         "description": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "id": {
@@ -52790,7 +53174,6 @@
           "type": "integer"
         },
         "comment": {
-          "maxLength": 16777215,
           "type": "string"
         },
         "completedLogId": {
@@ -52983,7 +53366,8 @@
             "YEAR_END_REPORTING_FLI",
             "YEAR_END_REPORTING_NUF",
             "PRIMARY_INDUSTRY",
-            "FIXED_ASSETS_REGISTER"
+            "FIXED_ASSETS_REGISTER",
+            "STICOS"
           ],
           "readOnly": true,
           "type": "string"
@@ -53221,12 +53605,10 @@
     "SalesForceAddress": {
       "properties": {
         "addressLine1": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
         "addressLine2": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -53238,7 +53620,6 @@
           "type": "array"
         },
         "city": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -53251,7 +53632,6 @@
           "type": "integer"
         },
         "postalCode": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -53334,12 +53714,10 @@
           "type": "integer"
         },
         "email": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
         "firstName": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -53376,7 +53754,6 @@
           "type": "boolean"
         },
         "lastName": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -53386,12 +53763,10 @@
           "type": "string"
         },
         "phoneNumberHome": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
         "phoneNumberMobile": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -53400,7 +53775,6 @@
           "type": "string"
         },
         "phoneNumberWork": {
-          "maxLength": 100,
           "readOnly": true,
           "type": "string"
         },
@@ -54255,6 +54629,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "moduleQuantityHandling": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "moduleRemit": {
           "readOnly": true,
           "type": "boolean"
@@ -54767,6 +55145,7 @@
         },
         "bankAccountNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -54787,6 +55166,7 @@
         "email": {
           "format": "email",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -54808,6 +55188,7 @@
         },
         "note": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "numberOfSharesLastYear": {
@@ -54828,6 +55209,7 @@
         },
         "phoneNumber": {
           "maxLength": 32,
+          "minLength": 0,
           "type": "string"
         },
         "pictureId": {
@@ -54841,10 +55223,12 @@
         },
         "shareholderName": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "shareholderNumber": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "startingYear": {
@@ -54932,6 +55316,7 @@
       "properties": {
         "altinnValue": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -54988,6 +55373,7 @@
         },
         "postValue": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "shareholderRegisterDataSubSubType": {
@@ -55106,6 +55492,7 @@
         },
         "failureMainMessage": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "failureStep": {
@@ -55558,6 +55945,7 @@
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
+            "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -55975,6 +56363,8 @@
           "type": "string"
         },
         "postValue": {
+          "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "profitInterest": {
@@ -56368,10 +56758,12 @@
         },
         "response": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "sessionId": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "sticosLinks": {
@@ -56408,6 +56800,7 @@
         },
         "header": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -56420,10 +56813,12 @@
         },
         "linkUrl": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "title": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -56454,7 +56849,6 @@
           "type": "number"
         },
         "inventory": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -56538,6 +56932,7 @@
         },
         "comment": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "date": {
@@ -56637,12 +57032,14 @@
           "description": "Custom authentication header name",
           "example": "Authorization",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "authHeaderValue": {
           "description": "Custom authentication header value (write only)",
           "example": "Basic dXNlcm5hbWU6cGFzc3dvcmQ=",
           "maxLength": 4096,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -56656,13 +57053,14 @@
           "description": "Event name (from /v2/event) you wish to subscribe to. Form should be: *subject.verb*.",
           "example": "customer.create",
           "maxLength": 255,
-          "minLength": 1,
+          "minLength": 0,
           "type": "string"
         },
         "fields": {
           "description": "The fields in the object delivered with the notification callback, nested as in other API calls.",
           "example": "id,version,number",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "hmacSharedSecret": {
@@ -56691,7 +57089,7 @@
           "description": "The callback URL used for subscriptions (including authentication tokens). Must be absolute and use HTTPS. Basic authentication is supported.",
           "example": "https://username:password@myintegration.example/tripletexCallback",
           "maxLength": 65535,
-          "minLength": 1,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -56760,6 +57158,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -56817,10 +57216,12 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "organizationNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "overdueNoticeEmail": {
@@ -56832,10 +57233,12 @@
         },
         "phoneNumber": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "phoneNumberMobile": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "physicalAddress": {
@@ -56861,6 +57264,7 @@
         },
         "website": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         }
       },
@@ -57176,7 +57580,6 @@
           "readOnly": true
         },
         "name": {
-          "maxLength": 250,
           "type": "string"
         },
         "orderOfColumn": {
@@ -57185,7 +57588,6 @@
           "type": "integer"
         },
         "sampleValue": {
-          "maxLength": 250,
           "type": "string"
         },
         "suggestedColumnField": {
@@ -57435,6 +57837,7 @@
         "invoiceNumber": {
           "description": "Invoice number",
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "isCreditNote": {
@@ -57569,6 +57972,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "discountPrice": {
@@ -57581,6 +57985,7 @@
         },
         "ean": {
           "maxLength": 14,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -57607,10 +58012,12 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "number": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "priceExcludingVatCurrency": {
@@ -57680,6 +58087,7 @@
         },
         "response": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "responseType": {
@@ -57710,6 +58118,7 @@
       "properties": {
         "articleUrl": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -57725,6 +58134,7 @@
         },
         "title": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -57818,6 +58228,8 @@
         },
         "comment": {
           "description": "A comment given in addition to the highest rating.",
+          "maxLength": 500,
+          "minLength": 0,
           "type": "string"
         },
         "contactRequest": {
@@ -58800,6 +59212,7 @@
         },
         "failureMessage": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "failureStep": {
@@ -58961,7 +59374,6 @@
           "type": "string"
         },
         "email": {
-          "maxLength": 100,
           "type": "string"
         },
         "id": {
@@ -58969,7 +59381,6 @@
           "type": "integer"
         },
         "phoneNumberMobile": {
-          "maxLength": 100,
           "type": "string"
         },
         "phoneNumberMobileCountry": {
@@ -59000,7 +59411,6 @@
           "type": "integer"
         },
         "number": {
-          "maxLength": 100,
           "type": "string"
         },
         "taxcard": {
@@ -59388,6 +59798,7 @@
         },
         "managerComment": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "project": {
@@ -59430,6 +59841,7 @@
         },
         "comment": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "date": {
@@ -59554,6 +59966,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "employee": {
@@ -59606,6 +60019,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "employee": {
@@ -60463,6 +60877,7 @@
         },
         "description": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -60515,18 +60930,22 @@
         },
         "departureFrom": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "departureTime": {
           "maxLength": 20,
+          "minLength": 0,
           "type": "string"
         },
         "destination": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "detailedJourneyDescription": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "isCompensationFromRates": {
@@ -60540,6 +60959,7 @@
         },
         "purpose": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "returnDate": {
@@ -60547,6 +60967,7 @@
         },
         "returnTime": {
           "maxLength": 20,
+          "minLength": 0,
           "type": "string"
         }
       },
@@ -60727,7 +61148,6 @@
           "readOnly": true
         },
         "rejectedComment": {
-          "maxLength": 65535,
           "readOnly": true,
           "type": "string"
         },
@@ -60753,6 +61173,7 @@
         },
         "title": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "travelAdvance": {
@@ -60896,6 +61317,8 @@
           "type": "integer"
         },
         "wageCodeNumber": {
+          "maxLength": 10,
+          "minLength": 0,
           "type": "string"
         }
       },
@@ -61064,6 +61487,7 @@
         },
         "description": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -62046,6 +62470,7 @@
         },
         "browser": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -62067,17 +62492,18 @@
         },
         "message": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "pageTitle": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "receivedAt": {
           "type": "string"
         },
         "team": {
-          "maxLength": 100,
           "type": "string"
         },
         "url": {
@@ -62580,7 +63006,6 @@
           "type": "string"
         },
         "structuredComment": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -62593,7 +63018,6 @@
           "type": "string"
         },
         "userComment": {
-          "maxLength": 65535,
           "readOnly": true,
           "type": "string"
         },
@@ -62835,7 +63259,6 @@
       "properties": {
         "account": {
           "description": "The bank account number of Skatteetaten",
-          "maxLength": 20,
           "type": "string"
         },
         "amount": {
@@ -62858,7 +63281,6 @@
         },
         "kid": {
           "description": "The KID number from Skatteetaten",
-          "maxLength": 100,
           "type": "string"
         },
         "url": {
@@ -63027,12 +63449,10 @@
         },
         "structuredComment": {
           "description": "Pre-generated structured comment",
-          "maxLength": 255,
           "type": "string"
         },
         "userComment": {
           "description": "User comment",
-          "maxLength": 65535,
           "type": "string"
         },
         "vatAmount": {
@@ -63161,10 +63581,12 @@
         },
         "name": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "number": {
           "maxLength": 10,
+          "minLength": 0,
           "type": "string"
         },
         "parentType": {
@@ -63262,6 +63684,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -63386,10 +63809,12 @@
         },
         "comment": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "commentFromOriginator": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "department": {
@@ -63652,6 +64077,10 @@
           "type": "boolean"
         },
         "hasModuleQuantityHandling": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasModuleVoucherTypes": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -64074,6 +64503,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
@@ -64180,7 +64610,6 @@
         },
         "content": {
           "description": "The message",
-          "maxLength": 65535,
           "type": "string"
         },
         "id": {
@@ -64305,11 +64734,13 @@
         },
         "comment": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "externalObjectUrl": {
           "description": "Link to external object",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -64330,6 +64761,7 @@
         "referenceNumber": {
           "description": "reference number to external object",
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "status": {
@@ -64436,12 +64868,16 @@
           "readOnly": true,
           "type": "array"
         },
+        "displayName": {
+          "type": "string"
+        },
         "id": {
           "format": "int64",
           "type": "integer"
         },
         "name": {
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -64572,6 +65008,7 @@
         },
         "description": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "endDate": {
@@ -65058,6 +65495,7 @@
             "TIMBER_ACCOUNT",
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
+            "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -65671,6 +66109,8 @@
           "type": "array"
         },
         "code": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -65678,6 +66118,8 @@
           "type": "integer"
         },
         "nameNO": {
+          "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -65910,14 +66352,17 @@
         },
         "content": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "displayName": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "grouping": {
           "maxLength": 65535,
+          "minLength": 0,
           "type": "string"
         },
         "id": {
@@ -66125,6 +66570,7 @@
         },
         "comment": {
           "maxLength": 1024,
+          "minLength": 0,
           "type": "string"
         },
         "date": {
@@ -66208,6 +66654,8 @@
           "type": "boolean"
         },
         "name": {
+          "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -66252,6 +66700,7 @@
         },
         "postMediumTextValue": {
           "maxLength": 16777215,
+          "minLength": 0,
           "type": "string"
         },
         "postType": {
@@ -66398,6 +66847,7 @@
         },
         "postValue": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "url": {
@@ -66618,7 +67068,6 @@
           "type": "number"
         },
         "bban": {
-          "maxLength": 50,
           "readOnly": true,
           "type": "string"
         },
@@ -66642,7 +67091,6 @@
           "type": "boolean"
         },
         "iban": {
-          "maxLength": 50,
           "readOnly": true,
           "type": "string"
         },
@@ -66692,10 +67140,10 @@
         },
         "consentReference": {
           "maxLength": 255,
+          "minLength": 0,
           "type": "string"
         },
         "consentUrl": {
-          "maxLength": 65535,
           "readOnly": true,
           "type": "string"
         },
@@ -66730,6 +67178,7 @@
         "userIdOrSsn": {
           "description": "userId for DNB, socialSecurityNumber for other banks",
           "maxLength": 100,
+          "minLength": 0,
           "type": "string"
         },
         "valid": {
@@ -66816,7 +67265,6 @@
           "type": "integer"
         },
         "onboardingUrl": {
-          "maxLength": 255,
           "type": "string"
         },
         "pending": {
@@ -66908,6 +67356,7 @@
         },
         "cancellationMessage": {
           "maxLength": 250,
+          "minLength": 0,
           "type": "string"
         },
         "changes": {
@@ -66938,7 +67387,6 @@
           "type": "string"
         },
         "creditorName": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -66947,7 +67395,6 @@
           "readOnly": true
         },
         "description": {
-          "maxLength": 255,
           "readOnly": true,
           "type": "string"
         },
@@ -66957,7 +67404,6 @@
           "type": "string"
         },
         "endToEndId": {
-          "maxLength": 128,
           "readOnly": true,
           "type": "string"
         },
@@ -67019,7 +67465,6 @@
         },
         "kid": {
           "description": "KID - Kundeidentifikasjonsnummer.",
-          "maxLength": 25,
           "readOnly": true,
           "type": "string"
         },
@@ -67048,7 +67493,6 @@
           "type": "string"
         },
         "paymentId": {
-          "maxLength": 128,
           "readOnly": true,
           "type": "string"
         },
@@ -67070,7 +67514,6 @@
           "type": "string"
         },
         "receiverReference": {
-          "maxLength": 250,
           "readOnly": true,
           "type": "string"
         },
@@ -67135,7 +67578,6 @@
           "type": "string"
         },
         "statusReason": {
-          "maxLength": 256,
           "readOnly": true,
           "type": "string"
         },
@@ -67168,7 +67610,7 @@
     },
     "description": "## Usage\n\n- **Download the spec** [swagger.json](/v2/swagger.json) file, it is a [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).\n\n- **Generating a client** can easily be done using tools like [swagger-codegen](https://github.com/swagger-api/swagger-codegen) or other that accepts [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) specs.\n    - For swagger codegen it is recommended to use the flag: **--removeOperationIdPrefix**. \n      Unique operation ids are about to be introduced to the spec, and this ensures forward compatibility - and results in less verbose generated code.\n\n- **Please note** that Tripletex offers several packages. Some endpoints are only supported in certain packages. You can see the Tripletex packages [here](https://www.tripletex.no/priser/).\n\n## Overview\n\n- Partial resource updating is done using the `PUT` method with optional fields instead of the `PATCH` method.\n\n- **Actions** or **commands** are represented in our RESTful path with a prefixed `:`. Example: `/v2/hours/123/:approve`.\n\n- **Summaries** or **aggregated** results are represented in our RESTful path with a prefixed `>`. Example: `/v2/hours/>thisWeeksBillables`.\n\n- **Request ID** is a key found in all responses in the header with the name `x-tlx-request-id`. For validation and error responses it is also in the response body. If additional log information is absolutely necessary, our support division can locate the key value.\n\n- **version** This is a revision number found on all persisted resources. If included, it will prevent your PUT/POST from overriding any updates to the resource since your GET.\n\n- **Date** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DD`.\n\n- **DateTime** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DDThh:mm:ss`.\n\n- **Searching** is done by entering values in the optional fields for each API call. The values fall into the following categories: range, in, exact and like.\n\n- **Missing fields** or even **no response data** can occur because result objects and fields are filtered on authorization.\n\n- **See [GitHub](https://github.com/Tripletex/tripletex-api2) for more documentation, code examples, changelog and more.**\n\n- **See [Tripletex for developers](https://developer.tripletex.no/) for more practical information, support, updates and access form**\n\n\n## Authentication\n\n[Read more here](https://developer.tripletex.no/docs/documentation/authentication-and-tokens/)\n\n- **Tokens:** The Tripletex API uses 3 different tokens\n\n  - **consumerToken** is a token provided to the consumer by Tripletex after the API 2.0 registration is completed.\n\n  - **employeeToken** is a token created by an administrator in your Tripletex account via the user settings and the tab \"API access\". Each employee token must be given a set of entitlements.\n\n  - **sessionToken** is the token from `/token/session/:create` which requires a consumerToken and an employeeToken created with the same consumer token, but not an authentication header.\n\n- **Authentication** is done via [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)\n\n  - **username** is used to specify what company to access.\n\n    - `0` or blank means the company of the employee.\n\n    - Any other value means accountant clients. Use `/company/>withLoginAccess` to get a list of those.\n\n  - **password** is the **sessionToken**.\n\n  - If you need to create the header yourself use `Authorization: Basic <encoded token>` where `encoded token` is the string `<target company id or 0>:<your session token>` Base64 encoded.\n\n\n## Tags\n\n- `[BETA]` This is a beta endpoint and can be subject to change.\n- `[DEPRECATED]` Deprecated means that we intend to remove/change this feature or capability in a future \"major\" API release. We therefore discourage all use of this feature/capability.\n\n\n## Fields\n\nUse the `fields` parameter to specify which fields should be returned. This also supports fields from sub elements, done via `<field>(<subResourceFields>)`. `*` means all fields for that resource. Example values:\n- `project,activity,hours`  returns `{project:..., activity:...., hours:...}`.\n- just `project` returns `\"project\" : { \"id\": 12345, \"url\": \"tripletex.no/v2/projects/12345\"  }`.\n- `project(*)` returns `\"project\" : { \"id\": 12345 \"name\":\"ProjectName\" \"number.....startDate\": \"2013-01-07\" }`.\n- `project(name)` returns `\"project\" : { \"name\":\"ProjectName\" }`.\n- All resources and some subResources :  `*,activity(name),employee(*)`.\n\n\n## Sorting\n\nUse the `sorting` parameter to specify sorting. It takes a comma separated list, where a `-` prefix denotes descending. You can sort by sub object with the following format: `<field>.<subObjectField>`. Example values:\n- `date`\n- `project.name`\n- `project.name, -date`\n\n\n## Changes\n\nTo get the changes for a resource, `changes` have to be explicitly specified as part of the `fields` parameter, e.g. `*,changes`.\nThere are currently two types of change available: \n- `CREATE` for when the resource was created\n- `UPDATE` for when the resource was updated\n\n**NOTE**\n> For objects created prior to October 24th 2018 the list may be incomplete, but will always contain the CREATE and the last change (if the object has been changed after creation).\n\n\n## Rate limiting\n\nRate limiting is performed on the API calls for an employee for each API consumer. Status regarding the rate limit is returned as headers:\n- `X-Rate-Limit-Limit` - The number of allowed requests in the current period.\n- `X-Rate-Limit-Remaining` - The number of remaining requests.\n- `X-Rate-Limit-Reset` - The number of seconds left in the current period.\n\nOnce the rate limit is hit, all requests will return HTTP status code `429` for the remainder of the current period.\n\n\n## Response envelope\n\n#### Multiple values\n\n```json\n{\n  \"fullResultSize\": ###, // {number} [DEPRECATED]\n  \"from\": ###, // {number} Paging starting from\n  \"count\": ###, // {number} Paging count\n  \"versionDigest\": \"###\", // {string} Hash of full result, null if no result\n  \"values\": [...{...object...},{...object...},{...object...}...]\n}\n```\n\n#### Single value\n\n```json\n{\n  \"value\": {...single object...}\n}\n```\n\n\n## WebHook envelope\n\n```json\n{\n  \"subscriptionId\": ###, // Subscription id\n  \"event\": \"object.verb\", // As listed from /v2/event/\n  \"id\": ###, // Id of object this event is for\n  \"value\": {... single object, null if object.deleted ...}\n}\n```\n\n\n## Error/warning envelope\n\n```json\n{\n  \"status\": ###, // {number} HTTP status code\n  \"code\": #####, // {number} internal status code of event\n  \"message\": \"###\", // {string} Basic feedback message in your language\n  \"link\": \"###\", // {string} Link to doc\n  \"developerMessage\": \"###\", // {string} More technical message\n  \"validationMessages\": [ // {array} List of validation messages, can be null\n    {\n      \"field\": \"###\", // {string} Name of field\n      \"message\": \"###\" // {string} Validation message for field\n    }\n  ],\n  \"requestId\": \"###\" // {string} Same as x-tlx-request-id \n}\n```\n\n\n## Status codes / Error codes\n\n- **200 OK**\n- **201 Created** - From POSTs that create something new.\n- **204 No Content** - When there is no answer, ex: \"/:anAction\" or DELETE.\n- **400 Bad request** -\n  -  **4000** Bad Request Exception\n  - **11000** Illegal Filter Exception\n  - **12000** Path Param Exception\n  - **24000** Cryptography Exception\n- **401 Unauthorized** - When authentication is required and has failed or has not yet been provided\n  -  **3000** Authentication Exception\n- **403 Forbidden** - When AuthorisationManager says no.\n  -  **9000** Security Exception\n- **404 Not Found** - For resources that does not exist.\n  -  **6000** Not Found Exception\n- **409 Conflict** - Such as an edit conflict between multiple simultaneous updates\n  -  **7000** Object Exists Exception\n  -  **8000** Revision Exception\n  - **10000** Locked Exception\n  - **14000** Duplicate entry\n- **422 Bad Request** - For Required fields or things like malformed payload.\n  - **15000** Value Validation Exception\n  - **16000** Mapping Exception\n  - **17000** Sorting Exception\n  - **18000** Validation Exception\n  - **21000** Param Exception\n  - **22000** Invalid JSON Exception\n  - **23000** Result Set Too Large Exception\n- **429 Too Many Requests** - Request rate limit hit\n- **500 Internal Error** - Unexpected condition was encountered and no more specific message is suitable\n  - **1000** Exception\n",
     "title": "Tripletex API",
-    "version": "2.71.12"
+    "version": "2.71.13"
   },
   "paths": {
     "/activity": {
@@ -68711,6 +69153,13 @@
             "type": "boolean"
           },
           {
+            "description": "Search by query string",
+            "in": "query",
+            "name": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
             "description": "Number of elements to return",
             "format": "int32",
             "in": "query",
@@ -68787,6 +69236,74 @@
           }
         ],
         "summary": "Create a bank reconciliation match.",
+        "tags": [
+          "bank/reconciliation/internal/match"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "BankReconciliationInternalMatch_put",
+        "parameters": [
+          {
+            "description": "The bank reconciliation id",
+            "format": "int64",
+            "in": "query",
+            "name": "bankReconciliationId",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Approved or unapproved matches",
+            "in": "query",
+            "name": "approved",
+            "required": false,
+            "type": "boolean"
+          },
+          {
+            "description": "Search by query string",
+            "in": "query",
+            "name": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "List of matches to include in response",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "items": {
+                "$ref": "#/definitions/ReconciliationMatch"
+              },
+              "type": "array"
+            }
+          },
+          {
+            "description": "Number of elements to return",
+            "format": "int32",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseReconciliationMatch"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": " Find bank reconciliation matches corresponding with sent data.",
         "tags": [
           "bank/reconciliation/internal/match"
         ]
@@ -103168,6 +103685,9 @@
       "name": "internalauth"
     },
     {
+      "name": "autopaywebhook"
+    },
+    {
       "name": "balanceSheet"
     },
     {
@@ -103243,10 +103763,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
       "name": "bankreconciliationinternalmatch"
@@ -103540,6 +104060,9 @@
       "name": "event/subscription"
     },
     {
+      "name": "expense"
+    },
+    {
       "name": "feedback"
     },
     {
@@ -103793,6 +104316,9 @@
     },
     {
       "name": "lookup"
+    },
+    {
+      "name": "message"
     },
     {
       "name": "mobileAppsubscription"
@@ -104762,6 +105288,9 @@
     },
     {
       "name": "yearEndincomeStatement"
+    },
+    {
+      "name": "inventoryUnitRates"
     },
     {
       "name": "yearEndinventories"

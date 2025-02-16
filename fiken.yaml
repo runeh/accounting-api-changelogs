@@ -3977,15 +3977,15 @@ components:
       properties:
         name:
           type: string
-          example: 'Fiken AS'
+          example: 'Swagger test company'
           description: Name of company.
         slug:
           type: string
-          example: 'fiken-as'
+          example: 'swagger-test-company'
           description: Formatted name of company. This is the companySlug that should be used in all URLs related to this company.
         organizationNumber:
           type: string
-          example: '913312465'
+          example: '123456789'
           description: Brreg organization number.
         vatType:
           type: string
@@ -3998,11 +3998,11 @@ components:
           writeOnly: true
         email:
           type: string
-          example: 'kontakt@fiken.gmail'
+          example: 'swaggertestcompany@fiken.gmail'
         creationDate:
           type: string
           format: date
-          example: '2018-04-03'
+          example: '2025-01-01'
         hasApiAccess:
           type: boolean
           example: true
@@ -4012,7 +4012,7 @@ components:
         accountingStartDate:
           type: string
           format: date
-          example: '2018-04-03'
+          example: '2025-01-01'
     contact:
       type: object
       required:
@@ -5450,6 +5450,7 @@ components:
       type: object
       required:
         - vatType
+        - description
       properties:
         description:
           type: string
