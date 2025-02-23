@@ -444,8 +444,7 @@
         }
       },
       "required": [
-        "account",
-        "department"
+        "account"
       ],
       "type": "object"
     },
@@ -7382,6 +7381,35 @@
       },
       "type": "object"
     },
+    "ClientModules": {
+      "properties": {
+        "clientModules": {
+          "description": "Client modules",
+          "items": {
+            "enum": [
+              "VOUCHER_AUTOMATION",
+              "EHF",
+              "BANK_RECONCILIATION",
+              "YEAR_END"
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "company": {
+          "$ref": "#/definitions/Company",
+          "description": "Client company",
+          "readOnly": true
+        },
+        "customer": {
+          "$ref": "#/definitions/Customer",
+          "description": "Customer",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "CloseGroup": {
       "properties": {
         "changes": {
@@ -9272,6 +9300,15 @@
         "id": {
           "format": "int64",
           "type": "integer"
+        },
+        "preferredModel": {
+          "enum": [
+            "SUPPORT",
+            "STICOS",
+            "ACCOUNT_PLAN",
+            "COPILOT_URL_NAVIGATION"
+          ],
+          "type": "string"
         },
         "responseEndTimestamp": {
           "type": "string"
@@ -13233,6 +13270,38 @@
         "firstName",
         "lastName"
       ],
+      "type": "object"
+    },
+    "EmployeeBanner": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "closed": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "employeeBannerType": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "EmployeeBuilder": {
@@ -17339,6 +17408,15 @@
             "JUL_AUG",
             "SEP_OCT",
             "NOV_DEC",
+            "JAN_MAR",
+            "APR_JUN",
+            "JUL_SEP",
+            "OCT_DEC",
+            "JAN_APR",
+            "MAY_AUG",
+            "SEP_DEC",
+            "H1",
+            "H2",
             "YEARLY"
           ],
           "type": "string"
@@ -23400,6 +23478,7 @@
             "InvoiceInAdvanceMigration",
             "VismaConnectValidateEmailOnEveryRequest",
             "BoligmappaResilience",
+            "VismaConnectResilience",
             "SalesforceWebhookForProjectManagerRole",
             "GlobalEventSystem",
             "Marketplace",
@@ -23426,7 +23505,8 @@
             "TimeBasedSessionInvalidation",
             "ValidDateStringRangeValidation",
             "DebugVoucherFormStoreTransactions",
-            "IsAuthSensitiveInfoTripletex"
+            "IsAuthSensitiveInfoTripletex",
+            "RequestLogFallback"
           ],
           "readOnly": true,
           "type": "string"
@@ -23436,6 +23516,7 @@
             "enum": [
               "ANGRY_NERDS",
               "ANTS",
+              "ANTS2",
               "ASTRO",
               "ATEAM",
               "BEEHIVE",
@@ -25379,6 +25460,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/ClientAccessTemplate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseClientModules": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ClientModules"
           },
           "readOnly": true,
           "type": "array"
@@ -30146,6 +30260,39 @@
       },
       "type": "object"
     },
+    "ListResponseProjectSupplierInvoiceSummary": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ProjectSupplierInvoiceSummary"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseProspect": {
       "properties": {
         "count": {
@@ -34033,6 +34180,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "groupingSa": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "groupingSaPreviousYear": {
+          "type": "string"
+        },
         "id": {
           "format": "int64",
           "type": "integer"
@@ -35398,30 +35552,15 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "category": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "categoryType": {
-          "enum": [
-            "ACCOUNTING",
-            "BANK_SERVICES",
-            "INVOICE",
-            "OTHER",
-            "PACKAGE",
-            "PROJECT_COST_MANAGEMENT",
-            "VOUCHER_SERVICES",
-            "WAREHOUSE_AND_LOGISTICS",
-            "WAGE"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "currencyCode": {
           "readOnly": true,
           "type": "string"
         },
         "deactivationError": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "deactivationErrorType": {
           "readOnly": true,
           "type": "string"
         },
@@ -36615,11 +36754,11 @@
           "type": "number"
         },
         "unitPriceExcludingVatCurrency": {
-          "description": "Unit price of purchase excluding VAT in the order's currency",
+          "description": "Unit price of purchase excluding VAT in the order's currency. If only unit price Excl. VAT or unit price Inc. VAT is supplied, we will calculate and update the missing field.",
           "type": "number"
         },
         "unitPriceIncludingVatCurrency": {
-          "description": "Unit price of purchase including VAT in the order's currency",
+          "description": "Unit price of purchase including VAT in the order's currency. If only unit price Excl. VAT or unit price Inc. VAT is supplied, we will calculate and update the missing field.",
           "type": "number"
         },
         "url": {
@@ -43139,7 +43278,7 @@
           "type": "number"
         },
         "unitPriceExcludingVatCurrency": {
-          "description": "Unit price of purchase excluding VAT in the order's currency",
+          "description": "Unit price of purchase excluding VAT in the order's currency. If only unit price Excl. VAT or unit price Inc. VAT is supplied, we will calculate and update the missing field.",
           "type": "number"
         },
         "url": {
@@ -43682,6 +43821,89 @@
         },
         "hourlyRate": {
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "ProjectSupplierInvoiceSummary": {
+      "properties": {
+        "accountId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "amountExclVat": {
+          "description": "Amount excluding VAT in the specified currency.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "amountInclVat": {
+          "description": "Amount including VAT in the specified currency.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "attachmentId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "costAccountId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "costAccountName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "departmentName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "dueDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "expiredVendorInvoice": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "invoiceDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "invoiceId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "outstandingAmount": {
+          "description": "The amountCurrency outstanding based on the history collection, excluding reminders an",
+          "readOnly": true,
+          "type": "number"
+        },
+        "paidAmount": {
+          "description": "Used to specify the prepaid amount of the invoice.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "vendorId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "vendorInvoiceNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "vendorName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "voucherId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -44286,6 +44508,10 @@
           "description": "The order line's currency. Determined by the order's currency.",
           "readOnly": true
         },
+        "customSortIndex": {
+          "format": "int32",
+          "type": "integer"
+        },
         "description": {
           "maxLength": 16777215,
           "minLength": 0,
@@ -44680,7 +44906,10 @@
         "accountDebit": {
           "type": "string"
         },
-        "inventoryTotalValue": {
+        "rackbeatInventoryValue": {
+          "type": "string"
+        },
+        "tripletexInventoryValue": {
           "type": "string"
         },
         "voucherDate": {
@@ -47307,6 +47536,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperClientModules": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ClientModules"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperCloseGroup": {
       "properties": {
         "value": {
@@ -47818,6 +48055,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/Employee"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperEmployeeBanner": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/EmployeeBanner"
         }
       },
       "type": "object"
@@ -56773,6 +57018,10 @@
           },
           "type": "array"
         },
+        "sticosStatus": {
+          "description": "Sticos banner status",
+          "type": "string"
+        },
         "url": {
           "readOnly": true,
           "type": "string"
@@ -60880,6 +61129,11 @@
           "minLength": 0,
           "type": "string"
         },
+        "displayName": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
         "id": {
           "format": "int64",
           "type": "integer"
@@ -61486,6 +61740,11 @@
           "type": "array"
         },
         "description": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "displayName": {
           "maxLength": 255,
           "minLength": 0,
           "type": "string"
@@ -63988,6 +64247,14 @@
     },
     "VoucherInboxContext": {
       "properties": {
+        "allowPostingBeforeApproval": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "authSendToLedger": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "automatedVouchersLast30Days": {
           "format": "int32",
           "readOnly": true,
@@ -64006,6 +64273,22 @@
           "type": "boolean"
         },
         "canUserUpload": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "canUserUseCustomsDeclaration": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "canUserUseIncomingInvoiceBeta": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "canUserUseInvoiceDetailed": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "canUserUseInvoiceSimple": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -64088,6 +64371,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "inNewVoucherMenuPilot": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "inTaskFoxDeveloperMode": {
           "readOnly": true,
           "type": "boolean"
@@ -64147,6 +64434,9 @@
         "tripletexStartDate": {
           "readOnly": true,
           "type": "string"
+        },
+        "userReadOnly": {
+          "type": "boolean"
         },
         "voucherScanningEmail": {
           "readOnly": true,
@@ -67610,7 +67900,7 @@
     },
     "description": "## Usage\n\n- **Download the spec** [swagger.json](/v2/swagger.json) file, it is a [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).\n\n- **Generating a client** can easily be done using tools like [swagger-codegen](https://github.com/swagger-api/swagger-codegen) or other that accepts [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) specs.\n    - For swagger codegen it is recommended to use the flag: **--removeOperationIdPrefix**. \n      Unique operation ids are about to be introduced to the spec, and this ensures forward compatibility - and results in less verbose generated code.\n\n- **Please note** that Tripletex offers several packages. Some endpoints are only supported in certain packages. You can see the Tripletex packages [here](https://www.tripletex.no/priser/).\n\n## Overview\n\n- Partial resource updating is done using the `PUT` method with optional fields instead of the `PATCH` method.\n\n- **Actions** or **commands** are represented in our RESTful path with a prefixed `:`. Example: `/v2/hours/123/:approve`.\n\n- **Summaries** or **aggregated** results are represented in our RESTful path with a prefixed `>`. Example: `/v2/hours/>thisWeeksBillables`.\n\n- **Request ID** is a key found in all responses in the header with the name `x-tlx-request-id`. For validation and error responses it is also in the response body. If additional log information is absolutely necessary, our support division can locate the key value.\n\n- **version** This is a revision number found on all persisted resources. If included, it will prevent your PUT/POST from overriding any updates to the resource since your GET.\n\n- **Date** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DD`.\n\n- **DateTime** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DDThh:mm:ss`.\n\n- **Searching** is done by entering values in the optional fields for each API call. The values fall into the following categories: range, in, exact and like.\n\n- **Missing fields** or even **no response data** can occur because result objects and fields are filtered on authorization.\n\n- **See [GitHub](https://github.com/Tripletex/tripletex-api2) for more documentation, code examples, changelog and more.**\n\n- **See [Tripletex for developers](https://developer.tripletex.no/) for more practical information, support, updates and access form**\n\n\n## Authentication\n\n[Read more here](https://developer.tripletex.no/docs/documentation/authentication-and-tokens/)\n\n- **Tokens:** The Tripletex API uses 3 different tokens\n\n  - **consumerToken** is a token provided to the consumer by Tripletex after the API 2.0 registration is completed.\n\n  - **employeeToken** is a token created by an administrator in your Tripletex account via the user settings and the tab \"API access\". Each employee token must be given a set of entitlements.\n\n  - **sessionToken** is the token from `/token/session/:create` which requires a consumerToken and an employeeToken created with the same consumer token, but not an authentication header.\n\n- **Authentication** is done via [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)\n\n  - **username** is used to specify what company to access.\n\n    - `0` or blank means the company of the employee.\n\n    - Any other value means accountant clients. Use `/company/>withLoginAccess` to get a list of those.\n\n  - **password** is the **sessionToken**.\n\n  - If you need to create the header yourself use `Authorization: Basic <encoded token>` where `encoded token` is the string `<target company id or 0>:<your session token>` Base64 encoded.\n\n\n## Tags\n\n- `[BETA]` This is a beta endpoint and can be subject to change.\n- `[DEPRECATED]` Deprecated means that we intend to remove/change this feature or capability in a future \"major\" API release. We therefore discourage all use of this feature/capability.\n\n\n## Fields\n\nUse the `fields` parameter to specify which fields should be returned. This also supports fields from sub elements, done via `<field>(<subResourceFields>)`. `*` means all fields for that resource. Example values:\n- `project,activity,hours`  returns `{project:..., activity:...., hours:...}`.\n- just `project` returns `\"project\" : { \"id\": 12345, \"url\": \"tripletex.no/v2/projects/12345\"  }`.\n- `project(*)` returns `\"project\" : { \"id\": 12345 \"name\":\"ProjectName\" \"number.....startDate\": \"2013-01-07\" }`.\n- `project(name)` returns `\"project\" : { \"name\":\"ProjectName\" }`.\n- All resources and some subResources :  `*,activity(name),employee(*)`.\n\n\n## Sorting\n\nUse the `sorting` parameter to specify sorting. It takes a comma separated list, where a `-` prefix denotes descending. You can sort by sub object with the following format: `<field>.<subObjectField>`. Example values:\n- `date`\n- `project.name`\n- `project.name, -date`\n\n\n## Changes\n\nTo get the changes for a resource, `changes` have to be explicitly specified as part of the `fields` parameter, e.g. `*,changes`.\nThere are currently two types of change available: \n- `CREATE` for when the resource was created\n- `UPDATE` for when the resource was updated\n\n**NOTE**\n> For objects created prior to October 24th 2018 the list may be incomplete, but will always contain the CREATE and the last change (if the object has been changed after creation).\n\n\n## Rate limiting\n\nRate limiting is performed on the API calls for an employee for each API consumer. Status regarding the rate limit is returned as headers:\n- `X-Rate-Limit-Limit` - The number of allowed requests in the current period.\n- `X-Rate-Limit-Remaining` - The number of remaining requests.\n- `X-Rate-Limit-Reset` - The number of seconds left in the current period.\n\nOnce the rate limit is hit, all requests will return HTTP status code `429` for the remainder of the current period.\n\n\n## Response envelope\n\n#### Multiple values\n\n```json\n{\n  \"fullResultSize\": ###, // {number} [DEPRECATED]\n  \"from\": ###, // {number} Paging starting from\n  \"count\": ###, // {number} Paging count\n  \"versionDigest\": \"###\", // {string} Hash of full result, null if no result\n  \"values\": [...{...object...},{...object...},{...object...}...]\n}\n```\n\n#### Single value\n\n```json\n{\n  \"value\": {...single object...}\n}\n```\n\n\n## WebHook envelope\n\n```json\n{\n  \"subscriptionId\": ###, // Subscription id\n  \"event\": \"object.verb\", // As listed from /v2/event/\n  \"id\": ###, // Id of object this event is for\n  \"value\": {... single object, null if object.deleted ...}\n}\n```\n\n\n## Error/warning envelope\n\n```json\n{\n  \"status\": ###, // {number} HTTP status code\n  \"code\": #####, // {number} internal status code of event\n  \"message\": \"###\", // {string} Basic feedback message in your language\n  \"link\": \"###\", // {string} Link to doc\n  \"developerMessage\": \"###\", // {string} More technical message\n  \"validationMessages\": [ // {array} List of validation messages, can be null\n    {\n      \"field\": \"###\", // {string} Name of field\n      \"message\": \"###\" // {string} Validation message for field\n    }\n  ],\n  \"requestId\": \"###\" // {string} Same as x-tlx-request-id \n}\n```\n\n\n## Status codes / Error codes\n\n- **200 OK**\n- **201 Created** - From POSTs that create something new.\n- **204 No Content** - When there is no answer, ex: \"/:anAction\" or DELETE.\n- **400 Bad request** -\n  -  **4000** Bad Request Exception\n  - **11000** Illegal Filter Exception\n  - **12000** Path Param Exception\n  - **24000** Cryptography Exception\n- **401 Unauthorized** - When authentication is required and has failed or has not yet been provided\n  -  **3000** Authentication Exception\n- **403 Forbidden** - When AuthorisationManager says no.\n  -  **9000** Security Exception\n- **404 Not Found** - For resources that does not exist.\n  -  **6000** Not Found Exception\n- **409 Conflict** - Such as an edit conflict between multiple simultaneous updates\n  -  **7000** Object Exists Exception\n  -  **8000** Revision Exception\n  - **10000** Locked Exception\n  - **14000** Duplicate entry\n- **422 Bad Request** - For Required fields or things like malformed payload.\n  - **15000** Value Validation Exception\n  - **16000** Mapping Exception\n  - **17000** Sorting Exception\n  - **18000** Validation Exception\n  - **21000** Param Exception\n  - **22000** Invalid JSON Exception\n  - **23000** Result Set Too Large Exception\n- **429 Too Many Requests** - Request rate limit hit\n- **500 Internal Error** - Unexpected condition was encountered and no more specific message is suitable\n  - **1000** Exception\n",
     "title": "Tripletex API",
-    "version": "2.71.13"
+    "version": "2.71.15"
   },
   "paths": {
     "/activity": {
@@ -103643,6 +103933,9 @@
   "swagger": "2.0",
   "tags": [
     {
+      "name": "accountingOfficeclientsModules"
+    },
+    {
       "name": "activity"
     },
     {
@@ -104031,6 +104324,9 @@
     },
     {
       "name": "employee/standardTime"
+    },
+    {
+      "name": "internalemployeebanner"
     },
     {
       "name": "enhetsregisteret"
@@ -104556,6 +104852,9 @@
     },
     {
       "name": "project/settings"
+    },
+    {
+      "name": "internalprojectsupplierInvoice"
     },
     {
       "name": "projecttask"
