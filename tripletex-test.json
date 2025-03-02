@@ -934,6 +934,58 @@
       },
       "type": "object"
     },
+    "AccountingOfficeEmployeeOverview": {
+      "properties": {
+        "certifications": {
+          "description": "Tripletex certified",
+          "items": {
+            "$ref": "#/definitions/Certification"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee",
+          "description": "Employee",
+          "readOnly": true
+        },
+        "partnerAccountManager": {
+          "$ref": "#/definitions/PartnerAccountManager",
+          "description": "Partner account manager",
+          "readOnly": true
+        },
+        "roles": {
+          "description": "Roles",
+          "items": {
+            "$ref": "#/definitions/AccountingOfficeEmployeeRole"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AccountingOfficeEmployeeRole": {
+      "properties": {
+        "id": {
+          "description": "Id",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "info": {
+          "description": "Info",
+          "readOnly": true,
+          "type": "string"
+        },
+        "role": {
+          "description": "Role",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AccountingPeriod": {
       "properties": {
         "changes": {
@@ -2053,6 +2105,15 @@
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
             "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_PURCHASES",
+            "COOPERATIVE_ENTERPRISE_DECIDED_PAID_BACK_PAYMENT",
+            "COOPERATIVE_ENTERPRISE_CARRY_FORWARD_DEDUCTION_THIS_YEAR",
+            "COOPERATIVE_ENTERPRISE_DECIDED_ALLOCATED_PROFIT",
+            "COOPERATIVE_ENTERPRISE_COOPERATIVE_TYPE",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_INCOME_YEAR",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_PREVIOUS_YEAR",
             "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
             "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
             "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
@@ -5245,6 +5306,62 @@
       },
       "type": "object"
     },
+    "BankTransactionComment": {
+      "properties": {
+        "actualEmployeeCompanyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "actualEmployeeId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "actualEmployeeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "bankTransactionId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "comment": {
+          "maxLength": 1024,
+          "minLength": 1,
+          "type": "string"
+        },
+        "createdAt": {
+          "type": "string"
+        },
+        "employee": {
+          "$ref": "#/definitions/Employee"
+        },
+        "externalPaymentId": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "BankTransactionPosting": {
       "properties": {
         "account": {
@@ -5840,6 +5957,26 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Certification": {
+      "properties": {
+        "certificationDate": {
+          "description": "Certification date",
+          "readOnly": true,
+          "type": "string"
+        },
+        "expirationDate": {
+          "description": "Certification expiration date",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Certification name",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -6480,6 +6617,15 @@
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
             "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_PURCHASES",
+            "COOPERATIVE_ENTERPRISE_DECIDED_PAID_BACK_PAYMENT",
+            "COOPERATIVE_ENTERPRISE_CARRY_FORWARD_DEDUCTION_THIS_YEAR",
+            "COOPERATIVE_ENTERPRISE_DECIDED_ALLOCATED_PROFIT",
+            "COOPERATIVE_ENTERPRISE_COOPERATIVE_TYPE",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_INCOME_YEAR",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_PREVIOUS_YEAR",
             "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
             "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
             "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
@@ -6736,6 +6882,12 @@
         },
         "read": {
           "type": "boolean"
+        },
+        "subject": {
+          "description": "Subject of the chat thread",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
         },
         "threadUrl": {
           "description": "Url to the topic of conversation",
@@ -7390,6 +7542,7 @@
               "VOUCHER_AUTOMATION",
               "EHF",
               "BANK_RECONCILIATION",
+              "BANK_INTEGRATION",
               "YEAR_END"
             ],
             "type": "string"
@@ -8696,6 +8849,30 @@
       },
       "type": "object"
     },
+    "ContainerTag": {
+      "properties": {
+        "numChildren": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tagName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContainerTagDivTag": {
+      "properties": {
+        "numChildren": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "tagName": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ContentDisposition": {
       "properties": {
         "creationDate": {
@@ -9070,11 +9247,23 @@
           },
           "type": "array"
         },
+        "shareOfPurchases": {
+          "readOnly": true,
+          "type": "number"
+        },
         "shareOfSales": {
           "readOnly": true,
           "type": "number"
         },
         "taxableBusinessIncome": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "totalCarryForwardDeductionLimit": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "totalPurchases": {
           "readOnly": true,
           "type": "number"
         },
@@ -9136,6 +9325,10 @@
     },
     "CopilotMeta": {
       "properties": {
+        "companyHasSticosModule": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "companyIsAnAS": {
           "readOnly": true,
           "type": "boolean"
@@ -9161,6 +9354,18 @@
           "type": "boolean"
         },
         "hasSticosPaywallPilot": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isAOorAuditor": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isAdmin": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSticosBlacklist": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -9327,6 +9532,22 @@
         },
         "sticosConversationMessage": {
           "$ref": "#/definitions/SticosConversationMessage"
+        },
+        "sticosStatus": {
+          "description": "Sticos banner status",
+          "enum": [
+            "NO_BANNER",
+            "LARGE_BANNER_ADMIN",
+            "LARGE_BANNER_ADMIN_BLACKLIST",
+            "LARGE_BANNER_NORMAL",
+            "SMALL_BANNER_ADMIN",
+            "SMALL_BANNER_ADMIN_BLACKLIST",
+            "SMALL_BANNER_NORMAL",
+            "FADED_OUT_LARGE_BANNER",
+            "LARGE_BANNER_AO",
+            "SMALL_BANNER_AO"
+          ],
+          "type": "string"
         },
         "supportAIConversationMessage": {
           "$ref": "#/definitions/SupportAIConversationMessage"
@@ -12629,6 +12850,15 @@
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
             "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_PURCHASES",
+            "COOPERATIVE_ENTERPRISE_DECIDED_PAID_BACK_PAYMENT",
+            "COOPERATIVE_ENTERPRISE_CARRY_FORWARD_DEDUCTION_THIS_YEAR",
+            "COOPERATIVE_ENTERPRISE_DECIDED_ALLOCATED_PROFIT",
+            "COOPERATIVE_ENTERPRISE_COOPERATIVE_TYPE",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_INCOME_YEAR",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_PREVIOUS_YEAR",
             "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
             "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
             "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
@@ -14927,6 +15157,20 @@
       },
       "type": "object"
     },
+    "ExpenseBatchArgs": {
+      "properties": {
+        "comment": {
+          "type": "string"
+        },
+        "expenseIds": {
+          "type": "string"
+        },
+        "voucherDate": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExternalProduct": {
       "properties": {
         "account": {
@@ -16016,6 +16260,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "customerNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
         "customerUrl": {
           "readOnly": true,
           "type": "string"
@@ -16029,6 +16277,13 @@
           "type": "array"
         },
         "departmentName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "departmentNameForExport": {
+          "type": "string"
+        },
+        "departmentNumber": {
           "readOnly": true,
           "type": "string"
         },
@@ -16054,6 +16309,10 @@
           "type": "array"
         },
         "employeeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "employeeNumber": {
           "readOnly": true,
           "type": "string"
         },
@@ -16101,6 +16360,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "productNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
         "productUnit1Name": {
           "readOnly": true,
           "type": "string"
@@ -16135,6 +16398,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "projectNameForExport": {
+          "type": "string"
+        },
+        "projectNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
         "projectUrl": {
           "readOnly": true,
           "type": "string"
@@ -16156,6 +16426,10 @@
           "type": "array"
         },
         "supplierName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "supplierNumber": {
           "readOnly": true,
           "type": "string"
         },
@@ -16817,6 +17091,15 @@
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
             "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_PURCHASES",
+            "COOPERATIVE_ENTERPRISE_DECIDED_PAID_BACK_PAYMENT",
+            "COOPERATIVE_ENTERPRISE_CARRY_FORWARD_DEDUCTION_THIS_YEAR",
+            "COOPERATIVE_ENTERPRISE_DECIDED_ALLOCATED_PROFIT",
+            "COOPERATIVE_ENTERPRISE_COOPERATIVE_TYPE",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_INCOME_YEAR",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_PREVIOUS_YEAR",
             "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
             "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
             "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
@@ -21150,6 +21433,15 @@
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
             "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_PURCHASES",
+            "COOPERATIVE_ENTERPRISE_DECIDED_PAID_BACK_PAYMENT",
+            "COOPERATIVE_ENTERPRISE_CARRY_FORWARD_DEDUCTION_THIS_YEAR",
+            "COOPERATIVE_ENTERPRISE_DECIDED_ALLOCATED_PROFIT",
+            "COOPERATIVE_ENTERPRISE_COOPERATIVE_TYPE",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_INCOME_YEAR",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_PREVIOUS_YEAR",
             "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
             "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
             "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
@@ -21846,6 +22138,15 @@
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
             "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_PURCHASES",
+            "COOPERATIVE_ENTERPRISE_DECIDED_PAID_BACK_PAYMENT",
+            "COOPERATIVE_ENTERPRISE_CARRY_FORWARD_DEDUCTION_THIS_YEAR",
+            "COOPERATIVE_ENTERPRISE_DECIDED_ALLOCATED_PROFIT",
+            "COOPERATIVE_ENTERPRISE_COOPERATIVE_TYPE",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_INCOME_YEAR",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_PREVIOUS_YEAR",
             "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
             "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
             "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
@@ -23499,14 +23800,19 @@
             "CalculateHmacOnWebhook",
             "NewAddonsAuthorization",
             "AccountingOfficeServiceOptimization",
+            "ClientAccessApiOptimization",
+            "ClientAccessApiOptimizationChecker",
             "AccountingOfficeServiceOptimizationPart2",
             "PilotFeatureRecordPatternQuery",
             "LargeArgumentOptimizerHugeLimit",
             "TimeBasedSessionInvalidation",
             "ValidDateStringRangeValidation",
+            "ValidJsonRPCDateRangeValidation",
             "DebugVoucherFormStoreTransactions",
             "IsAuthSensitiveInfoTripletex",
-            "RequestLogFallback"
+            "RequestLogFallback",
+            "SticosCampaignRelease",
+            "SticosPaywallRelease"
           ],
           "readOnly": true,
           "type": "string"
@@ -23957,7 +24263,21 @@
         "href": {
           "type": "string"
         },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
         "rel": {
+          "enum": [
+            "APPROVE",
+            "UNAPPROVE",
+            "DELIVER",
+            "UNDELIVER",
+            "COPY",
+            "DELETE",
+            "CREATE_VOUCHER",
+            "REJECT"
+          ],
           "type": "string"
         },
         "type": {
@@ -25064,6 +25384,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/BankTransaction"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseBankTransactionComment": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/BankTransactionComment"
           },
           "readOnly": true,
           "type": "array"
@@ -38129,6 +38482,15 @@
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
             "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_PURCHASES",
+            "COOPERATIVE_ENTERPRISE_DECIDED_PAID_BACK_PAYMENT",
+            "COOPERATIVE_ENTERPRISE_CARRY_FORWARD_DEDUCTION_THIS_YEAR",
+            "COOPERATIVE_ENTERPRISE_DECIDED_ALLOCATED_PROFIT",
+            "COOPERATIVE_ENTERPRISE_COOPERATIVE_TYPE",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_INCOME_YEAR",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_PREVIOUS_YEAR",
             "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
             "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
             "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
@@ -38539,6 +38901,26 @@
           "description": "Tax equity year end",
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "PartnerAccountManager": {
+      "properties": {
+        "email": {
+          "description": "email",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fullName": {
+          "description": "Full name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "description": "Phone number",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -39980,6 +40362,15 @@
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
             "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_PURCHASES",
+            "COOPERATIVE_ENTERPRISE_DECIDED_PAID_BACK_PAYMENT",
+            "COOPERATIVE_ENTERPRISE_CARRY_FORWARD_DEDUCTION_THIS_YEAR",
+            "COOPERATIVE_ENTERPRISE_DECIDED_ALLOCATED_PROFIT",
+            "COOPERATIVE_ENTERPRISE_COOPERATIVE_TYPE",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_INCOME_YEAR",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_PREVIOUS_YEAR",
             "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
             "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
             "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
@@ -42491,6 +42882,11 @@
           "minLength": 0,
           "type": "string"
         },
+        "invoiceReserveTotalAmountCurrency": {
+          "description": "Total invoice reserve",
+          "readOnly": true,
+          "type": "number"
+        },
         "invoicingPlan": {
           "description": "Invoicing plans tied to the project",
           "items": {
@@ -43327,6 +43723,9 @@
         },
         "expensesToApprove": {
           "type": "number"
+        },
+        "hasInvoiceReserve": {
+          "type": "boolean"
         },
         "hoursToApprove": {
           "type": "number"
@@ -45062,15 +45461,13 @@
           "readOnly": true,
           "type": "string"
         },
-        "description": {
-          "description": "The description of the posting or transaction",
-          "readOnly": true,
-          "type": "string"
-        },
-        "details": {
+        "detailsList": {
           "description": "The details of the posting or transaction",
+          "items": {
+            "$ref": "#/definitions/ReconciliationEntryDetail"
+          },
           "readOnly": true,
-          "type": "string"
+          "type": "array"
         },
         "entryType": {
           "description": "Shows if it is a Posting or BankTransaction",
@@ -45094,6 +45491,24 @@
           "description": "Id of voucher from posting",
           "format": "int64",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ReconciliationEntryDetail": {
+      "properties": {
+        "key": {
+          "description": "The key",
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "description": "The value",
+          "readOnly": true,
+          "type": "string"
+        },
+        "valueForPDF": {
+          "$ref": "#/definitions/ContainerTagDivTag"
         }
       },
       "type": "object"
@@ -47117,6 +47532,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperAccountingOfficeEmployeeOverview": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/AccountingOfficeEmployeeOverview"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperAccountingPeriod": {
       "properties": {
         "value": {
@@ -47436,6 +47859,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/BankTransactionAggregates"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperBankTransactionComment": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/BankTransactionComment"
         }
       },
       "type": "object"
@@ -56455,6 +56886,15 @@
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
             "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_PURCHASES",
+            "COOPERATIVE_ENTERPRISE_DECIDED_PAID_BACK_PAYMENT",
+            "COOPERATIVE_ENTERPRISE_CARRY_FORWARD_DEDUCTION_THIS_YEAR",
+            "COOPERATIVE_ENTERPRISE_DECIDED_ALLOCATED_PROFIT",
+            "COOPERATIVE_ENTERPRISE_COOPERATIVE_TYPE",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_INCOME_YEAR",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_PREVIOUS_YEAR",
             "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
             "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
             "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
@@ -61312,6 +61752,10 @@
         "department": {
           "$ref": "#/definitions/Department"
         },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "employee": {
           "$ref": "#/definitions/Employee"
         },
@@ -61371,6 +61815,10 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "numberAsString": {
+          "readOnly": true,
+          "type": "string"
         },
         "paymentAmount": {
           "readOnly": true,
@@ -61777,6 +62225,103 @@
       "required": [
         "description"
       ],
+      "type": "object"
+    },
+    "TravelReportFilterParams": {
+      "properties": {
+        "costCategoryIds": {
+          "type": "string"
+        },
+        "count": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "dateFrom": {
+          "type": "string"
+        },
+        "dateTo": {
+          "type": "string"
+        },
+        "departmentIds": {
+          "type": "string"
+        },
+        "employeeIds": {
+          "type": "string"
+        },
+        "expenseStatusEnum": {
+          "enum": [
+            "ALL",
+            "REJECTED",
+            "OPEN",
+            "DELIVERED",
+            "APPROVED",
+            "FINISHED"
+          ],
+          "type": "string"
+        },
+        "from": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "idsToShowOnTop": {
+          "type": "string"
+        },
+        "numberEnd": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "numberStart": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "orderBy": {
+          "enum": [
+            "NUMBER",
+            "TITLE",
+            "PROJECT",
+            "DEPARTMENT",
+            "EMPLOYEE_NAME",
+            "AMOUNT",
+            "STATUS",
+            "CHARGEABLE"
+          ],
+          "type": "string"
+        },
+        "orderDirection": {
+          "enum": [
+            "ASC",
+            "DESC"
+          ],
+          "type": "string"
+        },
+        "paymentTypeIds": {
+          "type": "string"
+        },
+        "projectDepartmentIds": {
+          "type": "string"
+        },
+        "projectIds": {
+          "type": "string"
+        },
+        "projectLeaderIds": {
+          "type": "string"
+        },
+        "query": {
+          "type": "string"
+        },
+        "voucheredStatus": {
+          "enum": [
+            "ALL",
+            "VOUCHERED",
+            "NOT_VOUCHERED"
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "TrialDTO": {
@@ -66050,6 +66595,15 @@
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_SEPARATE",
             "COOPERATIVE_ENTERPRISE_RETROACTIVE_PAYMENT_ETC_OTHER",
             "COOPERATIVE_ENTERPRISE_CONDITIONS_FOR_DEDUCTION_RETROACTIVE_PAYMENT_ARE_MET",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_SEPARATE",
+            "COOPERATIVE_ENTERPRISE_PURCHASE_INVOLVING_MEMBER_ANOTHER",
+            "COOPERATIVE_ENTERPRISE_OTHER_PURCHASES",
+            "COOPERATIVE_ENTERPRISE_DECIDED_PAID_BACK_PAYMENT",
+            "COOPERATIVE_ENTERPRISE_CARRY_FORWARD_DEDUCTION_THIS_YEAR",
+            "COOPERATIVE_ENTERPRISE_DECIDED_ALLOCATED_PROFIT",
+            "COOPERATIVE_ENTERPRISE_COOPERATIVE_TYPE",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_INCOME_YEAR",
+            "COOPERATIVE_ENTERPRISE_DEDUCTION_LIMIT_PREVIOUS_YEAR",
             "OTHER_CIRCUMSTANCES_TOTAL_DISTRIBUTED_DIVIDEND",
             "OTHER_CIRCUMSTANCES_INTEREST_ON_EQUITY_CERTIFICATE",
             "OTHER_CIRCUMSTANCES_COMPANY_HAS_GRANTED_LOAN",
@@ -67900,7 +68454,7 @@
     },
     "description": "## Usage\n\n- **Download the spec** [swagger.json](/v2/swagger.json) file, it is a [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).\n\n- **Generating a client** can easily be done using tools like [swagger-codegen](https://github.com/swagger-api/swagger-codegen) or other that accepts [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) specs.\n    - For swagger codegen it is recommended to use the flag: **--removeOperationIdPrefix**. \n      Unique operation ids are about to be introduced to the spec, and this ensures forward compatibility - and results in less verbose generated code.\n\n- **Please note** that Tripletex offers several packages. Some endpoints are only supported in certain packages. You can see the Tripletex packages [here](https://www.tripletex.no/priser/).\n\n## Overview\n\n- Partial resource updating is done using the `PUT` method with optional fields instead of the `PATCH` method.\n\n- **Actions** or **commands** are represented in our RESTful path with a prefixed `:`. Example: `/v2/hours/123/:approve`.\n\n- **Summaries** or **aggregated** results are represented in our RESTful path with a prefixed `>`. Example: `/v2/hours/>thisWeeksBillables`.\n\n- **Request ID** is a key found in all responses in the header with the name `x-tlx-request-id`. For validation and error responses it is also in the response body. If additional log information is absolutely necessary, our support division can locate the key value.\n\n- **version** This is a revision number found on all persisted resources. If included, it will prevent your PUT/POST from overriding any updates to the resource since your GET.\n\n- **Date** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DD`.\n\n- **DateTime** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DDThh:mm:ss`.\n\n- **Searching** is done by entering values in the optional fields for each API call. The values fall into the following categories: range, in, exact and like.\n\n- **Missing fields** or even **no response data** can occur because result objects and fields are filtered on authorization.\n\n- **See [GitHub](https://github.com/Tripletex/tripletex-api2) for more documentation, code examples, changelog and more.**\n\n- **See [Tripletex for developers](https://developer.tripletex.no/) for more practical information, support, updates and access form**\n\n\n## Authentication\n\n[Read more here](https://developer.tripletex.no/docs/documentation/authentication-and-tokens/)\n\n- **Tokens:** The Tripletex API uses 3 different tokens\n\n  - **consumerToken** is a token provided to the consumer by Tripletex after the API 2.0 registration is completed.\n\n  - **employeeToken** is a token created by an administrator in your Tripletex account via the user settings and the tab \"API access\". Each employee token must be given a set of entitlements.\n\n  - **sessionToken** is the token from `/token/session/:create` which requires a consumerToken and an employeeToken created with the same consumer token, but not an authentication header.\n\n- **Authentication** is done via [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)\n\n  - **username** is used to specify what company to access.\n\n    - `0` or blank means the company of the employee.\n\n    - Any other value means accountant clients. Use `/company/>withLoginAccess` to get a list of those.\n\n  - **password** is the **sessionToken**.\n\n  - If you need to create the header yourself use `Authorization: Basic <encoded token>` where `encoded token` is the string `<target company id or 0>:<your session token>` Base64 encoded.\n\n\n## Tags\n\n- `[BETA]` This is a beta endpoint and can be subject to change.\n- `[DEPRECATED]` Deprecated means that we intend to remove/change this feature or capability in a future \"major\" API release. We therefore discourage all use of this feature/capability.\n\n\n## Fields\n\nUse the `fields` parameter to specify which fields should be returned. This also supports fields from sub elements, done via `<field>(<subResourceFields>)`. `*` means all fields for that resource. Example values:\n- `project,activity,hours`  returns `{project:..., activity:...., hours:...}`.\n- just `project` returns `\"project\" : { \"id\": 12345, \"url\": \"tripletex.no/v2/projects/12345\"  }`.\n- `project(*)` returns `\"project\" : { \"id\": 12345 \"name\":\"ProjectName\" \"number.....startDate\": \"2013-01-07\" }`.\n- `project(name)` returns `\"project\" : { \"name\":\"ProjectName\" }`.\n- All resources and some subResources :  `*,activity(name),employee(*)`.\n\n\n## Sorting\n\nUse the `sorting` parameter to specify sorting. It takes a comma separated list, where a `-` prefix denotes descending. You can sort by sub object with the following format: `<field>.<subObjectField>`. Example values:\n- `date`\n- `project.name`\n- `project.name, -date`\n\n\n## Changes\n\nTo get the changes for a resource, `changes` have to be explicitly specified as part of the `fields` parameter, e.g. `*,changes`.\nThere are currently two types of change available: \n- `CREATE` for when the resource was created\n- `UPDATE` for when the resource was updated\n\n**NOTE**\n> For objects created prior to October 24th 2018 the list may be incomplete, but will always contain the CREATE and the last change (if the object has been changed after creation).\n\n\n## Rate limiting\n\nRate limiting is performed on the API calls for an employee for each API consumer. Status regarding the rate limit is returned as headers:\n- `X-Rate-Limit-Limit` - The number of allowed requests in the current period.\n- `X-Rate-Limit-Remaining` - The number of remaining requests.\n- `X-Rate-Limit-Reset` - The number of seconds left in the current period.\n\nOnce the rate limit is hit, all requests will return HTTP status code `429` for the remainder of the current period.\n\n\n## Response envelope\n\n#### Multiple values\n\n```json\n{\n  \"fullResultSize\": ###, // {number} [DEPRECATED]\n  \"from\": ###, // {number} Paging starting from\n  \"count\": ###, // {number} Paging count\n  \"versionDigest\": \"###\", // {string} Hash of full result, null if no result\n  \"values\": [...{...object...},{...object...},{...object...}...]\n}\n```\n\n#### Single value\n\n```json\n{\n  \"value\": {...single object...}\n}\n```\n\n\n## WebHook envelope\n\n```json\n{\n  \"subscriptionId\": ###, // Subscription id\n  \"event\": \"object.verb\", // As listed from /v2/event/\n  \"id\": ###, // Id of object this event is for\n  \"value\": {... single object, null if object.deleted ...}\n}\n```\n\n\n## Error/warning envelope\n\n```json\n{\n  \"status\": ###, // {number} HTTP status code\n  \"code\": #####, // {number} internal status code of event\n  \"message\": \"###\", // {string} Basic feedback message in your language\n  \"link\": \"###\", // {string} Link to doc\n  \"developerMessage\": \"###\", // {string} More technical message\n  \"validationMessages\": [ // {array} List of validation messages, can be null\n    {\n      \"field\": \"###\", // {string} Name of field\n      \"message\": \"###\" // {string} Validation message for field\n    }\n  ],\n  \"requestId\": \"###\" // {string} Same as x-tlx-request-id \n}\n```\n\n\n## Status codes / Error codes\n\n- **200 OK**\n- **201 Created** - From POSTs that create something new.\n- **204 No Content** - When there is no answer, ex: \"/:anAction\" or DELETE.\n- **400 Bad request** -\n  -  **4000** Bad Request Exception\n  - **11000** Illegal Filter Exception\n  - **12000** Path Param Exception\n  - **24000** Cryptography Exception\n- **401 Unauthorized** - When authentication is required and has failed or has not yet been provided\n  -  **3000** Authentication Exception\n- **403 Forbidden** - When AuthorisationManager says no.\n  -  **9000** Security Exception\n- **404 Not Found** - For resources that does not exist.\n  -  **6000** Not Found Exception\n- **409 Conflict** - Such as an edit conflict between multiple simultaneous updates\n  -  **7000** Object Exists Exception\n  -  **8000** Revision Exception\n  - **10000** Locked Exception\n  - **14000** Duplicate entry\n- **422 Bad Request** - For Required fields or things like malformed payload.\n  - **15000** Value Validation Exception\n  - **16000** Mapping Exception\n  - **17000** Sorting Exception\n  - **18000** Validation Exception\n  - **21000** Param Exception\n  - **22000** Invalid JSON Exception\n  - **23000** Result Set Too Large Exception\n- **429 Too Many Requests** - Request rate limit hit\n- **500 Internal Error** - Unexpected condition was encountered and no more specific message is suitable\n  - **1000** Exception\n",
     "title": "Tripletex API",
-    "version": "2.71.15"
+    "version": "2.71.16"
   },
   "paths": {
     "/activity": {
@@ -71049,6 +71603,139 @@
         "summary": "Get bank statement.",
         "tags": [
           "bank/statement"
+        ]
+      }
+    },
+    "/bank/transaction/comment": {
+      "get": {
+        "description": "",
+        "operationId": "BankTransactionComment_search",
+        "parameters": [
+          {
+            "description": "ID of bank transaction",
+            "format": "int64",
+            "in": "query",
+            "name": "bankTransactionId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseBankTransactionComment"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "[INTERNAL] Get comments for bank transaction",
+        "tags": [
+          "bank_transaction_comment"
+        ]
+      },
+      "post": {
+        "description": "",
+        "operationId": "BankTransactionComment_post",
+        "parameters": [
+          {
+            "description": "[INTERNAL] ID of bank transaction",
+            "format": "int64",
+            "in": "query",
+            "name": "bankTransactionId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "The text of the comment to be created",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperBankTransactionComment"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "[INTERNAL] Create a comment for bank transaction",
+        "tags": [
+          "bank_transaction_comment"
+        ]
+      }
+    },
+    "/bank/transaction/comment/{commentId}": {
+      "delete": {
+        "description": "",
+        "operationId": "BankTransactionComment_delete",
+        "parameters": [
+          {
+            "description": "[INTERNAL] ID of comment.",
+            "format": "int64",
+            "in": "path",
+            "name": "commentId",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Delete comment",
+        "tags": [
+          "bank_transaction_comment"
         ]
       }
     },
@@ -103933,6 +104620,9 @@
   "swagger": "2.0",
   "tags": [
     {
+      "name": "accountingOffice"
+    },
+    {
       "name": "accountingOfficeclientsModules"
     },
     {
@@ -104056,10 +104746,13 @@
       "name": "bankreconciliationentry"
     },
     {
+      "name": "bank/reconciliation/entry/bankTransaction"
+    },
+    {
       "name": "bank/reconciliation/entry/posting"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bankreconciliationinternalexport"
     },
     {
       "name": "bankreconciliationinternalmatch"
@@ -104092,6 +104785,12 @@
       "name": "bank/statement/transaction"
     },
     {
+      "name": "banktransactioncomment"
+    },
+    {
+      "name": "bank_transaction_comment"
+    },
+    {
       "name": "upsaleMetric"
     },
     {
@@ -104111,9 +104810,6 @@
     },
     {
       "name": "accountantClientAccess"
-    },
-    {
-      "name": "accountingOffice"
     },
     {
       "name": "accountantClientAccesstemplate"
