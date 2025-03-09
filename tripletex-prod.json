@@ -934,6 +934,213 @@
       },
       "type": "object"
     },
+    "AccountantDashboardAdminNewsArticle": {
+      "description": "News article with all tags, links and translations",
+      "properties": {
+        "id": {
+          "description": "The id of the article",
+          "format": "int64",
+          "type": "integer"
+        },
+        "links": {
+          "description": "The links of the article",
+          "items": {
+            "$ref": "#/definitions/AccountantDashboardAdminNewsArticleLink"
+          },
+          "type": "array"
+        },
+        "published": {
+          "description": "Whether the article is published",
+          "type": "boolean"
+        },
+        "publishedDate": {
+          "description": "The date the article was published",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tags": {
+          "description": "The tags of the article",
+          "items": {
+            "$ref": "#/definitions/AccountantDashboardAdminNewsArticleTag"
+          },
+          "type": "array"
+        },
+        "translations": {
+          "description": "The translations of the article",
+          "items": {
+            "$ref": "#/definitions/AccountantDashboardAdminNewsArticleTranslation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AccountantDashboardAdminNewsArticleLink": {
+      "description": "Link on a news article",
+      "properties": {
+        "id": {
+          "description": "The id of the link",
+          "format": "int64",
+          "type": "integer"
+        },
+        "translations": {
+          "description": "The translations of the link",
+          "items": {
+            "$ref": "#/definitions/AccountantDashboardAdminNewsArticleLinkTranslation"
+          },
+          "type": "array"
+        },
+        "url": {
+          "description": "The URL of the link",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountantDashboardAdminNewsArticleLinkTranslation": {
+      "description": "Translation of a link on a news article",
+      "properties": {
+        "id": {
+          "description": "The id of the translation",
+          "format": "int64",
+          "type": "integer"
+        },
+        "language": {
+          "description": "The language of the translation",
+          "maxLength": 2,
+          "minLength": 2,
+          "type": "string"
+        },
+        "text": {
+          "description": "The text of the translation",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountantDashboardAdminNewsArticleTag": {
+      "description": "Tag on a news article",
+      "properties": {
+        "id": {
+          "description": "The id of the tag",
+          "format": "int64",
+          "type": "integer"
+        },
+        "translations": {
+          "description": "The translations of the tag",
+          "items": {
+            "$ref": "#/definitions/AccountantDashboardAdminNewsArticleTagTranslation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AccountantDashboardAdminNewsArticleTagTranslation": {
+      "description": "Translation of a tag on a news article",
+      "properties": {
+        "id": {
+          "description": "The id of the translation",
+          "format": "int64",
+          "type": "integer"
+        },
+        "language": {
+          "description": "The language of the translation",
+          "maxLength": 2,
+          "minLength": 2,
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the translation",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountantDashboardAdminNewsArticleTranslation": {
+      "description": "Translation of a news article",
+      "properties": {
+        "content": {
+          "description": "The content of the translation",
+          "maxLength": 65535,
+          "minLength": 0,
+          "type": "string"
+        },
+        "id": {
+          "description": "The id of the translation",
+          "format": "int64",
+          "type": "integer"
+        },
+        "language": {
+          "description": "The language of the translation",
+          "maxLength": 2,
+          "minLength": 2,
+          "type": "string"
+        },
+        "title": {
+          "description": "The title of the translation",
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountantDashboardPublicNewsArticle": {
+      "properties": {
+        "content": {
+          "description": "The text content of the article",
+          "readOnly": true,
+          "type": "string"
+        },
+        "links": {
+          "description": "The links of the article",
+          "items": {
+            "$ref": "#/definitions/AccountantDashboardPublicNewsArticleLink"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "publishedDate": {
+          "description": "The date the article was published",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tags": {
+          "description": "The tags of the article",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "title": {
+          "description": "The title of the article",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AccountantDashboardPublicNewsArticleLink": {
+      "properties": {
+        "text": {
+          "description": "The text of the link",
+          "type": "string"
+        },
+        "url": {
+          "description": "The URL of the link",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AccountingOfficeEmployeeOverview": {
       "properties": {
         "certifications": {
@@ -4040,7 +4247,9 @@
               "VISMA_ACCOUNT_STATEMENT_PSD2",
               "SBANKEN_BEDRIFT_CSV",
               "LANDKREDITT_TELEPAY",
-              "ZTL"
+              "ZTL",
+              "VISMA_ACCOUNT_STATEMENT_PLATFORM_AGNOSTIC",
+              "VISMA_ACCOUNT_STATEMENT_PDS2_PLATFORM_AGNOSTIC"
             ],
             "type": "string"
           },
@@ -4852,6 +5061,58 @@
       "required": [
         "bankReconciliation"
       ],
+      "type": "object"
+    },
+    "BankReconciliationMatchRequestBuilder": {
+      "properties": {
+        "companyId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "creditAccountNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "debitAccountNumber": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "postings": {
+          "items": {
+            "$ref": "#/definitions/EntryMatchBuilder"
+          },
+          "type": "array"
+        },
+        "transactions": {
+          "items": {
+            "$ref": "#/definitions/EntryMatchBuilder"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BankReconciliationMatchResponseBuilder": {
+      "properties": {
+        "bankReconciliationId": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "postingIds": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "transactionIds": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "BankReconciliationMatchesCounter": {
@@ -7533,23 +7794,99 @@
       },
       "type": "object"
     },
+    "ClientModule": {
+      "properties": {
+        "active": {
+          "description": "Active",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "canActivate": {
+          "description": "Can activate",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "canDeactivate": {
+          "description": "Can deactivate",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "module": {
+          "description": "Module",
+          "enum": [
+            "SMART_WAGE",
+            "API_V2",
+            "REMIT",
+            "AUTOPAY",
+            "ZTL",
+            "CASH_CREDIT_APRILA",
+            "VOUCHER_SCANNING",
+            "SMART_SCAN",
+            "INVOICE_OPTION_AVTALEGIRO",
+            "INVOICE_OPTION_EFAKTURA",
+            "INVOICE_OPTION_VIPPS",
+            "INVOICE_OPTION_PAPER",
+            "OCR",
+            "INVOICE_OPTION_AUTOINVOICE_OUTBOUND_EHF",
+            "INVOICE_OPTION_AUTOINVOICE_INCOMING_EHF",
+            "SMS_NOTIFICATION",
+            "NETS_PRINT",
+            "SMART_TIME_TRACKING",
+            "ENCRYPTED_PAYSLIP",
+            "BASIS",
+            "DIYPACKAGE",
+            "SMART",
+            "KOMPLETT",
+            "OCR_AUTOPAY",
+            "VOUCHER_FACTORY",
+            "LOGISTICS",
+            "RACKBEAT",
+            "MIKRO",
+            "VVS_ELECTRO",
+            "ACCOUNT_OFFICE",
+            "SMART_PROJECT",
+            "READ_ONLY_ACCESS",
+            "READ_ONLY_ACCESS_FREE",
+            "BILAG_0_500_AUTOMATION",
+            "BILAG_501_1000_AUTOMATION",
+            "BILAG_1001_2000_AUTOMATION",
+            "BILAG_2001_3500_AUTOMATION",
+            "BILAG_3501_5000_AUTOMATION",
+            "BILAG_5001_10001_AUTOMATION",
+            "UBEGRENSET_BILAG_AUTOMATION",
+            "BILAG_0_100_MIKRO_AUTOMATION",
+            "YEAR_END_REPORTING_ENK",
+            "YEAR_END_REPORTING_AS",
+            "YEAR_END_REPORTING_ANS",
+            "YEAR_END_REPORTING_DA",
+            "YEAR_END_REPORTING_STI",
+            "YEAR_END_REPORTING_ORG",
+            "YEAR_END_REPORTING_SA",
+            "YEAR_END_REPORTING_FLI",
+            "YEAR_END_REPORTING_NUF",
+            "PRIMARY_INDUSTRY",
+            "ACCOUNTING",
+            "MINI",
+            "MEDIUM",
+            "TOTAL",
+            "AGRO_LICENCE",
+            "AGRO_CLIENT",
+            "MAMUT",
+            "MAMUT_WITH_WAGE",
+            "AUTPLUS_MINI",
+            "AUTPLUS_STOR",
+            "INTEGRATION_PARTNER",
+            "FIXED_ASSETS_REGISTER",
+            "STICOS"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ClientModules": {
       "properties": {
-        "clientModules": {
-          "description": "Client modules",
-          "items": {
-            "enum": [
-              "VOUCHER_AUTOMATION",
-              "EHF",
-              "BANK_RECONCILIATION",
-              "BANK_INTEGRATION",
-              "YEAR_END"
-            ],
-            "type": "string"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
         "company": {
           "$ref": "#/definitions/Company",
           "description": "Client company",
@@ -7559,6 +7896,110 @@
           "$ref": "#/definitions/Customer",
           "description": "Customer",
           "readOnly": true
+        },
+        "modules": {
+          "description": "Client modules",
+          "items": {
+            "$ref": "#/definitions/ClientModule"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ClientsModulesModuleInfo": {
+      "properties": {
+        "description": {
+          "description": "Description",
+          "readOnly": true,
+          "type": "string"
+        },
+        "descriptionLong1": {
+          "description": "Description long 1",
+          "readOnly": true,
+          "type": "string"
+        },
+        "descriptionLong2": {
+          "description": "Description long 2",
+          "readOnly": true,
+          "type": "string"
+        },
+        "module": {
+          "description": "Module",
+          "enum": [
+            "SMART_WAGE",
+            "API_V2",
+            "REMIT",
+            "AUTOPAY",
+            "ZTL",
+            "CASH_CREDIT_APRILA",
+            "VOUCHER_SCANNING",
+            "SMART_SCAN",
+            "INVOICE_OPTION_AVTALEGIRO",
+            "INVOICE_OPTION_EFAKTURA",
+            "INVOICE_OPTION_VIPPS",
+            "INVOICE_OPTION_PAPER",
+            "OCR",
+            "INVOICE_OPTION_AUTOINVOICE_OUTBOUND_EHF",
+            "INVOICE_OPTION_AUTOINVOICE_INCOMING_EHF",
+            "SMS_NOTIFICATION",
+            "NETS_PRINT",
+            "SMART_TIME_TRACKING",
+            "ENCRYPTED_PAYSLIP",
+            "BASIS",
+            "DIYPACKAGE",
+            "SMART",
+            "KOMPLETT",
+            "OCR_AUTOPAY",
+            "VOUCHER_FACTORY",
+            "LOGISTICS",
+            "RACKBEAT",
+            "MIKRO",
+            "VVS_ELECTRO",
+            "ACCOUNT_OFFICE",
+            "SMART_PROJECT",
+            "READ_ONLY_ACCESS",
+            "READ_ONLY_ACCESS_FREE",
+            "BILAG_0_500_AUTOMATION",
+            "BILAG_501_1000_AUTOMATION",
+            "BILAG_1001_2000_AUTOMATION",
+            "BILAG_2001_3500_AUTOMATION",
+            "BILAG_3501_5000_AUTOMATION",
+            "BILAG_5001_10001_AUTOMATION",
+            "UBEGRENSET_BILAG_AUTOMATION",
+            "BILAG_0_100_MIKRO_AUTOMATION",
+            "YEAR_END_REPORTING_ENK",
+            "YEAR_END_REPORTING_AS",
+            "YEAR_END_REPORTING_ANS",
+            "YEAR_END_REPORTING_DA",
+            "YEAR_END_REPORTING_STI",
+            "YEAR_END_REPORTING_ORG",
+            "YEAR_END_REPORTING_SA",
+            "YEAR_END_REPORTING_FLI",
+            "YEAR_END_REPORTING_NUF",
+            "PRIMARY_INDUSTRY",
+            "ACCOUNTING",
+            "MINI",
+            "MEDIUM",
+            "TOTAL",
+            "AGRO_LICENCE",
+            "AGRO_CLIENT",
+            "MAMUT",
+            "MAMUT_WITH_WAGE",
+            "AUTPLUS_MINI",
+            "AUTPLUS_STOR",
+            "INTEGRATION_PARTNER",
+            "FIXED_ASSETS_REGISTER",
+            "STICOS"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "title": {
+          "description": "Title",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -14297,6 +14738,10 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        },
+        "vismaConnect2FAactive": {
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "required": [
@@ -15069,6 +15514,17 @@
         "employee",
         "entitlementId"
       ],
+      "type": "object"
+    },
+    "EntryMatchBuilder": {
+      "properties": {
+        "amount": {
+          "type": "number"
+        },
+        "date": {
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "EnumType": {
@@ -23728,6 +24184,7 @@
             "AutoInvoiceValidatorOutgoing",
             "KillBillUseNewMailSender",
             "ElmaLookup",
+            "UseLatestInvoicePdf",
             "ReportUriHeader",
             "CsrfValidation",
             "SendSubscriptionInvoicingError",
@@ -23739,6 +24196,7 @@
             "SendInvoicesToSmartScan",
             "ApprovalVerifySendToLedger",
             "GlobalCache",
+            "AlwaysToggleGlobalCacheOutsideOfORM",
             "UserOnboardWizard",
             "BeehiveAuthManagersJSONRPC",
             "ZendeskSso",
@@ -23764,6 +24222,7 @@
             "TransactionTimeExceeded",
             "KillBillSequenceForNextInvoiceNumber",
             "React18Mount",
+            "Chat",
             "AccountDropdownWithHelp",
             "CreateCreditNoteJob",
             "NonCriticalExtremelySlowQueries",
@@ -23772,6 +24231,7 @@
             "ResilienceMetrics",
             "UseLoginAccessForEmployee",
             "UseLoginAccessForEmployeeLoginInfo",
+            "SaveDocumentToDbInsteadOfS3",
             "InvoiceAPIIndex",
             "VismaConnectTokenFlow",
             "VismaConnectTokenFlowInvalidateSession",
@@ -23782,7 +24242,6 @@
             "VismaConnectResilience",
             "SalesforceWebhookForProjectManagerRole",
             "GlobalEventSystem",
-            "Marketplace",
             "SalesforceSupport",
             "CleanupTripletexContactsJob",
             "FasterBRAlgorithms",
@@ -23809,7 +24268,6 @@
             "ValidDateStringRangeValidation",
             "ValidJsonRPCDateRangeValidation",
             "DebugVoucherFormStoreTransactions",
-            "IsAuthSensitiveInfoTripletex",
             "RequestLogFallback",
             "SticosCampaignRelease",
             "SticosPaywallRelease"
@@ -23822,7 +24280,7 @@
             "enum": [
               "ANGRY_NERDS",
               "ANTS",
-              "ANTS2",
+              "RELIONS",
               "ASTRO",
               "ATEAM",
               "BEEHIVE",
@@ -24526,6 +24984,105 @@
         "values": {
           "items": {
             "$ref": "#/definitions/AccountantCustomer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseAccountantDashboardAdminNewsArticle": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AccountantDashboardAdminNewsArticle"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseAccountantDashboardAdminNewsArticleTag": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AccountantDashboardAdminNewsArticleTag"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseAccountantDashboardPublicNewsArticle": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AccountantDashboardPublicNewsArticle"
           },
           "readOnly": true,
           "type": "array"
@@ -34245,6 +34802,11 @@
     },
     "LoggedInUserInfo": {
       "properties": {
+        "actualEmployeeId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
         "company": {
           "$ref": "#/definitions/Company",
           "readOnly": true
@@ -39315,6 +39877,10 @@
         },
         "creditAccount": {
           "$ref": "#/definitions/Account"
+        },
+        "currencyCode": {
+          "readOnly": true,
+          "type": "string"
         },
         "currencyId": {
           "format": "int32",
@@ -45657,6 +46223,44 @@
       },
       "type": "object"
     },
+    "ReconciliationRequest": {
+      "properties": {
+        "bankReconciliationId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "pdfOrientation": {
+          "enum": [
+            "portrait",
+            "landscape"
+          ],
+          "type": "string"
+        },
+        "transactions": {
+          "items": {
+            "format": "int64",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "transactionsType": {
+          "enum": [
+            "CURRENT_MONTH",
+            "ALL_TRANSACTIONS",
+            "SELECTED"
+          ],
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "APPROVED",
+            "OPEN_TRANSACTIONS"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ReconciliationSelectedState": {
       "properties": {
         "selectedDifference": {
@@ -47532,6 +48136,22 @@
       },
       "type": "object"
     },
+    "ResponseWrapperAccountantDashboardAdminNewsArticle": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/AccountantDashboardAdminNewsArticle"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperAccountantDashboardAdminNewsArticleTag": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/AccountantDashboardAdminNewsArticleTag"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperAccountingOfficeEmployeeOverview": {
       "properties": {
         "value": {
@@ -47795,6 +48415,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/BankReconciliationMatch"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperBankReconciliationMatchResponseBuilder": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/BankReconciliationMatchResponseBuilder"
         }
       },
       "type": "object"
@@ -49457,6 +50085,20 @@
       },
       "type": "object"
     },
+    "ResponseWrapperMapCategoryListClientsModulesModuleInfo": {
+      "properties": {
+        "value": {
+          "additionalProperties": {
+            "items": {
+              "$ref": "#/definitions/ClientsModulesModuleInfo"
+            },
+            "type": "array"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperMapFeatureBoolean": {
       "properties": {
         "value": {
@@ -49517,6 +50159,17 @@
         "value": {
           "additionalProperties": {
             "$ref": "#/definitions/EventInfoDescription"
+          },
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperMapStringObject": {
+      "properties": {
+        "value": {
+          "additionalProperties": {
+            "type": "object"
           },
           "type": "object"
         }
@@ -55581,6 +56234,27 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "SendEmailRequest": {
+      "properties": {
+        "bankReconciliationId": {
+          "description": "The ID of the reconciliation entries to send.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "emailAddress": {
+          "description": "The email address to send to.",
+          "type": "string"
+        },
+        "message": {
+          "description": "The message to include in the email.",
+          "type": "string"
+        }
+      },
+      "required": [
+        "emailAddress"
+      ],
       "type": "object"
     },
     "SendFormEmail": {
@@ -61756,6 +62430,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "displayNameWithoutNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
         "employee": {
           "$ref": "#/definitions/Employee"
         },
@@ -62077,6 +62755,9 @@
           "type": "boolean"
         },
         "approvalRequired": {
+          "type": "boolean"
+        },
+        "canApproveOwnExpenses": {
           "type": "boolean"
         },
         "changes": {
@@ -63424,6 +64105,9 @@
       "properties": {
         "customerDisplayName": {
           "type": "string"
+        },
+        "isAdvanceInvoicing": {
+          "type": "boolean"
         },
         "isAuthTripletexSupport": {
           "type": "boolean"
@@ -65219,6 +65903,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isPDFInvoiceWhichCanBeSentToLedger": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isSpam": {
           "readOnly": true,
           "type": "boolean"
@@ -65259,6 +65947,21 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "pdfScanningStatus": {
+          "enum": [
+            "NOT_STARTED",
+            "SENT",
+            "PROCESSING",
+            "COMPLETED",
+            "FAILED",
+            "PROCESSING_ERROR",
+            "VALIDATION_ERROR",
+            "WONT_SEND",
+            "STOPPED"
+          ],
+          "readOnly": true,
+          "type": "string"
         },
         "predictionLines": {
           "items": {
@@ -68457,6 +69160,61 @@
     "version": "2.71.16"
   },
   "paths": {
+    "/accountantDashboard/news": {
+      "get": {
+        "description": "",
+        "operationId": "AccountantDashboardNews_get",
+        "parameters": [
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseAccountantDashboardPublicNewsArticle"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get public news articles",
+        "tags": [
+          "accountantDashboardnews"
+        ]
+      }
+    },
     "/activity": {
       "get": {
         "description": "",
@@ -71358,7 +72116,9 @@
               "VISMA_ACCOUNT_STATEMENT_PSD2",
               "SBANKEN_BEDRIFT_CSV",
               "LANDKREDITT_TELEPAY",
-              "ZTL"
+              "ZTL",
+              "VISMA_ACCOUNT_STATEMENT_PLATFORM_AGNOSTIC",
+              "VISMA_ACCOUNT_STATEMENT_PDS2_PLATFORM_AGNOSTIC"
             ],
             "in": "query",
             "name": "fileFormat",
@@ -72838,7 +73598,69 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Returns the amount in the company currency, where the input amount is in fromCurrency, using the newest exhange rate available for the given date",
+        "summary": "Returns the amount in the company currency, where the input amount is in fromCurrency, using the newest exchange rate available for the given date",
+        "tags": [
+          "currency"
+        ]
+      }
+    },
+    "/currency/{fromCurrencyID}/{toCurrencyID}/exchangeRate": {
+      "get": {
+        "description": "",
+        "operationId": "CurrencyExchangeRate_convertCurrencyAmount",
+        "parameters": [
+          {
+            "description": "From Currency ID",
+            "format": "int64",
+            "in": "path",
+            "name": "fromCurrencyID",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "To Currency ID",
+            "format": "int64",
+            "in": "path",
+            "name": "toCurrencyID",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Amount to be exchanged",
+            "in": "query",
+            "name": "amount",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Voucher date",
+            "in": "query",
+            "name": "date",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperTlxNumber"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Returns the amount in the specified currency, where the input amount is in fromCurrency, using the newest exchange rate available for the given date",
         "tags": [
           "currency"
         ]
@@ -77915,7 +78737,19 @@
       "put": {
         "description": "",
         "operationId": "EmployeePreferencesChangeLanguage_changeLanguage",
-        "parameters": [],
+        "parameters": [
+          {
+            "description": "Language to change to",
+            "enum": [
+              "NO",
+              "EN"
+            ],
+            "in": "query",
+            "name": "language",
+            "required": false,
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "successful operation",
@@ -77929,7 +78763,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Change language",
+        "summary": "Change current employees language to the given language",
         "tags": [
           "employee/preferences"
         ]
@@ -104620,6 +105454,15 @@
   "swagger": "2.0",
   "tags": [
     {
+      "name": "accountantDashboardadmin"
+    },
+    {
+      "name": "accountantDashboardnews"
+    },
+    {
+      "name": "accountantDashboardautomation"
+    },
+    {
       "name": "accountingOffice"
     },
     {
@@ -104746,10 +105589,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
       "name": "bankreconciliationinternalexport"

@@ -6064,6 +6064,12 @@ components:
           type: integer
           format: int64
           example: 145
+        outstandingBalanceInCurrency:
+          type: integer
+          format: int64
+          description: Outstanding balance in other currency.
+          readOnly: true
+          example: 65
         lines:
           type: array
           items:
