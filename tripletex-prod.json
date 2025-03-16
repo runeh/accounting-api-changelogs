@@ -400,6 +400,14 @@
           "description": "outgoing quantity balance",
           "type": "number"
         },
+        "bookedBalanceOut": {
+          "description": "booked outgoing balance",
+          "type": "number"
+        },
+        "bookedBalanceOutQuantity": {
+          "description": "booked outgoing quantity balance",
+          "type": "number"
+        },
         "department": {
           "$ref": "#/definitions/Department",
           "description": "department"
@@ -2048,6 +2056,7 @@
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
             "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
+            "FOREST_FUND",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -2086,6 +2095,7 @@
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
+            "YEAR_END_DOCUMENTATION_FOREST_FUND",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -6147,7 +6157,8 @@
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
-            "DOCUMENT_WITH_ALTINN_ID"
+            "DOCUMENT_WITH_ALTINN_ID",
+            "FOREST_FUND"
           ],
           "readOnly": true,
           "type": "string"
@@ -6614,6 +6625,7 @@
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
             "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
+            "FOREST_FUND",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -6652,6 +6664,7 @@
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
+            "YEAR_END_DOCUMENTATION_FOREST_FUND",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -7258,6 +7271,7 @@
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
             "TIMBER_ACCOUNT",
+            "FOREST_FUND",
             "TAX_RETURN",
             "TAX_RETURN_TAX_CALCULATION",
             "CONTROL_TAX_RETURN",
@@ -7883,6 +7897,90 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "ClientModuleActivationRequest": {
+      "properties": {
+        "customerId": {
+          "description": "Customer ID",
+          "format": "int64",
+          "type": "integer"
+        },
+        "module": {
+          "description": "Module",
+          "enum": [
+            "SMART_WAGE",
+            "API_V2",
+            "REMIT",
+            "AUTOPAY",
+            "ZTL",
+            "CASH_CREDIT_APRILA",
+            "VOUCHER_SCANNING",
+            "SMART_SCAN",
+            "INVOICE_OPTION_AVTALEGIRO",
+            "INVOICE_OPTION_EFAKTURA",
+            "INVOICE_OPTION_VIPPS",
+            "INVOICE_OPTION_PAPER",
+            "OCR",
+            "INVOICE_OPTION_AUTOINVOICE_OUTBOUND_EHF",
+            "INVOICE_OPTION_AUTOINVOICE_INCOMING_EHF",
+            "SMS_NOTIFICATION",
+            "NETS_PRINT",
+            "SMART_TIME_TRACKING",
+            "ENCRYPTED_PAYSLIP",
+            "BASIS",
+            "DIYPACKAGE",
+            "SMART",
+            "KOMPLETT",
+            "OCR_AUTOPAY",
+            "VOUCHER_FACTORY",
+            "LOGISTICS",
+            "RACKBEAT",
+            "MIKRO",
+            "VVS_ELECTRO",
+            "ACCOUNT_OFFICE",
+            "SMART_PROJECT",
+            "READ_ONLY_ACCESS",
+            "READ_ONLY_ACCESS_FREE",
+            "BILAG_0_500_AUTOMATION",
+            "BILAG_501_1000_AUTOMATION",
+            "BILAG_1001_2000_AUTOMATION",
+            "BILAG_2001_3500_AUTOMATION",
+            "BILAG_3501_5000_AUTOMATION",
+            "BILAG_5001_10001_AUTOMATION",
+            "UBEGRENSET_BILAG_AUTOMATION",
+            "BILAG_0_100_MIKRO_AUTOMATION",
+            "YEAR_END_REPORTING_ENK",
+            "YEAR_END_REPORTING_AS",
+            "YEAR_END_REPORTING_ANS",
+            "YEAR_END_REPORTING_DA",
+            "YEAR_END_REPORTING_STI",
+            "YEAR_END_REPORTING_ORG",
+            "YEAR_END_REPORTING_SA",
+            "YEAR_END_REPORTING_FLI",
+            "YEAR_END_REPORTING_NUF",
+            "PRIMARY_INDUSTRY",
+            "ACCOUNTING",
+            "MINI",
+            "MEDIUM",
+            "TOTAL",
+            "AGRO_LICENCE",
+            "AGRO_CLIENT",
+            "MAMUT",
+            "MAMUT_WITH_WAGE",
+            "AUTPLUS_MINI",
+            "AUTPLUS_STOR",
+            "INTEGRATION_PARTNER",
+            "FIXED_ASSETS_REGISTER",
+            "STICOS"
+          ],
+          "type": "string"
+        }
+      },
+      "required": [
+        "customerId",
+        "module"
+      ],
       "type": "object"
     },
     "ClientModules": {
@@ -9986,7 +10084,10 @@
             "SMALL_BANNER_NORMAL",
             "FADED_OUT_LARGE_BANNER",
             "LARGE_BANNER_AO",
-            "SMALL_BANNER_AO"
+            "SMALL_BANNER_AO",
+            "LARGE",
+            "SMALL",
+            "FADED_OUT"
           ],
           "type": "string"
         },
@@ -10372,6 +10473,49 @@
         "password",
         "username"
       ],
+      "type": "object"
+    },
+    "CreditNoteDetails": {
+      "properties": {
+        "customerEmail": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "invoiceId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "isCreditNote": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isCredited": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isSubscriptionInvoice": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "preferredCustomerSendType": {
+          "enum": [
+            "EMAIL",
+            "EHF",
+            "EFAKTURA",
+            "AVTALEGIRO",
+            "VIPPS",
+            "PAPER",
+            "MANUAL",
+            "DIRECT",
+            "AUTOINVOICE_EHF_OUTBOUND",
+            "AUTOINVOICE_EHF_INCOMING",
+            "PEPPOL_EHF_INCOMING"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Currency": {
@@ -11519,6 +11663,7 @@
             "COOPERATIVE_ENTERPRISE",
             "OTHER_CIRCUMSTANCES",
             "TIMBER_ACCOUNT",
+            "FOREST_FUND",
             "TAX_RETURN",
             "TAX_RETURN_TAX_CALCULATION",
             "CONTROL_TAX_RETURN",
@@ -12752,7 +12897,8 @@
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
-            "DOCUMENT_WITH_ALTINN_ID"
+            "DOCUMENT_WITH_ALTINN_ID",
+            "FOREST_FUND"
           ],
           "type": "string"
         },
@@ -13027,6 +13173,7 @@
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
             "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
+            "FOREST_FUND",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -13065,6 +13212,7 @@
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
+            "YEAR_END_DOCUMENTATION_FOREST_FUND",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -17008,7 +17156,8 @@
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
-            "DOCUMENT_WITH_ALTINN_ID"
+            "DOCUMENT_WITH_ALTINN_ID",
+            "FOREST_FUND"
           ],
           "type": "string"
         },
@@ -17283,6 +17432,7 @@
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
             "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
+            "FOREST_FUND",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -17321,6 +17471,7 @@
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
+            "YEAR_END_DOCUMENTATION_FOREST_FUND",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -17820,7 +17971,8 @@
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
-            "DOCUMENT_WITH_ALTINN_ID"
+            "DOCUMENT_WITH_ALTINN_ID",
+            "FOREST_FUND"
           ],
           "readOnly": true,
           "type": "string"
@@ -21625,6 +21777,7 @@
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
             "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
+            "FOREST_FUND",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -21663,6 +21816,7 @@
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
+            "YEAR_END_DOCUMENTATION_FOREST_FUND",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -22330,6 +22484,7 @@
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
             "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
+            "FOREST_FUND",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -22368,6 +22523,7 @@
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
+            "YEAR_END_DOCUMENTATION_FOREST_FUND",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -23178,6 +23334,11 @@
           "description": "The delivery date.",
           "readOnly": true,
           "type": "string"
+        },
+        "documentId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "ehfSendStatus": {
           "description": "[Deprecated] EHF (Peppol) send status. This only shows status for historic EHFs.",
@@ -24270,7 +24431,8 @@
             "DebugVoucherFormStoreTransactions",
             "RequestLogFallback",
             "SticosCampaignRelease",
-            "SticosPaywallRelease"
+            "SticosPaywallRelease",
+            "LoginVismaConnectMessageCode"
           ],
           "readOnly": true,
           "type": "string"
@@ -24295,9 +24457,10 @@
               "PHOENIX",
               "SECURITY",
               "SHEET_STORM",
-              "FOXTROT",
+              "TASK_FOX",
               "TOOLKITTENS",
               "TSK",
+              "TIME_TRAVELLERS",
               "UNKNOWN"
             ],
             "type": "string"
@@ -36319,7 +36482,8 @@
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
-            "DOCUMENT_WITH_ALTINN_ID"
+            "DOCUMENT_WITH_ALTINN_ID",
+            "FOREST_FUND"
           ],
           "readOnly": true,
           "type": "string"
@@ -37380,6 +37544,7 @@
           "enum": [
             "ID",
             "PRODUCT",
+            "PRODUCT_DESCENDING",
             "CUSTOM"
           ],
           "type": "string"
@@ -38780,6 +38945,7 @@
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
             "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
+            "FOREST_FUND",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -38818,6 +38984,7 @@
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
+            "YEAR_END_DOCUMENTATION_FOREST_FUND",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -40664,6 +40831,7 @@
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
             "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
+            "FOREST_FUND",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -40702,6 +40870,7 @@
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
+            "YEAR_END_DOCUMENTATION_FOREST_FUND",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -41548,6 +41717,7 @@
               "YEAR_END",
               "CREATE_SALARY_REDESIGN_MVP",
               "SALARY_REDESIGN_MVP",
+              "CHAT",
               "NONE"
             ],
             "type": "string"
@@ -42967,19 +43137,8 @@
     },
     "ProductSettings": {
       "properties": {
-        "changes": {
-          "items": {
-            "$ref": "#/definitions/Change"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
         "hasWarehouseLocation": {
           "type": "boolean"
-        },
-        "id": {
-          "format": "int64",
-          "type": "integer"
         },
         "modulePurchaseOrderNumberSeries": {
           "type": "boolean"
@@ -43011,14 +43170,6 @@
         },
         "suggestedProductNumber": {
           "type": "string"
-        },
-        "url": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "version": {
-          "format": "int32",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -45171,6 +45322,15 @@
           "minLength": 0,
           "type": "string"
         },
+        "orderLineSorting": {
+          "enum": [
+            "ID",
+            "PRODUCT",
+            "PRODUCT_DESCENDING",
+            "CUSTOM"
+          ],
+          "type": "string"
+        },
         "orderLines": {
           "description": "Order lines tied to the purchase order",
           "items": {
@@ -45866,10 +46026,12 @@
     "RackbeatInventoryValue": {
       "properties": {
         "accountCredit": {
-          "type": "string"
+          "format": "int32",
+          "type": "integer"
         },
         "accountDebit": {
-          "type": "string"
+          "format": "int32",
+          "type": "integer"
         },
         "rackbeatInventoryValue": {
           "type": "string"
@@ -45985,7 +46147,8 @@
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
-            "DOCUMENT_WITH_ALTINN_ID"
+            "DOCUMENT_WITH_ALTINN_ID",
+            "FOREST_FUND"
           ],
           "readOnly": true,
           "type": "string"
@@ -46225,9 +46388,25 @@
     },
     "ReconciliationRequest": {
       "properties": {
+        "actionType": {
+          "description": "Export type, email or file download",
+          "enum": [
+            "SendEmail",
+            "FileDownload"
+          ],
+          "type": "string"
+        },
         "bankReconciliationId": {
           "format": "int32",
           "type": "integer"
+        },
+        "emailAddress": {
+          "description": "The email address to send to.",
+          "type": "string"
+        },
+        "message": {
+          "description": "The message to include in the email.",
+          "type": "string"
         },
         "pdfOrientation": {
           "enum": [
@@ -46307,6 +46486,10 @@
     },
     "ReconciliationState": {
       "properties": {
+        "accountingPeriodClosedUrl": {
+          "readOnly": true,
+          "type": "string"
+        },
         "balanceOutDifference": {
           "readOnly": true,
           "type": "number"
@@ -48833,6 +49016,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CreateSalaryEmployee"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperCreditNoteDetails": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CreditNoteDetails"
         }
       },
       "type": "object"
@@ -56236,27 +56427,6 @@
       },
       "type": "object"
     },
-    "SendEmailRequest": {
-      "properties": {
-        "bankReconciliationId": {
-          "description": "The ID of the reconciliation entries to send.",
-          "format": "int64",
-          "type": "integer"
-        },
-        "emailAddress": {
-          "description": "The email address to send to.",
-          "type": "string"
-        },
-        "message": {
-          "description": "The message to include in the email.",
-          "type": "string"
-        }
-      },
-      "required": [
-        "emailAddress"
-      ],
-      "type": "object"
-    },
     "SendFormEmail": {
       "properties": {
         "emailAddress": {
@@ -57006,7 +57176,8 @@
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
-            "DOCUMENT_WITH_ALTINN_ID"
+            "DOCUMENT_WITH_ALTINN_ID",
+            "FOREST_FUND"
           ],
           "type": "string"
         },
@@ -57296,6 +57467,7 @@
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
             "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
+            "FOREST_FUND",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -57334,6 +57506,7 @@
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
+            "YEAR_END_DOCUMENTATION_FOREST_FUND",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -63795,7 +63968,8 @@
             "PARTICIPANT_ASSESSMENT_REPORT",
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
-            "DOCUMENT_WITH_ALTINN_ID"
+            "DOCUMENT_WITH_ALTINN_ID",
+            "FOREST_FUND"
           ],
           "readOnly": true,
           "type": "string"
@@ -67034,6 +67208,7 @@
             "KLAGE_PAA_SKJOENNSFASTSETTING",
             "DEV_PILOT_TEST_ORG_NO",
             "HIDE_MOVE_AGRO_ACCOUNT_NUMBER_NOTIFICATION",
+            "FOREST_FUND",
             "YEAR_END_BRREG_DOC_ID",
             "YEAR_END_BRREG_DOC_FETCHER_NAME",
             "YEAR_END_DOCUMENTATION_ACCOMMODATION_AND_RESTAURANT",
@@ -67072,6 +67247,7 @@
             "YEAR_END_DOCUMENTATION_LIMITATION_OF_DEDUCTION",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
+            "YEAR_END_DOCUMENTATION_FOREST_FUND",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -69157,7 +69333,7 @@
     },
     "description": "## Usage\n\n- **Download the spec** [swagger.json](/v2/swagger.json) file, it is a [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).\n\n- **Generating a client** can easily be done using tools like [swagger-codegen](https://github.com/swagger-api/swagger-codegen) or other that accepts [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) specs.\n    - For swagger codegen it is recommended to use the flag: **--removeOperationIdPrefix**. \n      Unique operation ids are about to be introduced to the spec, and this ensures forward compatibility - and results in less verbose generated code.\n\n- **Please note** that Tripletex offers several packages. Some endpoints are only supported in certain packages. You can see the Tripletex packages [here](https://www.tripletex.no/priser/).\n\n## Overview\n\n- Partial resource updating is done using the `PUT` method with optional fields instead of the `PATCH` method.\n\n- **Actions** or **commands** are represented in our RESTful path with a prefixed `:`. Example: `/v2/hours/123/:approve`.\n\n- **Summaries** or **aggregated** results are represented in our RESTful path with a prefixed `>`. Example: `/v2/hours/>thisWeeksBillables`.\n\n- **Request ID** is a key found in all responses in the header with the name `x-tlx-request-id`. For validation and error responses it is also in the response body. If additional log information is absolutely necessary, our support division can locate the key value.\n\n- **version** This is a revision number found on all persisted resources. If included, it will prevent your PUT/POST from overriding any updates to the resource since your GET.\n\n- **Date** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DD`.\n\n- **DateTime** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DDThh:mm:ss`.\n\n- **Searching** is done by entering values in the optional fields for each API call. The values fall into the following categories: range, in, exact and like.\n\n- **Missing fields** or even **no response data** can occur because result objects and fields are filtered on authorization.\n\n- **See [GitHub](https://github.com/Tripletex/tripletex-api2) for more documentation, code examples, changelog and more.**\n\n- **See [Tripletex for developers](https://developer.tripletex.no/) for more practical information, support, updates and access form**\n\n\n## Authentication\n\n[Read more here](https://developer.tripletex.no/docs/documentation/authentication-and-tokens/)\n\n- **Tokens:** The Tripletex API uses 3 different tokens\n\n  - **consumerToken** is a token provided to the consumer by Tripletex after the API 2.0 registration is completed.\n\n  - **employeeToken** is a token created by an administrator in your Tripletex account via the user settings and the tab \"API access\". Each employee token must be given a set of entitlements.\n\n  - **sessionToken** is the token from `/token/session/:create` which requires a consumerToken and an employeeToken created with the same consumer token, but not an authentication header.\n\n- **Authentication** is done via [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)\n\n  - **username** is used to specify what company to access.\n\n    - `0` or blank means the company of the employee.\n\n    - Any other value means accountant clients. Use `/company/>withLoginAccess` to get a list of those.\n\n  - **password** is the **sessionToken**.\n\n  - If you need to create the header yourself use `Authorization: Basic <encoded token>` where `encoded token` is the string `<target company id or 0>:<your session token>` Base64 encoded.\n\n\n## Tags\n\n- `[BETA]` This is a beta endpoint and can be subject to change.\n- `[DEPRECATED]` Deprecated means that we intend to remove/change this feature or capability in a future \"major\" API release. We therefore discourage all use of this feature/capability.\n\n\n## Fields\n\nUse the `fields` parameter to specify which fields should be returned. This also supports fields from sub elements, done via `<field>(<subResourceFields>)`. `*` means all fields for that resource. Example values:\n- `project,activity,hours`  returns `{project:..., activity:...., hours:...}`.\n- just `project` returns `\"project\" : { \"id\": 12345, \"url\": \"tripletex.no/v2/projects/12345\"  }`.\n- `project(*)` returns `\"project\" : { \"id\": 12345 \"name\":\"ProjectName\" \"number.....startDate\": \"2013-01-07\" }`.\n- `project(name)` returns `\"project\" : { \"name\":\"ProjectName\" }`.\n- All resources and some subResources :  `*,activity(name),employee(*)`.\n\n\n## Sorting\n\nUse the `sorting` parameter to specify sorting. It takes a comma separated list, where a `-` prefix denotes descending. You can sort by sub object with the following format: `<field>.<subObjectField>`. Example values:\n- `date`\n- `project.name`\n- `project.name, -date`\n\n\n## Changes\n\nTo get the changes for a resource, `changes` have to be explicitly specified as part of the `fields` parameter, e.g. `*,changes`.\nThere are currently two types of change available: \n- `CREATE` for when the resource was created\n- `UPDATE` for when the resource was updated\n\n**NOTE**\n> For objects created prior to October 24th 2018 the list may be incomplete, but will always contain the CREATE and the last change (if the object has been changed after creation).\n\n\n## Rate limiting\n\nRate limiting is performed on the API calls for an employee for each API consumer. Status regarding the rate limit is returned as headers:\n- `X-Rate-Limit-Limit` - The number of allowed requests in the current period.\n- `X-Rate-Limit-Remaining` - The number of remaining requests.\n- `X-Rate-Limit-Reset` - The number of seconds left in the current period.\n\nOnce the rate limit is hit, all requests will return HTTP status code `429` for the remainder of the current period.\n\n\n## Response envelope\n\n#### Multiple values\n\n```json\n{\n  \"fullResultSize\": ###, // {number} [DEPRECATED]\n  \"from\": ###, // {number} Paging starting from\n  \"count\": ###, // {number} Paging count\n  \"versionDigest\": \"###\", // {string} Hash of full result, null if no result\n  \"values\": [...{...object...},{...object...},{...object...}...]\n}\n```\n\n#### Single value\n\n```json\n{\n  \"value\": {...single object...}\n}\n```\n\n\n## WebHook envelope\n\n```json\n{\n  \"subscriptionId\": ###, // Subscription id\n  \"event\": \"object.verb\", // As listed from /v2/event/\n  \"id\": ###, // Id of object this event is for\n  \"value\": {... single object, null if object.deleted ...}\n}\n```\n\n\n## Error/warning envelope\n\n```json\n{\n  \"status\": ###, // {number} HTTP status code\n  \"code\": #####, // {number} internal status code of event\n  \"message\": \"###\", // {string} Basic feedback message in your language\n  \"link\": \"###\", // {string} Link to doc\n  \"developerMessage\": \"###\", // {string} More technical message\n  \"validationMessages\": [ // {array} List of validation messages, can be null\n    {\n      \"field\": \"###\", // {string} Name of field\n      \"message\": \"###\" // {string} Validation message for field\n    }\n  ],\n  \"requestId\": \"###\" // {string} Same as x-tlx-request-id \n}\n```\n\n\n## Status codes / Error codes\n\n- **200 OK**\n- **201 Created** - From POSTs that create something new.\n- **204 No Content** - When there is no answer, ex: \"/:anAction\" or DELETE.\n- **400 Bad request** -\n  -  **4000** Bad Request Exception\n  - **11000** Illegal Filter Exception\n  - **12000** Path Param Exception\n  - **24000** Cryptography Exception\n- **401 Unauthorized** - When authentication is required and has failed or has not yet been provided\n  -  **3000** Authentication Exception\n- **403 Forbidden** - When AuthorisationManager says no.\n  -  **9000** Security Exception\n- **404 Not Found** - For resources that does not exist.\n  -  **6000** Not Found Exception\n- **409 Conflict** - Such as an edit conflict between multiple simultaneous updates\n  -  **7000** Object Exists Exception\n  -  **8000** Revision Exception\n  - **10000** Locked Exception\n  - **14000** Duplicate entry\n- **422 Bad Request** - For Required fields or things like malformed payload.\n  - **15000** Value Validation Exception\n  - **16000** Mapping Exception\n  - **17000** Sorting Exception\n  - **18000** Validation Exception\n  - **21000** Param Exception\n  - **22000** Invalid JSON Exception\n  - **23000** Result Set Too Large Exception\n- **429 Too Many Requests** - Request rate limit hit\n- **500 Internal Error** - Unexpected condition was encountered and no more specific message is suitable\n  - **1000** Exception\n",
     "title": "Tripletex API",
-    "version": "2.71.16"
+    "version": "2.71.18"
   },
   "paths": {
     "/accountantDashboard/news": {
@@ -81416,6 +81592,26 @@
             "name": "sendToCustomer",
             "required": false,
             "type": "boolean"
+          },
+          {
+            "description": "Equals",
+            "enum": [
+              "EMAIL",
+              "EHF",
+              "EFAKTURA",
+              "AVTALEGIRO",
+              "VIPPS",
+              "PAPER",
+              "MANUAL",
+              "DIRECT",
+              "AUTOINVOICE_EHF_OUTBOUND",
+              "AUTOINVOICE_EHF_INCOMING",
+              "PEPPOL_EHF_INCOMING"
+            ],
+            "in": "query",
+            "name": "sendType",
+            "required": false,
+            "type": "string"
           }
         ],
         "responses": {
@@ -99838,6 +100034,7 @@
     },
     "/timesheet/month/byMonthNumber": {
       "get": {
+        "deprecated": true,
         "description": "",
         "operationId": "TimesheetMonthByMonthNumber_getByMonthNumber",
         "parameters": [
@@ -99900,6 +100097,75 @@
           }
         ],
         "summary": "Find monthly status for given month.",
+        "tags": [
+          "timesheet/month"
+        ]
+      }
+    },
+    "/timesheet/month/byMonthNumberList": {
+      "get": {
+        "description": "",
+        "operationId": "TimesheetMonthByMonthNumberList_getByMonthNumberList",
+        "parameters": [
+          {
+            "description": "List of IDs. Defaults to ID of token owner.",
+            "in": "query",
+            "name": "employeeIds",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "description": "2020-01,2020-02",
+            "in": "query",
+            "name": "monthYearList",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseMonthlyStatus"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Find monthly status for given month list.",
         "tags": [
           "timesheet/month"
         ]
