@@ -3691,16 +3691,10 @@
     },
     "AuthConfigDTO": {
       "properties": {
-        "checkSessionIframeUrl": {
-          "type": "string"
-        },
         "loginUrl": {
           "type": "string"
         },
         "logoutUrl": {
-          "type": "string"
-        },
-        "refreshSessionIframeUrl": {
           "type": "string"
         }
       },
@@ -10782,6 +10776,82 @@
       ],
       "type": "object"
     },
+    "CursorPaginationListResponse": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "cursor": {
+          "description": "Base64 encoded cursor",
+          "readOnly": true,
+          "type": "string"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "type": "object"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CursorPaginationListResponseInvoiceSummary": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "cursor": {
+          "description": "Base64 encoded cursor",
+          "readOnly": true,
+          "type": "string"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/InvoiceSummary"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Customer": {
       "properties": {
         "accountManager": {
@@ -14914,6 +14984,10 @@
           "maxLength": 100,
           "minLength": 1,
           "type": "string"
+        },
+        "hasResigned": {
+          "readOnly": true,
+          "type": "boolean"
         },
         "id": {
           "format": "int64",
@@ -19912,6 +19986,14 @@
           "format": "int64",
           "readOnly": true,
           "type": "integer"
+        },
+        "vatReportType": {
+          "enum": [
+            "PRIMARY_INDUSTRY",
+            "GENERAL_INDUSTRY"
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -20073,6 +20155,11 @@
     },
     "IncomingInvoiceMetadata": {
       "properties": {
+        "accountingPeriodClosed": {
+          "description": "If accounting period is closed",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "changedAt": {
           "description": "Changed at",
           "readOnly": true,
@@ -20096,6 +20183,19 @@
           "readOnly": true,
           "type": "integer"
         },
+        "defaultVatReportType": {
+          "enum": [
+            "PRIMARY_INDUSTRY",
+            "GENERAL_INDUSTRY"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "generalIndustryVatPeriodClosed": {
+          "description": "If vat period is closed for general industries",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "invoiceLifeCycle": {
           "description": "Invoice Life Cycle.",
           "enum": [
@@ -20115,6 +20215,11 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "primaryIndustryVatPeriodClosed": {
+          "description": "If vat period is closed for primary industries",
+          "readOnly": true,
+          "type": "boolean"
         },
         "voucherId": {
           "description": "Voucher Id of the incoming invoice",
@@ -24544,7 +24649,8 @@
             "LogSiteNotFoundException",
             "LoginVismaConnectMessageCode",
             "AddRequestIdToAllQueries",
-            "ReminderWidgetWebhookListener"
+            "ReminderWidgetWebhookListener",
+            "DeleteAccountJobRun"
           ],
           "readOnly": true,
           "type": "string"
@@ -24651,6 +24757,49 @@
         "voucherNumber": {
           "format": "int32",
           "minimum": 0,
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "LastVendorInvoice": {
+      "properties": {
+        "accountId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "currencyId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "departmentId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "description": {
+          "type": "string"
+        },
+        "employeeId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "productId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "projectId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "vatTypeId": {
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         }
@@ -25002,14 +25151,14 @@
         },
         "rel": {
           "enum": [
-            "APPROVE",
-            "UNAPPROVE",
             "DELIVER",
             "UNDELIVER",
+            "UNAPPROVE",
+            "APPROVE",
+            "REJECT",
             "COPY",
-            "DELETE",
             "CREATE_VOUCHER",
-            "REJECT"
+            "DELETE"
           ],
           "type": "string"
         },
@@ -28967,6 +29116,39 @@
       },
       "type": "object"
     },
+    "ListResponseIncomingInvoiceDepartment": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/IncomingInvoiceDepartment"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseIncomingInvoiceVatType": {
       "properties": {
         "count": {
@@ -29285,39 +29467,6 @@
         "values": {
           "items": {
             "$ref": "#/definitions/InvoiceSendType"
-          },
-          "readOnly": true,
-          "type": "array"
-        },
-        "versionDigest": {
-          "description": "Used to know if the paginated list has changed.",
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListResponseInvoiceSummary": {
-      "properties": {
-        "count": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "from": {
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "fullResultSize": {
-          "description": "Indicates whether there are more values available. Note: The value is not exact",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
-        },
-        "values": {
-          "items": {
-            "$ref": "#/definitions/InvoiceSummary"
           },
           "readOnly": true,
           "type": "array"
@@ -36760,14 +36909,6 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "agreementText": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "agreementTitle": {
-          "readOnly": true,
-          "type": "string"
-        },
         "available": {
           "readOnly": true,
           "type": "boolean"
@@ -36810,10 +36951,6 @@
           "type": "integer"
         },
         "infoText": {
-          "readOnly": true,
-          "type": "string"
-        },
-        "licenseText": {
           "readOnly": true,
           "type": "string"
         },
@@ -46474,6 +46611,9 @@
         },
         "valueForPDF": {
           "$ref": "#/definitions/ContainerTagDivTag"
+        },
+        "valueForXLSX": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -46624,6 +46764,11 @@
     },
     "ReconciliationPeriod": {
       "properties": {
+        "annualAccountsId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -46639,13 +46784,13 @@
           "format": "int64",
           "type": "integer"
         },
-        "isClosed": {
+        "isAccountingPeriodClosed": {
           "readOnly": true,
           "type": "boolean"
         },
-        "name": {
+        "isReconciliationClosed": {
           "readOnly": true,
-          "type": "string"
+          "type": "boolean"
         },
         "number": {
           "format": "int32",
@@ -46654,14 +46799,14 @@
           "readOnly": true,
           "type": "integer"
         },
+        "periodName": {
+          "readOnly": true,
+          "type": "string"
+        },
         "reconciliationAccountId": {
           "format": "int64",
           "readOnly": true,
           "type": "integer"
-        },
-        "reconciliationClosed": {
-          "readOnly": true,
-          "type": "boolean"
         },
         "reconciliationId": {
           "format": "int64",
@@ -50076,6 +50221,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperLastVendorInvoice": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/LastVendorInvoice"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperLeaveOfAbsence": {
       "properties": {
         "value": {
@@ -51376,6 +51529,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperReconciliationPeriod": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ReconciliationPeriod"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperReconciliationSelectedState": {
       "properties": {
         "value": {
@@ -52024,6 +52185,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/TimeClock"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperTimeTravellersAuthDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TimeTravellersAuthDTO"
         }
       },
       "type": "object"
@@ -61674,6 +61843,29 @@
       "required": [
         "score"
       ],
+      "type": "object"
+    },
+    "TimeTravellersAuthDTO": {
+      "properties": {
+        "authCompanyAdmin": {
+          "type": "boolean"
+        },
+        "authDepartmentAdmin": {
+          "type": "boolean"
+        },
+        "isAuthCompanyAdmin": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isAuthDepartmentAdmin": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isProxy": {
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "TimesheetAllocated": {
@@ -71901,6 +72093,53 @@
         "summary": "Get default interim account from  payment type.",
         "tags": [
           "bank/reconciliation/internal/paymentType"
+        ]
+      }
+    },
+    "/bank/reconciliation/internal/period/lastClosed": {
+      "get": {
+        "description": "",
+        "operationId": "BankReconciliationInternalPeriodLastClosed_getLastClosed",
+        "parameters": [
+          {
+            "description": "Account ID",
+            "format": "int64",
+            "in": "query",
+            "name": "accountId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Format is yyyy-MM-dd",
+            "in": "query",
+            "name": "after",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperReconciliationPeriod"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get last closed reconciliation by account ID.",
+        "tags": [
+          "bank/reconciliation"
         ]
       }
     },
@@ -106473,10 +106712,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
       "name": "bankreconciliationinternalexport"
@@ -107698,6 +107937,9 @@
     },
     {
       "name": "timesheet/week"
+    },
+    {
+      "name": "timetravellers"
     },
     {
       "name": "travelExpenseaccommodationAllowance"
