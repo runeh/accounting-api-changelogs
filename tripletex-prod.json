@@ -4137,6 +4137,22 @@
           "readOnly": true,
           "type": "string"
         },
+        "manualCorrections": {
+          "description": "List of manual corrections",
+          "items": {
+            "$ref": "#/definitions/ManualCorrection"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "manuallyCorrectedClosingBalance": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "manuallyCorrectedOpeningBalance": {
+          "readOnly": true,
+          "type": "number"
+        },
         "name": {
           "readOnly": true,
           "type": "string"
@@ -8949,7 +8965,6 @@
               "MODULE_EMPLOYEE",
               "MODULE_DEPARTMENT",
               "APPROVE_INVOICES",
-              "APPROVE_HOURLISTS",
               "APPROVE_TRAVEL_REPORTS",
               "MODULE_BUDGET",
               "MODULE_NOTE",
@@ -9090,7 +9105,6 @@
               "PRODUCT_SET_COST_FROM_ORDER_LINE",
               "INVOICE_SHOW_MARKUP_DISCOUNT",
               "INVOICE_SHOW_PRODUCT_NUMBER",
-              "MODULE_NETS_EBOKS",
               "MODULE_NETS_PRINT_SALARY",
               "MODULE_NETS_PRINT_INVOICE",
               "MODULE_BOLIGMAPPA",
@@ -9920,9 +9934,19 @@
     },
     "CopilotMeta": {
       "properties": {
+        "EmployeeId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
         "companyHasSticosModule": {
           "readOnly": true,
           "type": "boolean"
+        },
+        "companyId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "companyIsAnAS": {
           "readOnly": true,
@@ -9945,10 +9969,6 @@
           "type": "boolean"
         },
         "hasSalesforceSupport": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "hasSticosPaywallPilot": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -14937,6 +14957,13 @@
         "allowLogin": {
           "type": "boolean"
         },
+        "allowRegInfo": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "authReadOnly": {
+          "type": "boolean"
+        },
         "bankAccountNumber": {
           "type": "string"
         },
@@ -14998,6 +15025,10 @@
           "type": "boolean"
         },
         "isProxy": {
+          "type": "boolean"
+        },
+        "isUserAdministrator": {
+          "readOnly": true,
           "type": "boolean"
         },
         "lastActiveEmployment": {
@@ -20221,6 +20252,17 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "reverseVoucherId": {
+          "description": "Id of reverse voucher",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "reverseVoucherNumber": {
+          "description": "Number of reverse voucher",
+          "readOnly": true,
+          "type": "string"
+        },
         "voucherId": {
           "description": "Voucher Id of the incoming invoice",
           "format": "int64",
@@ -24644,13 +24686,14 @@
             "DebugVoucherFormStoreTransactions",
             "RequestLogFallback",
             "SticosCampaignRelease",
-            "SticosPaywallRelease",
             "CacheRequestBodyFilter",
             "LogSiteNotFoundException",
             "LoginVismaConnectMessageCode",
             "AddRequestIdToAllQueries",
             "ReminderWidgetWebhookListener",
-            "DeleteAccountJobRun"
+            "DeleteAccountJobRun",
+            "ChangedSinceRequestLogId",
+            "AllowSendingInTripletexInvoiceJob"
           ],
           "readOnly": true,
           "type": "string"
@@ -35495,6 +35538,110 @@
       },
       "type": "object"
     },
+    "ManualCorrection": {
+      "properties": {
+        "grouping": {
+          "description": "grouping",
+          "readOnly": true,
+          "type": "string"
+        },
+        "incomeGroupId": {
+          "description": "incomeGroupId",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "name": {
+          "description": "name",
+          "readOnly": true,
+          "type": "string"
+        },
+        "postId": {
+          "description": "postTypeId",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "postType": {
+          "description": "Post type",
+          "enum": [
+            "INTEREST_ON_ENTERPRISE_DEBT",
+            "CAPITAL_INCOME",
+            "CAPITAL_EXPENSES",
+            "REDUCTION_AMOUNT_FOR_RENTED_PROPERTY",
+            "GAINS_FROM_REALISATION_AGRICULTURE_OR_FORESTRY",
+            "NUMBER_OF_MONTHS_WITH_OPERATIONS",
+            "RISK_FREE_INTEREST_RATE",
+            "ENTERPRISE_DEBT_OB",
+            "ENTERPRISE_DEBT_CB",
+            "PROFIT_SHARE_SPOUSE",
+            "NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR",
+            "COORDINATION_ENK",
+            "COORDINATION_ANS_DA",
+            "COORDINATION_LOTT",
+            "NEGATIVE_PERSONAL_INCOME_CARRIED_FORWARD_NEXT_YEAR",
+            "BUSINESS_TYPE_DESCRIPTION",
+            "INDUSTRY_TYPE",
+            "INCOME_AMOUNT_FROM_PROFIT_AND_LOSS_ACCOUNT",
+            "DEDUCTED_AMOUNT_FROM_PROFIT_AND_LOSS_ACCOUNT",
+            "MILK_QUOTA",
+            "MANUALLY_CORRECT_RISK_FREE_AMOUNT",
+            "BALANCE_GROUP_A_OPENING_BALANCE",
+            "BALANCE_GROUP_A_CLOSING_BALANCE",
+            "BALANCE_GROUP_B_OPENING_BALANCE",
+            "BALANCE_GROUP_B_CLOSING_BALANCE",
+            "BALANCE_GROUP_C_OPENING_BALANCE",
+            "BALANCE_GROUP_C_CLOSING_BALANCE",
+            "BALANCE_GROUP_D_OPENING_BALANCE",
+            "BALANCE_GROUP_D_CLOSING_BALANCE",
+            "BALANCE_GROUP_E_OPENING_BALANCE",
+            "BALANCE_GROUP_E_CLOSING_BALANCE",
+            "BALANCE_GROUP_F_OPENING_BALANCE",
+            "BALANCE_GROUP_F_CLOSING_BALANCE",
+            "BALANCE_GROUP_G_OPENING_BALANCE",
+            "BALANCE_GROUP_G_CLOSING_BALANCE",
+            "BALANCE_GROUP_H_OPENING_BALANCE",
+            "BALANCE_GROUP_H_CLOSING_BALANCE",
+            "BALANCE_GROUP_I_OPENING_BALANCE",
+            "BALANCE_GROUP_I_CLOSING_BALANCE",
+            "BALANCE_GROUP_J_OPENING_BALANCE",
+            "BALANCE_GROUP_J_CLOSING_BALANCE",
+            "STRAIGHT_LINE_DEPRECIATION_FIXED_ASSETS_OPENING_BALANCE",
+            "STRAIGHT_LINE_DEPRECIATION_FIXED_ASSETS_CLOSING_BALANCE",
+            "NON_DEPRECIABLE_FIXED_ASSETS_OPENING_BALANCE",
+            "NON_DEPRECIABLE_FIXED_ASSETS_CLOSING_BALANCE",
+            "ACQUIRED_INTELLECTUAL_PROPERTY_OPENING_BALANCE",
+            "ACQUIRED_INTELLECTUAL_PROPERTY_CLOSING_BALANCE",
+            "ACTIVATED_RESEARCH_AND_DEVELOPMENT_COST_OPENING_BALANCE",
+            "ACTIVATED_RESEARCH_AND_DEVELOPMENT_COST_CLOSING_BALANCE",
+            "INVENTORIES_OPENING_BALANCE",
+            "INVENTORIES_CLOSING_BALANCE",
+            "CUSTOMER_REVEIVABLES_OPENING_BALANCE",
+            "CUSTOMER_REVEIVABLES_CLOSING_BALANCE",
+            "DEBTS_TO_SUPPLIERS_OPENING_BALANCE",
+            "DEBTS_TO_SUPPLIERS_CLOSING_BALANCE",
+            "ENTERPRISE_DEBT_OPENING_BALANCE",
+            "ENTERPRISE_DEBT_CLOSING_BALANCE",
+            "DISTRIBUTE_INCOME",
+            "NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
+            "COORDINATION_ENK_SPOUSE",
+            "COORDINATION_ANS_DA_SPOUSE",
+            "COORDINATION_LOTT_SPOUSE",
+            "NEGATIVE_PERSONAL_INCOME_CARRIED_FORWARD_NEXT_YEAR_SPOUSE"
+          ],
+          "type": "string"
+        },
+        "postValue": {
+          "description": "Post value",
+          "type": "string"
+        }
+      },
+      "required": [
+        "postType",
+        "postValue"
+      ],
+      "type": "object"
+    },
     "Mapping": {
       "properties": {
         "changes": {
@@ -35512,6 +35659,22 @@
           "type": "boolean"
         },
         "groupNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "groupingAgricultureAns": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "groupingAgricultureAnsPreviousYear": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "groupingAgricultureAs": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "groupingAgricultureAsPreviousYear": {
           "readOnly": true,
           "type": "string"
         },
@@ -35542,6 +35705,22 @@
           "type": "string"
         },
         "groupingEnkPreviousYear": {
+          "type": "string"
+        },
+        "groupingForestryAns": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "groupingForestryAnsPreviousYear": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "groupingForestryAs": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "groupingForestryAsPreviousYear": {
+          "readOnly": true,
           "type": "string"
         },
         "groupingForestryEnk": {
@@ -36454,20 +36633,6 @@
         },
         "moduleDepartmentAccounting": {
           "type": "boolean"
-        },
-        "moduleFactoringVismaFinance": {
-          "enum": [
-            "OFF",
-            "STARTED",
-            "SIGNING_STARTED",
-            "ON",
-            "IN_REVIEW",
-            "DEACTIVATED_FROM_ON",
-            "DEACTIVATED_FROM_OFF",
-            "FAILED",
-            "OPTED_OUT"
-          ],
-          "type": "string"
         },
         "moduleHolydayPlan": {
           "description": "read only",
@@ -41807,6 +41972,43 @@
             "INCOME_AMOUNT_FROM_PROFIT_AND_LOSS_ACCOUNT",
             "DEDUCTED_AMOUNT_FROM_PROFIT_AND_LOSS_ACCOUNT",
             "MILK_QUOTA",
+            "MANUALLY_CORRECT_RISK_FREE_AMOUNT",
+            "BALANCE_GROUP_A_OPENING_BALANCE",
+            "BALANCE_GROUP_A_CLOSING_BALANCE",
+            "BALANCE_GROUP_B_OPENING_BALANCE",
+            "BALANCE_GROUP_B_CLOSING_BALANCE",
+            "BALANCE_GROUP_C_OPENING_BALANCE",
+            "BALANCE_GROUP_C_CLOSING_BALANCE",
+            "BALANCE_GROUP_D_OPENING_BALANCE",
+            "BALANCE_GROUP_D_CLOSING_BALANCE",
+            "BALANCE_GROUP_E_OPENING_BALANCE",
+            "BALANCE_GROUP_E_CLOSING_BALANCE",
+            "BALANCE_GROUP_F_OPENING_BALANCE",
+            "BALANCE_GROUP_F_CLOSING_BALANCE",
+            "BALANCE_GROUP_G_OPENING_BALANCE",
+            "BALANCE_GROUP_G_CLOSING_BALANCE",
+            "BALANCE_GROUP_H_OPENING_BALANCE",
+            "BALANCE_GROUP_H_CLOSING_BALANCE",
+            "BALANCE_GROUP_I_OPENING_BALANCE",
+            "BALANCE_GROUP_I_CLOSING_BALANCE",
+            "BALANCE_GROUP_J_OPENING_BALANCE",
+            "BALANCE_GROUP_J_CLOSING_BALANCE",
+            "STRAIGHT_LINE_DEPRECIATION_FIXED_ASSETS_OPENING_BALANCE",
+            "STRAIGHT_LINE_DEPRECIATION_FIXED_ASSETS_CLOSING_BALANCE",
+            "NON_DEPRECIABLE_FIXED_ASSETS_OPENING_BALANCE",
+            "NON_DEPRECIABLE_FIXED_ASSETS_CLOSING_BALANCE",
+            "ACQUIRED_INTELLECTUAL_PROPERTY_OPENING_BALANCE",
+            "ACQUIRED_INTELLECTUAL_PROPERTY_CLOSING_BALANCE",
+            "ACTIVATED_RESEARCH_AND_DEVELOPMENT_COST_OPENING_BALANCE",
+            "ACTIVATED_RESEARCH_AND_DEVELOPMENT_COST_CLOSING_BALANCE",
+            "INVENTORIES_OPENING_BALANCE",
+            "INVENTORIES_CLOSING_BALANCE",
+            "CUSTOMER_REVEIVABLES_OPENING_BALANCE",
+            "CUSTOMER_REVEIVABLES_CLOSING_BALANCE",
+            "DEBTS_TO_SUPPLIERS_OPENING_BALANCE",
+            "DEBTS_TO_SUPPLIERS_CLOSING_BALANCE",
+            "ENTERPRISE_DEBT_OPENING_BALANCE",
+            "ENTERPRISE_DEBT_CLOSING_BALANCE",
             "DISTRIBUTE_INCOME",
             "NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
             "COORDINATION_ENK_SPOUSE",
@@ -41992,6 +42194,14 @@
           "readOnly": true,
           "type": "number"
         },
+        "sumManualCorrectionsClosingBalanceBeforeEnterpriseDebt": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumManualCorrectionsOpeningBalanceBeforeEnterpriseDebt": {
+          "readOnly": true,
+          "type": "number"
+        },
         "sumOpeningBalanceAfterEnterpriseDebt": {
           "readOnly": true,
           "type": "number"
@@ -42089,7 +42299,6 @@
               "FINANCIAL_SERVICES",
               "YEAR_END",
               "CREATE_SALARY_REDESIGN_MVP",
-              "SALARY_REDESIGN_MVP",
               "CHAT",
               "NONE"
             ],
@@ -52872,6 +53081,21 @@
       ],
       "type": "object"
     },
+    "ReverseSalaryArgs": {
+      "properties": {
+        "employeeIds": {
+          "type": "string"
+        },
+        "reverseVoucherDate": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "employeeIds",
+        "reverseVoucherDate"
+      ],
+      "type": "object"
+    },
     "RiskFreeInterestRate": {
       "properties": {
         "changes": {
@@ -54290,7 +54514,6 @@
         "deliveryMethodPaySlip": {
           "enum": [
             "MANUAL",
-            "EBOKS",
             "PRINT",
             "EMAIL",
             "APP"
@@ -56453,10 +56676,6 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "moduleCRM": {
-          "readOnly": true,
-          "type": "boolean"
-        },
         "moduleCashCreditAprila": {
           "readOnly": true,
           "type": "boolean"
@@ -56578,10 +56797,6 @@
           "type": "boolean"
         },
         "moduleMesan": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleNetsEboks": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -62167,6 +62382,9 @@
         "id": {
           "format": "int64",
           "type": "integer"
+        },
+        "showDetailedTimeSheet": {
+          "type": "boolean"
         },
         "timeClock": {
           "type": "boolean"
@@ -106712,10 +106930,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
       "name": "bankreconciliationinternalexport"
@@ -107868,6 +108086,9 @@
     },
     {
       "name": "testingreport"
+    },
+    {
+      "name": "testingrequestLog"
     },
     {
       "name": "usertest"
