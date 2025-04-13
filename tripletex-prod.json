@@ -2413,6 +2413,14 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "RESEARCH_AND_DEVELOPMENT_STAKE_IN_COLLABORATIVE_PROJECT",
+            "RESEARCH_AND_DEVELOPMENT_APPLIED_FOR_OTHER_PUBLIC_SUPPORT_IN_NORWAY",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_ID",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TOTAL_COST_FROM_PREVIOUS_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_RECEIVED_PUBLIC_SUPPORT",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_ORG_NO",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_DESCRIPTION",
             "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
             "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
             "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
@@ -6999,6 +7007,14 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "RESEARCH_AND_DEVELOPMENT_STAKE_IN_COLLABORATIVE_PROJECT",
+            "RESEARCH_AND_DEVELOPMENT_APPLIED_FOR_OTHER_PUBLIC_SUPPORT_IN_NORWAY",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_ID",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TOTAL_COST_FROM_PREVIOUS_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_RECEIVED_PUBLIC_SUPPORT",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_ORG_NO",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_DESCRIPTION",
             "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
             "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
             "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
@@ -8964,7 +8980,6 @@
               "MODULE_CUSTOMER",
               "MODULE_EMPLOYEE",
               "MODULE_DEPARTMENT",
-              "APPROVE_INVOICES",
               "APPROVE_TRAVEL_REPORTS",
               "MODULE_BUDGET",
               "MODULE_NOTE",
@@ -8976,7 +8991,6 @@
               "MODULE_RORKJOP",
               "MODULE_HISTORICAL",
               "MODULE_PROJECT_CATEGORY",
-              "MODULE_PROJECT_LOCATION",
               "MODULE_PROJECT_BUDGET",
               "MODULE_PENSION_REPORT",
               "MODULE_QUANTITY_HANDLING",
@@ -9014,25 +9028,19 @@
               "INVOICE_RESERVE_IS_ZERO_FOR_CLOSED_PROJECT",
               "MODULE_AUTO_PROJECT_NUMBER",
               "MODULE_RESOURCE_GROUPS",
-              "TRAVEL_REPORT_COMP_RATES_DEFAULT_VALUE",
               "IS_TRAVEL_REPORT_TAX_FREE_DIET_RATES",
               "MODULE_OCR",
               "MODULE_REMIT",
               "MODULE_TRAVEL_EXPENSE_RATES",
               "MONTHLY_HOURLIST_MINUS_TIME_WARNING",
               "MODULE_VOUCHER_SCANNING",
-              "MODULE_INVOICE_SCANNING",
               "MODULE_LOGISTICS",
-              "MODULE_PROJECT_PARTICIPANTS",
               "ALLOW_TIME_TRACKING_FOR_PARTICIPANTS_ONLY",
               "MODULE_HOLYDAY_PLAN",
               "MODULE_HOURLIST",
-              "AUTO_EXPORT_VOUCHERS",
-              "AUTO_EXPORT_CUSTOMERS",
               "PROJECT_ORDER_VIEW_DUE_IN_SCALE",
               "SEND_PAYSLIPS_BY_EMAIL",
               "MODULE_EMPLOYEE_CATEGORY",
-              "ALLOW_MAX_ONE_HOLYDAY_PER_DAY",
               "PROJECT_NAME_SCHEME",
               "MODULE_CUSTOMER_CATEGORY1",
               "MODULE_CUSTOMER_CATEGORY2",
@@ -9061,13 +9069,9 @@
               "MODULE_PRODUCT_ACCOUNTING",
               "MODULE_SUBSCRIPTION_ADDRESS_LIST",
               "SEND_IMPORTED_INVOICES",
-              "MODULE_GTIN",
               "MODULE_ELECTRO",
               "MODULE_NRF",
-              "API_AUTO_SEND_INVOICES",
               "MODULE_ELPROFFEN",
-              "IS_PRODUCT_ADMIN",
-              "MODULE_ORDER_EXT",
               "MODULE_AMORTIZATION",
               "MODULE_RESULT_BUDGET",
               "MODULE_CHANGE_DEBT_COLLECTOR",
@@ -9080,7 +9084,6 @@
               "MODULE_VOUCHER_TYPES",
               "MODULE_ONNINEN123",
               "MODULE_ELEKTRO_UNION",
-              "MODULE_AHLSELL_PARTNER",
               "MODULE_ARCHIVE",
               "VACATION_BALANCE_REDUCED_DAYS",
               "IS_ACCOUNTANT",
@@ -9088,9 +9091,7 @@
               "IS_RESELLER",
               "ALLOW_MULTIPLE_PROJECT_INVOICE_VAT",
               "PROJECT_ACTIVITY_BUDGET_IS_MASTER",
-              "HOURLIST_COMPLETED_REMINDER",
               "MODULE_PROJECT_BUDGET_REFERENCE_FEE",
-              "CONFIRM_ETC_BEFORE_INVOICING",
               "TRAVEL_DIET_IGNORE_POSTING",
               "TRAVEL_NIGHT_IGNORE_POSTING",
               "TRAVEL_DRIVING_IGNORE_POSTING",
@@ -13019,6 +13020,8 @@
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
             "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
             "RESOLUTION",
+            "WORK_PACKAGE",
+            "COLLABORATIVE_BUSINESS",
             "OTHER_PUBLIC_SUPPORT",
             "RELATED_COMPANY",
             "FUNCTION_AND_RISK",
@@ -13670,6 +13673,14 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "RESEARCH_AND_DEVELOPMENT_STAKE_IN_COLLABORATIVE_PROJECT",
+            "RESEARCH_AND_DEVELOPMENT_APPLIED_FOR_OTHER_PUBLIC_SUPPORT_IN_NORWAY",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_ID",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TOTAL_COST_FROM_PREVIOUS_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_RECEIVED_PUBLIC_SUPPORT",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_ORG_NO",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_DESCRIPTION",
             "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
             "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
             "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
@@ -17293,6 +17304,8 @@
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
             "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
             "RESOLUTION",
+            "WORK_PACKAGE",
+            "COLLABORATIVE_BUSINESS",
             "OTHER_PUBLIC_SUPPORT",
             "RELATED_COMPANY",
             "FUNCTION_AND_RISK",
@@ -17944,6 +17957,14 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "RESEARCH_AND_DEVELOPMENT_STAKE_IN_COLLABORATIVE_PROJECT",
+            "RESEARCH_AND_DEVELOPMENT_APPLIED_FOR_OTHER_PUBLIC_SUPPORT_IN_NORWAY",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_ID",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TOTAL_COST_FROM_PREVIOUS_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_RECEIVED_PUBLIC_SUPPORT",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_ORG_NO",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_DESCRIPTION",
             "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
             "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
             "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
@@ -22354,6 +22375,14 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "RESEARCH_AND_DEVELOPMENT_STAKE_IN_COLLABORATIVE_PROJECT",
+            "RESEARCH_AND_DEVELOPMENT_APPLIED_FOR_OTHER_PUBLIC_SUPPORT_IN_NORWAY",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_ID",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TOTAL_COST_FROM_PREVIOUS_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_RECEIVED_PUBLIC_SUPPORT",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_ORG_NO",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_DESCRIPTION",
             "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
             "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
             "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
@@ -23063,6 +23092,14 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "RESEARCH_AND_DEVELOPMENT_STAKE_IN_COLLABORATIVE_PROJECT",
+            "RESEARCH_AND_DEVELOPMENT_APPLIED_FOR_OTHER_PUBLIC_SUPPORT_IN_NORWAY",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_ID",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TOTAL_COST_FROM_PREVIOUS_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_RECEIVED_PUBLIC_SUPPORT",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_ORG_NO",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_DESCRIPTION",
             "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
             "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
             "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
@@ -24276,19 +24313,17 @@
       },
       "type": "object"
     },
-    "InvoiceStatus": {
+    "InvoiceStatusDTO": {
       "properties": {
-        "level": {
-          "enum": [
-            "NONE",
-            "SUCCESS",
-            "WARNING",
-            "CRITICAL"
-          ],
+        "displayName": {
           "readOnly": true,
           "type": "string"
         },
-        "title": {
+        "isCritical": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "status": {
           "readOnly": true,
           "type": "string"
         }
@@ -24377,7 +24412,7 @@
           "type": "integer"
         },
         "invoiceStatus": {
-          "$ref": "#/definitions/InvoiceStatus",
+          "$ref": "#/definitions/InvoiceStatusDTO",
           "readOnly": true
         },
         "invoiceViewUrl": {
@@ -32528,6 +32563,39 @@
       },
       "type": "object"
     },
+    "ListResponseResearchAndDevelopment2024": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ResearchAndDevelopment2024"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponseResultBudget": {
       "properties": {
         "count": {
@@ -33242,6 +33310,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/Stocktaking"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseString": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "type": "string"
           },
           "readOnly": true,
           "type": "array"
@@ -39186,6 +39287,8 @@
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
             "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
             "RESOLUTION",
+            "WORK_PACKAGE",
+            "COLLABORATIVE_BUSINESS",
             "OTHER_PUBLIC_SUPPORT",
             "RELATED_COMPANY",
             "FUNCTION_AND_RISK",
@@ -39803,6 +39906,14 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "RESEARCH_AND_DEVELOPMENT_STAKE_IN_COLLABORATIVE_PROJECT",
+            "RESEARCH_AND_DEVELOPMENT_APPLIED_FOR_OTHER_PUBLIC_SUPPORT_IN_NORWAY",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_ID",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TOTAL_COST_FROM_PREVIOUS_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_RECEIVED_PUBLIC_SUPPORT",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_ORG_NO",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_DESCRIPTION",
             "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
             "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
             "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
@@ -41691,6 +41802,14 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "RESEARCH_AND_DEVELOPMENT_STAKE_IN_COLLABORATIVE_PROJECT",
+            "RESEARCH_AND_DEVELOPMENT_APPLIED_FOR_OTHER_PUBLIC_SUPPORT_IN_NORWAY",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_ID",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TOTAL_COST_FROM_PREVIOUS_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_RECEIVED_PUBLIC_SUPPORT",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_ORG_NO",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_DESCRIPTION",
             "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
             "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
             "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
@@ -42424,7 +42543,8 @@
           "description": "Subject to prefill",
           "enum": [
             "REAL_ESTATE",
-            "SHARES_AND_SECURITIES"
+            "SHARES_AND_SECURITIES",
+            "RESEARCH_AND_DEVELOPMENT"
           ],
           "type": "string"
         },
@@ -45531,12 +45651,22 @@
           "type": "integer"
         },
         "amountExclVat": {
-          "description": "Amount excluding VAT in the specified currency.",
+          "description": "Amount excluding VAT in the given currency. If multiple postings exist for the same voucher, their amounts are summed.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "amountExclVatInCompanyCurrency": {
+          "description": "Amount excluding VAT converted to the company's currency. If multiple currencies are involved, all amounts are converted and summed.",
           "readOnly": true,
           "type": "number"
         },
         "amountInclVat": {
-          "description": "Amount including VAT in the specified currency.",
+          "description": "Amount including VAT in the given currency. If multiple postings exist for the same voucher, their amounts are summed.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "amountInclVatInCompanyCurrency": {
+          "description": "Amount including VAT converted to the company's currency. If multiple currencies are involved, all amounts are converted and summed.",
           "readOnly": true,
           "type": "number"
         },
@@ -45545,12 +45675,12 @@
           "readOnly": true,
           "type": "integer"
         },
-        "costAccountId": {
+        "closeGroupId": {
           "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
-        "costAccountName": {
+        "currencyCode": {
           "readOnly": true,
           "type": "string"
         },
@@ -45558,11 +45688,21 @@
           "readOnly": true,
           "type": "string"
         },
+        "documentId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
         "dueDate": {
           "readOnly": true,
           "type": "string"
         },
         "expiredVendorInvoice": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "insufficientInfoForPaidAmount": {
+          "description": "Indicator used to show/hide warnings on UI when paid amount calculation has insufficient information.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -45576,14 +45716,31 @@
           "type": "integer"
         },
         "outstandingAmount": {
-          "description": "The amountCurrency outstanding based on the history collection, excluding reminders an",
+          "description": "The amountCurrency outstanding based on the history collection, excluding reminders. If multiple postings exist for the same voucher, their amounts are summed.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "outstandingAmountInCompanyCurrency": {
+          "description": "Outstanding amount converted to the company's currency. If multiple currencies are involved, all amounts are converted and summed.",
           "readOnly": true,
           "type": "number"
         },
         "paidAmount": {
-          "description": "Used to specify the prepaid amount of the invoice.",
+          "description": "Used to specify the prepaid amount of the invoice. If multiple postings exist for the same voucher, their amounts are summed.",
           "readOnly": true,
           "type": "number"
+        },
+        "paidAmountInCompanyCurrency": {
+          "description": "Paid amount converted to the company's currency. If multiple currencies are involved, all amounts are converted and summed.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "projectIdToSubProjectNameMap": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "A map of project id to sub project name",
+          "type": "object"
         },
         "vendorId": {
           "format": "int64",
@@ -45602,6 +45759,10 @@
           "format": "int64",
           "readOnly": true,
           "type": "integer"
+        },
+        "voucherNumberAsString": {
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -46677,6 +46838,8 @@
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
             "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
             "RESOLUTION",
+            "WORK_PACKAGE",
+            "COLLABORATIVE_BUSINESS",
             "OTHER_PUBLIC_SUPPORT",
             "RELATED_COMPANY",
             "FUNCTION_AND_RISK",
@@ -48697,6 +48860,231 @@
       },
       "type": "object"
     },
+    "ResearchAndDevelopment2024": {
+      "properties": {
+        "addedTaxForProject": {
+          "description": "Additional tax for the project",
+          "type": "number"
+        },
+        "amountOfSupportExceedingApprovedAmount": {
+          "description": "Assigned support beyond max gross amount public support",
+          "type": "number"
+        },
+        "appliedForOtherPublicAidInNorway": {
+          "description": "Has applied for other public aid in Norway",
+          "enum": [
+            "NONE",
+            "NO",
+            "YES"
+          ],
+          "type": "string"
+        },
+        "approvedRndIncentiveEndYear": {
+          "description": "Approved R&D Incentive End Year",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "approvedRndIncentiveStartYear": {
+          "description": "Approved R&D Incentive Start Year",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "businessCategory": {
+          "description": "Business Category",
+          "enum": [
+            "NONE",
+            "SMALL_BUSINESS",
+            "MEDIUM_BUSINESS",
+            "LARGE_BUSINESS"
+          ],
+          "type": "string"
+        },
+        "collaborativeBusinesses": {
+          "description": "List of businesses which is collaborating on the project",
+          "items": {
+            "$ref": "#/definitions/ResearchAndDevelopmentCollaborativeBusiness"
+          },
+          "type": "array"
+        },
+        "collaborativeProjectWithOtherEnterprises": {
+          "description": "Is Collaborative Project With Other Enterprises",
+          "enum": [
+            "NONE",
+            "NO",
+            "YES"
+          ],
+          "type": "string"
+        },
+        "grossAmountTaxExemptionForYear": {
+          "description": "Gross value tax reduction for current year",
+          "type": "number"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "hasExtensiveDisseminationThroughConferencesPublicationsEtc": {
+          "description": "Has Extensive Dissemination Through Conferences Publications Etc",
+          "enum": [
+            "NONE",
+            "NO",
+            "YES"
+          ],
+          "type": "string"
+        },
+        "maxApprovedGrossAmountOfPublicSupport": {
+          "description": "Max approved gross amount public support",
+          "type": "number"
+        },
+        "otherPublicSupportList": {
+          "description": "List of other public support the project has received",
+          "items": {
+            "$ref": "#/definitions/ResearchAndDevelopmentOtherPublicSupport"
+          },
+          "type": "array"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "projectNumber": {
+          "description": "Project Number",
+          "type": "string"
+        },
+        "projectStatus": {
+          "description": "Project Status",
+          "enum": [
+            "NONE",
+            "APPLICATION_REJECTED",
+            "APPLICATION_APPROVED",
+            "COMPLAINT_RECEIVED",
+            "PROJECT_CANCELLED_BY_NFR",
+            "APPROVAL_RESCINDED",
+            "PROCESSING_AFTER_APPROVED_COMPLAINT",
+            "ADMINISTRATIVELY_APPROVED_COMPLAINT"
+          ],
+          "type": "string"
+        },
+        "projectTitle": {
+          "description": "Project Title",
+          "type": "string"
+        },
+        "projectToBeSignedByAuditor": {
+          "description": "Project to be signed by auditor",
+          "enum": [
+            "NONE",
+            "NO",
+            "YES"
+          ],
+          "type": "string"
+        },
+        "publicSupportAsReducedWorkerFee": {
+          "description": "Public Support As Reduced Worker Fee",
+          "type": "number"
+        },
+        "stakeInCollaborativeProject": {
+          "description": "Stake in a collaborative project as percent",
+          "type": "number"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "taxDeductionForProject": {
+          "description": "Tax deduction for the project",
+          "type": "number"
+        },
+        "totalCostForProjectPeriod": {
+          "description": "The total cost of the project since it's infancy",
+          "type": "number"
+        },
+        "totalGrossPublicSupportInProjectPeriod": {
+          "description": "Total Gross Public Support In Project Period",
+          "readOnly": true,
+          "type": "number"
+        },
+        "totalGrossTaxDeductionFromPreviousYears": {
+          "description": "Total Gross Tax Deduction From Previous Years",
+          "type": "number"
+        },
+        "underlyingDocumentationDate": {
+          "description": "Underlying Documentation Date",
+          "example": "2024-04-29",
+          "type": "string"
+        },
+        "underlyingDocumentsUsedForAssessment": {
+          "description": "Underlying Documents Used For Assessment",
+          "enum": [
+            "NONE",
+            "INTERIM_BALANCE",
+            "ANNUAL_ACCOUNTS"
+          ],
+          "type": "string"
+        },
+        "wasInEconomicDifficultiesAtApplicationTime": {
+          "description": "Was In Economic Difficulties At Application Time",
+          "enum": [
+            "NONE",
+            "NO",
+            "YES"
+          ],
+          "type": "string"
+        },
+        "workPackages": {
+          "description": "List of specifications of work packages",
+          "items": {
+            "$ref": "#/definitions/ResearchAndDevelopmentWorkPackage"
+          },
+          "type": "array"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
+    "ResearchAndDevelopmentCollaborativeBusiness": {
+      "properties": {
+        "description": {
+          "description": "Description",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "organizationNumber": {
+          "description": "Organization Number",
+          "type": "string"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
     "ResearchAndDevelopmentOtherPublicSupport": {
       "properties": {
         "amount": {
@@ -48780,6 +49168,72 @@
             "ANNUAL_REPORT_PENDING"
           ],
           "type": "string"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
+    "ResearchAndDevelopmentWorkPackage": {
+      "properties": {
+        "costInIncomeYear": {
+          "description": "Cost In Income Year",
+          "type": "number"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "includedPersonnelCostsInIncomeYear": {
+          "description": "Included Personnel Costs In Income Year",
+          "type": "number"
+        },
+        "maxApprovedPublicSupportAsShareOfTotalCost": {
+          "description": "Maximum Approved Public Support As A Share Of Total Costs",
+          "readOnly": true,
+          "type": "number"
+        },
+        "numberOfOwnHoursInIncomeYear": {
+          "description": "Number Of Own Hours In Income Year",
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "packageId": {
+          "description": "ID of the work package",
+          "type": "string"
+        },
+        "packageTitle": {
+          "description": "The title of the package",
+          "type": "string"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "projectCategory": {
+          "description": "The category of the project",
+          "enum": [
+            "NONE",
+            "RESEARCH",
+            "DEVELOPMENT"
+          ],
+          "type": "string"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalCostsFromPreviousYears": {
+          "description": "Total Costs Previous Years",
+          "type": "number"
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport",
@@ -51838,6 +52292,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/ResearchAndDevelopment"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperResearchAndDevelopment2024": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ResearchAndDevelopment2024"
         }
       },
       "type": "object"
@@ -56784,10 +57246,6 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "moduleInvoiceScanning": {
-          "readOnly": true,
-          "type": "boolean"
-        },
         "moduleLogistics": {
           "readOnly": true,
           "type": "boolean"
@@ -57879,6 +58337,8 @@
             "RENTAL_WITHDRAWAL_SALE_COMPANY",
             "RENTAL_WITHDRAWAL_SALE_SHAREHOLDER",
             "RESOLUTION",
+            "WORK_PACKAGE",
+            "COLLABORATIVE_BUSINESS",
             "OTHER_PUBLIC_SUPPORT",
             "RELATED_COMPANY",
             "FUNCTION_AND_RISK",
@@ -58545,6 +59005,14 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "RESEARCH_AND_DEVELOPMENT_STAKE_IN_COLLABORATIVE_PROJECT",
+            "RESEARCH_AND_DEVELOPMENT_APPLIED_FOR_OTHER_PUBLIC_SUPPORT_IN_NORWAY",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_ID",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TOTAL_COST_FROM_PREVIOUS_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_RECEIVED_PUBLIC_SUPPORT",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_ORG_NO",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_DESCRIPTION",
             "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
             "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
             "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
@@ -68306,6 +68774,14 @@
             "RESEARCH_AND_DEVELOPMENT_OTHER_PUBLIC_SUPPORT_AMOUNT",
             "RESEARCH_AND_DEVELOPMENT_TOTAL_COSTS_EXCLUDED_FROM_TAX_DEDUCTION",
             "RESEARCH_AND_DEVELOPMENT_PROJECT_TO_BE_SIGNED_BY_AUDITOR",
+            "RESEARCH_AND_DEVELOPMENT_STAKE_IN_COLLABORATIVE_PROJECT",
+            "RESEARCH_AND_DEVELOPMENT_APPLIED_FOR_OTHER_PUBLIC_SUPPORT_IN_NORWAY",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_ID",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TITLE",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_TOTAL_COST_FROM_PREVIOUS_YEAR",
+            "RESEARCH_AND_DEVELOPMENT_WORK_PACKAGE_RECEIVED_PUBLIC_SUPPORT",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_ORG_NO",
+            "RESEARCH_AND_DEVELOPMENT_COLLABORATIVE_BUSINESS_DESCRIPTION",
             "TIMBER_ACCOUNT_SHARE_OF_OPERATING_REVENUES_HUNTING_FISHING_ETC",
             "TIMBER_ACCOUNT_STANDARD_INCOME_FROM_BIOMASS_OR_WOOD_PRODUCTION_TRANSFERRED_AGRIGULTURE",
             "TIMBER_ACCOUNT_SHARE_OF_PROFIT_TO_REGISTER",
@@ -106778,6 +107254,178 @@
           "yearEnd/enumType"
         ]
       }
+    },
+    "/yearEnd/researchAndDevelopment2024": {
+      "delete": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "YearEndResearchAndDevelopment2024_deleteResearchAndDevelopment2024",
+        "parameters": [
+          {
+            "description": "Partial object describing what should be updated",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ResearchAndDevelopment2024"
+            }
+          }
+        ],
+        "responses": {
+          "default": {
+            "description": "successful operation"
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Delete ResearchAndDevelopment 2024",
+        "tags": [
+          "internal",
+          "researchAndDevelopment2024"
+        ]
+      },
+      "post": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "YearEndResearchAndDevelopment2024_postResearchAndDevelopment2024",
+        "parameters": [
+          {
+            "description": "Partial object describing what should be updated",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ResearchAndDevelopment2024"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successfully created",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperResearchAndDevelopment2024"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Create ResearchAndDevelopment 2024",
+        "tags": [
+          "internal",
+          "researchAndDevelopment2024"
+        ]
+      },
+      "put": {
+        "consumes": [
+          "application/json; charset=utf-8"
+        ],
+        "description": "",
+        "operationId": "YearEndResearchAndDevelopment2024_putResearchAndDevelopment2024",
+        "parameters": [
+          {
+            "description": "Partial object describing what should be updated",
+            "in": "body",
+            "name": "body",
+            "required": false,
+            "schema": {
+              "$ref": "#/definitions/ResearchAndDevelopment2024"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperResearchAndDevelopment2024"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Update ResearchAndDevelopment 2024",
+        "tags": [
+          "internal",
+          "researchAndDevelopment2024"
+        ]
+      }
+    },
+    "/yearEnd/{yearEndReportId}/researchAndDevelopment2024": {
+      "get": {
+        "description": "",
+        "operationId": "YearEndResearchAndDevelopment2024_get",
+        "parameters": [
+          {
+            "description": "Element ID",
+            "format": "int64",
+            "in": "path",
+            "name": "yearEndReportId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "default": "*, collaborativeBusinesses(*), workPackages(*), otherPublicSupportList(*)",
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "default": 0,
+            "description": "From index",
+            "in": "query",
+            "name": "from",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "default": 1000,
+            "description": "Number of elements to return",
+            "in": "query",
+            "name": "count",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Sorting pattern",
+            "in": "query",
+            "name": "sorting",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ListResponseResearchAndDevelopment2024"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get ResearchAndDevelopment by corresponding data 2024",
+        "tags": [
+          "internal",
+          "researchAndDevelopment2024"
+        ]
+      }
     }
   },
   "schemes": [
@@ -106930,10 +107578,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
       "name": "bankreconciliationinternalexport"
@@ -108461,6 +109109,12 @@
     },
     {
       "name": "yearEndgenericData"
+    },
+    {
+      "name": "internal"
+    },
+    {
+      "name": "researchAndDevelopment2024"
     },
     {
       "name": "yearEndotherCircumstances"
