@@ -9985,6 +9985,16 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "killswitchChat": {
+          "enum": [
+            "NONE",
+            "SLOW_RESPONSE",
+            "NO_RESPONSE",
+            "NO_HELPCENTER"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "lastName": {
           "readOnly": true,
           "type": "string"
@@ -18479,7 +18489,6 @@
             "TAX_PAYMENT",
             "VAT_RETURN",
             "SHAREHOLDER_REGISTER",
-            "YEAR_END_REPORTING",
             "WAGE_COMPILATION",
             "ANNUAL_ACCOUNTS"
           ],
@@ -19986,6 +19995,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "paymentDraft": {
+          "$ref": "#/definitions/IncomingInvoicePaymentRead",
+          "description": "The invoice payment.",
+          "readOnly": true
+        },
         "validationErrors": {
           "description": "List of validation errors",
           "items": {
@@ -20019,6 +20033,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "paymentDraft": {
+          "$ref": "#/definitions/IncomingInvoicePaymentWrite",
+          "description": "The invoice payment.",
+          "readOnly": true
         },
         "voucherId": {
           "description": "Voucher Id of the incoming invoice",
@@ -20399,6 +20418,242 @@
       },
       "type": "object"
     },
+    "IncomingInvoicePaymentRead": {
+      "properties": {
+        "amountCurrency": {
+          "description": "Amount in currency.",
+          "readOnly": true,
+          "type": "number"
+        },
+        "clientUUId": {
+          "description": "Client UUID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorAddress": {
+          "description": "Creditor address.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBIC": {
+          "description": "Creditor BIC.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankAddress": {
+          "description": "Creditor bank address.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankCountryId": {
+          "description": "Creditor bank country ID.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "creditorBankIdentificator": {
+          "description": "Creditor bank identifier.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "creditorBankName": {
+          "description": "Creditor bank name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankPostalCity": {
+          "description": "Creditor bank postal city.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorBankPostalCode": {
+          "description": "Creditor bank postal code.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorClearingCode": {
+          "description": "Creditor clearing code.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorCountryId": {
+          "description": "Creditor country ID.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "creditorIbanOrBban": {
+          "description": "Creditor IBAN or BBAN.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorName": {
+          "description": "Creditor name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorPostalCity": {
+          "description": "Creditor postal city.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "creditorPostalCode": {
+          "description": "Creditor postal code.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "currencyId": {
+          "description": "Currency ID.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "foreignPayment": {
+          "description": "Flag for foreign payment.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "kidOrReceiverReference": {
+          "description": "KID or receiver reference.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentDate": {
+          "description": "Payment date.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "paymentTypeClientUUId": {
+          "description": "Payment type client UUID.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "regulatoryReportingCode": {
+          "description": "Regulatory reporting code.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "regulatoryReportingInfo": {
+          "description": "Regulatory reporting info.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "transactionId": {
+          "description": "Transaction ID.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "IncomingInvoicePaymentWrite": {
+      "properties": {
+        "amountCurrency": {
+          "description": "Amount in currency.",
+          "type": "number"
+        },
+        "clientUUId": {
+          "description": "Client UUID.",
+          "type": "string"
+        },
+        "creditorAddress": {
+          "description": "Creditor address.",
+          "type": "string"
+        },
+        "creditorBIC": {
+          "description": "Creditor BIC.",
+          "type": "string"
+        },
+        "creditorBankAddress": {
+          "description": "Creditor bank address.",
+          "type": "string"
+        },
+        "creditorBankCountryId": {
+          "description": "Creditor bank country ID.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "creditorBankIdentificator": {
+          "description": "Creditor bank identifier.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "creditorBankName": {
+          "description": "Creditor bank name.",
+          "type": "string"
+        },
+        "creditorBankPostalCity": {
+          "description": "Creditor bank postal city.",
+          "type": "string"
+        },
+        "creditorBankPostalCode": {
+          "description": "Creditor bank postal code.",
+          "type": "string"
+        },
+        "creditorClearingCode": {
+          "description": "Creditor clearing code.",
+          "type": "string"
+        },
+        "creditorCountryId": {
+          "description": "Creditor country ID.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "creditorIbanOrBban": {
+          "description": "Creditor IBAN or BBAN.",
+          "type": "string"
+        },
+        "creditorName": {
+          "description": "Creditor name.",
+          "type": "string"
+        },
+        "creditorPostalCity": {
+          "description": "Creditor postal city.",
+          "type": "string"
+        },
+        "creditorPostalCode": {
+          "description": "Creditor postal code.",
+          "type": "string"
+        },
+        "currencyId": {
+          "description": "Currency ID.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "foreignPayment": {
+          "description": "Flag for foreign payment.",
+          "type": "boolean"
+        },
+        "kidOrReceiverReference": {
+          "description": "KID or receiver reference.",
+          "type": "string"
+        },
+        "paymentDate": {
+          "description": "Payment date.",
+          "type": "string"
+        },
+        "paymentTypeClientUUId": {
+          "description": "Payment type client UUID.",
+          "type": "string"
+        },
+        "regulatoryReportingCode": {
+          "description": "Regulatory reporting code.",
+          "type": "string"
+        },
+        "regulatoryReportingInfo": {
+          "description": "Regulatory reporting info.",
+          "type": "string"
+        },
+        "transactionId": {
+          "description": "Transaction ID.",
+          "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "IncomingInvoiceValidationError": {
       "properties": {
         "clientId": {
@@ -20681,6 +20936,10 @@
           "description": "ID of the account.",
           "format": "int64",
           "type": "integer"
+        },
+        "amountEditOrder": {
+          "description": "Amount edit order.",
+          "type": "string"
         },
         "amountInclVat": {
           "description": "Amount including VAT.",
@@ -24696,6 +24955,9 @@
             "SalesforceWebhookForProjectManagerRole",
             "GlobalEventSystem",
             "SalesforceSupport",
+            "SlowResponsesFromOpenAI",
+            "NoResponsesFromOpenAI",
+            "ZendeskNotAvailable",
             "CleanupTripletexContactsJob",
             "FasterBRAlgorithms",
             "MPSInvoiceOverviewBanner",
@@ -24728,7 +24990,9 @@
             "ReminderWidgetWebhookListener",
             "DeleteAccountJobRun",
             "ChangedSinceRequestLogId",
-            "AllowSendingInTripletexInvoiceJob"
+            "AllowSendingInTripletexInvoiceJob",
+            "ZTLResilience",
+            "SyncRemindersJobRun"
           ],
           "readOnly": true,
           "type": "string"
@@ -38350,6 +38614,10 @@
         "inventoryLocation": {
           "$ref": "#/definitions/InventoryLocation",
           "description": "Inventory location field -- beta program"
+        },
+        "isCharged": {
+          "description": "Flag indicating whether the order line is charged or not.",
+          "type": "boolean"
         },
         "isPicked": {
           "description": "Only used for Logistics customers who activated the available inventory functionality. Represents whether the line has been picked up or not.",
@@ -57339,10 +57607,6 @@
           "type": "boolean"
         },
         "moduleRemitAutoPay": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "moduleRemitNets": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -107578,10 +107842,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
       "name": "bankreconciliationinternalexport"
@@ -109061,6 +109325,9 @@
     },
     {
       "name": "yearEndpdf"
+    },
+    {
+      "name": "yearEndpdfv2"
     },
     {
       "name": "yearEndtaxCalculation"
