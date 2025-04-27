@@ -8985,12 +8985,8 @@
               "MODULE_NOTE",
               "MODULE_TASK",
               "MODULE_YEAR_END_REPORT",
-              "MODULE_RESOURCE_ALLOCATION",
               "MODULE_PROJECT_ECONOMY",
-              "MODULE_REFERENCE_FEE",
               "MODULE_RORKJOP",
-              "MODULE_HISTORICAL",
-              "MODULE_PROJECT_CATEGORY",
               "MODULE_PROJECT_BUDGET",
               "MODULE_PENSION_REPORT",
               "MODULE_QUANTITY_HANDLING",
@@ -8998,13 +8994,10 @@
               "COMPLETE_WEEKLY_HOURLISTS",
               "COMPLETE_MONTHLY_HOURLISTS",
               "APPROVE_MONTHLY_HOURLISTS",
-              "MODULE_PROJECT_PROGNOSIS",
               "MODULE_BUNCHES",
               "MODULE_ACCOUNTING_REPORTS",
               "MODULE_CUSTOMER_CATEGORIES",
-              "MODULE_PROJECT_SUBCONTRACT",
               "MODULE_PAYROLL_ACCOUNTING",
-              "INVOICE_APPROVED_HOURS_MANDATORY",
               "IS_CURRENT_MONTH_DEFAULT_PERIOD",
               "SHOW_TRAVEL_REPORT_LETTERHEAD",
               "MODULE_TIME_BALANCE",
@@ -9026,8 +9019,6 @@
               "MODULE_STOP_WATCH",
               "MODULE_CONTACT",
               "INVOICE_RESERVE_IS_ZERO_FOR_CLOSED_PROJECT",
-              "MODULE_AUTO_PROJECT_NUMBER",
-              "MODULE_RESOURCE_GROUPS",
               "IS_TRAVEL_REPORT_TAX_FREE_DIET_RATES",
               "MODULE_OCR",
               "MODULE_REMIT",
@@ -9035,13 +9026,10 @@
               "MONTHLY_HOURLIST_MINUS_TIME_WARNING",
               "MODULE_VOUCHER_SCANNING",
               "MODULE_LOGISTICS",
-              "ALLOW_TIME_TRACKING_FOR_PARTICIPANTS_ONLY",
-              "MODULE_HOLYDAY_PLAN",
               "MODULE_HOURLIST",
               "PROJECT_ORDER_VIEW_DUE_IN_SCALE",
               "SEND_PAYSLIPS_BY_EMAIL",
               "MODULE_EMPLOYEE_CATEGORY",
-              "PROJECT_NAME_SCHEME",
               "MODULE_CUSTOMER_CATEGORY1",
               "MODULE_CUSTOMER_CATEGORY2",
               "MODULE_CUSTOMER_CATEGORY3",
@@ -9057,8 +9045,6 @@
               "PAYSLIP_FROM_CURRENT_USER",
               "PAYSLIP_BCC_CURRENT_USER",
               "AUTO_INVOICING",
-              "AUTO_CLOSE_INVOICED_PROJECTS",
-              "GENERAL_ACTIVITIES_PER_PROJECT",
               "VALIDATE_HOURS_PER_WEEK_WH",
               "VALIDATE_HOURS_PER_DAY24",
               "MODULE_INVOICE_FEE_COMMENT",
@@ -9089,18 +9075,13 @@
               "IS_ACCOUNTANT",
               "IS_AUDITOR",
               "IS_RESELLER",
-              "ALLOW_MULTIPLE_PROJECT_INVOICE_VAT",
               "PROJECT_ACTIVITY_BUDGET_IS_MASTER",
-              "MODULE_PROJECT_BUDGET_REFERENCE_FEE",
               "TRAVEL_DIET_IGNORE_POSTING",
               "TRAVEL_NIGHT_IGNORE_POSTING",
               "TRAVEL_DRIVING_IGNORE_POSTING",
               "MODULE_WAREHOUSE",
               "ORDER_SHOW_ORDER_DATE",
               "OFFER_SHOW_OFFER_DATE",
-              "HOURLY_RATE_PROJECTS_WRITE_UP_DOWN",
-              "SHOW_RECENTLY_CLOSED_PROJECTS_ON_SUPPLIER_INVOICE",
-              "FIXED_PRICE_PROJECTS_INVOICE_BY_PROGRESS",
               "MODULE_INVOICE_IMPORT",
               "MODULE_EMAIL",
               "PRODUCT_SET_COST_FROM_ORDER_LINE",
@@ -9113,14 +9094,12 @@
               "MODULE_APPROVE_DEPARTMENT_VOUCHER",
               "MODULE_APPROVE_PROJECT_VOUCHER",
               "DEFAULT_IS_PRIVATE_CUSTOMER",
-              "DEFAULT_CHARGE_ON_PROJECT",
               "MODULE_MESAN",
               "MODULE_MULTIPLE_LEDGERS",
               "MODULE_DIVISIONS",
               "OFFER_FROM_CURRENT_USER",
               "ORDER_CONFIRMATION_CURRENT_USER",
               "MODULE_ACCOUNTANT_CONNECT_CLIENT",
-              "MODULE_ADDITION_PROJECT_MARKUP",
               "MODULE_WAGE_PROJECT_ACCOUNTING",
               "MODULE_WAGE_AMORTIZATION",
               "TRIPLETEX_SUPPORT_LOGIN_ACCESS",
@@ -9133,7 +9112,6 @@
               "MODULE_ORDER_OUT",
               "IS_TRAVEL_REPORT_TAX_FREE_DRIVING_RATES",
               "INCLUDE_TRIPLETEX_ACCOUNTANT_INVOICE_SUMMARY_CSV",
-              "HIDE_INACTIVE_PROJECTS",
               "INVOICE_INCLUDE_COMMON_ATTACHMENTS",
               "MODULE_CONTROL_SCHEMA_REQUIRED_HOUR_TRACKING",
               "MODULE_CONTROL_SCHEMA_REQUIRED_INVOICING",
@@ -10622,6 +10600,84 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CspReport": {
+      "properties": {
+        "age": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "body": {
+          "$ref": "#/definitions/CspReportBody",
+          "readOnly": true
+        },
+        "type": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "user_agent": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CspReportBody": {
+      "properties": {
+        "blockedURL": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "columnNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "disposition": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "documentURL": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveDirective": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "lineNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "originalPolicy": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "referrer": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "sample": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "sourceFile": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "statusCode": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -18351,7 +18407,8 @@
             "UpsellFromBasisToSmartTripletexDashboardBanner",
             "CopilotInfoBanner",
             "ProductOverviewBanner",
-            "MySubscriptionInTripletexBanner"
+            "MySubscriptionInTripletexBanner",
+            "NewDashboardReminderBanner"
           ],
           "type": "string"
         },
@@ -20069,6 +20126,34 @@
       },
       "type": "object"
     },
+    "IncomingInvoiceDuplicateCheckerResult": {
+      "properties": {
+        "numberAsString": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "voucherId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "year": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "IncomingInvoiceHeaderRead": {
       "properties": {
         "changedAt": {
@@ -20656,16 +20741,20 @@
     },
     "IncomingInvoiceValidationError": {
       "properties": {
-        "clientId": {
+        "clientUUId": {
+          "readOnly": true,
           "type": "string"
         },
-        "duplicateLink": {
-          "type": "string"
+        "duplicateInfo": {
+          "$ref": "#/definitions/IncomingInvoiceDuplicateCheckerResult",
+          "readOnly": true
         },
         "field": {
+          "readOnly": true,
           "type": "string"
         },
         "message": {
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -24888,7 +24977,6 @@
             "DummyTestSwitch",
             "WOOTRIC_NPS",
             "LogEverythingJavascript",
-            "CspFontSrc",
             "SalesForceEmbeddedChat",
             "Zendesk",
             "IntroductionWizard",
@@ -24962,6 +25050,7 @@
             "FasterBRAlgorithms",
             "MPSInvoiceOverviewBanner",
             "NewDashboardReminderWidget",
+            "NewDashboardReminderWidgetIsVisible",
             "NewReconciliationOptIn",
             "CustomerApiTripletexPagination",
             "PostingApiTripletexPagination",
@@ -30814,6 +30903,39 @@
       },
       "type": "object"
     },
+    "ListResponsePaymentWidgetPaymentType": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/PaymentWidgetPaymentType"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ListResponsePayslip": {
       "properties": {
         "count": {
@@ -36191,6 +36313,35 @@
       },
       "type": "object"
     },
+    "MaventaCompany": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "uuid": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "MaventaEventData": {
       "properties": {
         "destination": {
@@ -41152,12 +41303,16 @@
           "type": "string"
         },
         "paymentTypeId": {
-          "description": "Id corresponding to a Dropdown Type used in the Payment Widget's dropdown elements",
+          "description": "Posting rule id or autoPay agreement id or ztl account id",
           "format": "int32",
           "type": "integer"
         },
         "paymentTypeValue": {
           "description": "Value of a Dropdown Type used in the Payment Widget's dropdown elements",
+          "type": "string"
+        },
+        "uniqueId": {
+          "description": "Id corresponding to a Dropdown Type used in the Payment Widget's dropdown elements",
           "type": "string"
         }
       },
@@ -51023,6 +51178,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperIncomingInvoiceDuplicateCheckerResult": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/IncomingInvoiceDuplicateCheckerResult"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperIncomingInvoicePaymentHistory": {
       "properties": {
         "value": {
@@ -51784,6 +51947,14 @@
             "type": "string"
           },
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperMaventaCompany": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/MaventaCompany"
         }
       },
       "type": "object"
@@ -52760,6 +52931,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/SalaryV2Voucher"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperSalaryV2VoucherOverview": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/SalaryV2VoucherOverview"
         }
       },
       "type": "object"
@@ -56149,6 +56328,14 @@
           "readOnly": true,
           "type": "integer"
         },
+        "approvalDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "approvedBy": {
+          "$ref": "#/definitions/Employee",
+          "readOnly": true
+        },
         "comment": {
           "type": "string"
         },
@@ -56495,6 +56682,10 @@
           "type": "string"
         },
         "phoneNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "phoneNumberMobile": {
           "readOnly": true,
           "type": "string"
         },
@@ -62804,6 +62995,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isAuthCreate": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isAuthDepartmentAdmin": {
           "readOnly": true,
           "type": "boolean"
@@ -64618,6 +64813,14 @@
           "type": "string"
         },
         "expenseStatusEnums": {
+          "type": "string"
+        },
+        "expenseType": {
+          "enum": [
+            "ALL",
+            "TRAVEL",
+            "EXPENSE"
+          ],
           "type": "string"
         },
         "from": {
@@ -107989,10 +108192,16 @@
       "name": "country"
     },
     {
+      "name": "csp"
+    },
+    {
       "name": "currency"
     },
     {
       "name": "customer"
+    },
+    {
+      "name": "maventaCompany"
     },
     {
       "name": "customercategory"
@@ -108773,6 +108982,9 @@
     },
     {
       "name": "salary/type"
+    },
+    {
+      "name": "salarytskinternalsystemusercallback"
     },
     {
       "name": "salarytskinternalamelding"
