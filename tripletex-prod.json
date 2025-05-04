@@ -1256,6 +1256,19 @@
           "readOnly": true,
           "type": "string"
         },
+        "checkWageLogEmployeeName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "checkWageLogEmployeePictureId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "checkWageLogTime": {
+          "readOnly": true,
+          "type": "string"
+        },
         "end": {
           "readOnly": true,
           "type": "string"
@@ -9053,7 +9066,6 @@
               "MODULE_DEPARTMENT_ACCOUNTING",
               "MODULE_PROJECT_ACCOUNTING",
               "MODULE_PRODUCT_ACCOUNTING",
-              "MODULE_SUBSCRIPTION_ADDRESS_LIST",
               "SEND_IMPORTED_INVOICES",
               "MODULE_ELECTRO",
               "MODULE_NRF",
@@ -9923,7 +9935,7 @@
           "type": "boolean"
         },
         "companyId": {
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
           "type": "integer"
         },
@@ -9944,6 +9956,10 @@
           "type": "boolean"
         },
         "hasCopilotUrlNavigationPilot": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasNeverTriedSticos": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -20056,14 +20072,6 @@
           "$ref": "#/definitions/IncomingInvoicePaymentRead",
           "description": "The invoice payment.",
           "readOnly": true
-        },
-        "validationErrors": {
-          "description": "List of validation errors",
-          "items": {
-            "$ref": "#/definitions/IncomingInvoiceValidationError"
-          },
-          "readOnly": true,
-          "type": "array"
         }
       },
       "type": "object"
@@ -20356,6 +20364,7 @@
           "description": "Invoice Life Cycle.",
           "enum": [
             "DRAFT_IN_INBOX",
+            "DRAFT_IN_NON_POSTED",
             "TEMPORARY_IN_LEDGER",
             "IN_LEDGER"
           ],
@@ -20734,6 +20743,48 @@
         "transactionId": {
           "description": "Transaction ID.",
           "format": "int64",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "IncomingInvoiceSaveResult": {
+      "properties": {
+        "invoiceLifeCycle": {
+          "description": "Invoice Life Cycle.",
+          "enum": [
+            "DRAFT_IN_INBOX",
+            "DRAFT_IN_NON_POSTED",
+            "TEMPORARY_IN_LEDGER",
+            "IN_LEDGER"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "validationErrors": {
+          "description": "List of validation errors",
+          "items": {
+            "$ref": "#/definitions/IncomingInvoiceValidationError"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "voucherId": {
+          "description": "Voucher Id of the incoming invoice",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherNumber": {
+          "description": "Voucher number of the incoming invoice",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherYear": {
+          "description": "Voucher year of the incoming invoice",
+          "format": "int32",
+          "readOnly": true,
           "type": "integer"
         }
       },
@@ -25064,6 +25115,7 @@
             "NewAddonsAuthorization",
             "AccountingOfficeServiceOptimization",
             "AccountingOfficeServiceOptimizationPart2",
+            "OnboardingWidget2FATask",
             "PilotFeatureRecordPatternQuery",
             "LargeArgumentOptimizerHugeLimit",
             "TimeBasedSessionInvalidation",
@@ -25081,7 +25133,10 @@
             "ChangedSinceRequestLogId",
             "AllowSendingInTripletexInvoiceJob",
             "ZTLResilience",
-            "SyncRemindersJobRun"
+            "SyncRemindersJobRun",
+            "AutoPayResilience",
+            "NewInvoiceOverviewQuery",
+            "Inyett"
           ],
           "readOnly": true,
           "type": "string"
@@ -51194,6 +51249,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperIncomingInvoiceSaveResult": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/IncomingInvoiceSaveResult"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperInteger": {
       "properties": {
         "value": {
@@ -52791,6 +52854,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperSalaryPermission": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/SalaryPermission"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperSalarySettings": {
       "properties": {
         "value": {
@@ -53535,6 +53606,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/UnreadCount"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperUserBanner": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/UserBanner"
         }
       },
       "type": "object"
@@ -54554,6 +54633,15 @@
         "taxableDescription": {
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SalaryPermission": {
+      "properties": {
+        "canAccessAnnualAccounts": {
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -65821,6 +65909,42 @@
           "type": "integer"
         },
         "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "UserBanner": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "closed": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "lastUpdated": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "userBannerType": {
           "readOnly": true,
           "type": "string"
         },
@@ -108045,10 +108169,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
       "name": "bankreconciliationinternalexport"
@@ -109017,6 +109141,9 @@
       "name": "tsksalaryv2payment"
     },
     {
+      "name": "tsksalaryv2permissions"
+    },
+    {
       "name": "tsksalaryv2settings"
     },
     {
@@ -109432,6 +109559,9 @@
     },
     {
       "name": "userLicense"
+    },
+    {
+      "name": "internaluserbanner"
     },
     {
       "name": "vatReturnsOverview"
