@@ -2142,6 +2142,8 @@
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "YEAR_END_DOCUMENTATION_FOREST_FUND",
+            "YEAR_END_DOCUMENTATION_ATTACHMENT_CATEGORY",
+            "YEAR_END_DOCUMENTATION_DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -2468,6 +2470,15 @@
             "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_RESULT_AS_PERCENTAGE_OF_GROSS_REVENUE",
+            "CONTROLLED_TRANSACTIONS_MAIN_BUSINESS_ACTIVITY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_IN_NORWAY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_OUTSIDE_NORWAY",
+            "CONTROLLED_TRANSACTIONS_COMPANY_HAS_BEEN_SERVICED_BY_OTHER_COMPANY_IN_GROUP_FOR_FREE",
+            "CONTROLLED_TRANSACTIONS_HAS_CONTROLLED_TRANSACTIONS_EXCEEDING_LIMIT",
+            "CONTROLLED_TRANSACTIONS_IS_OBLIGED_TO_DOCUMENT",
             "INTEREST_LIMITATION_COMPANY_COMPLIANCE_WITH_INTEREST_LIMITATION",
             "INTEREST_LIMITATION_NET_INTEREST_COSTS_NORWEGIAN_GROUP_EXCEEDS_25MNOK",
             "INTEREST_LIMITATION_COMPANY_USES_EXCEPTION_RULE",
@@ -2535,7 +2546,25 @@
             "INTEREST_LIMITATION_CALCULATION_OF_INTEREST_DEDUCTION_LIMIT_DEDUCTION_FOR_GROUP_CONTRIBUTIONS_NOT_INCLUDED_IN_CALCULATION_BASIS",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_INCOME_YEAR",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_CARRIED_FORWARD_FROM_PREVIOUS_YEAR",
-            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS"
+            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_OWNER",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_SPOUSE",
+            "TAX_ASSESSMENT_SALARY_INCOME_OWNER",
+            "TAX_ASSESSMENT_SALARY_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_SPOUSE",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_OWNER",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_CONDITIONS_ARE_SPECIAL_ALLOWANCE_AGRICULTURE_MET",
+            "TAX_ASSESSMENT_SHARE_FROM_SDF"
           ],
           "readOnly": true,
           "type": "string"
@@ -3706,6 +3735,26 @@
         "startDate": {
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AttachmentCategoryCode": {
+      "properties": {
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "technicalName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport"
         }
       },
       "type": "object"
@@ -6229,7 +6278,9 @@
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
             "DOCUMENT_WITH_ALTINN_ID",
-            "FOREST_FUND"
+            "FOREST_FUND",
+            "TAX_ASSESSMENT",
+            "DISTRIBUTION_OF_CAPITAL_DEBT"
           ],
           "readOnly": true,
           "type": "string"
@@ -6736,6 +6787,8 @@
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "YEAR_END_DOCUMENTATION_FOREST_FUND",
+            "YEAR_END_DOCUMENTATION_ATTACHMENT_CATEGORY",
+            "YEAR_END_DOCUMENTATION_DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -7062,6 +7115,15 @@
             "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_RESULT_AS_PERCENTAGE_OF_GROSS_REVENUE",
+            "CONTROLLED_TRANSACTIONS_MAIN_BUSINESS_ACTIVITY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_IN_NORWAY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_OUTSIDE_NORWAY",
+            "CONTROLLED_TRANSACTIONS_COMPANY_HAS_BEEN_SERVICED_BY_OTHER_COMPANY_IN_GROUP_FOR_FREE",
+            "CONTROLLED_TRANSACTIONS_HAS_CONTROLLED_TRANSACTIONS_EXCEEDING_LIMIT",
+            "CONTROLLED_TRANSACTIONS_IS_OBLIGED_TO_DOCUMENT",
             "INTEREST_LIMITATION_COMPANY_COMPLIANCE_WITH_INTEREST_LIMITATION",
             "INTEREST_LIMITATION_NET_INTEREST_COSTS_NORWEGIAN_GROUP_EXCEEDS_25MNOK",
             "INTEREST_LIMITATION_COMPANY_USES_EXCEPTION_RULE",
@@ -7129,7 +7191,25 @@
             "INTEREST_LIMITATION_CALCULATION_OF_INTEREST_DEDUCTION_LIMIT_DEDUCTION_FOR_GROUP_CONTRIBUTIONS_NOT_INCLUDED_IN_CALCULATION_BASIS",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_INCOME_YEAR",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_CARRIED_FORWARD_FROM_PREVIOUS_YEAR",
-            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS"
+            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_OWNER",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_SPOUSE",
+            "TAX_ASSESSMENT_SALARY_INCOME_OWNER",
+            "TAX_ASSESSMENT_SALARY_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_SPOUSE",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_OWNER",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_CONDITIONS_ARE_SPECIAL_ALLOWANCE_AGRICULTURE_MET",
+            "TAX_ASSESSMENT_SHARE_FROM_SDF"
           ],
           "readOnly": true,
           "type": "string"
@@ -7996,6 +8076,18 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "status": {
+          "description": "Status",
+          "enum": [
+            "ACTIVATED",
+            "PENDING_ACTIVATION",
+            "FAILED_ACTIVATION",
+            "NOT_ACTIVATED",
+            "NOT_AVAILABLE"
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -8124,6 +8216,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "licenseUrl": {
+          "description": "License",
+          "readOnly": true,
+          "type": "string"
+        },
         "module": {
           "description": "Module",
           "enum": [
@@ -8194,6 +8291,14 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "priceInfos": {
+          "description": "Price lines",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "title": {
           "description": "Title",
@@ -9036,7 +9141,6 @@
               "MODULE_OCR",
               "MODULE_REMIT",
               "MODULE_TRAVEL_EXPENSE_RATES",
-              "MONTHLY_HOURLIST_MINUS_TIME_WARNING",
               "MODULE_VOUCHER_SCANNING",
               "MODULE_LOGISTICS",
               "MODULE_HOURLIST",
@@ -9594,6 +9698,141 @@
       },
       "type": "object"
     },
+    "ControlledTransactions2024": {
+      "properties": {
+        "businessActivities": {
+          "description": "List of business activities",
+          "items": {
+            "$ref": "#/definitions/ControlledTransactionsBusinessActivity"
+          },
+          "type": "array"
+        },
+        "companyGuarantorForAgreementsByOtherCompaniesInSameGroup": {
+          "description": "Whether or not the company acts as a guarantor for an agreement by another company in the same group",
+          "type": "boolean"
+        },
+        "companyHasBeenServicedByOtherCompanyInGroupForFree": {
+          "description": "Whether or not the company has been serviced by another company in the same group for free",
+          "type": "boolean"
+        },
+        "companyServicedOtherCompanyInGroupForFree": {
+          "description": "Whether or not the company has serviced another company in the same group for free",
+          "type": "boolean"
+        },
+        "consolidatedMarginPercentage": {
+          "description": "Percentage of consolidated margin",
+          "type": "number"
+        },
+        "controlledTransactionsExceedingLimit": {
+          "description": "Has controlled transaction exceeding the set limit",
+          "type": "boolean"
+        },
+        "costOfImmaterialAssets": {
+          "description": "The total cost related to development of the company's immaterial assets",
+          "type": "number"
+        },
+        "groupBeenRestructured": {
+          "description": "Whether or not the group related to the company has undergone restructuring",
+          "type": "boolean"
+        },
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numberOfEntitiesWithControlledTransactionsInNorway": {
+          "description": "Number of entities with controlled transactions in norway",
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "numberOfEntitiesWithControlledTransactionsOutsideNorway": {
+          "description": "Number of entities with controlled transactions outside of norway",
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "numberOfRegisteredPatents": {
+          "description": "The number of patents registered by the company",
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "obligedToDocument": {
+          "description": "The company is obliged to document controlled transactions",
+          "type": "boolean"
+        },
+        "outstandingBalances": {
+          "description": "List of outstanding balances",
+          "items": {
+            "$ref": "#/definitions/ControlledTransactionsOutstanding"
+          },
+          "type": "array"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "resultAsPercentageOfGrossRevenue": {
+          "description": "Yearly result as the percentage of total gross revenue",
+          "type": "number"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "summary": {
+          "$ref": "#/definitions/ControlledTransactionsSummary",
+          "description": "Summary of something"
+        },
+        "transactions": {
+          "description": "List of transactions",
+          "items": {
+            "$ref": "#/definitions/ControlledTransactionsTransaction"
+          },
+          "type": "array"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
+    "ControlledTransactionsBusinessActivity": {
+      "properties": {
+        "groupId": {
+          "description": "Group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "mainBusinessActivity": {
+          "description": "The main type of business activity",
+          "type": "string"
+        },
+        "posts": {
+          "description": "Associated posts",
+          "items": {
+            "$ref": "#/definitions/GenericData"
+          },
+          "type": "array"
+        },
+        "subGroupId": {
+          "description": "Sub group ID",
+          "format": "int32",
+          "type": "integer"
+        },
+        "yearEndReport": {
+          "$ref": "#/definitions/YearEndReport",
+          "description": "Year-end Report"
+        }
+      },
+      "type": "object"
+    },
     "ControlledTransactionsCompanySpecification": {
       "properties": {
         "companyName": {
@@ -9693,6 +9932,10 @@
         "amount": {
           "description": "The amount of money transferred",
           "type": "number"
+        },
+        "countryCode": {
+          "description": "What country is the outstanding balance in",
+          "type": "string"
         },
         "groupId": {
           "description": "Group ID",
@@ -9806,6 +10049,10 @@
         "amount": {
           "description": "The amount of money transferred",
           "type": "number"
+        },
+        "countryCode": {
+          "description": "What country did the transaction take place in",
+          "type": "string"
         },
         "description": {
           "description": "A description of the transaction",
@@ -9955,6 +10202,14 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "hasCopilotReportAnalyzerPilot": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasCopilotSurvey": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "hasCopilotUrlNavigationPilot": {
           "readOnly": true,
           "type": "boolean"
@@ -10017,6 +10272,49 @@
       },
       "type": "object"
     },
+    "CopilotReportAnalyzer": {
+      "properties": {
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "filters": {
+          "maxLength": 65535,
+          "minLength": 0,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "report": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "response": {
+          "maxLength": 65535,
+          "minLength": 0,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "report",
+        "response"
+      ],
+      "type": "object"
+    },
     "CopilotRequest": {
       "properties": {
         "changes": {
@@ -10047,7 +10345,8 @@
             "TEST",
             "REPORT_MODEL",
             "STICOS",
-            "COPILOT_URL_NAVIGATION_INVOICE"
+            "COPILOT_URL_NAVIGATION_INVOICE",
+            "COPILOT_REPORT_ANALYZER"
           ],
           "type": "string"
         },
@@ -10093,6 +10392,13 @@
           },
           "type": "array"
         },
+        "copilotReportAnalyzer": {
+          "description": "Response from analysis",
+          "items": {
+            "$ref": "#/definitions/CopilotReportAnalyzer"
+          },
+          "type": "array"
+        },
         "copilotRequest": {
           "$ref": "#/definitions/CopilotRequest"
         },
@@ -10131,7 +10437,8 @@
             "SUPPORT",
             "STICOS",
             "ACCOUNT_PLAN",
-            "COPILOT_URL_NAVIGATION"
+            "COPILOT_URL_NAVIGATION",
+            "COPILOT_REPORT_ANALYZER"
           ],
           "type": "string"
         },
@@ -10146,7 +10453,8 @@
             "SUPPORT",
             "STICOS",
             "ACCOUNT_PLAN",
-            "COPILOT_URL_NAVIGATION"
+            "COPILOT_URL_NAVIGATION",
+            "COPILOT_REPORT_ANALYZER"
           ],
           "type": "string"
         },
@@ -12076,6 +12384,30 @@
       },
       "type": "object"
     },
+    "DebtCollectionInfoDTO": {
+      "properties": {
+        "comments": {
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "referenceNumber": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DebtCollector": {
       "properties": {
         "annualFee": {
@@ -12342,6 +12674,26 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DescriptionDTO": {
+      "properties": {
+        "descriptions": {
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "hasError": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isRead": {
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -13074,6 +13426,9 @@
     },
     "DocumentationGenericData": {
       "properties": {
+        "attachmentCategory": {
+          "type": "string"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -13105,6 +13460,7 @@
             "WORK_PACKAGE",
             "COLLABORATIVE_BUSINESS",
             "OTHER_PUBLIC_SUPPORT",
+            "BUSINESS_ACTIVITY",
             "RELATED_COMPANY",
             "FUNCTION_AND_RISK",
             "TRANSACTION",
@@ -13156,7 +13512,9 @@
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
             "DOCUMENT_WITH_ALTINN_ID",
-            "FOREST_FUND"
+            "FOREST_FUND",
+            "TAX_ASSESSMENT",
+            "DISTRIBUTION_OF_CAPITAL_DEBT"
           ],
           "type": "string"
         },
@@ -13471,6 +13829,8 @@
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "YEAR_END_DOCUMENTATION_FOREST_FUND",
+            "YEAR_END_DOCUMENTATION_ATTACHMENT_CATEGORY",
+            "YEAR_END_DOCUMENTATION_DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -13797,6 +14157,15 @@
             "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_RESULT_AS_PERCENTAGE_OF_GROSS_REVENUE",
+            "CONTROLLED_TRANSACTIONS_MAIN_BUSINESS_ACTIVITY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_IN_NORWAY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_OUTSIDE_NORWAY",
+            "CONTROLLED_TRANSACTIONS_COMPANY_HAS_BEEN_SERVICED_BY_OTHER_COMPANY_IN_GROUP_FOR_FREE",
+            "CONTROLLED_TRANSACTIONS_HAS_CONTROLLED_TRANSACTIONS_EXCEEDING_LIMIT",
+            "CONTROLLED_TRANSACTIONS_IS_OBLIGED_TO_DOCUMENT",
             "INTEREST_LIMITATION_COMPANY_COMPLIANCE_WITH_INTEREST_LIMITATION",
             "INTEREST_LIMITATION_NET_INTEREST_COSTS_NORWEGIAN_GROUP_EXCEEDS_25MNOK",
             "INTEREST_LIMITATION_COMPANY_USES_EXCEPTION_RULE",
@@ -13864,7 +14233,25 @@
             "INTEREST_LIMITATION_CALCULATION_OF_INTEREST_DEDUCTION_LIMIT_DEDUCTION_FOR_GROUP_CONTRIBUTIONS_NOT_INCLUDED_IN_CALCULATION_BASIS",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_INCOME_YEAR",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_CARRIED_FORWARD_FROM_PREVIOUS_YEAR",
-            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS"
+            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_OWNER",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_SPOUSE",
+            "TAX_ASSESSMENT_SALARY_INCOME_OWNER",
+            "TAX_ASSESSMENT_SALARY_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_SPOUSE",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_OWNER",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_CONDITIONS_ARE_SPECIAL_ALLOWANCE_AGRICULTURE_MET",
+            "TAX_ASSESSMENT_SHARE_FROM_SDF"
           ],
           "type": "string"
         },
@@ -14403,9 +14790,6 @@
           "type": "boolean"
         },
         "auditor": {
-          "type": "boolean"
-        },
-        "authorized": {
           "type": "boolean"
         },
         "companyId": {
@@ -17389,6 +17773,7 @@
             "WORK_PACKAGE",
             "COLLABORATIVE_BUSINESS",
             "OTHER_PUBLIC_SUPPORT",
+            "BUSINESS_ACTIVITY",
             "RELATED_COMPANY",
             "FUNCTION_AND_RISK",
             "TRANSACTION",
@@ -17440,7 +17825,9 @@
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
             "DOCUMENT_WITH_ALTINN_ID",
-            "FOREST_FUND"
+            "FOREST_FUND",
+            "TAX_ASSESSMENT",
+            "DISTRIBUTION_OF_CAPITAL_DEBT"
           ],
           "type": "string"
         },
@@ -17755,6 +18142,8 @@
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "YEAR_END_DOCUMENTATION_FOREST_FUND",
+            "YEAR_END_DOCUMENTATION_ATTACHMENT_CATEGORY",
+            "YEAR_END_DOCUMENTATION_DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -18081,6 +18470,15 @@
             "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_RESULT_AS_PERCENTAGE_OF_GROSS_REVENUE",
+            "CONTROLLED_TRANSACTIONS_MAIN_BUSINESS_ACTIVITY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_IN_NORWAY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_OUTSIDE_NORWAY",
+            "CONTROLLED_TRANSACTIONS_COMPANY_HAS_BEEN_SERVICED_BY_OTHER_COMPANY_IN_GROUP_FOR_FREE",
+            "CONTROLLED_TRANSACTIONS_HAS_CONTROLLED_TRANSACTIONS_EXCEEDING_LIMIT",
+            "CONTROLLED_TRANSACTIONS_IS_OBLIGED_TO_DOCUMENT",
             "INTEREST_LIMITATION_COMPANY_COMPLIANCE_WITH_INTEREST_LIMITATION",
             "INTEREST_LIMITATION_NET_INTEREST_COSTS_NORWEGIAN_GROUP_EXCEEDS_25MNOK",
             "INTEREST_LIMITATION_COMPANY_USES_EXCEPTION_RULE",
@@ -18148,7 +18546,25 @@
             "INTEREST_LIMITATION_CALCULATION_OF_INTEREST_DEDUCTION_LIMIT_DEDUCTION_FOR_GROUP_CONTRIBUTIONS_NOT_INCLUDED_IN_CALCULATION_BASIS",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_INCOME_YEAR",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_CARRIED_FORWARD_FROM_PREVIOUS_YEAR",
-            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS"
+            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_OWNER",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_SPOUSE",
+            "TAX_ASSESSMENT_SALARY_INCOME_OWNER",
+            "TAX_ASSESSMENT_SALARY_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_SPOUSE",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_OWNER",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_CONDITIONS_ARE_SPECIAL_ALLOWANCE_AGRICULTURE_MET",
+            "TAX_ASSESSMENT_SHARE_FROM_SDF"
           ],
           "type": "string"
         },
@@ -18265,7 +18681,9 @@
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
             "DOCUMENT_WITH_ALTINN_ID",
-            "FOREST_FUND"
+            "FOREST_FUND",
+            "TAX_ASSESSMENT",
+            "DISTRIBUTION_OF_CAPITAL_DEBT"
           ],
           "readOnly": true,
           "type": "string"
@@ -18420,6 +18838,7 @@
             "SticosSurveyBanner",
             "SticosInfoBanner",
             "SalaryOverviewBanner",
+            "AccountingSettingsBanner",
             "UpsellFromBasisToSmartTripletexDashboardBanner",
             "CopilotInfoBanner",
             "ProductOverviewBanner",
@@ -19410,6 +19829,45 @@
         "externalVoucherNumber",
         "postings"
       ],
+      "type": "object"
+    },
+    "HistoryEntryDTO": {
+      "properties": {
+        "amount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "amountCurrency": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "debtCollectionInfo": {
+          "$ref": "#/definitions/DebtCollectionInfoDTO",
+          "readOnly": true
+        },
+        "descriptions": {
+          "items": {
+            "$ref": "#/definitions/DescriptionDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "dueDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "sendDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "sendMethods": {
+          "items": {
+            "$ref": "#/definitions/SendMethodDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "HolidayAllowanceEarned": {
@@ -20613,6 +21071,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "oppositeAmountCurrency": {
+          "description": "Opposite amount from currency exchange.",
+          "type": "number"
+        },
+        "payLater": {
+          "description": "Flag to postpone the payment of the invoice.",
+          "type": "boolean"
+        },
         "paymentDate": {
           "description": "Payment date.",
           "readOnly": true,
@@ -20724,6 +21190,14 @@
           "description": "KID or receiver reference.",
           "type": "string"
         },
+        "oppositeAmountCurrency": {
+          "description": "Opposite amount from currency exchange.",
+          "type": "number"
+        },
+        "payLater": {
+          "description": "Flag to postpone the payment of the invoice.",
+          "type": "boolean"
+        },
         "paymentDate": {
           "description": "Payment date.",
           "type": "string"
@@ -20744,6 +21218,30 @@
           "description": "Transaction ID.",
           "format": "int64",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "IncomingInvoiceRevertResult": {
+      "properties": {
+        "reverseVoucherId": {
+          "description": "Id of reverse voucher",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "reverseVoucherNumber": {
+          "description": "Number of reverse voucher",
+          "readOnly": true,
+          "type": "string"
+        },
+        "validationErrors": {
+          "description": "List of validation errors",
+          "items": {
+            "$ref": "#/definitions/IncomingInvoiceValidationError"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -21214,6 +21712,33 @@
           "description": "ID of the vendor.",
           "format": "int64",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "InfoDTO": {
+      "properties": {
+        "internalComment": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "postponedReminderDate": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "references": {
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "relatedInvoices": {
+          "items": {
+            "$ref": "#/definitions/RelatedInvoicesDTO"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -22490,6 +23015,8 @@
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "YEAR_END_DOCUMENTATION_FOREST_FUND",
+            "YEAR_END_DOCUMENTATION_ATTACHMENT_CATEGORY",
+            "YEAR_END_DOCUMENTATION_DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -22816,6 +23343,15 @@
             "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_RESULT_AS_PERCENTAGE_OF_GROSS_REVENUE",
+            "CONTROLLED_TRANSACTIONS_MAIN_BUSINESS_ACTIVITY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_IN_NORWAY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_OUTSIDE_NORWAY",
+            "CONTROLLED_TRANSACTIONS_COMPANY_HAS_BEEN_SERVICED_BY_OTHER_COMPANY_IN_GROUP_FOR_FREE",
+            "CONTROLLED_TRANSACTIONS_HAS_CONTROLLED_TRANSACTIONS_EXCEEDING_LIMIT",
+            "CONTROLLED_TRANSACTIONS_IS_OBLIGED_TO_DOCUMENT",
             "INTEREST_LIMITATION_COMPANY_COMPLIANCE_WITH_INTEREST_LIMITATION",
             "INTEREST_LIMITATION_NET_INTEREST_COSTS_NORWEGIAN_GROUP_EXCEEDS_25MNOK",
             "INTEREST_LIMITATION_COMPANY_USES_EXCEPTION_RULE",
@@ -22883,7 +23419,25 @@
             "INTEREST_LIMITATION_CALCULATION_OF_INTEREST_DEDUCTION_LIMIT_DEDUCTION_FOR_GROUP_CONTRIBUTIONS_NOT_INCLUDED_IN_CALCULATION_BASIS",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_INCOME_YEAR",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_CARRIED_FORWARD_FROM_PREVIOUS_YEAR",
-            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS"
+            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_OWNER",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_SPOUSE",
+            "TAX_ASSESSMENT_SALARY_INCOME_OWNER",
+            "TAX_ASSESSMENT_SALARY_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_SPOUSE",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_OWNER",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_CONDITIONS_ARE_SPECIAL_ALLOWANCE_AGRICULTURE_MET",
+            "TAX_ASSESSMENT_SHARE_FROM_SDF"
           ],
           "readOnly": true,
           "type": "string"
@@ -23207,6 +23761,8 @@
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "YEAR_END_DOCUMENTATION_FOREST_FUND",
+            "YEAR_END_DOCUMENTATION_ATTACHMENT_CATEGORY",
+            "YEAR_END_DOCUMENTATION_DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -23533,6 +24089,15 @@
             "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_RESULT_AS_PERCENTAGE_OF_GROSS_REVENUE",
+            "CONTROLLED_TRANSACTIONS_MAIN_BUSINESS_ACTIVITY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_IN_NORWAY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_OUTSIDE_NORWAY",
+            "CONTROLLED_TRANSACTIONS_COMPANY_HAS_BEEN_SERVICED_BY_OTHER_COMPANY_IN_GROUP_FOR_FREE",
+            "CONTROLLED_TRANSACTIONS_HAS_CONTROLLED_TRANSACTIONS_EXCEEDING_LIMIT",
+            "CONTROLLED_TRANSACTIONS_IS_OBLIGED_TO_DOCUMENT",
             "INTEREST_LIMITATION_COMPANY_COMPLIANCE_WITH_INTEREST_LIMITATION",
             "INTEREST_LIMITATION_NET_INTEREST_COSTS_NORWEGIAN_GROUP_EXCEEDS_25MNOK",
             "INTEREST_LIMITATION_COMPANY_USES_EXCEPTION_RULE",
@@ -23600,7 +24165,25 @@
             "INTEREST_LIMITATION_CALCULATION_OF_INTEREST_DEDUCTION_LIMIT_DEDUCTION_FOR_GROUP_CONTRIBUTIONS_NOT_INCLUDED_IN_CALCULATION_BASIS",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_INCOME_YEAR",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_CARRIED_FORWARD_FROM_PREVIOUS_YEAR",
-            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS"
+            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_OWNER",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_SPOUSE",
+            "TAX_ASSESSMENT_SALARY_INCOME_OWNER",
+            "TAX_ASSESSMENT_SALARY_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_SPOUSE",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_OWNER",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_CONDITIONS_ARE_SPECIAL_ALLOWANCE_AGRICULTURE_MET",
+            "TAX_ASSESSMENT_SHARE_FROM_SDF"
           ],
           "readOnly": true,
           "type": "string"
@@ -24259,6 +24842,31 @@
       },
       "type": "object"
     },
+    "InvoiceDetails": {
+      "properties": {
+        "autoReminderStatus": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "history": {
+          "items": {
+            "$ref": "#/definitions/HistoryEntryDTO"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "info": {
+          "$ref": "#/definitions/InfoDTO",
+          "readOnly": true
+        },
+        "invoiceId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "InvoiceMessage": {
       "properties": {
         "contentId": {
@@ -24330,6 +24938,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "companyCurrency": {
+          "$ref": "#/definitions/Currency",
+          "readOnly": true
+        },
         "companyCurrencyId": {
           "format": "int32",
           "readOnly": true,
@@ -24366,6 +24978,32 @@
         "isVatOn": {
           "readOnly": true,
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "InvoiceOverviewSumDTO": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "sumOutstanding": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumPaid": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumTotal": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumTotalExclVat": {
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -25136,7 +25774,10 @@
             "SyncRemindersJobRun",
             "AutoPayResilience",
             "NewInvoiceOverviewQuery",
-            "Inyett"
+            "Inyett",
+            "CopilotUserStats",
+            "CopilotSurvey",
+            "NewInvoiceOverviewSum"
           ],
           "readOnly": true,
           "type": "string"
@@ -25638,12 +26279,12 @@
         "rel": {
           "enum": [
             "DELIVER",
+            "APPROVE",
+            "CREATE_VOUCHER",
             "UNDELIVER",
             "UNAPPROVE",
-            "APPROVE",
             "REJECT",
             "COPY",
-            "CREATE_VOUCHER",
             "DELETE"
           ],
           "type": "string"
@@ -26356,6 +26997,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/AssetAccountRow"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseAttachmentCategoryCode": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/AttachmentCategoryCode"
           },
           "readOnly": true,
           "type": "array"
@@ -36169,7 +36843,8 @@
             "COORDINATION_ENK_SPOUSE",
             "COORDINATION_ANS_DA_SPOUSE",
             "COORDINATION_LOTT_SPOUSE",
-            "NEGATIVE_PERSONAL_INCOME_CARRIED_FORWARD_NEXT_YEAR_SPOUSE"
+            "NEGATIVE_PERSONAL_INCOME_CARRIED_FORWARD_NEXT_YEAR_SPOUSE",
+            "DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE"
           ],
           "type": "string"
         },
@@ -37235,6 +37910,9 @@
         "moduleQuantityHandling": {
           "type": "boolean"
         },
+        "moduleRackbeat": {
+          "type": "boolean"
+        },
         "moduleVacationBalance": {
           "description": "read only",
           "readOnly": true,
@@ -37513,7 +38191,9 @@
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
             "DOCUMENT_WITH_ALTINN_ID",
-            "FOREST_FUND"
+            "FOREST_FUND",
+            "TAX_ASSESSMENT",
+            "DISTRIBUTION_OF_CAPITAL_DEBT"
           ],
           "readOnly": true,
           "type": "string"
@@ -39764,6 +40444,7 @@
             "WORK_PACKAGE",
             "COLLABORATIVE_BUSINESS",
             "OTHER_PUBLIC_SUPPORT",
+            "BUSINESS_ACTIVITY",
             "RELATED_COMPANY",
             "FUNCTION_AND_RISK",
             "TRANSACTION",
@@ -40096,6 +40777,8 @@
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "YEAR_END_DOCUMENTATION_FOREST_FUND",
+            "YEAR_END_DOCUMENTATION_ATTACHMENT_CATEGORY",
+            "YEAR_END_DOCUMENTATION_DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -40422,6 +41105,15 @@
             "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_RESULT_AS_PERCENTAGE_OF_GROSS_REVENUE",
+            "CONTROLLED_TRANSACTIONS_MAIN_BUSINESS_ACTIVITY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_IN_NORWAY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_OUTSIDE_NORWAY",
+            "CONTROLLED_TRANSACTIONS_COMPANY_HAS_BEEN_SERVICED_BY_OTHER_COMPANY_IN_GROUP_FOR_FREE",
+            "CONTROLLED_TRANSACTIONS_HAS_CONTROLLED_TRANSACTIONS_EXCEEDING_LIMIT",
+            "CONTROLLED_TRANSACTIONS_IS_OBLIGED_TO_DOCUMENT",
             "INTEREST_LIMITATION_COMPANY_COMPLIANCE_WITH_INTEREST_LIMITATION",
             "INTEREST_LIMITATION_NET_INTEREST_COSTS_NORWEGIAN_GROUP_EXCEEDS_25MNOK",
             "INTEREST_LIMITATION_COMPANY_USES_EXCEPTION_RULE",
@@ -40489,7 +41181,25 @@
             "INTEREST_LIMITATION_CALCULATION_OF_INTEREST_DEDUCTION_LIMIT_DEDUCTION_FOR_GROUP_CONTRIBUTIONS_NOT_INCLUDED_IN_CALCULATION_BASIS",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_INCOME_YEAR",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_CARRIED_FORWARD_FROM_PREVIOUS_YEAR",
-            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS"
+            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_OWNER",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_SPOUSE",
+            "TAX_ASSESSMENT_SALARY_INCOME_OWNER",
+            "TAX_ASSESSMENT_SALARY_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_SPOUSE",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_OWNER",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_CONDITIONS_ARE_SPECIAL_ALLOWANCE_AGRICULTURE_MET",
+            "TAX_ASSESSMENT_SHARE_FROM_SDF"
           ],
           "type": "string"
         },
@@ -41996,6 +42706,8 @@
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "YEAR_END_DOCUMENTATION_FOREST_FUND",
+            "YEAR_END_DOCUMENTATION_ATTACHMENT_CATEGORY",
+            "YEAR_END_DOCUMENTATION_DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -42322,6 +43034,15 @@
             "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_RESULT_AS_PERCENTAGE_OF_GROSS_REVENUE",
+            "CONTROLLED_TRANSACTIONS_MAIN_BUSINESS_ACTIVITY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_IN_NORWAY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_OUTSIDE_NORWAY",
+            "CONTROLLED_TRANSACTIONS_COMPANY_HAS_BEEN_SERVICED_BY_OTHER_COMPANY_IN_GROUP_FOR_FREE",
+            "CONTROLLED_TRANSACTIONS_HAS_CONTROLLED_TRANSACTIONS_EXCEEDING_LIMIT",
+            "CONTROLLED_TRANSACTIONS_IS_OBLIGED_TO_DOCUMENT",
             "INTEREST_LIMITATION_COMPANY_COMPLIANCE_WITH_INTEREST_LIMITATION",
             "INTEREST_LIMITATION_NET_INTEREST_COSTS_NORWEGIAN_GROUP_EXCEEDS_25MNOK",
             "INTEREST_LIMITATION_COMPANY_USES_EXCEPTION_RULE",
@@ -42389,7 +43110,25 @@
             "INTEREST_LIMITATION_CALCULATION_OF_INTEREST_DEDUCTION_LIMIT_DEDUCTION_FOR_GROUP_CONTRIBUTIONS_NOT_INCLUDED_IN_CALCULATION_BASIS",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_INCOME_YEAR",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_CARRIED_FORWARD_FROM_PREVIOUS_YEAR",
-            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS"
+            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_OWNER",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_SPOUSE",
+            "TAX_ASSESSMENT_SALARY_INCOME_OWNER",
+            "TAX_ASSESSMENT_SALARY_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_SPOUSE",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_OWNER",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_CONDITIONS_ARE_SPECIAL_ALLOWANCE_AGRICULTURE_MET",
+            "TAX_ASSESSMENT_SHARE_FROM_SDF"
           ],
           "readOnly": true,
           "type": "string"
@@ -42611,7 +43350,8 @@
             "COORDINATION_ENK_SPOUSE",
             "COORDINATION_ANS_DA_SPOUSE",
             "COORDINATION_LOTT_SPOUSE",
-            "NEGATIVE_PERSONAL_INCOME_CARRIED_FORWARD_NEXT_YEAR_SPOUSE"
+            "NEGATIVE_PERSONAL_INCOME_CARRIED_FORWARD_NEXT_YEAR_SPOUSE",
+            "DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE"
           ],
           "type": "string"
         },
@@ -42782,6 +43522,10 @@
         "showForestryAndAgricultureCombo": {
           "readOnly": true,
           "type": "boolean"
+        },
+        "spouseSharingPercentage": {
+          "readOnly": true,
+          "type": "number"
         },
         "sumClosingBalanceAfterEnterpriseDebt": {
           "readOnly": true,
@@ -46158,9 +46902,19 @@
           "readOnly": true,
           "type": "integer"
         },
+        "closed": {
+          "description": "Flag to know if the invoice and containing postings are closed",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "currencyCode": {
           "readOnly": true,
           "type": "string"
+        },
+        "departmentId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         },
         "departmentName": {
           "readOnly": true,
@@ -47319,6 +48073,7 @@
             "WORK_PACKAGE",
             "COLLABORATIVE_BUSINESS",
             "OTHER_PUBLIC_SUPPORT",
+            "BUSINESS_ACTIVITY",
             "RELATED_COMPANY",
             "FUNCTION_AND_RISK",
             "TRANSACTION",
@@ -47371,7 +48126,9 @@
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
             "DOCUMENT_WITH_ALTINN_ID",
-            "FOREST_FUND"
+            "FOREST_FUND",
+            "TAX_ASSESSMENT",
+            "DISTRIBUTION_OF_CAPITAL_DEBT"
           ],
           "readOnly": true,
           "type": "string"
@@ -47926,6 +48683,25 @@
         "name": {
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RelatedInvoicesDTO": {
+      "properties": {
+        "invoiceId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "invoiceNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "isCreditNote": {
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -50576,6 +51352,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperControlledTransactions2024": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ControlledTransactions2024"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperControlledTransactionsCompanySpecification": {
       "properties": {
         "value": {
@@ -51249,6 +52033,22 @@
       },
       "type": "object"
     },
+    "ResponseWrapperIncomingInvoicePaymentRead": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/IncomingInvoicePaymentRead"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperIncomingInvoiceRevertResult": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/IncomingInvoiceRevertResult"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperIncomingInvoiceSaveResult": {
       "properties": {
         "value": {
@@ -51322,6 +52122,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperInvoiceDetails": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/InvoiceDetails"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperInvoiceOptions": {
       "properties": {
         "value": {
@@ -51334,6 +52142,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/InvoiceOverviewMetaDTO"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperInvoiceOverviewSumDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/InvoiceOverviewSumDTO"
         }
       },
       "type": "object"
@@ -52830,6 +53646,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperRoleMetadataAggregate": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/RoleMetadataAggregate"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperSalaryAndPensionManualAccount": {
       "properties": {
         "value": {
@@ -53326,6 +54150,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/TaxAdminSearchResponse"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperTaxAssessment": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TaxAssessment"
         }
       },
       "type": "object"
@@ -54414,6 +55246,44 @@
       },
       "type": "object"
     },
+    "RoleMetadata": {
+      "properties": {
+        "dependencies": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "infoTextKey": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "nameTextKey": {
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RoleMetadataAggregate": {
+      "properties": {
+        "roles": {
+          "additionalProperties": {
+            "$ref": "#/definitions/RoleMetadata"
+          },
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "RoutePoint": {
       "properties": {
         "latitude": {
@@ -54674,6 +55544,10 @@
     },
     "SalarySettingsInternal": {
       "properties": {
+        "expensesIncludeVouchersOnly": {
+          "description": "Expenses include vouchers only",
+          "type": "boolean"
+        },
         "halfTaxMonth": {
           "description": "Month for half tax",
           "enum": [
@@ -58182,6 +59056,22 @@
       ],
       "type": "object"
     },
+    "SendMethodDTO": {
+      "properties": {
+        "method": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "receiverInformation": {
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "SendToDocumentArchive": {
       "properties": {
         "fileName": {
@@ -58883,6 +59773,7 @@
             "WORK_PACKAGE",
             "COLLABORATIVE_BUSINESS",
             "OTHER_PUBLIC_SUPPORT",
+            "BUSINESS_ACTIVITY",
             "RELATED_COMPANY",
             "FUNCTION_AND_RISK",
             "TRANSACTION",
@@ -58934,7 +59825,9 @@
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
             "DOCUMENT_WITH_ALTINN_ID",
-            "FOREST_FUND"
+            "FOREST_FUND",
+            "TAX_ASSESSMENT",
+            "DISTRIBUTION_OF_CAPITAL_DEBT"
           ],
           "type": "string"
         },
@@ -59264,6 +60157,8 @@
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "YEAR_END_DOCUMENTATION_FOREST_FUND",
+            "YEAR_END_DOCUMENTATION_ATTACHMENT_CATEGORY",
+            "YEAR_END_DOCUMENTATION_DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -59590,6 +60485,15 @@
             "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_RESULT_AS_PERCENTAGE_OF_GROSS_REVENUE",
+            "CONTROLLED_TRANSACTIONS_MAIN_BUSINESS_ACTIVITY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_IN_NORWAY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_OUTSIDE_NORWAY",
+            "CONTROLLED_TRANSACTIONS_COMPANY_HAS_BEEN_SERVICED_BY_OTHER_COMPANY_IN_GROUP_FOR_FREE",
+            "CONTROLLED_TRANSACTIONS_HAS_CONTROLLED_TRANSACTIONS_EXCEEDING_LIMIT",
+            "CONTROLLED_TRANSACTIONS_IS_OBLIGED_TO_DOCUMENT",
             "INTEREST_LIMITATION_COMPANY_COMPLIANCE_WITH_INTEREST_LIMITATION",
             "INTEREST_LIMITATION_NET_INTEREST_COSTS_NORWEGIAN_GROUP_EXCEEDS_25MNOK",
             "INTEREST_LIMITATION_COMPANY_USES_EXCEPTION_RULE",
@@ -59657,7 +60561,25 @@
             "INTEREST_LIMITATION_CALCULATION_OF_INTEREST_DEDUCTION_LIMIT_DEDUCTION_FOR_GROUP_CONTRIBUTIONS_NOT_INCLUDED_IN_CALCULATION_BASIS",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_INCOME_YEAR",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_CARRIED_FORWARD_FROM_PREVIOUS_YEAR",
-            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS"
+            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_OWNER",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_SPOUSE",
+            "TAX_ASSESSMENT_SALARY_INCOME_OWNER",
+            "TAX_ASSESSMENT_SALARY_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_SPOUSE",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_OWNER",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_CONDITIONS_ARE_SPECIAL_ALLOWANCE_AGRICULTURE_MET",
+            "TAX_ASSESSMENT_SHARE_FROM_SDF"
           ],
           "type": "string"
         },
@@ -61548,8 +62470,11 @@
           "type": "integer"
         },
         "surveyType": {
-          "format": "int32",
-          "type": "integer"
+          "enum": [
+            "1",
+            "2"
+          ],
+          "type": "string"
         },
         "url": {
           "readOnly": true,
@@ -61580,6 +62505,12 @@
           "description": "The path to the report",
           "readOnly": true,
           "type": "string"
+        },
+        "sorting": {
+          "description": "Sorting order of the report (lower appears first, 0–99).",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "text": {
           "description": "The name of the report",
@@ -62122,6 +63053,313 @@
         "searchStart": {
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAssessment": {
+      "properties": {
+        "agriculture": {
+          "$ref": "#/definitions/TaxAssessmentAgriculture",
+          "description": "Key figures",
+          "readOnly": true
+        },
+        "assessmentPersonalIncomes": {
+          "description": "Personal income",
+          "items": {
+            "$ref": "#/definitions/TaxAssessmentPersonalIncome"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "keyFigures": {
+          "$ref": "#/definitions/TaxAssessmentKeyFigures",
+          "description": "Key figures",
+          "readOnly": true
+        },
+        "nonPostedDetails": {
+          "description": "Non posted details",
+          "items": {
+            "$ref": "#/definitions/TaxAssessmentNonPostedDetail"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "taxCalculation": {
+          "$ref": "#/definitions/TaxAssessmentTaxCalculation",
+          "description": "Tax calculation",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "TaxAssessmentAgriculture": {
+      "properties": {
+        "businessIncome": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "calculatedAmount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "calculationBasis": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "maxSpecialAllowance": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "shareFromSdf": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "unusedSpecialAllowance": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAssessmentBracketTax": {
+      "properties": {
+        "amountBeforeNextTaxStepOwner": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "amountBeforeNextTaxStepSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "basisAmountOwner": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "basisAmountSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "calculatedTaxOwner": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "calculatedTaxSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "maxAmount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "rate": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "residualAmountOwner": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "residualAmountSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "step": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAssessmentKeyFigures": {
+      "properties": {
+        "basisSickPayAndBracketTax": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "basisSickPayAndBracketTaxSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "pensionableIncome": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "pensionableIncomeSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "personalIncome": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "personalIncomeSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "salaryIncome": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "salaryIncomeSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sickPayAgriculture": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sickPayAgricultureSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sickPayFishingHuntingEtc": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sickPayFishingHuntingEtcSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sickPayOther": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sickPayOtherSpouse": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAssessmentNonPostedDetail": {
+      "properties": {
+        "calculatedAmount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "industry": {
+          "type": "string"
+        },
+        "notPostedAmount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "postedAmount": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "step": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAssessmentPersonalIncome": {
+      "properties": {
+        "afterSharedWithSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "annualPersonalIncomeOwner": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "annualPersonalIncomeSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "businessActivityTypeDescription": {
+          "type": "string"
+        },
+        "calculatedPersonalIncomeSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "coordinationCoordinationGeneralPartnershipOwner": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "coordinationCoordinationGeneralPartnershipSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "coordinationOtherPersonalIncomeOwner": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "coordinationOtherPersonalIncomeSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "correctedBusinessIncome": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "deductionsForRiskFreeReturn": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "negativePersonalIncomePreviousYearOwner": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "negativePersonalIncomePreviousYearSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "personalIncomeForTheYear": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "personalIncomeGroupId": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "riskFreeReturn": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "spouseSharingPercentage": {
+          "readOnly": true,
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "TaxAssessmentTaxCalculation": {
+      "properties": {
+        "amountBeforeNextTaxStepOwner": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "amountBeforeNextTaxStepSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "bracketTax": {
+          "description": "Bracket tax",
+          "items": {
+            "$ref": "#/definitions/TaxAssessmentBracketTax"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "sumBasisOwner": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumBasisSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumCalculatedTaxOwner": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "sumCalculatedTaxSpouse": {
+          "readOnly": true,
+          "type": "number"
         }
       },
       "type": "object"
@@ -63281,6 +64519,9 @@
     },
     "TimesheetProjectSalaryTypeSpecification": {
       "properties": {
+        "activity": {
+          "$ref": "#/definitions/Activity"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -64883,11 +66124,6 @@
         "costCategoryIds": {
           "type": "string"
         },
-        "count": {
-          "format": "int32",
-          "minimum": 0,
-          "type": "integer"
-        },
         "dateFrom": {
           "type": "string"
         },
@@ -64911,11 +66147,6 @@
           ],
           "type": "string"
         },
-        "from": {
-          "format": "int32",
-          "minimum": 0,
-          "type": "integer"
-        },
         "idsToShowOnTop": {
           "type": "string"
         },
@@ -64933,6 +66164,7 @@
           "enum": [
             "NUMBER",
             "TITLE",
+            "DATE",
             "PROJECT",
             "DEPARTMENT",
             "EMPLOYEE_NAME",
@@ -65657,30 +66889,6 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "isAuthCompanyEmployeeAdmin": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isAuthCompanyWageAdmin": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isAuthDepartmentEmployeeAdmin": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isAuthDepartmentWageAdmin": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isAuthEmployeeInfo": {
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "isAuthReadonly": {
-          "readOnly": true,
-          "type": "boolean"
-        },
         "isPayInAdvance": {
           "readOnly": true,
           "type": "boolean"
@@ -65766,7 +66974,9 @@
             "CONTROLLED_TRANSACTIONS_COMPANY_SPECIFICATION",
             "INTEREST_LIMITATION",
             "DOCUMENT_WITH_ALTINN_ID",
-            "FOREST_FUND"
+            "FOREST_FUND",
+            "TAX_ASSESSMENT",
+            "DISTRIBUTION_OF_CAPITAL_DEBT"
           ],
           "readOnly": true,
           "type": "string"
@@ -67744,6 +68954,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "canBeRegisteredAsIncomingInvoice": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "canBeRegisteredAsPaymentIn": {
           "readOnly": true,
           "type": "boolean"
@@ -69081,6 +70295,8 @@
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING",
             "YEAR_END_DOCUMENTATION_SKJOENNSFASTSETTING_ALTINN_ID",
             "YEAR_END_DOCUMENTATION_FOREST_FUND",
+            "YEAR_END_DOCUMENTATION_ATTACHMENT_CATEGORY",
+            "YEAR_END_DOCUMENTATION_DISTRIBUTE_CAPITAL_DEBT_WITH_SPOUSE",
             "RECEIVER_ORG_NR",
             "RECEIVER_NAME",
             "CONCERN_CONNECTION",
@@ -69407,6 +70623,15 @@
             "CONTROLLED_TRANSACTIONS_TRANSACTION_AMOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_ACCOUNT",
             "CONTROLLED_TRANSACTIONS_OUTSTANDING_AMOUNT",
+            "CONTROLLED_TRANSACTIONS_OUTSTANDING_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_TRANSACTION_COUNTRY_CODE",
+            "CONTROLLED_TRANSACTIONS_RESULT_AS_PERCENTAGE_OF_GROSS_REVENUE",
+            "CONTROLLED_TRANSACTIONS_MAIN_BUSINESS_ACTIVITY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_IN_NORWAY",
+            "CONTROLLED_TRANSACTIONS_NUMBER_OF_ENTITIES_WITH_CONTROLLED_TRANSACTIONS_OUTSIDE_NORWAY",
+            "CONTROLLED_TRANSACTIONS_COMPANY_HAS_BEEN_SERVICED_BY_OTHER_COMPANY_IN_GROUP_FOR_FREE",
+            "CONTROLLED_TRANSACTIONS_HAS_CONTROLLED_TRANSACTIONS_EXCEEDING_LIMIT",
+            "CONTROLLED_TRANSACTIONS_IS_OBLIGED_TO_DOCUMENT",
             "INTEREST_LIMITATION_COMPANY_COMPLIANCE_WITH_INTEREST_LIMITATION",
             "INTEREST_LIMITATION_NET_INTEREST_COSTS_NORWEGIAN_GROUP_EXCEEDS_25MNOK",
             "INTEREST_LIMITATION_COMPANY_USES_EXCEPTION_RULE",
@@ -69474,7 +70699,25 @@
             "INTEREST_LIMITATION_CALCULATION_OF_INTEREST_DEDUCTION_LIMIT_DEDUCTION_FOR_GROUP_CONTRIBUTIONS_NOT_INCLUDED_IN_CALCULATION_BASIS",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_INCOME_YEAR",
             "FORWARDING_DISALLOWED_INTEREST_DEDUCTION_CARRIED_FORWARD_FROM_PREVIOUS_YEAR",
-            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS"
+            "INTEREST_LIMITATION_COMPANY_CARRIED_FORWARD_INTEREST_DEDUCTIONS_FROM_PREVIOUS_YEARS",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_OWNER",
+            "TAX_ASSESSMENT_NEGATIVE_PERSONAL_INCOME_PREVIOUS_YEAR_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_OTHER_PERSONAL_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_OWNER",
+            "TAX_ASSESSMENT_COORDINATION_COORDINATION_GENERAL_PARTNERSHIP_SPOUSE",
+            "TAX_ASSESSMENT_SALARY_INCOME_OWNER",
+            "TAX_ASSESSMENT_SALARY_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_FISHING_ETC_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_AGRICULTURE_SPOUSE",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_OWNER",
+            "TAX_ASSESSMENT_SICK_PAYABLE_OTHER_SPOUSE",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_OWNER",
+            "TAX_ASSESSMENT_OTHER_PENSIONABLE_INCOME_SPOUSE",
+            "TAX_ASSESSMENT_CONDITIONS_ARE_SPECIAL_ALLOWANCE_AGRICULTURE_MET",
+            "TAX_ASSESSMENT_SHARE_FROM_SDF"
           ],
           "readOnly": true,
           "type": "string"
@@ -70620,6 +71863,18 @@
           "readOnly": true,
           "type": "number"
         },
+        "capitalDebtShareSpouse": {
+          "readOnly": true,
+          "type": "number"
+        },
+        "capitalDebtShareSpouseGroupId": {
+          "format": "int32",
+          "type": "integer"
+        },
+        "capitalDebtShareSpouseId": {
+          "format": "int64",
+          "type": "integer"
+        },
         "groupNumber": {
           "readOnly": true,
           "type": "string"
@@ -71157,6 +72412,9 @@
           "description": "Is this transaction expired.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "flowId": {
+          "type": "string"
         },
         "id": {
           "format": "int64",
@@ -88891,7 +90149,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "Create new invoice from order.",
+        "summary": "Create new invoice or subscription invoice from order.",
         "tags": [
           "order"
         ]
@@ -102386,6 +103644,21 @@
             "type": "integer"
           },
           {
+            "description": "Equals",
+            "format": "int64",
+            "in": "query",
+            "name": "activityId",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "If true and activity ID is set, specifications not yet connected to activities will be included.",
+            "in": "query",
+            "name": "includeNotConnectedToActivities",
+            "required": false,
+            "type": "boolean"
+          },
+          {
             "default": 0,
             "description": "From index",
             "in": "query",
@@ -102429,7 +103702,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Get list of timesheet ProjectSalaryType Specifications (PILOT USERS ONLY)",
+        "summary": "Get list of time sheet ProjectSalaryType specifications",
         "tags": [
           "timesheet/salaryProjectTypeSpecification"
         ]
@@ -102461,7 +103734,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Create a timesheet ProjectSalaryType Specification. (PILOT USERS ONLY)",
+        "summary": "Create a timesheet ProjectSalaryType Specification",
         "tags": [
           "timesheet/salaryProjectTypeSpecification"
         ]
@@ -102491,7 +103764,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Delete a timesheet SalaryType Specification (PILOT USERS ONLY)",
+        "summary": "Delete a timesheet SalaryType Specification",
         "tags": [
           "timesheet/salaryProjectTypeSpecification"
         ]
@@ -102529,7 +103802,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Get timesheet ProjectSalaryType Specification for a specific ID (PILOT USERS ONLY)",
+        "summary": "Get timesheet ProjectSalaryType Specification for a specific ID",
         "tags": [
           "timesheet/salaryProjectTypeSpecification"
         ]
@@ -102569,7 +103842,7 @@
             "tokenAuthScheme": []
           }
         ],
-        "summary": "[BETA] Update a timesheet ProjectSalaryType Specification (PILOT USERS ONLY)",
+        "summary": "Update a timesheet ProjectSalaryType Specification",
         "tags": [
           "timesheet/salaryProjectTypeSpecification"
         ]
@@ -108031,6 +109304,9 @@
   "swagger": "2.0",
   "tags": [
     {
+      "name": "access-controlrolemeta"
+    },
+    {
       "name": "accountantDashboardadmin"
     },
     {
@@ -108086,6 +109362,9 @@
     },
     {
       "name": "asset"
+    },
+    {
+      "name": "executelistAssetsexport"
     },
     {
       "name": "internalauth"
@@ -108551,6 +109830,9 @@
     },
     {
       "name": "incomingInvoiceinternalaccount"
+    },
+    {
+      "name": "incomingInvoiceinternalpayment"
     },
     {
       "name": "incomingInvoiceinternaltest"
@@ -109690,6 +110972,9 @@
       "name": "yearEndannualAccountStatements"
     },
     {
+      "name": "yearEndattachmentCategory"
+    },
+    {
       "name": "yearEndbasicData"
     },
     {
@@ -109772,6 +111057,9 @@
     },
     {
       "name": "yearEndtangibleFixedAsset"
+    },
+    {
+      "name": "yearEndtaxAssessment"
     },
     {
       "name": "yearEndshareholderRegister"
