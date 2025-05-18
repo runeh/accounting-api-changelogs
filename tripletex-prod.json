@@ -3912,6 +3912,44 @@
             "smsApproval": {
               "readOnly": true,
               "type": "boolean"
+            },
+            "status": {
+              "enum": [
+                "NOT_APPROVED",
+                "CANCELLED",
+                "APPROVED",
+                "SENT_TO_AUTOPAY",
+                "RECEIVED_BY_BANK",
+                "ACCEPTED_BY_BANK",
+                "FAILED",
+                "SUCCESS",
+                "NOT_UPDATED",
+                "ON_HOLD",
+                "IMPORTED",
+                "INITIALIZED",
+                "AUTHORIZATION_REQUIRED",
+                "SETTLEMENT_IN_PROGRESS",
+                "REJECTED",
+                "BOOKED",
+                "SETTLEMENT_COMPLETED",
+                "BATCH_FAILED",
+                "BATCH_TIMEOUT",
+                "CANCEL_PENDING",
+                "PAYROLL_AWAITING_AUTHORIZATION",
+                "PAYROLL_SETTLEMENT_IN_PROGRESS",
+                "PAYROLL_SETTLEMENT_COMPLETED",
+                "PAYROLL_CANCELLED",
+                "PAYROLL_SETTLEMENT_NOT_COMPLETED_IN_TIME",
+                "PAYROLL_PAYMENT_INITIATED",
+                "PAYROLL_PAYMENT_ACCEPTED_TECHNICAL_VALIDATION",
+                "PAYROLL_ACCEPTED_FOR_EXECUTION",
+                "PAYROLL_FAILED",
+                "PAYROLL_EXECUTION_COMPLETED",
+                "AUTHORIZATION_REQUIRED_MULTIPLE_APPROVERS",
+                "REJECTED_FUNDS_NOT_RECEIVED_IN_TIME"
+              ],
+              "readOnly": true,
+              "type": "string"
             }
           },
           "type": "object"
@@ -4058,7 +4096,13 @@
         "hasBookkeepingBeforeAttestationSetting": {
           "type": "boolean"
         },
+        "hasFabricAiPdfPredictionPilot": {
+          "type": "boolean"
+        },
         "hasVoucherApprovalModule": {
+          "type": "boolean"
+        },
+        "ishasFabricAiPdfPredictionTestGraphsCompaniesPilot": {
           "type": "boolean"
         },
         "testAccount": {
@@ -7989,109 +8033,6 @@
       },
       "type": "object"
     },
-    "ClientModule": {
-      "properties": {
-        "active": {
-          "description": "Active",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "canActivate": {
-          "description": "Can activate",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "canDeactivate": {
-          "description": "Can deactivate",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "module": {
-          "description": "Module",
-          "enum": [
-            "SMART_WAGE",
-            "API_V2",
-            "REMIT",
-            "AUTOPAY",
-            "ZTL",
-            "CASH_CREDIT_APRILA",
-            "VOUCHER_SCANNING",
-            "SMART_SCAN",
-            "INVOICE_OPTION_AVTALEGIRO",
-            "INVOICE_OPTION_EFAKTURA",
-            "INVOICE_OPTION_VIPPS",
-            "INVOICE_OPTION_PAPER",
-            "OCR",
-            "INVOICE_OPTION_AUTOINVOICE_OUTBOUND_EHF",
-            "INVOICE_OPTION_AUTOINVOICE_INCOMING_EHF",
-            "SMS_NOTIFICATION",
-            "NETS_PRINT",
-            "SMART_TIME_TRACKING",
-            "ENCRYPTED_PAYSLIP",
-            "BASIS",
-            "DIYPACKAGE",
-            "SMART",
-            "KOMPLETT",
-            "OCR_AUTOPAY",
-            "VOUCHER_FACTORY",
-            "LOGISTICS",
-            "RACKBEAT",
-            "MIKRO",
-            "VVS_ELECTRO",
-            "ACCOUNT_OFFICE",
-            "SMART_PROJECT",
-            "READ_ONLY_ACCESS",
-            "READ_ONLY_ACCESS_FREE",
-            "BILAG_0_500_AUTOMATION",
-            "BILAG_501_1000_AUTOMATION",
-            "BILAG_1001_2000_AUTOMATION",
-            "BILAG_2001_3500_AUTOMATION",
-            "BILAG_3501_5000_AUTOMATION",
-            "BILAG_5001_10001_AUTOMATION",
-            "UBEGRENSET_BILAG_AUTOMATION",
-            "BILAG_0_100_MIKRO_AUTOMATION",
-            "YEAR_END_REPORTING_ENK",
-            "YEAR_END_REPORTING_AS",
-            "YEAR_END_REPORTING_ANS",
-            "YEAR_END_REPORTING_DA",
-            "YEAR_END_REPORTING_STI",
-            "YEAR_END_REPORTING_ORG",
-            "YEAR_END_REPORTING_SA",
-            "YEAR_END_REPORTING_FLI",
-            "YEAR_END_REPORTING_NUF",
-            "PRIMARY_INDUSTRY",
-            "ACCOUNTING",
-            "MINI",
-            "MEDIUM",
-            "TOTAL",
-            "AGRO_LICENCE",
-            "AGRO_CLIENT",
-            "MAMUT",
-            "MAMUT_WITH_WAGE",
-            "AUTPLUS_MINI",
-            "AUTPLUS_STOR",
-            "INTEGRATION_PARTNER",
-            "FIXED_ASSETS_REGISTER",
-            "STICOS"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "status": {
-          "description": "Status",
-          "enum": [
-            "ACTIVATED",
-            "PENDING_ACTIVATION",
-            "FAILED_ACTIVATION",
-            "NOT_ACTIVATED",
-            "NOT_AVAILABLE"
-          ],
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "ClientModuleActivationRequest": {
       "properties": {
         "customerId": {
@@ -8176,6 +8117,95 @@
       ],
       "type": "object"
     },
+    "ClientModuleStatus": {
+      "properties": {
+        "module": {
+          "description": "Module",
+          "enum": [
+            "SMART_WAGE",
+            "API_V2",
+            "REMIT",
+            "AUTOPAY",
+            "ZTL",
+            "CASH_CREDIT_APRILA",
+            "VOUCHER_SCANNING",
+            "SMART_SCAN",
+            "INVOICE_OPTION_AVTALEGIRO",
+            "INVOICE_OPTION_EFAKTURA",
+            "INVOICE_OPTION_VIPPS",
+            "INVOICE_OPTION_PAPER",
+            "OCR",
+            "INVOICE_OPTION_AUTOINVOICE_OUTBOUND_EHF",
+            "INVOICE_OPTION_AUTOINVOICE_INCOMING_EHF",
+            "SMS_NOTIFICATION",
+            "NETS_PRINT",
+            "SMART_TIME_TRACKING",
+            "ENCRYPTED_PAYSLIP",
+            "BASIS",
+            "DIYPACKAGE",
+            "SMART",
+            "KOMPLETT",
+            "OCR_AUTOPAY",
+            "VOUCHER_FACTORY",
+            "LOGISTICS",
+            "RACKBEAT",
+            "MIKRO",
+            "VVS_ELECTRO",
+            "ACCOUNT_OFFICE",
+            "SMART_PROJECT",
+            "READ_ONLY_ACCESS",
+            "READ_ONLY_ACCESS_FREE",
+            "BILAG_0_500_AUTOMATION",
+            "BILAG_501_1000_AUTOMATION",
+            "BILAG_1001_2000_AUTOMATION",
+            "BILAG_2001_3500_AUTOMATION",
+            "BILAG_3501_5000_AUTOMATION",
+            "BILAG_5001_10001_AUTOMATION",
+            "UBEGRENSET_BILAG_AUTOMATION",
+            "BILAG_0_100_MIKRO_AUTOMATION",
+            "YEAR_END_REPORTING_ENK",
+            "YEAR_END_REPORTING_AS",
+            "YEAR_END_REPORTING_ANS",
+            "YEAR_END_REPORTING_DA",
+            "YEAR_END_REPORTING_STI",
+            "YEAR_END_REPORTING_ORG",
+            "YEAR_END_REPORTING_SA",
+            "YEAR_END_REPORTING_FLI",
+            "YEAR_END_REPORTING_NUF",
+            "PRIMARY_INDUSTRY",
+            "ACCOUNTING",
+            "MINI",
+            "MEDIUM",
+            "TOTAL",
+            "AGRO_LICENCE",
+            "AGRO_CLIENT",
+            "MAMUT",
+            "MAMUT_WITH_WAGE",
+            "AUTPLUS_MINI",
+            "AUTPLUS_STOR",
+            "INTEGRATION_PARTNER",
+            "FIXED_ASSETS_REGISTER",
+            "STICOS"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "description": "Status",
+          "enum": [
+            "UNKNOWN",
+            "ACTIVATED",
+            "PENDING_ACTIVATION",
+            "FAILED_ACTIVATION",
+            "NOT_ACTIVATED",
+            "NOT_AVAILABLE"
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ClientModules": {
       "properties": {
         "company": {
@@ -8191,7 +8221,7 @@
         "modules": {
           "description": "Client modules",
           "items": {
-            "$ref": "#/definitions/ClientModule"
+            "$ref": "#/definitions/ClientModuleStatus"
           },
           "readOnly": true,
           "type": "array"
@@ -8792,6 +8822,20 @@
       },
       "type": "object"
     },
+    "CompanyCurrency": {
+      "properties": {
+        "currencyCode": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "currencyId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "CompanyEmployeeRate": {
       "properties": {
         "changes": {
@@ -8918,6 +8962,21 @@
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "CompanyFormsStatus": {
+      "properties": {
+        "enabled": {
+          "description": "If true, the feature is enabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "hasAccess": {
+          "description": "If true, company forms can be accessed when enabled.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -9077,6 +9136,59 @@
         },
         "yearEndReport": {
           "$ref": "#/definitions/YearEndReport"
+        }
+      },
+      "type": "object"
+    },
+    "CompanyInformation": {
+      "properties": {
+        "accountingSystemsOfOrigin": {
+          "description": "List containing the accounting systems of origins.",
+          "items": {
+            "$ref": "#/definitions/Dropdown"
+          },
+          "type": "array"
+        },
+        "companyTypes": {
+          "description": "List containing the company types.",
+          "items": {
+            "$ref": "#/definitions/Dropdown"
+          },
+          "type": "array"
+        },
+        "hasActivateDIYPackageForCompaniesPilotFlag": {
+          "description": "Flag for checking if has the ActivateDIYPackageForCompanies pilot flag.",
+          "type": "boolean"
+        },
+        "hasTripletexAccount": {
+          "description": "Flag for checking if the client have a Tripletex account.",
+          "type": "boolean"
+        },
+        "isAccountantAndAuditor": {
+          "description": "Flag for checking if the client is both an accountant and auditor.",
+          "type": "boolean"
+        },
+        "isAccountantOrSimilar": {
+          "description": "Flag for checking if the client is either an accountant or an auditor.",
+          "type": "boolean"
+        },
+        "isTripletex": {
+          "description": "Flag for checking if the client is in Tripletex's context.",
+          "type": "boolean"
+        },
+        "isTripletexSuspended": {
+          "description": "Flag for checking if the client is suspended.",
+          "type": "boolean"
+        },
+        "schoolReseller": {
+          "type": "boolean"
+        },
+        "tripletexSalesModuleTypes": {
+          "description": "List containing the Tripletex sales modules types.",
+          "items": {
+            "$ref": "#/definitions/Dropdown"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -12786,6 +12898,15 @@
           "minLength": 0,
           "type": "string"
         },
+        "deviceType": {
+          "description": "Device type.",
+          "enum": [
+            "UNKNOWN",
+            "ANDROID",
+            "IOS"
+          ],
+          "type": "string"
+        },
         "id": {
           "format": "int64",
           "type": "integer"
@@ -14355,6 +14476,20 @@
         "locationName",
         "mileageAllowance"
       ],
+      "type": "object"
+    },
+    "Dropdown": {
+      "properties": {
+        "id": {
+          "description": "An unique ID for each element.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "A display name for each element.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "DynamicControlForm": {
@@ -20921,6 +21056,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "description": {
+          "readOnly": true,
+          "type": "string"
+        },
         "isDeletable": {
           "readOnly": true,
           "type": "boolean"
@@ -20946,6 +21085,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "status": {
+          "$ref": "#/definitions/Status",
+          "readOnly": true
+        },
         "text1": {
           "readOnly": true,
           "type": "string"
@@ -20955,6 +21098,25 @@
           "type": "string"
         },
         "text3": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "VENDOR_POSTING",
+            "POSTING_RULE",
+            "AUTOPAY",
+            "ZTL",
+            "REMIT",
+            "OPEN_POST",
+            "CREDIT_NOTE",
+            "CLOSED",
+            "UNKNOWN"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "voucherDetailsUrl": {
           "readOnly": true,
           "type": "string"
         },
@@ -25109,6 +25271,10 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isSentToFactoring": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "lastChargedReminderDate": {
           "readOnly": true,
           "type": "string"
@@ -25373,6 +25539,11 @@
           "readOnly": true,
           "type": "number"
         },
+        "amountCurrencyOutstanding": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "amountExVat": {
           "readOnly": true,
           "type": "number"
@@ -25408,6 +25579,11 @@
           "type": "string"
         },
         "customerId": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "customerPostingGroupId": {
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -25456,12 +25632,21 @@
           "readOnly": true,
           "type": "string"
         },
+        "isProject": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "messages": {
           "items": {
             "$ref": "#/definitions/InvoiceMessage"
           },
           "readOnly": true,
           "type": "array"
+        },
+        "orderId": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
         },
         "paidAmount": {
           "readOnly": true,
@@ -25694,6 +25879,7 @@
             "GoldsharkPurchaseOrderLineApplySecurity",
             "MissingCompanyIdFilterUpdateDeleteQueriesLogging",
             "TskUseGlobalCache",
+            "TskUploadAttachmentsIndividually",
             "KillBillAllowLongInvoiceNumberInKID",
             "WholesalerFailedLoginNotifications",
             "KillBillEfakturaLookup",
@@ -25754,6 +25940,7 @@
             "AccountingOfficeServiceOptimization",
             "AccountingOfficeServiceOptimizationPart2",
             "OnboardingWidget2FATask",
+            "NewCreateTripletexAccountDialog",
             "PilotFeatureRecordPatternQuery",
             "LargeArgumentOptimizerHugeLimit",
             "TimeBasedSessionInvalidation",
@@ -25777,7 +25964,9 @@
             "Inyett",
             "CopilotUserStats",
             "CopilotSurvey",
-            "NewInvoiceOverviewSum"
+            "NewInvoiceOverviewSum",
+            "DisablePSCacheForScatterGather",
+            "UrlNavigation"
           ],
           "readOnly": true,
           "type": "string"
@@ -30894,6 +31083,42 @@
               "$ref": "#/definitions/ChangeLog"
             },
             "type": "array"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseMapStringObject": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "additionalProperties": {
+              "type": "object"
+            },
+            "type": "object"
           },
           "readOnly": true,
           "type": "array"
@@ -38259,10 +38484,6 @@
     },
     "MySubscriptionAccountInfo": {
       "properties": {
-        "basisVoucherModule": {
-          "readOnly": true,
-          "type": "string"
-        },
         "calculatedEndDate": {
           "readOnly": true,
           "type": "string"
@@ -40033,9 +40254,9 @@
           "description": "Loss on realization of share",
           "type": "number"
         },
-        "municipality": {
-          "$ref": "#/definitions/Municipality",
-          "description": "Municipality"
+        "municipalityNumber": {
+          "description": "Municipality number",
+          "type": "string"
         },
         "ordinaryIncome": {
           "description": "Ordinary income",
@@ -41709,45 +41930,6 @@
           "description": "Voucher that was paid.",
           "readOnly": true
         },
-        "status": {
-          "description": "The payment status.NOT_APPROVED: Payment not approved yet.<br>APPROVED: Payment approved, but not yet sent to bank.<br>SENT_TO_AUTOPAY: Payment sent to bank.<br>RECEIVED_BY_BANK: Payment received by the bank.<br>ACCEPTED_BY_BANK: Payment that was accepted by the bank.<br>FAILED: Payment that failed.<br>CANCELLED: Cancelled payment.<br>SUCCESS: Payment that ended successfully.<br>",
-          "enum": [
-            "NOT_APPROVED",
-            "CANCELLED",
-            "APPROVED",
-            "SENT_TO_AUTOPAY",
-            "RECEIVED_BY_BANK",
-            "ACCEPTED_BY_BANK",
-            "FAILED",
-            "SUCCESS",
-            "NOT_UPDATED",
-            "ON_HOLD",
-            "IMPORTED",
-            "INITIALIZED",
-            "AUTHORIZATION_REQUIRED",
-            "SETTLEMENT_IN_PROGRESS",
-            "REJECTED",
-            "BOOKED",
-            "SETTLEMENT_COMPLETED",
-            "BATCH_FAILED",
-            "BATCH_TIMEOUT",
-            "CANCEL_PENDING",
-            "PAYROLL_AWAITING_AUTHORIZATION",
-            "PAYROLL_SETTLEMENT_IN_PROGRESS",
-            "PAYROLL_SETTLEMENT_COMPLETED",
-            "PAYROLL_CANCELLED",
-            "PAYROLL_SETTLEMENT_NOT_COMPLETED_IN_TIME",
-            "PAYROLL_PAYMENT_INITIATED",
-            "PAYROLL_PAYMENT_ACCEPTED_TECHNICAL_VALIDATION",
-            "PAYROLL_ACCEPTED_FOR_EXECUTION",
-            "PAYROLL_FAILED",
-            "PAYROLL_EXECUTION_COMPLETED",
-            "AUTHORIZATION_REQUIRED_MULTIPLE_APPROVERS",
-            "REJECTED_FUNDS_NOT_RECEIVED_IN_TIME"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "statusId": {
           "description": "The payment status Id. Usually all the payments in one batch have the same status ID, at least to the point of being received by bank.NEW: Payment is new.<br>PENDING_SIGNING: Payment is sent to AutoPay but not signed yet, requires re-approving.<br>CANCELLED: Payment was cancelled by ERP.<br>ERROR: Payment that failed.<br>RECEIVED_BY_BANK: Payment was received by the bank.<br>ACCEPTED_BY_BANK: Payment was accepted by bank.<br>CANCELLED_IN_BANK: Payment was cancelled in bank.<br>REJECTED_BY_BANK: Payment was rejected by bank.<br>PAID: Payment is paid.<br>OTHER: In case status in unknown. Will never be a final status.<br>",
           "enum": [
@@ -42143,6 +42325,9 @@
         "date": {
           "description": "Voucher date.",
           "type": "string"
+        },
+        "department": {
+          "$ref": "#/definitions/Department"
         },
         "employee": {
           "$ref": "#/definitions/Employee"
@@ -46643,6 +46828,9 @@
           },
           "type": "array"
         },
+        "customControlForms": {
+          "type": "boolean"
+        },
         "defaultProjectContractComment": {
           "type": "string"
         },
@@ -47336,7 +47524,7 @@
         },
         "receiverEmail": {
           "description": "Email when purchase order is send by email.",
-          "maxLength": 100,
+          "maxLength": 255,
           "minLength": 0,
           "type": "string"
         },
@@ -48270,6 +48458,11 @@
     },
     "ReconciliationMatch": {
       "properties": {
+        "accountId": {
+          "description": "Id of the account.",
+          "format": "int64",
+          "type": "integer"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -48294,6 +48487,10 @@
           "description": "Id of the BankReconciliation.",
           "format": "int64",
           "type": "integer"
+        },
+        "startDate": {
+          "description": "Start date of the period",
+          "type": "string"
         },
         "transactionsGroup": {
           "$ref": "#/definitions/ReconciliationGroup",
@@ -48453,9 +48650,12 @@
           "format": "int32",
           "type": "integer"
         },
-        "emailAddress": {
+        "emailAddresses": {
           "description": "The email address to send to.",
-          "type": "string"
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "message": {
           "description": "The message to include in the email.",
@@ -51238,6 +51438,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperCompanyCurrency": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CompanyCurrency"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperCompanyEmployeeRate": {
       "properties": {
         "value": {
@@ -51250,6 +51458,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CompanyEvent"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperCompanyFormsStatus": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CompanyFormsStatus"
         }
       },
       "type": "object"
@@ -51274,6 +51490,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/CompanyInfoOverview"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperCompanyInformation": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/CompanyInformation"
         }
       },
       "type": "object"
@@ -58095,7 +58319,7 @@
         },
         "tripletexPriceList": {
           "enum": [
-            "TRIPLETEX_OLD_MODEL",
+            "UNKNOWN",
             "TRIPLETEX_STANDARD",
             "AGRO",
             "MAMUT",
@@ -60913,6 +61137,17 @@
       ],
       "type": "object"
     },
+    "Status": {
+      "properties": {
+        "text": {
+          "type": "string"
+        },
+        "variant": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StatusLog": {
       "properties": {
         "actionCreator": {
@@ -61540,6 +61775,14 @@
           "format": "int32",
           "minimum": 0,
           "type": "integer"
+        },
+        "lastChangedBy": {
+          "description": "Last Changed By which employee",
+          "type": "string"
+        },
+        "lastChangedDate": {
+          "description": "Last changed Date for the activation",
+          "type": "string"
         },
         "name": {
           "type": "string"
@@ -62472,7 +62715,8 @@
         "surveyType": {
           "enum": [
             "1",
-            "2"
+            "2",
+            "3"
           ],
           "type": "string"
         },
@@ -64316,6 +64560,16 @@
         },
         "authDepartmentAdmin": {
           "type": "boolean"
+        },
+        "authLevelExpense": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "authLevelWage": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "isAuthCompanyAdmin": {
           "readOnly": true,
@@ -66226,6 +66480,30 @@
     },
     "TrialInfoAutomation": {
       "properties": {
+        "allAutomaticallyBooked": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "allManuallyEntered": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "allPartiallyAutomated": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "correctSuggestions190days": {
           "format": "int32",
           "readOnly": true,
@@ -66246,10 +66524,58 @@
           "readOnly": true,
           "type": "integer"
         },
+        "ehfAutomaticallyBooked": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "ehfManuallyEntered": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "ehfPartiallyAutomated": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "getvendorsCouldBeAutomated": {
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "pdfAutomaticallyBooked": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "pdfManuallyEntered": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "pdfPartiallyAutomated": {
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "percentAutomatedEHF": {
           "format": "int32",
@@ -66305,7 +66631,47 @@
           "readOnly": true,
           "type": "integer"
         },
+        "totalVendorsSendingEHF": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "totalVendorsSendingPDF": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "vendorsNotSendingEhf": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherCount180DaysEHF": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherCount180DaysPDF": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherCount30DaysEHF": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherCount30DaysPDF": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherCount365DaysEHF": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "voucherCount365DaysPDF": {
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -66584,6 +66950,59 @@
       ],
       "type": "object"
     },
+    "TripletexAccountModulesDetails": {
+      "properties": {
+        "customerId": {
+          "description": "An unique customer ID.",
+          "format": "int64",
+          "type": "integer"
+        },
+        "hasOnlyPrices": {
+          "description": "Flag for checking if the client has only prices.",
+          "type": "boolean"
+        },
+        "isModuleProjectChecked": {
+          "description": "Flag for checking if the Project module is checked.",
+          "type": "boolean"
+        },
+        "isModuleProjectDisabled": {
+          "description": "Flag for checking if the Project module is disabled.",
+          "type": "boolean"
+        },
+        "isModuleTimeTrackingChecked": {
+          "description": "Flag for checking if the Time Tracking module is checked.",
+          "type": "boolean"
+        },
+        "isModuleTimeTrackingDisabled": {
+          "description": "Flag for checking if the Time Tracking module is disabled.",
+          "type": "boolean"
+        },
+        "isModuleWageSalaryChecked": {
+          "description": "Flag for checking if the Wage Salary module is checked.",
+          "type": "boolean"
+        },
+        "isModuleWageSalaryDisabled": {
+          "description": "Flag for checking if the Wage Salary module is disabled.",
+          "type": "boolean"
+        },
+        "mainModule": {
+          "description": "An unique value representing the main module's ID.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numberOfEmployees": {
+          "description": "A value representing the number of employees depending on the main module's type.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numberOfVouchers": {
+          "description": "An unique ID related to a specific Tripletex sales module type.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "TripletexAccountPricesReturnDTO": {
       "properties": {
         "allPrices": {
@@ -66627,6 +67046,96 @@
       },
       "type": "object"
     },
+    "TripletexAccountPricingDetails": {
+      "properties": {
+        "antallBrukere": {
+          "description": "A value containing the number of employees for which the prices are computed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "hasKidRow": {
+          "description": "Flag for checking if the KID's row should be displayed.",
+          "type": "boolean"
+        },
+        "hasMonthlyCompanyRow": {
+          "description": "Flag for checking if the monthly company's row should be displayed.",
+          "type": "boolean"
+        },
+        "hasMonthlyEmployeesRow": {
+          "description": "Flag for checking if the monthly employee's row should be displayed.",
+          "type": "boolean"
+        },
+        "hasNumberOfEmployees": {
+          "description": "Flag for checking the rendering of the number of employees dropdown.",
+          "type": "boolean"
+        },
+        "hasNumberOfVouchers": {
+          "description": "Flag for checking the rendering of the number of vouchers per year dropdown.",
+          "type": "boolean"
+        },
+        "hasRemitRow": {
+          "description": "Flag for checking if the remit's row should be displayed.",
+          "type": "boolean"
+        },
+        "hasStartupCompanyRow": {
+          "description": "Flag for checking if the startup company's row should be displayed.",
+          "type": "boolean"
+        },
+        "hasStartupEmployeesRow": {
+          "description": "Flag for checking if the startup employee's row should be displayed.",
+          "type": "boolean"
+        },
+        "kidFee": {
+          "description": "A value containing the KID's fee.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "kidStartupFee": {
+          "description": "A value containing the KID's startup fee.",
+          "type": "number"
+        },
+        "numberOfEmployees": {
+          "description": "A value representing the number of employees depending on the main module's type.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "numberOfVouchers": {
+          "description": "An unique ID related to a specific Tripletex sales module type.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "prices": {
+          "$ref": "#/definitions/TripletexPrices",
+          "description": "DTO containing Tripletex's prices informations."
+        },
+        "scanningFee": {
+          "description": "A value containing scanning fee.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "scanningStartupFee": {
+          "description": "A value containing scanning startup fee.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "totalMonthlyFees": {
+          "description": "A value containing the total monthly fees.",
+          "type": "number"
+        },
+        "totalStartupFees": {
+          "description": "A value containing the total startup fees.",
+          "type": "number"
+        },
+        "tripletexSalesModuleTypes": {
+          "description": "List containing the Tripletex sales modules types.",
+          "items": {
+            "$ref": "#/definitions/Dropdown"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "TripletexAccountReturn": {
       "properties": {
         "administrator": {
@@ -66644,6 +67153,9 @@
         "companyOwnedApiTokenRobotId": {
           "format": "int32",
           "type": "integer"
+        },
+        "tripletexAccountCreatedMessage": {
+          "type": "string"
         }
       },
       "type": "object"
@@ -66672,7 +67184,7 @@
         },
         "priceList": {
           "enum": [
-            "TRIPLETEX_OLD_MODEL",
+            "UNKNOWN",
             "TRIPLETEX_STANDARD",
             "AGRO",
             "MAMUT",
@@ -66746,10 +67258,8 @@
             "FEEDBACK_DEADLINES_AND_TASKS_SURVEY",
             "ONBOARDING",
             "HELP_CENTER",
-            "HELP_CENTER_AGRO",
             "HELP_CENTER_AI",
             "HELP_CENTER_EACCOUNTING",
-            "HELP_CENTER_MAMUT",
             "DASHBOARD_REMINDER",
             "REMINDER",
             "TASKS"
@@ -66775,6 +67285,41 @@
           },
           "readOnly": true,
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TripletexPrices": {
+      "properties": {
+        "allPrices": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "$ref": "#/definitions/TlxNumber"
+            },
+            "type": "object"
+          },
+          "type": "object"
+        },
+        "listPriceCategory1UserService": {
+          "type": "number"
+        },
+        "listPriceCategory1UserStartup": {
+          "type": "number"
+        },
+        "sumService": {
+          "type": "number"
+        },
+        "sumServiceCategory1Users": {
+          "type": "number"
+        },
+        "sumStartup": {
+          "type": "number"
+        },
+        "sumStartupCategory1Users": {
+          "type": "number"
+        },
+        "sumYearlyService": {
+          "type": "number"
         }
       },
       "type": "object"
@@ -66819,7 +67364,7 @@
         },
         "tripletexPriceList": {
           "enum": [
-            "TRIPLETEX_OLD_MODEL",
+            "UNKNOWN",
             "TRIPLETEX_STANDARD",
             "AGRO",
             "MAMUT",
@@ -68421,6 +68966,10 @@
           "readOnly": true,
           "type": "integer"
         },
+        "numberAsString": {
+          "readOnly": true,
+          "type": "string"
+        },
         "postings": {
           "items": {
             "$ref": "#/definitions/Posting"
@@ -69293,6 +69842,10 @@
           "minimum": 0,
           "readOnly": true,
           "type": "integer"
+        },
+        "numberAsString": {
+          "readOnly": true,
+          "type": "string"
         },
         "postings": {
           "items": {
@@ -72527,7 +73080,6 @@
           "readOnly": true
         },
         "status": {
-          "description": "The payment status.NOT_APPROVED: Payment not approved yet.<br>APPROVED: Payment approved, but not yet sent to bank.<br>SENT_TO_AUTOPAY: Payment sent to bank.<br>RECEIVED_BY_BANK: Payment received by the bank.<br>ACCEPTED_BY_BANK: Payment that was accepted by the bank.<br>FAILED: Payment that failed.<br>CANCELLED: Cancelled payment.<br>SUCCESS: Payment that ended successfully.<br>",
           "enum": [
             "NOT_APPROVED",
             "CANCELLED",
@@ -109407,6 +109959,9 @@
     },
     {
       "name": "platformAgnosticcompany"
+    },
+    {
+      "name": "bankprovisioning"
     },
     {
       "name": "bankreconciliation"

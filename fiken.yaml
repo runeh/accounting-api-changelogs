@@ -404,6 +404,11 @@ paths:
         - $ref: '#/components/parameters/toAccount'
         - $ref: '#/components/parameters/page'
         - $ref: '#/components/parameters/pageSize'
+        - in: query
+          name: range
+          schema:
+            type: string
+          description: Comma-separated list of account numbers or ranges of account numbers (e.g. "1000-1500, 1580-1999, 2000, 2061, 7000-7004")
       responses:
         '200':
           description: OK
@@ -4013,6 +4018,10 @@ components:
           type: string
           format: date
           example: '2025-01-01'
+        vatRegistrationDate:
+          type: string
+          format: date
+          example: '2025-02-01'
     contact:
       type: object
       required:
@@ -4910,7 +4919,7 @@ components:
           example: 5000
         vatInPercent:
           type: number
-          description: Percentage value of VAT charged on invoice line. Should be a value between 0 and 100. Can be decimal values such as 25.5
+          description: Percentage value of VAT charged on invoice line. Should be a value between 0 and 1
           example: 25
         unitPrice:
           type: integer
@@ -4924,7 +4933,7 @@ components:
         discount:
           type: number
           example: 25
-          description: If field is set, all amounts must be given before the discount is applied. The API will calculate the new totals. Discount value should be a value between 0 and 100.
+          description: If field is set, all amounts must be given before the discount is applied. The API will calculate the new totals. Discount value should be a value between 0 and 1.
         productId:
           type: integer
           format: int64
