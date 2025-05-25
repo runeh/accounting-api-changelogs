@@ -3821,6 +3821,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "redirectUrl": {
+          "description": "Redirect URL.",
+          "readOnly": true,
+          "type": "string"
+        },
         "tenantId": {
           "description": "The tenantId representing this company.",
           "readOnly": true,
@@ -3831,7 +3836,9 @@
           "items": {
             "enum": [
               "Totp",
+              "Passwordless",
               "BankIdNorway",
+              "BankIdNorwayBiometrics",
               "BankIdSweden",
               "BankIdFinland"
             ],
@@ -4096,13 +4103,10 @@
         "hasBookkeepingBeforeAttestationSetting": {
           "type": "boolean"
         },
-        "hasFabricAiPdfPredictionPilot": {
+        "hasFabricAiOrderLinePilotUI": {
           "type": "boolean"
         },
         "hasVoucherApprovalModule": {
-          "type": "boolean"
-        },
-        "ishasFabricAiPdfPredictionTestGraphsCompaniesPilot": {
           "type": "boolean"
         },
         "testAccount": {
@@ -7328,6 +7332,14 @@
         "content",
         "thread"
       ],
+      "type": "object"
+    },
+    "ChatMetaDTO": {
+      "properties": {
+        "pilot": {
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "ChatParticipant": {
@@ -10858,27 +10870,6 @@
       },
       "type": "object"
     },
-    "CreateAppToken": {
-      "properties": {
-        "appSecret": {
-          "description": "App secret (temporary security mechanism during testing)",
-          "type": "string"
-        },
-        "employeeToken": {
-          "description": "Employee token for app use",
-          "type": "string"
-        },
-        "encryptStrings": {
-          "description": "Set to true to encrypt text strings in the data. The main goal of this is privacy, not security.",
-          "type": "boolean"
-        },
-        "expirationDate": {
-          "description": "Expiration date for the app session token",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "CreateSalaryEmployee": {
       "properties": {
         "changes": {
@@ -12899,7 +12890,7 @@
           "type": "string"
         },
         "deviceType": {
-          "description": "Device type.",
+          "description": "Device type (ANDROID or IOS)",
           "enum": [
             "UNKNOWN",
             "ANDROID",
@@ -12925,7 +12916,8 @@
         }
       },
       "required": [
-        "deviceRegistrationToken"
+        "deviceRegistrationToken",
+        "deviceType"
       ],
       "type": "object"
     },
@@ -16658,6 +16650,56 @@
       },
       "type": "object"
     },
+    "ExtraCopilotMetrics": {
+      "properties": {
+        "chatAvailable": {
+          "type": "boolean"
+        },
+        "chatWithSupportStatus": {
+          "type": "string"
+        },
+        "errorMessageLocaleId": {
+          "type": "string"
+        },
+        "lastMessageErrorCode": {
+          "type": "string"
+        },
+        "lastMessageFeedback": {
+          "type": "string"
+        },
+        "lastMessageSource": {
+          "type": "string"
+        },
+        "lastMessageStatus": {
+          "type": "string"
+        },
+        "lastPrompt": {
+          "type": "string"
+        },
+        "lastRequestId": {
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "lastResponse": {
+          "type": "string"
+        },
+        "messagesLength": {
+          "format": "int32",
+          "minimum": 0,
+          "type": "integer"
+        },
+        "showTalkToSupportButton": {
+          "type": "boolean"
+        },
+        "streamingRequestId": {
+          "format": "int64",
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ExtraordinaryDistributionData": {
       "properties": {
         "municipalityNumber": {
@@ -18995,9 +19037,6 @@
     },
     "GetStartedSummary": {
       "properties": {
-        "accountSettingsURL": {
-          "type": "string"
-        },
         "completedTasksPercentage": {
           "type": "string"
         },
@@ -21260,12 +21299,6 @@
           "description": "Regulatory reporting info.",
           "readOnly": true,
           "type": "string"
-        },
-        "transactionId": {
-          "description": "Transaction ID.",
-          "format": "int64",
-          "readOnly": true,
-          "type": "integer"
         }
       },
       "type": "object"
@@ -21375,11 +21408,6 @@
         "regulatoryReportingInfo": {
           "description": "Regulatory reporting info.",
           "type": "string"
-        },
-        "transactionId": {
-          "description": "Transaction ID.",
-          "format": "int64",
-          "type": "integer"
         }
       },
       "type": "object"
@@ -25966,7 +25994,10 @@
             "CopilotSurvey",
             "NewInvoiceOverviewSum",
             "DisablePSCacheForScatterGather",
-            "UrlNavigation"
+            "UrlNavigation",
+            "AutoPayPAAutoMigrate",
+            "PaginationLedgerFilterForVFR",
+            "ProductSpotlightAnnualSettlement"
           ],
           "readOnly": true,
           "type": "string"
@@ -28143,6 +28174,39 @@
         "values": {
           "items": {
             "$ref": "#/definitions/ClientAccessTemplate"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "versionDigest": {
+          "description": "Used to know if the paginated list has changed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListResponseClientModuleActivationRequest": {
+      "properties": {
+        "count": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "from": {
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fullResultSize": {
+          "description": "Indicates whether there are more values available. Note: The value is not exact",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "values": {
+          "items": {
+            "$ref": "#/definitions/ClientModuleActivationRequest"
           },
           "readOnly": true,
           "type": "array"
@@ -37708,38 +37772,6 @@
       ],
       "type": "object"
     },
-    "MobileAppLogin": {
-      "properties": {
-        "appSecret": {
-          "description": "App secret",
-          "type": "string"
-        },
-        "employeeId": {
-          "description": "Optional employee ID. Default employee is used when null",
-          "format": "int64",
-          "type": "integer"
-        },
-        "expirationDate": {
-          "description": "Expiration date for the combined token",
-          "type": "string"
-        },
-        "password": {
-          "description": "Users password",
-          "type": "string"
-        },
-        "username": {
-          "description": "Users username (email)",
-          "type": "string"
-        }
-      },
-      "required": [
-        "appSecret",
-        "expirationDate",
-        "password",
-        "username"
-      ],
-      "type": "object"
-    },
     "MobileAppModules": {
       "properties": {
         "numberOfOpenAndRejectedTravelsExpenses": {
@@ -38542,6 +38574,10 @@
     },
     "MySubscriptionModuleDTO": {
       "properties": {
+        "activationInfo": {
+          "readOnly": true,
+          "type": "string"
+        },
         "active": {
           "readOnly": true,
           "type": "boolean"
@@ -51334,6 +51370,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperChatMetaDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/ChatMetaDTO"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperChatThread": {
       "properties": {
         "value": {
@@ -62703,6 +62747,10 @@
         "contactRequest": {
           "type": "string"
         },
+        "extraCopilotMetrics": {
+          "$ref": "#/definitions/ExtraCopilotMetrics",
+          "description": "Additional metrics for Copilot-related feedback"
+        },
         "id": {
           "format": "int64",
           "type": "integer"
@@ -67257,8 +67305,7 @@
             "INCOME_AND_COST_CHART",
             "FEEDBACK_DEADLINES_AND_TASKS_SURVEY",
             "ONBOARDING",
-            "HELP_CENTER",
-            "HELP_CENTER_AI",
+            "PRODUCT_SPOTLIGHT_ANNUAL_SETTLEMENT",
             "HELP_CENTER_EACCOUNTING",
             "DASHBOARD_REMINDER",
             "REMINDER",
@@ -110003,10 +110050,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
       "name": "bankreconciliationinternalexport"
@@ -111423,6 +111470,9 @@
     },
     {
       "name": "vismaconnectlogout"
+    },
+    {
+      "name": "vismaconnectmanagement"
     },
     {
       "name": "vismaconnectonboard"
