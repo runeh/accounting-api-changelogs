@@ -1,6 +1,138 @@
 {
   "basePath": "/v2",
   "definitions": {
+    "AOReconciliationsContext": {
+      "properties": {
+        "accountantOrSimilar": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "address": {
+          "$ref": "#/definitions/Address"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "companyMigration": {
+          "description": "If the company was migrated from another system, this field will contain the name of the system it was migrated from.",
+          "enum": [
+            "NONE",
+            "AGRO"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "currency": {
+          "$ref": "#/definitions/Currency"
+        },
+        "displayName": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "email": {
+          "format": "email",
+          "maxLength": 254,
+          "minLength": 0,
+          "type": "string"
+        },
+        "endDate": {
+          "type": "string"
+        },
+        "faxNumber": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "invoiceShowDeliveryDate": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "name": {
+          "maxLength": 255,
+          "minLength": 0,
+          "type": "string"
+        },
+        "organizationNumber": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "phoneNumber": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "phoneNumberMobile": {
+          "maxLength": 100,
+          "minLength": 0,
+          "type": "string"
+        },
+        "pilotFeatureEnabled": {
+          "description": "The pilot feature enabled flag",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "startDate": {
+          "type": "string"
+        },
+        "type": {
+          "enum": [
+            "NONE",
+            "ENK",
+            "AS",
+            "NUF",
+            "ANS",
+            "DA",
+            "PRE",
+            "KS",
+            "ASA",
+            "BBL",
+            "BRL",
+            "GFS",
+            "SPA",
+            "SF",
+            "IKS",
+            "KF_FKF",
+            "FCD",
+            "EOFG",
+            "BA",
+            "STI",
+            "ORG",
+            "ESEK",
+            "SA",
+            "SAM",
+            "BO",
+            "VPFO",
+            "OS",
+            "FLI",
+            "Other"
+          ],
+          "type": "string"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "address",
+        "name",
+        "type"
+      ],
+      "type": "object"
+    },
     "AccommodationAllowance": {
       "properties": {
         "address": {
@@ -693,6 +825,8 @@
               "AUTH_PROJECT_OWN_PROJECT_RESULT_REPORT",
               "AUTH_PROJECT_CONTROL_FORMS",
               "AUTH_PRODUCT_ADMIN",
+              "AUTH_PRODUCT_NET_PRICE",
+              "AUTH_PURCHASING_MANAGER",
               "REPORT_ADMINISTRATOR",
               "REPORT_AUTHOR",
               "AUTH_COMPANY_WAGE_ADMIN",
@@ -794,6 +928,8 @@
               "AUTH_PROJECT_OWN_PROJECT_RESULT_REPORT",
               "AUTH_PROJECT_CONTROL_FORMS",
               "AUTH_PRODUCT_ADMIN",
+              "AUTH_PRODUCT_NET_PRICE",
+              "AUTH_PURCHASING_MANAGER",
               "REPORT_ADMINISTRATOR",
               "REPORT_AUTHOR",
               "AUTH_COMPANY_WAGE_ADMIN",
@@ -878,6 +1014,8 @@
             "AUTH_PROJECT_OWN_PROJECT_RESULT_REPORT",
             "AUTH_PROJECT_CONTROL_FORMS",
             "AUTH_PRODUCT_ADMIN",
+            "AUTH_PRODUCT_NET_PRICE",
+            "AUTH_PURCHASING_MANAGER",
             "REPORT_ADMINISTRATOR",
             "REPORT_AUTHOR",
             "AUTH_COMPANY_WAGE_ADMIN",
@@ -7800,6 +7938,8 @@
               "AUTH_PROJECT_OWN_PROJECT_RESULT_REPORT",
               "AUTH_PROJECT_CONTROL_FORMS",
               "AUTH_PRODUCT_ADMIN",
+              "AUTH_PRODUCT_NET_PRICE",
+              "AUTH_PURCHASING_MANAGER",
               "REPORT_ADMINISTRATOR",
               "REPORT_AUTHOR",
               "AUTH_COMPANY_WAGE_ADMIN",
@@ -9296,6 +9436,7 @@
               "INVOICE_ROUNDOFF",
               "MODULE_EMPLOYEE_ACCOUNTING",
               "MODULE_DEPARTMENT_ACCOUNTING",
+              "SHOW_DEPARTMENT_INDUSTRY",
               "MODULE_PROJECT_ACCOUNTING",
               "MODULE_PRODUCT_ACCOUNTING",
               "SEND_IMPORTED_INVOICES",
@@ -10435,6 +10576,11 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        },
+        "visualization": {
+          "maxLength": 65535,
+          "minLength": 0,
+          "type": "string"
         }
       },
       "required": [
@@ -15902,6 +16048,8 @@
             "AUTH_PROJECT_OWN_PROJECT_RESULT_REPORT",
             "AUTH_PROJECT_CONTROL_FORMS",
             "AUTH_PRODUCT_ADMIN",
+            "AUTH_PRODUCT_NET_PRICE",
+            "AUTH_PURCHASING_MANAGER",
             "REPORT_ADMINISTRATOR",
             "REPORT_AUTHOR",
             "AUTH_COMPANY_WAGE_ADMIN",
@@ -20744,6 +20892,11 @@
           "description": "The invoice payment.",
           "readOnly": true
         },
+        "version": {
+          "description": "Voucher version",
+          "format": "int32",
+          "type": "integer"
+        },
         "voucherId": {
           "description": "Voucher Id of the incoming invoice",
           "format": "int64",
@@ -21036,6 +21189,12 @@
           "description": "Number of reverse voucher",
           "readOnly": true,
           "type": "string"
+        },
+        "version": {
+          "description": "Voucher version",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "voucherId": {
           "description": "Voucher Id of the incoming invoice",
@@ -21485,6 +21644,12 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "version": {
+          "description": "Voucher version",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         },
         "voucherId": {
           "description": "Voucher Id of the incoming invoice",
@@ -24624,6 +24789,11 @@
     },
     "InventoryLocation": {
       "properties": {
+        "canDeactivate": {
+          "description": "Indicates whether the location can be deactivated based on current stock and usage.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "changes": {
           "items": {
             "$ref": "#/definitions/Change"
@@ -25178,7 +25348,7 @@
           "readOnly": true,
           "type": "boolean"
         },
-        "hasModuleProjectEconomy": {
+        "hasModuleProject": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -25640,6 +25810,11 @@
           "readOnly": true,
           "type": "integer"
         },
+        "customerNumber": {
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
         "customerPostingGroupId": {
           "format": "int32",
           "readOnly": true,
@@ -26003,6 +26178,7 @@
             "NewAddonsAuthorization",
             "AccountingOfficeServiceOptimization",
             "AccountingOfficeServiceOptimizationPart2",
+            "AccountingOfficeClientAccessForm",
             "OnboardingWidget2FATask",
             "NewCreateTripletexAccountDialog",
             "PilotFeatureRecordPatternQuery",
@@ -26025,6 +26201,7 @@
             "SyncRemindersJobRun",
             "AutoPayResilience",
             "NewInvoiceOverviewQuery",
+            "ArticleStartDateFiltering",
             "Inyett",
             "CopilotUserStats",
             "CopilotSurvey",
@@ -26032,8 +26209,7 @@
             "DisablePSCacheForScatterGather",
             "UrlNavigation",
             "AutoPayPAAutoMigrate",
-            "PaginationLedgerFilterForVFR",
-            "ProductSpotlightAnnualSettlement"
+            "PaginationLedgerFilterForVFR"
           ],
           "readOnly": true,
           "type": "string"
@@ -45116,6 +45292,9 @@
         "inventoryLocation": {
           "$ref": "#/definitions/InventoryLocation"
         },
+        "isInactive": {
+          "type": "boolean"
+        },
         "isMainLocation": {
           "type": "boolean"
         },
@@ -49946,6 +50125,9 @@
         "initiallyExpanded": {
           "type": "boolean"
         },
+        "leaf": {
+          "type": "boolean"
+        },
         "leafCount": {
           "format": "int32",
           "type": "integer"
@@ -51036,6 +51218,14 @@
       "properties": {
         "value": {
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperAOReconciliationsContext": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/AOReconciliationsContext"
         }
       },
       "type": "object"
@@ -54136,6 +54326,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperSalarySpecificationSupplement": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/SalarySpecificationSupplement"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperSalarySummaryDTO": {
       "properties": {
         "value": {
@@ -54644,6 +54842,14 @@
       },
       "type": "object"
     },
+    "ResponseWrapperTimeTravellersContextDTO": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/TimeTravellersContextDTO"
+        }
+      },
+      "type": "object"
+    },
     "ResponseWrapperTimesheetAllocated": {
       "properties": {
         "value": {
@@ -54920,6 +55126,14 @@
       "properties": {
         "value": {
           "$ref": "#/definitions/VatPaymentStatusUpdate"
+        }
+      },
+      "type": "object"
+    },
+    "ResponseWrapperVatReconciliationContext": {
+      "properties": {
+        "value": {
+          "$ref": "#/definitions/VatReconciliationContext"
         }
       },
       "type": "object"
@@ -55458,6 +55672,8 @@
             "AUTH_PROJECT_OWN_PROJECT_RESULT_REPORT",
             "AUTH_PROJECT_CONTROL_FORMS",
             "AUTH_PRODUCT_ADMIN",
+            "AUTH_PRODUCT_NET_PRICE",
+            "AUTH_PURCHASING_MANAGER",
             "REPORT_ADMINISTRATOR",
             "REPORT_AUTHOR",
             "AUTH_COMPANY_WAGE_ADMIN",
@@ -55541,6 +55757,8 @@
               "AUTH_PROJECT_OWN_PROJECT_RESULT_REPORT",
               "AUTH_PROJECT_CONTROL_FORMS",
               "AUTH_PRODUCT_ADMIN",
+              "AUTH_PRODUCT_NET_PRICE",
+              "AUTH_PURCHASING_MANAGER",
               "REPORT_ADMINISTRATOR",
               "REPORT_AUTHOR",
               "AUTH_COMPANY_WAGE_ADMIN",
@@ -55633,6 +55851,8 @@
               "AUTH_PROJECT_OWN_PROJECT_RESULT_REPORT",
               "AUTH_PROJECT_CONTROL_FORMS",
               "AUTH_PRODUCT_ADMIN",
+              "AUTH_PRODUCT_NET_PRICE",
+              "AUTH_PURCHASING_MANAGER",
               "REPORT_ADMINISTRATOR",
               "REPORT_AUTHOR",
               "AUTH_COMPANY_WAGE_ADMIN",
@@ -56121,6 +56341,10 @@
         "salaryType": {
           "$ref": "#/definitions/SalaryType"
         },
+        "specificationSupplement": {
+          "$ref": "#/definitions/SalarySpecificationSupplement",
+          "description": "Link to salary specification supplement info."
+        },
         "url": {
           "readOnly": true,
           "type": "string"
@@ -56139,6 +56363,38 @@
         "rate",
         "salaryType"
       ],
+      "type": "object"
+    },
+    "SalarySpecificationSupplement": {
+      "properties": {
+        "carListPrice": {
+          "type": "number"
+        },
+        "carRegNumber": {
+          "maxLength": 20,
+          "minLength": 0,
+          "type": "string"
+        },
+        "changes": {
+          "items": {
+            "$ref": "#/definitions/Change"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "id": {
+          "format": "int64",
+          "type": "integer"
+        },
+        "url": {
+          "readOnly": true,
+          "type": "string"
+        },
+        "version": {
+          "format": "int32",
+          "type": "integer"
+        }
+      },
       "type": "object"
     },
     "SalarySummaryDTO": {
@@ -57686,6 +57942,9 @@
         "version": {
           "format": "int32",
           "type": "integer"
+        },
+        "ztlOrAutoPayInProgress": {
+          "type": "boolean"
         }
       },
       "required": [
@@ -64789,7 +65048,24 @@
           "readOnly": true,
           "type": "boolean"
         },
+        "isProjectManagerOnAnyProject": {
+          "readOnly": true,
+          "type": "boolean"
+        },
         "isProxy": {
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "TimeTravellersContextDTO": {
+      "properties": {
+        "approveExpenses": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "onlyIncludeExpenseVouchersOnSalary": {
           "readOnly": true,
           "type": "boolean"
         }
@@ -64868,7 +65144,7 @@
           "type": "number"
         },
         "comment": {
-          "maxLength": 16777215,
+          "maxLength": 65535,
           "minLength": 0,
           "type": "string"
         },
@@ -68373,6 +68649,53 @@
       },
       "type": "object"
     },
+    "VatReconciliationContext": {
+      "properties": {
+        "client": {
+          "$ref": "#/definitions/Client",
+          "description": "The customer",
+          "readOnly": true
+        },
+        "contextId": {
+          "description": "The context ID",
+          "format": "int64",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "endDate": {
+          "description": "End date",
+          "readOnly": true,
+          "type": "string"
+        },
+        "startDate": {
+          "description": "Start date",
+          "readOnly": true,
+          "type": "string"
+        },
+        "vatReportType": {
+          "description": "The vat report type",
+          "enum": [
+            "PRIMARY_INDUSTRY",
+            "GENERAL_INDUSTRY"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "vatTerm": {
+          "description": "The vat term",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "year": {
+          "description": "The year for the VAT reconciliation",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "VatReportTypes": {
       "properties": {
         "hasGeneralIndustry": {
@@ -68826,6 +69149,9 @@
         "status": {
           "format": "int32",
           "type": "integer"
+        },
+        "vatPostingsPerDepartment": {
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -69448,6 +69774,10 @@
     "VoucherInboxContext": {
       "properties": {
         "allowPostingBeforeApproval": {
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "authAddBankAccountNumbers": {
           "readOnly": true,
           "type": "boolean"
         },
@@ -73372,7 +73702,7 @@
     },
     "description": "## Usage\n\n- **Download the spec** [swagger.json](/v2/swagger.json) file, it is a [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification).\n\n- **Generating a client** can easily be done using tools like [swagger-codegen](https://github.com/swagger-api/swagger-codegen) or other that accepts [OpenAPI Specification](https://github.com/OAI/OpenAPI-Specification) specs.\n    - For swagger codegen it is recommended to use the flag: **--removeOperationIdPrefix**. \n      Unique operation ids are about to be introduced to the spec, and this ensures forward compatibility - and results in less verbose generated code.\n\n- **Please note** that Tripletex offers several packages. Some endpoints are only supported in certain packages. You can see the Tripletex packages [here](https://www.tripletex.no/priser/).\n\n## Overview\n\n- Partial resource updating is done using the `PUT` method with optional fields instead of the `PATCH` method.\n\n- **Actions** or **commands** are represented in our RESTful path with a prefixed `:`. Example: `/v2/hours/123/:approve`.\n\n- **Summaries** or **aggregated** results are represented in our RESTful path with a prefixed `>`. Example: `/v2/hours/>thisWeeksBillables`.\n\n- **Request ID** is a key found in all responses in the header with the name `x-tlx-request-id`. For validation and error responses it is also in the response body. If additional log information is absolutely necessary, our support division can locate the key value.\n\n- **version** This is a revision number found on all persisted resources. If included, it will prevent your PUT/POST from overriding any updates to the resource since your GET.\n\n- **Date** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DD`.\n\n- **DateTime** follows the **[ISO 8601](https://en.wikipedia.org/wiki/ISO_8601)** standard, meaning the format `YYYY-MM-DDThh:mm:ss`.\n\n- **Searching** is done by entering values in the optional fields for each API call. The values fall into the following categories: range, in, exact and like.\n\n- **Missing fields** or even **no response data** can occur because result objects and fields are filtered on authorization.\n\n- **See [GitHub](https://github.com/Tripletex/tripletex-api2) for more documentation, code examples, changelog and more.**\n\n- **See [Tripletex for developers](https://developer.tripletex.no/) for more practical information, support, updates and access form**\n\n\n## Authentication\n\n[Read more here](https://developer.tripletex.no/docs/documentation/authentication-and-tokens/)\n\n- **Tokens:** The Tripletex API uses 3 different tokens\n\n  - **consumerToken** is a token provided to the consumer by Tripletex after the API 2.0 registration is completed.\n\n  - **employeeToken** is a token created by an administrator in your Tripletex account via the user settings and the tab \"API access\". Each employee token must be given a set of entitlements.\n\n  - **sessionToken** is the token from `/token/session/:create` which requires a consumerToken and an employeeToken created with the same consumer token, but not an authentication header.\n\n- **Authentication** is done via [Basic access authentication](https://en.wikipedia.org/wiki/Basic_access_authentication)\n\n  - **username** is used to specify what company to access.\n\n    - `0` or blank means the company of the employee.\n\n    - Any other value means accountant clients. Use `/company/>withLoginAccess` to get a list of those.\n\n  - **password** is the **sessionToken**.\n\n  - If you need to create the header yourself use `Authorization: Basic <encoded token>` where `encoded token` is the string `<target company id or 0>:<your session token>` Base64 encoded.\n\n\n## Tags\n\n- `[BETA]` This is a beta endpoint and can be subject to change.\n- `[DEPRECATED]` Deprecated means that we intend to remove/change this feature or capability in a future \"major\" API release. We therefore discourage all use of this feature/capability.\n\n\n## Fields\n\nUse the `fields` parameter to specify which fields should be returned. This also supports fields from sub elements, done via `<field>(<subResourceFields>)`. `*` means all fields for that resource. Example values:\n- `project,activity,hours`  returns `{project:..., activity:...., hours:...}`.\n- just `project` returns `\"project\" : { \"id\": 12345, \"url\": \"tripletex.no/v2/projects/12345\"  }`.\n- `project(*)` returns `\"project\" : { \"id\": 12345 \"name\":\"ProjectName\" \"number.....startDate\": \"2013-01-07\" }`.\n- `project(name)` returns `\"project\" : { \"name\":\"ProjectName\" }`.\n- All resources and some subResources :  `*,activity(name),employee(*)`.\n\n\n## Sorting\n\nUse the `sorting` parameter to specify sorting. It takes a comma separated list, where a `-` prefix denotes descending. You can sort by sub object with the following format: `<field>.<subObjectField>`. Example values:\n- `date`\n- `project.name`\n- `project.name, -date`\n\n\n## Changes\n\nTo get the changes for a resource, `changes` have to be explicitly specified as part of the `fields` parameter, e.g. `*,changes`.\nThere are currently two types of change available: \n- `CREATE` for when the resource was created\n- `UPDATE` for when the resource was updated\n\n**NOTE**\n> For objects created prior to October 24th 2018 the list may be incomplete, but will always contain the CREATE and the last change (if the object has been changed after creation).\n\n\n## Rate limiting\n\nRate limiting is performed on the API calls for an employee for each API consumer. Status regarding the rate limit is returned as headers:\n- `X-Rate-Limit-Limit` - The number of allowed requests in the current period.\n- `X-Rate-Limit-Remaining` - The number of remaining requests.\n- `X-Rate-Limit-Reset` - The number of seconds left in the current period.\n\nOnce the rate limit is hit, all requests will return HTTP status code `429` for the remainder of the current period.\n\n\n## Response envelope\n\n#### Multiple values\n\n```json\n{\n  \"fullResultSize\": ###, // {number} [DEPRECATED]\n  \"from\": ###, // {number} Paging starting from\n  \"count\": ###, // {number} Paging count\n  \"versionDigest\": \"###\", // {string} Hash of full result, null if no result\n  \"values\": [...{...object...},{...object...},{...object...}...]\n}\n```\n\n#### Single value\n\n```json\n{\n  \"value\": {...single object...}\n}\n```\n\n\n## WebHook envelope\n\n```json\n{\n  \"subscriptionId\": ###, // Subscription id\n  \"event\": \"object.verb\", // As listed from /v2/event/\n  \"id\": ###, // Id of object this event is for\n  \"value\": {... single object, null if object.deleted ...}\n}\n```\n\n\n## Error/warning envelope\n\n```json\n{\n  \"status\": ###, // {number} HTTP status code\n  \"code\": #####, // {number} internal status code of event\n  \"message\": \"###\", // {string} Basic feedback message in your language\n  \"link\": \"###\", // {string} Link to doc\n  \"developerMessage\": \"###\", // {string} More technical message\n  \"validationMessages\": [ // {array} List of validation messages, can be null\n    {\n      \"field\": \"###\", // {string} Name of field\n      \"message\": \"###\" // {string} Validation message for field\n    }\n  ],\n  \"requestId\": \"###\" // {string} Same as x-tlx-request-id \n}\n```\n\n\n## Status codes / Error codes\n\n- **200 OK**\n- **201 Created** - From POSTs that create something new.\n- **204 No Content** - When there is no answer, ex: \"/:anAction\" or DELETE.\n- **400 Bad request** -\n  -  **4000** Bad Request Exception\n  - **11000** Illegal Filter Exception\n  - **12000** Path Param Exception\n  - **24000** Cryptography Exception\n- **401 Unauthorized** - When authentication is required and has failed or has not yet been provided\n  -  **3000** Authentication Exception\n- **403 Forbidden** - When AuthorisationManager says no.\n  -  **9000** Security Exception\n- **404 Not Found** - For resources that does not exist.\n  -  **6000** Not Found Exception\n- **409 Conflict** - Such as an edit conflict between multiple simultaneous updates\n  -  **7000** Object Exists Exception\n  -  **8000** Revision Exception\n  - **10000** Locked Exception\n  - **14000** Duplicate entry\n- **422 Bad Request** - For Required fields or things like malformed payload.\n  - **15000** Value Validation Exception\n  - **16000** Mapping Exception\n  - **17000** Sorting Exception\n  - **18000** Validation Exception\n  - **21000** Param Exception\n  - **22000** Invalid JSON Exception\n  - **23000** Result Set Too Large Exception\n- **429 Too Many Requests** - Request rate limit hit\n- **500 Internal Error** - Unexpected condition was encountered and no more specific message is suitable\n  - **1000** Exception\n",
     "title": "Tripletex API",
-    "version": "2.71.20"
+    "version": "2.71.30"
   },
   "paths": {
     "/accountantDashboard/news": {
@@ -109188,6 +109518,73 @@
         ]
       }
     },
+    "/vat/reconciliation/overview": {
+      "get": {
+        "description": "",
+        "operationId": "VatReconciliationOverview_getOverview",
+        "parameters": [
+          {
+            "description": "Must be between 1900-2100. Defaults to current year.",
+            "format": "int32",
+            "in": "query",
+            "name": "year",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Which VAT term to fetch data for",
+            "format": "int32",
+            "in": "query",
+            "name": "vatTerm",
+            "required": false,
+            "type": "integer"
+          },
+          {
+            "description": "Vat report type",
+            "enum": [
+              "PRIMARY_INDUSTRY",
+              "GENERAL_INDUSTRY"
+            ],
+            "in": "query",
+            "name": "reportType",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "description": "The id of the company of the customer to fetch data for",
+            "format": "int64",
+            "in": "query",
+            "name": "customerCompanyId",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "description": "Fields filter pattern",
+            "in": "query",
+            "name": "fields",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/ResponseWrapperVatReturns2022"
+            }
+          }
+        },
+        "security": [
+          {
+            "tokenAuthScheme": []
+          }
+        ],
+        "summary": "Get an overview of VAT payments registered in the customers ledger, and optionally data registered with the tax authority",
+        "tags": [
+          "vatreconciliation"
+        ]
+      }
+    },
     "/vatReturns/comment": {
       "get": {
         "description": "",
@@ -110116,6 +110513,15 @@
       "name": "altinninstance"
     },
     {
+      "name": "accountingOfficereconciliationscontext"
+    },
+    {
+      "name": "vatreconciliation"
+    },
+    {
+      "name": "vatreconciliationcontext"
+    },
+    {
       "name": "integrationfactoringaprila"
     },
     {
@@ -110209,10 +110615,10 @@
       "name": "bankreconciliationentry"
     },
     {
-      "name": "bank/reconciliation/entry/bankTransaction"
+      "name": "bank/reconciliation/entry/posting"
     },
     {
-      "name": "bank/reconciliation/entry/posting"
+      "name": "bank/reconciliation/entry/bankTransaction"
     },
     {
       "name": "bankreconciliationinternalexport"
@@ -111274,6 +111680,9 @@
       "name": "salaryspecification"
     },
     {
+      "name": "salaryspecificationsupplement"
+    },
+    {
       "name": "salarytransaction"
     },
     {
@@ -111632,9 +112041,6 @@
     },
     {
       "name": "vismaconnectmanagement"
-    },
-    {
-      "name": "vismaconnectonboard"
     },
     {
       "name": "vismaconnectwebhook"
