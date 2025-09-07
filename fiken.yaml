@@ -5662,8 +5662,10 @@ components:
           type: integer
           format: int64
           example: 500000
-          readOnly: true
-          description: Attribute of a foreign payment only. Is required if amount is provided in currency other than NOK and should be the actual amount that was received in the bank account. Formatted in cents (500000 = 5000.00)
+          description: |
+            Attribute of a foreign payment only. Is required if amount is provided in currency other than NOK and should be the actual amount 
+            that was received in the bank account. Fiken calculates the value based on the exchange rate for the given date if no amountInNok is sent. 
+            Formatted in cents (500000 = 5000.00)
         currency:
           type: string
           pattern: '^[A-Z]{3}$'
