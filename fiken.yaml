@@ -15,13 +15,13 @@ info:
       1. OAuth2
       2. Personal API tokens
 
-    Third parties that wish to integrate with Fiken on behalf of their customers should use the OAuth2 authorization method. In order to develop OAuth2 applications that integrate with this API you must log into your Fiken account and check the box saying that you are a developer (**Rediger konto -> Profil -> Andre innstillinger**). This will allow you to create an App by clicking on the "API" tab under Brukerinnstillinger. If you don't have an existing Fiken account you can create a new user and demo company (demoforetak) at no charge. Send an email to <api@fiken.no> to get free access to Fiken for longer than the included 30 day free trial period. 
+    Third parties that wish to integrate with Fiken on behalf of their customers must use the OAuth2 authorization method. In order to develop OAuth2 applications that integrate with this API you must log into your Fiken account and check the box saying that you are a developer (**Rediger konto -> Profil -> Andre innstillinger**). This will allow you to create an App by clicking on the "API" tab under Brukerinnstillinger. If you don't have an existing Fiken account you can create a new user and demo company (demoforetak) at no charge. Send an email to <api@fiken.no> to get free access to Fiken for longer than the included 30 day free trial period. 
 
     Upon creation of the new App you will be provided a Client ID and Client Secret that are needed for the OAuth2 authorization flow.
 
     This will allow you to use the API during development with up to 5 users. If you would like to use the API with more than 5 users and gain production status, you will need to send an email to <api@fiken.no> to gain full access to the API module.
 
-    Fiken customers that wish to integrate their own solutions with this API can use personal API tokens. Personal API tokens can be created in **Rediger konto -> API -> Personlige API-nøkler**. Note that personal API tokens do not expire.
+    Fiken customers that wish to integrate their own solutions with this API can use personal API tokens. Personal API tokens can be created in **Rediger konto -> API -> Personlige API-nøkler**. Note that personal API tokens do not expire. **Important: Using personal API tokens in third-party applications violates Fiken's terms of service and may result in immediate API access termination.**
 
     ## Base URL
     All URLs start with https://api.fiken.no/api/v2. Note that TLS is required, unencrypted HTTP is not supported. Although we currently redirect HTTP requests to HTTPS, you are not allowed to this with your application as using HTTP is a security risk. In the future we might respond with 403 Forbidden instead.
@@ -4199,6 +4199,12 @@ components:
           format: int32
           description: Default number of days until due date for invoices.
           example: 15
+        discount:
+          type: number
+          example: 25
+          description: |
+            Discount value should be a percent with a value between 0 and 100. 
+            Decimal values such as 25.5 are also allowed.
         address:
           $ref: '#/components/schemas/address'
         groups:
