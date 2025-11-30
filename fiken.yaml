@@ -1297,6 +1297,35 @@ paths:
               schema:
                 $ref: '#/components/schemas/transaction'
 
+  /companies/{companySlug}/transactions/{transactionId}/delete:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - name: transactionId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - name: description
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Required description for deleting the transaction
+    patch:
+      description: |
+        Sets the deleted flag for a transaction. The transaction is not deleted, but a reverse transaction is created and 
+        the "deleted" property is set to true.
+      operationId: deleteTransaction
+      tags:
+        - transactions
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/transaction'
 
   /companies/{companySlug}/invoices:
     parameters:
@@ -6323,6 +6352,11 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/journalEntry'
+        deleted:
+          type: boolean
+          example: false
+          readOnly: true
+          description: If the transaction has been deleted, this field will be true. A deletion creates a reverse transaction to null out the original.
     updateInvoiceRequest:
       type: object
       properties:
