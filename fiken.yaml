@@ -222,6 +222,9 @@ info:
     | https://api.fiken.no/api/v2/companies/{companySlug}/sales                | Yes         | No        |                                       | Yes         | saleNumber, lastModified, date, contactId                                                                                                                   |
     | https://api.fiken.no/api/v2/companies/{companySlug}/sales/drafts         | Yes         | No        |                                       | No          |                                                                                                                                                             |
     | https://api.fiken.no/api/v2/companies/{companySlug}/transactions         | Yes         | No        |                                       | Yes         | createdDate, lastModified                                                                                                                                   |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/timeEntries          | Yes         | No        |                                       | Yes         | date, projectId, activityId, timeUserId, invoiced, lastModified                                                                                   |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/activities           | Yes         | No        |                                       | Yes         | name, archived                                                                                                                                              |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/timeUsers            | Yes         | No        |                                       | Yes         | name, email                                                                                                                                                 |
 
     ### Pagination
     By default the API sets `page=0` and `pageSize=25` and returns the first 25 elements in a collection resource, if nothing else is specified.
@@ -3907,6 +3910,399 @@ paths:
         '204':
           description: Deleted
 
+  /companies/{companySlug}/timeEntries:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+    get:
+      description: Returns all time entries for given company
+      operationId: getTimeEntries
+      tags:
+        - time entries
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+        - name: date
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Filter time entries by exact date (yyyy-MM-dd)
+        - name: dateGe
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Filter time entries by date greater than or equal to (yyyy-MM-dd)
+        - name: dateLe
+          in: query
+          schema:
+            type: string
+            format: date
+          description: Filter time entries by date less than or equal to (yyyy-MM-dd)
+        - name: projectId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: Filter time entries by project ID
+        - name: activityId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: Filter time entries by activity ID
+        - name: timeUserId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: Filter time entries by time user ID
+        - name: invoiced
+          in: query
+          schema:
+            type: boolean
+          description: Filter time entries by invoiced status (true/false)
+        - name: lastModifiedGe
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Filter time entries modified after or at the given timestamp
+        - name: lastModifiedLe
+          in: query
+          schema:
+            type: string
+            format: date-time
+          description: Filter time entries modified before or at the given timestamp
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/timeEntryResult'
+          headers:
+            Fiken-Api-Page:
+              schema:
+                type: integer
+              description: From the request header
+            Fiken-Api-Page-Size:
+              schema:
+                type: integer
+              description: From the request header
+            Fiken-Api-Page-Count:
+              schema:
+                type: integer
+              description: The total number of pages in this resource with this page size
+            Fiken-Api-Result-Count:
+              schema:
+                type: integer
+              description: The total number of elements in this resource
+    post:
+      description: Creates a new time entry
+      operationId: createTimeEntry
+      tags:
+        - time entries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/timeEntryRequest'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: Full URL of newly created time entry
+
+  /companies/{companySlug}/timeEntries/{timeEntryId}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/timeEntryId'
+    get:
+      description: Returns time entry with specified id
+      operationId: getTimeEntry
+      tags:
+        - time entries
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/timeEntryResult'
+    patch:
+      description: Partially updates time entry with provided id. Only provided fields will be updated.
+      operationId: updateTimeEntry
+      tags:
+        - time entries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateTimeEntryRequest'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: Full URL of updated time entry
+    delete:
+      description: |
+        Delete time entry with specified id.
+
+        **Restrictions:**
+        - Cannot delete if the time entry has been invoiced
+        - Cannot delete if the time entry belongs to a closed accounting period
+
+        Returns 400 Bad Request if deletion is not allowed due to these restrictions.
+      operationId: deleteTimeEntry
+      tags:
+        - time entries
+      responses:
+        '204':
+          description: Deleted
+        '400':
+          description: Cannot delete - time entry is invoiced or period is closed
+
+  /companies/{companySlug}/activities:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+    get:
+      description: Returns all activities for given company
+      operationId: getActivities
+      tags:
+        - activities
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: Filter activities by name (partial match)
+        - name: archived
+          in: query
+          schema:
+            type: boolean
+          description: Filter activities by archived status. If not provided, returns all activities.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/activityResult'
+          headers:
+            Fiken-Api-Page:
+              schema:
+                type: integer
+              description: From the request header
+            Fiken-Api-Page-Size:
+              schema:
+                type: integer
+              description: From the request header
+            Fiken-Api-Page-Count:
+              schema:
+                type: integer
+              description: The total number of pages in this resource with this page size
+            Fiken-Api-Result-Count:
+              schema:
+                type: integer
+              description: The total number of elements in this resource
+    post:
+      description: Creates a new activity
+      operationId: createActivity
+      tags:
+        - activities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/activityRequest'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: Full URL of newly created activity
+
+  /companies/{companySlug}/activities/{activityId}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/activityId'
+    get:
+      description: Returns activity with specified id
+      operationId: getActivity
+      tags:
+        - activities
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/activityResult'
+    patch:
+      description: Partially updates activity with provided id. Only provided fields will be updated.
+      operationId: updateActivity
+      tags:
+        - activities
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/updateActivityRequest'
+      responses:
+        '200':
+          description: OK
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: Full URL of updated activity
+    delete:
+      description: |
+        Delete or archive activity with specified id.
+
+        **Behavior:**
+        - If the activity has no associated time entries and is not set as a default activity on any project, it will be permanently deleted
+        - If the activity has associated time entries or is set as a default activity on a project, it will be **archived** instead of deleted
+        - Archived activities are hidden from selection lists but remain accessible for historical time entries
+
+        The response is 204 in both cases (deleted or archived).
+      operationId: deleteActivity
+      tags:
+        - activities
+      responses:
+        '204':
+          description: Deleted or archived
+
+  /companies/{companySlug}/timeUsers:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+    get:
+      description: Returns all persons who can register time entries for the given company
+      operationId: getTimeUsers
+      tags:
+        - time users
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+        - name: name
+          in: query
+          schema:
+            type: string
+          description: Filter by name (partial match)
+        - name: email
+          in: query
+          schema:
+            type: string
+          description: Filter by email address
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/timeUserResult'
+          headers:
+            Fiken-Api-Page:
+              schema:
+                type: integer
+              description: From the request header
+            Fiken-Api-Page-Size:
+              schema:
+                type: integer
+              description: From the request header
+            Fiken-Api-Page-Count:
+              schema:
+                type: integer
+              description: The total number of pages in this resource with this page size
+            Fiken-Api-Result-Count:
+              schema:
+                type: integer
+              description: The total number of elements in this resource
+
+  /companies/{companySlug}/timeUsers/{timeUserId}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/timeUserId'
+    get:
+      description: Returns time user with specified id
+      operationId: getTimeUser
+      tags:
+        - time users
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/timeUserResult'
+
+  /companies/{companySlug}/timeEntries/createInvoiceDraft:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+    post:
+      description: |
+        Creates an invoice draft from one or more time entries.
+
+        The time entries will be converted to invoice lines based on the specified grouping.
+        After successful creation, the included time entries will be marked as "in draft" and
+        cannot be modified until the draft is deleted or converted to an invoice.
+
+        **Grouping options:**
+        - activity: One invoice line per activity, summing hours across all selected time entries for that activity
+        - activityAndPerson: One invoice line per unique activity+person combination
+        - none: Each time entry becomes its own invoice line
+
+        **Line description:**
+        By default, the invoice line description is generated from the activity name and total hours.
+        If `includeTimeEntryDescriptions` is true, individual time entry descriptions are appended.
+      operationId: createInvoiceDraftFromTimeEntries
+      tags:
+        - time entries
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/timeEntryInvoiceDraftRequest'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: Full URL of newly created invoice draft
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/invoiceishDraftResult'
+
 
 components:
   securitySchemes:
@@ -3918,6 +4314,15 @@ components:
           tokenUrl: 'https://fiken.no/oauth/token'
           scopes: {}
   schemas:
+    account:
+      type: object
+      properties:
+        code:
+          type: string
+          example: 1500:10029
+        name:
+          type: string
+          example: 'John Lewis'
     accountBalance:
       allOf:
         - $ref: '#/components/schemas/account'
@@ -3928,15 +4333,72 @@ components:
               format: int64
               example: 15200
               description: Balance of account for a given date given in cents (5050 = 50.50)
-    account:
+    activityRequest:
       type: object
+      required:
+        - name
       properties:
-        code:
-          type: string
-          example: 1500:10029
         name:
           type: string
-          example: 'John Lewis'
+          example: 'Development'
+          description: Name of the activity (must be unique within the company)
+        hourlyRate:
+          type: integer
+          format: int64
+          example: 125000
+          description: Default hourly rate in cents (125000 = 1250.00)
+        productId:
+          type: integer
+          format: int64
+          example: 12345
+          description: ID of the product to use when invoicing this activity (optional)
+        billable:
+          type: boolean
+          example: true
+          description: Whether time entries with this activity should be billable by default
+        description:
+          type: string
+          example: 'Backend development work'
+          description: Description of the activity (optional)
+        projectId:
+          type: integer
+          format: int64
+          example: 12345
+          description: ID of the project this activity is associated with (optional)
+    activityResult:
+      type: object
+      properties:
+        activityId:
+          type: integer
+          format: int64
+          example: 12345
+          description: Unique identifier for the activity
+        name:
+          type: string
+          example: 'Development'
+          description: Name of the activity
+        hourlyRate:
+          type: integer
+          format: int64
+          example: 125000
+          description: Default hourly rate in cents (125000 = 1250.00)
+        product:
+          $ref: '#/components/schemas/product'
+        billable:
+          type: boolean
+          example: true
+          description: Whether time entries with this activity are billable by default
+        description:
+          type: string
+          example: 'Backend development work'
+          description: Description of the activity
+        project:
+          $ref: '#/components/schemas/projectResult'
+        archived:
+          type: boolean
+          example: false
+          description: Whether the activity is archived
+          readOnly: true
     address:
       type: object
       required:
@@ -4254,16 +4716,6 @@ components:
         note:
           type: string
           example: 'Garage 45'
-    note:
-      type: object
-      description: Used for invoices and sales
-      properties:
-        author:
-          type: string
-          example: 'James Jones'
-        note:
-          type: string
-          example: 'Invoice sent after telephone conversation with customer'
     contactPerson:
       type: object
       required:
@@ -4455,6 +4907,23 @@ components:
           $ref: '#/components/schemas/projectResult'
         sale:
           $ref: '#/components/schemas/saleResult'
+    dispatchResult:
+      type: object
+      properties:
+        date:
+          type: string
+          format: date
+          readOnly: true
+          example: '2024-04-03'
+          description: Date that invoice/offer was sent from Fiken, format yyyy-mm-dd
+        dispatchType:
+          type: string
+          enum: [ email, sms, ehf, letter, vipps, efaktura, unknown ]
+          description: |
+            The type of dispatch. Unknown is returned when an invoice/offer was manually sent and Fiken doesn't know the dispatch method. 
+            Only possible dispatch types for offer are email, sms, or letter.
+          example: 'email'
+          readOnly: true
     draftLineRequest:
       type: object
       required:
@@ -5264,70 +5733,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/dispatchResult'
-    dispatchResult:
-      type: object
-      properties:
-        date:
-          type: string
-          format: date
-          readOnly: true
-          example: '2024-04-03'
-          description: Date that invoice/offer was sent from Fiken, format yyyy-mm-dd
-        dispatchType:
-          type: string
-          enum: [ email, sms, ehf, letter, vipps, efaktura, unknown ]
-          description: |
-            The type of dispatch. Unknown is returned when an invoice/offer was manually sent and Fiken doesn't know the dispatch method. 
-            Only possible dispatch types for offer are email, sms, or letter.
-          example: 'email'
-          readOnly: true
-    journalEntryLine:
-      type: object
-      required:
-        - amount
-      properties:
-        amount:
-          type: integer
-          format: int64
-          example: 310000
-          description: |
-            This will be the net amount (excluding VAT) for debitAccount lines and gross amount 
-            (including VAT) for creditAccount lines. The reason for this difference is due to the 
-            way Fiken calculates VAT based on the debitVatCode and creditVatCode.
-        account:
-          type: string
-          readOnly: true
-          example: '2400:20079'
-        vatCode:
-          type: string
-          readOnly: true
-          example: '1'
-        debitAccount:
-          type: string
-          writeOnly: true
-        debitVatCode:
-          type: integer
-          format: int64
-          writeOnly: true
-        creditAccount:
-          type: string
-          writeOnly: true
-        creditVatCode:
-          type: integer
-          format: int64
-          writeOnly: true
-        projectId:
-          type: array
-          items:
-            type: integer
-            format: int64
-          readOnly: true
-        lastModifiedDate:
-          type: string
-          format: date
-          example: '2018-04-03'
-          readOnly: true
-          description: Date that journal entry line was last modified in Fiken, format yyyy-mm-dd.
     journalEntry:
       type: object
       required:
@@ -5383,6 +5788,63 @@ components:
           readOnly: true
           items:
             $ref: '#/components/schemas/attachment'
+    journalEntryLine:
+      type: object
+      required:
+        - amount
+      properties:
+        amount:
+          type: integer
+          format: int64
+          example: 310000
+          description: |
+            This will be the net amount (excluding VAT) for debitAccount lines and gross amount 
+            (including VAT) for creditAccount lines. The reason for this difference is due to the 
+            way Fiken calculates VAT based on the debitVatCode and creditVatCode.
+        account:
+          type: string
+          readOnly: true
+          example: '2400:20079'
+        vatCode:
+          type: string
+          readOnly: true
+          example: '1'
+        debitAccount:
+          type: string
+          writeOnly: true
+        debitVatCode:
+          type: integer
+          format: int64
+          writeOnly: true
+        creditAccount:
+          type: string
+          writeOnly: true
+        creditVatCode:
+          type: integer
+          format: int64
+          writeOnly: true
+        projectId:
+          type: array
+          items:
+            type: integer
+            format: int64
+          readOnly: true
+        lastModifiedDate:
+          type: string
+          format: date
+          example: '2018-04-03'
+          readOnly: true
+          description: Date that journal entry line was last modified in Fiken, format yyyy-mm-dd.
+    note:
+      type: object
+      description: Used for invoices and sales
+      properties:
+        author:
+          type: string
+          example: 'James Jones'
+        note:
+          type: string
+          example: 'Invoice sent after telephone conversation with customer'
     offer:
       type: object
       properties:
@@ -6250,6 +6712,18 @@ components:
         deleted:
           type: boolean
           description: Whether the sale has been deleted or not
+    sendCreditNoteRequest:
+      allOf:
+        - $ref: '#/components/schemas/sendInvoiceishRequest'
+        - type: object
+          required:
+            - creditNoteId
+          properties:
+            creditNoteId:
+              type: integer
+              format: int64
+              example: 2888156
+              description: Id of credit note to send.
     sendInvoiceishRequest:
       type: object
       required:
@@ -6308,18 +6782,6 @@ components:
           type: string
           example: '85262741'
           description: Defaults to the customers phone number. Format should include the country code. If a Norwegian phone number, the country code is not necessary.
-    sendCreditNoteRequest:
-      allOf:
-        - $ref: '#/components/schemas/sendInvoiceishRequest'
-        - type: object
-          required:
-            - creditNoteId
-          properties:
-            creditNoteId:
-              type: integer
-              format: int64
-              example: 2888156
-              description: Id of credit note to send.
     sendInvoiceRequest:
       allOf:
         - $ref: '#/components/schemas/sendInvoiceishRequest'
@@ -6332,6 +6794,229 @@ components:
               format: int64
               example: 2888156
               description: Id of invoice to send.
+    timeEntryInvoiceDraftRequest:
+      type: object
+      required:
+        - timeEntryIds
+        - customerId
+        - daysUntilDueDate
+      properties:
+        timeEntryIds:
+          type: array
+          items:
+            type: integer
+            format: int64
+          minItems: 1
+          example: [123, 456, 789]
+          description: Array of time entry IDs to include in the invoice draft. All time entries must belong to the same company and must not already be invoiced or in another draft.
+        customerId:
+          type: integer
+          format: int64
+          example: 7340852
+          description: The customer (contact) to invoice. Must be a contact with customer=true.
+        daysUntilDueDate:
+          type: integer
+          format: int32
+          example: 14
+          description: Number of days until the invoice is due.
+        groupBy:
+          type: string
+          enum: [activity, activityAndPerson, none]
+          default: activity
+          example: 'activity'
+          description: |
+            How to group time entries into invoice lines:
+            - `activity`: One line per activity (default)
+            - `activityAndPerson`: One line per activity+person combination
+            - `none`: Each time entry becomes a separate line
+        includeTimeEntryDescriptions:
+          type: boolean
+          default: false
+          example: true
+          description: If true, individual time entry descriptions are included in the invoice line description.
+        issueDate:
+          type: string
+          format: date
+          example: '2024-03-15'
+          description: Issue date of the invoice draft. Defaults to today if not provided.
+        projectId:
+          type: integer
+          format: int64
+          example: 75408386
+          description: Project ID to associate with the invoice draft. If not provided, uses the project from the time entries (if they all belong to the same project).
+        invoiceText:
+          type: string
+          example: 'Faktura for utført arbeid i mars 2024'
+          description: Text to display above the invoice lines.
+        yourReference:
+          type: string
+          example: 'Ola Nordmann'
+          description: Customer's reference person.
+        ourReference:
+          type: string
+          example: 'Kari Hansen'
+          description: Your reference person.
+        orderReference:
+          type: string
+          description: Order reference (used for EHF invoices).
+        currency:
+          type: string
+          pattern: '^[A-Z]{3}$'
+          default: 'NOK'
+          example: 'NOK'
+          description: ISO 4217 currency code. Defaults to NOK.
+        bankAccountNumber:
+          type: string
+          example: '11112233334'
+          description: Bank account number for payment.
+
+    timeEntryRequest:
+      type: object
+      required:
+        - date
+        - hours
+        - activityId
+        - timeUserId
+      properties:
+        date:
+          type: string
+          format: date
+          example: '2024-03-15'
+          description: Date of the time entry, format yyyy-MM-dd
+        hours:
+          type: number
+          format: double
+          example: 7.5
+          description: Number of hours worked
+        startTime:
+          type: string
+          example: '09:00'
+          description: Start time of the work, format HH:mm (optional)
+        description:
+          type: string
+          example: 'Implemented new feature'
+          description: Description of work performed (visible on invoices)
+        internalNote:
+          type: string
+          example: 'Need to follow up with client'
+          description: Internal note (not visible on invoices)
+        activityId:
+          type: integer
+          format: int64
+          example: 12345
+          description: ID of the activity this time entry belongs to
+        projectId:
+          type: integer
+          format: int64
+          example: 67890
+          description: ID of the project this time entry belongs to (optional)
+        timeUserId:
+          type: integer
+          format: int64
+          example: 11111
+          description: ID of the time user who performed the work.
+    timeEntryResult:
+      type: object
+      properties:
+        timeEntryId:
+          type: integer
+          format: int64
+          example: 123456
+          description: Unique identifier for the time entry
+        date:
+          type: string
+          format: date
+          example: '2024-03-15'
+          description: Date of the time entry, format yyyy-MM-dd
+        hours:
+          type: number
+          format: double
+          example: 7.5
+          description: Number of hours worked
+        startTime:
+          type: string
+          example: '09:00'
+          description: Start time of the work, format HH:mm
+        endTime:
+          type: string
+          example: '16:30'
+          description: Calculated end time based on start time and hours, format HH:mm
+          readOnly: true
+        description:
+          type: string
+          example: 'Implemented new feature'
+          description: Description of work performed (visible on invoices)
+        internalNote:
+          type: string
+          example: 'Need to follow up with client'
+          description: Internal note (not visible on invoices)
+        activity:
+          $ref: '#/components/schemas/activityResult'
+        project:
+          $ref: '#/components/schemas/projectResult'
+        timeUser:
+          $ref: '#/components/schemas/timeUserResult'
+        invoiced:
+          type: boolean
+          example: false
+          description: Whether this time entry has been invoiced
+          readOnly: true
+        locked:
+          type: boolean
+          example: false
+          description: Whether this time entry is locked (e.g., due to being invoiced or period closed)
+          readOnly: true
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the time entry was created
+          readOnly: true
+        lastModifiedDate:
+          type: string
+          format: date-time
+          description: Timestamp when the time entry was last modified
+          readOnly: true
+    timeUserRequest:
+      type: object
+      required:
+        - name
+        - email
+      properties:
+        name:
+          type: string
+          example: 'Ola Nordmann'
+          description: Name of the person
+        email:
+          type: string
+          format: email
+          example: 'ola@example.com'
+          description: Email address of the person. Used for authentication if the person logs time via the Fiken app.
+    timeUserResult:
+      type: object
+      properties:
+        timeUserId:
+          type: integer
+          format: int64
+          example: 11111
+          description: Unique identifier for the time user
+        name:
+          type: string
+          example: 'Ola Nordmann'
+          description: Name of the person
+        email:
+          type: string
+          example: 'ola@example.com'
+          description: Email address of the person
+        createdDate:
+          type: string
+          format: date-time
+          description: Timestamp when the person was added
+          readOnly: true
+        lastModifiedDate:
+          type: string
+          format: date-time
+          description: Timestamp when the person was last modified
+          readOnly: true
     transaction:
       type: object
       description: Transaction result upon creation of a General Journal Entry
@@ -6367,6 +7052,37 @@ components:
           example: false
           readOnly: true
           description: If the transaction has been deleted, this field will be true. A deletion creates a reverse transaction to null out the original.
+    updateActivityRequest:
+      type: object
+      description: Partial update request for activity. Only provided fields will be updated.
+      properties:
+        name:
+          type: string
+          example: 'Development'
+          description: Name of the activity (must be unique within the company)
+        hourlyRate:
+          type: integer
+          format: int64
+          example: 125000
+          description: Default hourly rate in cents (125000 = 1250.00)
+        productId:
+          type: integer
+          format: int64
+          example: 12345
+          description: ID of the product to use when invoicing this activity (optional)
+        billable:
+          type: boolean
+          example: true
+          description: Whether time entries with this activity should be billable by default
+        description:
+          type: string
+          example: 'Backend development work'
+          description: Description of the activity (optional)
+        projectId:
+          type: integer
+          format: int64
+          example: 12345
+          description: ID of the project this activity is associated with (optional)
     updateInvoiceRequest:
       type: object
       properties:
@@ -6403,6 +7119,42 @@ components:
         completed:
           type: boolean
           description: Whether the project is completed or not.
+    updateTimeEntryRequest:
+      type: object
+      description: Partial update request for time entry. Only provided fields will be updated.
+      properties:
+        date:
+          type: string
+          format: date
+          example: '2024-03-15'
+          description: Date of the time entry, format yyyy-MM-dd
+        hours:
+          type: number
+          format: double
+          example: 7.5
+          description: Number of hours worked
+        startTime:
+          type: string
+          example: '09:00'
+          description: Start time of the work, format HH:mm (optional)
+        description:
+          type: string
+          example: 'Implemented new feature'
+          description: Description of work performed (visible on invoices)
+        internalNote:
+          type: string
+          example: 'Need to follow up with client'
+          description: Internal note (not visible on invoices)
+        activityId:
+          type: integer
+          format: int64
+          example: 12345
+          description: ID of the activity this time entry belongs to
+        projectId:
+          type: integer
+          format: int64
+          example: 67890
+          description: ID of the project this time entry belongs to (optional)
     userinfo:
       type: object
       properties:
@@ -6414,7 +7166,6 @@ components:
           type: string
           example: 'test@fiken.no'
           description: Users email address.
-
   parameters:
     draftId:
       name: draftId
@@ -6446,6 +7197,30 @@ components:
       name: projectId
       in: path
       required: true
+      schema:
+        type: integer
+        format: int64
+    timeEntryId:
+      name: timeEntryId
+      in: path
+      required: true
+      description: The unique identifier of the time entry
+      schema:
+        type: integer
+        format: int64
+    activityId:
+      name: activityId
+      in: path
+      required: true
+      description: The unique identifier of the activity
+      schema:
+        type: integer
+        format: int64
+    timeUserId:
+      name: timeUserId
+      in: path
+      required: true
+      description: The unique identifier of the time user
       schema:
         type: integer
         format: int64
