@@ -15,7 +15,14 @@ info:
       1. OAuth2
       2. Personal API tokens
 
-    Third parties that wish to integrate with Fiken on behalf of their customers must use the OAuth2 authorization method. In order to develop OAuth2 applications that integrate with this API you must log into your Fiken account and check the box saying that you are a developer (**Rediger konto -> Profil -> Andre innstillinger**). This will allow you to create an App by clicking on the "API" tab under Brukerinnstillinger. If you don't have an existing Fiken account you can create a new user and test company (testforetak) at no charge (see [point 2](https://hjelp.fiken.no/opprette-nytt-foretak-i-fiken)). Send an email to <api@fiken.no> to get free access to Fiken for longer than the included 30 day free trial period. 
+    Third parties that wish to integrate with Fiken on behalf of their customers must use the OAuth2 authorization method. In order to develop OAuth2 applications that integrate with this API you must log into your Fiken account and check the box saying that you are a developer (**Rediger konto -> Profil -> Andre innstillinger**). This will allow you to create an App by clicking on the "API" tab under Brukerinnstillinger.
+
+    If you don't have an existing Fiken account you can create a free test company by following these steps:
+
+    1. Either create a Fiken user at [fiken.no](https://www.fiken.no) if you don't already have one OR click **Legg til nytt Foretak** if you have an existing company registered in Fiken already.
+    3. Choose **Registrer et foretak som ikke er i Brønnøysundregistrene**.
+    4. Choose a name for the foretak that clearly shows it is a test company, for example "*{Name of integration} Test*".
+    5. Send an email to <hjelp@fiken.no> to get free access to Fiken for longer than the included 30 day free trial period.
 
     Upon creation of the new App you will be provided a Client ID and Client Secret that are needed for the OAuth2 authorization flow.
 
