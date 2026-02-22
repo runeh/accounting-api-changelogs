@@ -2408,6 +2408,23 @@ paths:
                 format: uri
               description: Full URL of newly created offer
 
+  /companies/{companySlug}/offers/send:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+    post:
+      description: Sends the specified document
+      operationId: sendOffer
+      tags:
+        - offers
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/sendOfferRequest'
+      responses:
+        '200':
+          description: Sent
 
   /companies/{companySlug}/orderConfirmations:
     parameters:
@@ -6801,6 +6818,18 @@ components:
               format: int64
               example: 2888156
               description: Id of invoice to send.
+    sendOfferRequest:
+      allOf:
+        - $ref: '#/components/schemas/sendInvoiceishRequest'
+        - type: object
+          required:
+            - offerId
+          properties:
+            offerId:
+              type: integer
+              format: int64
+              example: 2888156
+              description: Id of offer to send.
     timeEntryInvoiceDraftRequest:
       type: object
       required:
