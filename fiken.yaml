@@ -3036,6 +3036,17 @@ paths:
       operationId: addAttachmentToSale
       tags:
         - sales
+      parameters:
+        - name: attachToPayment
+          in: query
+          schema:
+            type: boolean
+          description: True if this attachment may document the payment (i.e. transaction receipt from credit card/payment company, export from bank, etc.). Default value is false if not specified. At least one of attachToPayment and attachToSale must be true.
+        - name: attachToSale
+          in: query
+          schema:
+            type: boolean
+          description: True if this attachment may document the sale (i.e. invoice, etc). Default value is false if not specified. At least one of attachToPayment and attachToSale must be true.
       requestBody:
         required: false
         content:
@@ -3047,14 +3058,6 @@ paths:
                   type: string
                   example: invoice_24760.pdf
                   description: The filename. Must end with either .png, .jpeg, .jpg, .gif or .pdf
-                attachToPayment:
-                  type: boolean
-                  default: true
-                  description: True if this attachment may document the payment (i.e. transaction receipt from credit card/payment company, export from bank, etc.). Default value is false if not specified. At least one of attachToPayment and attachToSale must be true.
-                attachToSale:
-                  type: boolean
-                  default: true
-                  description: True if this attachment may document the sale (i.e. invoice, etc). Default value is false if not specified. At least one of attachToPayment and attachToSale must be true.
                 file:
                   type: string
                   format: binary
@@ -3330,6 +3333,11 @@ paths:
             that have not been fully settled.
           schema:
             type: boolean
+        - $ref: '#/components/parameters/settledDate'
+        - $ref: '#/components/parameters/settledDateLe'
+        - $ref: '#/components/parameters/settledDateLt'
+        - $ref: '#/components/parameters/settledDateGe'
+        - $ref: '#/components/parameters/settledDateGt'
       responses:
         '200':
           description: OK
@@ -3443,6 +3451,17 @@ paths:
       operationId: addAttachmentToPurchase
       tags:
         - purchases
+      parameters:
+        - name: attachToPayment
+          in: query
+          schema:
+            type: boolean
+          description: True if this attachment may document the payment (i.e. transaction receipt from credit card/payment company, export from bank, etc.). Default value is false if not specified. At least one of attachToPayment and attachToSale must be true.
+        - name: attachToSale
+          in: query
+          schema:
+            type: boolean
+          description: True if this attachment may document the sale (i.e. invoice, etc). Default value is false if not specified. At least one of attachToPayment and attachToSale must be true.
       requestBody:
         required: false
         content:
@@ -3454,12 +3473,6 @@ paths:
                   type: string
                   example: invoice_24760.pdf
                   description: The filename. Must end with either .png, .jpeg, .jpg, .gif or .pdf
-                attachToPayment:
-                  type: boolean
-                  description: True if this attachment may document the payment (i.e. transaction receipt from credit card/payment company, export from bank, etc.). Default value is false if not specified. At least one of attachToPayment and attachToSale must be true.
-                attachToSale:
-                  type: boolean
-                  description: True if this attachment may document the sale (i.e. invoice, etc). Default value is false if not specified. At least one of attachToPayment and attachToSale must be true.
                 file:
                   type: string
                   format: binary
@@ -5189,6 +5202,12 @@ components:
           type: string
           format: date-time
           description: When the document was created
+        documentUrl:
+          type: string
+          description: For use with API credentials (bearer token or oauth 2)
+        documentUrlWithFikenNormalUserCredentials:
+          type: string
+          description: Requires the user to login with username and password in Fiken.
     invoiceishDraftLine:
       type: object
       required:
@@ -7492,6 +7511,56 @@ components:
         format: date
       description: |
         Filter based on date strictly greater than parameter value
+        Dates are represented as strings formatted as YYYY-MM-DD.
+        Example: January 1st, 1970: "1970-01-01"
+    settledDate:
+      in: query
+      name: settledDate
+      schema:
+        type: string
+        format: date
+      description: |
+        Filter based on settled date equal to parameter value.
+        Dates are represented as strings formatted as YYYY-MM-DD.
+        Example: January 1st, 1970: "1970-01-01"
+    settledDateLe:
+      in: query
+      name: settledDateLe
+      schema:
+        type: string
+        format: date
+      description: |
+        Filter based on settled date less than or equal to parameter value.
+        Dates are represented as strings formatted as YYYY-MM-DD.
+        Example: January 1st, 1970: "1970-01-01"
+    settledDateLt:
+      in: query
+      name: settledDateLt
+      schema:
+        type: string
+        format: date
+      description: |
+        Filter based on settled date strictly less than parameter value.
+        Dates are represented as strings formatted as YYYY-MM-DD.
+        Example: January 1st, 1970: "1970-01-01"
+    settledDateGe:
+      in: query
+      name: settledDateGe
+      schema:
+        type: string
+        format: date
+      description: |
+        Filter based on settled date greater than or equal to parameter value.
+        Dates are represented as strings formatted as YYYY-MM-DD.
+        Example: January 1st, 1970: "1970-01-01"
+    settledDateGt:
+      in: query
+      name: settledDateGt
+      schema:
+        type: string
+        format: date
+      description: |
+        Filter based on settled date strictly greater than parameter value.
         Dates are represented as strings formatted as YYYY-MM-DD.
         Example: January 1st, 1970: "1970-01-01"
     lastModified:
