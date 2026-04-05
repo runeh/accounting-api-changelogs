@@ -2990,6 +2990,30 @@ paths:
               schema:
                 $ref: '#/components/schemas/saleResult'
 
+  /companies/{companySlug}/sales/{saleId}/writeOff:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/saleId'
+    patch:
+      description: |
+        Registers a write-off (tapsføring) for the given sale. The sale must not be a cash sale, must not already be written off, settled, or deleted, and must have an outstanding balance. The write-off date must be after the sale date.
+      operationId: writeOffSale
+      tags:
+        - sales
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/writeOffRequest'
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/saleResult'
+
   /companies/{companySlug}/sales/{saleId}/delete:
     parameters:
       - $ref: '#/components/parameters/companySlug'
@@ -5262,6 +5286,15 @@ components:
           type: string
           description: Field is similar to vatType, it defaults to the product's income account. Either the line or the product needs to have an income account set.
           example: '3000'
+    roundingType:
+      type: string
+      enum: [none, round_half, round_whole, round_down_half, round_down_whole]
+      example: 'none'
+      description: >-
+        Type of øreavrunding (rounding) to apply to the total. 'none' means no rounding (default).
+        'round_half' rounds to nearest 50 øre, 'round_whole' rounds to nearest whole krone,
+        'round_down_half' rounds down to nearest 50 øre, 'round_down_whole' rounds down to nearest whole krone.
+        Only applicable for NOK currency. Does not change the company's default rounding setting.
     invoiceishDraftRequest:
       type: object
       required:
@@ -5331,6 +5364,8 @@ components:
           type: integer
           format: int64
           example: 75408386
+        roundingType:
+          $ref: '#/components/schemas/roundingType'
     invoiceishDraftResult:
       type: object
       properties:
@@ -5423,6 +5458,8 @@ components:
           type: integer
           format: int64
           example: 73408306
+        roundingType:
+          $ref: '#/components/schemas/roundingType'
     invoiceLineRequest:
       type: object
       required:
@@ -5644,6 +5681,8 @@ components:
           format: int64
           example: 15124866
           description: Optional - Associated project for the invoice to be created.
+        roundingType:
+          $ref: '#/components/schemas/roundingType'
     invoiceResult:
       type: object
       properties:
@@ -6171,6 +6210,8 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/creditNoteLineResult'
+        roundingType:
+          $ref: '#/components/schemas/roundingType'
     payment:
       type: object
       description: Returns a payment object with additional fields currrencyAmount, currency, and fee if it is a foreign currency payment
@@ -6755,6 +6796,34 @@ components:
         deleted:
           type: boolean
           description: Whether the sale has been deleted or not
+    writeOffRequest:
+      type: object
+      required:
+        - type
+        - date
+      properties:
+        type:
+          type: string
+          enum:
+            - OVERDUE_6_MONTHS
+            - COLLECTION_FAILED
+            - CUSTOMER_BANKRUPTCY
+            - DEEMED_IRRECOVERABLE
+          description: |
+            Reason for the write-off (tapsføring).
+            * OVERDUE_6_MONTHS - At least 6 months past due date, and at least 3 reminders or collection notices have been sent.
+            * COLLECTION_FAILED - Debt collection has been attempted without success.
+            * CUSTOMER_BANKRUPTCY - The customer has been declared bankrupt and the estate cannot cover the outstanding amount.
+            * DEEMED_IRRECOVERABLE - Based on an overall assessment, the receivable will clearly not be collected.
+        date:
+          type: string
+          format: date
+          description: Date of the write-off, format yyyy-mm-dd. Must be after the sale date.
+          example: '2024-06-01'
+        comment:
+          type: string
+          maxLength: 200
+          description: Optional comment for the write-off.
     sendCreditNoteRequest:
       allOf:
         - $ref: '#/components/schemas/sendInvoiceishRequest'
