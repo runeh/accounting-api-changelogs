@@ -7085,6 +7085,12 @@ components:
           example: false
           description: Whether this time entry has been invoiced
           readOnly: true
+        invoiceId:
+          type: integer
+          format: int64
+          example: 2888156
+          description: Id of the invoice this time entry has been invoiced on. Only present if the time entry has been invoiced.
+          readOnly: true
         locked:
           type: boolean
           example: false
