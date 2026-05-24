@@ -3804,7 +3804,7 @@ paths:
       tags:
         - inbox
       requestBody:
-        required: true
+        required: false
         content:
           multipart/form-data:
             schema:
@@ -3851,6 +3851,19 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/inboxResult'
+    delete:
+      description: |
+        Removes the inbox document with the specified id from the inbox.
+        The document is moved to the recycle bin (papirkurv) and is no longer
+        returned by the inbox listing endpoint. Any underlying file remains
+        intact, so documents that were attached to a transaction stay attached
+        to that transaction.
+      operationId: deleteInboxDocument
+      tags:
+        - inbox
+      responses:
+        '204':
+          description: Deleted
 
   /companies/{companySlug}/projects:
     parameters:
