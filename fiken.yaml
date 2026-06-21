@@ -20,9 +20,9 @@ info:
     If you don't have an existing Fiken account you can create a free test company by following these steps:
 
     1. Either create a Fiken user at [fiken.no](https://www.fiken.no) if you don't already have one OR click **Legg til nytt Foretak** if you have an existing company registered in Fiken already.
-    3. Choose **Registrer et foretak som ikke er i Brønnøysundregistrene**.
-    4. Choose a name for the foretak that clearly shows it is a test company, for example "*{Name of integration} Test*".
-    5. Send an email to <hjelp@fiken.no> to get free access to Fiken for longer than the included 30 day free trial period.
+    2. Choose **Registrer et foretak som ikke er i Brønnøysundregistrene**.
+    3. Choose a name for the foretak that clearly shows it is a test company, for example "*{Name of integration} Test*".
+    4. Send an email to <hjelp@fiken.no> to get free access to Fiken for longer than the included 30 day free trial period.
 
     Upon creation of the new App you will be provided a Client ID and Client Secret that are needed for the OAuth2 authorization flow.
 
@@ -3154,6 +3154,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/payment'
+    delete:
+      description: >-
+        Undoes a payment, mirroring the "Angre" (undo) action in Fiken. If the
+        payment has not yet been closed (lukket postering) it is deleted; if it has been closed a
+        reverse transaction is created so the audit trail is kept. Fails
+        if the payment cannot be undone (for example if it is already deleted,
+        belongs to a written-off sale, or is related to debt collection) —
+        exactly the cases where the undo action is unavailable in Fiken.
+      operationId: deleteSalePayment
+      tags:
+        - sales
+      parameters:
+        - name: description
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Optional description used when the payment is reversed (annulled).
+      responses:
+        '204':
+          description: Payment successfully deleted or reversed.
 
   /companies/{companySlug}/sales/drafts:
     parameters:
@@ -3568,6 +3589,27 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/payment'
+    delete:
+      description: >-
+        Undoes a payment, mirroring the "Angre" (undo) action in Fiken. If the
+        payment has not yet been closed (lukket postering) it is deleted; if it has been closed a
+        reverse transaction is created so the audit trail is kept. Fails
+        if the payment cannot be undone (for example if it is already annulled
+        or related to debt collection) — exactly the cases where the undo
+        action is unavailable in Fiken.
+      operationId: deletePurchasePayment
+      tags:
+        - purchases
+      parameters:
+        - name: description
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Optional description used when the payment is reversed (annulled).
+      responses:
+        '204':
+          description: Payment successfully deleted or reversed.
 
   /companies/{companySlug}/purchases/drafts:
     parameters:
