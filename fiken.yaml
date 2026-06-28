@@ -224,7 +224,7 @@ info:
     | https://api.fiken.no/api/v2/companies/{companySlug}/orderConfirmations   | Yes         | No        |                                       | No          |                                                                                                                                                             |
     | https://api.fiken.no/api/v2/companies/{companySlug}/products             | Yes         | No        |                                       | Yes         | name, productNumber, active, createdDate, lastModified                                                                                                      |
     | https://api.fiken.no/api/v2/companies/{companySlug}/projects             | Yes         | No        |                                       | Yes         | completed                                                                                                                                                   |
-    | https://api.fiken.no/api/v2/companies/{companySlug}/purchases            | Yes         | Yes       | createdDate                           | No          | date                                                                                                                                                        |
+    | https://api.fiken.no/api/v2/companies/{companySlug}/purchases            | Yes         | Yes       | createdDate                           | No          | date, contactId                                                                                                                                             |
     | https://api.fiken.no/api/v2/companies/{companySlug}/purchases/drafts     | Yes         | No        |                                       | No          |                                                                                                                                                             |
     | https://api.fiken.no/api/v2/companies/{companySlug}/sales                | Yes         | No        |                                       | Yes         | saleNumber, lastModified, date, contactId                                                                                                                   |
     | https://api.fiken.no/api/v2/companies/{companySlug}/sales/drafts         | Yes         | No        |                                       | No          |                                                                                                                                                             |
@@ -2895,12 +2895,7 @@ paths:
             that have not been fully settled.
           schema:
             type: boolean
-        - name: contactId
-          in: query
-          schema:
-            type: integer
-            format: int64
-          description: Find all sale results for a given customer
+        - $ref: '#/components/parameters/contactId'
       responses:
         '200':
           description: OK
@@ -3176,6 +3171,79 @@ paths:
         '204':
           description: Payment successfully deleted or reversed.
 
+  /companies/{companySlug}/sales/{saleId}/accruals:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/saleId'
+    get:
+      description: Returns all accruals (periodisering) set up on the specified sale.
+      operationId: getSaleAccruals
+      tags:
+        - sales
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/accrualResult'
+    post:
+      description: >-
+        Sets up accrual for a single line on the sale, spreading the line
+        amount evenly over a number of monthly periods. Mirrors the "Periodiser
+        / fordel inntekter over tid" action in Fiken. Only lines on result
+        accounts (3000–7999) can be accrued. Accrual of sales with
+        sales-cost lines (salgskostnad) is not supported.
+      operationId: createSaleAccrual
+      tags:
+        - sales
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/accrualRequest'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: Full URL of the newly created accrual
+
+  /companies/{companySlug}/sales/{saleId}/accruals/{accrualId}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/saleId'
+      - $ref: '#/components/parameters/accrualId'
+    get:
+      description: Returns the specified accrual on the sale.
+      operationId: getSaleAccrual
+      tags:
+        - sales
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/accrualResult'
+    delete:
+      description: >-
+        Deletes the accrual. Postings that have not been closed are
+        deleted; postings in closed periods are reversed so the audit trail is
+        kept.
+      operationId: deleteSaleAccrual
+      tags:
+        - sales
+      responses:
+        '204':
+          description: Accrual successfully deleted.
+
   /companies/{companySlug}/sales/drafts:
     parameters:
       - $ref: '#/components/parameters/companySlug'
@@ -3383,6 +3451,7 @@ paths:
         - $ref: '#/components/parameters/settledDateLt'
         - $ref: '#/components/parameters/settledDateGe'
         - $ref: '#/components/parameters/settledDateGt'
+        - $ref: '#/components/parameters/contactId'
       responses:
         '200':
           description: OK
@@ -3610,6 +3679,78 @@ paths:
       responses:
         '204':
           description: Payment successfully deleted or reversed.
+
+  /companies/{companySlug}/purchases/{purchaseId}/accruals:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/purchaseId'
+    get:
+      description: Returns all accruals (periodisering) set up on the specified purchase.
+      operationId: getPurchaseAccruals
+      tags:
+        - purchases
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/accrualResult'
+    post:
+      description: >-
+        Sets up accrual for a single line on the purchase, spreading the
+        line amount evenly over a number of monthly periods. Mirrors the
+        "Periodiser / fordel kostnader over tid" action in Fiken. Only lines on
+        result accounts (3000–7999) can be accrued.
+      operationId: createPurchaseAccrual
+      tags:
+        - purchases
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/accrualRequest'
+      responses:
+        '201':
+          description: Created
+          headers:
+            Location:
+              schema:
+                type: string
+                format: uri
+              description: Full URL of the newly created accrual
+
+  /companies/{companySlug}/purchases/{purchaseId}/accruals/{accrualId}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/purchaseId'
+      - $ref: '#/components/parameters/accrualId'
+    get:
+      description: Returns the specified accrual on the purchase.
+      operationId: getPurchaseAccrual
+      tags:
+        - purchases
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/accrualResult'
+    delete:
+      description: >-
+        Deletes the accrual. Postings that have not been closed are
+        deleted; postings in closed periods are reversed so the audit trail is
+        kept.
+      operationId: deletePurchaseAccrual
+      tags:
+        - purchases
+      responses:
+        '204':
+          description: Accrual successfully deleted.
 
   /companies/{companySlug}/purchases/drafts:
     parameters:
@@ -6172,6 +6313,15 @@ components:
         - vatType
         - description
       properties:
+        lineId:
+          type: integer
+          format: int64
+          example: 2888156
+          readOnly: true
+          description: >-
+            Stable identifier of this purchase/sale line, returned in GET
+            responses. Use this value as `lineId` when setting up accrual
+            for the line. Ignored if sent in a create/update request.
         description:
           type: string
           maxLength: 200
@@ -6484,6 +6634,86 @@ components:
         completed:
           type: boolean
           description: Whether the project is completed or not.
+    accrualRequest:
+      type: object
+      required:
+        - lineId
+        - startDate
+        - periods
+      properties:
+        lineId:
+          type: integer
+          format: int64
+          example: 2888156
+          description: >-
+            The purchase/sale line (orderLine.lineId) to accrue. Must be a
+            line on a result account (3000–7999).
+        startDate:
+          type: string
+          format: date
+          example: '2018-04-01'
+          description: First period (month) of the accrual, format yyyy-mm-dd.
+        periods:
+          type: integer
+          minimum: 1
+          maximum: 120
+          example: 12
+          description: Number of monthly periods to spread the line amount over.
+        account:
+          type: string
+          example: '1749'
+          description: >-
+            Account to accrue the amount to. Required. Must be one of the accounts
+            available in Fiken for the kind of trade — for purchases: 1397, 1700, 1710, 1742, 1743,
+            1744, 1749, 2961; for sales: 1530, 2965.
+    accrualResult:
+      type: object
+      properties:
+        accrualId:
+          type: integer
+          format: int64
+          example: 2888156
+          readOnly: true
+          description: Id of the accrual.
+        lineId:
+          type: integer
+          format: int64
+          example: 2888156
+          description: The purchase/sale line (orderLine.lineId) that is accrued.
+        account:
+          type: string
+          example: '1749'
+          description: Account the amount is accrued to.
+        startDate:
+          type: string
+          format: date
+          example: '2018-04-01'
+          description: First period (month) of the accrual, format yyyy-mm-dd.
+        periods:
+          type: integer
+          example: 12
+          description: Number of monthly periods the amount is spread over.
+        amountPerPeriod:
+          type: integer
+          format: int64
+          example: 4500
+          description: Amount posted per period, in cents.
+        endDate:
+          type: string
+          format: date
+          example: '2019-03-01'
+          description: Date of the last period (month) of the accrual, format yyyy-mm-dd.
+        unpostedPeriods:
+          type: integer
+          example: 0
+          description: >-
+            Number of periods not yet posted because they fall in accounting
+            years that have not been opened yet.
+        unpostedYears:
+          type: array
+          items:
+            type: string
+          description: Accounting years that contain periods not yet posted.
     purchaseRequest:
       type: object
       required:
@@ -6656,7 +6886,6 @@ components:
       required:
         - date
         - kind
-        - paid
         - lines
         - currency
       properties:
@@ -7437,6 +7666,13 @@ components:
       schema:
         type: integer
         format: int64
+    accrualId:
+      name: accrualId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
     accountCode:
       name: accountCode
       in: query
@@ -7505,6 +7741,13 @@ components:
       description: |
         Dates are represented as strings formatted as YYYY-MM-DD.
         Example: January 1st, 1970: "1970-01-01"
+    contactId:
+      in: query
+      name: contactId
+      schema:
+        type: integer
+        format: int64
+      description: Find all results for a given contact. Must be the contactId provided by a GET contacts call.
     createdDate:
       in: query
       name: createdDate
