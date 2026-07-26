@@ -28,6 +28,8 @@ info:
 
     This will allow you to use the API during development with up to 5 users. If you would like to use the API with more than 5 users and gain production status, you will need to send an email to <api@fiken.no> to gain full access to the API module.
 
+    Before requesting production status, we ask that any third-party integration onboards 2 to 3 real users with the integration during development. Please make sure you have done this before sending your email to request production status.
+
     Fiken customers that wish to integrate their own solutions with this API can use personal API tokens. Personal API tokens can be created in **Rediger konto -> API -> Personlige API-nøkler**. Note that personal API tokens do not expire. **Important: Using personal API tokens in third-party applications violates Fiken's terms of service and may result in immediate API access termination.**
 
     ## Base URL
@@ -1209,6 +1211,21 @@ paths:
       operationId: addAttachmentToJournalEntry
       tags:
         - journal entries
+      parameters:
+        - name: ehfDocumentId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: |
+            Instead of uploading a file, attach an existing received EHF document by its ehfDocumentId. The source EHF is marked as used and leaves the unprocessed view. Provide exactly one of file, ehfDocumentId or inboxDocumentId.
+        - name: inboxDocumentId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: |
+            Instead of uploading a file, attach an existing inbox document by its inboxDocumentId. The source document is marked as used and leaves the unused inbox view. Provide exactly one of file, ehfDocumentId or inboxDocumentId.
       requestBody:
         required: false
         content:
@@ -3066,6 +3083,20 @@ paths:
           schema:
             type: boolean
           description: True if this attachment may document the sale (i.e. invoice, etc). Default value is false if not specified. At least one of attachToPayment and attachToSale must be true.
+        - name: ehfDocumentId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: |
+            Instead of uploading a file, attach an existing received EHF document by its ehfDocumentId. The source EHF is marked as used and leaves the unprocessed view. Provide exactly one of file, ehfDocumentId or inboxDocumentId.
+        - name: inboxDocumentId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: |
+            Instead of uploading a file, attach an existing inbox document by its inboxDocumentId. The source document is marked as used and leaves the unused inbox view. Provide exactly one of file, ehfDocumentId or inboxDocumentId.
       requestBody:
         required: false
         content:
@@ -3372,6 +3403,21 @@ paths:
       operationId: addAttachmentToSaleDraft
       tags:
         - sales
+      parameters:
+        - name: ehfDocumentId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: |
+            Instead of uploading a file, attach an existing received EHF document by its ehfDocumentId. The source EHF is marked as used and leaves the unprocessed view. Provide exactly one of file, ehfDocumentId or inboxDocumentId.
+        - name: inboxDocumentId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: |
+            Instead of uploading a file, attach an existing inbox document by its inboxDocumentId. The source document is marked as used and leaves the unused inbox view. Provide exactly one of file, ehfDocumentId or inboxDocumentId.
       requestBody:
         required: false
         content:
@@ -3576,6 +3622,20 @@ paths:
           schema:
             type: boolean
           description: True if this attachment may document the sale (i.e. invoice, etc). Default value is false if not specified. At least one of attachToPayment and attachToSale must be true.
+        - name: ehfDocumentId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: |
+            Instead of uploading a file, attach an existing received EHF document by its ehfDocumentId. The source EHF is marked as used and leaves the unprocessed view. Provide exactly one of file, ehfDocumentId or inboxDocumentId.
+        - name: inboxDocumentId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: |
+            Instead of uploading a file, attach an existing inbox document by its inboxDocumentId. The source document is marked as used and leaves the unused inbox view. Provide exactly one of file, ehfDocumentId or inboxDocumentId.
       requestBody:
         required: false
         content:
@@ -3880,6 +3940,21 @@ paths:
       operationId: addAttachmentToPurchaseDraft
       tags:
         - purchases
+      parameters:
+        - name: ehfDocumentId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: |
+            Instead of uploading a file, attach an existing received EHF document by its ehfDocumentId. The source EHF is marked as used and leaves the unprocessed view. Provide exactly one of file, ehfDocumentId or inboxDocumentId.
+        - name: inboxDocumentId
+          in: query
+          schema:
+            type: integer
+            format: int64
+          description: |
+            Instead of uploading a file, attach an existing inbox document by its inboxDocumentId. The source document is marked as used and leaves the unused inbox view. Provide exactly one of file, ehfDocumentId or inboxDocumentId.
       requestBody:
         required: false
         content:
@@ -4047,6 +4122,89 @@ paths:
       responses:
         '204':
           description: Deleted
+
+  /companies/{companySlug}/ehf:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+    get:
+      description: |
+        Returns received EHF documents (incoming electronic invoices and credit
+        notes) for the given company. By default returns all documents; use the
+        `status` parameter to return only unprocessed documents (still in the
+        inbox) or processed documents (already booked as a purchase).
+      operationId: getEhfDocuments
+      tags:
+        - ehf
+      parameters:
+        - $ref: '#/components/parameters/page'
+        - $ref: '#/components/parameters/pageSize'
+        - name: sortBy
+          in: query
+          schema:
+            type: string
+            enum: [createdDate asc, createdDate desc, issueDate asc, issueDate desc]
+            default: createdDate desc
+          description: Sorts results in either ascending (asc) or descending (desc) order based on the parameter value.
+        - name: status
+          in: query
+          schema:
+            type: string
+            enum: [unprocessed, used, processed, deleted]
+          description: |
+            Filter documents based on their processing state. `unprocessed`
+            returns documents still in the inbox (not yet handled), `used`
+            returns documents attached to a record as documentation but not yet
+            booked, `processed` returns documents booked as a purchase, and
+            `deleted` returns documents removed from the inbox. If not specified,
+            all documents except deleted ones are returned.
+        - $ref: '#/components/parameters/issueDate'
+        - $ref: '#/components/parameters/issueDateLe'
+        - $ref: '#/components/parameters/issueDateLt'
+        - $ref: '#/components/parameters/issueDateGe'
+        - $ref: '#/components/parameters/issueDateGt'
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ehfDocumentResult'
+          headers:
+            Fiken-Api-Page:
+              schema:
+                type: integer
+              description: From the request header
+            Fiken-Api-Page-Size:
+              schema:
+                type: integer
+              description: From the request header
+            Fiken-Api-Page-Count:
+              schema:
+                type: integer
+              description: The total number of pages in this resource with this page size
+            Fiken-Api-Result-Count:
+              schema:
+                type: integer
+              description: The total number of elements in this resource
+
+  /companies/{companySlug}/ehf/{ehfDocumentId}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/ehfDocumentId'
+    get:
+      description: Returns the received EHF document with the specified id.
+      operationId: getEhfDocument
+      tags:
+        - ehf
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ehfDocumentResult'
 
   /companies/{companySlug}/projects:
     parameters:
@@ -5428,6 +5586,136 @@ components:
         documentUrlWithFikenNormalUserCredentials:
           type: string
           description: Requires the user to login with username and password in Fiken.
+    ehfDocumentResult:
+      type: object
+      properties:
+        ehfDocumentId:
+          type: integer
+          format: int64
+          example: 1234134
+          readOnly: true
+        status:
+          type: string
+          enum: [unprocessed, used, processed, deleted]
+          description: |
+            Processing state of the document. Note that `used` and `processed` are
+            distinct: attaching a document is not the same as booking it. Through
+            this API the only state change available for an EHF document is
+            attaching it (which sets `used`, see the attachment endpoints); booking
+            and deleting are done in Fiken (the web application), so `processed` and
+            `deleted` are never reached through this API.
+            * `unprocessed` – received and still in the inbox, not yet handled.
+            * `used` – attached as documentation to another record (a purchase,
+              sale, or journal entry, or a draft of these) via the attachment
+              endpoints. The document itself has not been booked. It stays `used`
+              even when the record it is attached to is itself already booked —
+              attaching does not transition it to `processed`.
+            * `processed` – the document itself has been booked as a purchase,
+              which populates `purchaseId`. Booking an EHF is done in Fiken; this
+              API has no endpoint to book one, so a document does not become
+              `processed` through the API, and attaching it to an existing purchase
+              does not make it `processed`.
+            * `deleted` – removed from the inbox (done in Fiken).
+        documentType:
+          type: string
+          enum: [invoice, creditNote]
+          description: Whether the document is an invoice or a credit note.
+        invoiceNumber:
+          type: string
+          description: The supplier's invoice or credit note number as stated in the EHF document.
+        issueDate:
+          type: string
+          format: date
+          description: Invoice/credit note date from the EHF document.
+        dueDate:
+          type: string
+          format: date
+          description: Payment due date, if present.
+        supplierName:
+          type: string
+          description: Supplier name as stated in the EHF document.
+        supplierOrganizationNumber:
+          type: string
+          description: Supplier organization number as stated in the EHF document.
+        supplierContactId:
+          type: integer
+          format: int64
+          description: Id of the matched Fiken contact for the supplier, if any.
+        net:
+          type: integer
+          format: int64
+          description: Total net amount in cents.
+        vat:
+          type: integer
+          format: int64
+          description: Total VAT amount in cents.
+        gross:
+          type: integer
+          format: int64
+          description: Total gross amount (= net + VAT) in cents.
+        amountDue:
+          type: integer
+          format: int64
+          description: Total amount to be paid, in cents (NOK), if present.
+        currency:
+          type: string
+          description: ISO 4217 currency code.
+        kid:
+          type: string
+        accountNumber:
+          type: string
+          description: Bank account number for payment, if present.
+        bic:
+          type: string
+        iban:
+          type: string
+        description:
+          type: string
+          description: Free-text description of the document.
+        purchaseId:
+          type: integer
+          format: int64
+          description: |
+            Id of the purchase this document was booked as (i.e. when `status` is
+            `processed`). Null for documents that are `unprocessed`, `used`, or
+            `deleted`. Booking is done in Fiken, not through this API.
+        documentUrl:
+          type: string
+          description: URL to download the document PDF. For use with API credentials (bearer token or oauth 2).
+        documentUrlWithFikenNormalUserCredentials:
+          type: string
+          description: URL to download the document PDF. Requires the user to login with username and password in Fiken.
+        xmlUrl:
+          type: string
+          description: URL to download the raw EHF XML. For use with API credentials (bearer token or oauth 2).
+        xmlUrlWithFikenNormalUserCredentials:
+          type: string
+          description: URL to download the raw EHF XML. Requires the user to login with username and password in Fiken.
+        createdAt:
+          type: string
+          format: date-time
+          description: When the document was received.
+        lines:
+          type: array
+          items:
+            $ref: '#/components/schemas/ehfDocumentLine'
+    ehfDocumentLine:
+      type: object
+      properties:
+        description:
+          type: string
+          description: Line description (product name and/or comment).
+        net:
+          type: integer
+          format: int64
+          description: Net amount for the line in cents.
+        vat:
+          type: integer
+          format: int64
+          description: VAT amount for the line in cents.
+        vatType:
+          type: string
+          description: VAT type resolved for purchase booking.
     invoiceishDraftLine:
       type: object
       required:
@@ -6361,7 +6649,6 @@ components:
           type: integer
           format: int64
           example: 2815556
-          writeOnly: true
           description: If a purchase is split over several projects, project/line can be specified. This field is only to be used for purchases.
     partialCreditNoteRequest:
       type: object
@@ -8038,6 +8325,13 @@ components:
         Example: January 1st, 1970: "1970-01-01"
     inboxDocumentId:
       name: inboxDocumentId
+      in: path
+      required: true
+      schema:
+        type: integer
+        format: int64
+    ehfDocumentId:
+      name: ehfDocumentId
       in: path
       required: true
       schema:
