@@ -964,7 +964,7 @@ paths:
             schema:
               $ref: '#/components/schemas/contactPerson'
       responses:
-        '200':
+        '201':
           description: Created
           headers:
             Location:
@@ -4713,10 +4713,6 @@ paths:
                 type: string
                 format: uri
               description: Full URL of newly created invoice draft
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/invoiceishDraftResult'
 
 
 components:
