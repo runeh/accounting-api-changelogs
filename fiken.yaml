@@ -895,6 +895,20 @@ paths:
         schema:
           type: integer
           format: int64
+    get:
+      description: Returns all attachments/documents for a given contact
+      operationId: getContactAttachments
+      tags:
+        - contacts
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/attachment'
     post:
       description: Creates and adds a new attachment/document to a contact
       operationId: addAttachmentToContact
@@ -927,6 +941,28 @@ paths:
                 type: string
                 format: uri
               description: Full URL of newly created attachment
+
+  /companies/{companySlug}/contacts/{contactId}/attachments/{attachmentUuid}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - name: contactId
+        in: path
+        required: true
+        schema:
+          type: integer
+          format: int64
+      - $ref: '#/components/parameters/attachmentUuid'
+    delete:
+      description: |
+        Deletes an attachment/document from a contact.
+      operationId: deleteContactAttachment
+      tags:
+        - contacts
+      responses:
+        '204':
+          description: Attachment deleted successfully.
+        '404':
+          description: No attachment with this id exists for the specified contact.
 
   /companies/{companySlug}/contacts/{contactId}/contactPerson:
     parameters:
@@ -1252,6 +1288,24 @@ paths:
               description: Full URL of newly created attachment
 
 
+  /companies/{companySlug}/journalEntries/{journalEntryId}/attachments/{attachmentUuid}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/journalEntryId'
+      - $ref: '#/components/parameters/attachmentUuid'
+    delete:
+      description: |
+        Deletes an attachment from a Journal Entry. Only removes the link between the
+        journal entry and the file; the file itself remains in the company archive.
+      operationId: deleteJournalEntryAttachment
+      tags:
+        - journal entries
+      responses:
+        '204':
+          description: Attachment deleted successfully.
+        '404':
+          description: No attachment with this id exists for the specified journal entry.
+
   /companies/{companySlug}/transactions:
     parameters:
       - $ref: '#/components/parameters/companySlug'
@@ -1552,6 +1606,23 @@ paths:
                 format: uri
               description: Full URL of newly created attachment
 
+  /companies/{companySlug}/invoices/{invoiceId}/attachments/{attachmentUuid}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/invoiceId'
+      - $ref: '#/components/parameters/attachmentUuid'
+    delete:
+      description: |
+        Deletes an attachment from an Invoice.
+      operationId: deleteInvoiceAttachment
+      tags:
+        - invoices
+      responses:
+        '204':
+          description: Attachment deleted successfully.
+        '404':
+          description: No attachment with this id exists for the specified invoice.
+
   /companies/{companySlug}/invoices/send:
     parameters:
       - $ref: '#/components/parameters/companySlug'
@@ -1767,6 +1838,23 @@ paths:
                 type: string
                 format: uri
               description: Full URL of newly created attachment
+
+  /companies/{companySlug}/invoices/drafts/{draftId}/attachments/{attachmentUuid}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/draftId'
+      - $ref: '#/components/parameters/attachmentUuid'
+    delete:
+      description: |
+        Deletes an attachment from an Invoice draft.
+      operationId: deleteInvoiceDraftAttachment
+      tags:
+        - invoices
+      responses:
+        '204':
+          description: Attachment deleted successfully.
+        '404':
+          description: No attachment with this id exists for the specified invoice draft.
 
   /companies/{companySlug}/invoices/drafts/{draftId}/createInvoice:
     parameters:
@@ -2137,6 +2225,23 @@ paths:
               description: Full URL of newly created attachment
 
 
+  /companies/{companySlug}/creditNotes/drafts/{draftId}/attachments/{attachmentUuid}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/draftId'
+      - $ref: '#/components/parameters/attachmentUuid'
+    delete:
+      description: |
+        Deletes an attachment from a Credit Note draft.
+      operationId: deleteCreditNoteDraftAttachment
+      tags:
+        - credit notes
+      responses:
+        '204':
+          description: Attachment deleted successfully.
+        '404':
+          description: No attachment with this id exists for the specified credit note draft.
+
   /companies/{companySlug}/creditNotes/drafts/{draftId}/createCreditNote:
     parameters:
       - $ref: '#/components/parameters/companySlug'
@@ -2405,6 +2510,23 @@ paths:
                 type: string
                 format: uri
               description: Full URL of newly created attachment
+
+  /companies/{companySlug}/offers/drafts/{draftId}/attachments/{attachmentUuid}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/draftId'
+      - $ref: '#/components/parameters/attachmentUuid'
+    delete:
+      description: |
+        Deletes an attachment from an Offer draft.
+      operationId: deleteOfferDraftAttachment
+      tags:
+        - offers
+      responses:
+        '204':
+          description: Attachment deleted successfully.
+        '404':
+          description: No attachment with this id exists for the specified offer draft.
 
   /companies/{companySlug}/offers/drafts/{draftId}/createOffer:
     parameters:
@@ -2718,6 +2840,23 @@ paths:
                 type: string
                 format: uri
               description: Full URL of newly created attachment
+
+  /companies/{companySlug}/orderConfirmations/drafts/{draftId}/attachments/{attachmentUuid}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/draftId'
+      - $ref: '#/components/parameters/attachmentUuid'
+    delete:
+      description: |
+        Deletes an attachment from an Order Confirmation draft.
+      operationId: deleteOrderConfirmationDraftAttachment
+      tags:
+        - order confirmations
+      responses:
+        '204':
+          description: Attachment deleted successfully.
+        '404':
+          description: No attachment with this id exists for the specified order confirmation draft.
 
   /companies/{companySlug}/orderConfirmations/drafts/{draftId}/createOrderConfirmation:
     parameters:
@@ -3123,6 +3262,25 @@ paths:
               description: Full URL of newly created attachment
 
 
+  /companies/{companySlug}/sales/{saleId}/attachments/{attachmentUuid}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/saleId'
+      - $ref: '#/components/parameters/attachmentUuid'
+    delete:
+      description: |
+        Deletes an attachment from a Sale. Only removes the link between the sale and the
+        file; the file itself remains in the company archive. Mirrors what is possible in
+        the Fiken web GUI.
+      operationId: deleteSaleAttachment
+      tags:
+        - sales
+      responses:
+        '204':
+          description: Attachment deleted successfully.
+        '404':
+          description: No attachment with this id exists for the specified sale.
+
   /companies/{companySlug}/sales/{saleId}/payments:
     parameters:
       - $ref: '#/components/parameters/companySlug'
@@ -3443,6 +3601,23 @@ paths:
                 format: uri
               description: Full URL of newly created attachment
 
+  /companies/{companySlug}/sales/drafts/{draftId}/attachments/{attachmentUuid}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/draftId'
+      - $ref: '#/components/parameters/attachmentUuid'
+    delete:
+      description: |
+        Deletes an attachment from a Sale draft.
+      operationId: deleteSaleDraftAttachment
+      tags:
+        - sales
+      responses:
+        '204':
+          description: Attachment deleted successfully.
+        '404':
+          description: No attachment with this id exists for the specified sale draft.
+
   /companies/{companySlug}/sales/drafts/{draftId}/createSale:
     parameters:
       - $ref: '#/components/parameters/companySlug'
@@ -3660,6 +3835,25 @@ paths:
                 type: string
                 format: uri
               description: Full URL of newly created attachment
+
+  /companies/{companySlug}/purchases/{purchaseId}/attachments/{attachmentUuid}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/purchaseId'
+      - $ref: '#/components/parameters/attachmentUuid'
+    delete:
+      description: |
+        Deletes an attachment from a Purchase. Only removes the link between the purchase
+        and the file; the file itself remains in the company archive. Mirrors what is
+        possible in the Fiken web GUI.
+      operationId: deletePurchaseAttachment
+      tags:
+        - purchases
+      responses:
+        '204':
+          description: Attachment deleted successfully.
+        '404':
+          description: No attachment with this id exists for the specified purchase.
 
   /companies/{companySlug}/purchases/{purchaseId}/payments:
     parameters:
@@ -3979,6 +4173,23 @@ paths:
                 type: string
                 format: uri
               description: Full URL of newly created attachment
+
+  /companies/{companySlug}/purchases/drafts/{draftId}/attachments/{attachmentUuid}:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/draftId'
+      - $ref: '#/components/parameters/attachmentUuid'
+    delete:
+      description: |
+        Deletes an attachment from a Purchase draft.
+      operationId: deletePurchaseDraftAttachment
+      tags:
+        - purchases
+      responses:
+        '204':
+          description: Attachment deleted successfully.
+        '404':
+          description: No attachment with this id exists for the specified purchase draft.
 
   /companies/{companySlug}/purchases/drafts/{draftId}/createPurchase:
     parameters:
@@ -4833,6 +5044,17 @@ components:
     attachment:
       type: object
       properties:
+        uuid:
+          type: string
+          format: uuid
+          example: '745b2f15-1234-4408-8bf2-b1d2d7610cb2'
+          description: |
+            Unique id of the attachment (the underlying file's UUID). Use this value as the
+            attachmentUuid path parameter when deleting the attachment.
+        filename:
+          type: string
+          example: 'invoice_24760.pdf'
+          description: The name of the underlying file.
         identifier:
           type: string
           example: '24760'
@@ -7864,6 +8086,16 @@ components:
           example: 'test@fiken.no'
           description: Users email address.
   parameters:
+    attachmentUuid:
+      name: attachmentUuid
+      in: path
+      required: true
+      description: |
+        The unique id of the attachment, exposed as `uuid` on the attachment resource
+        (the underlying file's UUID). Returned by the GET attachments call.
+      schema:
+        type: string
+        format: uuid
     draftId:
       name: draftId
       in: path
