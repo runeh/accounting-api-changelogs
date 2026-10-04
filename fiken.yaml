@@ -24,7 +24,7 @@ info:
     3. Choose a name for the foretak that clearly shows it is a test company, for example "*{Name of integration} Test*".
     4. Send an email to <hjelp@fiken.no> to get free access to Fiken for longer than the included 30 day free trial period.
 
-    Upon creation of the new App you will be provided a Client ID and Client Secret that are needed for the OAuth2 authorization flow.
+    Upon creation of the new App you will be provided a Client ID and Client Secret that are needed for the OAuth2 authorization flow. If your app runs on the user's device (a mobile app, a desktop app or a plugin) it cannot keep a secret. Register it as a *public client* instead and use Proof Key for Code Exchange (PKCE), see the section *Public clients and PKCE* below.
 
     This will allow you to use the API during development with up to 5 users. If you would like to use the API with more than 5 users and gain production status, you will need to send an email to <api@fiken.no> to gain full access to the API module.
 
@@ -70,6 +70,8 @@ info:
     | client_id     | **Required** The client id you received from Fiken when you registered your application                          |
     | redirect_uri  | **Required** The URL in your application where users will be sent with an authorization code after authorization |
     | state         | **Required** An unguessable random string, used to protect against CSRF attacks                                  |
+    | code_challenge | **Required for public clients**, optional for confidential clients. `base64url(sha256(code_verifier))`, see PKCE below |
+    | code_challenge_method | **Required with code_challenge**. Must be `S256`                                                          |
 
 
     ### Token Endpoint
@@ -78,7 +80,7 @@ info:
 
     The temporary authorization code can be exchanged for an access token at the token endpoint.
 
-    The token endpoint is protected with Http Basic Authentication and you should use your application client id and client secret as credentials to authenticate.
+    The token endpoint is protected with Http Basic Authentication and you should use your application client id and client secret as credentials to authenticate. Public clients have no secret and instead send `client_id` and `code_verifier` in the body, see the section *Public clients and PKCE* below.
 
         POST https://fiken.no/oauth/token
         Content-Type: application/x-www-form-urlencoded
@@ -110,6 +112,10 @@ info:
     | code         | **Required** The authorization code that was received in the redirect from the authorize endpoint                |
     | redirect_uri | **Required** The URL in your application where users will be sent with an authorization code after authorization |
     | state        | **Required** An unguessable random string, used to protect against CSRF attacks                                  |
+    | code_verifier | **Required if `code_challenge` was sent** to the authorize endpoint. The random string the challenge was derived from |
+    | client_id    | **Required for public clients** (no Basic auth). Confidential clients send it in the Basic auth header instead   |
+
+    An authorization code can only be used once. The code is bound to the client that requested it, and to the `code_challenge` if one was sent.
 
     ### Refresh Tokens
 
@@ -140,6 +146,63 @@ info:
     | :----------- | :--------------------------------------------------------------------------------------------------------------- |
     | grant_type   | **Required** Should be the value `refresh_token`                                                                 |
     | refresh_token| **Required** The refresh token last returned for this user from the token endpoint                               |
+    | client_id    | **Required for public clients** (no Basic auth)                                                                   |
+
+    For public clients the refresh token is rotated: every refresh returns a new refresh token, and you must store it and use it next time. Store the new token before you discard the old one. Do not reuse an old refresh token: it stops working after rotation, and Fiken may treat a reuse as a stolen token and revoke the whole chain, so the user must log in again. A public client refresh token expires after 90 days without use.
+
+    ### Public clients and PKCE
+
+    A confidential client proves its identity at the token endpoint with the client secret. An app that runs on the user's device (mobile app, desktop app, browser extension, plugin) cannot protect a secret, since anyone can extract it from the binary. For these apps Fiken supports *public clients* with PKCE (RFC 7636): instead of a long-lived secret, the app proves for every login that it is the same app that started the flow.
+
+    To register a public client, open **Avanserte innstillinger** when you create the app and check **Uten client secret (PKCE)**. This can only be chosen when the app is created. A public client gets a Client ID but no Client Secret.
+
+    Public clients:
+
+    - Must send `code_challenge` and `code_challenge_method=S256` to the authorize endpoint. Requests without them are rejected.
+    - Authenticate at the token endpoint with `client_id` and `code_verifier` in the body. Do not send Basic auth or a client secret.
+    - May omit `redirect_uri` at the token endpoint. If sent, it must match the one used at the authorize endpoint.
+    - Get a new refresh token on every refresh, see the section *Refresh Tokens* above.
+    - Cannot use the `client_credentials` grant.
+    - Always get the consent screen when the redirect URI is a loopback address or a custom scheme, even if the user approved the app before (RFC 8252 §8.6). With an `https` redirect an existing approval skips the screen.
+    - May register a loopback redirect URI, any port, or a custom scheme, per RFC 8252.
+
+    Confidential clients may also send `code_challenge` and `code_verifier`. We recommend it, it protects the authorization code even if the redirect is intercepted.
+
+    #### Step 1: create a code verifier and challenge
+
+    Before each login, generate a random `code_verifier` of 43 to 128 characters from the set `[A-Z] [a-z] [0-9] - . _ ~`. Compute the challenge as the SHA-256 hash of the verifier, base64url-encoded without padding:
+
+        code_verifier  = dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
+        code_challenge = base64url(sha256(code_verifier))
+                       = E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM
+
+    Keep the verifier in memory in the app. It must never be sent to the authorize endpoint or stored where other apps can read it.
+
+    #### Step 2: authorize
+
+        GET https://fiken.no/oauth/authorize?response_type=code&client_id=CLIENT_ID&redirect_uri=REDIRECT_URI&state=STATE&code_challenge=E9Melhoa2OwvFrEMTJguCHaoeK1t8URWbuGJSstw-cM&code_challenge_method=S256
+
+    Fiken stores the challenge together with the authorization code and redirects the user back to `redirect_uri` with `code` and `state` as usual.
+
+    #### Step 3: exchange the code
+
+        POST https://fiken.no/oauth/token
+        Content-Type: application/x-www-form-urlencoded
+
+        grant_type=authorization_code&client_id=CLIENT_ID&code=AUTHCODE&code_verifier=dBjftJeZ4CVP-mB92K27uhbUJU1p1r_wW1gFWFOEjXk
+
+    Fiken hashes the verifier and compares it with the stored challenge. If they do not match, or the verifier is missing, the response is `invalid_grant`. On success the response is the same as for confidential clients.
+
+    #### Step 4: refresh
+
+        POST https://fiken.no/oauth/token
+        Content-Type: application/x-www-form-urlencoded
+
+        grant_type=refresh_token&client_id=CLIENT_ID&refresh_token=REFRESH_TOKEN
+
+    Store the `refresh_token` from the response, it replaces the one you sent. Never send the old one again.
+
+    The authorization server metadata at `/.well-known/oauth-authorization-server` lists `code_challenge_methods_supported` and `token_endpoint_auth_methods_supported`, so standard OAuth client libraries can discover this configuration.
 
     ### Using Access Tokens in API Requests
 
