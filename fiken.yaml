@@ -1218,6 +1218,14 @@ paths:
         - $ref: '#/components/parameters/createdDateLt'
         - $ref: '#/components/parameters/createdDateGe'
         - $ref: '#/components/parameters/createdDateGt'
+        - name: transactionType
+          in: query
+          schema:
+            type: string
+          description: |
+            Returns only journal entries belonging to a transaction of the given type. Exact match on the value
+            returned in `transactionType`, for example `Inngående balanse`. See `transactionType` on journalEntry
+            for possible values. An unknown value gives 400.
       responses:
         '200':
           description: OK
@@ -1390,6 +1398,14 @@ paths:
         - $ref: '#/components/parameters/createdDateLt'
         - $ref: '#/components/parameters/createdDateGe'
         - $ref: '#/components/parameters/createdDateGt'
+        - name: type
+          in: query
+          schema:
+            type: string
+          description: |
+            Returns only transactions of the given type. Exact match on the value returned in `type`,
+            for example `Inngående balanse`. See `transactionType` on journalEntry for possible values.
+            An unknown value gives 400.
       responses:
         '200':
           description: OK
@@ -6926,6 +6942,14 @@ components:
           format: int64
           readOnly: true
           description: If a journal entry has been cancelled this provides the id of the balancing transaction
+        transactionType:
+          type: string
+          readOnly: true
+          example: 'Inngående balanse'
+          description: |
+            Type of the transaction this journal entry belongs to. The type is a property of the transaction,
+            so all journal entries in the same transaction have the same type. Same value as `type` on transaction.
+            Possible values: Salg, Kjøp, Fri, Åpningsbalanse, Annullering, Import, Kreditert salg, Kreditert kjøp, Bankomkostning, Inngående balanse, Mva-oppgjør, Årsavslutning (system), Bankrenter, Intern overføring, Personlig innskudd/uttak, Innskudd av kontanter (mynter og sedler), Uttak av kontanter (mynter og sedler), Forskuddsskatt, Kontantutlegg, Lønn, Betaling av forskuddstrekk, Betaling av arbeidsgiveravgift, Forever Bonus, Årsavslutning (egne), PayPal PoS, Endring av eiendel, Betaling av finansskatt, Diverse (fra mal), Gjeld, Betaling av utleggstrekk for dekning av skatt, Kjørebok, Skatteoppgjør, Tolldeklarasjon, Verdipapir, Betalingsoppgjør, Avstemming, Varetelling.
         journalEntryNumber:
           type: integer
           format: int32
@@ -8338,7 +8362,9 @@ components:
           type: string
         type:
           type: string
-          example: 'General Journal Entry'
+          example: 'Fri'
+          description: |
+            Type of the transaction. Same values as `transactionType` on journalEntry.
         entries:
           type: array
           items:
