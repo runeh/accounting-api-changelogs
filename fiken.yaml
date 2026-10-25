@@ -91,8 +91,8 @@ info:
     The response will contain the access token, a refresh token (see below) as well as information about the expiry time for the token.
 
         {
-          "access_token": "K2QwoFp4ZfugWLWk7Ipu9kni5cyv3luXKQ-GDShvV2g=",
-          "refresh_token": "naFOD_j8m6PFGcP0pfImVZlSxKklHLbgj9Hzao4rhg8=",
+          "access_token": "EXAMPLE_ACCESS_TOKEN",
+          "refresh_token": "EXAMPLE_REFRESH_TOKEN",
           "token_type": "bearer",
           "expires_in": 86157
         }
@@ -134,8 +134,8 @@ info:
     The response contains a fresh access token along with a possibly updated refresh token:
 
         {
-          "access_token": "K2QwoFp4ZfugWLWk7Ipu9kni5cyv3luXKQ-GDShvV2g=",
-          "refresh_token": "naFOD_j8m6PFGcP0pfImVZlSxKklHLbgj9Hzao4rhg8=",
+          "access_token": "EXAMPLE_ACCESS_TOKEN",
+          "refresh_token": "EXAMPLE_REFRESH_TOKEN",
           "token_type": "bearer",
           "expires_in": 86157
         }
@@ -4119,6 +4119,30 @@ paths:
                 $ref: '#/components/schemas/purchaseResult'
 
 
+  /companies/{companySlug}/purchases/{purchaseId}/settled:
+    parameters:
+      - $ref: '#/components/parameters/companySlug'
+      - $ref: '#/components/parameters/purchaseId'
+      - name: settledDate
+        in: query
+        required: true
+        schema:
+          type: string
+          format: date
+        description: Date that the purchase is settled
+    patch:
+      description: Marks the purchase as settled without payment. This is synonymous with "sett til oppgjort uten betaling" in the GUI. It is possible to change the date of settlement by sending a new settledDate.
+      operationId: settledPurchase
+      tags:
+        - purchases
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/purchaseResult'
+
   /companies/{companySlug}/purchases/{purchaseId}/attachments:
     parameters:
       - $ref: '#/components/parameters/companySlug'
@@ -7403,6 +7427,13 @@ components:
           format: int64
           example: 300000
           description: The net unit price in cents.
+        costPrice:
+          type: integer
+          format: int64
+          example: 150000
+          description: |
+            Cost price in cents, including freight, customs duty and other non-recoverable costs.
+            Excluding VAT if the company is VAT-registered, including VAT otherwise. Optional.
         incomeAccount:
           type: string
           example: '3000'
